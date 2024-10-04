@@ -37,9 +37,7 @@ social_links:
   -
     icon: facebook
     link: /
-  -
-    icon: mail
-    link: sunxiaoyu.space@outlook.com
+
   -
     icon: mastodon
     label: mastodon.social
