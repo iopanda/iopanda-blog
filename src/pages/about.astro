@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homeHref = `${base}/`;
+const githubHref = 'https://github.com/iopanda';
+---
+
+<BaseLayout title="关于" description="关于 iopanda 和这个站点。">
+  <article class="page">
+    <header class="page-header">
+      <p class="eyebrow">About</p>
+      <h1>关于我</h1>
+      <p class="lede">一个普通开发者，对好用的工具、清晰的界面和安静的文字有偏爱。</p>
+    </header>
+
+    <div class="prose">
+      <p>
+        我是 iopanda，这里是我的个人站点。我会在这里记录做过的项目、读过的书，
+        以及一些还没有完全想明白的问题。内容不追热点，更新也不定期，但会尽量写得诚实。
+      </p>
+
+      <h2>关于这个站点</h2>
+      <p>
+        它使用 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a>
+        构建为纯静态页面，部署在 GitHub Pages 上。没有客户端框架、追踪脚本或多余的运行时依赖，
+        深色与浅色主题跟随系统设置自动切换。
+      </p>
+      <ul>
+        <li>内容优先，保持轻量</li>
+        <li>不追踪访客，也不弹窗</li>
+        <li>源码公开在 <a href={githubHref} target="_blank" rel="noreferrer">GitHub</a></li>
+      </ul>
+
+      <h2>联系</h2>
+      <p>
+        如果你想聊聊技术、工具，或者只是打个招呼，可以在 GitHub 找到我。
+        这个站点还在慢慢生长，之后会有更多笔记和文章。
+      </p>
+    </div>
+
+    <p class="back-link">
+      <a href={homeHref}>← 回到首页</a>
+    </p>
+  </article>
+</BaseLayout>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const aboutHref = `${base}/about/`;
+const githubHref = 'https://github.com/iopanda';
+---
+
+<BaseLayout
+  title="首页"
+  description="iopanda 的个人站点：关于代码、工具与日常的安静角落。"
+>
+  <section class="hero">
+    <p class="eyebrow">
+      <span class="eyebrow-dot" aria-hidden="true"></span>
+      Personal site · 2026
+    </p>
+    <h1>写代码，<br /><span class="accent">也写点别的。</span></h1>
+    <p class="lede">
+      我是 iopanda。这里是我的数字角落，用来存放做过的项目、顺手写下的笔记，
+      以及那些还没来得及整理成文章的想法。
+    </p>
+    <div class="hero-actions">
+      <a class="button button--primary" href={aboutHref}>
+        认识我 <span aria-hidden="true">→</span>
+      </a>
+      <a
+        class="button button--ghost"
+        href={githubHref}
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="now-title">
+    <div class="section-heading">
+      <h2 id="now-title">最近在做</h2>
+      <span>Now</span>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <p class="card-index" aria-hidden="true">01</p>
+        <h3>重建这个站点</h3>
+        <p>从 Hexo 迁移到 Astro，去掉多余的依赖，把注意力留给内容本身。</p>
+      </article>
+
+      <article class="card">
+        <p class="card-index" aria-hidden="true">02</p>
+        <h3>整理旧笔记</h3>
+        <p>把散落在各处的想法收拢起来，慢慢补上那些迟到的说明文档。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--compact">
+    <div class="note">
+      <span class="note-label">近况</span>
+      <p>
+        正在学习如何把复杂的事情说简单。如果你也有同样的兴趣，欢迎到
+        <a href={githubHref} target="_blank" rel="noreferrer">GitHub</a>
+        找我。
+      </p>
+    </div>
+  </section>
+</BaseLayout>
