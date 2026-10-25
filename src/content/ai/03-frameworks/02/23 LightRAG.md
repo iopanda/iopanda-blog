@@ -32,13 +32,13 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/04 LightRAG/README"
 
 ## 本目录笔记导航
 
-1. [01 LightRAG 的设计哲学：为什么是“轻量图检索”](/iopanda-blog/ai/03-frameworks/02/24/)
-2. [02 Entity、Relation、Chunk 与 Graph-aware Retrieval](/iopanda-blog/ai/03-frameworks/02/25/)
-3. [03 Vector RAG vs Graph RAG vs Hybrid RAG](/iopanda-blog/ai/03-frameworks/02/26/)
-4. [04 性能、复杂度与适用边界](/iopanda-blog/ai/03-frameworks/02/27/)
-5. [05 课程助教 Agent 的 LightRAG 架构案例](/iopanda-blog/ai/03-frameworks/02/28/)
-6. [06 LightRAG 与 LlamaIndex、Haystack、RAGFlow、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/29/)
+1. [01 LightRAG 的设计哲学：为什么是“轻量图检索”](/ai/03-frameworks/02/24/)
+2. [02 Entity、Relation、Chunk 与 Graph-aware Retrieval](/ai/03-frameworks/02/25/)
+3. [03 Vector RAG vs Graph RAG vs Hybrid RAG](/ai/03-frameworks/02/26/)
+4. [04 性能、复杂度与适用边界](/ai/03-frameworks/02/27/)
+5. [05 课程助教 Agent 的 LightRAG 架构案例](/ai/03-frameworks/02/28/)
+6. [06 LightRAG 与 LlamaIndex、Haystack、RAGFlow、Pathway 的深度对比](/ai/03-frameworks/02/29/)
 
-上一篇：[03 RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/)
+上一篇：[03 RAGFlow](/ai/03-frameworks/02/16/)
 
-下一篇：[01 LightRAG 的设计哲学：为什么是“轻量图检索”](/iopanda-blog/ai/03-frameworks/02/24/)
+下一篇：[01 LightRAG 的设计哲学：为什么是“轻量图检索”](/ai/03-frameworks/02/24/)

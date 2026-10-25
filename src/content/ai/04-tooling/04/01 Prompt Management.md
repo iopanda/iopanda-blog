@@ -34,17 +34,17 @@ sourceId: "3.10.4.4 Prompt Management/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [Langfuse Prompts](/iopanda-blog/ai/04-tooling/04/02/) | 把 prompt 放进版本化、可追踪的平台工作流 | prompt registry、版本、playground、online feedback | 已经采用 Langfuse 工作流的团队 |
-| [Promptfoo](/iopanda-blog/ai/04-tooling/04/08/) | 把 prompt 当作可回归测试的工件 | fixtures、assertions、matrix compare、CI | 想用工程化方式验证 prompt 变更的团队 |
-| [DSPy](/iopanda-blog/ai/04-tooling/04/14/) | 从“写 prompt”转向“写可优化的 LM 程序” | signatures、modules、optimizers、programming model | 愿意用程序抽象替代手调模板的团队 |
-| [Guidance](/iopanda-blog/ai/04-tooling/04/20/) | 用受控生成语言编写更可约束的提示流程 | templating、control、constrained generation | 需要在生成过程里施加较强控制的团队 |
-| [Outlines](/iopanda-blog/ai/04-tooling/04/26/) | 把结构化输出与约束生成做成默认能力 | JSON/schema/CFG style constraints | 首先关心结构稳定性的团队 |
+| [Langfuse Prompts](/ai/04-tooling/04/02/) | 把 prompt 放进版本化、可追踪的平台工作流 | prompt registry、版本、playground、online feedback | 已经采用 Langfuse 工作流的团队 |
+| [Promptfoo](/ai/04-tooling/04/08/) | 把 prompt 当作可回归测试的工件 | fixtures、assertions、matrix compare、CI | 想用工程化方式验证 prompt 变更的团队 |
+| [DSPy](/ai/04-tooling/04/14/) | 从“写 prompt”转向“写可优化的 LM 程序” | signatures、modules、optimizers、programming model | 愿意用程序抽象替代手调模板的团队 |
+| [Guidance](/ai/04-tooling/04/20/) | 用受控生成语言编写更可约束的提示流程 | templating、control、constrained generation | 需要在生成过程里施加较强控制的团队 |
+| [Outlines](/ai/04-tooling/04/26/) | 把结构化输出与约束生成做成默认能力 | JSON/schema/CFG style constraints | 首先关心结构稳定性的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 Langfuse Prompts](/iopanda-blog/ai/04-tooling/04/02/) 与 [02 Promptfoo](/iopanda-blog/ai/04-tooling/04/08/)：先稳住版本与测试；
-2. 再看 [03 DSPy](/iopanda-blog/ai/04-tooling/04/14/)：理解为什么有人想摆脱手工 prompt 调参；
-3. 然后看 [04 Guidance](/iopanda-blog/ai/04-tooling/04/20/) 与 [05 Outlines](/iopanda-blog/ai/04-tooling/04/26/)：理解受控生成与结构化约束怎样改变工程边界。
+1. 先看 [01 Langfuse Prompts](/ai/04-tooling/04/02/) 与 [02 Promptfoo](/ai/04-tooling/04/08/)：先稳住版本与测试；
+2. 再看 [03 DSPy](/ai/04-tooling/04/14/)：理解为什么有人想摆脱手工 prompt 调参；
+3. 然后看 [04 Guidance](/ai/04-tooling/04/20/) 与 [05 Outlines](/ai/04-tooling/04/26/)：理解受控生成与结构化约束怎样改变工程边界。
 
 ## 4. 我建议本模块的内容结构
 
@@ -70,11 +70,11 @@ sourceId: "3.10.4.4 Prompt Management/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 Langfuse Prompts](/iopanda-blog/ai/04-tooling/04/02/)
-2. [02 Promptfoo](/iopanda-blog/ai/04-tooling/04/08/)
-3. [03 DSPy](/iopanda-blog/ai/04-tooling/04/14/)
-4. [04 Guidance](/iopanda-blog/ai/04-tooling/04/20/)
-5. [05 Outlines](/iopanda-blog/ai/04-tooling/04/26/)
+1. [01 Langfuse Prompts](/ai/04-tooling/04/02/)
+2. [02 Promptfoo](/ai/04-tooling/04/08/)
+3. [03 DSPy](/ai/04-tooling/04/14/)
+4. [04 Guidance](/ai/04-tooling/04/20/)
+5. [05 Outlines](/ai/04-tooling/04/26/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -100,6 +100,6 @@ sourceId: "3.10.4.4 Prompt Management/README"
 - [134] https://github.com/guidance-ai/guidance — Guidance GitHub
 - [135] https://github.com/dottxt-ai/outlines — Outlines GitHub
 
-上一篇：[04.03 Application Platforms and Workflows](/iopanda-blog/ai/04-tooling/03/01/)——应用壳搭好了，下一步看 prompt 这个核心资产怎么管理。
+上一篇：[04.03 Application Platforms and Workflows](/ai/04-tooling/03/01/)——应用壳搭好了，下一步看 prompt 这个核心资产怎么管理。
 
-下一篇：[04.05 Vector Databases and Retrieval](/iopanda-blog/ai/04-tooling/05/01/)——提示词之外，知识系统还离不开真正的 retrieval infrastructure。
+下一篇：[04.05 Vector Databases and Retrieval](/ai/04-tooling/05/01/)——提示词之外，知识系统还离不开真正的 retrieval infrastructure。

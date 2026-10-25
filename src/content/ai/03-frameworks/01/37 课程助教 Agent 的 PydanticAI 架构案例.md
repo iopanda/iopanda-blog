@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/05 课程助教 Agent 的 Pyd
 ---
 # 课程助教 Agent 的 PydanticAI 架构案例
 
-> 前四篇已经把 PydanticAI 的主要部件拆开了：[类型/依赖/输出契约](/iopanda-blog/ai/03-frameworks/01/33/)、[graph/durable execution](/iopanda-blog/ai/03-frameworks/01/34/)、[tools/capabilities/usage/cancel](/iopanda-blog/ai/03-frameworks/01/35/)、[应用形态](/iopanda-blog/ai/03-frameworks/01/36/)。这一章回到你的课程助教主线，回答一个更具体的问题：**如果我们不从“角色协作”或“状态图”先出发，而是从“typed Python service”先出发，课程助教应该怎么在 PydanticAI 里长出来？**
+> 前四篇已经把 PydanticAI 的主要部件拆开了：[类型/依赖/输出契约](/ai/03-frameworks/01/33/)、[graph/durable execution](/ai/03-frameworks/01/34/)、[tools/capabilities/usage/cancel](/ai/03-frameworks/01/35/)、[应用形态](/ai/03-frameworks/01/36/)。这一章回到你的课程助教主线，回答一个更具体的问题：**如果我们不从“角色协作”或“状态图”先出发，而是从“typed Python service”先出发，课程助教应该怎么在 PydanticAI 里长出来？**
 
 **学习目标**：学完本章，你将能够——
 
@@ -243,6 +243,6 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/05 课程助教 Agent 的 Pyd
 - [34] https://github.com/pydantic/pydantic-ai/blob/main/docs/tools.md — Pydantic AI tools doc
 - [35] https://github.com/pydantic/pydantic-ai/blob/main/pydantic_ai_slim/pydantic_ai/_cancel.py — Pydantic AI cancellation source
 
-上一篇：[04 Realtime、Examples、Evals 与多 Agent 形态](/iopanda-blog/ai/03-frameworks/01/36/)——丰富应用形态说明它不只是后端小工具；本篇则把这些能力重新落回课程助教这个真实系统。
+上一篇：[04 Realtime、Examples、Evals 与多 Agent 形态](/ai/03-frameworks/01/36/)——丰富应用形态说明它不只是后端小工具；本篇则把这些能力重新落回课程助教这个真实系统。
 
-下一篇：[06 PydanticAI 与 LangGraph、CrewAI、OpenAI Agents SDK 的深度对比](/iopanda-blog/ai/03-frameworks/01/38/)——具体案例落地后，再回头看 PydanticAI 在整个框架版图里的独特位置。
+下一篇：[06 PydanticAI 与 LangGraph、CrewAI、OpenAI Agents SDK 的深度对比](/ai/03-frameworks/01/38/)——具体案例落地后，再回头看 PydanticAI 在整个框架版图里的独特位置。

@@ -113,6 +113,6 @@ LocalAI 最强的地方，不是某个单点性能指标，而是：
 - [3] https://raw.githubusercontent.com/vllm-project/vllm/main/README.md — vLLM README
 - [4] https://raw.githubusercontent.com/BerriAI/litellm/main/README.md — LiteLLM README
 
-上一篇：[03 质量、社区、价格与总拥有成本](/iopanda-blog/ai/04-tooling/01/23/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与总拥有成本](/ai/04-tooling/01/23/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 生态集成与公开实践：OpenCode、Claude Code、GitHub Actions、Flowise、AnythingLLM、Home Assistant](/iopanda-blog/ai/04-tooling/01/25/)——最后从生态集成与公开实践看，组织为什么会把它接进自己的产品里。
+下一篇：[05 生态集成与公开实践：OpenCode、Claude Code、GitHub Actions、Flowise、AnythingLLM、Home Assistant](/ai/04-tooling/01/25/)——最后从生态集成与公开实践看，组织为什么会把它接进自己的产品里。

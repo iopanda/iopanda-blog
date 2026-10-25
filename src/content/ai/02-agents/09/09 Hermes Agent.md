@@ -80,6 +80,6 @@ sourceId: "3.10.2.9 Agent Implementations/03 Hermes Agent/README"
 
 ## 衔接
 
-- 上一篇：[02 OpenAI Codex](/iopanda-blog/ai/02-agents/09/03/)（Rust 极简 CLI 之美 → Python 全架构之繁的对照）；
-- 下一篇：[04 OpenCode](/iopanda-blog/ai/02-agents/09/15/)（另一个 TS 全开源，可横向对比插件生态设计）；
+- 上一篇：[02 OpenAI Codex](/ai/02-agents/09/03/)（Rust 极简 CLI 之美 → Python 全架构之繁的对照）；
+- 下一篇：[04 OpenCode](/ai/02-agents/09/15/)（另一个 TS 全开源，可横向对比插件生态设计）；
 - 概念后盾：02.05 Memory and Retrieval、02.04 Tool Use and Protocols、02.07 Evaluation and Observability；每章按蓝图要求产出「源码分析笔记」：贴代码 + 标 02 概念 + 一条「我可以抄 / 我要避」结论，最终在 00 Learning Path 的八维表上横向对比六对象。

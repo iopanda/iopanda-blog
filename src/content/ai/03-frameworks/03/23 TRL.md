@@ -32,13 +32,13 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/04 TRL/README"
 
 ## 本目录笔记导航
 
-1. [01 Alignment framework 的设计哲学](/iopanda-blog/ai/03-frameworks/03/24/)
-2. [02 SFT、DPO、PPO、Reward Modeling 的统一视角](/iopanda-blog/ai/03-frameworks/03/25/)
-3. [03 与 PEFT / Transformers / Accelerate 的组合方式](/iopanda-blog/ai/03-frameworks/03/26/)
-4. [04 训练稳定性、评测与工程边界](/iopanda-blog/ai/03-frameworks/03/27/)
-5. [05 课程助教 Agent 的 TRL 架构案例](/iopanda-blog/ai/03-frameworks/03/28/)
-6. [06 TRL 与 PEFT、LLaMA-Factory、Unsloth、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/29/)
+1. [01 Alignment framework 的设计哲学](/ai/03-frameworks/03/24/)
+2. [02 SFT、DPO、PPO、Reward Modeling 的统一视角](/ai/03-frameworks/03/25/)
+3. [03 与 PEFT / Transformers / Accelerate 的组合方式](/ai/03-frameworks/03/26/)
+4. [04 训练稳定性、评测与工程边界](/ai/03-frameworks/03/27/)
+5. [05 课程助教 Agent 的 TRL 架构案例](/ai/03-frameworks/03/28/)
+6. [06 TRL 与 PEFT、LLaMA-Factory、Unsloth、Axolotl 的深度对比](/ai/03-frameworks/03/29/)
 
-上一篇：[03 PEFT](/iopanda-blog/ai/03-frameworks/03/16/)
+上一篇：[03 PEFT](/ai/03-frameworks/03/16/)
 
-下一篇：[01 Alignment framework 的设计哲学](/iopanda-blog/ai/03-frameworks/03/24/)
+下一篇：[01 Alignment framework 的设计哲学](/ai/03-frameworks/03/24/)

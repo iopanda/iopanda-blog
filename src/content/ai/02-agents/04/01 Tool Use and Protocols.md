@@ -72,5 +72,5 @@ sourceId: "3.10.2.4 Tool Use and Protocols/README"
 
 ## 衔接
 
-- 上一篇：[Planning and Reasoning](/iopanda-blog/ai/02-agents/03/)——计划要执行，执行靠本章的工具；
-- 下一篇：[Memory and Retrieval](/iopanda-blog/ai/02-agents/05/)——工具访问外部世界，记忆让 Agent 跨会话记住世界状态。
+- 上一篇：[Planning and Reasoning](/ai/02-agents/03/)——计划要执行，执行靠本章的工具；
+- 下一篇：[Memory and Retrieval](/ai/02-agents/05/)——工具访问外部世界，记忆让 Agent 跨会话记住世界状态。

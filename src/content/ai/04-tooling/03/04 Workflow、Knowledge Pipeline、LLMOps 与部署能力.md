@@ -129,6 +129,6 @@ API 的存在决定了它是否真能成为组织级平台，而不只是内部 
 - [2] https://dify.ai/ — Dify homepage
 - [8] https://docs.dify.ai/getting-started/install-self-hosted — Dify self-host docs
 
-上一篇：[01 产品定位、平台心智与适用场景](/iopanda-blog/ai/04-tooling/03/03/)——先理解定位，再看它的平台能力如何形成闭环。
+上一篇：[01 产品定位、平台心智与适用场景](/ai/04-tooling/03/03/)——先理解定位，再看它的平台能力如何形成闭环。
 
-下一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/03/05/)——能力之后，再回头判断它是否成熟、值不值得长期采用。
+下一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/03/05/)——能力之后，再回头判断它是否成熟、值不值得长期采用。

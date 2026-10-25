@@ -58,6 +58,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/04 LightRAG/05 课程助教 Age
 
 - [72] https://github.com/HKUDS/LightRAG/blob/main/README.md — LightRAG README
 
-上一篇：[04 性能、复杂度与适用边界](/iopanda-blog/ai/03-frameworks/02/27/)
+上一篇：[04 性能、复杂度与适用边界](/ai/03-frameworks/02/27/)
 
-下一篇：[06 LightRAG 与 LlamaIndex、Haystack、RAGFlow、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/29/)
+下一篇：[06 LightRAG 与 LlamaIndex、Haystack、RAGFlow、Pathway 的深度对比](/ai/03-frameworks/02/29/)

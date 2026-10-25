@@ -184,6 +184,6 @@ Haystack 的 route 更常落在：
 - [54] https://github.com/deepset-ai/haystack/blob/main/README.md — Haystack README
 - [59] https://github.com/deepset-ai/haystack/blob/main/haystack/components/routers/conditional_router.py — Haystack conditional router source
 
-上一篇：[03 Hybrid Retrieval、Evaluation 与 Production RAG](/iopanda-blog/ai/03-frameworks/02/12/)——生产化链路与评测纪律立住后，本篇继续看它如何扩展到更动态的 retrieval/workflow。
+上一篇：[03 Hybrid Retrieval、Evaluation 与 Production RAG](/ai/03-frameworks/02/12/)——生产化链路与评测纪律立住后，本篇继续看它如何扩展到更动态的 retrieval/workflow。
 
-下一篇：[05 课程助教 Agent 的 Haystack 架构案例](/iopanda-blog/ai/03-frameworks/02/14/)——route 和 component 讲完后，下一篇把它们组装回课程助教这个真实系统。
+下一篇：[05 课程助教 Agent 的 Haystack 架构案例](/ai/03-frameworks/02/14/)——route 和 component 讲完后，下一篇把它们组装回课程助教这个真实系统。

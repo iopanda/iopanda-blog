@@ -118,6 +118,6 @@ Canva 和 SumUp 的客户案例都明确提到，Langfuse 让 product managers�
 - [6] https://langfuse.com/customers/canva — Langfuse Canva 客户案例
 - [9] https://langfuse.com/customers/sumup — Langfuse SumUp 客户案例
 
-上一篇：[01 产品定位、Prompt资产化与适用场景](/iopanda-blog/ai/04-tooling/04/03/)——先理解定位，再看它如何把 prompt 放进工程流程。
+上一篇：[01 产品定位、Prompt资产化与适用场景](/ai/04-tooling/04/03/)——先理解定位，再看它如何把 prompt 放进工程流程。
 
-下一篇：[03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/05/)——能力之后，再回头判断它是否成熟、怎么收费、采用边界如何。
+下一篇：[03 质量、价格与采用边界](/ai/04-tooling/04/05/)——能力之后，再回头判断它是否成熟、怎么收费、采用边界如何。

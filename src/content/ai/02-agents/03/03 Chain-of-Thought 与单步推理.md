@@ -185,6 +185,6 @@ if __name__ == "__main__":
 - [Kojima et al., 2022:Large Language Models are Zero-Shot Reasoners(zero-shot CoT)](https://arxiv.org/abs/2205.11916)
 - [Anthropic:Prompt engineering overview(含逐步思考与思维链指引)](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
 
-上一篇:[为什么 Agent 需要规划](/iopanda-blog/ai/02-agents/03/02/)——先立「复杂任务要拆」的原则,本章给了单步内拆解的第一把刀。
+上一篇:[为什么 Agent 需要规划](/ai/02-agents/03/02/)——先立「复杂任务要拆」的原则,本章给了单步内拆解的第一把刀。
 
-下一篇:[ReAct 推理与行动交错](/iopanda-blog/ai/02-agents/03/04/)——CoT 只在脑内推演,03 章让 Thought 与 Action 交错,推理缺数据就调用工具拿 Observation。
+下一篇:[ReAct 推理与行动交错](/ai/02-agents/03/04/)——CoT 只在脑内推演,03 章让 Thought 与 Action 交错,推理缺数据就调用工具拿 Observation。

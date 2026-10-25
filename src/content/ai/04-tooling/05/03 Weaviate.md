@@ -37,7 +37,7 @@ sourceId: "3.10.4.5 Vector Databases and Retrieval/02 Weaviate/README"
 
 ## 引用
 
-- 回到本组总览：[04.05 Vector Databases and Retrieval](/iopanda-blog/ai/04-tooling/05/01/)
+- 回到本组总览：[04.05 Vector Databases and Retrieval](/ai/04-tooling/05/01/)
 
-上一篇：[Qdrant](/iopanda-blog/ai/04-tooling/05/02/)
-下一篇：[Milvus](/iopanda-blog/ai/04-tooling/05/04/)
+上一篇：[Qdrant](/ai/04-tooling/05/02/)
+下一篇：[Milvus](/ai/04-tooling/05/04/)

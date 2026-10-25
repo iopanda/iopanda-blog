@@ -79,6 +79,6 @@ automations 是 Prefect 里“resilient pipelines that react to the world around
 - [22] https://docs.prefect.io/v3/how-to-guides/workflows/retries — Prefect retries how-to guide
 - [23] https://docs.prefect.io/v3/how-to-guides/automations/creating-automations — Prefect automations how-to guide
 
-上一篇：[02 flow、task、state 与 deployment](/iopanda-blog/ai/03-frameworks/06/18/)
+上一篇：[02 flow、task、state 与 deployment](/ai/03-frameworks/06/18/)
 
-下一篇：[04 观测、部署与工程边界](/iopanda-blog/ai/03-frameworks/06/20/)
+下一篇：[04 观测、部署与工程边界](/ai/03-frameworks/06/20/)

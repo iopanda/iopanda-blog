@@ -32,13 +32,13 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/02 Haystack/README"
 
 ## 本目录笔记导航
 
-1. [01 Pipeline 思维与 Component 设计哲学](/iopanda-blog/ai/03-frameworks/02/10/)
-2. [02 Document Store、Retriever、Ranker、Generator](/iopanda-blog/ai/03-frameworks/02/11/)
-3. [03 Hybrid Retrieval、Evaluation 与 Production RAG](/iopanda-blog/ai/03-frameworks/02/12/)
-4. [04 Agentic Pipeline、Routing 与 Tool-aware Retrieval](/iopanda-blog/ai/03-frameworks/02/13/)
-5. [05 课程助教 Agent 的 Haystack 架构案例](/iopanda-blog/ai/03-frameworks/02/14/)
-6. [06 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/15/)
+1. [01 Pipeline 思维与 Component 设计哲学](/ai/03-frameworks/02/10/)
+2. [02 Document Store、Retriever、Ranker、Generator](/ai/03-frameworks/02/11/)
+3. [03 Hybrid Retrieval、Evaluation 与 Production RAG](/ai/03-frameworks/02/12/)
+4. [04 Agentic Pipeline、Routing 与 Tool-aware Retrieval](/ai/03-frameworks/02/13/)
+5. [05 课程助教 Agent 的 Haystack 架构案例](/ai/03-frameworks/02/14/)
+6. [06 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比](/ai/03-frameworks/02/15/)
 
-上一篇：[01 LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/)
+上一篇：[01 LlamaIndex](/ai/03-frameworks/02/02/)
 
-下一篇：[01 Pipeline 思维与 Component 设计哲学](/iopanda-blog/ai/03-frameworks/02/10/)
+下一篇：[01 Pipeline 思维与 Component 设计哲学](/ai/03-frameworks/02/10/)

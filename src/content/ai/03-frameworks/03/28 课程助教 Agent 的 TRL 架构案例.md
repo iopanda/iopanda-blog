@@ -62,6 +62,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/04 TRL/05 课程助教 A
 - [23] https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md — TRL GRPOTrainer doc
 - [24] https://github.com/huggingface/trl/blob/main/docs/source/reward_trainer.md — TRL RewardTrainer doc
 
-上一篇：[04 训练稳定性、评测与工程边界](/iopanda-blog/ai/03-frameworks/03/27/)
+上一篇：[04 训练稳定性、评测与工程边界](/ai/03-frameworks/03/27/)
 
-下一篇：[06 TRL 与 PEFT、LLaMA-Factory、Unsloth、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/29/)
+下一篇：[06 TRL 与 PEFT、LLaMA-Factory、Unsloth、Axolotl 的深度对比](/ai/03-frameworks/03/29/)

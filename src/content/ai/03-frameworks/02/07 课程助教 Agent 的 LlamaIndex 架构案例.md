@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/01 LlamaIndex/05 课程助教 A
 ---
 # 课程助教 Agent 的 LlamaIndex 架构案例
 
-> 前四篇已经把 LlamaIndex 的主要部件拆开了：[对象层](/iopanda-blog/ai/03-frameworks/02/03/)、[ingestion](/iopanda-blog/ai/03-frameworks/02/04/)、[query chain](/iopanda-blog/ai/03-frameworks/02/05/)、[多索引与 agentic retrieval](/iopanda-blog/ai/03-frameworks/02/06/)。这一章把它们重新装回你的课程助教主线：**如果我们要做一个基于课程讲义、FAQ、课程规则、作业说明的知识问答系统，而且重点是把检索层做对，而不是一上来先做复杂 Agent 协作，该怎么用 LlamaIndex 去搭？**
+> 前四篇已经把 LlamaIndex 的主要部件拆开了：[对象层](/ai/03-frameworks/02/03/)、[ingestion](/ai/03-frameworks/02/04/)、[query chain](/ai/03-frameworks/02/05/)、[多索引与 agentic retrieval](/ai/03-frameworks/02/06/)。这一章把它们重新装回你的课程助教主线：**如果我们要做一个基于课程讲义、FAQ、课程规则、作业说明的知识问答系统，而且重点是把检索层做对，而不是一上来先做复杂 Agent 协作，该怎么用 LlamaIndex 去搭？**
 
 **学习目标**：学完本章，你将能够——
 
@@ -243,6 +243,6 @@ FAQ 更适合按：
 - [51] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/router_query_engine.py — LlamaIndex router query engine source
 - [52] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/sub_question_query_engine.py — LlamaIndex sub question query engine source
 
-上一篇：[04 多索引、多数据源与 Agentic Retrieval](/iopanda-blog/ai/03-frameworks/02/06/)——对象层、查询层和多索引结构都讲完后，本篇把它们组装回课程助教这个真实系统。
+上一篇：[04 多索引、多数据源与 Agentic Retrieval](/ai/03-frameworks/02/06/)——对象层、查询层和多索引结构都讲完后，本篇把它们组装回课程助教这个真实系统。
 
-下一篇：[06 LlamaIndex 与 Haystack、RAGFlow、LightRAG、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/08/)——具体案例落地后，再回头看 LlamaIndex 在整个 retrieval framework 版图里的独特位置。
+下一篇：[06 LlamaIndex 与 Haystack、RAGFlow、LightRAG、Pathway 的深度对比](/ai/03-frameworks/02/08/)——具体案例落地后，再回头看 LlamaIndex 在整个 retrieval framework 版图里的独特位置。

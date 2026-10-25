@@ -17,11 +17,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/03 Langflow/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、可视化框架心智与适用场景](/iopanda-blog/ai/04-tooling/03/15/)
-2. [02 Flows、Components、API 与部署能力](/iopanda-blog/ai/04-tooling/03/16/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/17/)
-4. [04 与 Dify、n8n、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/18/)
-5. [05 真实组织案例：DataStax与若干官网公开采用信号](/iopanda-blog/ai/04-tooling/03/19/)
+1. [01 产品定位、可视化框架心智与适用场景](/ai/04-tooling/03/15/)
+2. [02 Flows、Components、API 与部署能力](/ai/04-tooling/03/16/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/03/17/)
+4. [04 与 Dify、n8n、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/18/)
+5. [05 真实组织案例：DataStax与若干官网公开采用信号](/ai/04-tooling/03/19/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/03 Langflow/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、可视化框架心智与适用场景](/iopanda-blog/ai/04-tooling/03/15/)
-2. [02 Flows、Components、API 与部署能力](/iopanda-blog/ai/04-tooling/03/16/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/17/)
-4. [04 与 Dify、n8n、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/18/)
-5. [05 真实组织案例：DataStax与若干官网公开采用信号](/iopanda-blog/ai/04-tooling/03/19/)
+1. [01 产品定位、可视化框架心智与适用场景](/ai/04-tooling/03/15/)
+2. [02 Flows、Components、API 与部署能力](/ai/04-tooling/03/16/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/03/17/)
+4. [04 与 Dify、n8n、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/18/)
+5. [05 真实组织案例：DataStax与若干官网公开采用信号](/ai/04-tooling/03/19/)
 
 ## 引用
 
@@ -63,6 +63,6 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/03 Langflow/README"
 - [4] https://www.langflow.org/ — Langflow homepage
 - [5] https://www.langflow.org/pricing — Langflow pricing
 
-上一篇：[02 n8n](/iopanda-blog/ai/04-tooling/03/08/)——上一产品代表自动化平台向 AI 扩展的路线；这一篇切到开发者可视化框架路线。
+上一篇：[02 n8n](/ai/04-tooling/03/08/)——上一产品代表自动化平台向 AI 扩展的路线；这一篇切到开发者可视化框架路线。
 
-下一篇：[01 产品定位、可视化框架心智与适用场景](/iopanda-blog/ai/04-tooling/03/15/)——先从框架定位与适用边界开始。
+下一篇：[01 产品定位、可视化框架心智与适用场景](/ai/04-tooling/03/15/)——先从框架定位与适用边界开始。

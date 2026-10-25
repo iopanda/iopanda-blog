@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/03 Handoffs、Agent-as
 ---
 # Handoffs、Agent-as-Tool 与 MCP 工具生态
 
-> [前面那一篇](/iopanda-blog/ai/03-frameworks/01/26/)已经讲过：OpenAI Agents SDK 对多 Agent 的理解，不是先把几个角色摆在一起聊天，而是先给出 handoff 和 agent-as-tool 这类受控委托原语。这条路线在官方 `multi_agent.md` 里讲得非常清楚：**Agents as tools** 适合 manager 持有控制权并调用 specialists；**handoffs** 适合 triage agent 把当前回合直接交给 specialist。[1][2] 再结合 MCP 文档与 examples 目录，你会发现 OpenAI Agents SDK 对“外部世界”的理解也很现代：工具不再只有本地函数，还包括 MCP servers、hosted MCP、approval callbacks、远程连接与工具过滤。[1] 这一章就专门拆这条生态线：**为什么受控委托和标准化工具连接，比传统多 Agent 群聊更适合产品级系统。**
+> [前面那一篇](/ai/03-frameworks/01/26/)已经讲过：OpenAI Agents SDK 对多 Agent 的理解，不是先把几个角色摆在一起聊天，而是先给出 handoff 和 agent-as-tool 这类受控委托原语。这条路线在官方 `multi_agent.md` 里讲得非常清楚：**Agents as tools** 适合 manager 持有控制权并调用 specialists；**handoffs** 适合 triage agent 把当前回合直接交给 specialist。[1][2] 再结合 MCP 文档与 examples 目录，你会发现 OpenAI Agents SDK 对“外部世界”的理解也很现代：工具不再只有本地函数，还包括 MCP servers、hosted MCP、approval callbacks、远程连接与工具过滤。[1] 这一章就专门拆这条生态线：**为什么受控委托和标准化工具连接，比传统多 Agent 群聊更适合产品级系统。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 区分 handoff 与 agent-as-tool 的职责边界；
 2. 理解为什么 OpenAI Agents SDK 的多 Agent 设计更像“委托系统”而不是“群聊系统”；
 3. 说出 MCP 在这里扮演的角色：不仅是工具接入协议，也是运行时边界的一部分；
-4. 比较它与 [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/)、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) 的协作模型差异；
+4. 比较它与 [AutoGen](/ai/03-frameworks/01/11/)、[CrewAI](/ai/03-frameworks/01/18/) 的协作模型差异；
 5. 为一个课程助教系统设计 triage + specialist + MCP 工具拓扑。
 
 ## 1. 概念：OpenAI Agents SDK 的多 Agent 核心不是“大家一起聊”，而是“谁接管、谁辅助”
@@ -210,6 +210,6 @@ OpenAI Agents SDK 不只支持本地函数工具，还在 docs/examples 中大�
 - [2] https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md — OpenAI Agents handoffs doc
 - [4] https://github.com/openai/openai-agents-python — OpenAI Agents SDK GitHub
 
-上一篇：[02 Sandbox、Guardrails、Sessions 与产品化](/iopanda-blog/ai/03-frameworks/01/27/)——产品化底座讲完后，本篇继续拆它的多 Agent 与工具生态观。
+上一篇：[02 Sandbox、Guardrails、Sessions 与产品化](/ai/03-frameworks/01/27/)——产品化底座讲完后，本篇继续拆它的多 Agent 与工具生态观。
 
-下一篇：[04 Tracing、Testing、Realtime 与 Voice 的应用形态](/iopanda-blog/ai/03-frameworks/01/29/)——协作和工具拓扑立住后，下一篇看它如何覆盖现代 Agent 的多终端、多模态与测试观测场景。
+下一篇：[04 Tracing、Testing、Realtime 与 Voice 的应用形态](/ai/03-frameworks/01/29/)——协作和工具拓扑立住后，下一篇看它如何覆盖现代 Agent 的多终端、多模态与测试观测场景。

@@ -103,6 +103,6 @@ AnythingLLM 正是围绕这种需求长出来的。[1][2][4]
 - [2] https://anythingllm.com/ — AnythingLLM homepage
 - [4] https://anythingllm.com/pricing — AnythingLLM pricing
 
-上一篇：[05 AnythingLLM](/iopanda-blog/ai/04-tooling/03/26/)——先看目录地图，再进入产品定位。
+上一篇：[05 AnythingLLM](/ai/04-tooling/03/26/)——先看目录地图，再进入产品定位。
 
-下一篇：[02 文档知识、Agents、Model Router与部署能力](/iopanda-blog/ai/04-tooling/03/28/)——定位之后，再看它的能力为什么构成完整工作台。
+下一篇：[02 文档知识、Agents、Model Router与部署能力](/ai/04-tooling/03/28/)——定位之后，再看它的能力为什么构成完整工作台。

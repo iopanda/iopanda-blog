@@ -74,6 +74,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.1 Temporal/06 Tem
 - [14] https://github.com/dagster-io/dagster — Dagster GitHub
 - [15] https://github.com/kestra-io/kestra — Kestra GitHub
 
-上一篇：[05 课程助教 Agent 的 Temporal 架构案例](/iopanda-blog/ai/03-frameworks/06/07/)
+上一篇：[05 课程助教 Agent 的 Temporal 架构案例](/ai/03-frameworks/06/07/)
 
-下一篇：回到 [03.06 Workflow Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/06/37/)
+下一篇：回到 [03.06 Workflow Framework 选型矩阵](/ai/03-frameworks/06/37/)

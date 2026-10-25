@@ -187,4 +187,4 @@ pub async fn run_main(cli: Cli, arg0_paths: Arg0DispatchPaths) -> anyhow::Result
 
 本单元开篇承接 02.09 蓝图与 01 Claude Code 的 README:那里给了「Codex 是什么」的概览,本章把它落成「源码地图与入口链」;从 02.01 的概念骨架直接对照着认结构,无需其他前置章节。
 
-下一篇:[主循环与工具系统](/iopanda-blog/ai/02-agents/09/05/)——入口已经到了,下一章钻进 `core/src/session/turn.rs`,看一次 turn 怎么跑、工具结果怎么回灌、循环在什么条件下终止。
+下一篇:[主循环与工具系统](/ai/02-agents/09/05/)——入口已经到了,下一章钻进 `core/src/session/turn.rs`,看一次 turn 怎么跑、工具结果怎么回灌、循环在什么条件下终止。

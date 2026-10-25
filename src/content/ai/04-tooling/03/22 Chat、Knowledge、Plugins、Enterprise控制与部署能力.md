@@ -117,6 +117,6 @@ Sovereign AI 页面把 Open WebUI 定位为 organizations that need private AI u
 - [4] https://docs.openwebui.com/features/ — Open WebUI features docs
 - [6] https://openwebui.com/sovereign-ai — Open WebUI sovereign AI
 
-上一篇：[01 产品定位、前台工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/21/)——先理解定位，再看它的能力如何组成前台工作台。
+上一篇：[01 产品定位、前台工作台心智与适用场景](/ai/04-tooling/03/21/)——先理解定位，再看它的能力如何组成前台工作台。
 
-下一篇：[03 质量、社区、许可与企业边界](/iopanda-blog/ai/04-tooling/03/23/)——能力之后，再回头判断它是否成熟、许可是否适合组织采用。
+下一篇：[03 质量、社区、许可与企业边界](/ai/04-tooling/03/23/)——能力之后，再回头判断它是否成熟、许可是否适合组织采用。

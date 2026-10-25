@@ -179,6 +179,6 @@ BM25Retriever 和 EmbeddingRetriever 都支持 filters 和 filter_policy。[57][
 - [58] https://github.com/deepset-ai/haystack/blob/main/haystack/components/retrievers/in_memory/embedding_retriever.py — Haystack embedding retriever source
 - [60] https://github.com/deepset-ai/haystack/blob/main/haystack/components/rankers/llm_ranker.py — Haystack LLM ranker source
 
-上一篇：[01 Pipeline 思维与 Component 设计哲学](/iopanda-blog/ai/03-frameworks/02/10/)——pipeline 语言立住后，本篇继续拆这条链的核心组件家族。
+上一篇：[01 Pipeline 思维与 Component 设计哲学](/ai/03-frameworks/02/10/)——pipeline 语言立住后，本篇继续拆这条链的核心组件家族。
 
-下一篇：[03 Hybrid Retrieval、Evaluation 与 Production RAG](/iopanda-blog/ai/03-frameworks/02/12/)——组件栈立住后，下一篇继续看混合检索、评测和生产运行纪律。
+下一篇：[03 Hybrid Retrieval、Evaluation 与 Production RAG](/ai/03-frameworks/02/12/)——组件栈立住后，下一篇继续看混合检索、评测和生产运行纪律。

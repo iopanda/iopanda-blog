@@ -81,6 +81,6 @@ PEFT integration 文档非常明确：[25]
 - [23] https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md — TRL GRPOTrainer doc
 - [25] https://github.com/huggingface/trl/blob/main/docs/source/peft_integration.md — TRL PEFT integration doc
 
-上一篇：[02 SFT、DPO、PPO、Reward Modeling 的统一视角](/iopanda-blog/ai/03-frameworks/03/25/)
+上一篇：[02 SFT、DPO、PPO、Reward Modeling 的统一视角](/ai/03-frameworks/03/25/)
 
-下一篇：[04 训练稳定性、评测与工程边界](/iopanda-blog/ai/03-frameworks/03/27/)
+下一篇：[04 训练稳定性、评测与工程边界](/ai/03-frameworks/03/27/)

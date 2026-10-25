@@ -17,11 +17,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/04 LocalAI/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、统一接口与适用场景](/iopanda-blog/ai/04-tooling/01/21/)
-2. [02 多后端、多模态、分布式与代理能力](/iopanda-blog/ai/04-tooling/01/22/)
-3. [03 质量、社区、价格与总拥有成本](/iopanda-blog/ai/04-tooling/01/23/)
-4. [04 与 Ollama、vLLM、LiteLLM 的竞品对比](/iopanda-blog/ai/04-tooling/01/24/)
-5. [05 生态集成与公开实践：OpenCode、Claude Code、GitHub Actions、Flowise、AnythingLLM、Home Assistant](/iopanda-blog/ai/04-tooling/01/25/)
+1. [01 产品定位、统一接口与适用场景](/ai/04-tooling/01/21/)
+2. [02 多后端、多模态、分布式与代理能力](/ai/04-tooling/01/22/)
+3. [03 质量、社区、价格与总拥有成本](/ai/04-tooling/01/23/)
+4. [04 与 Ollama、vLLM、LiteLLM 的竞品对比](/ai/04-tooling/01/24/)
+5. [05 生态集成与公开实践：OpenCode、Claude Code、GitHub Actions、Flowise、AnythingLLM、Home Assistant](/ai/04-tooling/01/25/)
 
 ## 这一产品为什么值得单开
 
@@ -48,11 +48,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/04 LocalAI/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、统一接口与适用场景](/iopanda-blog/ai/04-tooling/01/21/)
-2. [02 多后端、多模态、分布式与代理能力](/iopanda-blog/ai/04-tooling/01/22/)
-3. [03 质量、社区、价格与总拥有成本](/iopanda-blog/ai/04-tooling/01/23/)
-4. [04 与 Ollama、vLLM、LiteLLM 的竞品对比](/iopanda-blog/ai/04-tooling/01/24/)
-5. [05 生态集成与公开实践：OpenCode、Claude Code、GitHub Actions、Flowise、AnythingLLM、Home Assistant](/iopanda-blog/ai/04-tooling/01/25/)
+1. [01 产品定位、统一接口与适用场景](/ai/04-tooling/01/21/)
+2. [02 多后端、多模态、分布式与代理能力](/ai/04-tooling/01/22/)
+3. [03 质量、社区、价格与总拥有成本](/ai/04-tooling/01/23/)
+4. [04 与 Ollama、vLLM、LiteLLM 的竞品对比](/ai/04-tooling/01/24/)
+5. [05 生态集成与公开实践：OpenCode、Claude Code、GitHub Actions、Flowise、AnythingLLM、Home Assistant](/ai/04-tooling/01/25/)
 
 ## 引用
 
@@ -60,6 +60,6 @@ sourceId: "3.10.4.1 Model Gateways and Routing/04 LocalAI/README"
 - [2] https://raw.githubusercontent.com/mudler/LocalAI/master/README.md — LocalAI README
 - [3] https://api.github.com/repos/mudler/LocalAI — LocalAI GitHub API
 
-上一篇：[03 Apache APISIX](/iopanda-blog/ai/04-tooling/01/14/)——上一产品代表 API-native 网关路线；这一篇切到本地自托管统一模型入口路线。
+上一篇：[03 Apache APISIX](/ai/04-tooling/01/14/)——上一产品代表 API-native 网关路线；这一篇切到本地自托管统一模型入口路线。
 
-下一篇：[01 产品定位、统一接口与适用场景](/iopanda-blog/ai/04-tooling/01/21/)——先从产品定位、价值主张与适用边界开始。
+下一篇：[01 产品定位、统一接口与适用场景](/ai/04-tooling/01/21/)——先从产品定位、价值主张与适用边界开始。

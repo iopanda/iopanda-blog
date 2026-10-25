@@ -68,6 +68,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/05 Pathway/03 Real-time Retriev
 
 - [68] https://github.com/pathwaycom/pathway/blob/main/README.md — Pathway README
 
-上一篇：[02 Streaming ETL、Incremental Index 与 Update Semantics](/iopanda-blog/ai/03-frameworks/02/32/)
+上一篇：[02 Streaming ETL、Incremental Index 与 Update Semantics](/ai/03-frameworks/02/32/)
 
-下一篇：[04 生产系统中的吞吐、延迟与治理](/iopanda-blog/ai/03-frameworks/02/34/)
+下一篇：[04 生产系统中的吞吐、延迟与治理](/ai/03-frameworks/02/34/)

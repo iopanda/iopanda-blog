@@ -103,6 +103,6 @@ Guidance 最强的地方，不是“会写 prompt”，而是：
 - [2] https://raw.githubusercontent.com/guidance-ai/guidance/main/README.md — Guidance README
 - [4] https://guidance.readthedocs.io/en/latest/ — Guidance docs
 
-上一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/23/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/04/23/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 公开组织案例有限：可复现实践与开源采用信号](/iopanda-blog/ai/04-tooling/04/25/)——最后从公开证据看它在真实世界中的采用位置。
+下一篇：[05 公开组织案例有限：可复现实践与开源采用信号](/ai/04-tooling/04/25/)——最后从公开证据看它在真实世界中的采用位置。

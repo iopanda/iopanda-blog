@@ -17,11 +17,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/04 DeepEval/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、pytest 心智与适用场景](/iopanda-blog/ai/04-tooling/02/21/)
-2. [02 Metrics、Traceability、Datasets 与 CI/CD](/iopanda-blog/ai/04-tooling/02/22/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/23/)
-4. [04 与 Promptfoo、Phoenix、Langfuse 的竞品对比](/iopanda-blog/ai/04-tooling/02/24/)
-5. [05 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC](/iopanda-blog/ai/04-tooling/02/25/)
+1. [01 产品定位、pytest 心智与适用场景](/ai/04-tooling/02/21/)
+2. [02 Metrics、Traceability、Datasets 与 CI/CD](/ai/04-tooling/02/22/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/02/23/)
+4. [04 与 Promptfoo、Phoenix、Langfuse 的竞品对比](/ai/04-tooling/02/24/)
+5. [05 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC](/ai/04-tooling/02/25/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/04 DeepEval/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、pytest 心智与适用场景](/iopanda-blog/ai/04-tooling/02/21/)
-2. [02 Metrics、Traceability、Datasets 与 CI/CD](/iopanda-blog/ai/04-tooling/02/22/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/23/)
-4. [04 与 Promptfoo、Phoenix、Langfuse 的竞品对比](/iopanda-blog/ai/04-tooling/02/24/)
-5. [05 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC](/iopanda-blog/ai/04-tooling/02/25/)
+1. [01 产品定位、pytest 心智与适用场景](/ai/04-tooling/02/21/)
+2. [02 Metrics、Traceability、Datasets 与 CI/CD](/ai/04-tooling/02/22/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/02/23/)
+4. [04 与 Promptfoo、Phoenix、Langfuse 的竞品对比](/ai/04-tooling/02/24/)
+5. [05 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC](/ai/04-tooling/02/25/)
 
 ## 引用
 
@@ -65,6 +65,6 @@ sourceId: "3.10.4.2 Observability and Evaluation/04 DeepEval/README"
 - [6] https://deepeval.com/docs/red-teaming-introduction — DeepEval red teaming intro
 - [7] https://www.confident-ai.com/pricing — Confident AI pricing
 
-上一篇：[03 Promptfoo](/iopanda-blog/ai/04-tooling/02/14/)——上一产品代表配置驱动的测试/红队/门禁路线；这一篇切到代码优先的评测框架路线。
+上一篇：[03 Promptfoo](/ai/04-tooling/02/14/)——上一产品代表配置驱动的测试/红队/门禁路线；这一篇切到代码优先的评测框架路线。
 
-下一篇：[01 产品定位、pytest 心智与适用场景](/iopanda-blog/ai/04-tooling/02/21/)——先从定位、pytest 心智和适用边界开始。
+下一篇：[01 产品定位、pytest 心智与适用场景](/ai/04-tooling/02/21/)——先从定位、pytest 心智和适用边界开始。

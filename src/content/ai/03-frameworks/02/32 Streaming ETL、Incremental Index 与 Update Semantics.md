@@ -86,6 +86,6 @@ external index 文档明确写到：对某些集成，query stream 应 append on
 - [68] https://github.com/pathwaycom/pathway/blob/main/README.md — Pathway README
 - [71] https://github.com/pathwaycom/pathway/blob/main/src/external_integration/external_index_readme.md — Pathway external index integration readme
 
-上一篇：[01 Real-time RAG 的设计哲学](/iopanda-blog/ai/03-frameworks/02/31/)
+上一篇：[01 Real-time RAG 的设计哲学](/ai/03-frameworks/02/31/)
 
-下一篇：[03 Real-time Retrieval、Windowing 与 Freshness](/iopanda-blog/ai/03-frameworks/02/33/)
+下一篇：[03 Real-time Retrieval、Windowing 与 Freshness](/ai/03-frameworks/02/33/)

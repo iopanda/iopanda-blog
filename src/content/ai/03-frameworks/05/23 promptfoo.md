@@ -32,13 +32,13 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.4 promptfoo
 
 ## 本目录笔记导航
 
-1. [01 AI testing framework 的设计哲学](/iopanda-blog/ai/03-frameworks/05/24/)
-2. [02 declarative eval configs、providers 与 assertion model](/iopanda-blog/ai/03-frameworks/05/25/)
-3. [03 regression、red teaming、security scanning 与 CI/CD](/iopanda-blog/ai/03-frameworks/05/26/)
-4. [04 团队协作、基线管理与工程边界](/iopanda-blog/ai/03-frameworks/05/27/)
-5. [05 课程助教 Agent 的 promptfoo 架构案例](/iopanda-blog/ai/03-frameworks/05/28/)
-6. [06 promptfoo 与 Langfuse、Phoenix、MLflow、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/29/)
+1. [01 AI testing framework 的设计哲学](/ai/03-frameworks/05/24/)
+2. [02 declarative eval configs、providers 与 assertion model](/ai/03-frameworks/05/25/)
+3. [03 regression、red teaming、security scanning 与 CI/CD](/ai/03-frameworks/05/26/)
+4. [04 团队协作、基线管理与工程边界](/ai/03-frameworks/05/27/)
+5. [05 课程助教 Agent 的 promptfoo 架构案例](/ai/03-frameworks/05/28/)
+6. [06 promptfoo 与 Langfuse、Phoenix、MLflow、DeepEval 的深度对比](/ai/03-frameworks/05/29/)
 
-上一篇：[03.05 MLflow](/iopanda-blog/ai/03-frameworks/05/16/)
+上一篇：[03.05 MLflow](/ai/03-frameworks/05/16/)
 
-下一篇：[01 AI testing framework 的设计哲学](/iopanda-blog/ai/03-frameworks/05/24/)
+下一篇：[01 AI testing framework 的设计哲学](/ai/03-frameworks/05/24/)

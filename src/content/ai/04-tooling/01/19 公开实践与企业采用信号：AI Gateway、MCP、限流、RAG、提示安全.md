@@ -174,6 +174,6 @@ APISIX 在 AI 时代最自然的角色，不是某个单一 AI SDK，也不是�
 - [4] https://api.github.com/repos/apache/apisix — Apache APISIX GitHub API
 - [5] https://apisix.apache.org/blog/2025/04/21/host-mcp-server-with-api-gateway/ — Host MCP Servers via HTTP SSE with APISIX
 
-上一篇：[04 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/18/)——看清路线差异后，再看公开实践里它通常怎么被用。
+上一篇：[04 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比](/ai/04-tooling/01/18/)——看清路线差异后，再看公开实践里它通常怎么被用。
 
-下一篇：[04 LocalAI](/iopanda-blog/ai/04-tooling/01/20/)——下一个产品切到本地自托管统一模型入口路线。
+下一篇：[04 LocalAI](/ai/04-tooling/01/20/)——下一个产品切到本地自托管统一模型入口路线。

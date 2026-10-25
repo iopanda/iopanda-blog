@@ -22,7 +22,9 @@ OBSIDIAN = Path.home() / "Documents/Obsidian"
 
 FRONTMATTER_RE = re.compile(r"^---\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n)?", re.S)
 OLD_NUMBER_RE = re.compile(r"3\.10\.")
-URL_RE = re.compile(r"/iopanda-blog/ai/[^\s)\"'<>\]]*")
+# Root-relative /ai/ links only: the lookbehind keeps external URLs such as
+# ".../ai/foo.pdf" or code paths like "packages/ai/src" from matching.
+URL_RE = re.compile(r"(?<![A-Za-z0-9._/-])/ai/[^\s)\"'<>\]]*")
 FILE_PREFIX_RE = re.compile(r"^(\d+)\s+")
 
 results: list[tuple[str, bool, str]] = []
@@ -61,7 +63,7 @@ def main() -> int:
     # 3. internal link targets resolve to manifest pages / images
     valid = set()
     for chapter in manifest["chapters"]:
-        chapter_root = f"/iopanda-blog/ai/{chapter['number']}-{chapter['slug']}"
+        chapter_root = f"/ai/{chapter['number']}-{chapter['slug']}"
         valid.add(chapter_root + "/")
         for section in chapter["sections"]:
             valid.add(section["url"])

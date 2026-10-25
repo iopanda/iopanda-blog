@@ -77,6 +77,6 @@ DeepEval 明确给出了两种 code-first 入口：[10][12]
 - [12] https://github.com/confident-ai/deepeval/blob/main/typescript/README.md — DeepEval TypeScript README
 - [13] https://github.com/confident-ai/deepeval/blob/main/typescript/src/evaluate/test-run/README.md — DeepEval test run README
 
-上一篇：[02 metrics、test cases 与 dataset-driven testing](/iopanda-blog/ai/03-frameworks/05/32/)
+上一篇：[02 metrics、test cases 与 dataset-driven testing](/ai/03-frameworks/05/32/)
 
-下一篇：[04 judge 可靠性、成本与工程边界](/iopanda-blog/ai/03-frameworks/05/34/)
+下一篇：[04 judge 可靠性、成本与工程边界](/ai/03-frameworks/05/34/)

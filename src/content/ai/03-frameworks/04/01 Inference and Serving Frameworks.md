@@ -41,11 +41,11 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/README"
 
 | 框架 | 一句话定位 | 设计中心 | 更像什么 | 更适合谁 |
 |---|---|---|---|---|
-| [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) | 高吞吐、内存高效的 LLM serving engine | continuous batching / paged attention / online serving | LLM-native inference engine | 想把大模型 API 服务跑得快、稳、便宜的团队 |
-| [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) | 面向 structured generation 与 agent/workflow 的 serving framework | serving + structured program execution | 程序化推理运行时 | 需要高性能生成同时重视结构化输出、agent 调度的团队 |
-| [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) | 面向 NVIDIA GPU 的深度优化推理栈 | kernel / graph / quantization / throughput | 硬件优化推理后端 | NVIDIA 集群、高性能生产推理团队 |
-| [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | C/C++ 本地与边缘 LLM 推理引擎 | portability / local inference / GGUF | 本地推理运行时 | Mac、CPU、边缘设备、本地 AI 产品 |
-| [Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/) | 通用多模型 inference platform | model serving orchestration | 通用推理平台 | 需要统一管理多模型、多后端、多协议的团队 |
+| [vLLM](/ai/03-frameworks/04/02/) | 高吞吐、内存高效的 LLM serving engine | continuous batching / paged attention / online serving | LLM-native inference engine | 想把大模型 API 服务跑得快、稳、便宜的团队 |
+| [SGLang](/ai/03-frameworks/04/09/) | 面向 structured generation 与 agent/workflow 的 serving framework | serving + structured program execution | 程序化推理运行时 | 需要高性能生成同时重视结构化输出、agent 调度的团队 |
+| [TensorRT-LLM](/ai/03-frameworks/04/16/) | 面向 NVIDIA GPU 的深度优化推理栈 | kernel / graph / quantization / throughput | 硬件优化推理后端 | NVIDIA 集群、高性能生产推理团队 |
+| [llama.cpp](/ai/03-frameworks/04/23/) | C/C++ 本地与边缘 LLM 推理引擎 | portability / local inference / GGUF | 本地推理运行时 | Mac、CPU、边缘设备、本地 AI 产品 |
+| [Triton Inference Server](/ai/03-frameworks/04/30/) | 通用多模型 inference platform | model serving orchestration | 通用推理平台 | 需要统一管理多模型、多后端、多协议的团队 |
 
 ## 3. 为什么先不把 TGI / LMDeploy 放进这一组主角
 
@@ -55,31 +55,31 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/README"
 
 ## 4. 这一模块建议怎么读
 
-1. 先看 [03.04 vLLM](/iopanda-blog/ai/03-frameworks/04/02/)：先把 LLM-native serving engine 的核心心智钉牢；
-2. 再看 [03.04 SGLang](/iopanda-blog/ai/03-frameworks/04/09/)：理解“推理引擎 + 结构化生成运行时”为什么会独立成路线；
-3. 再看 [03.04 TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)：理解硬件优化 serving 栈；
-4. 再看 [03.04 llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/)：理解本地/边缘推理路线；
-5. 最后看 [03.04 Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/)：理解通用 platform 路线。
+1. 先看 [03.04 vLLM](/ai/03-frameworks/04/02/)：先把 LLM-native serving engine 的核心心智钉牢；
+2. 再看 [03.04 SGLang](/ai/03-frameworks/04/09/)：理解“推理引擎 + 结构化生成运行时”为什么会独立成路线；
+3. 再看 [03.04 TensorRT-LLM](/ai/03-frameworks/04/16/)：理解硬件优化 serving 栈；
+4. 再看 [03.04 llama.cpp](/ai/03-frameworks/04/23/)：理解本地/边缘推理路线；
+5. 最后看 [03.04 Triton Inference Server](/ai/03-frameworks/04/30/)：理解通用 platform 路线。
 
 ## 4.1 按读者身份的推荐阅读路径
 
 | 你是谁 | 建议先读什么 | 为什么 |
 |---|---|---|
-| 在线 LLM API 的开发者 | [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) → [Inference Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/04/37/) | 先把高吞吐 serving 的主语钉牢，再做判断 |
-| 做 agent / workflow / tool use 系统的人 | [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) → [Inference Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/04/37/) | 先理解受控生成 runtime，再决定是否需要更重平台 |
-| 有明确 NVIDIA GPU 集群的人 | [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) | 先看执行路径优化是否就是你的主问题 |
-| 做离线、本地、桌面、边缘产品的人 | [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | 先把设备侧运行时路线看清楚 |
-| 做企业多模型平台的人 | [Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/) | 先看平台治理逻辑，而不是先盯单模型 benchmark |
+| 在线 LLM API 的开发者 | [vLLM](/ai/03-frameworks/04/02/) → [Inference Framework 选型矩阵](/ai/03-frameworks/04/37/) | 先把高吞吐 serving 的主语钉牢，再做判断 |
+| 做 agent / workflow / tool use 系统的人 | [SGLang](/ai/03-frameworks/04/09/) → [Inference Framework 选型矩阵](/ai/03-frameworks/04/37/) | 先理解受控生成 runtime，再决定是否需要更重平台 |
+| 有明确 NVIDIA GPU 集群的人 | [TensorRT-LLM](/ai/03-frameworks/04/16/) | 先看执行路径优化是否就是你的主问题 |
+| 做离线、本地、桌面、边缘产品的人 | [llama.cpp](/ai/03-frameworks/04/23/) | 先把设备侧运行时路线看清楚 |
+| 做企业多模型平台的人 | [Triton Inference Server](/ai/03-frameworks/04/30/) | 先看平台治理逻辑，而不是先盯单模型 benchmark |
 
 ## 4.2 按系统主矛盾的速查表
 
 | 你的系统最先会死在哪 | 优先想到 |
 |---|---|
-| 高频并发、KV cache 成本、TTFT / tail latency | [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) |
-| 结构化输出、tool parsing、workflow control、agent serving | [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) |
-| NVIDIA 硬件上的极限量化、并行、执行路径优化 | [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) |
-| 模型必须跑在 Mac / CPU / 边缘盒子 / 用户机器上 | [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) |
-| 多模型、多后端、多协议、多环境统一治理 | [Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/) |
+| 高频并发、KV cache 成本、TTFT / tail latency | [vLLM](/ai/03-frameworks/04/02/) |
+| 结构化输出、tool parsing、workflow control、agent serving | [SGLang](/ai/03-frameworks/04/09/) |
+| NVIDIA 硬件上的极限量化、并行、执行路径优化 | [TensorRT-LLM](/ai/03-frameworks/04/16/) |
+| 模型必须跑在 Mac / CPU / 边缘盒子 / 用户机器上 | [llama.cpp](/ai/03-frameworks/04/23/) |
+| 多模型、多后端、多协议、多环境统一治理 | [Triton Inference Server](/ai/03-frameworks/04/30/) |
 
 ## 4.3 这章最容易读偏的三个误区
 
@@ -91,17 +91,17 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/README"
 
 如果你现在不是在系统建课，而是在真实项目里要尽快做判断，我建议优先读这三篇：
 
-1. [03.04 vLLM](/iopanda-blog/ai/03-frameworks/04/02/)
+1. [03.04 vLLM](/ai/03-frameworks/04/02/)
    - 因为它先把在线 LLM serving 的核心心智钉牢；
-2. [03.04 Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/)
+2. [03.04 Triton Inference Server](/ai/03-frameworks/04/30/)
    - 因为它告诉你“单模型引擎”和“平台壳”不是一回事；
-3. [03.04 Inference Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/04/37/)
+3. [03.04 Inference Framework 选型矩阵](/ai/03-frameworks/04/37/)
    - 因为最后真正落地时，你要做的是架构判断，而不是框架背诵。
 
 如果读完这三篇你仍然觉得：
-- 结构控制和 agent serving 最痛，再回去看 [03.04 SGLang](/iopanda-blog/ai/03-frameworks/04/09/)；
-- NVIDIA 集群性能最痛，再回去看 [03.04 TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)；
-- 本地/边缘分发最痛，再回去看 [03.04 llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/)。
+- 结构控制和 agent serving 最痛，再回去看 [03.04 SGLang](/ai/03-frameworks/04/09/)；
+- NVIDIA 集群性能最痛，再回去看 [03.04 TensorRT-LLM](/ai/03-frameworks/04/16/)；
+- 本地/边缘分发最痛，再回去看 [03.04 llama.cpp](/ai/03-frameworks/04/23/)。
 
 ## 5. 本模块的推荐交付物
 
@@ -136,12 +136,12 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/README"
 
 ## 6. 本模块笔记导航
 
-1. [03.04 vLLM](/iopanda-blog/ai/03-frameworks/04/02/)
-2. [03.04 SGLang](/iopanda-blog/ai/03-frameworks/04/09/)
-3. [03.04 TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)
-4. [03.04 llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/)
-5. [03.04 Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/)
-6. [03.04 Inference Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/04/37/)
+1. [03.04 vLLM](/ai/03-frameworks/04/02/)
+2. [03.04 SGLang](/ai/03-frameworks/04/09/)
+3. [03.04 TensorRT-LLM](/ai/03-frameworks/04/16/)
+4. [03.04 llama.cpp](/ai/03-frameworks/04/23/)
+5. [03.04 Triton Inference Server](/ai/03-frameworks/04/30/)
+6. [03.04 Inference Framework 选型矩阵](/ai/03-frameworks/04/37/)
 
 ## 7. 总结
 
@@ -162,6 +162,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/README"
 - [11] https://github.com/huggingface/text-generation-inference — TGI GitHub (archived)
 - [12] https://github.com/InternLM/lmdeploy — LMDeploy GitHub
 
-上一篇：[03.03 Training and Fine-tuning Frameworks](/iopanda-blog/ai/03-frameworks/03/01/)——训练系统已经讲完；下一模块开始处理“训好的模型如何被高质量交付”为在线或本地服务。
+上一篇：[03.03 Training and Fine-tuning Frameworks](/ai/03-frameworks/03/01/)——训练系统已经讲完；下一模块开始处理“训好的模型如何被高质量交付”为在线或本地服务。
 
-下一篇：[03.04 vLLM](/iopanda-blog/ai/03-frameworks/04/02/)——先从最典型的 LLM-native serving engine 路线开始。
+下一篇：[03.04 vLLM](/ai/03-frameworks/04/02/)——先从最典型的 LLM-native serving engine 路线开始。

@@ -34,18 +34,18 @@ sourceId: "3.10.4.6 Data Curation and Annotation/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [Label Studio](/iopanda-blog/ai/04-tooling/06/02/) | 通用、多模态的数据标注与任务配置平台 | annotation tasks、UI config、multi-type labeling | 需要灵活标注流程的团队 |
-| [Argilla](/iopanda-blog/ai/04-tooling/06/03/) | 面向 NLP/LLM 反馈收集与数据集协作的工作台 | feedback datasets、human review、curation loops | 要做指令数据、偏好数据、RAG 反馈的团队 |
-| [Doccano](/iopanda-blog/ai/04-tooling/06/04/) | 轻量文本标注平台 | text annotation、sequence/classification simplicity | 先把文本标注流程跑起来的团队 |
-| [Cleanlab](/iopanda-blog/ai/04-tooling/06/05/) | 以数据质量诊断和脏标签发现为核心的工具 | label issues、data-centric AI、quality inspection | 已经有数据但怀疑数据有问题的团队 |
-| [FiftyOne](/iopanda-blog/ai/04-tooling/06/06/) | 以样本浏览、可视化与数据集精炼为核心 | dataset visualization、slicing、error analysis | 多模态或需要强可视化探索的团队 |
+| [Label Studio](/ai/04-tooling/06/02/) | 通用、多模态的数据标注与任务配置平台 | annotation tasks、UI config、multi-type labeling | 需要灵活标注流程的团队 |
+| [Argilla](/ai/04-tooling/06/03/) | 面向 NLP/LLM 反馈收集与数据集协作的工作台 | feedback datasets、human review、curation loops | 要做指令数据、偏好数据、RAG 反馈的团队 |
+| [Doccano](/ai/04-tooling/06/04/) | 轻量文本标注平台 | text annotation、sequence/classification simplicity | 先把文本标注流程跑起来的团队 |
+| [Cleanlab](/ai/04-tooling/06/05/) | 以数据质量诊断和脏标签发现为核心的工具 | label issues、data-centric AI、quality inspection | 已经有数据但怀疑数据有问题的团队 |
+| [FiftyOne](/ai/04-tooling/06/06/) | 以样本浏览、可视化与数据集精炼为核心 | dataset visualization、slicing、error analysis | 多模态或需要强可视化探索的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 Label Studio](/iopanda-blog/ai/04-tooling/06/02/) 与 [03 Doccano](/iopanda-blog/ai/04-tooling/06/04/)：先建立“标注台”概念；
-2. 再看 [02 Argilla](/iopanda-blog/ai/04-tooling/06/03/)：理解反馈数据与人审闭环如何组织；
-3. 然后看 [04 Cleanlab](/iopanda-blog/ai/04-tooling/06/05/)：理解数据质量诊断不是人工盲审的替代，而是放大器；
-4. 最后看 [05 FiftyOne](/iopanda-blog/ai/04-tooling/06/06/)：理解可视化浏览如何帮助找样本问题。
+1. 先看 [01 Label Studio](/ai/04-tooling/06/02/) 与 [03 Doccano](/ai/04-tooling/06/04/)：先建立“标注台”概念；
+2. 再看 [02 Argilla](/ai/04-tooling/06/03/)：理解反馈数据与人审闭环如何组织；
+3. 然后看 [04 Cleanlab](/ai/04-tooling/06/05/)：理解数据质量诊断不是人工盲审的替代，而是放大器；
+4. 最后看 [05 FiftyOne](/ai/04-tooling/06/06/)：理解可视化浏览如何帮助找样本问题。
 
 ## 4. 我建议本模块的内容结构
 
@@ -71,11 +71,11 @@ sourceId: "3.10.4.6 Data Curation and Annotation/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 Label Studio](/iopanda-blog/ai/04-tooling/06/02/)
-2. [02 Argilla](/iopanda-blog/ai/04-tooling/06/03/)
-3. [03 Doccano](/iopanda-blog/ai/04-tooling/06/04/)
-4. [04 Cleanlab](/iopanda-blog/ai/04-tooling/06/05/)
-5. [05 FiftyOne](/iopanda-blog/ai/04-tooling/06/06/)
+1. [01 Label Studio](/ai/04-tooling/06/02/)
+2. [02 Argilla](/ai/04-tooling/06/03/)
+3. [03 Doccano](/ai/04-tooling/06/04/)
+4. [04 Cleanlab](/ai/04-tooling/06/05/)
+5. [05 FiftyOne](/ai/04-tooling/06/06/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -101,6 +101,6 @@ sourceId: "3.10.4.6 Data Curation and Annotation/README"
 - [154] https://github.com/cleanlab/cleanlab — Cleanlab GitHub
 - [155] https://github.com/voxel51/fiftyone — FiftyOne GitHub
 
-上一篇：[04.05 Vector Databases and Retrieval](/iopanda-blog/ai/04-tooling/05/01/)——知识底座讲完以后，再回头看“知识与标签本身是怎么生产出来的”。
+上一篇：[04.05 Vector Databases and Retrieval](/ai/04-tooling/05/01/)——知识底座讲完以后，再回头看“知识与标签本身是怎么生产出来的”。
 
-下一篇：[04.07 Local Models and Development](/iopanda-blog/ai/04-tooling/07/01/)——数据工地之外，开发者还需要一套本地运行与调试工具链。
+下一篇：[04.07 Local Models and Development](/ai/04-tooling/07/01/)——数据工地之外，开发者还需要一套本地运行与调试工具链。

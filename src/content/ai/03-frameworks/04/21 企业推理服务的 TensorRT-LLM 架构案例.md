@@ -67,6 +67,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.3 TensorRT-LLM/05 
 - [14] https://github.com/NVIDIA/TensorRT-LLM/blob/main/AGENTS.md — TensorRT-LLM AGENTS overview
 - [17] https://github.com/NVIDIA/TensorRT-LLM/blob/main/examples/disaggregated/README.md — TensorRT-LLM disaggregated serving README
 
-上一篇：[04 性能、硬件依赖与工程边界](/iopanda-blog/ai/03-frameworks/04/20/)
+上一篇：[04 性能、硬件依赖与工程边界](/ai/03-frameworks/04/20/)
 
-下一篇：[06 TensorRT-LLM 与 vLLM、SGLang、llama.cpp、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/22/)
+下一篇：[06 TensorRT-LLM 与 vLLM、SGLang、llama.cpp、Triton 的深度对比](/ai/03-frameworks/04/22/)

@@ -93,6 +93,6 @@ PPOTrainer 和 GRPOTrainer 把系统带进另一个阶段：[22][23]
 - [23] https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md — TRL GRPOTrainer doc
 - [24] https://github.com/huggingface/trl/blob/main/docs/source/reward_trainer.md — TRL RewardTrainer doc
 
-上一篇：[01 Alignment framework 的设计哲学](/iopanda-blog/ai/03-frameworks/03/24/)
+上一篇：[01 Alignment framework 的设计哲学](/ai/03-frameworks/03/24/)
 
-下一篇：[03 与 PEFT / Transformers / Accelerate 的组合方式](/iopanda-blog/ai/03-frameworks/03/26/)
+下一篇：[03 与 PEFT / Transformers / Accelerate 的组合方式](/ai/03-frameworks/03/26/)

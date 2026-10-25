@@ -72,5 +72,5 @@ sourceId: "3.10.2.3 Planning and Reasoning/README"
 
 ## 衔接
 
-- 上一篇：[Prompt and Context Engineering](/iopanda-blog/ai/02-agents/02/)——上下文稳定后，本章让它学会拆任务；
-- 下一篇：[Tool Use and Protocols](/iopanda-blog/ai/02-agents/04/)——规划要靠行动落地，行动就是调用工具。
+- 上一篇：[Prompt and Context Engineering](/ai/02-agents/02/)——上下文稳定后，本章让它学会拆任务；
+- 下一篇：[Tool Use and Protocols](/ai/02-agents/04/)——规划要靠行动落地，行动就是调用工具。

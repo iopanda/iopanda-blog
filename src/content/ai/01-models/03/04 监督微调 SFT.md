@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "model-fine-tuning", "sft"]
 sourceId: "3.10.1.3 Fine-tuning and Alignment/3.4 监督微调 SFT"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260929010754.png)
+![](/ai/images/Pasted%20image%2020260929010754.png)
 
 > 本章完成 01.03 的第一次真实训练:数据(第 2 章)与训练栈(第 3 章)已经就绪,现在用监督微调(Supervised Fine-Tuning,SFT)让模型参数真正因为课程示例而改变。你会先弄清 SFT 在最小化哪个数字、`SFTTrainer` 替你隐藏了哪些环节,然后实际训练出第一个 adapter,并用验证集与第一章的固定基线判断:模型学到了「回答方式」,还是仅仅背下了训练题。
 
@@ -162,6 +162,6 @@ tokenizer.save_pretrained("finetune/runs/sft-v1/best-adapter")
 - [TRL:SFTTrainer](https://huggingface.co/docs/trl/main/en/sft_trainer)
 - [Transformers:训练](https://huggingface.co/docs/transformers/main/en/training)
 
-上一篇:[Hugging Face 训练栈](/iopanda-blog/ai/01-models/03/03/)——训练数据与模板已通过检查,训练管线已接通。
+上一篇:[Hugging Face 训练栈](/ai/01-models/03/03/)——训练数据与模板已通过检查,训练管线已接通。
 
-下一篇:[LoRA 低秩适配](/iopanda-blog/ai/01-models/03/05/)——理解并可控地配置刚才使用的 adapter。
+下一篇:[LoRA 低秩适配](/ai/01-models/03/05/)——理解并可控地配置刚才使用的 adapter。

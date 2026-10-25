@@ -37,7 +37,7 @@ sourceId: "3.10.4.8 Safety Guardrails and Moderation/02 Guardrails AI/README"
 
 ## 引用
 
-- 回到本组总览：[04.08 Safety Guardrails and Moderation](/iopanda-blog/ai/04-tooling/08/01/)
+- 回到本组总览：[04.08 Safety Guardrails and Moderation](/ai/04-tooling/08/01/)
 
-上一篇：[NeMo Guardrails](/iopanda-blog/ai/04-tooling/08/02/)
-下一篇：[Presidio](/iopanda-blog/ai/04-tooling/08/04/)
+上一篇：[NeMo Guardrails](/ai/04-tooling/08/02/)
+下一篇：[Presidio](/ai/04-tooling/08/04/)

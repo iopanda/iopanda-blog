@@ -192,6 +192,6 @@ Fullscript 借助 n8n，让更多人可以实验、构建、再请求将 workflo
 - [1] https://raw.githubusercontent.com/n8n-io/n8n/master/README.md — n8n README
 - [2] https://n8n.io — n8n homepage
 
-上一篇：[04 与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/12/)——看清竞品差异后，再看真实组织为什么会采用 n8n。
+上一篇：[04 与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/12/)——看清竞品差异后，再看真实组织为什么会采用 n8n。
 
-下一篇：[03 Langflow](/iopanda-blog/ai/04-tooling/03/14/)——下一个产品切到开发者可视化 agent/workflow 编排路线。
+下一篇：[03 Langflow](/ai/04-tooling/03/14/)——下一个产品切到开发者可视化 agent/workflow 编排路线。

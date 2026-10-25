@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/05 课程助教 Agent 的 CrewAI 
 ---
 # 课程助教 Agent 的 CrewAI 架构案例
 
-> 前四篇把 CrewAI 的主要部件都拆开了：[角色与任务](/iopanda-blog/ai/03-frameworks/01/19/)、[Flow 与业务流程](/iopanda-blog/ai/03-frameworks/01/20/)、[单角色执行边界](/iopanda-blog/ai/03-frameworks/01/21/)、[人审与恢复](/iopanda-blog/ai/03-frameworks/01/22/)。这一章把这些抽象重新落回一个真实的、与你前面 01/02 主线一致的系统：**课程助教 Agent**。重点不是“能不能用 CrewAI 做出一个问答 demo”，而是：**如果要做成一个带检索、草稿、风险审查、人工复核、可恢复流程的教学系统，CrewAI 应该如何拆层？**
+> 前四篇把 CrewAI 的主要部件都拆开了：[角色与任务](/ai/03-frameworks/01/19/)、[Flow 与业务流程](/ai/03-frameworks/01/20/)、[单角色执行边界](/ai/03-frameworks/01/21/)、[人审与恢复](/ai/03-frameworks/01/22/)。这一章把这些抽象重新落回一个真实的、与你前面 01/02 主线一致的系统：**课程助教 Agent**。重点不是“能不能用 CrewAI 做出一个问答 demo”，而是：**如果要做成一个带检索、草稿、风险审查、人工复核、可恢复流程的教学系统，CrewAI 应该如何拆层？**
 
 **学习目标**：学完本章，你将能够——
 
@@ -214,6 +214,6 @@ CrewAI 在这里的关键价值，是让这些任务和角色之间的关系显�
 - [32] https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/human_feedback.py — CrewAI human feedback source
 - [33] https://github.com/crewAIInc/crewAI/tree/main/lib/crewai/src/crewai/flow/persistence — CrewAI flow persistence source tree
 
-上一篇：[04 Human Feedback、Checkpoint 与可恢复业务流程](/iopanda-blog/ai/03-frameworks/01/22/)——人审与恢复机制立住后，本篇把它们落回一个真实教学系统。
+上一篇：[04 Human Feedback、Checkpoint 与可恢复业务流程](/ai/03-frameworks/01/22/)——人审与恢复机制立住后，本篇把它们落回一个真实教学系统。
 
-下一篇：[06 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/24/)——具体案例落地后，再回头看 CrewAI 为什么更像业务组织框架。
+下一篇：[06 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比](/ai/03-frameworks/01/24/)——具体案例落地后，再回头看 CrewAI 为什么更像业务组织框架。

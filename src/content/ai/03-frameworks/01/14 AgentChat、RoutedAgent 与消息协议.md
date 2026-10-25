@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/02 AutoGen/03 AgentChat、RoutedAgent 与�
 ---
 # AgentChat、RoutedAgent 与消息协议
 
-> 前两篇已经把 AutoGen 的大轮廓立住了：[多 Agent 会话与事件驱动](/iopanda-blog/ai/03-frameworks/01/12/)解释了它为什么在 2023~2026 年影响巨大，[维护模式与迁移](/iopanda-blog/ai/03-frameworks/01/13/)解释了为什么今天要谨慎看待它。现在该往下钻到更具体的技术层：**AutoGen 的多 Agent 协作到底是怎么落到代码里的？** 从 docs 和源码看，它至少有两层关键技术面：上层是 AgentChat 这类面向对话编排的抽象，下层是 `RoutedAgent`、`message_handler`、runtime、topic、message context 这些更像事件系统协议的东西。[7][37][38] 这一章就专门讲这部分：为什么 AutoGen 看起来像聊天团队，但源码骨架其实很像消息总线系统。
+> 前两篇已经把 AutoGen 的大轮廓立住了：[多 Agent 会话与事件驱动](/ai/03-frameworks/01/12/)解释了它为什么在 2023~2026 年影响巨大，[维护模式与迁移](/ai/03-frameworks/01/13/)解释了为什么今天要谨慎看待它。现在该往下钻到更具体的技术层：**AutoGen 的多 Agent 协作到底是怎么落到代码里的？** 从 docs 和源码看，它至少有两层关键技术面：上层是 AgentChat 这类面向对话编排的抽象，下层是 `RoutedAgent`、`message_handler`、runtime、topic、message context 这些更像事件系统协议的东西。[7][37][38] 这一章就专门讲这部分：为什么 AutoGen 看起来像聊天团队，但源码骨架其实很像消息总线系统。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 AgentChat 与 Core runtime 在 AutoGen 里的分工；
 2. 理解 `RoutedAgent`、`message_handler`、topic、MessageContext 在协作系统里的职责；
 3. 说明为什么消息在 AutoGen 里更像协议，而不是自由文本；
-4. 比较 AutoGen 的消息协作模型与 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 的 handoff 模型差异；
+4. 比较 AutoGen 的消息协作模型与 [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 的 handoff 模型差异；
 5. 为一个多 Agent 系统画出“会话层 + 消息协议层”的双层结构图。
 
 ## 1. 概念：AgentChat 是表层体验，Core runtime 才是骨架
@@ -125,8 +125,8 @@ AutoGen 一个很容易被误读的地方是：很多人第一次见到它，是
 | 框架 | 协作表层像什么 | 底层组织方式更像什么 |
 |---|---|---|
 | AutoGen | 多角色会话 | pub-sub / routed message system |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | triage + specialist | runtime primitives + handoff ownership |
-| [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 角色团队 | role/task/flow 业务组织系统 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | triage + specialist | runtime primitives + handoff ownership |
+| [CrewAI](/ai/03-frameworks/01/18/) | 角色团队 | role/task/flow 业务组织系统 |
 
 一句话：
 - AutoGen 更像“让一组角色通过消息总线彼此协作”；
@@ -189,6 +189,6 @@ AutoGen 一个很容易被误读的地方是：很多人第一次见到它，是
 - [37] https://github.com/microsoft/autogen/blob/main/python/packages/autogen-core/src/autogen_core/_routed_agent.py — AutoGen routed agent source
 - [38] https://github.com/microsoft/autogen/tree/main/python/packages/autogen-agentchat/src/autogen_agentchat — AutoGen AgentChat source tree
 
-上一篇：[02 维护模式、迁移与遗留系统治理](/iopanda-blog/ai/03-frameworks/01/13/)——维护现实讲完后，本篇回到技术骨架，拆 AutoGen 到底是怎样运转的。
+上一篇：[02 维护模式、迁移与遗留系统治理](/ai/03-frameworks/01/13/)——维护现实讲完后，本篇回到技术骨架，拆 AutoGen 到底是怎样运转的。
 
-下一篇：[04 Agent Worker、Services 与分布式运行时](/iopanda-blog/ai/03-frameworks/01/15/)——协议层立住后，下一篇继续看它如何向 worker、service、gateway 和分布式 runtime 扩展。
+下一篇：[04 Agent Worker、Services 与分布式运行时](/ai/03-frameworks/01/15/)——协议层立住后，下一篇继续看它如何向 worker、service、gateway 和分布式 runtime 扩展。

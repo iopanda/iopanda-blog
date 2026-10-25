@@ -37,7 +37,7 @@ sourceId: "3.10.4.8 Safety Guardrails and Moderation/04 OpenAI Guardrails/README
 
 ## 引用
 
-- 回到本组总览：[04.08 Safety Guardrails and Moderation](/iopanda-blog/ai/04-tooling/08/01/)
+- 回到本组总览：[04.08 Safety Guardrails and Moderation](/ai/04-tooling/08/01/)
 
-上一篇：[Presidio](/iopanda-blog/ai/04-tooling/08/04/)
-下一篇：[Promptfoo Red Teaming](/iopanda-blog/ai/04-tooling/08/06/)
+上一篇：[Presidio](/ai/04-tooling/08/04/)
+下一篇：[Promptfoo Red Teaming](/ai/04-tooling/08/06/)

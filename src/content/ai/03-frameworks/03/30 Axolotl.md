@@ -32,13 +32,13 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/05 Axolotl/README"
 
 ## 本目录笔记导航
 
-1. [01 配置即训练 recipe 的设计哲学](/iopanda-blog/ai/03-frameworks/03/31/)
-2. [02 Dataset、Template、YAML 与实验管理](/iopanda-blog/ai/03-frameworks/03/32/)
-3. [03 LoRA、QLoRA、DPO 与多后端训练编排](/iopanda-blog/ai/03-frameworks/03/33/)
-4. [04 分布式、导出、调参与工程边界](/iopanda-blog/ai/03-frameworks/03/34/)
-5. [05 课程助教 Agent 的 Axolotl 架构案例](/iopanda-blog/ai/03-frameworks/03/35/)
-6. [06 Axolotl 与 LLaMA-Factory、Unsloth、PEFT、TRL 的深度对比](/iopanda-blog/ai/03-frameworks/03/36/)
+1. [01 配置即训练 recipe 的设计哲学](/ai/03-frameworks/03/31/)
+2. [02 Dataset、Template、YAML 与实验管理](/ai/03-frameworks/03/32/)
+3. [03 LoRA、QLoRA、DPO 与多后端训练编排](/ai/03-frameworks/03/33/)
+4. [04 分布式、导出、调参与工程边界](/ai/03-frameworks/03/34/)
+5. [05 课程助教 Agent 的 Axolotl 架构案例](/ai/03-frameworks/03/35/)
+6. [06 Axolotl 与 LLaMA-Factory、Unsloth、PEFT、TRL 的深度对比](/ai/03-frameworks/03/36/)
 
-上一篇：[04 TRL](/iopanda-blog/ai/03-frameworks/03/23/)
+上一篇：[04 TRL](/ai/03-frameworks/03/23/)
 
-下一篇：[01 配置即训练 recipe 的设计哲学](/iopanda-blog/ai/03-frameworks/03/31/)
+下一篇：[01 配置即训练 recipe 的设计哲学](/ai/03-frameworks/03/31/)

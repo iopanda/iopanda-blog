@@ -74,6 +74,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/05 Axolotl/06 Axolotl �
 - [77] https://github.com/huggingface/peft — PEFT GitHub
 - [78] https://github.com/huggingface/trl — TRL GitHub
 
-上一篇：[05 课程助教 Agent 的 Axolotl 架构案例](/iopanda-blog/ai/03-frameworks/03/35/)
+上一篇：[05 课程助教 Agent 的 Axolotl 架构案例](/ai/03-frameworks/03/35/)
 
-下一篇：回到 [06 Training Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/03/37/)
+下一篇：回到 [06 Training Framework 选型矩阵](/ai/03-frameworks/03/37/)

@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/0
 ---
 # Retrieval Framework 选型方法论
 
-> 前面五组内容已经把这一章的五条主路线拆开了：[LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) 代表文档对象与查询对象路线，[Haystack](/iopanda-blog/ai/03-frameworks/02/09/) 代表显式检索工作流路线，[RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) 代表端到端 context engine / 平台路线，[LightRAG](/iopanda-blog/ai/03-frameworks/02/23/) 代表轻量 graph-enhanced retrieval 路线，[Pathway](/iopanda-blog/ai/03-frameworks/02/30/) 代表实时数据流与增量更新路线。[41][42][43][44][45] 这一篇不再逐个介绍框架，而是先把“怎么选”本身变成方法论：**先诊断 retrieval system 的主矛盾住在哪一类复杂度上，再用排除法筛掉不对症的框架，而不是直接比较谁的功能列表更长。**
+> 前面五组内容已经把这一章的五条主路线拆开了：[LlamaIndex](/ai/03-frameworks/02/02/) 代表文档对象与查询对象路线，[Haystack](/ai/03-frameworks/02/09/) 代表显式检索工作流路线，[RAGFlow](/ai/03-frameworks/02/16/) 代表端到端 context engine / 平台路线，[LightRAG](/ai/03-frameworks/02/23/) 代表轻量 graph-enhanced retrieval 路线，[Pathway](/ai/03-frameworks/02/30/) 代表实时数据流与增量更新路线。[41][42][43][44][45] 这一篇不再逐个介绍框架，而是先把“怎么选”本身变成方法论：**先诊断 retrieval system 的主矛盾住在哪一类复杂度上，再用排除法筛掉不对症的框架，而不是直接比较谁的功能列表更长。**
 
 **学习目标**：学完本章，你将能够——
 1. 解释为什么选型首先要看“主要复杂度住在哪里”，而不是“能不能做 RAG”；
@@ -84,6 +84,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/0
 - [44] https://github.com/HKUDS/LightRAG — LightRAG GitHub
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 
-上一篇：[06 RAG Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/02/37/)
+上一篇：[06 RAG Framework 选型矩阵](/ai/03-frameworks/02/37/)
 
-下一篇：[02 五个框架横向矩阵](/iopanda-blog/ai/03-frameworks/02/39/)
+下一篇：[02 五个框架横向矩阵](/ai/03-frameworks/02/39/)

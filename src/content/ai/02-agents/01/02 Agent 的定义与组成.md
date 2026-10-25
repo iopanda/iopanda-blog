@@ -146,4 +146,4 @@ sourceId: "3.10.2.1 Foundations/01 Agent 的定义与组成"
 - [arXiv:AI Agent 架构综述(2024)](https://arxiv.org/abs/2404.11584)
 - [Wikipedia:Intelligent agent](https://en.wikipedia.org/wiki/Intelligent_agent)
 
-下一篇:[Agent 为什么现在才热](/iopanda-blog/ai/02-agents/01/03/)——知道了 Agent 是什么,下一个问题是:它为什么 2023 年后突然爆发?
+下一篇:[Agent 为什么现在才热](/ai/02-agents/01/03/)——知道了 Agent 是什么,下一个问题是:它为什么 2023 年后突然爆发?

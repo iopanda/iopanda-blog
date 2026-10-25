@@ -17,11 +17,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/02 Envoy AI Gateway/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、两层网关与适用场景](/iopanda-blog/ai/04-tooling/01/09/)
-2. [02 AIGatewayRoute、AIServiceBackend 与流量治理](/iopanda-blog/ai/04-tooling/01/10/)
-3. [03 质量、社区、价格与平台门槛](/iopanda-blog/ai/04-tooling/01/11/)
-4. [04 与 LiteLLM、APISIX、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/12/)
-5. [05 公开平台实践：多 Provider、Fallback、限流、监控、Goose、MCP](/iopanda-blog/ai/04-tooling/01/13/)
+1. [01 产品定位、两层网关与适用场景](/ai/04-tooling/01/09/)
+2. [02 AIGatewayRoute、AIServiceBackend 与流量治理](/ai/04-tooling/01/10/)
+3. [03 质量、社区、价格与平台门槛](/ai/04-tooling/01/11/)
+4. [04 与 LiteLLM、APISIX、LocalAI 的竞品对比](/ai/04-tooling/01/12/)
+5. [05 公开平台实践：多 Provider、Fallback、限流、监控、Goose、MCP](/ai/04-tooling/01/13/)
 
 ## 这一产品为什么值得单开
 
@@ -48,11 +48,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/02 Envoy AI Gateway/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、两层网关与适用场景](/iopanda-blog/ai/04-tooling/01/09/)
-2. [02 AIGatewayRoute、AIServiceBackend 与流量治理](/iopanda-blog/ai/04-tooling/01/10/)
-3. [03 质量、社区、价格与平台门槛](/iopanda-blog/ai/04-tooling/01/11/)
-4. [04 与 LiteLLM、APISIX、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/12/)
-5. [05 公开平台实践：多 Provider、Fallback、限流、监控、Goose、MCP](/iopanda-blog/ai/04-tooling/01/13/)
+1. [01 产品定位、两层网关与适用场景](/ai/04-tooling/01/09/)
+2. [02 AIGatewayRoute、AIServiceBackend 与流量治理](/ai/04-tooling/01/10/)
+3. [03 质量、社区、价格与平台门槛](/ai/04-tooling/01/11/)
+4. [04 与 LiteLLM、APISIX、LocalAI 的竞品对比](/ai/04-tooling/01/12/)
+5. [05 公开平台实践：多 Provider、Fallback、限流、监控、Goose、MCP](/ai/04-tooling/01/13/)
 
 ## 引用
 
@@ -61,6 +61,6 @@ sourceId: "3.10.4.1 Model Gateways and Routing/02 Envoy AI Gateway/README"
 - [3] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/concepts/resources.md — Envoy AI Gateway Resources
 - [4] https://api.github.com/repos/envoyproxy/ai-gateway — Envoy AI Gateway GitHub API
 
-上一篇：[01 LiteLLM](/iopanda-blog/ai/04-tooling/01/02/)——上一产品代表 AI-native 的统一接入路线；这一篇切到平台网关路线。
+上一篇：[01 LiteLLM](/ai/04-tooling/01/02/)——上一产品代表 AI-native 的统一接入路线；这一篇切到平台网关路线。
 
-下一篇：[01 产品定位、两层网关与适用场景](/iopanda-blog/ai/04-tooling/01/09/)——先从定位、两层网关架构与适用边界开始。
+下一篇：[01 产品定位、两层网关与适用场景](/ai/04-tooling/01/09/)——先从定位、两层网关架构与适用边界开始。

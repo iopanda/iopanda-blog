@@ -37,7 +37,7 @@ sourceId: "3.10.4.7 Local Models and Development/04 vLLM/README"
 
 ## 引用
 
-- 回到本组总览：[04.07 Local Models and Development](/iopanda-blog/ai/04-tooling/07/01/)
+- 回到本组总览：[04.07 Local Models and Development](/ai/04-tooling/07/01/)
 
-上一篇：[LocalAI](/iopanda-blog/ai/04-tooling/07/04/)
-下一篇：[SGLang](/iopanda-blog/ai/04-tooling/07/06/)
+上一篇：[LocalAI](/ai/04-tooling/07/04/)
+下一篇：[SGLang](/ai/04-tooling/07/06/)

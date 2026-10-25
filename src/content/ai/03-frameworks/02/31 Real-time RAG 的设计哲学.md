@@ -81,6 +81,6 @@ Pathway README 强调：
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 - [68] https://github.com/pathwaycom/pathway/blob/main/README.md — Pathway README
 
-上一篇：[05 Pathway](/iopanda-blog/ai/03-frameworks/02/30/)
+上一篇：[05 Pathway](/ai/03-frameworks/02/30/)
 
-下一篇：[02 Streaming ETL、Incremental Index 与 Update Semantics](/iopanda-blog/ai/03-frameworks/02/32/)
+下一篇：[02 Streaming ETL、Incremental Index 与 Update Semantics](/ai/03-frameworks/02/32/)

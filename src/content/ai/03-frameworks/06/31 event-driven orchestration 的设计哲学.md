@@ -44,10 +44,10 @@ Kestra 的 flow 用 YAML 声明式定义，但不止一种编辑方式：「the 
 
 | 框架 | 第一性问题 | Kestra 相比的定位 |
 |---|---|---|
-| [Temporal](/iopanda-blog/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Kestra 更偏统一调度和事件驱动自动化，不追求 Temporal 那种彻底的状态恢复语义 |
-| [Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Kestra 更偏声明式 YAML + 低门槛多角色协作，而不是代码优先的重平台 |
-| [Prefect](/iopanda-blog/ai/03-frameworks/06/16/) | 如何用 Python 更自然写 resilient flows | Kestra 更偏语言无关的声明式接口，而不是 Python 脚本升级路径 |
-| [Dagster](/iopanda-blog/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Kestra 更偏统一调度/事件自动化，不以资产血缘和目录治理为核心 |
+| [Temporal](/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Kestra 更偏统一调度和事件驱动自动化，不追求 Temporal 那种彻底的状态恢复语义 |
+| [Apache Airflow](/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Kestra 更偏声明式 YAML + 低门槛多角色协作，而不是代码优先的重平台 |
+| [Prefect](/ai/03-frameworks/06/16/) | 如何用 Python 更自然写 resilient flows | Kestra 更偏语言无关的声明式接口，而不是 Python 脚本升级路径 |
+| [Dagster](/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Kestra 更偏统一调度/事件自动化，不以资产血缘和目录治理为核心 |
 
 ## 5. 什么时候最自然进入 Kestra
 
@@ -76,6 +76,6 @@ Kestra 的 flow 用 YAML 声明式定义，但不止一种编辑方式：「the 
 - [15] https://github.com/kestra-io/kestra — Kestra GitHub / README
 - [38] https://kestra.io/docs/why-kestra — Kestra "Why Kestra" positioning doc
 
-上一篇：[03.06 Kestra](/iopanda-blog/ai/03-frameworks/06/30/)
+上一篇：[03.06 Kestra](/ai/03-frameworks/06/30/)
 
-下一篇：[02 flows、triggers、tasks 与 declarative workflow](/iopanda-blog/ai/03-frameworks/06/32/)
+下一篇：[02 flows、triggers、tasks 与 declarative workflow](/ai/03-frameworks/06/32/)

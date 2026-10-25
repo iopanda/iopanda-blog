@@ -28,11 +28,11 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 
 | 子系统 | 核心问题 | 框架 |
 |---|---|---|
-| 内容审核与发布审批 | 生成的课程内容/答疑反馈要经过教师审批才能发布，涉及跨天等待和人工决定 | [Temporal](/iopanda-blog/ai/03-frameworks/06/02/) |
-| 知识库/评估离线管线 | 定时更新知识库、跑离线评估、聚合问答日志、生成周报 | [Airflow](/iopanda-blog/ai/03-frameworks/06/09/) |
-| 检索/生成/批改脚本 | 检索课程知识、调用生成模型、批改反馈、发信这些 Python 脚本本身的可靠性 | [Prefect](/iopanda-blog/ai/03-frameworks/06/16/) |
-| 知识资产治理 | 知识库表、切片、向量索引、评估集的血缘、新鲜度、责任人 | [Dagster](/iopanda-blog/ai/03-frameworks/06/23/) |
-| 跨团队自动化与集成 | 学生答疑 webhook、教师/运营通知、跨系统集成、非工程角色调整流程 | [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) |
+| 内容审核与发布审批 | 生成的课程内容/答疑反馈要经过教师审批才能发布，涉及跨天等待和人工决定 | [Temporal](/ai/03-frameworks/06/02/) |
+| 知识库/评估离线管线 | 定时更新知识库、跑离线评估、聚合问答日志、生成周报 | [Airflow](/ai/03-frameworks/06/09/) |
+| 检索/生成/批改脚本 | 检索课程知识、调用生成模型、批改反馈、发信这些 Python 脚本本身的可靠性 | [Prefect](/ai/03-frameworks/06/16/) |
+| 知识资产治理 | 知识库表、切片、向量索引、评估集的血缘、新鲜度、责任人 | [Dagster](/ai/03-frameworks/06/23/) |
+| 跨团队自动化与集成 | 学生答疑 webhook、教师/运营通知、跨系统集成、非工程角色调整流程 | [Kestra](/ai/03-frameworks/06/30/) |
 
 ## 2. 每个子系统的判断依据（为什么选它，为什么不选别的）
 
@@ -88,6 +88,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 - [14] https://github.com/dagster-io/dagster — Dagster GitHub
 - [15] https://github.com/kestra-io/kestra — Kestra GitHub
 
-上一篇：[03 典型业务场景对比](/iopanda-blog/ai/03-frameworks/06/40/)
+上一篇：[03 典型业务场景对比](/ai/03-frameworks/06/40/)
 
 下一篇：暂无——`03.06 Workflow Orchestration Frameworks` 模块至此完整收官（Temporal/Airflow/Prefect/Dagster/Kestra 五个框架 + 本选型矩阵均已完成）；`03 Frameworks` 的下一个子模块尚未规划。

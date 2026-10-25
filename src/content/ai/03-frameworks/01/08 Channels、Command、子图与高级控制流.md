@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/05 Channels、Command、子图
 ---
 # Channels、Command、子图与高级控制流
 
-> 到这里为止，LangGraph 的主线已经很清楚了：[状态图](/iopanda-blog/ai/03-frameworks/01/04/) 负责建模，[checkpointer 与 interrupt](/iopanda-blog/ai/03-frameworks/01/05/) 负责让系统活下去，[prebuilt 构件](/iopanda-blog/ai/03-frameworks/01/06/) 负责加速常见模式。但当你真的要把系统做得很复杂时，还会碰到另一层问题：**并发更新如何合并？图之间怎么组合？节点如何不只返回数据，还返回“控制意图”？** 这些问题在 LangGraph 里不会靠神奇 prompt 解决，而是落到 channels、`Command`、subgraph、barrier 等更底层的控制机制上。源码层面，`channels/` 目录、`graph/state.py` 的 channel/reducer 体系、`errors.py` 的 `GraphInterrupt` / `ParentCommand` 等定义，都在说明它并不是一个“只有节点和边”的轻图框架，而是一套带高级控制语义的运行时。[1][2]
+> 到这里为止，LangGraph 的主线已经很清楚了：[状态图](/ai/03-frameworks/01/04/) 负责建模，[checkpointer 与 interrupt](/ai/03-frameworks/01/05/) 负责让系统活下去，[prebuilt 构件](/ai/03-frameworks/01/06/) 负责加速常见模式。但当你真的要把系统做得很复杂时，还会碰到另一层问题：**并发更新如何合并？图之间怎么组合？节点如何不只返回数据，还返回“控制意图”？** 这些问题在 LangGraph 里不会靠神奇 prompt 解决，而是落到 channels、`Command`、subgraph、barrier 等更底层的控制机制上。源码层面，`channels/` 目录、`graph/state.py` 的 channel/reducer 体系、`errors.py` 的 `GraphInterrupt` / `ParentCommand` 等定义，都在说明它并不是一个“只有节点和边”的轻图框架，而是一套带高级控制语义的运行时。[1][2]
 
 **学习目标**：学完本章，你将能够——
 
@@ -218,6 +218,6 @@ LangGraph 的 subgraph / graph interrupt / parent command 这些语义，正是�
 - [2] https://docs.langchain.com/oss/python/langgraph/overview — LangGraph docs overview
 - [29] https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py — LangGraph message graph source
 
-上一篇：[04 Checkpointer、thread_id 与持久化后端选型](/iopanda-blog/ai/03-frameworks/01/07/)——持久化层立住后，本篇继续下钻 LangGraph 更底层的控制语义。
+上一篇：[04 Checkpointer、thread_id 与持久化后端选型](/ai/03-frameworks/01/07/)——持久化层立住后，本篇继续下钻 LangGraph 更底层的控制语义。
 
-下一篇：[06 课程助教 Agent 的 LangGraph 架构案例](/iopanda-blog/ai/03-frameworks/01/09/)——高级控制流零件讲完后，下一篇把它们组装回一个真实业务系统。
+下一篇：[06 课程助教 Agent 的 LangGraph 架构案例](/ai/03-frameworks/01/09/)——高级控制流零件讲完后，下一篇把它们组装回一个真实业务系统。

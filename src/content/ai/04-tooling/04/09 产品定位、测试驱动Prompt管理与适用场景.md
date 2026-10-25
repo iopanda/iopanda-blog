@@ -101,6 +101,6 @@ Promptfoo 的价值就在于让 prompt 工程摆脱“拍脑袋试几次”的�
 - [4] https://www.promptfoo.dev/docs/intro/ — Promptfoo intro docs
 - [5] https://www.promptfoo.dev/docs/configuration/guide/ — Promptfoo config guide
 
-上一篇：[02 Promptfoo](/iopanda-blog/ai/04-tooling/04/08/)——先看目录地图，再进入产品定位。
+上一篇：[02 Promptfoo](/ai/04-tooling/04/08/)——先看目录地图，再进入产品定位。
 
-下一篇：[02 Prompts、Assertions、Labels与CI/CD工作流](/iopanda-blog/ai/04-tooling/04/10/)——定位之后，再看它如何把 prompt 放进系统化验证流程。
+下一篇：[02 Prompts、Assertions、Labels与CI/CD工作流](/ai/04-tooling/04/10/)——定位之后，再看它如何把 prompt 放进系统化验证流程。

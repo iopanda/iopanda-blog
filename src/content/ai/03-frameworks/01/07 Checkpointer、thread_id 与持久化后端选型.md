@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/04 Checkpointer、thread_id �
 ---
 # Checkpointer、thread_id 与持久化后端选型
 
-> [前面我们已经反复说](/iopanda-blog/ai/03-frameworks/01/05/)：LangGraph 真正值钱的不是“图”，而是“图能活在生产里”。要让它活在生产里，checkpointer 就不是附属品，而是核心运行时。官方 `langgraph-checkpoint` README 直接把它定义为 LangGraph 的 persistence layer：在 every superstep 保存 graph state，从而支持 human-in-the-loop、memory between interactions、durable execution 等能力。[1][2] 更进一步，LangGraph 还单独提供 SQLite 和 Postgres 两类 checkpointer 实现，并且在 README 里把 `thread_id`、`checkpoint_id`、pending writes、serde 安全、数据库连接细节都写得很明确。[2][3][4] 这一章就专门讲这些“看起来像底层实现，其实会直接决定系统是否可靠”的问题。
+> [前面我们已经反复说](/ai/03-frameworks/01/05/)：LangGraph 真正值钱的不是“图”，而是“图能活在生产里”。要让它活在生产里，checkpointer 就不是附属品，而是核心运行时。官方 `langgraph-checkpoint` README 直接把它定义为 LangGraph 的 persistence layer：在 every superstep 保存 graph state，从而支持 human-in-the-loop、memory between interactions、durable execution 等能力。[1][2] 更进一步，LangGraph 还单独提供 SQLite 和 Postgres 两类 checkpointer 实现，并且在 README 里把 `thread_id`、`checkpoint_id`、pending writes、serde 安全、数据库连接细节都写得很明确。[2][3][4] 这一章就专门讲这些“看起来像底层实现，其实会直接决定系统是否可靠”的问题。
 
 **学习目标**：学完本章，你将能够——
 
@@ -164,7 +164,7 @@ checkpoint 接口要求实现 `.delete_thread()`。[2] 这件事常被忽略，�
 - 调试和测试环境需要清理脏状态；
 - 合规要求可能要求删除某些运行痕迹。
 
-如果一个系统只会存不会删，所谓“记忆能力”最后很可能会变成治理风险。这一点和 [数据治理与隐私](/iopanda-blog/ai/01-models/07/01/) 的结论完全一致：**可删除性是能力，不是善后。**
+如果一个系统只会存不会删，所谓“记忆能力”最后很可能会变成治理风险。这一点和 [数据治理与隐私](/ai/01-models/07/01/) 的结论完全一致：**可删除性是能力，不是善后。**
 
 ## 8. 给开发者和架构师的后端选型建议
 
@@ -225,6 +225,6 @@ checkpoint 接口要求实现 `.delete_thread()`。[2] 这件事常被忽略，�
 - [3] https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint-sqlite — LangGraph checkpoint sqlite README
 - [4] https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint-postgres — LangGraph checkpoint postgres README
 
-上一篇：[03 MessagesState、ToolNode 与 create_react_agent](/iopanda-blog/ai/03-frameworks/01/06/)——高层预构件解决了常见模式的起步问题；本篇下钻到生产里最关键的持久化语义。
+上一篇：[03 MessagesState、ToolNode 与 create_react_agent](/ai/03-frameworks/01/06/)——高层预构件解决了常见模式的起步问题；本篇下钻到生产里最关键的持久化语义。
 
-下一篇：[05 Channels、Command、子图与高级控制流](/iopanda-blog/ai/03-frameworks/01/08/)——持久化只是开始，下一篇继续下钻 LangGraph 更像系统运行时的高级控制流语义。
+下一篇：[05 Channels、Command、子图与高级控制流](/ai/03-frameworks/01/08/)——持久化只是开始，下一篇继续下钻 LangGraph 更像系统运行时的高级控制流语义。

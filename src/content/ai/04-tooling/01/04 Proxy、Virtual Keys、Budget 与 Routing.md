@@ -146,6 +146,6 @@ LiteLLM 最有价值的工程后果，是把很多原本写在代码里的逻辑
 - [3] https://raw.githubusercontent.com/BerriAI/litellm/main/README.md — LiteLLM README
 - [4] https://www.litellm.ai/enterprise — LiteLLM Enterprise
 
-上一篇：[01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/01/03/)——先明确 LiteLLM 是什么，再进入它最关键的网关能力层。
+上一篇：[01 产品定位、能力地图与适用场景](/ai/04-tooling/01/03/)——先明确 LiteLLM 是什么，再进入它最关键的网关能力层。
 
-下一篇：[03 质量、社区、价格与商业化成熟度](/iopanda-blog/ai/04-tooling/01/05/)——产品能力立住以后，下一步看它到底成不成熟、值不值得买、适不适合进入组织基础设施。
+下一篇：[03 质量、社区、价格与商业化成熟度](/ai/04-tooling/01/05/)——产品能力立住以后，下一步看它到底成不成熟、值不值得买、适不适合进入组织基础设施。

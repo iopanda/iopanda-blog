@@ -67,10 +67,10 @@ Temporal 的 workflow lifecycle 和 history service 文档写得非常清楚：[
 
 | 框架 | 第一性问题 | Temporal 相比的定位 |
 |---|---|---|
-| [Airflow](/iopanda-blog/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Temporal 更先解决长生命周期 stateful execution |
-| [Prefect](/iopanda-blog/ai/03-frameworks/06/16/) | 如何用 Python 写更友好的 resilient flows | Temporal 更偏 durable engine，而不只偏 DX |
-| [Dagster](/iopanda-blog/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Temporal 更偏业务流程和状态恢复 |
-| [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) | 如何围绕 triggers/schedules/integrations 做自动化 | Temporal 更偏 execution semantics |
+| [Airflow](/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Temporal 更先解决长生命周期 stateful execution |
+| [Prefect](/ai/03-frameworks/06/16/) | 如何用 Python 写更友好的 resilient flows | Temporal 更偏 durable engine，而不只偏 DX |
+| [Dagster](/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Temporal 更偏业务流程和状态恢复 |
+| [Kestra](/ai/03-frameworks/06/30/) | 如何围绕 triggers/schedules/integrations 做自动化 | Temporal 更偏 execution semantics |
 
 ## 5. 什么时候最自然进入 Temporal
 
@@ -101,6 +101,6 @@ Temporal 的 workflow lifecycle 和 history service 文档写得非常清楚：[
 - [6] https://github.com/temporalio/temporal/blob/main/docs/architecture/workflow-lifecycle.md — Temporal workflow lifecycle doc
 - [9] https://github.com/temporalio/temporal/blob/main/docs/architecture/history-service.md — Temporal history service doc
 
-上一篇：[03.06 Temporal](/iopanda-blog/ai/03-frameworks/06/02/)
+上一篇：[03.06 Temporal](/ai/03-frameworks/06/02/)
 
-下一篇：[02 workflow state、activity、retry、timer 与 signal](/iopanda-blog/ai/03-frameworks/06/04/)
+下一篇：[02 workflow state、activity、retry、timer 与 signal](/ai/03-frameworks/06/04/)

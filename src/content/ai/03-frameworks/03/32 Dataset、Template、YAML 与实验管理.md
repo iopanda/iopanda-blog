@@ -85,6 +85,6 @@ Qwen3 示例 README 特别提醒：如果 assistant prompt masking 偏了几 tok
 - [15] https://github.com/axolotl-ai-cloud/axolotl/blob/main/docs/agents/sft.md — Axolotl SFT agent doc
 - [18] https://github.com/axolotl-ai-cloud/axolotl/blob/main/examples/qwen3/README.md — Axolotl Qwen3 example doc
 
-上一篇：[01 配置即训练 recipe 的设计哲学](/iopanda-blog/ai/03-frameworks/03/31/)
+上一篇：[01 配置即训练 recipe 的设计哲学](/ai/03-frameworks/03/31/)
 
-下一篇：[03 LoRA、QLoRA、DPO 与多后端训练编排](/iopanda-blog/ai/03-frameworks/03/33/)
+下一篇：[03 LoRA、QLoRA、DPO 与多后端训练编排](/ai/03-frameworks/03/33/)

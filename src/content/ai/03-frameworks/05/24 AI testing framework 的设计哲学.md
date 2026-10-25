@@ -66,10 +66,10 @@ README 和 CLI docs 很清楚地说明，它不只是 eval：[10][11]
 
 | 框架 | 第一性问题 | promptfoo 相比的定位 |
 |---|---|---|
-| [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) | 如何把 LLM 产品工程闭环收进平台 | promptfoo 更偏测试门禁而非平台闭环 |
-| [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) | 如何开放地做 traces / diagnosis / eval 分析 | promptfoo 更偏 regression harness |
-| [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 如何统一更广义 AI engineering 平台 | promptfoo 更偏 testing workflow |
-| [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | 如何 code-first 写 eval 测试 | promptfoo 更偏 declarative + CLI + CI |
+| [Langfuse](/ai/03-frameworks/05/02/) | 如何把 LLM 产品工程闭环收进平台 | promptfoo 更偏测试门禁而非平台闭环 |
+| [Phoenix](/ai/03-frameworks/05/09/) | 如何开放地做 traces / diagnosis / eval 分析 | promptfoo 更偏 regression harness |
+| [MLflow](/ai/03-frameworks/05/16/) | 如何统一更广义 AI engineering 平台 | promptfoo 更偏 testing workflow |
+| [DeepEval](/ai/03-frameworks/05/30/) | 如何 code-first 写 eval 测试 | promptfoo 更偏 declarative + CLI + CI |
 
 ## 5. 什么时候最自然进入 promptfoo
 
@@ -99,6 +99,6 @@ README 和 CLI docs 很清楚地说明，它不只是 eval：[10][11]
 - [10] https://github.com/promptfoo/promptfoo/blob/main/README.md — promptfoo README
 - [11] https://github.com/promptfoo/promptfoo/blob/main/site/docs/usage/command-line.md — promptfoo command line docs
 
-上一篇：[03.05 promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)
+上一篇：[03.05 promptfoo](/ai/03-frameworks/05/23/)
 
-下一篇：[02 declarative eval configs、providers 与 assertion model](/iopanda-blog/ai/03-frameworks/05/25/)
+下一篇：[02 declarative eval configs、providers 与 assertion model](/ai/03-frameworks/05/25/)

@@ -132,6 +132,6 @@ Langfuse 的工作流可以粗略理解为：
 - [4] https://langfuse.com/docs/prompt-management/get-started — Langfuse prompt management
 - [5] https://langfuse.com/docs/evaluation/dataset-runs/datasets — Langfuse datasets
 
-上一篇：[01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/02/03/)——先知道它是什么，再看它为什么形成工作流闭环。
+上一篇：[01 产品定位、能力地图与适用场景](/ai/04-tooling/02/03/)——先知道它是什么，再看它为什么形成工作流闭环。
 
-下一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/05/)——能力闭环立住以后，再看它够不够成熟、贵不贵、开源边界在哪。
+下一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/02/05/)——能力闭环立住以后，再看它够不够成熟、贵不贵、开源边界在哪。

@@ -89,6 +89,6 @@ PEFT 通过 config + wrapper 把它们拉回同一层，使“换方法”不等
 - [20] https://github.com/huggingface/peft/blob/main/docs/source/package_reference/ia3.md — PEFT IA3 doc
 - [21] https://github.com/huggingface/peft/blob/main/docs/source/package_reference/adalora.md — PEFT AdaLoRA doc
 
-上一篇：[01 参数高效微调的设计哲学](/iopanda-blog/ai/03-frameworks/03/17/)
+上一篇：[01 参数高效微调的设计哲学](/ai/03-frameworks/03/17/)
 
-下一篇：[03 与 Transformers / Accelerate / TRL 的组合方式](/iopanda-blog/ai/03-frameworks/03/19/)
+下一篇：[03 与 Transformers / Accelerate / TRL 的组合方式](/ai/03-frameworks/03/19/)

@@ -179,6 +179,6 @@ Agent 系统里，LLM 请求和工具请求常常分属不同入口，导致观�
 - [6] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/examples/goose/README.md — Goose integration example
 - [7] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/examples/mcp/README.md — MCP proxy example
 
-上一篇：[04 与 LiteLLM、APISIX、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/12/)——知道它和谁不同之后，再看它通常怎么被真实使用。
+上一篇：[04 与 LiteLLM、APISIX、LocalAI 的竞品对比](/ai/04-tooling/01/12/)——知道它和谁不同之后，再看它通常怎么被真实使用。
 
-下一篇：[03 Apache APISIX](/iopanda-blog/ai/04-tooling/01/14/)——下一个产品切到 API-native 的另一条平台路线。
+下一篇：[03 Apache APISIX](/ai/04-tooling/01/14/)——下一个产品切到 API-native 的另一条平台路线。

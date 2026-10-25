@@ -67,6 +67,6 @@ resource 是「objects used by Dagster assets and ops that provide access to ext
 - [26] https://docs.dagster.io/guides/build/ops — Dagster ops and jobs guide
 - [27] https://docs.dagster.io/guides/build/external-resources — Dagster resources guide
 
-上一篇：[01 asset-first orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/24/)
+上一篇：[01 asset-first orchestration 的设计哲学](/ai/03-frameworks/06/24/)
 
-下一篇：[03 sensors、partitions、data platform workflows](/iopanda-blog/ai/03-frameworks/06/26/)
+下一篇：[03 sensors、partitions、data platform workflows](/ai/03-frameworks/06/26/)

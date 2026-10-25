@@ -75,6 +75,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.5 DeepEval/
 - [20] https://github.com/mlflow/mlflow — MLflow GitHub
 - [21] https://github.com/promptfoo/promptfoo — promptfoo GitHub
 
-上一篇：[05 课程助教 Agent 的 DeepEval 架构案例](/iopanda-blog/ai/03-frameworks/05/35/)
+上一篇：[05 课程助教 Agent 的 DeepEval 架构案例](/ai/03-frameworks/05/35/)
 
-下一篇：回到 [03.05 Evaluation Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/05/37/)
+下一篇：回到 [03.05 Evaluation Framework 选型矩阵](/ai/03-frameworks/05/37/)

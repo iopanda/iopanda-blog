@@ -148,6 +148,6 @@ Envoy AI Gateway 的真正价值，不是“单点能力更炫”，而是它允
 - [3] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/concepts/architecture/data-plane.md — Data Plane and Traffic Flow
 - [4] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/examples/token_ratelimit/README.md — Token based ratelimiting example
 
-上一篇：[01 产品定位、两层网关与适用场景](/iopanda-blog/ai/04-tooling/01/09/)——先回答它是谁，再回答它靠什么资源模型运作。
+上一篇：[01 产品定位、两层网关与适用场景](/ai/04-tooling/01/09/)——先回答它是谁，再回答它靠什么资源模型运作。
 
-下一篇：[03 质量、社区、价格与平台门槛](/iopanda-blog/ai/04-tooling/01/11/)——能力模型看完后，再看它成熟不成熟、贵不贵、难不难上。
+下一篇：[03 质量、社区、价格与平台门槛](/ai/04-tooling/01/11/)——能力模型看完后，再看它成熟不成熟、贵不贵、难不难上。

@@ -37,7 +37,7 @@ sourceId: "3.10.4.8 Safety Guardrails and Moderation/05 Promptfoo Red Teaming/RE
 
 ## 引用
 
-- 回到本组总览：[04.08 Safety Guardrails and Moderation](/iopanda-blog/ai/04-tooling/08/01/)
+- 回到本组总览：[04.08 Safety Guardrails and Moderation](/ai/04-tooling/08/01/)
 
-上一篇：[OpenAI Guardrails](/iopanda-blog/ai/04-tooling/08/05/)
+上一篇：[OpenAI Guardrails](/ai/04-tooling/08/05/)
 下一篇：本产品是本组最后一项；后续可回到本组总览，对比同类工具。

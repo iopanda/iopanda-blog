@@ -94,6 +94,6 @@ AnythingLLM 最强的地方，不是最全的平台治理，而是：
 - [2] https://anythingllm.com/ — AnythingLLM homepage
 - [3] https://api.github.com/repos/Mintplex-Labs/anything-llm — AnythingLLM GitHub API
 
-上一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/29/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/03/29/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 公开组织案例有限：采用信号与第三方实践](/iopanda-blog/ai/04-tooling/03/31/)——最后从公开资料看，它有哪些真实采用信号，又有哪些证据缺口。
+下一篇：[05 公开组织案例有限：采用信号与第三方实践](/ai/04-tooling/03/31/)——最后从公开资料看，它有哪些真实采用信号，又有哪些证据缺口。

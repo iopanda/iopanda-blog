@@ -66,6 +66,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.5 DeepEval/
 - [11] https://github.com/confident-ai/deepeval/blob/main/deepeval/metrics/README.md — DeepEval metrics README
 - [12] https://github.com/confident-ai/deepeval/blob/main/typescript/README.md — DeepEval TypeScript README
 
-上一篇：[04 judge 可靠性、成本与工程边界](/iopanda-blog/ai/03-frameworks/05/34/)
+上一篇：[04 judge 可靠性、成本与工程边界](/ai/03-frameworks/05/34/)
 
-下一篇：[06 DeepEval 与 Langfuse、Phoenix、MLflow、promptfoo 的深度对比](/iopanda-blog/ai/03-frameworks/05/36/)
+下一篇：[06 DeepEval 与 Langfuse、Phoenix、MLflow、promptfoo 的深度对比](/ai/03-frameworks/05/36/)

@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "tokenization", "embeddings", "foundations"]
 sourceId: "3.10.1.1 Foundations/1.4 Token 与 Embedding"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260912172931.png)
+![](/ai/images/Pasted%20image%2020260912172931.png)
 
 > 上一章我们认识了神经网络:它是一台从数据里学出来的「函数机器」,吃进去的是数字,吐出来的是预测。但用户给模型的是中文、英文、代码、表情——**文字不会自己变成数字**。本章回答这条流水线的第一公里:文字如何被切成 token,又如何变成携带语义的向量(embedding)。这是理解上下文窗口、API 计费与 RAG 检索的必备基础。
 
@@ -180,6 +180,6 @@ sourceId: "3.10.1.1 Foundations/1.4 Token 与 Embedding"
 - [OpenAI:Vector embeddings 官方文档](https://platform.openai.com/docs/guides/embeddings)
 - [Microsoft Learn:了解 Azure OpenAI 中的嵌入](https://learn.microsoft.com/zh-cn/azure/ai-services/openai/concepts/understand-embeddings)
 
-上一篇:[神经网络](/iopanda-blog/ai/01-models/01/03/)——模型学会了从数据里归纳函数;本章补上第一公里:文字怎么变成它能吃的数字。
+上一篇:[神经网络](/ai/01-models/01/03/)——模型学会了从数据里归纳函数;本章补上第一公里:文字怎么变成它能吃的数字。
 
-下一篇:[注意力机制](/iopanda-blog/ai/01-models/01/05/)——嵌入只给了每个 token 孤立的坐标,词与词之间的关系由注意力机制来建立。
+下一篇:[注意力机制](/ai/01-models/01/05/)——嵌入只给了每个 token 孤立的坐标,词与词之间的关系由注意力机制来建立。

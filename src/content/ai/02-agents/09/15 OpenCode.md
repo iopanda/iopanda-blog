@@ -79,6 +79,6 @@ sourceId: "3.10.2.9 Agent Implementations/04 OpenCode/README"
 
 ## 衔接
 
-- 上一篇：[03 Hermes Agent](/iopanda-blog/ai/02-agents/09/09/)（同为全开源：TS 大仓 vs Python 全栈的工程路线对照）；
-- 下一篇：[05 Pi Coding Agent](/iopanda-blog/ai/02-agents/09/16/)（极简 TS 实现，与本文「大而全」对照读）；
+- 上一篇：[03 Hermes Agent](/ai/02-agents/09/09/)（同为全开源：TS 大仓 vs Python 全栈的工程路线对照）；
+- 下一篇：[05 Pi Coding Agent](/ai/02-agents/09/16/)（极简 TS 实现，与本文「大而全」对照读）；
 - 概念后盾：02.02 上下文、02.03 规划、02.04 工具/MCP、01.07 治理；每章按蓝图要求产出「源码分析笔记」：贴代码 + 标 02 概念 + 一条「我可以抄 / 我要避」结论，最终汇入 00 Learning Path 的八维横向对比表。

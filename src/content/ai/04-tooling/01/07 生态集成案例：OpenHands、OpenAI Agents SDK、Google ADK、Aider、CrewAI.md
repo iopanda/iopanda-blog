@@ -155,6 +155,6 @@ LiteLLM 在 CrewAI 里的角色，是一个“灵活后备层”和“生态扩�
 - [4] https://aider.chat/docs/llms/other.html — Aider other LLMs
 - [5] https://docs.crewai.com/learn/llm-connections — CrewAI LLM connections
 
-上一篇：[04 与 Envoy AI Gateway、APISIX、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/06/)——知道它和谁不一样之后，再看真实用户为什么会接它。
+上一篇：[04 与 Envoy AI Gateway、APISIX、LocalAI 的竞品对比](/ai/04-tooling/01/06/)——知道它和谁不一样之后，再看真实用户为什么会接它。
 
-下一篇：[02 Envoy AI Gateway](/iopanda-blog/ai/04-tooling/01/08/)——LiteLLM 看完后，下一章切到另一条完全不同的产品路线。
+下一篇：[02 Envoy AI Gateway](/ai/04-tooling/01/08/)——LiteLLM 看完后，下一章切到另一条完全不同的产品路线。

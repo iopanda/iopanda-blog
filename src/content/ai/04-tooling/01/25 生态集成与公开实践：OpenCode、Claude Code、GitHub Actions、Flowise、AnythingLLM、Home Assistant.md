@@ -178,6 +178,6 @@ Home Automation 区域列出 Extended OpenAI Conversation、LLM Vision、OpenAI 
 - [1] https://localai.io/docs/integrations/ — Integrations
 - [2] https://raw.githubusercontent.com/mudler/LocalAI/master/README.md — LocalAI README
 
-上一篇：[04 与 Ollama、vLLM、LiteLLM 的竞品对比](/iopanda-blog/ai/04-tooling/01/24/)——知道它和谁不同之后，再看真实集成为什么会选它。
+上一篇：[04 与 Ollama、vLLM、LiteLLM 的竞品对比](/ai/04-tooling/01/24/)——知道它和谁不同之后，再看真实集成为什么会选它。
 
-下一篇：本产品是本组最后一项；后续可回到 [04.01 Model Gateways and Routing](/iopanda-blog/ai/04-tooling/01/01/) 统览四条路线。
+下一篇：本产品是本组最后一项；后续可回到 [04.01 Model Gateways and Routing](/ai/04-tooling/01/01/) 统览四条路线。

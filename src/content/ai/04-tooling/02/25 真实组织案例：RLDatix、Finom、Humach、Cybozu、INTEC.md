@@ -191,6 +191,6 @@ INTEC 通过 DeepEval 尝试 G-Eval，并梳理了 metrics、score、reason、th
 - [7] https://www.confident-ai.com/case-study/finom — Finom case study
 - [8] https://www.confident-ai.com/case-study/humach — Humach case study
 
-上一篇：[04 与 Promptfoo、Phoenix、Langfuse 的竞品对比](/iopanda-blog/ai/04-tooling/02/24/)——看清竞品差异后，再看真实组织为什么会采用 DeepEval。
+上一篇：[04 与 Promptfoo、Phoenix、Langfuse 的竞品对比](/ai/04-tooling/02/24/)——看清竞品差异后，再看真实组织为什么会采用 DeepEval。
 
-下一篇：[05 Ragas](/iopanda-blog/ai/04-tooling/02/26/)——下一个产品切到更聚焦 RAG 评测的路线。
+下一篇：[05 Ragas](/ai/04-tooling/02/26/)——下一个产品切到更聚焦 RAG 评测的路线。

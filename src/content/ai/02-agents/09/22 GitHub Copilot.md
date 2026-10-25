@@ -72,5 +72,5 @@ sourceId: "3.10.2.9 Agent Implementations/06 GitHub Copilot/README"
 
 ## 衔接
 
-- 蓝图:[Learning Path](/iopanda-blog/ai/02-agents/09/01/)(八维度统一框架);概念基础:02.01 Foundations、[权限边界与工具安全](/iopanda-blog/ai/02-agents/04/07/);相邻子目录:01 Claude Code(同为闭源+SDK 路线)、05 Pi Coding Agent。
+- 蓝图:[Learning Path](/ai/02-agents/09/01/)(八维度统一框架);概念基础:02.01 Foundations、[权限边界与工具安全](/ai/02-agents/04/07/);相邻子目录:01 Claude Code(同为闭源+SDK 路线)、05 Pi Coding Agent。
 - 阅读方法:先 docs(about-coding-agent + responsible use)后 clone vscode-copilot-chat/copilot-sdk;每章笔记 = 文档/代码片段 + 对应 02 概念 + 一条「可抄/要避」结论;凡涉服务端机制一律标注「推断,证据:…」。

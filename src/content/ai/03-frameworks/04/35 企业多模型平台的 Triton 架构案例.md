@@ -68,6 +68,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.5 Triton Inference
 - [10] https://github.com/triton-inference-server/server/blob/main/docs/user_guide/ensemble_models.md — Triton ensemble models doc
 - [11] https://github.com/triton-inference-server/server/blob/main/docs/user_guide/metrics.md — Triton metrics doc
 
-上一篇：[04 多模型运营、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/04/34/)
+上一篇：[04 多模型运营、可观测性与工程边界](/ai/03-frameworks/04/34/)
 
-下一篇：[06 Triton 与 vLLM、SGLang、TensorRT-LLM、llama.cpp 的深度对比](/iopanda-blog/ai/03-frameworks/04/36/)
+下一篇：[06 Triton 与 vLLM、SGLang、TensorRT-LLM、llama.cpp 的深度对比](/ai/03-frameworks/04/36/)

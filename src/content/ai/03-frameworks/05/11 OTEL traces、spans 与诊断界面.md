@@ -79,6 +79,6 @@ Phoenix 虽然不像某些平台那样强调“产品闭环”语言，但它同
 - [25] /private/tmp/eval-framework-research/phoenix/README.md — Phoenix README
 - [30] /private/tmp/eval-framework-research/langfuse/packages/shared/src/server/instrumentation/README.md — Otel instrumentation README as contrast/reference for OTEL-first patterns
 
-上一篇：[01 open-source observability workbench 的设计哲学](/iopanda-blog/ai/03-frameworks/05/10/)
+上一篇：[01 open-source observability workbench 的设计哲学](/ai/03-frameworks/05/10/)
 
-下一篇：[03 evals、annotations、dataset-driven analysis](/iopanda-blog/ai/03-frameworks/05/12/)
+下一篇：[03 evals、annotations、dataset-driven analysis](/ai/03-frameworks/05/12/)

@@ -71,5 +71,5 @@ sourceId: "3.10.2.1 Foundations/README"
 
 ## 衔接
 
-- 上一篇：`01 Models` 系列完成后的第一个 Agent 模块（衔接 [风险评审与发布](/iopanda-blog/ai/01-models/07/05/) 的能力）；
-- 下一篇：[Prompt and Context Engineering](/iopanda-blog/ai/02-agents/02/)——学会循环后，先精修决定行为的第一层：上下文。
+- 上一篇：`01 Models` 系列完成后的第一个 Agent 模块（衔接 [风险评审与发布](/ai/01-models/07/05/) 的能力）；
+- 下一篇：[Prompt and Context Engineering](/ai/02-agents/02/)——学会循环后，先精修决定行为的第一层：上下文。

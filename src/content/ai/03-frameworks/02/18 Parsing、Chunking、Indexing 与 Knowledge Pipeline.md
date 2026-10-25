@@ -93,6 +93,6 @@ RAGFlow 文档里专门有 metadata management，并明确说 metadata 用于 so
 - [64] https://github.com/infiniflow/ragflow/blob/main/deepdoc/parser/docling_parser.py — RAGFlow docling parser source
 - [66] https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/metadata_management.md — RAGFlow metadata management guide
 
-上一篇：[01 RAG Engine 的设计哲学](/iopanda-blog/ai/03-frameworks/02/17/)
+上一篇：[01 RAG Engine 的设计哲学](/ai/03-frameworks/02/17/)
 
-下一篇：[03 Retrieval、Context Layer 与 Agent Integration](/iopanda-blog/ai/03-frameworks/02/19/)
+下一篇：[03 Retrieval、Context Layer 与 Agent Integration](/ai/03-frameworks/02/19/)

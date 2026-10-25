@@ -72,6 +72,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/01 LLaMA-Factory/05 课�
 - [91] https://github.com/hiyouga/LLaMA-Factory/blob/main/data/README.md — LLaMA-Factory data README
 - [92] https://github.com/hiyouga/LLaMA-Factory/blob/main/examples/README.md — LLaMA-Factory examples README
 
-上一篇：[04 显存、分布式、评测与工程边界](/iopanda-blog/ai/03-frameworks/03/06/)
+上一篇：[04 显存、分布式、评测与工程边界](/ai/03-frameworks/03/06/)
 
-下一篇：[06 LLaMA-Factory 与 PEFT、TRL、Unsloth、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/08/)
+下一篇：[06 LLaMA-Factory 与 PEFT、TRL、Unsloth、Axolotl 的深度对比](/ai/03-frameworks/03/08/)

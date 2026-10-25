@@ -264,5 +264,5 @@ if __name__ == "__main__":
 - [G-Eval:NLG Evaluation using GPT-4 with Better Human Alignment(arXiv:2303.16634,rubric + 分维度打分的范式来源)](https://arxiv.org/abs/2303.16634)
 - [Agent-as-a-Judge:Evaluate Agents with Agents(arXiv:2410.10934,让裁判 Agent 调工具复核轨迹中间论断的前沿框架)](https://arxiv.org/abs/2410.10934)
 
-上一篇:[任务级指标与黄金任务集](/iopanda-blog/ai/02-agents/07/04/)——03 章提供了题目与期望,本章请来能读语义的裁判;死规则判不了的样本,在这里升级。
-下一篇:[Tracing 可观测性](/iopanda-blog/ai/02-agents/07/06/)——裁判读的「办案记录」从哪来?05 章给 Agent 装记录仪:没有完整 trace,轨迹级、任务级、裁判全是无米之炊。
+上一篇:[任务级指标与黄金任务集](/ai/02-agents/07/04/)——03 章提供了题目与期望,本章请来能读语义的裁判;死规则判不了的样本,在这里升级。
+下一篇:[Tracing 可观测性](/ai/02-agents/07/06/)——裁判读的「办案记录」从哪来?05 章给 Agent 装记录仪:没有完整 trace,轨迹级、任务级、裁判全是无米之炊。

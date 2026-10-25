@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/04 Human Feedback、Checkpoint �
 ---
 # Human Feedback、Checkpoint 与可恢复业务流程
 
-> [Flow 那一篇](/iopanda-blog/ai/03-frameworks/01/20/)已经讲过：CrewAI 不只想让流程能跑，还想让它能暂停、能恢复、能接人类反馈。但那一篇更偏概念；这一篇专门往源码和运行语义里钻。`flow/human_feedback.py` 明确说它支撑 `@human_feedback` decorator，作为 human-in-the-loop workflow 的元数据入口；`flow/async_feedback/providers.py` 明确说默认 provider 会同时收 feedback 和 `Flow.ask()` 输入；`flow/persistence/` 整个目录以及一批 persistence / resumability tests，则说明 CrewAI 在认真处理业务流程的长期状态。[11][31][32][33] 对开发者和架构师来说，这部分不是可选优化，而是决定“业务自动化到底只是 demo，还是能运营”的核心层。
+> [Flow 那一篇](/ai/03-frameworks/01/20/)已经讲过：CrewAI 不只想让流程能跑，还想让它能暂停、能恢复、能接人类反馈。但那一篇更偏概念；这一篇专门往源码和运行语义里钻。`flow/human_feedback.py` 明确说它支撑 `@human_feedback` decorator，作为 human-in-the-loop workflow 的元数据入口；`flow/async_feedback/providers.py` 明确说默认 provider 会同时收 feedback 和 `Flow.ask()` 输入；`flow/persistence/` 整个目录以及一批 persistence / resumability tests，则说明 CrewAI 在认真处理业务流程的长期状态。[11][31][32][33] 对开发者和架构师来说，这部分不是可选优化，而是决定“业务自动化到底只是 demo，还是能运营”的核心层。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释为什么 human feedback、checkpoint、persistence 对业务流程类 Agent 是核心能力；
 2. 理解 CrewAI 为什么把人类反馈做成 decorator + provider + event 的组合；
 3. 说出 Flow 的恢复和持久化为什么比“失败重跑一下”深得多；
-4. 比较 CrewAI 在 human-in-the-loop 上与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 的差异；
+4. 比较 CrewAI 在 human-in-the-loop 上与 [LangGraph](/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/) 的差异；
 5. 为一个审批型流程设计 pause / review / resume 机制。
 
 ## 1. 概念：业务流程最大的敌人不是“回答不对”，而是“中途断了”
@@ -132,8 +132,8 @@ CrewAI tests 里有一整批：
 | 框架 | 人类反馈怎么进入系统 | 恢复怎么被理解 | CrewAI 的不同 |
 |---|---|---|---|
 | CrewAI | decorator + provider + event + flow persistence | 更像业务流程恢复 | 强业务语义 |
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | interrupt + command + checkpointer | 更像状态图恢复 | 强运行时语义 |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | human-in-the-loop runtime primitive | 更像统一原语中的审批机制 | 强产品 runtime 语义 |
+| [LangGraph](/ai/03-frameworks/01/03/) | interrupt + command + checkpointer | 更像状态图恢复 | 强运行时语义 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | human-in-the-loop runtime primitive | 更像统一原语中的审批机制 | 强产品 runtime 语义 |
 
 一句话：CrewAI 的人审与恢复更贴近“业务步骤”，LangGraph 更贴近“控制流步骤”。
 
@@ -183,6 +183,6 @@ CrewAI tests 里有一整批：
 - [32] https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/human_feedback.py — CrewAI human feedback source
 - [33] https://github.com/crewAIInc/crewAI/tree/main/lib/crewai/src/crewai/flow/persistence — CrewAI flow persistence source tree
 
-上一篇：[03 AgentExecutor、Reasoning、Knowledge 与 Guardrails](/iopanda-blog/ai/03-frameworks/01/21/)——角色对象的执行边界立住后，本篇继续把人类和持久化接进流程本体。
+上一篇：[03 AgentExecutor、Reasoning、Knowledge 与 Guardrails](/ai/03-frameworks/01/21/)——角色对象的执行边界立住后，本篇继续把人类和持久化接进流程本体。
 
-下一篇：[05 课程助教 Agent 的 CrewAI 架构案例](/iopanda-blog/ai/03-frameworks/01/23/)——把 Crew、Flow、human feedback 和 persistence 重新组装回一个真实业务案例。
+下一篇：[05 课程助教 Agent 的 CrewAI 架构案例](/ai/03-frameworks/01/23/)——把 Crew、Flow、human feedback 和 persistence 重新组装回一个真实业务案例。

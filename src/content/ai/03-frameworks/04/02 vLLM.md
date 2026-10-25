@@ -32,13 +32,13 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.1 vLLM/README"
 
 ## 本目录笔记导航
 
-1. [01 serving engine 的设计哲学](/iopanda-blog/ai/03-frameworks/04/03/)
-2. [02 continuous batching、paged attention 与 KV cache](/iopanda-blog/ai/03-frameworks/04/04/)
-3. [03 OpenAI-compatible API、LoRA、多模型与部署形态](/iopanda-blog/ai/03-frameworks/04/05/)
-4. [04 吞吐、延迟、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/04/06/)
-5. [05 课程助教 Agent 的 vLLM 架构案例](/iopanda-blog/ai/03-frameworks/04/07/)
-6. [06 vLLM 与 SGLang、TensorRT-LLM、llama.cpp、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/08/)
+1. [01 serving engine 的设计哲学](/ai/03-frameworks/04/03/)
+2. [02 continuous batching、paged attention 与 KV cache](/ai/03-frameworks/04/04/)
+3. [03 OpenAI-compatible API、LoRA、多模型与部署形态](/ai/03-frameworks/04/05/)
+4. [04 吞吐、延迟、可观测性与工程边界](/ai/03-frameworks/04/06/)
+5. [05 课程助教 Agent 的 vLLM 架构案例](/ai/03-frameworks/04/07/)
+6. [06 vLLM 与 SGLang、TensorRT-LLM、llama.cpp、Triton 的深度对比](/ai/03-frameworks/04/08/)
 
-上一篇：[03.04 Inference and Serving Frameworks](/iopanda-blog/ai/03-frameworks/04/01/)
+上一篇：[03.04 Inference and Serving Frameworks](/ai/03-frameworks/04/01/)
 
-下一篇：[01 serving engine 的设计哲学](/iopanda-blog/ai/03-frameworks/04/03/)
+下一篇：[01 serving engine 的设计哲学](/ai/03-frameworks/04/03/)

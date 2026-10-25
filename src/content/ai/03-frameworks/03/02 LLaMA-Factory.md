@@ -32,13 +32,13 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/01 LLaMA-Factory/README"
 
 ## 本目录笔记导航
 
-1. [01 统一训练工厂的设计哲学](/iopanda-blog/ai/03-frameworks/03/03/)
-2. [02 Dataset、Template、Recipe 与 Export](/iopanda-blog/ai/03-frameworks/03/04/)
-3. [03 SFT、DPO、VLM 与多任务统一抽象](/iopanda-blog/ai/03-frameworks/03/05/)
-4. [04 显存、分布式、评测与工程边界](/iopanda-blog/ai/03-frameworks/03/06/)
-5. [05 课程助教 Agent 的 LLaMA-Factory 架构案例](/iopanda-blog/ai/03-frameworks/03/07/)
-6. [06 LLaMA-Factory 与 PEFT、TRL、Unsloth、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/08/)
+1. [01 统一训练工厂的设计哲学](/ai/03-frameworks/03/03/)
+2. [02 Dataset、Template、Recipe 与 Export](/ai/03-frameworks/03/04/)
+3. [03 SFT、DPO、VLM 与多任务统一抽象](/ai/03-frameworks/03/05/)
+4. [04 显存、分布式、评测与工程边界](/ai/03-frameworks/03/06/)
+5. [05 课程助教 Agent 的 LLaMA-Factory 架构案例](/ai/03-frameworks/03/07/)
+6. [06 LLaMA-Factory 与 PEFT、TRL、Unsloth、Axolotl 的深度对比](/ai/03-frameworks/03/08/)
 
-上一篇：[03.03 Training and Fine-tuning Frameworks](/iopanda-blog/ai/03-frameworks/03/01/)
+上一篇：[03.03 Training and Fine-tuning Frameworks](/ai/03-frameworks/03/01/)
 
-下一篇：[01 统一训练工厂的设计哲学](/iopanda-blog/ai/03-frameworks/03/03/)
+下一篇：[01 统一训练工厂的设计哲学](/ai/03-frameworks/03/03/)

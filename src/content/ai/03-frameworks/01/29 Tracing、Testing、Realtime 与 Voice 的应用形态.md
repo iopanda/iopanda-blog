@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/04 Tracing、Testing�
 ---
 # Tracing、Testing、Realtime 与 Voice 的应用形态
 
-> [第一篇](/iopanda-blog/ai/03-frameworks/01/26/)讲的是运行时原语，[第二篇](/iopanda-blog/ai/03-frameworks/01/27/)讲的是产品化边界，[第三篇](/iopanda-blog/ai/03-frameworks/01/28/)讲的是多 Agent 委托和 MCP 工具生态。继续往 docs/examples 看，会发现 OpenAI Agents SDK 还有一条非常鲜明的路线：它不是只想做“后端文本 Agent SDK”，而是想覆盖从 tracing、testing 到 realtime、voice、sandbox workspace 的完整现代应用形态。[1][2] examples 目录里甚至专门列出了 streaming guardrails、tool approval、session storage、hosted MCP、sandbox snapshots、research bot、voice pipelines、realtime web patterns 等一长串模式。[1] 这一章就讲这件事：**为什么这个框架很像“现代 Agent 应用平台的公共运行层”。**
+> [第一篇](/ai/03-frameworks/01/26/)讲的是运行时原语，[第二篇](/ai/03-frameworks/01/27/)讲的是产品化边界，[第三篇](/ai/03-frameworks/01/28/)讲的是多 Agent 委托和 MCP 工具生态。继续往 docs/examples 看，会发现 OpenAI Agents SDK 还有一条非常鲜明的路线：它不是只想做“后端文本 Agent SDK”，而是想覆盖从 tracing、testing 到 realtime、voice、sandbox workspace 的完整现代应用形态。[1][2] examples 目录里甚至专门列出了 streaming guardrails、tool approval、session storage、hosted MCP、sandbox snapshots、research bot、voice pipelines、realtime web patterns 等一长串模式。[1] 这一章就讲这件事：**为什么这个框架很像“现代 Agent 应用平台的公共运行层”。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 tracing 和 testing 为什么在 OpenAI Agents SDK 里不是附属话题；
 2. 理解 realtime / voice / sandbox 为什么代表 Agent 正在脱离纯文本后台程序；
 3. 说出为什么 examples 目录本身就暴露了它的产品定位；
-4. 比较它与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 的应用形态差异；
+4. 比较它与 [LangGraph](/ai/03-frameworks/01/03/)、[PydanticAI](/ai/03-frameworks/01/32/) 的应用形态差异；
 5. 为一个多终端 Agent 系统设计 tracing / testing / realtime 策略。
 
 ## 1. tracing：为什么现代 Agent 若不可观测，就不可运营
@@ -185,6 +185,6 @@ docs 和 README 都给出了 `RealtimeAgent` 的位置。[2]
 - [3] https://github.com/openai/openai-agents-python/tree/main/examples/sandbox — OpenAI Agents SDK sandbox examples
 - [4] https://github.com/openai/openai-agents-python — OpenAI Agents SDK GitHub
 
-上一篇：[03 Handoffs、Agent-as-Tool 与 MCP 工具生态](/iopanda-blog/ai/03-frameworks/01/28/)——协作与工具拓扑立住后，本篇继续看它在真实产品形态上的野心。
+上一篇：[03 Handoffs、Agent-as-Tool 与 MCP 工具生态](/ai/03-frameworks/01/28/)——协作与工具拓扑立住后，本篇继续看它在真实产品形态上的野心。
 
-下一篇：[05 课程助教 Agent 的 OpenAI Agents SDK 架构案例](/iopanda-blog/ai/03-frameworks/01/30/)——把这些运行时原语重新装回课程助教这个真实系统。
+下一篇：[05 课程助教 Agent 的 OpenAI Agents SDK 架构案例](/ai/03-frameworks/01/30/)——把这些运行时原语重新装回课程助教这个真实系统。

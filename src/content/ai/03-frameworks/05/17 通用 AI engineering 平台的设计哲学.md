@@ -69,10 +69,10 @@ README 现在已经明显不只是讲 run/metrics/models，而是把这些和 tr
 
 | 框架 | 第一性问题 | MLflow 相比的定位 |
 |---|---|---|
-| [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) | 如何把 LLM 产品工程闭环收进平台 | MLflow 更广，覆盖传统 ML 与 GenAI 共同治理 |
-| [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) | 如何开放地做 traces/evals diagnosis | MLflow 更像统一 engineering platform |
-| [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | 如何做 CI-style AI testing | MLflow 更像平台底座，而非专用 regression harness |
-| [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | 如何 code-first 写 eval tests | MLflow 更偏组织级平台而非代码测试库 |
+| [Langfuse](/ai/03-frameworks/05/02/) | 如何把 LLM 产品工程闭环收进平台 | MLflow 更广，覆盖传统 ML 与 GenAI 共同治理 |
+| [Phoenix](/ai/03-frameworks/05/09/) | 如何开放地做 traces/evals diagnosis | MLflow 更像统一 engineering platform |
+| [promptfoo](/ai/03-frameworks/05/23/) | 如何做 CI-style AI testing | MLflow 更像平台底座，而非专用 regression harness |
+| [DeepEval](/ai/03-frameworks/05/30/) | 如何 code-first 写 eval tests | MLflow 更偏组织级平台而非代码测试库 |
 
 ## 5. 什么时候最自然进入 MLflow
 
@@ -102,6 +102,6 @@ README 现在已经明显不只是讲 run/metrics/models，而是把这些和 tr
 - [31] https://github.com/mlflow/mlflow/blob/master/README.md — MLflow README
 - [35] https://github.com/mlflow/mlflow/blob/master/docker-compose/README.md — MLflow docker compose README
 
-上一篇：[03.05 MLflow](/iopanda-blog/ai/03-frameworks/05/16/)
+上一篇：[03.05 MLflow](/ai/03-frameworks/05/16/)
 
-下一篇：[02 experiments、traces、evals 与 model lifecycle](/iopanda-blog/ai/03-frameworks/05/18/)
+下一篇：[02 experiments、traces、evals 与 model lifecycle](/ai/03-frameworks/05/18/)

@@ -116,6 +116,6 @@ README 允许 self-host 或 cloud，pricing 页则给出 Hosted 与 Self-hosted 
 - [4] https://docs.n8n.io/advanced-ai/ — n8n AI docs
 - [5] https://n8n.io/pricing/ — n8n pricing
 
-上一篇：[01 产品定位、自动化心智与适用场景](/iopanda-blog/ai/04-tooling/03/09/)——先理解定位，再看能力如何形成平台闭环。
+上一篇：[01 产品定位、自动化心智与适用场景](/ai/04-tooling/03/09/)——先理解定位，再看能力如何形成平台闭环。
 
-下一篇：[03 质量、社区、价格与许可边界](/iopanda-blog/ai/04-tooling/03/11/)——能力之后，再回头判断它是否成熟、贵不贵、许可是否匹配组织需求。
+下一篇：[03 质量、社区、价格与许可边界](/ai/04-tooling/03/11/)——能力之后，再回头判断它是否成熟、贵不贵、许可是否匹配组织需求。

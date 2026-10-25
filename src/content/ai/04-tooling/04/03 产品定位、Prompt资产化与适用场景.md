@@ -101,6 +101,6 @@ Langfuse Prompts 的价值就是把这些问题系统化地收拢起来。[2][4]
 - [4] https://langfuse.com/docs/prompt-management/get-started — Langfuse prompt management docs
 - [5] https://langfuse.com/pricing — Langfuse pricing
 
-上一篇：[01 Langfuse Prompts](/iopanda-blog/ai/04-tooling/04/02/)——先看目录地图，再进入产品定位。
+上一篇：[01 Langfuse Prompts](/ai/04-tooling/04/02/)——先看目录地图，再进入产品定位。
 
-下一篇：[02 版本、发布、回滚、Playground与协作能力](/iopanda-blog/ai/04-tooling/04/04/)——定位之后，再看它如何把 prompt 真正放进工程流程。
+下一篇：[02 版本、发布、回滚、Playground与协作能力](/ai/04-tooling/04/04/)——定位之后，再看它如何把 prompt 真正放进工程流程。

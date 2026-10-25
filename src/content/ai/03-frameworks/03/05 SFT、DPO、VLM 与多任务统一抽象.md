@@ -85,6 +85,6 @@ LLaMA-Factory 则更像：
 - [86] https://github.com/hiyouga/LLaMA-Factory/blob/main/README.md — LLaMA-Factory README
 - [92] https://github.com/hiyouga/LLaMA-Factory/blob/main/examples/README.md — LLaMA-Factory examples README
 
-上一篇：[02 Dataset、Template、Recipe 与 Export](/iopanda-blog/ai/03-frameworks/03/04/)
+上一篇：[02 Dataset、Template、Recipe 与 Export](/ai/03-frameworks/03/04/)
 
-下一篇：[04 显存、分布式、评测与工程边界](/iopanda-blog/ai/03-frameworks/03/06/)
+下一篇：[04 显存、分布式、评测与工程边界](/ai/03-frameworks/03/06/)

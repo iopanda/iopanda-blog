@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/03 RAGFlow/01 RAG Engine 的设
 ---
 # RAG Engine 的设计哲学
 
-> 如果说 [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) 更像文档与查询对象框架，[Haystack](/iopanda-blog/ai/03-frameworks/02/09/) 更像显式检索流水线框架，那么 RAGFlow 的第一性问题是另一种：**如果团队不想先自己搭 retrieval system 的所有骨架，而想先拿到一台完整的 RAG engine，该怎样理解系统？** README 直接把它定义成 open-source RAG engine，强调 converged context engine、pre-built agent templates、streamlined RAG workflow。[43][62]
+> 如果说 [LlamaIndex](/ai/03-frameworks/02/02/) 更像文档与查询对象框架，[Haystack](/ai/03-frameworks/02/09/) 更像显式检索流水线框架，那么 RAGFlow 的第一性问题是另一种：**如果团队不想先自己搭 retrieval system 的所有骨架，而想先拿到一台完整的 RAG engine，该怎样理解系统？** README 直接把它定义成 open-source RAG engine，强调 converged context engine、pre-built agent templates、streamlined RAG workflow。[43][62]
 
 **学习目标**：
 1. 解释为什么 RAGFlow 把自己定义成 engine 而不是 library；
@@ -93,6 +93,6 @@ README 的表述非常直接：它把先进 RAG 与 Agent capabilities 融合起
 - [43] https://github.com/infiniflow/ragflow — RAGFlow GitHub
 - [62] https://github.com/infiniflow/ragflow/blob/main/README.md — RAGFlow README
 
-上一篇：[03 RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/)
+上一篇：[03 RAGFlow](/ai/03-frameworks/02/16/)
 
-下一篇：[02 Parsing、Chunking、Indexing 与 Knowledge Pipeline](/iopanda-blog/ai/03-frameworks/02/18/)
+下一篇：[02 Parsing、Chunking、Indexing 与 Knowledge Pipeline](/ai/03-frameworks/02/18/)

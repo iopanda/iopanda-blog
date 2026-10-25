@@ -17,11 +17,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/03 Promptfoo/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、配置驱动与适用场景](/iopanda-blog/ai/04-tooling/02/15/)
-2. [02 Evals、Assertions、Red Teaming 与 CI/CD](/iopanda-blog/ai/04-tooling/02/16/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/17/)
-4. [04 与 Langfuse、Phoenix、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/18/)
-5. [05 真实组织案例：OpenAI、Anthropic与若干公开匿名企业客户](/iopanda-blog/ai/04-tooling/02/19/)
+1. [01 产品定位、配置驱动与适用场景](/ai/04-tooling/02/15/)
+2. [02 Evals、Assertions、Red Teaming 与 CI/CD](/ai/04-tooling/02/16/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/02/17/)
+4. [04 与 Langfuse、Phoenix、DeepEval 的竞品对比](/ai/04-tooling/02/18/)
+5. [05 真实组织案例：OpenAI、Anthropic与若干公开匿名企业客户](/ai/04-tooling/02/19/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/03 Promptfoo/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、配置驱动与适用场景](/iopanda-blog/ai/04-tooling/02/15/)
-2. [02 Evals、Assertions、Red Teaming 与 CI/CD](/iopanda-blog/ai/04-tooling/02/16/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/17/)
-4. [04 与 Langfuse、Phoenix、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/18/)
-5. [05 真实组织案例：OpenAI、Anthropic与若干公开匿名企业客户](/iopanda-blog/ai/04-tooling/02/19/)
+1. [01 产品定位、配置驱动与适用场景](/ai/04-tooling/02/15/)
+2. [02 Evals、Assertions、Red Teaming 与 CI/CD](/ai/04-tooling/02/16/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/02/17/)
+4. [04 与 Langfuse、Phoenix、DeepEval 的竞品对比](/ai/04-tooling/02/18/)
+5. [05 真实组织案例：OpenAI、Anthropic与若干公开匿名企业客户](/ai/04-tooling/02/19/)
 
 ## 引用
 
@@ -68,6 +68,6 @@ sourceId: "3.10.4.2 Observability and Evaluation/03 Promptfoo/README"
 - [9] https://www.promptfoo.dev/docs/integrations/ci-cd/ — Promptfoo CI/CD
 - [10] https://www.promptfoo.dev/docs/code-scanning/ — Promptfoo code scanning
 
-上一篇：[02 Phoenix](/iopanda-blog/ai/04-tooling/02/08/)——上一产品代表 tracing/diagnostics 路线；这一篇切到配置驱动的 eval/红队/门禁路线。
+上一篇：[02 Phoenix](/ai/04-tooling/02/08/)——上一产品代表 tracing/diagnostics 路线；这一篇切到配置驱动的 eval/红队/门禁路线。
 
-下一篇：[01 产品定位、配置驱动与适用场景](/iopanda-blog/ai/04-tooling/02/15/)——先从定位、配置驱动思维与适用边界开始。
+下一篇：[01 产品定位、配置驱动与适用场景](/ai/04-tooling/02/15/)——先从定位、配置驱动思维与适用边界开始。

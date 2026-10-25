@@ -63,6 +63,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.2 Phoenix/0
 
 - [25] /private/tmp/eval-framework-research/phoenix/README.md — Phoenix README
 
-上一篇：[04 线上诊断、根因分析与工程边界](/iopanda-blog/ai/03-frameworks/05/13/)
+上一篇：[04 线上诊断、根因分析与工程边界](/ai/03-frameworks/05/13/)
 
-下一篇：[06 Phoenix 与 Langfuse、MLflow、promptfoo、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/15/)
+下一篇：[06 Phoenix 与 Langfuse、MLflow、promptfoo、DeepEval 的深度对比](/ai/03-frameworks/05/15/)

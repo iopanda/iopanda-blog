@@ -34,18 +34,18 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [Dify](/iopanda-blog/ai/04-tooling/03/02/) | 从应用发布与团队协作视角出发的 LLM / Agent 平台 | app studio、workflow、知识库、发布 | 想快速自托管业务应用与团队协作的平台型团队 |
-| [n8n](/iopanda-blog/ai/04-tooling/03/08/) | 通用自动化工作流平台延展出 AI 能力 | workflow automation、integrations、AI nodes | 已有大量 SaaS / API 集成需求的团队 |
-| [Langflow](/iopanda-blog/ai/04-tooling/03/14/) | 偏面向开发者的可视化 AI agent / workflow 工具 | visual flow、component graph、快速实验 | 想用可视化方式理解和组装组件流的团队 |
-| [Open WebUI](/iopanda-blog/ai/04-tooling/03/20/) | 以统一聊天工作台与模型访问前台为中心的开源界面 | multi-model UI、workspace、local + API access | 需要先把模型能力开放给团队使用的组织 |
-| [AnythingLLM](/iopanda-blog/ai/04-tooling/03/26/) | local-first 的知识与 agent 工作台 | workspace、document ingestion、local agent experience | 强调私有化、桌面化与快速知识问答的团队 |
+| [Dify](/ai/04-tooling/03/02/) | 从应用发布与团队协作视角出发的 LLM / Agent 平台 | app studio、workflow、知识库、发布 | 想快速自托管业务应用与团队协作的平台型团队 |
+| [n8n](/ai/04-tooling/03/08/) | 通用自动化工作流平台延展出 AI 能力 | workflow automation、integrations、AI nodes | 已有大量 SaaS / API 集成需求的团队 |
+| [Langflow](/ai/04-tooling/03/14/) | 偏面向开发者的可视化 AI agent / workflow 工具 | visual flow、component graph、快速实验 | 想用可视化方式理解和组装组件流的团队 |
+| [Open WebUI](/ai/04-tooling/03/20/) | 以统一聊天工作台与模型访问前台为中心的开源界面 | multi-model UI、workspace、local + API access | 需要先把模型能力开放给团队使用的组织 |
+| [AnythingLLM](/ai/04-tooling/03/26/) | local-first 的知识与 agent 工作台 | workspace、document ingestion、local agent experience | 强调私有化、桌面化与快速知识问答的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 Dify](/iopanda-blog/ai/04-tooling/03/02/)：理解“从应用发布往下看”的平台视角；
-2. 再看 [02 n8n](/iopanda-blog/ai/04-tooling/03/08/)：理解传统自动化工作流如何吸收 AI 能力；
-3. 然后看 [03 Langflow](/iopanda-blog/ai/04-tooling/03/14/)：理解可视化 component flow 的教学与实验价值；
-4. 最后看 [04 Open WebUI](/iopanda-blog/ai/04-tooling/03/20/) 与 [05 AnythingLLM](/iopanda-blog/ai/04-tooling/03/26/)：理解 workspace / chat shell / local-first 这条路。
+1. 先看 [01 Dify](/ai/04-tooling/03/02/)：理解“从应用发布往下看”的平台视角；
+2. 再看 [02 n8n](/ai/04-tooling/03/08/)：理解传统自动化工作流如何吸收 AI 能力；
+3. 然后看 [03 Langflow](/ai/04-tooling/03/14/)：理解可视化 component flow 的教学与实验价值；
+4. 最后看 [04 Open WebUI](/ai/04-tooling/03/20/) 与 [05 AnythingLLM](/ai/04-tooling/03/26/)：理解 workspace / chat shell / local-first 这条路。
 
 ## 4. 我建议本模块的内容结构
 
@@ -71,11 +71,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 Dify](/iopanda-blog/ai/04-tooling/03/02/)
-2. [02 n8n](/iopanda-blog/ai/04-tooling/03/08/)
-3. [03 Langflow](/iopanda-blog/ai/04-tooling/03/14/)
-4. [04 Open WebUI](/iopanda-blog/ai/04-tooling/03/20/)
-5. [05 AnythingLLM](/iopanda-blog/ai/04-tooling/03/26/)
+1. [01 Dify](/ai/04-tooling/03/02/)
+2. [02 n8n](/ai/04-tooling/03/08/)
+3. [03 Langflow](/ai/04-tooling/03/14/)
+4. [04 Open WebUI](/ai/04-tooling/03/20/)
+5. [05 AnythingLLM](/ai/04-tooling/03/26/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -101,6 +101,6 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/README"
 - [124] https://github.com/open-webui/open-webui — Open WebUI GitHub
 - [125] https://github.com/Mintplex-Labs/anything-llm — AnythingLLM GitHub
 
-上一篇：[04.02 Observability and Evaluation](/iopanda-blog/ai/04-tooling/02/01/)——质量证据有了，下一步看“整套应用如何被更快地搭起来”。
+上一篇：[04.02 Observability and Evaluation](/ai/04-tooling/02/01/)——质量证据有了，下一步看“整套应用如何被更快地搭起来”。
 
-下一篇：[04.04 Prompt Management](/iopanda-blog/ai/04-tooling/04/01/)——平台承载应用之后，还要回答 prompt 本身怎么成为可管理资产。
+下一篇：[04.04 Prompt Management](/ai/04-tooling/04/01/)——平台承载应用之后，还要回答 prompt 本身怎么成为可管理资产。

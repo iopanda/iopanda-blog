@@ -61,10 +61,10 @@ Langfuse 的路线，就是把这些原本分裂的环节拉回同一平台主�
 
 | 框架 | 第一性问题 | Langfuse 相比的定位 |
 |---|---|---|
-| [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) | 如何开放地观测和诊断 AI traces | Langfuse 更像产品化 AI engineering 平台 |
-| [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 如何统一更广义 AI / ML experiments 和 lifecycle | Langfuse 更 LLM-native |
-| [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | 如何做 CI-style eval / regression / red team | Langfuse 更偏平台闭环而不是测试 harness |
-| [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | 如何在代码里直接写 eval tests | Langfuse 更偏团队协作与产品观测面 |
+| [Phoenix](/ai/03-frameworks/05/09/) | 如何开放地观测和诊断 AI traces | Langfuse 更像产品化 AI engineering 平台 |
+| [MLflow](/ai/03-frameworks/05/16/) | 如何统一更广义 AI / ML experiments 和 lifecycle | Langfuse 更 LLM-native |
+| [promptfoo](/ai/03-frameworks/05/23/) | 如何做 CI-style eval / regression / red team | Langfuse 更偏平台闭环而不是测试 harness |
+| [DeepEval](/ai/03-frameworks/05/30/) | 如何在代码里直接写 eval tests | Langfuse 更偏团队协作与产品观测面 |
 
 ## 5. 什么时候最自然进入 Langfuse
 
@@ -94,6 +94,6 @@ Langfuse 的路线，就是把这些原本分裂的环节拉回同一平台主�
 - [25] https://github.com/langfuse/langfuse/blob/main/README.md — Langfuse README
 - [30] https://github.com/langfuse/langfuse/blob/main/packages/shared/src/server/instrumentation/README.md — Langfuse instrumentation README
 
-上一篇：[03.05 Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)
+上一篇：[03.05 Langfuse](/ai/03-frameworks/05/02/)
 
-下一篇：[02 traces、scores、datasets 与 feedback loops](/iopanda-blog/ai/03-frameworks/05/04/)
+下一篇：[02 traces、scores、datasets 与 feedback loops](/ai/03-frameworks/05/04/)

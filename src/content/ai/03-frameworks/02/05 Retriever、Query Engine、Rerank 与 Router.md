@@ -209,6 +209,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/01 LlamaIndex/03 Retriever、Qu
 - [51] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/router_query_engine.py — LlamaIndex router query engine source
 - [52] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/sub_question_query_engine.py — LlamaIndex sub question query engine source
 
-上一篇：[02 Ingestion Pipeline、Chunking 与 Metadata](/iopanda-blog/ai/03-frameworks/02/04/)——数据进来了，下一步就该问：怎样真正把正确知识取出来并合成答案？
+上一篇：[02 Ingestion Pipeline、Chunking 与 Metadata](/ai/03-frameworks/02/04/)——数据进来了，下一步就该问：怎样真正把正确知识取出来并合成答案？
 
-下一篇：[04 多索引、多数据源与 Agentic Retrieval](/iopanda-blog/ai/03-frameworks/02/06/)——查询对象立住后，下一篇继续看系统如何走向多索引、多数据源与更 agentic 的 retrieval。
+下一篇：[04 多索引、多数据源与 Agentic Retrieval](/ai/03-frameworks/02/06/)——查询对象立住后，下一篇继续看系统如何走向多索引、多数据源与更 agentic 的 retrieval。

@@ -90,6 +90,6 @@ RAGFlow 文档把 Retrieval Testing 单列，并明确建议：文档解析完�
 - [62] https://github.com/infiniflow/ragflow/blob/main/README.md — RAGFlow README
 - [65] https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/retrieval_testing.md — RAGFlow retrieval testing guide
 
-上一篇：[02 Parsing、Chunking、Indexing 与 Knowledge Pipeline](/iopanda-blog/ai/03-frameworks/02/18/)
+上一篇：[02 Parsing、Chunking、Indexing 与 Knowledge Pipeline](/ai/03-frameworks/02/18/)
 
-下一篇：[04 多用户、权限、平台化运营与评测](/iopanda-blog/ai/03-frameworks/02/20/)
+下一篇：[04 多用户、权限、平台化运营与评测](/ai/03-frameworks/02/20/)

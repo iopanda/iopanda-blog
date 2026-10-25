@@ -73,6 +73,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/04 TRL/06 TRL 与 PEFT�
 - [80] https://github.com/axolotl-ai-cloud/axolotl — Axolotl GitHub
 - [81] https://github.com/unslothai/unsloth — Unsloth GitHub
 
-上一篇：[05 课程助教 Agent 的 TRL 架构案例](/iopanda-blog/ai/03-frameworks/03/28/)
+上一篇：[05 课程助教 Agent 的 TRL 架构案例](/ai/03-frameworks/03/28/)
 
-下一篇：回到 [06 Training Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/03/37/)
+下一篇：回到 [06 Training Framework 选型矩阵](/ai/03-frameworks/03/37/)

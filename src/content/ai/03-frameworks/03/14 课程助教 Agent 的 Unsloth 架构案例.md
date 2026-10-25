@@ -58,6 +58,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/02 Unsloth/05 课程助�
 - [18] https://github.com/unslothai/unsloth/blob/main/README.md — Unsloth README
 - [20] https://github.com/unslothai/unsloth/blob/main/unsloth/chat_templates.py — Unsloth chat templates source
 
-上一篇：[04 单卡/小团队场景的适用边界](/iopanda-blog/ai/03-frameworks/03/13/)
+上一篇：[04 单卡/小团队场景的适用边界](/ai/03-frameworks/03/13/)
 
-下一篇：[06 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/15/)
+下一篇：[06 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比](/ai/03-frameworks/03/15/)

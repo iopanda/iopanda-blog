@@ -13,7 +13,7 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 ---
 # Workflow Framework 选型方法论
 
-> 前五个子目录已经分别讲清楚了 [Temporal](/iopanda-blog/ai/03-frameworks/06/02/)、[Airflow](/iopanda-blog/ai/03-frameworks/06/09/)、[Prefect](/iopanda-blog/ai/03-frameworks/06/16/)、[Dagster](/iopanda-blog/ai/03-frameworks/06/23/)、[Kestra](/iopanda-blog/ai/03-frameworks/06/30/) 各自的第一性问题。这一篇不再逐个介绍框架，而是把“怎么选”本身变成一套可复用的方法论：**先诊断你系统的主矛盾，再用排除法筛掉不对症的框架，而不是直接比较谁的 star 数更多、谁的生态更大。**
+> 前五个子目录已经分别讲清楚了 [Temporal](/ai/03-frameworks/06/02/)、[Airflow](/ai/03-frameworks/06/09/)、[Prefect](/ai/03-frameworks/06/16/)、[Dagster](/ai/03-frameworks/06/23/)、[Kestra](/ai/03-frameworks/06/30/) 各自的第一性问题。这一篇不再逐个介绍框架，而是把“怎么选”本身变成一套可复用的方法论：**先诊断你系统的主矛盾，再用排除法筛掉不对症的框架，而不是直接比较谁的 star 数更多、谁的生态更大。**
 
 **学习目标**：学完本章，你将能够——
 1. 用五个维度诊断一个 workflow 系统的主矛盾；
@@ -37,8 +37,8 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 选型最容易踩的坑，是拿一张“功能对比表”去找“功能最全”的框架——但五个框架都不是彼此的弱化版，而是在五个维度上做了完全不同的取舍。正确的顺序是：
 
 1. **先问“我的系统现在卡在哪个维度”**：是状态恢复、调度、血缘、事件响应，还是开发者体验？
-2. **再问“这个维度是不是真的是主矛盾，还是我把它想得比实际更重要”**：比如很多“需要重试”的需求，本质上并不需要 Temporal 级别的状态恢复语义，[Prefect](/iopanda-blog/ai/03-frameworks/06/16/) 的 retries/backoff 就足够。
-3. **用排除法砍掉明显不对症的框架**：如果主矛盾是数据资产的血缘治理，[Temporal](/iopanda-blog/ai/03-frameworks/06/02/) 和 [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) 基本可以先排除，不用再逐条比较它们的功能列表。
+2. **再问“这个维度是不是真的是主矛盾，还是我把它想得比实际更重要”**：比如很多“需要重试”的需求，本质上并不需要 Temporal 级别的状态恢复语义，[Prefect](/ai/03-frameworks/06/16/) 的 retries/backoff 就足够。
+3. **用排除法砍掉明显不对症的框架**：如果主矛盾是数据资产的血缘治理，[Temporal](/ai/03-frameworks/06/02/) 和 [Kestra](/ai/03-frameworks/06/30/) 基本可以先排除，不用再逐条比较它们的功能列表。
 4. **剩下 1-2 个候选后，再看工程边界和团队现状**：团队规模、现有技术栈、运维能力、是否需要非工程角色参与。
 
 ## 3. 两个常见误区
@@ -73,6 +73,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 - [14] https://github.com/dagster-io/dagster — Dagster GitHub
 - [15] https://github.com/kestra-io/kestra — Kestra GitHub
 
-上一篇：[03.06 Workflow Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/06/37/)
+上一篇：[03.06 Workflow Framework 选型矩阵](/ai/03-frameworks/06/37/)
 
-下一篇：[02 五个框架横向矩阵](/iopanda-blog/ai/03-frameworks/06/39/)
+下一篇：[02 五个框架横向矩阵](/ai/03-frameworks/06/39/)

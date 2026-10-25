@@ -168,6 +168,6 @@ examples 里明确有：
 - [91] https://github.com/hiyouga/LLaMA-Factory/blob/main/data/README.md — LLaMA-Factory data README
 - [92] https://github.com/hiyouga/LLaMA-Factory/blob/main/examples/README.md — LLaMA-Factory examples README
 
-上一篇：[01 统一训练工厂的设计哲学](/iopanda-blog/ai/03-frameworks/03/03/)——统一工厂路线立住后，本篇继续看数据、模板、recipe 和导出链如何被组织起来。
+上一篇：[01 统一训练工厂的设计哲学](/ai/03-frameworks/03/03/)——统一工厂路线立住后，本篇继续看数据、模板、recipe 和导出链如何被组织起来。
 
-下一篇：[03 SFT、DPO、VLM 与多任务统一抽象](/iopanda-blog/ai/03-frameworks/03/05/)——四层配方立住后，下一篇继续看不同训练任务如何被统一收编。
+下一篇：[03 SFT、DPO、VLM 与多任务统一抽象](/ai/03-frameworks/03/05/)——四层配方立住后，下一篇继续看不同训练任务如何被统一收编。

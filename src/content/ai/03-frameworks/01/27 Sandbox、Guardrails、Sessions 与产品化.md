@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/02 Sandbox、Guardrail
 ---
 # Sandbox、Guardrails、Sessions 与产品化
 
-> [上一章](/iopanda-blog/ai/03-frameworks/01/26/)讲的是 OpenAI Agents SDK 如何把现代 Agent 原语收进统一运行时；这一章讲它为什么特别适合真实产品和开发者工具类场景。只看官方首页，你会先看到 sandbox agent、realtime agent、voice pipeline、human-in-the-loop、sessions、guardrails 等概念；若再看源码，会发现 `src/agents/sandbox/`、`src/agents/tool_guardrails.py`、`src/agents/agent_tool_state.py`、`src/agents/tracing/` 已经不是几段示例代码，而是一整套围绕隔离、审批、恢复和轨迹的基础设施。[1][2][3][4] 这说明 OpenAI Agents SDK 之所以对“产品化”有吸引力，并不是因为 demo 好看，而是因为它开始认真处理 Agent 走出聊天框之后会遇到的现实问题。
+> [上一章](/ai/03-frameworks/01/26/)讲的是 OpenAI Agents SDK 如何把现代 Agent 原语收进统一运行时；这一章讲它为什么特别适合真实产品和开发者工具类场景。只看官方首页，你会先看到 sandbox agent、realtime agent、voice pipeline、human-in-the-loop、sessions、guardrails 等概念；若再看源码，会发现 `src/agents/sandbox/`、`src/agents/tool_guardrails.py`、`src/agents/agent_tool_state.py`、`src/agents/tracing/` 已经不是几段示例代码，而是一整套围绕隔离、审批、恢复和轨迹的基础设施。[1][2][3][4] 这说明 OpenAI Agents SDK 之所以对“产品化”有吸引力，并不是因为 demo 好看，而是因为它开始认真处理 Agent 走出聊天框之后会遇到的现实问题。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 sandbox、guardrails、sessions 为什么是产品化 Agent 的硬需求；
 2. 理解 tool input/output guardrail 与普通输入输出过滤的区别；
 3. 说出 OpenAI Agents SDK 为什么适合开发者工具、代码 Agent 和多终端交互型系统；
-4. 比较它与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 在治理与工程化上的差别；
+4. 比较它与 [LangGraph](/ai/03-frameworks/01/03/)、[PydanticAI](/ai/03-frameworks/01/32/) 在治理与工程化上的差别；
 5. 为一个高风险 Agent 设计 session、tool guardrail 与 sandbox 策略。
 
 ## 1. sandbox：为什么代码 Agent 一离开沙箱就危险
@@ -192,6 +192,6 @@ OpenAI Agents SDK 把 sessions 作为 core concepts 之一。[2] 这很重要，
 - [3] https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md — OpenAI Agents guardrails doc
 - [4] https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md — OpenAI Agents handoffs doc
 
-上一篇：[01 核心原语与运行时设计](/iopanda-blog/ai/03-frameworks/01/26/)——先解释它怎样收口现代 Agent 原语；本篇继续看它为什么特别适合产品化落地。
+上一篇：[01 核心原语与运行时设计](/ai/03-frameworks/01/26/)——先解释它怎样收口现代 Agent 原语；本篇继续看它为什么特别适合产品化落地。
 
-下一篇：[03 Handoffs、Agent-as-Tool 与 MCP 工具生态](/iopanda-blog/ai/03-frameworks/01/28/)——产品化边界立住后，下一篇继续看它怎样组织多 Agent 委托和标准化工具生态。
+下一篇：[03 Handoffs、Agent-as-Tool 与 MCP 工具生态](/ai/03-frameworks/01/28/)——产品化边界立住后，下一篇继续看它怎样组织多 Agent 委托和标准化工具生态。

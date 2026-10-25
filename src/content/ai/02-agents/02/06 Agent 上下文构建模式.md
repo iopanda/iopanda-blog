@@ -197,6 +197,6 @@ sourceId: "3.10.2.2 Prompt and Context Engineering/05 Agent 上下文构建模�
 - [OpenAI:Function calling guide(工具与消息角色)](https://developers.openai.com/api/docs/guides/function-calling)
 - [OWASP LLM Top 10:LLM01 Prompt Injection(间接注入)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 
-上一篇:[结构化输出约束](/iopanda-blog/ai/02-agents/02/05/)——单次输出可靠之后,本章把镜头从「一次输出」拉远到「一整轮上下文怎么结构化拼装」。
+上一篇:[结构化输出约束](/ai/02-agents/02/05/)——单次输出可靠之后,本章把镜头从「一次输出」拉远到「一整轮上下文怎么结构化拼装」。
 
-下一篇:[提示注入与上下文隔离](/iopanda-blog/ai/02-agents/02/07/)——上下文拼装好了,下一章专攻最危险的拼装事故:指令与数据如何被隔离。
+下一篇:[提示注入与上下文隔离](/ai/02-agents/02/07/)——上下文拼装好了,下一章专攻最危险的拼装事故:指令与数据如何被隔离。

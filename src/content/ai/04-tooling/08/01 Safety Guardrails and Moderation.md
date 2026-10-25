@@ -34,18 +34,18 @@ sourceId: "3.10.4.8 Safety Guardrails and Moderation/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [NeMo Guardrails](/iopanda-blog/ai/04-tooling/08/02/) | 偏对话轨道与可编程 guardrail 工作流的路线 | rails、policy flows、runtime control | 要对对话与动作流程做强约束的团队 |
-| [Guardrails AI](/iopanda-blog/ai/04-tooling/08/03/) | 围绕验证、约束与 guardrail 组合的开发者工具 | validators、reasks、runtime checks | 希望把输出校验直接嵌入应用代码的团队 |
-| [Presidio](/iopanda-blog/ai/04-tooling/08/04/) | 聚焦敏感信息识别、脱敏与隐私保护 | PII detection、redaction、anonymization | 需要先稳住隐私与合规边界的团队 |
-| [OpenAI Guardrails](/iopanda-blog/ai/04-tooling/08/05/) | 面向现代 agent 应用的 guardrail SDK 路线 | guardrail primitives、developer integration | 想把运行时护栏直接接进 SDK 栈的团队 |
-| [Promptfoo Red Teaming](/iopanda-blog/ai/04-tooling/08/06/) | 用测试与攻击样例持续施压系统边界 | red team suites、security regression、adversarial cases | 想把越狱/注入/安全回归接进 CI 的团队 |
+| [NeMo Guardrails](/ai/04-tooling/08/02/) | 偏对话轨道与可编程 guardrail 工作流的路线 | rails、policy flows、runtime control | 要对对话与动作流程做强约束的团队 |
+| [Guardrails AI](/ai/04-tooling/08/03/) | 围绕验证、约束与 guardrail 组合的开发者工具 | validators、reasks、runtime checks | 希望把输出校验直接嵌入应用代码的团队 |
+| [Presidio](/ai/04-tooling/08/04/) | 聚焦敏感信息识别、脱敏与隐私保护 | PII detection、redaction、anonymization | 需要先稳住隐私与合规边界的团队 |
+| [OpenAI Guardrails](/ai/04-tooling/08/05/) | 面向现代 agent 应用的 guardrail SDK 路线 | guardrail primitives、developer integration | 想把运行时护栏直接接进 SDK 栈的团队 |
+| [Promptfoo Red Teaming](/ai/04-tooling/08/06/) | 用测试与攻击样例持续施压系统边界 | red team suites、security regression、adversarial cases | 想把越狱/注入/安全回归接进 CI 的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 NeMo Guardrails](/iopanda-blog/ai/04-tooling/08/02/) 与 [02 Guardrails AI](/iopanda-blog/ai/04-tooling/08/03/)：理解运行时护栏与输出校验两条主线；
-2. 再看 [03 Presidio](/iopanda-blog/ai/04-tooling/08/04/)：把隐私与 PII 单独拎出来；
-3. 然后看 [04 OpenAI Guardrails](/iopanda-blog/ai/04-tooling/08/05/)：理解现代 SDK 视角下的 guardrail 原语；
-4. 最后看 [05 Promptfoo Red Teaming](/iopanda-blog/ai/04-tooling/08/06/)：把红队与持续回归接进日常开发。
+1. 先看 [01 NeMo Guardrails](/ai/04-tooling/08/02/) 与 [02 Guardrails AI](/ai/04-tooling/08/03/)：理解运行时护栏与输出校验两条主线；
+2. 再看 [03 Presidio](/ai/04-tooling/08/04/)：把隐私与 PII 单独拎出来；
+3. 然后看 [04 OpenAI Guardrails](/ai/04-tooling/08/05/)：理解现代 SDK 视角下的 guardrail 原语；
+4. 最后看 [05 Promptfoo Red Teaming](/ai/04-tooling/08/06/)：把红队与持续回归接进日常开发。
 
 ## 4. 我建议本模块的内容结构
 
@@ -71,11 +71,11 @@ sourceId: "3.10.4.8 Safety Guardrails and Moderation/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 NeMo Guardrails](/iopanda-blog/ai/04-tooling/08/02/)
-2. [02 Guardrails AI](/iopanda-blog/ai/04-tooling/08/03/)
-3. [03 Presidio](/iopanda-blog/ai/04-tooling/08/04/)
-4. [04 OpenAI Guardrails](/iopanda-blog/ai/04-tooling/08/05/)
-5. [05 Promptfoo Red Teaming](/iopanda-blog/ai/04-tooling/08/06/)
+1. [01 NeMo Guardrails](/ai/04-tooling/08/02/)
+2. [02 Guardrails AI](/ai/04-tooling/08/03/)
+3. [03 Presidio](/ai/04-tooling/08/04/)
+4. [04 OpenAI Guardrails](/ai/04-tooling/08/05/)
+5. [05 Promptfoo Red Teaming](/ai/04-tooling/08/06/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -101,6 +101,6 @@ sourceId: "3.10.4.8 Safety Guardrails and Moderation/README"
 - [174] https://github.com/openai/openai-guardrails-python — OpenAI Guardrails GitHub
 - [175] https://github.com/promptfoo/promptfoo — Promptfoo GitHub
 
-上一篇：[04.07 Local Models and Development](/iopanda-blog/ai/04-tooling/07/01/)——系统能跑之后，最后一章收口到“如何让它在现实世界里少出事”。
+上一篇：[04.07 Local Models and Development](/ai/04-tooling/07/01/)——系统能跑之后，最后一章收口到“如何让它在现实世界里少出事”。
 
 下一篇：本模块是 `04 Tooling` 收官。后续可以回到 `05 Trending Projects`，观察工具生态怎样继续演化。

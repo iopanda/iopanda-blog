@@ -81,6 +81,6 @@ policy evals README 很关键：它在用 Promptfoo 自己去评估 `PolicyPlugi
 - [14] https://github.com/promptfoo/promptfoo/blob/main/src/redteam/providers/README.md — promptfoo red team providers README
 - [15] https://github.com/promptfoo/promptfoo/blob/main/src/redteam/plugins/policy/evals/README.md — promptfoo policy evals README
 
-上一篇：[02 declarative eval configs、providers 与 assertion model](/iopanda-blog/ai/03-frameworks/05/25/)
+上一篇：[02 declarative eval configs、providers 与 assertion model](/ai/03-frameworks/05/25/)
 
-下一篇：[04 团队协作、基线管理与工程边界](/iopanda-blog/ai/03-frameworks/05/27/)
+下一篇：[04 团队协作、基线管理与工程边界](/ai/03-frameworks/05/27/)

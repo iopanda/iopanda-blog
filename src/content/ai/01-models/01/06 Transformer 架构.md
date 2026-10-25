@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "transformers", "foundations"]
 sourceId: "3.10.1.1 Foundations/1.6 Transformer 架构"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260912173135.png)
+![](/ai/images/Pasted%20image%2020260912173135.png)
 
 > 上一章我们认识了注意力机制:它让 token 之间「互相打量、按重要性汇总信息」。本章回答一个更激进的问题:**如果完全不写循环、不写卷积,只用注意力这一种构件,能不能搭出一个完整的、能干活的语言网络?** 2017 年谷歌的论文《Attention Is All You Need》给出了答案——能,这就是 Transformer。它是 GPT、BERT、T5 乃至今天几乎所有大语言模型的共同骨架,值得你花一整章把它拆开看明白。
 
@@ -155,6 +155,6 @@ PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
 - [Hugging Face NLP Course:How do Transformers work?](https://huggingface.co/learn/nlp-course/chapter1/4)
 - [Jay Alammar:The Illustrated Transformer(配图详解)](https://jalammar.github.io/illustrated-transformer/)
 
-上一篇:[注意力机制](/iopanda-blog/ai/01-models/01/05/)——注意力解决了「token 之间如何互相参考」,本章把它升级为完整的网络架构 Transformer。
+上一篇:[注意力机制](/ai/01-models/01/05/)——注意力解决了「token 之间如何互相参考」,本章把它升级为完整的网络架构 Transformer。
 
-下一篇:[语言建模](/iopanda-blog/ai/01-models/01/07/)——有了 Transformer 这张万能骨架,下一章看它如何靠「预测下一个词」学出语言能力。
+下一篇:[语言建模](/ai/01-models/01/07/)——有了 Transformer 这张万能骨架,下一章看它如何靠「预测下一个词」学出语言能力。

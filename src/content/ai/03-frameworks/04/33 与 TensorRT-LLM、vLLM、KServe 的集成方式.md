@@ -70,6 +70,6 @@ README 直接说明其 HTTP/REST 和 gRPC inference protocols 基于社区发展
 - [11] https://github.com/triton-inference-server/server/blob/main/docs/user_guide/metrics.md — Triton metrics doc
 - [12] https://github.com/triton-inference-server/server/blob/main/docs/getting_started/llm.md — Triton LLM getting started doc
 
-上一篇：[02 model repository、backend、batching 与 ensemble](/iopanda-blog/ai/03-frameworks/04/32/)
+上一篇：[02 model repository、backend、batching 与 ensemble](/ai/03-frameworks/04/32/)
 
-下一篇：[04 多模型运营、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/04/34/)
+下一篇：[04 多模型运营、可观测性与工程边界](/ai/03-frameworks/04/34/)

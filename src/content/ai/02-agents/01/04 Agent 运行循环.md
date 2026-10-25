@@ -197,6 +197,6 @@ while True:
 - [ReAct 论文项目主页(含示例轨迹)](https://react-lm.github.io/)
 - [Anthropic:Building effective agents(agentic loop 的工程化描述)](https://www.anthropic.com/research/building-effective-agents)
 
-上一篇:[Agent 为什么现在才热](/iopanda-blog/ai/02-agents/01/03/)——知道循环怎么转之后,真正限制它转多好的是模型本身的能力边界。
+上一篇:[Agent 为什么现在才热](/ai/02-agents/01/03/)——知道循环怎么转之后,真正限制它转多好的是模型本身的能力边界。
 
-下一篇:[模型能力边界如何限制 Agent](/iopanda-blog/ai/02-agents/01/05/)——模型会幻觉、窗口有限、不会说「我做不到」,这些如何约束 Agent?
+下一篇:[模型能力边界如何限制 Agent](/ai/02-agents/01/05/)——模型会幻觉、窗口有限、不会说「我做不到」,这些如何约束 Agent?

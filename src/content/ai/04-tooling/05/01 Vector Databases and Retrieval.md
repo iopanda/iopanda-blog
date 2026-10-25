@@ -34,18 +34,18 @@ sourceId: "3.10.4.5 Vector Databases and Retrieval/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [Qdrant](/iopanda-blog/ai/04-tooling/05/02/) | 强调 payload 过滤与工程易用性的向量检索后端 | vector search + filtering + practical API | 想快速做工程落地的团队 |
-| [Weaviate](/iopanda-blog/ai/04-tooling/05/03/) | 对象与向量并存、偏 schema / module 生态的路线 | objects + vectors、modules、cloud-native | 重视对象建模与可扩展生态的团队 |
-| [Milvus](/iopanda-blog/ai/04-tooling/05/04/) | 高性能、云原生、规模化 ANN 的经典路线 | scale、performance、cloud-native vector DB | 数据量大、吞吐与集群能力要求高的团队 |
-| [OpenSearch](/iopanda-blog/ai/04-tooling/05/05/) | 从通用搜索引擎延伸到向量与混合检索 | text search + filters + vector/hybrid | 本来就有搜索基础设施的组织 |
-| [Chroma](/iopanda-blog/ai/04-tooling/05/06/) | 强调开发者友好与本地原型的检索基础设施 | developer UX、local-first、simple collections | 先做原型和中小规模应用的团队 |
+| [Qdrant](/ai/04-tooling/05/02/) | 强调 payload 过滤与工程易用性的向量检索后端 | vector search + filtering + practical API | 想快速做工程落地的团队 |
+| [Weaviate](/ai/04-tooling/05/03/) | 对象与向量并存、偏 schema / module 生态的路线 | objects + vectors、modules、cloud-native | 重视对象建模与可扩展生态的团队 |
+| [Milvus](/ai/04-tooling/05/04/) | 高性能、云原生、规模化 ANN 的经典路线 | scale、performance、cloud-native vector DB | 数据量大、吞吐与集群能力要求高的团队 |
+| [OpenSearch](/ai/04-tooling/05/05/) | 从通用搜索引擎延伸到向量与混合检索 | text search + filters + vector/hybrid | 本来就有搜索基础设施的组织 |
+| [Chroma](/ai/04-tooling/05/06/) | 强调开发者友好与本地原型的检索基础设施 | developer UX、local-first、simple collections | 先做原型和中小规模应用的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 Qdrant](/iopanda-blog/ai/04-tooling/05/02/) 与 [05 Chroma](/iopanda-blog/ai/04-tooling/05/06/)：从工程易用与原型体验切入；
-2. 再看 [02 Weaviate](/iopanda-blog/ai/04-tooling/05/03/)：理解对象建模与模块生态路线；
-3. 然后看 [03 Milvus](/iopanda-blog/ai/04-tooling/05/04/)：理解规模化与性能为什么会改变架构；
-4. 最后看 [04 OpenSearch](/iopanda-blog/ai/04-tooling/05/05/)：理解搜索引擎世界如何与向量检索合流。
+1. 先看 [01 Qdrant](/ai/04-tooling/05/02/) 与 [05 Chroma](/ai/04-tooling/05/06/)：从工程易用与原型体验切入；
+2. 再看 [02 Weaviate](/ai/04-tooling/05/03/)：理解对象建模与模块生态路线；
+3. 然后看 [03 Milvus](/ai/04-tooling/05/04/)：理解规模化与性能为什么会改变架构；
+4. 最后看 [04 OpenSearch](/ai/04-tooling/05/05/)：理解搜索引擎世界如何与向量检索合流。
 
 ## 4. 我建议本模块的内容结构
 
@@ -71,11 +71,11 @@ sourceId: "3.10.4.5 Vector Databases and Retrieval/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 Qdrant](/iopanda-blog/ai/04-tooling/05/02/)
-2. [02 Weaviate](/iopanda-blog/ai/04-tooling/05/03/)
-3. [03 Milvus](/iopanda-blog/ai/04-tooling/05/04/)
-4. [04 OpenSearch](/iopanda-blog/ai/04-tooling/05/05/)
-5. [05 Chroma](/iopanda-blog/ai/04-tooling/05/06/)
+1. [01 Qdrant](/ai/04-tooling/05/02/)
+2. [02 Weaviate](/ai/04-tooling/05/03/)
+3. [03 Milvus](/ai/04-tooling/05/04/)
+4. [04 OpenSearch](/ai/04-tooling/05/05/)
+5. [05 Chroma](/ai/04-tooling/05/06/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -101,6 +101,6 @@ sourceId: "3.10.4.5 Vector Databases and Retrieval/README"
 - [144] https://github.com/opensearch-project/OpenSearch — OpenSearch GitHub
 - [145] https://github.com/chroma-core/chroma — Chroma GitHub
 
-上一篇：[04.04 Prompt Management](/iopanda-blog/ai/04-tooling/04/01/)——prompt 是前台约束；本章开始看 RAG 的后台基础设施。
+上一篇：[04.04 Prompt Management](/ai/04-tooling/04/01/)——prompt 是前台约束；本章开始看 RAG 的后台基础设施。
 
-下一篇：[04.06 Data Curation and Annotation](/iopanda-blog/ai/04-tooling/06/01/)——检索底座之外，数据本身如何被清洗、标注、精选，也是一整条工具链。
+下一篇：[04.06 Data Curation and Annotation](/ai/04-tooling/06/01/)——检索底座之外，数据本身如何被清洗、标注、精选，也是一整条工具链。

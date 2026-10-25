@@ -74,6 +74,6 @@ AI 系统并不总是一次 prompt 完成：
 - [6] https://github.com/temporalio/temporal/blob/main/docs/architecture/workflow-lifecycle.md — Temporal workflow lifecycle doc
 - [8] https://github.com/temporalio/temporal/blob/main/docs/architecture/schedules.md — Temporal schedules architecture doc
 
-上一篇：[02 workflow state、activity、retry、timer 与 signal](/iopanda-blog/ai/03-frameworks/06/04/)
+上一篇：[02 workflow state、activity、retry、timer 与 signal](/ai/03-frameworks/06/04/)
 
-下一篇：[04 可恢复性、幂等性、补偿与工程边界](/iopanda-blog/ai/03-frameworks/06/06/)
+下一篇：[04 可恢复性、幂等性、补偿与工程边界](/ai/03-frameworks/06/06/)

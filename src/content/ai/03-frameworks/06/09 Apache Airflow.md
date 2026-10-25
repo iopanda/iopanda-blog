@@ -32,13 +32,13 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.2 Apache Airflow/
 
 ## 本目录笔记导航
 
-1. [01 DAG scheduling platform 的设计哲学](/iopanda-blog/ai/03-frameworks/06/10/)
-2. [02 DAG、operator、scheduler 与 executor](/iopanda-blog/ai/03-frameworks/06/11/)
-3. [03 backfill、retry、data pipeline 与批处理思维](/iopanda-blog/ai/03-frameworks/06/12/)
-4. [04 运营可视化、部署与工程边界](/iopanda-blog/ai/03-frameworks/06/13/)
-5. [05 课程助教系统的数据/评估管线案例](/iopanda-blog/ai/03-frameworks/06/14/)
-6. [06 Airflow 与 Temporal、Prefect、Dagster、Kestra 的深度对比](/iopanda-blog/ai/03-frameworks/06/15/)
+1. [01 DAG scheduling platform 的设计哲学](/ai/03-frameworks/06/10/)
+2. [02 DAG、operator、scheduler 与 executor](/ai/03-frameworks/06/11/)
+3. [03 backfill、retry、data pipeline 与批处理思维](/ai/03-frameworks/06/12/)
+4. [04 运营可视化、部署与工程边界](/ai/03-frameworks/06/13/)
+5. [05 课程助教系统的数据/评估管线案例](/ai/03-frameworks/06/14/)
+6. [06 Airflow 与 Temporal、Prefect、Dagster、Kestra 的深度对比](/ai/03-frameworks/06/15/)
 
-上一篇：[03.06 Temporal](/iopanda-blog/ai/03-frameworks/06/02/)
+上一篇：[03.06 Temporal](/ai/03-frameworks/06/02/)
 
-下一篇：[01 DAG scheduling platform 的设计哲学](/iopanda-blog/ai/03-frameworks/06/10/)
+下一篇：[01 DAG scheduling platform 的设计哲学](/ai/03-frameworks/06/10/)

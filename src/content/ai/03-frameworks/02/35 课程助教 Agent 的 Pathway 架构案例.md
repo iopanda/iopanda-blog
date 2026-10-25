@@ -68,6 +68,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/05 Pathway/05 课程助教 Agen
 - [68] https://github.com/pathwaycom/pathway/blob/main/README.md — Pathway README
 - [70] https://github.com/pathwaycom/pathway/blob/main/examples/projects/question-answering-rag/README.md — Pathway question answering RAG example
 
-上一篇：[04 生产系统中的吞吐、延迟与治理](/iopanda-blog/ai/03-frameworks/02/34/)
+上一篇：[04 生产系统中的吞吐、延迟与治理](/ai/03-frameworks/02/34/)
 
-下一篇：[06 Pathway 与 LlamaIndex、Haystack、RAGFlow、LightRAG 的深度对比](/iopanda-blog/ai/03-frameworks/02/36/)
+下一篇：[06 Pathway 与 LlamaIndex、Haystack、RAGFlow、LightRAG 的深度对比](/ai/03-frameworks/02/36/)

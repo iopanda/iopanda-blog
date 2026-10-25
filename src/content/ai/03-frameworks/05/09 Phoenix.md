@@ -32,13 +32,13 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.2 Phoenix/R
 
 ## 本目录笔记导航
 
-1. [01 open-source observability workbench 的设计哲学](/iopanda-blog/ai/03-frameworks/05/10/)
-2. [02 OTEL traces、spans 与诊断界面](/iopanda-blog/ai/03-frameworks/05/11/)
-3. [03 evals、annotations、dataset-driven analysis](/iopanda-blog/ai/03-frameworks/05/12/)
-4. [04 线上诊断、根因分析与工程边界](/iopanda-blog/ai/03-frameworks/05/13/)
-5. [05 课程助教 Agent 的 Phoenix 架构案例](/iopanda-blog/ai/03-frameworks/05/14/)
-6. [06 Phoenix 与 Langfuse、MLflow、promptfoo、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/15/)
+1. [01 open-source observability workbench 的设计哲学](/ai/03-frameworks/05/10/)
+2. [02 OTEL traces、spans 与诊断界面](/ai/03-frameworks/05/11/)
+3. [03 evals、annotations、dataset-driven analysis](/ai/03-frameworks/05/12/)
+4. [04 线上诊断、根因分析与工程边界](/ai/03-frameworks/05/13/)
+5. [05 课程助教 Agent 的 Phoenix 架构案例](/ai/03-frameworks/05/14/)
+6. [06 Phoenix 与 Langfuse、MLflow、promptfoo、DeepEval 的深度对比](/ai/03-frameworks/05/15/)
 
-上一篇：[03.05 Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)
+上一篇：[03.05 Langfuse](/ai/03-frameworks/05/02/)
 
-下一篇：[01 open-source observability workbench 的设计哲学](/iopanda-blog/ai/03-frameworks/05/10/)
+下一篇：[01 open-source observability workbench 的设计哲学](/ai/03-frameworks/05/10/)

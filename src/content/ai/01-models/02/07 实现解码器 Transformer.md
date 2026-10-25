@@ -11,9 +11,9 @@ author: "iopanda"
 tags: ["course", "model-pretraining", "transformer"]
 sourceId: "3.10.1.2 Pretraining and Training/2.7 实现解码器 Transformer"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260920204516.png)
+![](/ai/images/Pasted%20image%2020260920204516.png)
 
-> 上一章 [构建数据管道](/iopanda-blog/ai/01-models/02/06/) 把文本变成了成批的输入与下一词标签;本章把数据喂进模型:亲手实现一个教学规模的 decoder-only Transformer。动手前先弄清三件事——它是什么、为什么注意力必须遮住未来、残差连接与 LayerNorm 在深层网络里各起什么作用;最后用形状检查和「未来扰动测试」证明它真的只会利用过去的信息。
+> 上一章 [构建数据管道](/ai/01-models/02/06/) 把文本变成了成批的输入与下一词标签;本章把数据喂进模型:亲手实现一个教学规模的 decoder-only Transformer。动手前先弄清三件事——它是什么、为什么注意力必须遮住未来、残差连接与 LayerNorm 在深层网络里各起什么作用;最后用形状检查和「未来扰动测试」证明它真的只会利用过去的信息。
 
 **学习目标**:学完本章,你将能够——
 
@@ -376,6 +376,6 @@ if __name__ == "__main__":
 - Alammar,[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
 - Karpathy,[nanoGPT 参考实现](https://github.com/karpathy/nanoGPT)
 
-上一篇:[构建数据管道](/iopanda-blog/ai/01-models/02/06/)——batch 已具备正确的输入与下一词标签。
+上一篇:[构建数据管道](/ai/01-models/02/06/)——batch 已具备正确的输入与下一词标签。
 
-下一篇:[训练循环与检查点](/iopanda-blog/ai/01-models/02/08/)——下一步让模型通过损失函数和反向传播学习这些样本。
+下一篇:[训练循环与检查点](/ai/01-models/02/08/)——下一步让模型通过损失函数和反向传播学习这些样本。

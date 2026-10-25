@@ -37,7 +37,7 @@ sourceId: "3.10.4.5 Vector Databases and Retrieval/03 Milvus/README"
 
 ## 引用
 
-- 回到本组总览：[04.05 Vector Databases and Retrieval](/iopanda-blog/ai/04-tooling/05/01/)
+- 回到本组总览：[04.05 Vector Databases and Retrieval](/ai/04-tooling/05/01/)
 
-上一篇：[Weaviate](/iopanda-blog/ai/04-tooling/05/03/)
-下一篇：[OpenSearch](/iopanda-blog/ai/04-tooling/05/05/)
+上一篇：[Weaviate](/ai/04-tooling/05/03/)
+下一篇：[OpenSearch](/ai/04-tooling/05/05/)

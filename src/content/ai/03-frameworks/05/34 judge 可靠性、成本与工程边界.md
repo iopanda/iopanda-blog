@@ -85,6 +85,6 @@ DeepEval 最自然的位置通常是：
 - [11] https://github.com/confident-ai/deepeval/blob/main/deepeval/metrics/README.md — DeepEval metrics README
 - [14] https://github.com/confident-ai/deepeval/blob/main/deepeval/red_teaming/README.md — DeepEval red teaming migration README
 
-上一篇：[03 pytest-like workflow、CI 集成与 regression](/iopanda-blog/ai/03-frameworks/05/33/)
+上一篇：[03 pytest-like workflow、CI 集成与 regression](/ai/03-frameworks/05/33/)
 
-下一篇：[05 课程助教 Agent 的 DeepEval 架构案例](/iopanda-blog/ai/03-frameworks/05/35/)
+下一篇：[05 课程助教 Agent 的 DeepEval 架构案例](/ai/03-frameworks/05/35/)

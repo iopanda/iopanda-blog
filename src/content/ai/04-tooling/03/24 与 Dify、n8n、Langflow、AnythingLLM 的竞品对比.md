@@ -94,6 +94,6 @@ Open WebUI 最强的地方，不是某个单点模型功能，而是：
 - [3] https://api.github.com/repos/open-webui/open-webui — Open WebUI GitHub API
 - [4] https://docs.openwebui.com/features/ — Open WebUI features docs
 
-上一篇：[03 质量、社区、许可与企业边界](/iopanda-blog/ai/04-tooling/03/23/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、许可与企业边界](/ai/04-tooling/03/23/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：Samsung Semiconductor、Public Storage、Astellas、JGU Mainz](/iopanda-blog/ai/04-tooling/03/25/)——最后从真实组织案例看，Open WebUI 为什么会被采用。
+下一篇：[05 真实组织案例：Samsung Semiconductor、Public Storage、Astellas、JGU Mainz](/ai/04-tooling/03/25/)——最后从真实组织案例看，Open WebUI 为什么会被采用。

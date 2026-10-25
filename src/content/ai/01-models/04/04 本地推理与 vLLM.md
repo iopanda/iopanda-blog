@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "model-inference", "vllm"]
 sourceId: "3.10.1.4 Inference and Deployment/4.4 本地推理与 vLLM"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020261012143604.png)
+![](/ai/images/Pasted%20image%2020261012143604.png)
 
 > 前几章回答了「用哪个模型、怎么让它装得下跑得动」,本章回答「怎么让别人用起来」:把一个常驻内存的模型进程包装成**网络服务**——任何会发 HTTP 请求的程序(网页、命令行、另一个服务)都能调用,而不必读懂 Python、不必和你在同一台机器上。你会先弄清为什么脚本直调不够、朴素服务又慢在哪,再看 vLLM 用连续批处理与 PagedAttention 分别解决什么,最后亲手把它启动成 OpenAI 兼容的 `/v1/chat/completions` 端点,用 curl 完成冒烟验收,并用 host/port 守住「只在本机暴露」的安全边界。
 
@@ -145,6 +145,6 @@ curl http://127.0.0.1:8000/v1/chat/completions -H 'Content-Type: application/jso
 - [PagedAttention 论文:SOSP 2023](https://arxiv.org/abs/2309.06180)
 - [OpenAI Chat Completions API 参考](https://platform.openai.com/docs/api-reference/chat)
 
-上一篇:[模型量化](/iopanda-blog/ai/01-models/04/03/)——已选定「装得下、跑得动」的数值精度,本章把它变成可并发访问的服务。
+上一篇:[模型量化](/ai/01-models/04/03/)——已选定「装得下、跑得动」的数值精度,本章把它变成可并发访问的服务。
 
-下一篇:[构建推理 API](/iopanda-blog/ai/01-models/04/05/)——vLLM 是通用服务,本章在其前加上自己的业务输入边界。
+下一篇:[构建推理 API](/ai/01-models/04/05/)——vLLM 是通用服务,本章在其前加上自己的业务输入边界。

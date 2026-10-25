@@ -171,6 +171,6 @@ sourceId: "3.10.2.1 Foundations/06 Agent 类型与生态全景"
 - [Microsoft AutoGen(GitHub)](https://github.com/microsoft/autogen)
 - [Model Context Protocol(官网)](https://modelcontextprotocol.io/)
 
-上一篇:[最小 ReAct Agent 实战](/iopanda-blog/ai/02-agents/01/06/)——你手写了第一个 Agent 循环;本章就是给那个循环定位的地图。
+上一篇:[最小 ReAct Agent 实战](/ai/02-agents/01/06/)——你手写了第一个 Agent 循环;本章就是给那个循环定位的地图。
 
 下一篇:进入 02.02 Prompt and Context Engineering,见其 README——从「会循环」走向「循环得好」,先精修决定行为的第一层:上下文。

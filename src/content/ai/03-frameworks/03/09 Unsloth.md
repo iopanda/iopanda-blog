@@ -32,13 +32,13 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/02 Unsloth/README"
 
 ## 本目录笔记导航
 
-1. [01 速度、显存与“先跑起来”路线的设计哲学](/iopanda-blog/ai/03-frameworks/03/10/)
-2. [02 LoRA、QLoRA、量化与训练提速](/iopanda-blog/ai/03-frameworks/03/11/)
-3. [03 数据模板、导出、推理衔接与工程边界](/iopanda-blog/ai/03-frameworks/03/12/)
-4. [04 单卡/小团队场景的适用边界](/iopanda-blog/ai/03-frameworks/03/13/)
-5. [05 课程助教 Agent 的 Unsloth 架构案例](/iopanda-blog/ai/03-frameworks/03/14/)
-6. [06 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/15/)
+1. [01 速度、显存与“先跑起来”路线的设计哲学](/ai/03-frameworks/03/10/)
+2. [02 LoRA、QLoRA、量化与训练提速](/ai/03-frameworks/03/11/)
+3. [03 数据模板、导出、推理衔接与工程边界](/ai/03-frameworks/03/12/)
+4. [04 单卡/小团队场景的适用边界](/ai/03-frameworks/03/13/)
+5. [05 课程助教 Agent 的 Unsloth 架构案例](/ai/03-frameworks/03/14/)
+6. [06 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比](/ai/03-frameworks/03/15/)
 
-上一篇：[01 LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)
+上一篇：[01 LLaMA-Factory](/ai/03-frameworks/03/02/)
 
-下一篇：[01 速度、显存与“先跑起来”路线的设计哲学](/iopanda-blog/ai/03-frameworks/03/10/)
+下一篇：[01 速度、显存与“先跑起来”路线的设计哲学](/ai/03-frameworks/03/10/)

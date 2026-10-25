@@ -37,7 +37,7 @@ sourceId: "3.10.4.4 Prompt Management/05 Outlines/README"
 
 ## 引用
 
-- 回到本组总览：[04.04 Prompt Management](/iopanda-blog/ai/04-tooling/04/01/)
+- 回到本组总览：[04.04 Prompt Management](/ai/04-tooling/04/01/)
 
-上一篇：[Guidance](/iopanda-blog/ai/04-tooling/04/20/)
+上一篇：[Guidance](/ai/04-tooling/04/20/)
 下一篇：本产品是本组最后一项；后续可回到本组总览，对比同类工具。

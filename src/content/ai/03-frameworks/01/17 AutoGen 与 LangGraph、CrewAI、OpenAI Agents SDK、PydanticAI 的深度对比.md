@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/02 AutoGen/06 AutoGen 与 LangGraph、CrewA
 ---
 # AutoGen 与 LangGraph、CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比
 
-> 到这一篇，AutoGen 本身已经不再只是两篇薄文档了：[会话与事件驱动](/iopanda-blog/ai/03-frameworks/01/12/)、[维护与迁移](/iopanda-blog/ai/03-frameworks/01/13/)、[AgentChat 与消息协议](/iopanda-blog/ai/03-frameworks/01/14/)、[worker/service runtime](/iopanda-blog/ai/03-frameworks/01/15/)、[课程助教案例](/iopanda-blog/ai/03-frameworks/01/16/)。现在最后要做的是：**把它放回整个框架版图里，讲清楚它最独特的地方，以及为什么它既重要又不再是多数新项目的默认答案。**
+> 到这一篇，AutoGen 本身已经不再只是两篇薄文档了：[会话与事件驱动](/ai/03-frameworks/01/12/)、[维护与迁移](/ai/03-frameworks/01/13/)、[AgentChat 与消息协议](/ai/03-frameworks/01/14/)、[worker/service runtime](/ai/03-frameworks/01/15/)、[课程助教案例](/ai/03-frameworks/01/16/)。现在最后要做的是：**把它放回整个框架版图里，讲清楚它最独特的地方，以及为什么它既重要又不再是多数新项目的默认答案。**
 
 **学习目标**：学完本章，你将能够——
 
@@ -203,6 +203,6 @@ AutoGen 的中心则是：
 - [10] https://github.com/microsoft/agent-framework — Microsoft Agent Framework GitHub
 - [40] https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md — AutoGen services design
 
-上一篇：[05 课程助教 Agent 的 AutoGen 架构案例](/iopanda-blog/ai/03-frameworks/01/16/)——真实案例让它的优点与风险都更清楚；本篇则把它重新放回整个框架版图中判断。
+上一篇：[05 课程助教 Agent 的 AutoGen 架构案例](/ai/03-frameworks/01/16/)——真实案例让它的优点与风险都更清楚；本篇则把它重新放回整个框架版图中判断。
 
-下一篇：回到 [06 Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)，从全局再次复核 AutoGen 在 top5 中应占什么位置。
+下一篇：回到 [06 Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)，从全局再次复核 AutoGen 在 top5 中应占什么位置。

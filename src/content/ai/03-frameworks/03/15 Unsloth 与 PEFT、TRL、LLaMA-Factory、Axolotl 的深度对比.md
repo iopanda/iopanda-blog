@@ -73,6 +73,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/02 Unsloth/06 Unsloth �
 - [79] https://github.com/hiyouga/LLaMA-Factory — LLaMA-Factory GitHub
 - [80] https://github.com/axolotl-ai-cloud/axolotl — Axolotl GitHub
 
-上一篇：[05 课程助教 Agent 的 Unsloth 架构案例](/iopanda-blog/ai/03-frameworks/03/14/)
+上一篇：[05 课程助教 Agent 的 Unsloth 架构案例](/ai/03-frameworks/03/14/)
 
-下一篇：回到 [06 Training Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/03/37/)
+下一篇：回到 [06 Training Framework 选型矩阵](/ai/03-frameworks/03/37/)

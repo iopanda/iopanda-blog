@@ -251,6 +251,6 @@ if __name__ == "__main__":
 - [Model Context Protocol(MCP)官方文档](https://modelcontextprotocol.io/)
 - [GitHub:a2aproject/A2A(协议实现与 SDK)](https://github.com/a2aproject/A2A)
 
-上一篇:[协作模式流水线与辩论](/iopanda-blog/ai/02-agents/06/04/)——03 章定了协作形状(接力/对撞),本章补上血管:schema、超时、失败传播与死锁;同进程的约定跑通后,下一章看框架怎么替你管状态、循环与检查点。
+上一篇:[协作模式流水线与辩论](/ai/02-agents/06/04/)——03 章定了协作形状(接力/对撞),本章补上血管:schema、超时、失败传播与死锁;同进程的约定跑通后,下一章看框架怎么替你管状态、循环与检查点。
 
-下一篇:[多 Agent 框架实践](/iopanda-blog/ai/02-agents/06/06/)——LangGraph 的状态图、AutoGen 的会话式、还是自研循环?下一章用框架重写 02 的编排 Demo,比较复杂度的真实差异。
+下一篇:[多 Agent 框架实践](/ai/02-agents/06/06/)——LangGraph 的状态图、AutoGen 的会话式、还是自研循环?下一章用框架重写 02 的编排 Demo,比较复杂度的真实差异。

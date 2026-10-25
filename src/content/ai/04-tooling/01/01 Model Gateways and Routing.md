@@ -34,17 +34,17 @@ sourceId: "3.10.4.1 Model Gateways and Routing/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [LiteLLM](/iopanda-blog/ai/04-tooling/01/02/) | 统一多供应商 LLM API 的轻量代理与 SDK | provider abstraction、成本与日志、fallback/load balancing | 想快速统一 OpenAI 兼容接口的应用团队 |
-| [Envoy AI Gateway](/iopanda-blog/ai/04-tooling/01/08/) | 基于 Envoy Gateway 的模型访问入口 | gateway policy、流量治理、平台级接入 | 已经有 API gateway / platform engineering 体系的团队 |
-| [Apache APISIX](/iopanda-blog/ai/04-tooling/01/14/) | 从通用 API Gateway 延展到 AI Gateway 的云原生路线 | 插件化、鉴权、限流、路由、可观测 | 需要把 AI 接入并入既有 API 治理系统的团队 |
-| [LocalAI](/iopanda-blog/ai/04-tooling/01/20/) | 本地自托管、OpenAI 兼容的统一模型入口 | self-hosted endpoint、私有化、统一调用面 | 先解决私有化与本地开发一致性的团队 |
+| [LiteLLM](/ai/04-tooling/01/02/) | 统一多供应商 LLM API 的轻量代理与 SDK | provider abstraction、成本与日志、fallback/load balancing | 想快速统一 OpenAI 兼容接口的应用团队 |
+| [Envoy AI Gateway](/ai/04-tooling/01/08/) | 基于 Envoy Gateway 的模型访问入口 | gateway policy、流量治理、平台级接入 | 已经有 API gateway / platform engineering 体系的团队 |
+| [Apache APISIX](/ai/04-tooling/01/14/) | 从通用 API Gateway 延展到 AI Gateway 的云原生路线 | 插件化、鉴权、限流、路由、可观测 | 需要把 AI 接入并入既有 API 治理系统的团队 |
+| [LocalAI](/ai/04-tooling/01/20/) | 本地自托管、OpenAI 兼容的统一模型入口 | self-hosted endpoint、私有化、统一调用面 | 先解决私有化与本地开发一致性的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 LiteLLM](/iopanda-blog/ai/04-tooling/01/02/)：理解多供应商 API 统一入口为什么会成为第一需求；
-2. 再看 [02 Envoy AI Gateway](/iopanda-blog/ai/04-tooling/01/08/)：理解平台团队如何把 AI 流量纳入 gateway 策略；
-3. 然后看 [03 Apache APISIX](/iopanda-blog/ai/04-tooling/01/14/)：理解传统 API 治理与 AI 接入如何合流；
-4. 最后看 [04 LocalAI](/iopanda-blog/ai/04-tooling/01/20/)：理解本地私有化入口如何改变接入与调试方式。
+1. 先看 [01 LiteLLM](/ai/04-tooling/01/02/)：理解多供应商 API 统一入口为什么会成为第一需求；
+2. 再看 [02 Envoy AI Gateway](/ai/04-tooling/01/08/)：理解平台团队如何把 AI 流量纳入 gateway 策略；
+3. 然后看 [03 Apache APISIX](/ai/04-tooling/01/14/)：理解传统 API 治理与 AI 接入如何合流；
+4. 最后看 [04 LocalAI](/ai/04-tooling/01/20/)：理解本地私有化入口如何改变接入与调试方式。
 
 ## 4. 我建议本模块的内容结构
 
@@ -70,10 +70,10 @@ sourceId: "3.10.4.1 Model Gateways and Routing/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 LiteLLM](/iopanda-blog/ai/04-tooling/01/02/)
-2. [02 Envoy AI Gateway](/iopanda-blog/ai/04-tooling/01/08/)
-3. [03 Apache APISIX](/iopanda-blog/ai/04-tooling/01/14/)
-4. [04 LocalAI](/iopanda-blog/ai/04-tooling/01/20/)
+1. [01 LiteLLM](/ai/04-tooling/01/02/)
+2. [02 Envoy AI Gateway](/ai/04-tooling/01/08/)
+3. [03 Apache APISIX](/ai/04-tooling/01/14/)
+4. [04 LocalAI](/ai/04-tooling/01/20/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -98,6 +98,6 @@ sourceId: "3.10.4.1 Model Gateways and Routing/README"
 - [103] https://github.com/apache/apisix — Apache APISIX GitHub
 - [104] https://github.com/mudler/LocalAI — LocalAI GitHub
 
-上一篇：[03.02 RAG and Retrieval Frameworks](/iopanda-blog/ai/03-frameworks/02/01/)——框架回答“系统怎么组织”；本章开始回答“模型流量怎么接入与治理”。
+上一篇：[03.02 RAG and Retrieval Frameworks](/ai/03-frameworks/02/01/)——框架回答“系统怎么组织”；本章开始回答“模型流量怎么接入与治理”。
 
-下一篇：[04.02 Observability and Evaluation](/iopanda-blog/ai/04-tooling/02/01/)——有了入口，还要有显微镜：请求走完以后，如何追踪、评测与复盘。
+下一篇：[04.02 Observability and Evaluation](/ai/04-tooling/02/01/)——有了入口，还要有显微镜：请求走完以后，如何追踪、评测与复盘。

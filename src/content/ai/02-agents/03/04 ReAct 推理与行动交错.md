@@ -185,6 +185,6 @@ if __name__ == "__main__":
 - [ReAct 项目主页(轨迹示例与代码)](https://react-lm.github.io/)
 - [OpenAI:Function calling 指南(结构化动作声明的现状形态)](https://platform.openai.com/docs/guides/function-calling)
 
-上一篇:[Chain-of-Thought 与单步推理](/iopanda-blog/ai/02-agents/03/03/)——CoT 证明了「想」的价值,本章让「想」与「做」交错,补上外部观察。
+上一篇:[Chain-of-Thought 与单步推理](/ai/02-agents/03/03/)——CoT 证明了「想」的价值,本章让「想」与「做」交错,补上外部观察。
 
-下一篇:[Plan-and-Execute 与任务分解](/iopanda-blog/ai/02-agents/03/05/)——ReAct 每步都付一次推理费,04 章把「想」集中成一次计划,再逐项执行。
+下一篇:[Plan-and-Execute 与任务分解](/ai/02-agents/03/05/)——ReAct 每步都付一次推理费,04 章把「想」集中成一次计划,再逐项执行。

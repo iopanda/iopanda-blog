@@ -88,6 +88,6 @@ SGLang 真正独特的地方在于，内部对请求和响应做了更多 runtim
 - [8] https://github.com/sgl-project/sglang/blob/main/examples/runtime/README.md — SGLang runtime examples README
 - [12] https://github.com/sgl-project/sglang/blob/main/sgl-model-gateway/bindings/golang/examples/oai_server/README.md — SGLang Go OpenAI router README
 
-上一篇：[01 structured generation runtime 的设计哲学](/iopanda-blog/ai/03-frameworks/04/10/)
+上一篇：[01 structured generation runtime 的设计哲学](/ai/03-frameworks/04/10/)
 
-下一篇：[03 agent 推理、tool use 与 workflow control](/iopanda-blog/ai/03-frameworks/04/12/)
+下一篇：[03 agent 推理、tool use 与 workflow control](/ai/03-frameworks/04/12/)

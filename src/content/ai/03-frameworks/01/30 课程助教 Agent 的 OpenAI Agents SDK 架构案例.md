@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/05 课程助教 Agent 
 ---
 # 课程助教 Agent 的 OpenAI Agents SDK 架构案例
 
-> 前四篇已经把 OpenAI Agents SDK 的主要能力拆开了：[运行时原语](/iopanda-blog/ai/03-frameworks/01/26/)、[产品边界](/iopanda-blog/ai/03-frameworks/01/27/)、[多 Agent 路由与工具生态](/iopanda-blog/ai/03-frameworks/01/28/)、[应用形态](/iopanda-blog/ai/03-frameworks/01/29/)。这一章回到你的主线：**课程助教 Agent**。重点不是“用这个 SDK 能不能做出来”，而是：**如果要做成一个支持课程问答、规则咨询、成绩查询、人工审批、会话隔离、可追踪的教学产品，OpenAI Agents SDK 应该怎么拆？**
+> 前四篇已经把 OpenAI Agents SDK 的主要能力拆开了：[运行时原语](/ai/03-frameworks/01/26/)、[产品边界](/ai/03-frameworks/01/27/)、[多 Agent 路由与工具生态](/ai/03-frameworks/01/28/)、[应用形态](/ai/03-frameworks/01/29/)。这一章回到你的主线：**课程助教 Agent**。重点不是“用这个 SDK 能不能做出来”，而是：**如果要做成一个支持课程问答、规则咨询、成绩查询、人工审批、会话隔离、可追踪的教学产品，OpenAI Agents SDK 应该怎么拆？**
 
 **学习目标**：学完本章，你将能够——
 
@@ -224,6 +224,6 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/05 课程助教 Agent 
 - [3] https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md — OpenAI Agents guardrails doc
 - [4] https://github.com/openai/openai-agents-python — OpenAI Agents SDK GitHub
 
-上一篇：[04 Tracing、Testing、Realtime 与 Voice 的应用形态](/iopanda-blog/ai/03-frameworks/01/29/)——运行时形态讲完后，本篇把它们装回课程助教这个真实系统。
+上一篇：[04 Tracing、Testing、Realtime 与 Voice 的应用形态](/ai/03-frameworks/01/29/)——运行时形态讲完后，本篇把它们装回课程助教这个真实系统。
 
-下一篇：[06 OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/31/)——真实案例落地后，再回头看它和其他框架的根本差异。
+下一篇：[06 OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比](/ai/03-frameworks/01/31/)——真实案例落地后，再回头看它和其他框架的根本差异。

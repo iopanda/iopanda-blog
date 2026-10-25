@@ -74,6 +74,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.4 Dagster/06 Dags
 - [14] https://github.com/dagster-io/dagster — Dagster GitHub
 - [15] https://github.com/kestra-io/kestra — Kestra GitHub
 
-上一篇：[05 课程助教系统的数据资产案例](/iopanda-blog/ai/03-frameworks/06/28/)
+上一篇：[05 课程助教系统的数据资产案例](/ai/03-frameworks/06/28/)
 
-下一篇：回到 [03.06 Workflow Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/06/37/)
+下一篇：回到 [03.06 Workflow Framework 选型矩阵](/ai/03-frameworks/06/37/)

@@ -34,17 +34,17 @@ sourceId: "3.10.4.7 Local Models and Development/README"
 
 | 产品 | 一句话定位 | 设计中心 | 更适合谁 |
 |---|---|---|---|
-| [Ollama](/iopanda-blog/ai/04-tooling/07/02/) | 最强调本地开发者体验的模型运行工具 | model pull/run、simple local UX、OpenAI-compatible habits | 先要快速把模型跑起来的开发者 |
-| [llama.cpp](/iopanda-blog/ai/04-tooling/07/03/) | 轻量、高可移植、本地推理的基础设施经典 | C/C++ inference、GGUF、hardware reach | 需要极强可移植性和轻量化的团队 |
-| [LocalAI](/iopanda-blog/ai/04-tooling/07/04/) | 统一本地多模型能力的自托管引擎 | OpenAI-compatible local engine、multi-modality | 想私有化统一模型接口的团队 |
-| [vLLM](/iopanda-blog/ai/04-tooling/07/05/) | 高吞吐与内存效率优先的 serving 引擎 | throughput、serving、OpenAI-compatible server | 需要把模型服务正式托起来的团队 |
-| [SGLang](/iopanda-blog/ai/04-tooling/07/06/) | 兼顾程序表达与高性能 serving 的路线 | serving + structured execution | 对性能与程序控制都敏感的团队 |
+| [Ollama](/ai/04-tooling/07/02/) | 最强调本地开发者体验的模型运行工具 | model pull/run、simple local UX、OpenAI-compatible habits | 先要快速把模型跑起来的开发者 |
+| [llama.cpp](/ai/04-tooling/07/03/) | 轻量、高可移植、本地推理的基础设施经典 | C/C++ inference、GGUF、hardware reach | 需要极强可移植性和轻量化的团队 |
+| [LocalAI](/ai/04-tooling/07/04/) | 统一本地多模型能力的自托管引擎 | OpenAI-compatible local engine、multi-modality | 想私有化统一模型接口的团队 |
+| [vLLM](/ai/04-tooling/07/05/) | 高吞吐与内存效率优先的 serving 引擎 | throughput、serving、OpenAI-compatible server | 需要把模型服务正式托起来的团队 |
+| [SGLang](/ai/04-tooling/07/06/) | 兼顾程序表达与高性能 serving 的路线 | serving + structured execution | 对性能与程序控制都敏感的团队 |
 
 ## 3. 这一模块建议怎么读
 
-1. 先看 [01 Ollama](/iopanda-blog/ai/04-tooling/07/02/) 与 [02 llama.cpp](/iopanda-blog/ai/04-tooling/07/03/)：先建立本地运行的两种直觉——开发友好 vs 极致轻量；
-2. 再看 [03 LocalAI](/iopanda-blog/ai/04-tooling/07/04/)：理解自托管统一接口的私有化路线；
-3. 然后看 [04 vLLM](/iopanda-blog/ai/04-tooling/07/05/) 与 [05 SGLang](/iopanda-blog/ai/04-tooling/07/06/)：理解什么时候开发环境要升级成正式 serving 层。
+1. 先看 [01 Ollama](/ai/04-tooling/07/02/) 与 [02 llama.cpp](/ai/04-tooling/07/03/)：先建立本地运行的两种直觉——开发友好 vs 极致轻量；
+2. 再看 [03 LocalAI](/ai/04-tooling/07/04/)：理解自托管统一接口的私有化路线；
+3. 然后看 [04 vLLM](/ai/04-tooling/07/05/) 与 [05 SGLang](/ai/04-tooling/07/06/)：理解什么时候开发环境要升级成正式 serving 层。
 
 ## 4. 我建议本模块的内容结构
 
@@ -70,11 +70,11 @@ sourceId: "3.10.4.7 Local Models and Development/README"
 
 ## 6. 本模块笔记导航
 
-1. [01 Ollama](/iopanda-blog/ai/04-tooling/07/02/)
-2. [02 llama.cpp](/iopanda-blog/ai/04-tooling/07/03/)
-3. [03 LocalAI](/iopanda-blog/ai/04-tooling/07/04/)
-4. [04 vLLM](/iopanda-blog/ai/04-tooling/07/05/)
-5. [05 SGLang](/iopanda-blog/ai/04-tooling/07/06/)
+1. [01 Ollama](/ai/04-tooling/07/02/)
+2. [02 llama.cpp](/ai/04-tooling/07/03/)
+3. [03 LocalAI](/ai/04-tooling/07/04/)
+4. [04 vLLM](/ai/04-tooling/07/05/)
+5. [05 SGLang](/ai/04-tooling/07/06/)
 
 ## 7. 这一模块该怎么学，才不会学成“产品说明书”
 
@@ -100,6 +100,6 @@ sourceId: "3.10.4.7 Local Models and Development/README"
 - [164] https://github.com/vllm-project/vllm — vLLM GitHub
 - [165] https://github.com/sgl-project/sglang — SGLang GitHub
 
-上一篇：[04.06 Data Curation and Annotation](/iopanda-blog/ai/04-tooling/06/01/)——数据工地讲完，回到开发者手边：模型怎么在本地与私有环境里真正跑起来。
+上一篇：[04.06 Data Curation and Annotation](/ai/04-tooling/06/01/)——数据工地讲完，回到开发者手边：模型怎么在本地与私有环境里真正跑起来。
 
-下一篇：[04.08 Safety Guardrails and Moderation](/iopanda-blog/ai/04-tooling/08/01/)——最后一章收口治理：系统搭起来以后，如何在运行时加安全护栏。
+下一篇：[04.08 Safety Guardrails and Moderation](/ai/04-tooling/08/01/)——最后一章收口治理：系统搭起来以后，如何在运行时加安全护栏。

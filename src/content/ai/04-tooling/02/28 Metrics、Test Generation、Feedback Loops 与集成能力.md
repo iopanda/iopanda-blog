@@ -110,6 +110,6 @@ README 直接说它能和 popular LLM frameworks 以及 major observability tool
 - [2] https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/ — Ragas metrics docs
 - [4] https://docs.ragas.io/en/latest/ — Ragas docs home
 
-上一篇：[01 产品定位、RAG 专用视角与适用场景](/iopanda-blog/ai/04-tooling/02/27/)——先理解定位，再看它的能力如何形成 RAG 质量闭环。
+上一篇：[01 产品定位、RAG 专用视角与适用场景](/ai/04-tooling/02/27/)——先理解定位，再看它的能力如何形成 RAG 质量闭环。
 
-下一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/02/29/)——能力之后，再回头判断它是否成熟、值不值得长期采用。
+下一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/02/29/)——能力之后，再回头判断它是否成熟、值不值得长期采用。

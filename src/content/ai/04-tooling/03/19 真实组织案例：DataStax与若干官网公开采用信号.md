@@ -172,6 +172,6 @@ Langflow 首页公开展示大量主流模型、向量库和系统连接对象�
 - [2] https://www.langflow.org/ — Langflow homepage
 - [3] https://api.github.com/repos/langflow-ai/langflow — Langflow GitHub API
 
-上一篇：[04 与 Dify、n8n、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/18/)——看清竞品差异后，再看公开资料里真实可确认的采用信号。
+上一篇：[04 与 Dify、n8n、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/18/)——看清竞品差异后，再看公开资料里真实可确认的采用信号。
 
-下一篇：[04 Open WebUI](/iopanda-blog/ai/04-tooling/03/20/)——下一个产品切到统一聊天前台与模型访问壳路线。
+下一篇：[04 Open WebUI](/ai/04-tooling/03/20/)——下一个产品切到统一聊天前台与模型访问壳路线。

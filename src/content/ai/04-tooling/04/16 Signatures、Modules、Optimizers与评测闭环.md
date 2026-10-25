@@ -107,6 +107,6 @@ DSPy 官网明确把 Metrics and evaluation 和 Optimizers 并列。[4]
 - [5] https://dspy.ai/learn/optimization/overview/ — DSPy optimization docs
 - [6] https://dspy.ai/learn/programming/modules/ — DSPy modules docs
 
-上一篇：[01 产品定位、程序化Prompt工程与适用场景](/iopanda-blog/ai/04-tooling/04/15/)——先理解定位，再看它如何把 prompt 工程做成程序系统。
+上一篇：[01 产品定位、程序化Prompt工程与适用场景](/ai/04-tooling/04/15/)——先理解定位，再看它如何把 prompt 工程做成程序系统。
 
-下一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/17/)——能力之后，再回头判断它是否成熟、采用边界如何。
+下一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/04/17/)——能力之后，再回头判断它是否成熟、采用边界如何。

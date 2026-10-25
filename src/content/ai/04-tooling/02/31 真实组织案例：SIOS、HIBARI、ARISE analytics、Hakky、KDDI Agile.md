@@ -160,6 +160,6 @@ KDDI Agile 的公开实践说明，Ragas 已经被用于企业级技术团队探
 - [9] https://book.st-hakky.com/data-science/ragas-intro — Hakky Handbook: Ragas intro with implementation
 - [10] https://qiita.com/minorun365/items/2f4e238f8bbc6e393ba5 — KDDI Agile Development Center: Ragas with AWS Bedrock
 
-上一篇：[04 与 DeepEval、Langfuse、Phoenix 的竞品对比](/iopanda-blog/ai/04-tooling/02/30/)——看清竞品差异后，再看真实组织为什么会采用 Ragas。
+上一篇：[04 与 DeepEval、Langfuse、Phoenix 的竞品对比](/ai/04-tooling/02/30/)——看清竞品差异后，再看真实组织为什么会采用 Ragas。
 
-下一篇：本产品是本组最后一项；后续可回到 [04.02 Observability and Evaluation](/iopanda-blog/ai/04-tooling/02/01/) 统览整组工具。
+下一篇：本产品是本组最后一项；后续可回到 [04.02 Observability and Evaluation](/ai/04-tooling/02/01/) 统览整组工具。

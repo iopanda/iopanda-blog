@@ -81,6 +81,6 @@ README 也明确指出，不应在 task 之间传大量数据，XCom 更适合�
 
 - [11] https://github.com/apache/airflow/blob/main/README.md — Apache Airflow README
 
-上一篇：[02 DAG、operator、scheduler 与 executor](/iopanda-blog/ai/03-frameworks/06/11/)
+上一篇：[02 DAG、operator、scheduler 与 executor](/ai/03-frameworks/06/11/)
 
-下一篇：[04 运营可视化、部署与工程边界](/iopanda-blog/ai/03-frameworks/06/13/)
+下一篇：[04 运营可视化、部署与工程边界](/ai/03-frameworks/06/13/)

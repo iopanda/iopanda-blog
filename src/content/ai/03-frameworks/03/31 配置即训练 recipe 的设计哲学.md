@@ -65,10 +65,10 @@ README 明说，一份 YAML 可以跨 preprocessing、training、evaluation、qu
 
 | 框架 | 第一性问题 | Axolotl 相比的定位 |
 |---|---|---|
-| [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) | 如何统一训练工厂 | Axolotl 更强调 config/recipe 语言 |
-| [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) | 如何先跑起来、提速、省显存 | Axolotl 更强调训练编排与复现 |
-| [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) | 如何抽象参数高效微调能力 | Axolotl 把 PEFT 当 recipe 里的一个部件 |
-| [TRL](/iopanda-blog/ai/03-frameworks/03/23/) | 如何组织 alignment / post-training | Axolotl 把这些方法放进统一配置编排里 |
+| [LLaMA-Factory](/ai/03-frameworks/03/02/) | 如何统一训练工厂 | Axolotl 更强调 config/recipe 语言 |
+| [Unsloth](/ai/03-frameworks/03/09/) | 如何先跑起来、提速、省显存 | Axolotl 更强调训练编排与复现 |
+| [PEFT](/ai/03-frameworks/03/16/) | 如何抽象参数高效微调能力 | Axolotl 把 PEFT 当 recipe 里的一个部件 |
+| [TRL](/ai/03-frameworks/03/23/) | 如何组织 alignment / post-training | Axolotl 把这些方法放进统一配置编排里 |
 
 一句话：Axolotl 更像“训练系统的 declarative control plane”。
 
@@ -100,6 +100,6 @@ README 明说，一份 YAML 可以跨 preprocessing、training、evaluation、qu
 - [13] https://github.com/axolotl-ai-cloud/axolotl/blob/main/README.md — Axolotl README
 - [14] https://github.com/axolotl-ai-cloud/axolotl/blob/main/AGENTS.md — Axolotl AGENTS overview
 
-上一篇：[05 Axolotl](/iopanda-blog/ai/03-frameworks/03/30/)
+上一篇：[05 Axolotl](/ai/03-frameworks/03/30/)
 
-下一篇：[02 Dataset、Template、YAML 与实验管理](/iopanda-blog/ai/03-frameworks/03/32/)
+下一篇：[02 Dataset、Template、YAML 与实验管理](/ai/03-frameworks/03/32/)

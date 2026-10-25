@@ -17,11 +17,11 @@ sourceId: "3.10.4.4 Prompt Management/02 Promptfoo/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、测试驱动Prompt管理与适用场景](/iopanda-blog/ai/04-tooling/04/09/)
-2. [02 Prompts、Assertions、Labels与CI/CD工作流](/iopanda-blog/ai/04-tooling/04/10/)
-3. [03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/11/)
-4. [04 与 Langfuse Prompts、DSPy、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/12/)
-5. [05 真实组织案例有限：OpenAI、Anthropic与公开采用信号](/iopanda-blog/ai/04-tooling/04/13/)
+1. [01 产品定位、测试驱动Prompt管理与适用场景](/ai/04-tooling/04/09/)
+2. [02 Prompts、Assertions、Labels与CI/CD工作流](/ai/04-tooling/04/10/)
+3. [03 质量、价格与采用边界](/ai/04-tooling/04/11/)
+4. [04 与 Langfuse Prompts、DSPy、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/12/)
+5. [05 真实组织案例有限：OpenAI、Anthropic与公开采用信号](/ai/04-tooling/04/13/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.4 Prompt Management/02 Promptfoo/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、测试驱动Prompt管理与适用场景](/iopanda-blog/ai/04-tooling/04/09/)
-2. [02 Prompts、Assertions、Labels与CI/CD工作流](/iopanda-blog/ai/04-tooling/04/10/)
-3. [03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/11/)
-4. [04 与 Langfuse Prompts、DSPy、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/12/)
-5. [05 真实组织案例有限：OpenAI、Anthropic与公开采用信号](/iopanda-blog/ai/04-tooling/04/13/)
+1. [01 产品定位、测试驱动Prompt管理与适用场景](/ai/04-tooling/04/09/)
+2. [02 Prompts、Assertions、Labels与CI/CD工作流](/ai/04-tooling/04/10/)
+3. [03 质量、价格与采用边界](/ai/04-tooling/04/11/)
+4. [04 与 Langfuse Prompts、DSPy、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/12/)
+5. [05 真实组织案例有限：OpenAI、Anthropic与公开采用信号](/ai/04-tooling/04/13/)
 
 ## 引用
 
@@ -66,6 +66,6 @@ sourceId: "3.10.4.4 Prompt Management/02 Promptfoo/README"
 - [7] https://www.promptfoo.dev/pricing/ — Promptfoo pricing
 - [8] https://www.promptfoo.dev/blog/promptfoo-joining-openai/ — Promptfoo joining OpenAI
 
-上一篇：[01 Langfuse Prompts](/iopanda-blog/ai/04-tooling/04/02/)——上一产品代表 prompt 资产管理层；这一篇切到 prompt 测试与门禁层。
+上一篇：[01 Langfuse Prompts](/ai/04-tooling/04/02/)——上一产品代表 prompt 资产管理层；这一篇切到 prompt 测试与门禁层。
 
-下一篇：[01 产品定位、测试驱动Prompt管理与适用场景](/iopanda-blog/ai/04-tooling/04/09/)——先从产品定位与适用边界开始。
+下一篇：[01 产品定位、测试驱动Prompt管理与适用场景](/ai/04-tooling/04/09/)——先从产品定位与适用边界开始。

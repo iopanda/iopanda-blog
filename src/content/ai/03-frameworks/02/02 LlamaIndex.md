@@ -32,13 +32,13 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/01 LlamaIndex/README"
 
 ## 本目录笔记导航
 
-1. [01 文档对象、Node 与 Index 的设计哲学](/iopanda-blog/ai/03-frameworks/02/03/)
-2. [02 Ingestion Pipeline、Chunking 与 Metadata](/iopanda-blog/ai/03-frameworks/02/04/)
-3. [03 Retriever、Query Engine、Rerank 与 Router](/iopanda-blog/ai/03-frameworks/02/05/)
-4. [04 多索引、多数据源与 Agentic Retrieval](/iopanda-blog/ai/03-frameworks/02/06/)
-5. [05 课程助教 Agent 的 LlamaIndex 架构案例](/iopanda-blog/ai/03-frameworks/02/07/)
-6. [06 LlamaIndex 与 Haystack、RAGFlow、LightRAG、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/08/)
+1. [01 文档对象、Node 与 Index 的设计哲学](/ai/03-frameworks/02/03/)
+2. [02 Ingestion Pipeline、Chunking 与 Metadata](/ai/03-frameworks/02/04/)
+3. [03 Retriever、Query Engine、Rerank 与 Router](/ai/03-frameworks/02/05/)
+4. [04 多索引、多数据源与 Agentic Retrieval](/ai/03-frameworks/02/06/)
+5. [05 课程助教 Agent 的 LlamaIndex 架构案例](/ai/03-frameworks/02/07/)
+6. [06 LlamaIndex 与 Haystack、RAGFlow、LightRAG、Pathway 的深度对比](/ai/03-frameworks/02/08/)
 
-上一篇：[03.02 RAG and Retrieval Frameworks](/iopanda-blog/ai/03-frameworks/02/01/)
+上一篇：[03.02 RAG and Retrieval Frameworks](/ai/03-frameworks/02/01/)
 
-下一篇：[01 文档对象、Node 与 Index 的设计哲学](/iopanda-blog/ai/03-frameworks/02/03/)
+下一篇：[01 文档对象、Node 与 Index 的设计哲学](/ai/03-frameworks/02/03/)

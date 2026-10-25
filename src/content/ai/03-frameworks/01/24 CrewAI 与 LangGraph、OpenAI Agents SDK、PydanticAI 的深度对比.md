@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/06 CrewAI 与 LangGraph、OpenAI 
 ---
 # CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比
 
-> 到这里，CrewAI 本身已经讲得不算浅了：[角色与任务](/iopanda-blog/ai/03-frameworks/01/19/)、[Flow](/iopanda-blog/ai/03-frameworks/01/20/)、[厚角色执行边界](/iopanda-blog/ai/03-frameworks/01/21/)、[人审与恢复](/iopanda-blog/ai/03-frameworks/01/22/)、[课程助教案例](/iopanda-blog/ai/03-frameworks/01/23/)。这一篇不再重复“它是什么”，而是专门回答：**CrewAI 不是谁的平替，它到底在框架谱系里站在哪里？** 也就是说：当你同时面对 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 时，CrewAI 的真正独特性在什么地方？这篇就是从“业务组织语言”这个视角来做反向比较。
+> 到这里，CrewAI 本身已经讲得不算浅了：[角色与任务](/ai/03-frameworks/01/19/)、[Flow](/ai/03-frameworks/01/20/)、[厚角色执行边界](/ai/03-frameworks/01/21/)、[人审与恢复](/ai/03-frameworks/01/22/)、[课程助教案例](/ai/03-frameworks/01/23/)。这一篇不再重复“它是什么”，而是专门回答：**CrewAI 不是谁的平替，它到底在框架谱系里站在哪里？** 也就是说：当你同时面对 [LangGraph](/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[PydanticAI](/ai/03-frameworks/01/32/) 时，CrewAI 的真正独特性在什么地方？这篇就是从“业务组织语言”这个视角来做反向比较。
 
 **学习目标**：学完本章，你将能够——
 
@@ -232,6 +232,6 @@ CrewAI 则是把 Agent 变成 organization-inspired business role。
 - [30] https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/agent/core.py — CrewAI agent core source
 - [31] https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/flow.py — CrewAI flow source
 
-上一篇：[05 课程助教 Agent 的 CrewAI 架构案例](/iopanda-blog/ai/03-frameworks/01/23/)——真实案例说明了 CrewAI 怎样落回业务系统；本篇再回头说它为什么更像业务组织框架。
+上一篇：[05 课程助教 Agent 的 CrewAI 架构案例](/ai/03-frameworks/01/23/)——真实案例说明了 CrewAI 怎样落回业务系统；本篇再回头说它为什么更像业务组织框架。
 
-下一篇：回到 [06 Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)，把 CrewAI 放回整个 top5 框架版图中复核。
+下一篇：回到 [06 Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)，把 CrewAI 放回整个 top5 框架版图中复核。

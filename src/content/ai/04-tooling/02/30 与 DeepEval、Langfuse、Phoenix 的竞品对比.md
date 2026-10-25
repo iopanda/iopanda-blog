@@ -101,6 +101,6 @@ Ragas 最强的地方，不是它最全面，而是：
 - [3] https://raw.githubusercontent.com/confident-ai/deepeval/main/README.md — DeepEval README
 - [4] https://raw.githubusercontent.com/langfuse/langfuse/main/README.md — Langfuse README
 
-上一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/02/29/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/02/29/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile](/iopanda-blog/ai/04-tooling/02/31/)——最后从真实组织公开实践看，谁在用、为什么用。
+下一篇：[05 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile](/ai/04-tooling/02/31/)——最后从真实组织公开实践看，谁在用、为什么用。

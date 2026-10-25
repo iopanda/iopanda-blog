@@ -17,11 +17,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/01 Langfuse/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/02/03/)
-2. [02 Observability、Evaluations、Prompts 与 Datasets](/iopanda-blog/ai/04-tooling/02/04/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/05/)
-4. [04 与 Phoenix、Promptfoo、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/06/)
-5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp、Hugging Face、Cresta](/iopanda-blog/ai/04-tooling/02/07/)
+1. [01 产品定位、能力地图与适用场景](/ai/04-tooling/02/03/)
+2. [02 Observability、Evaluations、Prompts 与 Datasets](/ai/04-tooling/02/04/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/02/05/)
+4. [04 与 Phoenix、Promptfoo、DeepEval 的竞品对比](/ai/04-tooling/02/06/)
+5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp、Hugging Face、Cresta](/ai/04-tooling/02/07/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/01 Langfuse/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/02/03/)
-2. [02 Observability、Evaluations、Prompts 与 Datasets](/iopanda-blog/ai/04-tooling/02/04/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/05/)
-4. [04 与 Phoenix、Promptfoo、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/06/)
-5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp、Hugging Face、Cresta](/iopanda-blog/ai/04-tooling/02/07/)
+1. [01 产品定位、能力地图与适用场景](/ai/04-tooling/02/03/)
+2. [02 Observability、Evaluations、Prompts 与 Datasets](/ai/04-tooling/02/04/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/02/05/)
+4. [04 与 Phoenix、Promptfoo、DeepEval 的竞品对比](/ai/04-tooling/02/06/)
+5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp、Hugging Face、Cresta](/ai/04-tooling/02/07/)
 
 ## 引用
 
@@ -66,6 +66,6 @@ sourceId: "3.10.4.2 Observability and Evaluation/01 Langfuse/README"
 - [7] https://langfuse.com/docs/prompt-management/get-started — Langfuse prompt management
 - [8] https://langfuse.com/docs/evaluation/dataset-runs/datasets — Langfuse datasets
 
-上一篇：[04.02 Observability and Evaluation](/iopanda-blog/ai/04-tooling/02/01/)——这一组先讲工具地图，再进入第一个最像“统一工作台”的产品。
+上一篇：[04.02 Observability and Evaluation](/ai/04-tooling/02/01/)——这一组先讲工具地图，再进入第一个最像“统一工作台”的产品。
 
-下一篇：[01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/02/03/)——先从定位、能力地图和适用边界开始。
+下一篇：[01 产品定位、能力地图与适用场景](/ai/04-tooling/02/03/)——先从定位、能力地图和适用边界开始。

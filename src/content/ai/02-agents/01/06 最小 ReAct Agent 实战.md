@@ -199,5 +199,5 @@ for name, arg in [("read_file", "x.txt"), ("read_file", "x.txt")]:
 - [OpenAI:Function calling 指南(从文本协议升级到结构化 tool 消息)](https://platform.openai.com/docs/guides/function-calling)
 - [Anthropic:Building effective agents(何时用 Agent、如何控复杂度)](https://www.anthropic.com/engineering/building-effective-agents)
 
-上一篇:[模型能力边界如何限制 Agent](/iopanda-blog/ai/02-agents/01/05/)——带着三条边界的认知,这一章把循环与护栏落成了可运行的代码。
-下一篇:[Agent 类型与生态全景](/iopanda-blog/ai/02-agents/01/07/)——会写最小 Agent 之后,下一章看看它在生态里还有多少种形态。
+上一篇:[模型能力边界如何限制 Agent](/ai/02-agents/01/05/)——带着三条边界的认知,这一章把循环与护栏落成了可运行的代码。
+下一篇:[Agent 类型与生态全景](/ai/02-agents/01/07/)——会写最小 Agent 之后,下一章看看它在生态里还有多少种形态。

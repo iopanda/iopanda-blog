@@ -71,5 +71,5 @@ sourceId: "3.10.2.8 Applications and Case Studies/README"
 
 ## 衔接
 
-- 上一篇：[Evaluation and Observability](/iopanda-blog/ai/02-agents/07/)——有评测显微镜后，组装并检验真实应用；
+- 上一篇：[Evaluation and Observability](/ai/02-agents/07/)——有评测显微镜后，组装并检验真实应用；
 - 下一篇：本模块是 02 Agents 收官。后续进入 `03 Frameworks`（Agent/RAG 框架纵深）与 `04 Tooling`（网关/可观测/平台工具），按需选择。

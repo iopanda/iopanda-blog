@@ -55,10 +55,10 @@ README 明确强调：Airflow works best with workflows that are mostly static a
 
 | 框架 | 第一性问题 | Airflow 相比的定位 |
 |---|---|---|
-| [Temporal](/iopanda-blog/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Airflow 更偏 DAG scheduling 和 batch orchestration |
-| [Prefect](/iopanda-blog/ai/03-frameworks/06/16/) | 如何用 Python 更自然写 resilient flows | Airflow 更偏成熟调度平台和运营视角 |
-| [Dagster](/iopanda-blog/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Airflow 更偏 task DAG，而不是 asset-first |
-| [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) | 如何围绕 triggers/integrations 做事件驱动自动化 | Airflow 更偏批处理和调度主语 |
+| [Temporal](/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Airflow 更偏 DAG scheduling 和 batch orchestration |
+| [Prefect](/ai/03-frameworks/06/16/) | 如何用 Python 更自然写 resilient flows | Airflow 更偏成熟调度平台和运营视角 |
+| [Dagster](/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Airflow 更偏 task DAG，而不是 asset-first |
+| [Kestra](/ai/03-frameworks/06/30/) | 如何围绕 triggers/integrations 做事件驱动自动化 | Airflow 更偏批处理和调度主语 |
 
 ## 5. 什么时候最自然进入 Airflow
 
@@ -88,6 +88,6 @@ README 明确强调：Airflow works best with workflows that are mostly static a
 - [11] https://github.com/apache/airflow/blob/main/README.md — Apache Airflow README
 - [12] https://github.com/apache/airflow/blob/main/INSTALLING.md — Apache Airflow installing guide
 
-上一篇：[03.06 Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/)
+上一篇：[03.06 Apache Airflow](/ai/03-frameworks/06/09/)
 
-下一篇：[02 DAG、operator、scheduler 与 executor](/iopanda-blog/ai/03-frameworks/06/11/)
+下一篇：[02 DAG、operator、scheduler 与 executor](/ai/03-frameworks/06/11/)

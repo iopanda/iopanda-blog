@@ -13,13 +13,13 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/README"
 ---
 # CrewAI
 
-> [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) 让社区第一次大规模意识到：多个 Agent 可以通过协作完成复杂任务；但它更像一个研究范式与协作思想的放大器。CrewAI 走的是另一条更产品化、也更贴近业务系统的路线：它把多 Agent 拆成两套并行抽象——**Crews** 负责角色协作，**Flows** 负责事件驱动的工作流控制。[3][11][12][13][14] 这背后隐含的工程判断非常值得开发者和架构师学习：**现实系统既需要自治协作，也需要确定性编排；只讲 Agent，不讲流程，系统会漂；只讲流程，不讲 Agent，系统又不够灵活。** CrewAI 的真正价值，就在于把这两件事摆到一个框架里同时承认。
+> [AutoGen](/ai/03-frameworks/01/11/) 让社区第一次大规模意识到：多个 Agent 可以通过协作完成复杂任务；但它更像一个研究范式与协作思想的放大器。CrewAI 走的是另一条更产品化、也更贴近业务系统的路线：它把多 Agent 拆成两套并行抽象——**Crews** 负责角色协作，**Flows** 负责事件驱动的工作流控制。[3][11][12][13][14] 这背后隐含的工程判断非常值得开发者和架构师学习：**现实系统既需要自治协作，也需要确定性编排；只讲 Agent，不讲流程，系统会漂；只讲流程，不讲 Agent，系统又不够灵活。** CrewAI 的真正价值，就在于把这两件事摆到一个框架里同时承认。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 CrewAI 为什么同时引入 Agent、Task、Crew、Flow 四层抽象；
 2. 区分 Crews 和 Flows 的职责边界，并说明它们为什么不能互相替代；
-3. 说出 CrewAI 与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 的差异；
+3. 说出 CrewAI 与 [LangGraph](/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[PydanticAI](/ai/03-frameworks/01/32/) 的差异；
 4. 用“角色协作”和“事件驱动流程”这两个视角拆一个真实业务自动化系统；
 5. 为课程助教 Agent 设计一套 CrewAI 风格的 Crew + Flow 结构图。
 
@@ -52,7 +52,7 @@ CrewAI 的双抽象，本质上是在调和这两件事：
 - **Crew** 负责“在一个开放任务里，角色之间怎么分工合作”；
 - **Flow** 负责“在一个业务系统里，何时触发、何时暂停、何时重试、何时升级”。
 
-- 这和 [02.06 Multi-Agent Systems](/iopanda-blog/ai/02-agents/06/01/) 里的结论完全一致：多 Agent 不是银弹，它只在“确实存在专长分工”时有意义；否则只会把一个问题拆成多份上下文开销。CrewAI 的价值就在于，它让你能把**自治**与**编排**放在同一个词汇表里，而不必二选一。
+- 这和 [02.06 Multi-Agent Systems](/ai/02-agents/06/01/) 里的结论完全一致：多 Agent 不是银弹，它只在“确实存在专长分工”时有意义；否则只会把一个问题拆成多份上下文开销。CrewAI 的价值就在于，它让你能把**自治**与**编排**放在同一个词汇表里，而不必二选一。
 
 ## 3. Agent 层：CrewAI 的 Agent 为什么长得像“团队成员画像”
 
@@ -124,10 +124,10 @@ Flow 的存在，等于框架公开承认了一件重要事实：
 | 框架 | 核心抽象 | 更像什么 | 长处 | 代价 |
 |---|---|---|---|---|
 | CrewAI | Agent / Task / Crew / Flow | 角色团队 + 业务流程 | 业务可读性强、角色语言自然 | 抽象层次较多，设计不清时会显得重 |
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | Node / Edge / State | 运行时状态机 | 恢复、路由、显式状态强 | 业务方可读性不如角色语义 |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | Agent / Tool / Handoff / Guardrail | 现代原语 SDK | 上手快、原语齐 | 对复杂业务流程的“组织语义”较弱 |
-| [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) | Agent / Output Type / Capabilities / Graph | 强类型工程框架 | 类型与契约强、测试友好 | 角色团队表达不如 CrewAI 直接 |
-| [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) | 角色消息协作 | 多 Agent 会话平台 | 实验协作范式强 | 对业务流程显式控制较弱 |
+| [LangGraph](/ai/03-frameworks/01/03/) | Node / Edge / State | 运行时状态机 | 恢复、路由、显式状态强 | 业务方可读性不如角色语义 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | Agent / Tool / Handoff / Guardrail | 现代原语 SDK | 上手快、原语齐 | 对复杂业务流程的“组织语义”较弱 |
+| [PydanticAI](/ai/03-frameworks/01/32/) | Agent / Output Type / Capabilities / Graph | 强类型工程框架 | 类型与契约强、测试友好 | 角色团队表达不如 CrewAI 直接 |
+| [AutoGen](/ai/03-frameworks/01/11/) | 角色消息协作 | 多 Agent 会话平台 | 实验协作范式强 | 对业务流程显式控制较弱 |
 
 一句话归纳：
 
@@ -179,7 +179,7 @@ CrewAI 不是最底层的，也不是最学术的；它吸引人的地方恰恰�
 - **误区二：Crew 可以替代 Flow。** 错。角色协作不是审批、重试、超时、回滚的替代品；
 - **误区三：Flow 可以替代 Crew。** 错。开放任务里的资料筛选、草稿生成、审阅反馈，本来就需要一定自治；
 - **误区四：把 backstory 当架构。** 角色人设写得再生动，也不等于系统边界清楚；
-- **误区五：忽略权限与治理。** CrewAI 让角色表达很自然，但危险工具、人工确认、审计日志仍然要落回 [提示注入与工具安全](/iopanda-blog/ai/01-models/07/03/)、[护栏与人工复核](/iopanda-blog/ai/01-models/07/04/) 与 [风险评审与发布](/iopanda-blog/ai/01-models/07/05/) 的纪律里。
+- **误区五：忽略权限与治理。** CrewAI 让角色表达很自然，但危险工具、人工确认、审计日志仍然要落回 [提示注入与工具安全](/ai/01-models/07/03/)、[护栏与人工复核](/ai/01-models/07/04/) 与 [风险评审与发布](/ai/01-models/07/05/) 的纪律里。
 
 ## 10. 总结
 
@@ -194,12 +194,12 @@ CrewAI 不是最底层的，也不是最学术的；它吸引人的地方恰恰�
 
 ## 11. 本目录笔记导航
 
-1. [01 Crews、Tasks 与角色协作](/iopanda-blog/ai/03-frameworks/01/19/)
-2. [02 Flows、持久化与业务自动化](/iopanda-blog/ai/03-frameworks/01/20/)
-3. [03 AgentExecutor、Reasoning、Knowledge 与 Guardrails](/iopanda-blog/ai/03-frameworks/01/21/)
-4. [04 Human Feedback、Checkpoint 与可恢复业务流程](/iopanda-blog/ai/03-frameworks/01/22/)
-5. [05 课程助教 Agent 的 CrewAI 架构案例](/iopanda-blog/ai/03-frameworks/01/23/)
-6. [06 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/24/)
+1. [01 Crews、Tasks 与角色协作](/ai/03-frameworks/01/19/)
+2. [02 Flows、持久化与业务自动化](/ai/03-frameworks/01/20/)
+3. [03 AgentExecutor、Reasoning、Knowledge 与 Guardrails](/ai/03-frameworks/01/21/)
+4. [04 Human Feedback、Checkpoint 与可恢复业务流程](/ai/03-frameworks/01/22/)
+5. [05 课程助教 Agent 的 CrewAI 架构案例](/ai/03-frameworks/01/23/)
+6. [06 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比](/ai/03-frameworks/01/24/)
 
 **思考题**：如果一个业务场景几乎没有“多角色专长分工”，只是一个 Agent 读取知识库、生成答复、经过审批后发出结果，你还会优先用 CrewAI 吗？是 Crew 的价值更大，还是 Flow 的价值更大？为什么？
 
@@ -214,6 +214,6 @@ CrewAI 不是最底层的，也不是最学术的；它吸引人的地方恰恰�
 - [13] https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx — CrewAI crews concepts
 - [14] https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx — CrewAI flows concepts
 
-上一篇：[02 AutoGen](/iopanda-blog/ai/03-frameworks/01/11/)——从多角色会话范式，进一步走向更业务化的角色团队与流程双抽象。
+上一篇：[02 AutoGen](/ai/03-frameworks/01/11/)——从多角色会话范式，进一步走向更业务化的角色团队与流程双抽象。
 
-下一篇：[04 OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)——如果说 CrewAI 想把多 Agent 做成业务团队，那么 OpenAI Agents SDK 代表的是另一条路：把现代 Agent 原语打成一套轻量但完整的运行时。
+下一篇：[04 OpenAI Agents SDK](/ai/03-frameworks/01/25/)——如果说 CrewAI 想把多 Agent 做成业务团队，那么 OpenAI Agents SDK 代表的是另一条路：把现代 Agent 原语打成一套轻量但完整的运行时。

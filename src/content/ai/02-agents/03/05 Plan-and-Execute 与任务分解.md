@@ -201,6 +201,6 @@ if __name__ == "__main__":
 - [LangChain Blog:Plan-and-Execute Agents(2024 LangGraph 版,含 ReWOO 与 LLMCompiler 对比)](https://www.langchain.com/blog/planning-agents)
 - [Kim et al., ICML 2024:An LLM Compiler for Parallel Function Calling(LLMCompiler)](https://arxiv.org/abs/2312.04511)
 
-上一篇:[ReAct 推理与行动交错](/iopanda-blog/ai/02-agents/03/04/)——本章把它的「每步临时想」升级成「先计划后执行」,各付各的账。
+上一篇:[ReAct 推理与行动交错](/ai/02-agents/03/04/)——本章把它的「每步临时想」升级成「先计划后执行」,各付各的账。
 
-下一篇:[失败处理与自我修正](/iopanda-blog/ai/02-agents/03/06/)——无论 ReAct 还是 P&E 都会失败:工具报错、结果不符、计划过期,05 章教 Agent 怎么优雅地错下去。
+下一篇:[失败处理与自我修正](/ai/02-agents/03/06/)——无论 ReAct 还是 P&E 都会失败:工具报错、结果不符、计划过期,05 章教 Agent 怎么优雅地错下去。

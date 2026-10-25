@@ -76,6 +76,6 @@ workflow lifecycle 里 timer 和 signal 也都进入正式状态推进路径。[
 - [9] https://github.com/temporalio/temporal/blob/main/docs/architecture/history-service.md — Temporal history service doc
 - [10] https://github.com/temporalio/temporal/blob/main/docs/architecture/matching-service.md — Temporal matching service doc
 
-上一篇：[01 durable workflow engine 的设计哲学](/iopanda-blog/ai/03-frameworks/06/03/)
+上一篇：[01 durable workflow engine 的设计哲学](/ai/03-frameworks/06/03/)
 
-下一篇：[03 human-in-the-loop、external events 与长时流程](/iopanda-blog/ai/03-frameworks/06/05/)
+下一篇：[03 human-in-the-loop、external events 与长时流程](/ai/03-frameworks/06/05/)

@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/03 AgentExecutor、Reasoning、Kn
 ---
 # AgentExecutor、Reasoning、Knowledge 与 Guardrails
 
-> 前两篇已经把 CrewAI 的两条主线讲清楚了：[Crew/Task/角色协作](/iopanda-blog/ai/03-frameworks/01/19/) 负责解释“谁在干活”，[Flow](/iopanda-blog/ai/03-frameworks/01/20/) 负责解释“系统怎么管活”。但如果继续往源码里看，你会发现 CrewAI 的 Agent 本体也并不轻：`agent/core.py` 顶部直接引入了 planning、knowledge retrieval、cache handler、event bus、memory events、checkpoint config、guardrail utilities、usage metrics 等模块。[11][30] 这说明一个关键事实：**CrewAI 的 Agent 不是薄薄一层 prompt 包装，而是一个把推理、知识、预算、技能、护栏和执行器揉在一起的业务角色运行单元。** 这一章专门讲这部分。
+> 前两篇已经把 CrewAI 的两条主线讲清楚了：[Crew/Task/角色协作](/ai/03-frameworks/01/19/) 负责解释“谁在干活”，[Flow](/ai/03-frameworks/01/20/) 负责解释“系统怎么管活”。但如果继续往源码里看，你会发现 CrewAI 的 Agent 本体也并不轻：`agent/core.py` 顶部直接引入了 planning、knowledge retrieval、cache handler、event bus、memory events、checkpoint config、guardrail utilities、usage metrics 等模块。[11][30] 这说明一个关键事实：**CrewAI 的 Agent 不是薄薄一层 prompt 包装，而是一个把推理、知识、预算、技能、护栏和执行器揉在一起的业务角色运行单元。** 这一章专门讲这部分。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 CrewAI 为什么把 Agent 做成带执行器、知识、推理和护栏的复杂对象；
 2. 说出 `AgentExecutor` / planning / reasoning / knowledge / guardrail 在角色对象中的职责；
 3. 理解为什么业务 Agent 的复杂度不只在多 Agent 协作，还在单 Agent 的执行边界；
-4. 比较 CrewAI Agent 与 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 的差异；
+4. 比较 CrewAI Agent 与 [OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[PydanticAI](/ai/03-frameworks/01/32/) 的差异；
 5. 为一个业务角色设计执行预算、知识接入和 guardrail 边界。
 
 ## 1. 概念：CrewAI 的 Agent 是“业务角色运行单元”，不是最小 LLM 包装
@@ -127,7 +127,7 @@ CrewAI 的 Agent 支持 `knowledge_sources`，而源码中的 `knowledge/knowled
 - 幻觉拦截；
 - 人工反馈前的预审。
 
-这与 [护栏与人工复核](/iopanda-blog/ai/01-models/07/04/) 的原则一致：护栏不是只在系统最外层拦一下，而是可以分层布置。
+这与 [护栏与人工复核](/ai/01-models/07/04/) 的原则一致：护栏不是只在系统最外层拦一下，而是可以分层布置。
 
 ## 7. usage metrics：为什么业务角色也要有预算概念
 
@@ -147,9 +147,9 @@ CrewAI 的 Agent 支持 `knowledge_sources`，而源码中的 `knowledge/knowled
 | 框架 | 单个 Agent 更像什么 | CrewAI 的位置 |
 |---|---|---|
 | CrewAI | 厚角色对象 | 角色本身承担较多业务语义与运行能力 |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | 运行时单元 | 更强调 tool/handoff/session/guardrail 原语组合 |
-| [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) | 工程组件 | 更强调类型、依赖、输出契约 |
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | 图中节点/子系统 | 更强调控制流与状态迁移 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | 运行时单元 | 更强调 tool/handoff/session/guardrail 原语组合 |
+| [PydanticAI](/ai/03-frameworks/01/32/) | 工程组件 | 更强调类型、依赖、输出契约 |
+| [LangGraph](/ai/03-frameworks/01/03/) | 图中节点/子系统 | 更强调控制流与状态迁移 |
 
 一句话：CrewAI 的 Agent 更像“会工作的岗位”，而不是“被系统调度的一个薄单元”。
 
@@ -198,6 +198,6 @@ CrewAI 的 Agent 支持 `knowledge_sources`，而源码中的 `knowledge/knowled
 - [12] https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx — CrewAI agents concepts
 - [30] https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/agent/core.py — CrewAI agent core source
 
-上一篇：[02 Flows、持久化与业务自动化](/iopanda-blog/ai/03-frameworks/01/20/)——上一章讲系统怎么管活；本篇下钻到单个角色自己是怎么“干活”的。
+上一篇：[02 Flows、持久化与业务自动化](/ai/03-frameworks/01/20/)——上一章讲系统怎么管活；本篇下钻到单个角色自己是怎么“干活”的。
 
-下一篇：[04 Human Feedback、Checkpoint 与可恢复业务流程](/iopanda-blog/ai/03-frameworks/01/22/)——角色能力立住后，下一篇继续看 CrewAI 怎样把人类反馈、持久化与恢复做进业务流程。
+下一篇：[04 Human Feedback、Checkpoint 与可恢复业务流程](/ai/03-frameworks/01/22/)——角色能力立住后，下一篇继续看 CrewAI 怎样把人类反馈、持久化与恢复做进业务流程。

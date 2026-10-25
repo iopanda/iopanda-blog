@@ -123,6 +123,6 @@ Metrics intro 文档明确提到：如果要 full-blown LLM red teaming orchestr
 - [13] https://www.deepeval.com/integrations/frameworks/langchain — DeepEval LangChain integration
 - [14] https://www.deepeval.com/integrations/frameworks/langgraph — DeepEval LangGraph integration
 
-上一篇：[01 产品定位、pytest 心智与适用场景](/iopanda-blog/ai/04-tooling/02/21/)——先理解定位，再看能力如何形成工程闭环。
+上一篇：[01 产品定位、pytest 心智与适用场景](/ai/04-tooling/02/21/)——先理解定位，再看能力如何形成工程闭环。
 
-下一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/23/)——能力之后，再回头判断它是否成熟、值不值得长期采用。
+下一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/02/23/)——能力之后，再回头判断它是否成熟、值不值得长期采用。

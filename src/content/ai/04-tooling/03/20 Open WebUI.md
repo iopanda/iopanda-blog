@@ -17,11 +17,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/04 Open WebUI/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、前台工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/21/)
-2. [02 Chat、Knowledge、Plugins、Enterprise控制与部署能力](/iopanda-blog/ai/04-tooling/03/22/)
-3. [03 质量、社区、许可与企业边界](/iopanda-blog/ai/04-tooling/03/23/)
-4. [04 与 Dify、n8n、Langflow、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/24/)
-5. [05 真实组织案例：Samsung Semiconductor、Public Storage、Astellas、JGU Mainz](/iopanda-blog/ai/04-tooling/03/25/)
+1. [01 产品定位、前台工作台心智与适用场景](/ai/04-tooling/03/21/)
+2. [02 Chat、Knowledge、Plugins、Enterprise控制与部署能力](/ai/04-tooling/03/22/)
+3. [03 质量、社区、许可与企业边界](/ai/04-tooling/03/23/)
+4. [04 与 Dify、n8n、Langflow、AnythingLLM 的竞品对比](/ai/04-tooling/03/24/)
+5. [05 真实组织案例：Samsung Semiconductor、Public Storage、Astellas、JGU Mainz](/ai/04-tooling/03/25/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/04 Open WebUI/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、前台工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/21/)
-2. [02 Chat、Knowledge、Plugins、Enterprise控制与部署能力](/iopanda-blog/ai/04-tooling/03/22/)
-3. [03 质量、社区、许可与企业边界](/iopanda-blog/ai/04-tooling/03/23/)
-4. [04 与 Dify、n8n、Langflow、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/24/)
-5. [05 真实组织案例：Samsung Semiconductor、Public Storage、Astellas、JGU Mainz](/iopanda-blog/ai/04-tooling/03/25/)
+1. [01 产品定位、前台工作台心智与适用场景](/ai/04-tooling/03/21/)
+2. [02 Chat、Knowledge、Plugins、Enterprise控制与部署能力](/ai/04-tooling/03/22/)
+3. [03 质量、社区、许可与企业边界](/ai/04-tooling/03/23/)
+4. [04 与 Dify、n8n、Langflow、AnythingLLM 的竞品对比](/ai/04-tooling/03/24/)
+5. [05 真实组织案例：Samsung Semiconductor、Public Storage、Astellas、JGU Mainz](/ai/04-tooling/03/25/)
 
 ## 引用
 
@@ -66,6 +66,6 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/04 Open WebUI/README"
 - [7] https://docs.openwebui.com/enterprise — Open WebUI enterprise
 - [8] https://docs.openwebui.com/features/ — Open WebUI features docs
 
-上一篇：[03 Langflow](/iopanda-blog/ai/04-tooling/03/14/)——上一产品代表开发者可视化构建框架路线；这一篇切到统一聊天前台与主权 AI 工作台路线。
+上一篇：[03 Langflow](/ai/04-tooling/03/14/)——上一产品代表开发者可视化构建框架路线；这一篇切到统一聊天前台与主权 AI 工作台路线。
 
-下一篇：[01 产品定位、前台工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/21/)——先从产品定位与适用边界开始。
+下一篇：[01 产品定位、前台工作台心智与适用场景](/ai/04-tooling/03/21/)——先从产品定位与适用边界开始。

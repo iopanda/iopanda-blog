@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/README"
 ---
 # PydanticAI
 
-> 很多 Agent 框架最先解决的是“怎么跑起来”，而 PydanticAI 想优先解决另一件事：**跑起来以后，怎么像一个正经 Python 后端系统那样维护下去。** 它把自己定义为 the Python AI SDK：typed、extensible，agent loop 可以通过 capabilities 组合，模型可字符串级替换，同一个 Agent 可运行在 web、CLI、voice、durable background queue 等不同界面里。[5][19] 更进一步，它并不把 graph、multi-agent、durable execution、structured output、usage limits 当作框架外的附属物，而是把它们逐步纳入同一个工程词汇表。[20][21][22][23] 如果说 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 的强项是现代运行时原语，PydanticAI 的强项就是：**把这些原语放进 Python 工程纪律里，尽量让 IDE、类型系统、校验器和运行时站到同一边。**
+> 很多 Agent 框架最先解决的是“怎么跑起来”，而 PydanticAI 想优先解决另一件事：**跑起来以后，怎么像一个正经 Python 后端系统那样维护下去。** 它把自己定义为 the Python AI SDK：typed、extensible，agent loop 可以通过 capabilities 组合，模型可字符串级替换，同一个 Agent 可运行在 web、CLI、voice、durable background queue 等不同界面里。[5][19] 更进一步，它并不把 graph、multi-agent、durable execution、structured output、usage limits 当作框架外的附属物，而是把它们逐步纳入同一个工程词汇表。[20][21][22][23] 如果说 [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 的强项是现代运行时原语，PydanticAI 的强项就是：**把这些原语放进 Python 工程纪律里，尽量让 IDE、类型系统、校验器和运行时站到同一边。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 PydanticAI 为什么把类型、依赖和输出契约视为一等公民；
 2. 说出 Agent、output_type、deps_type、capabilities、graph、durable execution 在框架中的位置；
 3. 理解它为什么对 Python 后端团队特别友好，而不只是“另一个 Agent SDK”；
-4. 区分它与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) 的差别；
+4. 区分它与 [LangGraph](/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[CrewAI](/ai/03-frameworks/01/18/) 的差别；
 5. 为一个开发者向课程助教 Agent 写出 PydanticAI 风格的工程边界设计。
 
 ## 1. 概念：PydanticAI 的中心不是“Agent 会不会思考”，而是“代码有没有契约”
@@ -97,7 +97,7 @@ PydanticAI 文档把 capabilities 定义为可重用的 bundles：可以把 tool
 
 与同类相比：
 
-- [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 也有丰富原语，但更强调统一运行时概念；
+- [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 也有丰富原语，但更强调统一运行时概念；
 - PydanticAI 则更强调能力组合与类型契约在 Python 代码里的可维护性。
 
 ## 5. Graph：为什么它明明不是图框架，却仍然提供 graph
@@ -110,7 +110,7 @@ PydanticAI 文档对 graph 的态度非常有趣，甚至有点“反营销”�
 - 但 graph 也更重；
 - 先确认自己真的有复杂控制流问题，再上 graph。
 
-这和 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) 正好形成鲜明对照：
+这和 [LangGraph](/ai/03-frameworks/01/03/) 正好形成鲜明对照：
 
 - LangGraph 从一开始就把 graph 当主舞台；
 - PydanticAI 把 graph 当高级控制工具，而不是默认入口。
@@ -144,7 +144,7 @@ PydanticAI 文档把多 Agent 应用的复杂度分成五个层级：
 
 这个分层非常值得记住，因为它体现了 PydanticAI 的整体哲学：**复杂度应该渐进升级，而不是一开始就堆到最高档。**
 
-与 [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) 那种天然从多 Agent 出发的框架不同，PydanticAI 更像在说：
+与 [AutoGen](/ai/03-frameworks/01/11/) 那种天然从多 Agent 出发的框架不同，PydanticAI 更像在说：
 
 - 先把单 Agent 工程做好；
 - 再引入 delegation；
@@ -159,10 +159,10 @@ PydanticAI 文档把多 Agent 应用的复杂度分成五个层级：
 | 框架 | 设计中心 | 更像什么 | 最吸引谁 |
 |---|---|---|---|
 | PydanticAI | 类型、输出契约、依赖、能力组合 | AI 版 FastAPI / typed runtime | Python 后端团队 |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | 现代 Agent 原语统一运行时 | battery-included SDK | 产品型 Agent 团队 |
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | 图、状态、恢复 | 编排运行时 | 控制流复杂的团队 |
-| [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 角色团队与流程 | 业务自动化框架 | 组织协作明确的团队 |
-| [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) | 多 Agent 对话与消息协作 | 协作范式先驱 | 研究/迁移视角的团队 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | 现代 Agent 原语统一运行时 | battery-included SDK | 产品型 Agent 团队 |
+| [LangGraph](/ai/03-frameworks/01/03/) | 图、状态、恢复 | 编排运行时 | 控制流复杂的团队 |
+| [CrewAI](/ai/03-frameworks/01/18/) | 角色团队与流程 | 业务自动化框架 | 组织协作明确的团队 |
+| [AutoGen](/ai/03-frameworks/01/11/) | 多 Agent 对话与消息协作 | 协作范式先驱 | 研究/迁移视角的团队 |
 
 一句话概括：PydanticAI 不是最强调“Agent 像人”，而是最强调“Agent 像系统组件”。
 
@@ -191,7 +191,7 @@ PydanticAI 文档把多 Agent 应用的复杂度分成五个层级：
 - **误区二：什么都抽成 capability。** 组合能力有价值，但抽象过度会让系统变得难追踪；
 - **误区三：明明只是单 Agent，却过早上 graph。** PydanticAI 官方自己都提醒 graph 是重工具，不要为了酷而用；
 - **误区四：只看 Python 体验，不看运行时需求。** 如果你的核心矛盾是超复杂状态图恢复，LangGraph 也许更贴切；
-- **误区五：以为 typed output 就能替代人工复核。** 结构化正确，不等于业务判断安全，尤其涉及隐私、授权和不可逆动作时仍要回到 [提示注入与工具安全](/iopanda-blog/ai/01-models/07/03/)、[护栏与人工复核](/iopanda-blog/ai/01-models/07/04/) 与 [风险评审与发布](/iopanda-blog/ai/01-models/07/05/)。
+- **误区五：以为 typed output 就能替代人工复核。** 结构化正确，不等于业务判断安全，尤其涉及隐私、授权和不可逆动作时仍要回到 [提示注入与工具安全](/ai/01-models/07/03/)、[护栏与人工复核](/ai/01-models/07/04/) 与 [风险评审与发布](/ai/01-models/07/05/)。
 
 ## 11. 总结
 
@@ -206,12 +206,12 @@ PydanticAI 文档把多 Agent 应用的复杂度分成五个层级：
 
 ## 12. 本目录笔记导航
 
-1. [01 类型系统、依赖注入与输出契约](/iopanda-blog/ai/03-frameworks/01/33/)
-2. [02 Graph、Durable Execution 与工程化升级](/iopanda-blog/ai/03-frameworks/01/34/)
-3. [03 Tools、Capabilities、Usage Limits 与取消语义](/iopanda-blog/ai/03-frameworks/01/35/)
-4. [04 Realtime、Examples、Evals 与多 Agent 形态](/iopanda-blog/ai/03-frameworks/01/36/)
-5. [05 课程助教 Agent 的 PydanticAI 架构案例](/iopanda-blog/ai/03-frameworks/01/37/)
-6. [06 PydanticAI 与 LangGraph、CrewAI、OpenAI Agents SDK 的深度对比](/iopanda-blog/ai/03-frameworks/01/38/)
+1. [01 类型系统、依赖注入与输出契约](/ai/03-frameworks/01/33/)
+2. [02 Graph、Durable Execution 与工程化升级](/ai/03-frameworks/01/34/)
+3. [03 Tools、Capabilities、Usage Limits 与取消语义](/ai/03-frameworks/01/35/)
+4. [04 Realtime、Examples、Evals 与多 Agent 形态](/ai/03-frameworks/01/36/)
+5. [05 课程助教 Agent 的 PydanticAI 架构案例](/ai/03-frameworks/01/37/)
+6. [06 PydanticAI 与 LangGraph、CrewAI、OpenAI Agents SDK 的深度对比](/ai/03-frameworks/01/38/)
 
 **思考题**：如果你的团队最痛的不是“模型效果不够”，而是“下游常因输出不稳定而报错、依赖注入混乱、测试难写、成本难控”，你会更偏向 PydanticAI 还是更偏向以控制流为中心的框架？为什么？如果半年后流程复杂度陡增，需要人工插入和长时恢复，你的答案会怎么变？
 
@@ -229,6 +229,6 @@ PydanticAI 文档把多 Agent 应用的复杂度分成五个层级：
 - [4] https://github.com/openai/openai-agents-python — OpenAI Agents SDK GitHub
 - [15] https://openai.github.io/openai-agents-python — OpenAI Agents SDK docs
 
-上一篇：[04 OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)——上一章强调现代 Agent 原语的一体化；本章把视角压回 Python 工程契约。
+上一篇：[04 OpenAI Agents SDK](/ai/03-frameworks/01/25/)——上一章强调现代 Agent 原语的一体化；本章把视角压回 Python 工程契约。
 
-下一篇：[06 Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)——把前五篇画像收口成真正可用于架构决策的横向对比与选型方法。
+下一篇：[06 Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)——把前五篇画像收口成真正可用于架构决策的横向对比与选型方法。

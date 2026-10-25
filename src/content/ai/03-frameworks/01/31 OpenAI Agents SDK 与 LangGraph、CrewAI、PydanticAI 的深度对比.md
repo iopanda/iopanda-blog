@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/06 OpenAI Agents SDK �
 ---
 # OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比
 
-> 到这里，OpenAI Agents SDK 自身已经拆得够细了：[运行时原语](/iopanda-blog/ai/03-frameworks/01/26/)、[产品边界](/iopanda-blog/ai/03-frameworks/01/27/)、[委托与工具生态](/iopanda-blog/ai/03-frameworks/01/28/)、[应用形态](/iopanda-blog/ai/03-frameworks/01/29/)、[课程助教案例](/iopanda-blog/ai/03-frameworks/01/30/)。这一篇不再讲“它有哪些 feature”，而是回答一个更值钱的问题：**它到底在整个框架版图里站在哪里？** 也就是说：当你同时面对 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 时，OpenAI Agents SDK 的独特性究竟是什么？
+> 到这里，OpenAI Agents SDK 自身已经拆得够细了：[运行时原语](/ai/03-frameworks/01/26/)、[产品边界](/ai/03-frameworks/01/27/)、[委托与工具生态](/ai/03-frameworks/01/28/)、[应用形态](/ai/03-frameworks/01/29/)、[课程助教案例](/ai/03-frameworks/01/30/)。这一篇不再讲“它有哪些 feature”，而是回答一个更值钱的问题：**它到底在整个框架版图里站在哪里？** 也就是说：当你同时面对 [LangGraph](/ai/03-frameworks/01/03/)、[CrewAI](/ai/03-frameworks/01/18/)、[PydanticAI](/ai/03-frameworks/01/32/) 时，OpenAI Agents SDK 的独特性究竟是什么？
 
 **学习目标**：学完本章，你将能够——
 
@@ -228,6 +228,6 @@ OpenAI Agents SDK 更先问：
 - [4] https://github.com/openai/openai-agents-python — OpenAI Agents SDK GitHub
 - [15] https://openai.github.io/openai-agents-python — OpenAI Agents SDK docs
 
-上一篇：[05 课程助教 Agent 的 OpenAI Agents SDK 架构案例](/iopanda-blog/ai/03-frameworks/01/30/)——案例说明了 runtime 原语怎样落地；本篇则反过来说明它在整个版图中的位置。
+上一篇：[05 课程助教 Agent 的 OpenAI Agents SDK 架构案例](/ai/03-frameworks/01/30/)——案例说明了 runtime 原语怎样落地；本篇则反过来说明它在整个版图中的位置。
 
-下一篇：回到 [06 Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)，把 OpenAI Agents SDK 放回 top5 全局版图中复核。
+下一篇：回到 [06 Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)，把 OpenAI Agents SDK 放回 top5 全局版图中复核。

@@ -147,6 +147,6 @@ sourceId: "3.10.2.1 Foundations/02 Agent 为什么现在才热"
 - [arXiv:2210.03629——ReAct:在语言模型中协同推理与行动](https://arxiv.org/abs/2210.03629)
 - [Lilian Weng:LLM Powered Autonomous Agents(2023.06)](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
-上一篇:[Agent 的定义与组成](/iopanda-blog/ai/02-agents/01/02/)——先有「Agent 是什么、由什么组成」,才能问「为什么是现在才热」。
+上一篇:[Agent 的定义与组成](/ai/02-agents/01/02/)——先有「Agent 是什么、由什么组成」,才能问「为什么是现在才热」。
 
-下一篇:[Agent 运行循环](/iopanda-blog/ai/02-agents/01/04/)——知道了它为什么 2023 年爆发,下一章看它内部到底怎么一圈圈转起来。
+下一篇:[Agent 运行循环](/ai/02-agents/01/04/)——知道了它为什么 2023 年爆发,下一章看它内部到底怎么一圈圈转起来。

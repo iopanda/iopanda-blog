@@ -17,11 +17,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/05 Ragas/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、RAG 专用视角与适用场景](/iopanda-blog/ai/04-tooling/02/27/)
-2. [02 Metrics、Test Generation、Feedback Loops 与集成能力](/iopanda-blog/ai/04-tooling/02/28/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/02/29/)
-4. [04 与 DeepEval、Langfuse、Phoenix 的竞品对比](/iopanda-blog/ai/04-tooling/02/30/)
-5. [05 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile](/iopanda-blog/ai/04-tooling/02/31/)
+1. [01 产品定位、RAG 专用视角与适用场景](/ai/04-tooling/02/27/)
+2. [02 Metrics、Test Generation、Feedback Loops 与集成能力](/ai/04-tooling/02/28/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/02/29/)
+4. [04 与 DeepEval、Langfuse、Phoenix 的竞品对比](/ai/04-tooling/02/30/)
+5. [05 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile](/ai/04-tooling/02/31/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/05 Ragas/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、RAG 专用视角与适用场景](/iopanda-blog/ai/04-tooling/02/27/)
-2. [02 Metrics、Test Generation、Feedback Loops 与集成能力](/iopanda-blog/ai/04-tooling/02/28/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/02/29/)
-4. [04 与 DeepEval、Langfuse、Phoenix 的竞品对比](/iopanda-blog/ai/04-tooling/02/30/)
-5. [05 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile](/iopanda-blog/ai/04-tooling/02/31/)
+1. [01 产品定位、RAG 专用视角与适用场景](/ai/04-tooling/02/27/)
+2. [02 Metrics、Test Generation、Feedback Loops 与集成能力](/ai/04-tooling/02/28/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/02/29/)
+4. [04 与 DeepEval、Langfuse、Phoenix 的竞品对比](/ai/04-tooling/02/30/)
+5. [05 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile](/ai/04-tooling/02/31/)
 
 ## 引用
 
@@ -63,6 +63,6 @@ sourceId: "3.10.4.2 Observability and Evaluation/05 Ragas/README"
 - [4] https://docs.ragas.io/en/latest/ — Ragas docs home
 - [5] https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/ — Ragas metrics docs
 
-上一篇：[04 DeepEval](/iopanda-blog/ai/04-tooling/02/20/)——上一产品代表通用、代码优先的评测框架；这一篇切到更聚焦 RAG 的专用评测路线。
+上一篇：[04 DeepEval](/ai/04-tooling/02/20/)——上一产品代表通用、代码优先的评测框架；这一篇切到更聚焦 RAG 的专用评测路线。
 
-下一篇：[01 产品定位、RAG 专用视角与适用场景](/iopanda-blog/ai/04-tooling/02/27/)——先从定位、适用边界与 RAG 专用视角开始。
+下一篇：[01 产品定位、RAG 专用视角与适用场景](/ai/04-tooling/02/27/)——先从定位、适用边界与 RAG 专用视角开始。

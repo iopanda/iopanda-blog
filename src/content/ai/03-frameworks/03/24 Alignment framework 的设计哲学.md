@@ -59,9 +59,9 @@ TRL 就是在做这件事。
 
 | 框架 | 第一性问题 | TRL 相比的定位 |
 |---|---|---|
-| [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) | 如何统一训练工厂 | TRL 更关心 post-training 行为优化 |
-| [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) | 如何先跑起来、提速、省显存 | TRL 更关心 alignment 方法本身 |
-| [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) | 如何组织参数高效微调能力 | TRL 更像任务层，PEFT 更像方法层 |
+| [LLaMA-Factory](/ai/03-frameworks/03/02/) | 如何统一训练工厂 | TRL 更关心 post-training 行为优化 |
+| [Unsloth](/ai/03-frameworks/03/09/) | 如何先跑起来、提速、省显存 | TRL 更关心 alignment 方法本身 |
+| [PEFT](/ai/03-frameworks/03/16/) | 如何组织参数高效微调能力 | TRL 更像任务层，PEFT 更像方法层 |
 
 一句话：TRL 在问“模型应该怎样变得更对”，不是只问“模型怎样被训练”。
 
@@ -93,6 +93,6 @@ TRL 就是在做这件事。
 - [18] https://github.com/huggingface/trl/blob/main/README.md — TRL README
 - [19] https://github.com/huggingface/trl/blob/main/docs/source/quickstart.md — TRL quickstart
 
-上一篇：[04 TRL](/iopanda-blog/ai/03-frameworks/03/23/)
+上一篇：[04 TRL](/ai/03-frameworks/03/23/)
 
-下一篇：[02 SFT、DPO、PPO、Reward Modeling 的统一视角](/iopanda-blog/ai/03-frameworks/03/25/)
+下一篇：[02 SFT、DPO、PPO、Reward Modeling 的统一视角](/ai/03-frameworks/03/25/)

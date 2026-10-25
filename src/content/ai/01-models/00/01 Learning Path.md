@@ -152,6 +152,6 @@ sourceId: "00 Learning Path"
 
 # 引用
 
-- [什么是 AI 模型](/iopanda-blog/ai/01-models/01/01/)
+- [什么是 AI 模型](/ai/01-models/01/01/)
 - [PyTorch Tutorials](https://pytorch.org/tutorials/)
 - [Hugging Face Course](https://huggingface.co/learn)

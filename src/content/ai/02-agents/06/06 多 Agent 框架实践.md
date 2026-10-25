@@ -248,5 +248,5 @@ if __name__ == "__main__":
 - [Microsoft Agent Framework 官方博客(AutoGen 与 Semantic Kernel 合流,1.0 发布)](https://devblogs.microsoft.com/agent-framework/)
 - [Anthropic:Building Effective Agents(对框架与复杂度的提醒)](https://www.anthropic.com/engineering/building-effective-agents)
 
-上一篇:[Agent 间通信与协议](/iopanda-blog/ai/02-agents/06/05/)——04 章把消息、schema、超时做成你自己的信道;本章把「执行层」交给框架:状态、循环、检查点、人工介入,一行配置换十年重造。
-下一篇:[多 Agent 的失败模式与选型](/iopanda-blog/ai/02-agents/06/07/)——框架跑通了不等于该跑:级联错误、上下文污染、成本失控……下一章讲多 Agent 怎么坏,以及什么时候根本不该用它。
+上一篇:[Agent 间通信与协议](/ai/02-agents/06/05/)——04 章把消息、schema、超时做成你自己的信道;本章把「执行层」交给框架:状态、循环、检查点、人工介入,一行配置换十年重造。
+下一篇:[多 Agent 的失败模式与选型](/ai/02-agents/06/07/)——框架跑通了不等于该跑:级联错误、上下文污染、成本失控……下一章讲多 Agent 怎么坏,以及什么时候根本不该用它。

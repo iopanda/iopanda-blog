@@ -70,6 +70,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.1 vLLM/05 课程�
 - [14] https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/openai_compatible_server.md — vLLM OpenAI-compatible server doc
 - [15] https://github.com/vllm-project/vllm/blob/main/docs/features/structured_outputs.md — vLLM structured outputs doc
 
-上一篇：[04 吞吐、延迟、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/04/06/)
+上一篇：[04 吞吐、延迟、可观测性与工程边界](/ai/03-frameworks/04/06/)
 
-下一篇：[06 vLLM 与 SGLang、TensorRT-LLM、llama.cpp、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/08/)
+下一篇：[06 vLLM 与 SGLang、TensorRT-LLM、llama.cpp、Triton 的深度对比](/ai/03-frameworks/04/08/)

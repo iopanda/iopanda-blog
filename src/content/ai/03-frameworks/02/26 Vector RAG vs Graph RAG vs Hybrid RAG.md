@@ -57,6 +57,6 @@ hybrid / mix 的价值正在于：
 
 - [72] https://github.com/HKUDS/LightRAG/blob/main/README.md — LightRAG README
 
-上一篇：[02 Entity、Relation、Chunk 与 Graph-aware Retrieval](/iopanda-blog/ai/03-frameworks/02/25/)
+上一篇：[02 Entity、Relation、Chunk 与 Graph-aware Retrieval](/ai/03-frameworks/02/25/)
 
-下一篇：[04 性能、复杂度与适用边界](/iopanda-blog/ai/03-frameworks/02/27/)
+下一篇：[04 性能、复杂度与适用边界](/ai/03-frameworks/02/27/)

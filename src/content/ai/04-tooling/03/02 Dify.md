@@ -17,11 +17,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/01 Dify/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、平台心智与适用场景](/iopanda-blog/ai/04-tooling/03/03/)
-2. [02 Workflow、Knowledge Pipeline、LLMOps 与部署能力](/iopanda-blog/ai/04-tooling/03/04/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/03/05/)
-4. [04 与 n8n、Langflow、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/06/)
-5. [05 真实组织案例：Volvo Cars、ETS与若干官网公开企业客户](/iopanda-blog/ai/04-tooling/03/07/)
+1. [01 产品定位、平台心智与适用场景](/ai/04-tooling/03/03/)
+2. [02 Workflow、Knowledge Pipeline、LLMOps 与部署能力](/ai/04-tooling/03/04/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/03/05/)
+4. [04 与 n8n、Langflow、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/06/)
+5. [05 真实组织案例：Volvo Cars、ETS与若干官网公开企业客户](/ai/04-tooling/03/07/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/01 Dify/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、平台心智与适用场景](/iopanda-blog/ai/04-tooling/03/03/)
-2. [02 Workflow、Knowledge Pipeline、LLMOps 与部署能力](/iopanda-blog/ai/04-tooling/03/04/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/03/05/)
-4. [04 与 n8n、Langflow、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/06/)
-5. [05 真实组织案例：Volvo Cars、ETS与若干官网公开企业客户](/iopanda-blog/ai/04-tooling/03/07/)
+1. [01 产品定位、平台心智与适用场景](/ai/04-tooling/03/03/)
+2. [02 Workflow、Knowledge Pipeline、LLMOps 与部署能力](/ai/04-tooling/03/04/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/03/05/)
+4. [04 与 n8n、Langflow、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/06/)
+5. [05 真实组织案例：Volvo Cars、ETS与若干官网公开企业客户](/ai/04-tooling/03/07/)
 
 ## 引用
 
@@ -64,6 +64,6 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/01 Dify/README"
 - [5] https://dify.ai/pricing — Dify pricing
 - [8] https://docs.dify.ai/getting-started/install-self-hosted — Dify self-host docs
 
-上一篇：[04.03 Application Platforms and Workflows](/iopanda-blog/ai/04-tooling/03/01/)——先看整组地图，再进入第一个最像完整业务平台的产品。
+上一篇：[04.03 Application Platforms and Workflows](/ai/04-tooling/03/01/)——先看整组地图，再进入第一个最像完整业务平台的产品。
 
-下一篇：[01 产品定位、平台心智与适用场景](/iopanda-blog/ai/04-tooling/03/03/)——先从平台定位与适用边界开始。
+下一篇：[01 产品定位、平台心智与适用场景](/ai/04-tooling/03/03/)——先从平台定位与适用边界开始。

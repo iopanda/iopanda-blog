@@ -113,6 +113,6 @@ APISIX 最强的地方，不是某一个 AI 功能特别新，而是：
 - [3] https://raw.githubusercontent.com/BerriAI/litellm/main/README.md — LiteLLM README
 - [4] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/README.md — Envoy AI Gateway README
 
-上一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/01/17/)——知道它够不够成熟之后，再看它和不同路线的差别。
+上一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/01/17/)——知道它够不够成熟之后，再看它和不同路线的差别。
 
-下一篇：[05 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全](/iopanda-blog/ai/04-tooling/01/19/)——最后从公开实践与企业采用信号看它通常如何被使用。
+下一篇：[05 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全](/ai/04-tooling/01/19/)——最后从公开实践与企业采用信号看它通常如何被使用。

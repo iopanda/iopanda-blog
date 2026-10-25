@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/03 Tools、Capabilities、Usa
 ---
 # Tools、Capabilities、Usage Limits 与取消语义
 
-> 前两篇已经把 PydanticAI 的两条主线立住了：[类型/依赖/输出契约](/iopanda-blog/ai/03-frameworks/01/33/) 解决“系统怎么写得稳”，[graph/durable execution](/iopanda-blog/ai/03-frameworks/01/34/) 解决“复杂度上来以后怎么升级”。但如果继续往 docs 和源码里看，会发现它还有另一组非常工程化的能力：tools / toolsets / capabilities / usage limits / cancellation。`docs/tools.md` 明确把工具分成 decorator、工具参数、toolsets 与 combined toolset 路线，并强调 function tools 本质上是比 RAG 更一般化的能力增强。[34] `_run_context.py` 和 `_cancel.py` 又显示出 usage limits、validation context、tracer、cancellation token 都是运行时一等成员。[35] 这说明 PydanticAI 想解决的，不只是“Agent 会不会返回正确结构”，还包括：**能力怎么组合，预算怎么约束，运行怎么中断，系统怎么不在长时间执行里失控。**
+> 前两篇已经把 PydanticAI 的两条主线立住了：[类型/依赖/输出契约](/ai/03-frameworks/01/33/) 解决“系统怎么写得稳”，[graph/durable execution](/ai/03-frameworks/01/34/) 解决“复杂度上来以后怎么升级”。但如果继续往 docs 和源码里看，会发现它还有另一组非常工程化的能力：tools / toolsets / capabilities / usage limits / cancellation。`docs/tools.md` 明确把工具分成 decorator、工具参数、toolsets 与 combined toolset 路线，并强调 function tools 本质上是比 RAG 更一般化的能力增强。[34] `_run_context.py` 和 `_cancel.py` 又显示出 usage limits、validation context、tracer、cancellation token 都是运行时一等成员。[35] 这说明 PydanticAI 想解决的，不只是“Agent 会不会返回正确结构”，还包括：**能力怎么组合，预算怎么约束，运行怎么中断，系统怎么不在长时间执行里失控。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 PydanticAI 为什么把 tools、toolsets、capabilities 视为不同层次的能力抽象；
 2. 理解 UsageLimits 为什么应被视为运行时治理能力，而不是计费附属信息；
 3. 说出 CancellationToken / run cancellation 为什么对长时 Agent 很重要；
-4. 比较它与 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 在 runtime 原语上的区别；
+4. 比较它与 [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 在 runtime 原语上的区别；
 5. 为一个真实 Agent 设计能力组合、预算边界与取消策略。
 
 ## 1. tools：为什么它在 PydanticAI 里首先是“可验证能力”，不是随手函数
@@ -49,7 +49,7 @@ PydanticAI 把这几层抽象区分得很清楚：[34]
 - 有时你需要一个工具域；
 - 有时你需要一整簇行为、约束和上下文处理。
 
-这与 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 的思路不同：后者更像统一 runtime primitives，PydanticAI 则更像在做**typed composition ladder**。
+这与 [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 的思路不同：后者更像统一 runtime primitives，PydanticAI 则更像在做**typed composition ladder**。
 
 ## 3. 为什么 function tools 文档会专门拿 RAG 作对比
 
@@ -213,6 +213,6 @@ OpenAI Agents SDK 也有：
 - [34] https://github.com/pydantic/pydantic-ai/blob/main/docs/tools.md — Pydantic AI tools doc
 - [35] https://github.com/pydantic/pydantic-ai/blob/main/pydantic_ai_slim/pydantic_ai/_cancel.py — Pydantic AI cancellation source
 
-上一篇：[02 Graph、Durable Execution 与工程化升级](/iopanda-blog/ai/03-frameworks/01/34/)——图与 durable 路线解释了复杂度怎么升级；本篇继续下钻能力组合、预算与取消这些运行时纪律。
+上一篇：[02 Graph、Durable Execution 与工程化升级](/ai/03-frameworks/01/34/)——图与 durable 路线解释了复杂度怎么升级；本篇继续下钻能力组合、预算与取消这些运行时纪律。
 
-下一篇：[04 Realtime、Examples、Evals 与多 Agent 形态](/iopanda-blog/ai/03-frameworks/01/36/)——运行纪律立住后，下一篇再看它如何覆盖 realtime、examples、评测与多 Agent 产品形态。
+下一篇：[04 Realtime、Examples、Evals 与多 Agent 形态](/ai/03-frameworks/01/36/)——运行纪律立住后，下一篇再看它如何覆盖 realtime、examples、评测与多 Agent 产品形态。

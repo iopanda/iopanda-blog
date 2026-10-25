@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/06 Agent Framework 选型矩阵"
 ---
 # Agent Framework 选型矩阵
 
-> 前五篇分别拆了 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[AutoGen](/iopanda-blog/ai/03-frameworks/01/11/)、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 的设计中心：有的先抓状态图，有的先抓角色协作，有的先抓现代运行时原语，有的先抓类型与工程契约。读到这里，开发者和架构师最需要的已经不是“再认识一个框架”，而是回答一个更难、也更值钱的问题：**面对真实项目，为什么选它，而不是别的？** 本章把前五篇收口成一张选型矩阵：从任务形态、控制流复杂度、错误代价、团队语言栈、治理要求、迁移成本六个维度，给出面向工程决策的判断框架，并补上一条经常被忽略但最重要的结论——很多场景里，你真正该选的不是“最强框架”，而是“最少后悔的框架”。[1][2][3][4][5][24]
+> 前五篇分别拆了 [LangGraph](/ai/03-frameworks/01/03/)、[AutoGen](/ai/03-frameworks/01/11/)、[CrewAI](/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[PydanticAI](/ai/03-frameworks/01/32/) 的设计中心：有的先抓状态图，有的先抓角色协作，有的先抓现代运行时原语，有的先抓类型与工程契约。读到这里，开发者和架构师最需要的已经不是“再认识一个框架”，而是回答一个更难、也更值钱的问题：**面对真实项目，为什么选它，而不是别的？** 本章把前五篇收口成一张选型矩阵：从任务形态、控制流复杂度、错误代价、团队语言栈、治理要求、迁移成本六个维度，给出面向工程决策的判断框架，并补上一条经常被忽略但最重要的结论——很多场景里，你真正该选的不是“最强框架”，而是“最少后悔的框架”。[1][2][3][4][5][24]
 
 **学习目标**：学完本章，你将能够——
 
@@ -36,7 +36,7 @@ sourceId: "3.10.3.1 Agent Frameworks/06 Agent Framework 选型矩阵"
 
 ## 2. 为什么需要矩阵：同样叫 Agent，死法完全不同
 
-在 [02 Agents](/iopanda-blog/ai/03-frameworks/01/01/) 里我们已经见过，Agent 的失败从来不只有一种：
+在 [02 Agents](/ai/03-frameworks/01/01/) 里我们已经见过，Agent 的失败从来不只有一种：
 
 - 有的死在上下文失控；
 - 有的死在工具越权；
@@ -49,10 +49,10 @@ sourceId: "3.10.3.1 Agent Frameworks/06 Agent Framework 选型矩阵"
 
 | 首要风险 | 更自然的框架倾向 | 解释 |
 |---|---|---|
-| 长流程、复杂分支、失败恢复 | [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | 图、状态、checkpoint 是它的主战场 [1][6] |
-| 多角色协作与对话分工 | [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) / [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 前者偏协作范式，后者偏业务团队 [2][8][12][13] |
-| 现代 Agent 原语快速集成 | [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | tools、handoffs、guardrails、sessions、tracing 一盒给齐 [15][16][17][18] |
-| Python 工程契约、typed output、依赖治理 | [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) | 类型、依赖、capabilities、usage limits 是强项 [19][20][23] |
+| 长流程、复杂分支、失败恢复 | [LangGraph](/ai/03-frameworks/01/03/) | 图、状态、checkpoint 是它的主战场 [1][6] |
+| 多角色协作与对话分工 | [AutoGen](/ai/03-frameworks/01/11/) / [CrewAI](/ai/03-frameworks/01/18/) | 前者偏协作范式，后者偏业务团队 [2][8][12][13] |
+| 现代 Agent 原语快速集成 | [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | tools、handoffs、guardrails、sessions、tracing 一盒给齐 [15][16][17][18] |
+| Python 工程契约、typed output、依赖治理 | [PydanticAI](/ai/03-frameworks/01/32/) | 类型、依赖、capabilities、usage limits 是强项 [19][20][23] |
 
 因此矩阵的作用，不是排榜单，而是把“不同死法 → 不同优先框架”这件事讲清楚。
 
@@ -62,10 +62,10 @@ sourceId: "3.10.3.1 Agent Frameworks/06 Agent Framework 选型矩阵"
 
 | 任务形态 | 更像什么 | 优先想到 |
 |---|---|---|
-| 单 Agent 问答 + 少量工具 | 轻应用 | [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) / [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) |
-| 角色明确的业务自动化 | 团队协作 | [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) |
-| 长流程、多分支、多中断点 | 有状态运行时 | [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) |
-| 多代理研究/实验/遗留协作系统 | 会话式多 Agent | [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) |
+| 单 Agent 问答 + 少量工具 | 轻应用 | [OpenAI Agents SDK](/ai/03-frameworks/01/25/) / [PydanticAI](/ai/03-frameworks/01/32/) |
+| 角色明确的业务自动化 | 团队协作 | [CrewAI](/ai/03-frameworks/01/18/) |
+| 长流程、多分支、多中断点 | 有状态运行时 | [LangGraph](/ai/03-frameworks/01/03/) |
+| 多代理研究/实验/遗留协作系统 | 会话式多 Agent | [AutoGen](/ai/03-frameworks/01/11/) |
 
 第一问永远不是“哪家最火”，而是“我的系统更像哪种东西”。系统形态错判，后面所有 API 比较都失去意义。
 
@@ -100,11 +100,11 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 
 | 框架 | 默认一等公民 | 最强点 | 最大代价 | 最适合 | 最不适合 |
 |---|---|---|---|---|---|
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | 图、状态、恢复、人审 | 长流程与复杂控制流可显式化 [1][6] | 建模成本高，小任务显得重 | 复杂业务流程、审批、恢复、持久状态 | 只有一两步的小 Agent |
-| [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) | 多 Agent 会话与事件协作 | 理解和实验多角色协作很自然 [2][8][9] | 2026 已 maintenance mode，绿地项目风险高 [2][10] | 教学、研究、遗留系统维护 | 新项目长期主干框架 |
-| [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 角色团队 + 流程双抽象 | 业务语义强，适合角色协作自动化 [3][12][13][14] | 抽象层次多，设计不清时会“既像人又像流，结果两头都重” | 组织结构明确、任务分工清晰的自动化系统 | 没有角色专长拆分的简单单 Agent |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | tools / handoffs / guardrails / sessions / tracing | 现代 Agent 原语一体化，产品落地快 [15][16][17][18] | 对超复杂显式状态图的表达不如 LangGraph 直接 | 多终端、多模态、快速产品化的 Agent 应用 | 极重流程控制、状态恢复主导的系统 |
-| [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) | 类型、依赖、输出契约、能力组合 | Python 工程纪律强，typed output 和依赖治理清晰 [19][20][23] | 若团队不重类型或不在 Python 主栈，优势会被削弱 | Python 后端团队、重测试与可维护性场景 | 只求快速原型、对契约不敏感的临时项目 |
+| [LangGraph](/ai/03-frameworks/01/03/) | 图、状态、恢复、人审 | 长流程与复杂控制流可显式化 [1][6] | 建模成本高，小任务显得重 | 复杂业务流程、审批、恢复、持久状态 | 只有一两步的小 Agent |
+| [AutoGen](/ai/03-frameworks/01/11/) | 多 Agent 会话与事件协作 | 理解和实验多角色协作很自然 [2][8][9] | 2026 已 maintenance mode，绿地项目风险高 [2][10] | 教学、研究、遗留系统维护 | 新项目长期主干框架 |
+| [CrewAI](/ai/03-frameworks/01/18/) | 角色团队 + 流程双抽象 | 业务语义强，适合角色协作自动化 [3][12][13][14] | 抽象层次多，设计不清时会“既像人又像流，结果两头都重” | 组织结构明确、任务分工清晰的自动化系统 | 没有角色专长拆分的简单单 Agent |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | tools / handoffs / guardrails / sessions / tracing | 现代 Agent 原语一体化，产品落地快 [15][16][17][18] | 对超复杂显式状态图的表达不如 LangGraph 直接 | 多终端、多模态、快速产品化的 Agent 应用 | 极重流程控制、状态恢复主导的系统 |
+| [PydanticAI](/ai/03-frameworks/01/32/) | 类型、依赖、输出契约、能力组合 | Python 工程纪律强，typed output 和依赖治理清晰 [19][20][23] | 若团队不重类型或不在 Python 主栈，优势会被削弱 | Python 后端团队、重测试与可维护性场景 | 只求快速原型、对契约不敏感的临时项目 |
 
 ### 一句人话版
 
@@ -126,8 +126,8 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 - 控制流不算极端复杂。
 
 建议：
-- 首选 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 或 [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/)；
-- 若后续演化出审批流、长恢复、复杂状态机，再考虑 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)。
+- 首选 [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 或 [PydanticAI](/ai/03-frameworks/01/32/)；
+- 若后续演化出审批流、长恢复、复杂状态机，再考虑 [LangGraph](/ai/03-frameworks/01/03/)。
 
 原因：这里的首要矛盾不是多角色协作，而是工具、安全、会话、输出契约与审计。
 
@@ -140,8 +140,8 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 - 输出要可追溯。
 
 建议：
-- 首选 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)；
-- 若角色协作特别强，可在图中嵌子 Agent 或混合 [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) 思路。
+- 首选 [LangGraph](/ai/03-frameworks/01/03/)；
+- 若角色协作特别强，可在图中嵌子 Agent 或混合 [CrewAI](/ai/03-frameworks/01/18/) 思路。
 
 原因：这里真正复杂的是状态与控制流，而不是“角色能不能多开几个”。
 
@@ -153,8 +153,8 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 - 与业务流程结合强。
 
 建议：
-- 优先 [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)；
-- 若只需要较轻运行时原语，也可看 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)。
+- 优先 [CrewAI](/ai/03-frameworks/01/18/)；
+- 若只需要较轻运行时原语，也可看 [OpenAI Agents SDK](/ai/03-frameworks/01/25/)。
 
 原因：这里的首要矛盾是“组织协作如何贴近业务语言”，Crew/Flow 的表达优势会更明显。
 
@@ -167,7 +167,7 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 - 复杂度来自工程治理，而不一定来自多 Agent。
 
 建议：
-- 优先 [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/)；
+- 优先 [PydanticAI](/ai/03-frameworks/01/32/)；
 - 若未来控制流升级，再与图式方案结合。
 
 原因：系统首先会死在契约和维护性，而不是死在“不会多 Agent”。
@@ -195,10 +195,10 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 
 | 现在的痛点 | 可能的迁移方向 |
 |---|---|
-| 从手写循环长成复杂状态机 | 自研 → [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) |
-| 从单 Agent 长成角色团队自动化 | 自研 / OpenAI Agents SDK → [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) |
-| 从原型代码长成需要强类型服务 | 自研 / OpenAI Agents SDK → [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) |
-| 从 AutoGen 存量走向长期维护 | [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) → 目标框架按实际复杂度重选 |
+| 从手写循环长成复杂状态机 | 自研 → [LangGraph](/ai/03-frameworks/01/03/) |
+| 从单 Agent 长成角色团队自动化 | 自研 / OpenAI Agents SDK → [CrewAI](/ai/03-frameworks/01/18/) |
+| 从原型代码长成需要强类型服务 | 自研 / OpenAI Agents SDK → [PydanticAI](/ai/03-frameworks/01/32/) |
+| 从 AutoGen 存量走向长期维护 | [AutoGen](/ai/03-frameworks/01/11/) → 目标框架按实际复杂度重选 |
 
 所以“现在选哪个”不够，最好连“半年后最可能迁去哪”一起想清楚。这样你会自然关注：
 - 状态能不能抽出来；
@@ -230,7 +230,7 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 - **误区三：觉得多 Agent 天然更高级。** 协作只有在专长分工清晰时才值回复杂度；
 - **误区四：低错误代价系统上重框架。** 会把简单问题工程化过度；
 - **误区五：高错误代价系统上轻自由度框架却不补治理。** 这是把未来事故留给值班人；
-- **误区六：忽略维护状态。** 像 [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) 这种 maintenance mode 项目，历史价值和新项目风险必须分开判断。[2][7][10]
+- **误区六：忽略维护状态。** 像 [AutoGen](/ai/03-frameworks/01/11/) 这种 maintenance mode 项目，历史价值和新项目风险必须分开判断。[2][7][10]
 
 ## 10. 总结
 
@@ -273,6 +273,6 @@ Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully
 - [23] https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md — Pydantic AI multi-agent applications doc
 - [24] https://www.anthropic.com/research/building-effective-agents — Anthropic: Building effective agents
 
-上一篇：[05 PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/)——上一章把框架视角压到 Python 工程契约；本章把前五篇收口成真正可用于做架构决策的选型矩阵。
+上一篇：[05 PydanticAI](/ai/03-frameworks/01/32/)——上一章把框架视角压到 Python 工程契约；本章把前五篇收口成真正可用于做架构决策的选型矩阵。
 
-下一篇：回到 [03.01 Agent Frameworks](/iopanda-blog/ai/03-frameworks/01/01/) 总览，开始为你的系统写 `framework-selection-card.md`。
+下一篇：回到 [03.01 Agent Frameworks](/ai/03-frameworks/01/01/) 总览，开始为你的系统写 `framework-selection-card.md`。

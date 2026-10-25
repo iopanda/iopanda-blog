@@ -74,6 +74,6 @@ Task SDK README 强调它提供的是 dag authors 和 task execution logic 的�
 - [12] https://github.com/apache/airflow/blob/main/INSTALLING.md — Apache Airflow installing guide
 - [13] https://github.com/apache/airflow/blob/main/task-sdk/README.md — Apache Airflow task SDK README
 
-上一篇：[01 DAG scheduling platform 的设计哲学](/iopanda-blog/ai/03-frameworks/06/10/)
+上一篇：[01 DAG scheduling platform 的设计哲学](/ai/03-frameworks/06/10/)
 
-下一篇：[03 backfill、retry、data pipeline 与批处理思维](/iopanda-blog/ai/03-frameworks/06/12/)
+下一篇：[03 backfill、retry、data pipeline 与批处理思维](/ai/03-frameworks/06/12/)

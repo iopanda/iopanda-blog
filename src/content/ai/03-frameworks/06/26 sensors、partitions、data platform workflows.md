@@ -80,6 +80,6 @@ backfill 是「the process of running partitions for assets that either don't ex
 - [29] https://docs.dagster.io/guides/build/partitions-and-backfills/partitioning-assets — Dagster partitioning assets guide
 - [30] https://docs.dagster.io/guides/build/partitions-and-backfills/backfilling-data — Dagster backfilling data guide
 
-上一篇：[02 assets、jobs、ops、resources 与 lineage](/iopanda-blog/ai/03-frameworks/06/25/)
+上一篇：[02 assets、jobs、ops、resources 与 lineage](/ai/03-frameworks/06/25/)
 
-下一篇：[04 资产治理、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/06/27/)
+下一篇：[04 资产治理、可观测性与工程边界](/ai/03-frameworks/06/27/)

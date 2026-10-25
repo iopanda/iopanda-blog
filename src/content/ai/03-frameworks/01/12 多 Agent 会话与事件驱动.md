@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/02 AutoGen/01 多 Agent 会话与事件驱�
 ---
 # 多 Agent 会话与事件驱动
 
-> 如果说 [LangGraph 的第一性问题](/iopanda-blog/ai/03-frameworks/01/04/) 是“复杂流程如何变成图”，那么 AutoGen 的第一性问题则是：**复杂任务能否拆给多个会协作的角色，通过对话与消息流共同完成？** AutoGen 论文标题就叫“Enabling Next-Gen LLM Applications via Multi-Agent Conversation”，而官方设计文档进一步说明：其 programming model 本质上是 publish-subscribe，Agent 订阅自己关心的事件，也发布其他 Agent 关心的事件。[1][2][3] 这两层——上层对话协作、下层事件驱动——共同构成了 AutoGen 的真正独特性。
+> 如果说 [LangGraph 的第一性问题](/ai/03-frameworks/01/04/) 是“复杂流程如何变成图”，那么 AutoGen 的第一性问题则是：**复杂任务能否拆给多个会协作的角色，通过对话与消息流共同完成？** AutoGen 论文标题就叫“Enabling Next-Gen LLM Applications via Multi-Agent Conversation”，而官方设计文档进一步说明：其 programming model 本质上是 publish-subscribe，Agent 订阅自己关心的事件，也发布其他 Agent 关心的事件。[1][2][3] 这两层——上层对话协作、下层事件驱动——共同构成了 AutoGen 的真正独特性。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 AutoGen 为什么会把“会话”当成多 Agent 系统的主舞台；
 2. 说出它的上层 AgentChat 和下层 event-driven / pub-sub 编程模型分别在解决什么问题；
 3. 理解 `RoutedAgent`、message handler、事件类型这些源码入口在表达什么；
-4. 比较 AutoGen 的协作模型与 [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 的区别；
+4. 比较 AutoGen 的协作模型与 [CrewAI](/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/) 的区别；
 5. 判断多 Agent 协作何时是在降复杂度，何时是在制造复杂度。
 
 ## 1. 概念：AutoGen 的默认世界观是“角色通过消息协作”
@@ -126,9 +126,9 @@ AutoGen 的 programming model 设计文档说得非常明白：它本质上是 p
 | 框架 | 协作如何发生 | AutoGen 的特点 |
 |---|---|---|
 | AutoGen | 会话 + 事件传播 | 更像“角色通过消息达成任务” |
-| [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 角色团队 + tasks/process | 更业务流程化，协作语义更产品化 |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | handoff / agent-as-tool | 协作更受控，更像委托关系 |
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | 状态图节点与边 | 更像状态迁移，而不是会话传播 |
+| [CrewAI](/ai/03-frameworks/01/18/) | 角色团队 + tasks/process | 更业务流程化，协作语义更产品化 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | handoff / agent-as-tool | 协作更受控，更像委托关系 |
+| [LangGraph](/ai/03-frameworks/01/03/) | 状态图节点与边 | 更像状态迁移，而不是会话传播 |
 
 一句话：AutoGen 最强的时候，不是“当成生产平台”，而是“当成理解多 Agent 协作范式的显微镜”。
 
@@ -178,6 +178,6 @@ AutoGen 的 programming model 设计文档说得非常明白：它本质上是 p
 - [3] https://arxiv.org/abs/2308.08155 — AutoGen paper
 - [4] https://github.com/microsoft/autogen — AutoGen GitHub
 
-上一篇：[02 AutoGen](/iopanda-blog/ai/03-frameworks/01/11/)——总览篇先讲它在生态史上的位置；本篇开始拆它真正的协作模型。
+上一篇：[02 AutoGen](/ai/03-frameworks/01/11/)——总览篇先讲它在生态史上的位置；本篇开始拆它真正的协作模型。
 
-下一篇：[02 维护模式、迁移与遗留系统治理](/iopanda-blog/ai/03-frameworks/01/13/)——理解完协作范式后，必须面对 2026 年的现实问题：为什么新项目要谨慎，旧项目该怎么迁。
+下一篇：[02 维护模式、迁移与遗留系统治理](/ai/03-frameworks/01/13/)——理解完协作范式后，必须面对 2026 年的现实问题：为什么新项目要谨慎，旧项目该怎么迁。

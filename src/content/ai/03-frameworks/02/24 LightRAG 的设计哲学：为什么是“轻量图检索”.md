@@ -92,6 +92,6 @@ LightRAG 更像：
 - [44] https://github.com/HKUDS/LightRAG — LightRAG GitHub
 - [72] https://github.com/HKUDS/LightRAG/blob/main/README.md — LightRAG README
 
-上一篇：[04 LightRAG](/iopanda-blog/ai/03-frameworks/02/23/)
+上一篇：[04 LightRAG](/ai/03-frameworks/02/23/)
 
-下一篇：[02 Entity、Relation、Chunk 与 Graph-aware Retrieval](/iopanda-blog/ai/03-frameworks/02/25/)
+下一篇：[02 Entity、Relation、Chunk 与 Graph-aware Retrieval](/ai/03-frameworks/02/25/)

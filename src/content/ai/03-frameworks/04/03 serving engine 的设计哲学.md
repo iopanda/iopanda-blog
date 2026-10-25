@@ -19,7 +19,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.1 vLLM/01 serving 
 1. 解释为什么 vLLM 首先是 serving engine，而不是普通推理库；
 2. 理解它为什么把 KV memory management 和 scheduler 放到设计中心；
 3. 说出它与一般 `generate()` 式推理的根本差异；
-4. 比较 vLLM 与 [SGLang](/iopanda-blog/ai/03-frameworks/04/09/)、[TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) 的定位差异；
+4. 比较 vLLM 与 [SGLang](/ai/03-frameworks/04/09/)、[TensorRT-LLM](/ai/03-frameworks/04/16/) 的定位差异；
 5. 判断项目什么时候自然进入 vLLM 路线。
 
 ## 1. 概念：vLLM 解决的是“服务态推理”
@@ -66,10 +66,10 @@ LLM serving 的成本主要不是来自“算不算得出来”，而是：
 
 | 框架 | 第一性问题 | vLLM 相比的定位 |
 |---|---|---|
-| [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) | 结构化生成和程序化推理如何高性能执行 | vLLM 更先解决 LLM API serving 本身 |
-| [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) | NVIDIA 环境里如何极限优化执行 | vLLM 更像通用 LLM serving runtime |
-| [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | 本地和边缘设备如何高可移植推理 | vLLM 更偏在线服务，不偏边缘本地 |
-| [Triton](/iopanda-blog/ai/03-frameworks/04/30/) | 如何统一管理多模型多后端平台 | vLLM 更偏 LLM-native engine |
+| [SGLang](/ai/03-frameworks/04/09/) | 结构化生成和程序化推理如何高性能执行 | vLLM 更先解决 LLM API serving 本身 |
+| [TensorRT-LLM](/ai/03-frameworks/04/16/) | NVIDIA 环境里如何极限优化执行 | vLLM 更像通用 LLM serving runtime |
+| [llama.cpp](/ai/03-frameworks/04/23/) | 本地和边缘设备如何高可移植推理 | vLLM 更偏在线服务，不偏边缘本地 |
+| [Triton](/ai/03-frameworks/04/30/) | 如何统一管理多模型多后端平台 | vLLM 更偏 LLM-native engine |
 
 ## 5. 什么时候最适合进入 vLLM
 
@@ -99,6 +99,6 @@ LLM serving 的成本主要不是来自“算不算得出来”，而是：
 - [13] https://github.com/vllm-project/vllm/blob/main/README.md — vLLM README
 - [14] https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/openai_compatible_server.md — vLLM OpenAI-compatible server doc
 
-上一篇：[03.04 vLLM](/iopanda-blog/ai/03-frameworks/04/02/)
+上一篇：[03.04 vLLM](/ai/03-frameworks/04/02/)
 
-下一篇：[02 continuous batching、paged attention 与 KV cache](/iopanda-blog/ai/03-frameworks/04/04/)
+下一篇：[02 continuous batching、paged attention 与 KV cache](/ai/03-frameworks/04/04/)

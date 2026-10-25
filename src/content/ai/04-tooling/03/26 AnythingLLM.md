@@ -17,11 +17,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/05 AnythingLLM/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、local-first工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/27/)
-2. [02 文档知识、Agents、Model Router与部署能力](/iopanda-blog/ai/04-tooling/03/28/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/29/)
-4. [04 与 Open WebUI、Dify、Langflow、n8n 的竞品对比](/iopanda-blog/ai/04-tooling/03/30/)
-5. [05 公开组织案例有限：采用信号与第三方实践](/iopanda-blog/ai/04-tooling/03/31/)
+1. [01 产品定位、local-first工作台心智与适用场景](/ai/04-tooling/03/27/)
+2. [02 文档知识、Agents、Model Router与部署能力](/ai/04-tooling/03/28/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/03/29/)
+4. [04 与 Open WebUI、Dify、Langflow、n8n 的竞品对比](/ai/04-tooling/03/30/)
+5. [05 公开组织案例有限：采用信号与第三方实践](/ai/04-tooling/03/31/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/05 AnythingLLM/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、local-first工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/27/)
-2. [02 文档知识、Agents、Model Router与部署能力](/iopanda-blog/ai/04-tooling/03/28/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/29/)
-4. [04 与 Open WebUI、Dify、Langflow、n8n 的竞品对比](/iopanda-blog/ai/04-tooling/03/30/)
-5. [05 公开组织案例有限：采用信号与第三方实践](/iopanda-blog/ai/04-tooling/03/31/)
+1. [01 产品定位、local-first工作台心智与适用场景](/ai/04-tooling/03/27/)
+2. [02 文档知识、Agents、Model Router与部署能力](/ai/04-tooling/03/28/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/03/29/)
+4. [04 与 Open WebUI、Dify、Langflow、n8n 的竞品对比](/ai/04-tooling/03/30/)
+5. [05 公开组织案例有限：采用信号与第三方实践](/ai/04-tooling/03/31/)
 
 ## 引用
 
@@ -64,6 +64,6 @@ sourceId: "3.10.4.3 Application Platforms and Workflows/05 AnythingLLM/README"
 - [5] https://anythingllm.com/pricing — AnythingLLM pricing
 - [6] https://docs.anythingllm.com/ — AnythingLLM docs
 
-上一篇：[04 Open WebUI](/iopanda-blog/ai/04-tooling/03/20/)——上一产品代表统一 AI 前台与主权工作空间路线；这一篇切到 local-first 知识工作台路线。
+上一篇：[04 Open WebUI](/ai/04-tooling/03/20/)——上一产品代表统一 AI 前台与主权工作空间路线；这一篇切到 local-first 知识工作台路线。
 
-下一篇：[01 产品定位、local-first工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/27/)——先从产品定位与适用边界开始。
+下一篇：[01 产品定位、local-first工作台心智与适用场景](/ai/04-tooling/03/27/)——先从产品定位与适用边界开始。

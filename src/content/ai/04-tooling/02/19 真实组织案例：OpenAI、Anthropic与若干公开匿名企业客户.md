@@ -203,6 +203,6 @@ Promptfoo 首页还公开列出多类大型企业客户画像，包括：
 - [4] https://www.promptfoo.dev/pricing/ — Promptfoo pricing
 - [5] https://www.promptfoo.dev/docs/code-scanning/ — Promptfoo code scanning
 
-上一篇：[04 与 Langfuse、Phoenix、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/18/)——看清竞品差异后，再看真实组织为什么会采用 Promptfoo。
+上一篇：[04 与 Langfuse、Phoenix、DeepEval 的竞品对比](/ai/04-tooling/02/18/)——看清竞品差异后，再看真实组织为什么会采用 Promptfoo。
 
-下一篇：[04 DeepEval](/iopanda-blog/ai/04-tooling/02/20/)——下一产品切到更偏代码内评测框架的路线。
+下一篇：[04 DeepEval](/ai/04-tooling/02/20/)——下一产品切到更偏代码内评测框架的路线。

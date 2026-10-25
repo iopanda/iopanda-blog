@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/README"
 ---
 # LangGraph
 
-> 在 [最小 ReAct Agent 实战](/iopanda-blog/ai/02-agents/01/06/) 里，我们已经手写过一个最小 Agent 循环：Thought → Action → Observation，能跑，但也很快暴露出工程问题——状态靠变量临时拼、出错后只能整轮重来、插入人工确认全靠 if/else、长流程一多就不知道自己现在到底在哪一步。LangGraph 的出现，正是为了把这类「会跑但不好管」的 Agent，重写成**显式状态 + 显式节点 + 显式边**的运行图：官方把它定义为一个面向 long-running、stateful agents 的 low-level orchestration framework，强调 durable execution、streaming、human-in-the-loop、persistence 与 memory。[1][6] 这一章要讲的不是 LangGraph 的 API 细节，而是它背后的工程判断：**为什么复杂 Agent 迟早会长成图，以及图为什么比一条长 prompt 链更适合交付。**
+> 在 [最小 ReAct Agent 实战](/ai/02-agents/01/06/) 里，我们已经手写过一个最小 Agent 循环：Thought → Action → Observation，能跑，但也很快暴露出工程问题——状态靠变量临时拼、出错后只能整轮重来、插入人工确认全靠 if/else、长流程一多就不知道自己现在到底在哪一步。LangGraph 的出现，正是为了把这类「会跑但不好管」的 Agent，重写成**显式状态 + 显式节点 + 显式边**的运行图：官方把它定义为一个面向 long-running、stateful agents 的 low-level orchestration framework，强调 durable execution、streaming、human-in-the-loop、persistence 与 memory。[1][6] 这一章要讲的不是 LangGraph 的 API 细节，而是它背后的工程判断：**为什么复杂 Agent 迟早会长成图，以及图为什么比一条长 prompt 链更适合交付。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 用一句话定义 LangGraph，并解释它和高层 Agent SDK 的分工；
 2. 说出为什么长流程 Agent 会自然演化为「状态机 / 有向图」；
 3. 区分节点、边、共享状态、持久化、人工中断在架构中的不同职责；
-4. 解释 LangGraph 与 [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 的设计中心差异；
+4. 解释 LangGraph 与 [CrewAI](/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[PydanticAI](/ai/03-frameworks/01/32/) 的设计中心差异；
 5. 为一个需要人审、可恢复、带记忆的课程助教 Agent 画出 LangGraph 风格的执行图。
 
 ## 1. 概念：LangGraph 不是“再一个 Agent 库”，而是 Agent 运行时
@@ -94,10 +94,10 @@ Anthropic 把 Agent 形态分成 workflows 与 agents，并强调能写死的流
 | 框架 | 先抽象什么 | 设计倾向 |
 |---|---|---|
 | LangGraph | 图、状态、持久化 | 把复杂运行时显式化 |
-| [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 角色团队、任务、流程 | 先搭业务协作，再补执行细节 |
-| [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) | Agent、tools、handoffs、guardrails | 先提供现代 Agent 原语，再由你组合 |
-| [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) | 类型、输出、依赖、能力(capabilities) | 先稳住工程契约，再上复杂控制流 |
-| [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) | 对话中的角色协作 | 先把多 Agent 协作跑起来 |
+| [CrewAI](/ai/03-frameworks/01/18/) | 角色团队、任务、流程 | 先搭业务协作，再补执行细节 |
+| [OpenAI Agents SDK](/ai/03-frameworks/01/25/) | Agent、tools、handoffs、guardrails | 先提供现代 Agent 原语，再由你组合 |
+| [PydanticAI](/ai/03-frameworks/01/32/) | 类型、输出、依赖、能力(capabilities) | 先稳住工程契约，再上复杂控制流 |
+| [AutoGen](/ai/03-frameworks/01/11/) | 对话中的角色协作 | 先把多 Agent 协作跑起来 |
 
 所以如果你系统的首要矛盾是**多角色协作建模**，LangGraph 可能不是第一选择；但如果你的首要矛盾是**流程长、分支多、需要恢复和人审**，LangGraph 往往会非常自然。
 
@@ -109,13 +109,13 @@ Anthropic 把 Agent 形态分成 workflows 与 agents，并强调能写死的流
 
 - Agent 一旦接工具、记忆、外部审批，就不再是毫秒级函数调用，而是一个会跨失败边界的事务；
 - durable execution 的价值不是性能，而是**恢复语义**：系统要知道自己已经完成了什么、哪些步骤可复用、哪些必须重试；
-- 这和 [风险评审与发布](/iopanda-blog/ai/01-models/07/05/) 里“上线必须可回滚、可追责”是同一种工程心法：复杂系统先问失败后怎么办，而不是成功时多顺滑。
+- 这和 [风险评审与发布](/ai/01-models/07/05/) 里“上线必须可回滚、可追责”是同一种工程心法：复杂系统先问失败后怎么办，而不是成功时多顺滑。
 
 ### 5.2 Human-in-the-loop
 
 - 复杂 Agent 最危险的地方，往往不是回答错一句话，而是做错一个不可逆动作；
 - LangGraph 直接把人工中断视作一等能力，说明它默认系统里存在“模型不该独断”的阶段；
-- 这与 [护栏与人工复核](/iopanda-blog/ai/01-models/07/04/) 的治理思想完全一致：**高风险动作必须有制度化的停顿点。**
+- 这与 [护栏与人工复核](/ai/01-models/07/04/) 的治理思想完全一致：**高风险动作必须有制度化的停顿点。**
 
 ### 5.3 Memory and persistence
 
@@ -169,7 +169,7 @@ Anthropic 把 Agent 形态分成 workflows 与 agents，并强调能写死的流
 - **误区二：小任务也上图**。如果只是一次问答 + 一次工具调用，图的建模成本可能高于收益；
 - **误区三：节点切得过细**。每个节点都只做一句话，会把图切成一地碎片；节点应围绕“可观测的决策边界”来划；
 - **误区四：状态放太多**。把所有原始上下文都塞进共享状态，会让恢复与可视化负担过重；状态要保留足以恢复和审计的关键事实，而不是无差别堆日志；
-- **误区五：有图就以为安全了**。图解决的是可控与可恢复，不自动等于安全；权限、护栏、人工确认依旧要按 [护栏与人工复核](/iopanda-blog/ai/01-models/07/04/) 与 [风险评审与发布](/iopanda-blog/ai/01-models/07/05/) 的纪律外置。
+- **误区五：有图就以为安全了**。图解决的是可控与可恢复，不自动等于安全；权限、护栏、人工确认依旧要按 [护栏与人工复核](/ai/01-models/07/04/) 与 [风险评审与发布](/ai/01-models/07/05/) 的纪律外置。
 
 ## 9. 总结
 
@@ -183,13 +183,13 @@ Anthropic 把 Agent 形态分成 workflows 与 agents，并强调能写死的流
 
 ## 10. 本目录笔记导航
 
-1. [01 设计哲学与状态图](/iopanda-blog/ai/03-frameworks/01/04/)
-2. [02 持久化、中断、人审与工程落地](/iopanda-blog/ai/03-frameworks/01/05/)
-3. [03 MessagesState、ToolNode 与 create_react_agent](/iopanda-blog/ai/03-frameworks/01/06/)
-4. [04 Checkpointer、thread_id 与持久化后端选型](/iopanda-blog/ai/03-frameworks/01/07/)
-5. [05 Channels、Command、子图与高级控制流](/iopanda-blog/ai/03-frameworks/01/08/)
-6. [06 课程助教 Agent 的 LangGraph 架构案例](/iopanda-blog/ai/03-frameworks/01/09/)
-7. [07 LangGraph 与 CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/10/)
+1. [01 设计哲学与状态图](/ai/03-frameworks/01/04/)
+2. [02 持久化、中断、人审与工程落地](/ai/03-frameworks/01/05/)
+3. [03 MessagesState、ToolNode 与 create_react_agent](/ai/03-frameworks/01/06/)
+4. [04 Checkpointer、thread_id 与持久化后端选型](/ai/03-frameworks/01/07/)
+5. [05 Channels、Command、子图与高级控制流](/ai/03-frameworks/01/08/)
+6. [06 课程助教 Agent 的 LangGraph 架构案例](/ai/03-frameworks/01/09/)
+7. [07 LangGraph 与 CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比](/ai/03-frameworks/01/10/)
 
 **思考题**：如果一个课程助教 Agent 只有「检索课件 → 生成答案」两步，且不涉及写操作、人工复核、跨会话状态，你还会优先用 LangGraph 吗？当流程从 2 步变成 12 步、还要穿过审批与重试时，答案为什么会变？
 
@@ -202,6 +202,6 @@ Anthropic 把 Agent 形态分成 workflows 与 agents，并强调能写死的流
 - [6] https://docs.langchain.com/oss/python/langgraph/overview — LangGraph docs overview
 - [24] https://www.anthropic.com/research/building-effective-agents — Anthropic: Building effective agents
 
-上一篇：[03.01 Agent Frameworks](/iopanda-blog/ai/03-frameworks/01/01/)——先有框架地图，再看单个框架的设计中心。
+上一篇：[03.01 Agent Frameworks](/ai/03-frameworks/01/01/)——先有框架地图，再看单个框架的设计中心。
 
-下一篇：[02 AutoGen](/iopanda-blog/ai/03-frameworks/01/11/)——从状态图切到多 Agent 协作：为什么 AutoGen 会把 Agent 系统想成一组彼此通信的角色。
+下一篇：[02 AutoGen](/ai/03-frameworks/01/11/)——从状态图切到多 Agent 协作：为什么 AutoGen 会把 Agent 系统想成一组彼此通信的角色。

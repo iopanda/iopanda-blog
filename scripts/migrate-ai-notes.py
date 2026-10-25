@@ -29,7 +29,7 @@ from pathlib import Path
 from typing import Iterable
 from urllib.parse import quote
 
-BASE_URL = "/iopanda-blog"
+BASE_URL = ""
 ATTACHMENT_DIR_DEFAULT = "~/Documents/Obsidian/iopanda/01.Attachments"
 OBSIDIAN_PREFIX = "03.Engineering/3.10 AI/"
 

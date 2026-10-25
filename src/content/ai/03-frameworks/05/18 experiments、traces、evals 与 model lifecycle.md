@@ -75,6 +75,6 @@ MLflow 的独特性就在于：
 - [33] https://github.com/mlflow/mlflow/blob/master/examples/evaluation/README.md — MLflow evaluation examples README
 - [34] https://github.com/mlflow/mlflow/blob/master/examples/llms/README.md — MLflow LLM examples README
 
-上一篇：[01 通用 AI engineering 平台的设计哲学](/iopanda-blog/ai/03-frameworks/05/17/)
+上一篇：[01 通用 AI engineering 平台的设计哲学](/ai/03-frameworks/05/17/)
 
-下一篇：[03 GenAI 与传统 ML 的统一治理](/iopanda-blog/ai/03-frameworks/05/19/)
+下一篇：[03 GenAI 与传统 ML 的统一治理](/ai/03-frameworks/05/19/)

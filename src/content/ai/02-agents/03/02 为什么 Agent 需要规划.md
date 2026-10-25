@@ -197,4 +197,4 @@ if __name__ == "__main__":
 - [Anthropic Engineering:Effective context engineering for AI agents(上下文是有限资源,Agent 动态取用)](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 - [Yao et al., 2022:ReAct——推理与行动交错(为什么「想一步做一步」优于纯脑内推理,03 章展开)](https://arxiv.org/abs/2210.03629)
 
-下一篇:[Chain-of-Thought 与单步推理](/iopanda-blog/ai/02-agents/03/03/)——01 章立了「要拆」的原则,02 章给第一把拆解的刀:让模型在回答前先把推理写出来。
+下一篇:[Chain-of-Thought 与单步推理](/ai/02-agents/03/03/)——01 章立了「要拆」的原则,02 章给第一把拆解的刀:让模型在回答前先把推理写出来。

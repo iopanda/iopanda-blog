@@ -144,4 +144,4 @@ sourceId: "3.10.2.2 Prompt and Context Engineering/01 System Prompt 设计"
 - [Anthropic:Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
 - [OWASP LLM Top 10:LLM01 Prompt Injection](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 
-下一篇:[上下文窗口管理](/iopanda-blog/ai/02-agents/02/03/)——system prompt 定了「怎么表现」,上下文窗口定了「能装多少」,下一章管好这个有限的工作台。
+下一篇:[上下文窗口管理](/ai/02-agents/02/03/)——system prompt 定了「怎么表现」,上下文窗口定了「能装多少」,下一章管好这个有限的工作台。

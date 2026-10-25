@@ -17,11 +17,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/03 Apache APISIX/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、插件体系与适用场景](/iopanda-blog/ai/04-tooling/01/15/)
-2. [02 AI Gateway 能力、插件化治理与运营视角](/iopanda-blog/ai/04-tooling/01/16/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/01/17/)
-4. [04 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/18/)
-5. [05 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全](/iopanda-blog/ai/04-tooling/01/19/)
+1. [01 产品定位、插件体系与适用场景](/ai/04-tooling/01/15/)
+2. [02 AI Gateway 能力、插件化治理与运营视角](/ai/04-tooling/01/16/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/01/17/)
+4. [04 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比](/ai/04-tooling/01/18/)
+5. [05 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全](/ai/04-tooling/01/19/)
 
 ## 这一产品为什么值得单开
 
@@ -48,11 +48,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/03 Apache APISIX/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、插件体系与适用场景](/iopanda-blog/ai/04-tooling/01/15/)
-2. [02 AI Gateway 能力、插件化治理与运营视角](/iopanda-blog/ai/04-tooling/01/16/)
-3. [03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/01/17/)
-4. [04 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/18/)
-5. [05 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全](/iopanda-blog/ai/04-tooling/01/19/)
+1. [01 产品定位、插件体系与适用场景](/ai/04-tooling/01/15/)
+2. [02 AI Gateway 能力、插件化治理与运营视角](/ai/04-tooling/01/16/)
+3. [03 质量、社区、价格与商业化边界](/ai/04-tooling/01/17/)
+4. [04 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比](/ai/04-tooling/01/18/)
+5. [05 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全](/ai/04-tooling/01/19/)
 
 ## 引用
 
@@ -61,6 +61,6 @@ sourceId: "3.10.4.1 Model Gateways and Routing/03 Apache APISIX/README"
 - [3] https://apisix.apache.org/ai-gateway/ — APISIX AI Gateway landing page
 - [4] https://github.com/apache/apisix — Apache APISIX GitHub
 
-上一篇：[02 Envoy AI Gateway](/iopanda-blog/ai/04-tooling/01/08/)——上一产品代表 Envoy/Gateway API 平台路线；这一篇切到 API-native 网关路线。
+上一篇：[02 Envoy AI Gateway](/ai/04-tooling/01/08/)——上一产品代表 Envoy/Gateway API 平台路线；这一篇切到 API-native 网关路线。
 
-下一篇：[01 产品定位、插件体系与适用场景](/iopanda-blog/ai/04-tooling/01/15/)——先从产品定位、插件体系和适用边界开始。
+下一篇：[01 产品定位、插件体系与适用场景](/ai/04-tooling/01/15/)——先从产品定位、插件体系和适用边界开始。

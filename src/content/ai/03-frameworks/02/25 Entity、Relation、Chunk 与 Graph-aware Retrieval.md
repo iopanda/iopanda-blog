@@ -68,6 +68,6 @@ entity/relation 擅长：
 
 - [72] https://github.com/HKUDS/LightRAG/blob/main/README.md — LightRAG README
 
-上一篇：[01 LightRAG 的设计哲学：为什么是“轻量图检索”](/iopanda-blog/ai/03-frameworks/02/24/)
+上一篇：[01 LightRAG 的设计哲学：为什么是“轻量图检索”](/ai/03-frameworks/02/24/)
 
-下一篇：[03 Vector RAG vs Graph RAG vs Hybrid RAG](/iopanda-blog/ai/03-frameworks/02/26/)
+下一篇：[03 Vector RAG vs Graph RAG vs Hybrid RAG](/ai/03-frameworks/02/26/)

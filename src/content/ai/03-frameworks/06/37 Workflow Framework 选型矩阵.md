@@ -13,7 +13,7 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 ---
 # Workflow Framework 选型矩阵
 
-> 模块定位：把 [Temporal](/iopanda-blog/ai/03-frameworks/06/02/)、[Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/)、[Prefect](/iopanda-blog/ai/03-frameworks/06/16/)、[Dagster](/iopanda-blog/ai/03-frameworks/06/23/)、[Kestra](/iopanda-blog/ai/03-frameworks/06/30/) 收口成真正的 workflow 判断：项目到底该选 durable engine、DAG scheduler、Python-native flow、asset orchestrator，还是 event-driven platform？
+> 模块定位：把 [Temporal](/ai/03-frameworks/06/02/)、[Apache Airflow](/ai/03-frameworks/06/09/)、[Prefect](/ai/03-frameworks/06/16/)、[Dagster](/ai/03-frameworks/06/23/)、[Kestra](/ai/03-frameworks/06/30/) 收口成真正的 workflow 判断：项目到底该选 durable engine、DAG scheduler、Python-native flow、asset orchestrator，还是 event-driven platform？
 
 **本目录计划关注**：
 1. 状态恢复、调度模型、lineage、事件触发、开发者体验五个维度；
@@ -29,11 +29,11 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.6 Workflow Framew
 
 ## 本目录笔记导航
 
-1. [01 Workflow Framework 选型方法论](/iopanda-blog/ai/03-frameworks/06/38/)
-2. [02 五个框架横向矩阵](/iopanda-blog/ai/03-frameworks/06/39/)
-3. [03 典型业务场景对比](/iopanda-blog/ai/03-frameworks/06/40/)
-4. [04 课程助教系统的 workflow 选型卡](/iopanda-blog/ai/03-frameworks/06/41/)
+1. [01 Workflow Framework 选型方法论](/ai/03-frameworks/06/38/)
+2. [02 五个框架横向矩阵](/ai/03-frameworks/06/39/)
+3. [03 典型业务场景对比](/ai/03-frameworks/06/40/)
+4. [04 课程助教系统的 workflow 选型卡](/ai/03-frameworks/06/41/)
 
-上一篇：[03.06 Kestra](/iopanda-blog/ai/03-frameworks/06/30/)
+上一篇：[03.06 Kestra](/ai/03-frameworks/06/30/)
 
-下一篇：[01 Workflow Framework 选型方法论](/iopanda-blog/ai/03-frameworks/06/38/)
+下一篇：[01 Workflow Framework 选型方法论](/ai/03-frameworks/06/38/)

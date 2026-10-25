@@ -73,6 +73,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/05 Axolotl/05 课程助�
 - [16] https://github.com/axolotl-ai-cloud/axolotl/blob/main/docs/agents/preference_tuning.md — Axolotl preference tuning agent doc
 - [17] https://github.com/axolotl-ai-cloud/axolotl/blob/main/docs/agents/grpo.md — Axolotl GRPO agent doc
 
-上一篇：[04 分布式、导出、调参与工程边界](/iopanda-blog/ai/03-frameworks/03/34/)
+上一篇：[04 分布式、导出、调参与工程边界](/ai/03-frameworks/03/34/)
 
-下一篇：[06 Axolotl 与 LLaMA-Factory、Unsloth、PEFT、TRL 的深度对比](/iopanda-blog/ai/03-frameworks/03/36/)
+下一篇：[06 Axolotl 与 LLaMA-Factory、Unsloth、PEFT、TRL 的深度对比](/ai/03-frameworks/03/36/)

@@ -72,5 +72,5 @@ sourceId: "3.10.2.6 Multi-Agent Systems/README"
 
 ## 衔接
 
-- 上一篇：[Memory and Retrieval](/iopanda-blog/ai/02-agents/05/)——单 Agent 能力齐备后，看协作带来的质变与代价；
-- 下一篇：[Evaluation and Observability](/iopanda-blog/ai/02-agents/07/)——多 Agent 越复杂越要测、越要看得见。
+- 上一篇：[Memory and Retrieval](/ai/02-agents/05/)——单 Agent 能力齐备后，看协作带来的质变与代价；
+- 下一篇：[Evaluation and Observability](/ai/02-agents/07/)——多 Agent 越复杂越要测、越要看得见。

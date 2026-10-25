@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/02 AutoGen/05 课程助教 Agent 的 AutoGe
 ---
 # 课程助教 Agent 的 AutoGen 架构案例
 
-> 现在可以把 AutoGen 的几层世界观重新装回一个真实系统了：[多 Agent 会话](/iopanda-blog/ai/03-frameworks/01/12/) 给了协作直觉，[AgentChat 与消息协议](/iopanda-blog/ai/03-frameworks/01/14/) 说明它不是纯聊天，[worker/service runtime](/iopanda-blog/ai/03-frameworks/01/15/) 又说明它有更大的系统想象。那如果把这些放回你的课程助教主线，会发生什么？答案是：**课程助教在 AutoGen 里最自然的样子，不是一个状态图，也不是一个 typed service，而是一组围绕消息协作的角色系统。** 这一章就专门讲这种架构该怎么拆，以及它为什么既自然又危险。
+> 现在可以把 AutoGen 的几层世界观重新装回一个真实系统了：[多 Agent 会话](/ai/03-frameworks/01/12/) 给了协作直觉，[AgentChat 与消息协议](/ai/03-frameworks/01/14/) 说明它不是纯聊天，[worker/service runtime](/ai/03-frameworks/01/15/) 又说明它有更大的系统想象。那如果把这些放回你的课程助教主线，会发生什么？答案是：**课程助教在 AutoGen 里最自然的样子，不是一个状态图，也不是一个 typed service，而是一组围绕消息协作的角色系统。** 这一章就专门讲这种架构该怎么拆，以及它为什么既自然又危险。
 
 **学习目标**：学完本章，你将能够——
 
@@ -207,6 +207,6 @@ AutoGen 很容易写出“大家聊得挺热闹，但到底谁说了算”不清
 - [38] https://github.com/microsoft/autogen/tree/main/python/packages/autogen-agentchat/src/autogen_agentchat — AutoGen AgentChat source tree
 - [40] https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md — AutoGen services design
 
-上一篇：[04 Agent Worker、Services 与分布式运行时](/iopanda-blog/ai/03-frameworks/01/15/)——runtime 图景讲完后，本篇把它们装回课程助教这个真实系统。
+上一篇：[04 Agent Worker、Services 与分布式运行时](/ai/03-frameworks/01/15/)——runtime 图景讲完后，本篇把它们装回课程助教这个真实系统。
 
-下一篇：[06 AutoGen 与 LangGraph、CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/17/)——案例落地之后，再回头看 AutoGen 在整个框架版图中的独特位置。
+下一篇：[06 AutoGen 与 LangGraph、CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比](/ai/03-frameworks/01/17/)——案例落地之后，再回头看 AutoGen 在整个框架版图中的独特位置。

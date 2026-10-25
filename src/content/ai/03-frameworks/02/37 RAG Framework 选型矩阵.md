@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/R
 ---
 # RAG Framework 选型矩阵
 
-> 前面五组内容已经把 `03.02 RAG and Retrieval Frameworks` 的五条主路线拆开了：[LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) 代表文档对象与查询对象路线，[Haystack](/iopanda-blog/ai/03-frameworks/02/09/) 代表显式检索工作流路线，[RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) 代表端到端 context engine / 平台路线，[LightRAG](/iopanda-blog/ai/03-frameworks/02/23/) 代表轻量 graph-enhanced retrieval 路线，[Pathway](/iopanda-blog/ai/03-frameworks/02/30/) 代表实时数据流与增量更新路线。[41][42][43][44][45] 到这一步，真正值钱的问题已经不是"这些框架分别是什么"，而是：**当一个系统要做 RAG，你怎么判断它最先会死在哪一类 retrieval complexity 上？** 本模块就是把前五条路线收口成一张面向开发者和架构师的选型矩阵。
+> 前面五组内容已经把 `03.02 RAG and Retrieval Frameworks` 的五条主路线拆开了：[LlamaIndex](/ai/03-frameworks/02/02/) 代表文档对象与查询对象路线，[Haystack](/ai/03-frameworks/02/09/) 代表显式检索工作流路线，[RAGFlow](/ai/03-frameworks/02/16/) 代表端到端 context engine / 平台路线，[LightRAG](/ai/03-frameworks/02/23/) 代表轻量 graph-enhanced retrieval 路线，[Pathway](/ai/03-frameworks/02/30/) 代表实时数据流与增量更新路线。[41][42][43][44][45] 到这一步，真正值钱的问题已经不是"这些框架分别是什么"，而是：**当一个系统要做 RAG，你怎么判断它最先会死在哪一类 retrieval complexity 上？** 本模块就是把前五条路线收口成一张面向开发者和架构师的选型矩阵。
 
 **学习目标**：学完本模块，你将能够——
 1. 用一张表比较五类 retrieval framework 的设计中心、强项、代价与盲区；
@@ -36,10 +36,10 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/R
 
 ## 本目录笔记导航
 
-1. [01 Retrieval Framework 选型方法论](/iopanda-blog/ai/03-frameworks/02/38/)
-2. [02 五个框架横向矩阵](/iopanda-blog/ai/03-frameworks/02/39/)
-3. [03 典型业务场景对比](/iopanda-blog/ai/03-frameworks/02/40/)
-4. [04 课程助教系统的 retrieval framework 选型卡](/iopanda-blog/ai/03-frameworks/02/41/)
+1. [01 Retrieval Framework 选型方法论](/ai/03-frameworks/02/38/)
+2. [02 五个框架横向矩阵](/ai/03-frameworks/02/39/)
+3. [03 典型业务场景对比](/ai/03-frameworks/02/40/)
+4. [04 课程助教系统的 retrieval framework 选型卡](/ai/03-frameworks/02/41/)
 
 ## 引用
 
@@ -53,6 +53,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/R
 - [62] https://github.com/infiniflow/ragflow/blob/main/README.md — RAGFlow README
 - [68] https://github.com/pathwaycom/pathway/blob/main/README.md — Pathway README
 
-上一篇：[05 Pathway](/iopanda-blog/ai/03-frameworks/02/30/)——最后一条实时知识流路线已经讲完；本模块把五条 retrieval framework 路线收口成真正可用的选型方法。
+上一篇：[05 Pathway](/ai/03-frameworks/02/30/)——最后一条实时知识流路线已经讲完；本模块把五条 retrieval framework 路线收口成真正可用的选型方法。
 
-下一篇：[01 Retrieval Framework 选型方法论](/iopanda-blog/ai/03-frameworks/02/38/)
+下一篇：[01 Retrieval Framework 选型方法论](/ai/03-frameworks/02/38/)

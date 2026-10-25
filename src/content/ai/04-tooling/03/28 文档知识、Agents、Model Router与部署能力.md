@@ -111,6 +111,6 @@ README 明确写到 Full Developer API for custom integrations。[1]
 - [2] https://anythingllm.com/ — AnythingLLM homepage
 - [3] https://docs.anythingllm.com/ — AnythingLLM docs
 
-上一篇：[01 产品定位、local-first工作台心智与适用场景](/iopanda-blog/ai/04-tooling/03/27/)——先理解定位，再看它的能力如何构成完整工作台。
+上一篇：[01 产品定位、local-first工作台心智与适用场景](/ai/04-tooling/03/27/)——先理解定位，再看它的能力如何构成完整工作台。
 
-下一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/29/)——能力之后，再回头判断它是否成熟、贵不贵、采用边界在哪。
+下一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/03/29/)——能力之后，再回头判断它是否成熟、贵不贵、采用边界在哪。

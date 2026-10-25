@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "model-deployment", "fastapi"]
 sourceId: "3.10.1.4 Inference and Deployment/4.5 构建推理 API"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020261012143628.png)
+![](/ai/images/Pasted%20image%2020261012143628.png)
 
 > 上一章把模型变成了「会说话的标准服务」,本章回答一个更尖锐的问题:**这个服务能直接交给产品用吗?** 不能。vLLM 知道怎么生成,却不知道你的产品允许什么输入、错误该如何表达、日志要不要脱敏、依赖是否还活着。本章在 vLLM 前面再立一层**业务 API**(用 FastAPI 自己写):先讲清这层边界为什么非有不可、HTTP 状态码与 schema 各自回答什么问题,再动手实现健康检查与问答端点、把请求转发给本地 vLLM,最后用自动文档与 curl 验证正常与失败两条路径。
 
@@ -165,6 +165,6 @@ async def ask(body: Ask):
 - [FastAPI:入门与自动文档](https://fastapi.tiangolo.com/tutorial/first-steps/)
 - [MDN:HTTP 响应状态码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
 
-上一篇:[本地推理与 vLLM](/iopanda-blog/ai/01-models/04/04/)——vLLM 把模型变成 OpenAI 兼容的标准服务,本章在其上立起业务边界层。
+上一篇:[本地推理与 vLLM](/ai/01-models/04/04/)——vLLM 把模型变成 OpenAI 兼容的标准服务,本章在其上立起业务边界层。
 
-下一篇:[压测与容量规划](/iopanda-blog/ai/01-models/04/06/)——在真实请求形状下测量这层 API 的承载能力与失败边界。
+下一篇:[压测与容量规划](/ai/01-models/04/06/)——在真实请求形状下测量这层 API 的承载能力与失败边界。

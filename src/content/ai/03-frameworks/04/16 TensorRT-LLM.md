@@ -32,13 +32,13 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.3 TensorRT-LLM/REA
 
 ## 本目录笔记导航
 
-1. [01 NVIDIA 优化推理栈的设计哲学](/iopanda-blog/ai/03-frameworks/04/17/)
-2. [02 kernels、graph compilation、quantization 与 execution](/iopanda-blog/ai/03-frameworks/04/18/)
-3. [03 与 Triton、Kubernetes、企业推理平台的关系](/iopanda-blog/ai/03-frameworks/04/19/)
-4. [04 性能、硬件依赖与工程边界](/iopanda-blog/ai/03-frameworks/04/20/)
-5. [05 企业推理服务的 TensorRT-LLM 架构案例](/iopanda-blog/ai/03-frameworks/04/21/)
-6. [06 TensorRT-LLM 与 vLLM、SGLang、llama.cpp、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/22/)
+1. [01 NVIDIA 优化推理栈的设计哲学](/ai/03-frameworks/04/17/)
+2. [02 kernels、graph compilation、quantization 与 execution](/ai/03-frameworks/04/18/)
+3. [03 与 Triton、Kubernetes、企业推理平台的关系](/ai/03-frameworks/04/19/)
+4. [04 性能、硬件依赖与工程边界](/ai/03-frameworks/04/20/)
+5. [05 企业推理服务的 TensorRT-LLM 架构案例](/ai/03-frameworks/04/21/)
+6. [06 TensorRT-LLM 与 vLLM、SGLang、llama.cpp、Triton 的深度对比](/ai/03-frameworks/04/22/)
 
-上一篇：[03.04 SGLang](/iopanda-blog/ai/03-frameworks/04/09/)
+上一篇：[03.04 SGLang](/ai/03-frameworks/04/09/)
 
-下一篇：[01 NVIDIA 优化推理栈的设计哲学](/iopanda-blog/ai/03-frameworks/04/17/)
+下一篇：[01 NVIDIA 优化推理栈的设计哲学](/ai/03-frameworks/04/17/)

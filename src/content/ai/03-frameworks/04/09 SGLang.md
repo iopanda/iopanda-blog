@@ -32,13 +32,13 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.2 SGLang/README"
 
 ## 本目录笔记导航
 
-1. [01 structured generation runtime 的设计哲学](/iopanda-blog/ai/03-frameworks/04/10/)
-2. [02 serving、program execution 与结构化输出](/iopanda-blog/ai/03-frameworks/04/11/)
-3. [03 agent 推理、tool use 与 workflow control](/iopanda-blog/ai/03-frameworks/04/12/)
-4. [04 性能优化、部署方式与工程边界](/iopanda-blog/ai/03-frameworks/04/13/)
-5. [05 课程助教 Agent 的 SGLang 架构案例](/iopanda-blog/ai/03-frameworks/04/14/)
-6. [06 SGLang 与 vLLM、TensorRT-LLM、llama.cpp、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/15/)
+1. [01 structured generation runtime 的设计哲学](/ai/03-frameworks/04/10/)
+2. [02 serving、program execution 与结构化输出](/ai/03-frameworks/04/11/)
+3. [03 agent 推理、tool use 与 workflow control](/ai/03-frameworks/04/12/)
+4. [04 性能优化、部署方式与工程边界](/ai/03-frameworks/04/13/)
+5. [05 课程助教 Agent 的 SGLang 架构案例](/ai/03-frameworks/04/14/)
+6. [06 SGLang 与 vLLM、TensorRT-LLM、llama.cpp、Triton 的深度对比](/ai/03-frameworks/04/15/)
 
-上一篇：[03.04 vLLM](/iopanda-blog/ai/03-frameworks/04/02/)
+上一篇：[03.04 vLLM](/ai/03-frameworks/04/02/)
 
-下一篇：[01 structured generation runtime 的设计哲学](/iopanda-blog/ai/03-frameworks/04/10/)
+下一篇：[01 structured generation runtime 的设计哲学](/ai/03-frameworks/04/10/)

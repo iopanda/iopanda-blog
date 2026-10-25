@@ -32,13 +32,13 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.5 Triton Inference
 
 ## 本目录笔记导航
 
-1. [01 通用 inference platform 的设计哲学](/iopanda-blog/ai/03-frameworks/04/31/)
-2. [02 model repository、backend、batching 与 ensemble](/iopanda-blog/ai/03-frameworks/04/32/)
-3. [03 与 TensorRT-LLM、vLLM、KServe 的集成方式](/iopanda-blog/ai/03-frameworks/04/33/)
-4. [04 多模型运营、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/04/34/)
-5. [05 企业多模型平台的 Triton 架构案例](/iopanda-blog/ai/03-frameworks/04/35/)
-6. [06 Triton 与 vLLM、SGLang、TensorRT-LLM、llama.cpp 的深度对比](/iopanda-blog/ai/03-frameworks/04/36/)
+1. [01 通用 inference platform 的设计哲学](/ai/03-frameworks/04/31/)
+2. [02 model repository、backend、batching 与 ensemble](/ai/03-frameworks/04/32/)
+3. [03 与 TensorRT-LLM、vLLM、KServe 的集成方式](/ai/03-frameworks/04/33/)
+4. [04 多模型运营、可观测性与工程边界](/ai/03-frameworks/04/34/)
+5. [05 企业多模型平台的 Triton 架构案例](/ai/03-frameworks/04/35/)
+6. [06 Triton 与 vLLM、SGLang、TensorRT-LLM、llama.cpp 的深度对比](/ai/03-frameworks/04/36/)
 
-上一篇：[03.04 llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/)
+上一篇：[03.04 llama.cpp](/ai/03-frameworks/04/23/)
 
-下一篇：[01 通用 inference platform 的设计哲学](/iopanda-blog/ai/03-frameworks/04/31/)
+下一篇：[01 通用 inference platform 的设计哲学](/ai/03-frameworks/04/31/)

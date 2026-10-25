@@ -32,13 +32,13 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.1 Temporal/README
 
 ## 本目录笔记导航
 
-1. [01 durable workflow engine 的设计哲学](/iopanda-blog/ai/03-frameworks/06/03/)
-2. [02 workflow state、activity、retry、timer 与 signal](/iopanda-blog/ai/03-frameworks/06/04/)
-3. [03 human-in-the-loop、external events 与长时流程](/iopanda-blog/ai/03-frameworks/06/05/)
-4. [04 可恢复性、幂等性、补偿与工程边界](/iopanda-blog/ai/03-frameworks/06/06/)
-5. [05 课程助教 Agent 的 Temporal 架构案例](/iopanda-blog/ai/03-frameworks/06/07/)
-6. [06 Temporal 与 Airflow、Prefect、Dagster、Kestra 的深度对比](/iopanda-blog/ai/03-frameworks/06/08/)
+1. [01 durable workflow engine 的设计哲学](/ai/03-frameworks/06/03/)
+2. [02 workflow state、activity、retry、timer 与 signal](/ai/03-frameworks/06/04/)
+3. [03 human-in-the-loop、external events 与长时流程](/ai/03-frameworks/06/05/)
+4. [04 可恢复性、幂等性、补偿与工程边界](/ai/03-frameworks/06/06/)
+5. [05 课程助教 Agent 的 Temporal 架构案例](/ai/03-frameworks/06/07/)
+6. [06 Temporal 与 Airflow、Prefect、Dagster、Kestra 的深度对比](/ai/03-frameworks/06/08/)
 
-上一篇：[03.06 Workflow Orchestration Frameworks](/iopanda-blog/ai/03-frameworks/06/01/)
+上一篇：[03.06 Workflow Orchestration Frameworks](/ai/03-frameworks/06/01/)
 
-下一篇：[01 durable workflow engine 的设计哲学](/iopanda-blog/ai/03-frameworks/06/03/)
+下一篇：[01 durable workflow engine 的设计哲学](/ai/03-frameworks/06/03/)

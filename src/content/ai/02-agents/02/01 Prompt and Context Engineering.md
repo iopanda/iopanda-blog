@@ -71,5 +71,5 @@ sourceId: "3.10.2.2 Prompt and Context Engineering/README"
 
 ## 衔接
 
-- 上一篇：[Foundations](/iopanda-blog/ai/02-agents/01/)——已有最小 Agent 循环，本章精修喂给循环的上下文；
-- 下一篇：[Planning and Reasoning](/iopanda-blog/ai/02-agents/03/)——上下文稳定后，让 Agent 学会把复杂任务拆开做。
+- 上一篇：[Foundations](/ai/02-agents/01/)——已有最小 Agent 循环，本章精修喂给循环的上下文；
+- 下一篇：[Planning and Reasoning](/ai/02-agents/03/)——上下文稳定后，让 Agent 学会把复杂任务拆开做。

@@ -67,10 +67,10 @@ README 里列出的能力说明它不只是几种分数：[10]
 
 | 框架 | 第一性问题 | DeepEval 相比的定位 |
 |---|---|---|
-| [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | 如何做 declarative regression / red-team / CI harness | DeepEval 更偏 code-first test authoring |
-| [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) | 如何做 LLM-native 平台闭环 | DeepEval 更偏本地/代码测试语义 |
-| [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) | 如何开放地做 traces / diagnosis / experiments | DeepEval 更偏测试用例与 metric authoring |
-| [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 如何统一 AI engineering 平台 | DeepEval 更偏代码评估层 |
+| [promptfoo](/ai/03-frameworks/05/23/) | 如何做 declarative regression / red-team / CI harness | DeepEval 更偏 code-first test authoring |
+| [Langfuse](/ai/03-frameworks/05/02/) | 如何做 LLM-native 平台闭环 | DeepEval 更偏本地/代码测试语义 |
+| [Phoenix](/ai/03-frameworks/05/09/) | 如何开放地做 traces / diagnosis / experiments | DeepEval 更偏测试用例与 metric authoring |
+| [MLflow](/ai/03-frameworks/05/16/) | 如何统一 AI engineering 平台 | DeepEval 更偏代码评估层 |
 
 ## 5. 什么时候最自然进入 DeepEval
 
@@ -100,6 +100,6 @@ README 里列出的能力说明它不只是几种分数：[10]
 - [10] https://github.com/confident-ai/deepeval/blob/main/README.md — DeepEval README
 - [12] https://github.com/confident-ai/deepeval/blob/main/typescript/README.md — DeepEval TypeScript README
 
-上一篇：[03.05 DeepEval](/iopanda-blog/ai/03-frameworks/05/30/)
+上一篇：[03.05 DeepEval](/ai/03-frameworks/05/30/)
 
-下一篇：[02 metrics、test cases 与 dataset-driven testing](/iopanda-blog/ai/03-frameworks/05/32/)
+下一篇：[02 metrics、test cases 与 dataset-driven testing](/ai/03-frameworks/05/32/)

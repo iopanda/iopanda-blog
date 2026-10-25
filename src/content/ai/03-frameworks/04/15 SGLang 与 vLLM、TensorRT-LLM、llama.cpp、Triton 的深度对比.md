@@ -72,6 +72,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.2 SGLang/06 SGLang
 - [9] https://github.com/ggml-org/llama.cpp — llama.cpp GitHub
 - [10] https://github.com/triton-inference-server/server — Triton Inference Server GitHub
 
-上一篇：[05 课程助教 Agent 的 SGLang 架构案例](/iopanda-blog/ai/03-frameworks/04/14/)
+上一篇：[05 课程助教 Agent 的 SGLang 架构案例](/ai/03-frameworks/04/14/)
 
-下一篇：回到 [03.04 Inference Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/04/37/)
+下一篇：回到 [03.04 Inference Framework 选型矩阵](/ai/03-frameworks/04/37/)

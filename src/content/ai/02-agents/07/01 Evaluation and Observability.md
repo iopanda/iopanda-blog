@@ -74,5 +74,5 @@ sourceId: "3.10.2.7 Evaluation and Observability/README"
 
 ## 衔接
 
-- 上一篇：[Multi-Agent Systems](/iopanda-blog/ai/02-agents/06/)——系统越复杂越需要本模块的度量与显微镜；
-- 下一篇：[Applications and Case Studies](/iopanda-blog/ai/02-agents/08/)——有了评测与可观测，看真实 Agent 应用长什么样、怎么翻车。
+- 上一篇：[Multi-Agent Systems](/ai/02-agents/06/)——系统越复杂越需要本模块的度量与显微镜；
+- 下一篇：[Applications and Case Studies](/ai/02-agents/08/)——有了评测与可观测，看真实 Agent 应用长什么样、怎么翻车。

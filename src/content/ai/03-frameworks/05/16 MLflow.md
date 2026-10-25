@@ -32,13 +32,13 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.3 MLflow/RE
 
 ## 本目录笔记导航
 
-1. [01 通用 AI engineering 平台的设计哲学](/iopanda-blog/ai/03-frameworks/05/17/)
-2. [02 experiments、traces、evals 与 model lifecycle](/iopanda-blog/ai/03-frameworks/05/18/)
-3. [03 GenAI 与传统 ML 的统一治理](/iopanda-blog/ai/03-frameworks/05/19/)
-4. [04 线上监控、权限、成本与工程边界](/iopanda-blog/ai/03-frameworks/05/20/)
-5. [05 企业课程助教系统的 MLflow 架构案例](/iopanda-blog/ai/03-frameworks/05/21/)
-6. [06 MLflow 与 Langfuse、Phoenix、promptfoo、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/22/)
+1. [01 通用 AI engineering 平台的设计哲学](/ai/03-frameworks/05/17/)
+2. [02 experiments、traces、evals 与 model lifecycle](/ai/03-frameworks/05/18/)
+3. [03 GenAI 与传统 ML 的统一治理](/ai/03-frameworks/05/19/)
+4. [04 线上监控、权限、成本与工程边界](/ai/03-frameworks/05/20/)
+5. [05 企业课程助教系统的 MLflow 架构案例](/ai/03-frameworks/05/21/)
+6. [06 MLflow 与 Langfuse、Phoenix、promptfoo、DeepEval 的深度对比](/ai/03-frameworks/05/22/)
 
-上一篇：[03.05 Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)
+上一篇：[03.05 Phoenix](/ai/03-frameworks/05/09/)
 
-下一篇：[01 通用 AI engineering 平台的设计哲学](/iopanda-blog/ai/03-frameworks/05/17/)
+下一篇：[01 通用 AI engineering 平台的设计哲学](/ai/03-frameworks/05/17/)

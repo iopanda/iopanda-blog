@@ -139,6 +139,6 @@ Phoenix 的能力链条可以这样理解：
 - [3] https://arize.com/docs/phoenix/evaluation/how-to-evals/running-pre-tested-evals — Phoenix evals docs
 - [7] https://arize.com/docs/phoenix/integrations/remote-mcp — Remote MCP server
 
-上一篇：[01 产品定位、诊断视角与适用场景](/iopanda-blog/ai/04-tooling/02/09/)——先理解定位，再看能力闭环。
+上一篇：[01 产品定位、诊断视角与适用场景](/ai/04-tooling/02/09/)——先理解定位，再看能力闭环。
 
-下一篇：[03 质量、社区、价格与开源边界](/iopanda-blog/ai/04-tooling/02/11/)——能力之后，再回头判断它是否成熟、是否值得长期采用。
+下一篇：[03 质量、社区、价格与开源边界](/ai/04-tooling/02/11/)——能力之后，再回头判断它是否成熟、是否值得长期采用。

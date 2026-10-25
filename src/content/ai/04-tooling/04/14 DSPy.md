@@ -17,11 +17,11 @@ sourceId: "3.10.4.4 Prompt Management/03 DSPy/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、程序化Prompt工程与适用场景](/iopanda-blog/ai/04-tooling/04/15/)
-2. [02 Signatures、Modules、Optimizers与评测闭环](/iopanda-blog/ai/04-tooling/04/16/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/17/)
-4. [04 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/18/)
-5. [05 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号](/iopanda-blog/ai/04-tooling/04/19/)
+1. [01 产品定位、程序化Prompt工程与适用场景](/ai/04-tooling/04/15/)
+2. [02 Signatures、Modules、Optimizers与评测闭环](/ai/04-tooling/04/16/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/04/17/)
+4. [04 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/18/)
+5. [05 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号](/ai/04-tooling/04/19/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.4 Prompt Management/03 DSPy/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、程序化Prompt工程与适用场景](/iopanda-blog/ai/04-tooling/04/15/)
-2. [02 Signatures、Modules、Optimizers与评测闭环](/iopanda-blog/ai/04-tooling/04/16/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/17/)
-4. [04 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/18/)
-5. [05 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号](/iopanda-blog/ai/04-tooling/04/19/)
+1. [01 产品定位、程序化Prompt工程与适用场景](/ai/04-tooling/04/15/)
+2. [02 Signatures、Modules、Optimizers与评测闭环](/ai/04-tooling/04/16/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/04/17/)
+4. [04 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/18/)
+5. [05 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号](/ai/04-tooling/04/19/)
 
 ## 引用
 
@@ -65,6 +65,6 @@ sourceId: "3.10.4.4 Prompt Management/03 DSPy/README"
 - [6] https://dspy.ai/learn/programming/modules/ — DSPy modules docs
 - [10] https://dspy.ai/community/built-with-dspy/ — Built with DSPy
 
-上一篇：[02 Promptfoo](/iopanda-blog/ai/04-tooling/04/08/)——上一产品代表 prompt 的测试与门禁层；这一篇切到程序抽象与优化层。
+上一篇：[02 Promptfoo](/ai/04-tooling/04/08/)——上一产品代表 prompt 的测试与门禁层；这一篇切到程序抽象与优化层。
 
-下一篇：[01 产品定位、程序化Prompt工程与适用场景](/iopanda-blog/ai/04-tooling/04/15/)——先从产品定位与适用边界开始。
+下一篇：[01 产品定位、程序化Prompt工程与适用场景](/ai/04-tooling/04/15/)——先从产品定位与适用边界开始。

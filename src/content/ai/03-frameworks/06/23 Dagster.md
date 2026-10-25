@@ -32,13 +32,13 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.4 Dagster/README"
 
 ## 本目录笔记导航
 
-1. [01 asset-first orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/24/)
-2. [02 assets、jobs、ops、resources 与 lineage](/iopanda-blog/ai/03-frameworks/06/25/)
-3. [03 sensors、partitions、data platform workflows](/iopanda-blog/ai/03-frameworks/06/26/)
-4. [04 资产治理、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/06/27/)
-5. [05 课程助教系统的数据资产案例](/iopanda-blog/ai/03-frameworks/06/28/)
-6. [06 Dagster 与 Temporal、Airflow、Prefect、Kestra 的深度对比](/iopanda-blog/ai/03-frameworks/06/29/)
+1. [01 asset-first orchestration 的设计哲学](/ai/03-frameworks/06/24/)
+2. [02 assets、jobs、ops、resources 与 lineage](/ai/03-frameworks/06/25/)
+3. [03 sensors、partitions、data platform workflows](/ai/03-frameworks/06/26/)
+4. [04 资产治理、可观测性与工程边界](/ai/03-frameworks/06/27/)
+5. [05 课程助教系统的数据资产案例](/ai/03-frameworks/06/28/)
+6. [06 Dagster 与 Temporal、Airflow、Prefect、Kestra 的深度对比](/ai/03-frameworks/06/29/)
 
-上一篇：[03.06 Prefect](/iopanda-blog/ai/03-frameworks/06/16/)
+上一篇：[03.06 Prefect](/ai/03-frameworks/06/16/)
 
-下一篇：[01 asset-first orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/24/)
+下一篇：[01 asset-first orchestration 的设计哲学](/ai/03-frameworks/06/24/)

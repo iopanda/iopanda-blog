@@ -74,5 +74,5 @@ sourceId: "3.10.2.9 Agent Implementations/01 Claude Code/README"
 
 ## 衔接
 
-- 蓝图:[Learning Path](/iopanda-blog/ai/02-agents/09/01/)(八维度统一框架);概念基础:[权限边界与工具安全](/iopanda-blog/ai/02-agents/04/07/);下一篇:02 OpenAI Codex(见其 README)。
+- 蓝图:[Learning Path](/ai/02-agents/09/01/)(八维度统一框架);概念基础:[权限边界与工具安全](/ai/02-agents/04/07/);下一篇:02 OpenAI Codex(见其 README)。
 - 阅读方法:先 docs 后 SDK 源码,边读边本地跑 `claude` 复现;每章笔记 = 关键代码/文档片段 + 对应 02 概念 + 一条「可抄/要避」结论。

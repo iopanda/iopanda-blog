@@ -263,6 +263,6 @@ if __name__ == "__main__":
 - [LangSmith 官方文档:Tracing LangChain 应用(LANGSMITH_TRACING 环境变量与项目隔离)](https://docs.smith.langchain.com/observability/how_to_guides/trace_with_langchain)
 - [OpenTelemetry:Traces 概念(span/trace 树与链路语义的标准出处)](https://opentelemetry.io/docs/concepts/signals/traces/)
 
-上一篇:[LLM 裁判评轨迹](/iopanda-blog/ai/02-agents/07/05/)——裁判读的「办案记录」不该手工誊写;本章装上记录仪:没有完整 trace,轨迹级、任务级、裁判全是无米之炊。
+上一篇:[LLM 裁判评轨迹](/ai/02-agents/07/05/)——裁判读的「办案记录」不该手工誊写;本章装上记录仪:没有完整 trace,轨迹级、任务级、裁判全是无米之炊。
 
-下一篇:[回归评测与开发循环](/iopanda-blog/ai/02-agents/07/07/)——有了可重放的 trace 与整套指标,06 章把它们装进 pytest:每次改动自动重跑,「修好一个坏十个」在合入前就被拦下。
+下一篇:[回归评测与开发循环](/ai/02-agents/07/07/)——有了可重放的 trace 与整套指标,06 章把它们装进 pytest:每次改动自动重跑,「修好一个坏十个」在合入前就被拦下。

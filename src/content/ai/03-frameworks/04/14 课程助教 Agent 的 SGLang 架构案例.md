@@ -69,6 +69,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.2 SGLang/05 课程
 - [10] https://github.com/sgl-project/sglang/blob/main/experimental/sgl-router/README.md — SGLang router README
 - [11] https://github.com/sgl-project/sglang/blob/main/sgl-model-gateway/README.md — SGLang model gateway README
 
-上一篇：[04 性能优化、部署方式与工程边界](/iopanda-blog/ai/03-frameworks/04/13/)
+上一篇：[04 性能优化、部署方式与工程边界](/ai/03-frameworks/04/13/)
 
-下一篇：[06 SGLang 与 vLLM、TensorRT-LLM、llama.cpp、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/15/)
+下一篇：[06 SGLang 与 vLLM、TensorRT-LLM、llama.cpp、Triton 的深度对比](/ai/03-frameworks/04/15/)

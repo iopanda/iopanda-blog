@@ -89,6 +89,6 @@ DeepEval 明确支持：
 - [12] https://github.com/confident-ai/deepeval/blob/main/typescript/README.md — DeepEval TypeScript README
 - [13] https://github.com/confident-ai/deepeval/blob/main/typescript/src/evaluate/test-run/README.md — DeepEval test run README
 
-上一篇：[01 code-first LLM eval 的设计哲学](/iopanda-blog/ai/03-frameworks/05/31/)
+上一篇：[01 code-first LLM eval 的设计哲学](/ai/03-frameworks/05/31/)
 
-下一篇：[03 pytest-like workflow、CI 集成与 regression](/iopanda-blog/ai/03-frameworks/05/33/)
+下一篇：[03 pytest-like workflow、CI 集成与 regression](/ai/03-frameworks/05/33/)

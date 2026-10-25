@@ -94,6 +94,6 @@ n8n 最强的地方，不是某个单点 AI 功能，而是：
 - [2] https://n8n.io — n8n homepage
 - [3] https://api.github.com/repos/n8n-io/n8n — n8n GitHub API
 
-上一篇：[03 质量、社区、价格与许可边界](/iopanda-blog/ai/04-tooling/03/11/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与许可边界](/ai/04-tooling/03/11/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：Vodafone、Trendyol、Stepstone、Huel、Seguros Bolívar、Fullscript](/iopanda-blog/ai/04-tooling/03/13/)——最后从真实组织案例看，n8n 为什么会被采用。
+下一篇：[05 真实组织案例：Vodafone、Trendyol、Stepstone、Huel、Seguros Bolívar、Fullscript](/ai/04-tooling/03/13/)——最后从真实组织案例看，n8n 为什么会被采用。

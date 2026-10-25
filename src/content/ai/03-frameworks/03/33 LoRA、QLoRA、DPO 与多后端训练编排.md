@@ -79,6 +79,6 @@ AGENTS.md 的 method table 已经很直白：[14]
 - [16] https://github.com/axolotl-ai-cloud/axolotl/blob/main/docs/agents/preference_tuning.md — Axolotl preference tuning agent doc
 - [17] https://github.com/axolotl-ai-cloud/axolotl/blob/main/docs/agents/grpo.md — Axolotl GRPO agent doc
 
-上一篇：[02 Dataset、Template、YAML 与实验管理](/iopanda-blog/ai/03-frameworks/03/32/)
+上一篇：[02 Dataset、Template、YAML 与实验管理](/ai/03-frameworks/03/32/)
 
-下一篇：[04 分布式、导出、调参与工程边界](/iopanda-blog/ai/03-frameworks/03/34/)
+下一篇：[04 分布式、导出、调参与工程边界](/ai/03-frameworks/03/34/)

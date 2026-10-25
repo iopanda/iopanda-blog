@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/02 Graph、Durable Execution 
 ---
 # Graph、Durable Execution 与工程化升级
 
-> [上一章](/iopanda-blog/ai/03-frameworks/01/33/)讲的是 PydanticAI 如何先稳住类型、依赖和输出契约；这一章讲它如何继续向复杂系统升级。很多人误以为 PydanticAI 只是“typed output 比较好的 Agent SDK”，但只要继续往文档和源码里看，就会发现它并没有停在单 Agent：`_agent_graph.py` 把 agent run 写在 graph 运行模型上，官方 docs 单独讨论 graph、multi-agent applications、durable execution，并明确支持 Temporal、DBOS、Prefect、Restate 等 durable backends。[1][2][3][4] 更有意思的是，它对 graph 的态度非常克制：不是鼓励你一上来就上最复杂抽象，而是强调复杂度应该按需升级。[2] 这背后是一套很成熟的工程哲学。
+> [上一章](/ai/03-frameworks/01/33/)讲的是 PydanticAI 如何先稳住类型、依赖和输出契约；这一章讲它如何继续向复杂系统升级。很多人误以为 PydanticAI 只是“typed output 比较好的 Agent SDK”，但只要继续往文档和源码里看，就会发现它并没有停在单 Agent：`_agent_graph.py` 把 agent run 写在 graph 运行模型上，官方 docs 单独讨论 graph、multi-agent applications、durable execution，并明确支持 Temporal、DBOS、Prefect、Restate 等 durable backends。[1][2][3][4] 更有意思的是，它对 graph 的态度非常克制：不是鼓励你一上来就上最复杂抽象，而是强调复杂度应该按需升级。[2] 这背后是一套很成熟的工程哲学。
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释为什么 PydanticAI 既提供 graph/durability，又不把它们当默认入口；
 2. 说出 `_agent_graph.py` 暗示的运行模型与 `run.py` 暗示的执行接口；
 3. 理解 usage limits、event stream、graph run、durable sleep 等设计为什么重要；
-4. 比较它与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) 在 graph 设计态度上的差异；
+4. 比较它与 [LangGraph](/ai/03-frameworks/01/03/) 在 graph 设计态度上的差异；
 5. 判断一个 typed Agent 什么时候该升级成 graph / durable system。
 
 ## 1. graph：为什么它在这里是“高级能力”，不是“默认世界观”
@@ -181,6 +181,6 @@ PydanticAI 的路线正好适合这种情境：
 - [3] https://github.com/pydantic/pydantic-ai — PydanticAI GitHub
 - [4] https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md — Pydantic AI multi-agent applications doc
 
-上一篇：[01 类型系统、依赖注入与输出契约](/iopanda-blog/ai/03-frameworks/01/33/)——先把单体 Agent 的工程边界立住；本篇继续看它如何向复杂运行时升级。
+上一篇：[01 类型系统、依赖注入与输出契约](/ai/03-frameworks/01/33/)——先把单体 Agent 的工程边界立住；本篇继续看它如何向复杂运行时升级。
 
-下一篇：[03 Tools、Capabilities、Usage Limits 与取消语义](/iopanda-blog/ai/03-frameworks/01/35/)——graph/durable 的升级路径立住后，下一篇继续看它如何把工具、能力、预算和取消做成运行纪律。
+下一篇：[03 Tools、Capabilities、Usage Limits 与取消语义](/ai/03-frameworks/01/35/)——graph/durable 的升级路径立住后，下一篇继续看它如何把工具、能力、预算和取消做成运行纪律。

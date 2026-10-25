@@ -32,13 +32,13 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/03 PEFT/README"
 
 ## 本目录笔记导航
 
-1. [01 参数高效微调的设计哲学](/iopanda-blog/ai/03-frameworks/03/17/)
-2. [02 LoRA、IA3、AdaLoRA 与统一抽象](/iopanda-blog/ai/03-frameworks/03/18/)
-3. [03 与 Transformers / Accelerate / TRL 的组合方式](/iopanda-blog/ai/03-frameworks/03/19/)
-4. [04 显存、导出、合并权重与工程边界](/iopanda-blog/ai/03-frameworks/03/20/)
-5. [05 课程助教 Agent 的 PEFT 架构案例](/iopanda-blog/ai/03-frameworks/03/21/)
-6. [06 PEFT 与 Unsloth、LLaMA-Factory、TRL、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/22/)
+1. [01 参数高效微调的设计哲学](/ai/03-frameworks/03/17/)
+2. [02 LoRA、IA3、AdaLoRA 与统一抽象](/ai/03-frameworks/03/18/)
+3. [03 与 Transformers / Accelerate / TRL 的组合方式](/ai/03-frameworks/03/19/)
+4. [04 显存、导出、合并权重与工程边界](/ai/03-frameworks/03/20/)
+5. [05 课程助教 Agent 的 PEFT 架构案例](/ai/03-frameworks/03/21/)
+6. [06 PEFT 与 Unsloth、LLaMA-Factory、TRL、Axolotl 的深度对比](/ai/03-frameworks/03/22/)
 
-上一篇：[02 Unsloth](/iopanda-blog/ai/03-frameworks/03/09/)
+上一篇：[02 Unsloth](/ai/03-frameworks/03/09/)
 
-下一篇：[01 参数高效微调的设计哲学](/iopanda-blog/ai/03-frameworks/03/17/)
+下一篇：[01 参数高效微调的设计哲学](/ai/03-frameworks/03/17/)

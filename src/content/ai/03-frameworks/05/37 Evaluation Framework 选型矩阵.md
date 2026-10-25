@@ -13,7 +13,7 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 ---
 # Evaluation Framework 选型矩阵
 
-> 到这里，[Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)、[Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)、[MLflow](/iopanda-blog/ai/03-frameworks/05/16/)、[promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)、[DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) 五条路线都已经拆开了。现在真正重要的，不再是“它们分别是什么”，而是：**当你的 AI system 开始需要质量证明、问题定位、回归门禁和线上反馈时，到底该选哪一条路线，为什么不是别的那一条。** 这一篇就是把 evaluation framework 从知识点压缩成架构判断。
+> 到这里，[Langfuse](/ai/03-frameworks/05/02/)、[Phoenix](/ai/03-frameworks/05/09/)、[MLflow](/ai/03-frameworks/05/16/)、[promptfoo](/ai/03-frameworks/05/23/)、[DeepEval](/ai/03-frameworks/05/30/) 五条路线都已经拆开了。现在真正重要的，不再是“它们分别是什么”，而是：**当你的 AI system 开始需要质量证明、问题定位、回归门禁和线上反馈时，到底该选哪一条路线，为什么不是别的那一条。** 这一篇就是把 evaluation framework 从知识点压缩成架构判断。
 
 **学习目标**：学完本章，你将能够——
 1. 用系统主矛盾，而不是功能清单，来做 evaluation framework 选型；
@@ -34,11 +34,11 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 
 | 框架 | 它首先解决什么复杂度 |
 |---|---|
-| [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) | traces、prompts、datasets、feedback、evals 的产品闭环复杂度 |
-| [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) | trace-first diagnosis、开放 tracing、experiments 的分析复杂度 |
-| [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 传统 ML 与 GenAI 共存时的统一治理复杂度 |
-| [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | regression、red-team、CI gate、security scanning 的测试复杂度 |
-| [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | code-first metrics、test cases、dataset-driven testing 的开发复杂度 |
+| [Langfuse](/ai/03-frameworks/05/02/) | traces、prompts、datasets、feedback、evals 的产品闭环复杂度 |
+| [Phoenix](/ai/03-frameworks/05/09/) | trace-first diagnosis、开放 tracing、experiments 的分析复杂度 |
+| [MLflow](/ai/03-frameworks/05/16/) | 传统 ML 与 GenAI 共存时的统一治理复杂度 |
+| [promptfoo](/ai/03-frameworks/05/23/) | regression、red-team、CI gate、security scanning 的测试复杂度 |
+| [DeepEval](/ai/03-frameworks/05/30/) | code-first metrics、test cases、dataset-driven testing 的开发复杂度 |
 
 所以第一原则不是“谁最强”，而是：
 **你的质量系统最贵的复杂度到底是什么。**
@@ -111,7 +111,7 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 - traces、feedback、prompt、datasets、scores 分裂；
 - 团队要持续迭代产品质量。
 
-最自然：[Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)
+最自然：[Langfuse](/ai/03-frameworks/05/02/)
 
 为什么不是别的：
 - 不是 promptfoo：主问题不只是 gate；
@@ -125,7 +125,7 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 - 想知道问题到底出在哪个 span；
 - 想围绕 traces、experiments、datasets 做 diagnosis。
 
-最自然：[Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)
+最自然：[Phoenix](/ai/03-frameworks/05/09/)
 
 为什么不是别的：
 - 不是 Langfuse：这里更强调开放 diagnosis 而非平台闭环；
@@ -140,7 +140,7 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 - 资产分裂；
 - 审计和治理分裂。
 
-最自然：[MLflow](/iopanda-blog/ai/03-frameworks/05/16/)
+最自然：[MLflow](/ai/03-frameworks/05/16/)
 
 为什么不是别的：
 - 不是 Langfuse：它更偏 LLM-native；
@@ -155,7 +155,7 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 - 缺 regression；
 - 缺 security scanning。
 
-最自然：[promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)
+最自然：[promptfoo](/ai/03-frameworks/05/23/)
 
 为什么不是别的：
 - 不是 Langfuse：平台闭环不等于测试门禁；
@@ -170,7 +170,7 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 - 想把 metrics、test cases、dataset 写成代码；
 - 想让 PR/本地回归直接使用这些测试。
 
-最自然：[DeepEval](/iopanda-blog/ai/03-frameworks/05/30/)
+最自然：[DeepEval](/ai/03-frameworks/05/30/)
 
 为什么不是别的：
 - 不是 promptfoo：promptfoo 更偏 declarative harness；
@@ -184,11 +184,11 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 
 | 阶段 | 主问题 | 更自然的框架 |
 |---|---|---|
-| 第一阶段：先把助教质量要求写成可执行测试 | code-first eval | [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) |
-| 第二阶段：每次改动都要做回归和安全门禁 | CI regression + red team | [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) |
-| 第三阶段：上线后要看 traces、feedback、prompts、datasets 的闭环 | 产品化质量闭环 | [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) |
-| 第四阶段：出现复杂路径问题，需要开放式根因分析 | trace-first diagnosis | [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) |
-| 第五阶段：组织里传统 ML 与 GenAI 都要统一治理 | 平台统一 | [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) |
+| 第一阶段：先把助教质量要求写成可执行测试 | code-first eval | [DeepEval](/ai/03-frameworks/05/30/) |
+| 第二阶段：每次改动都要做回归和安全门禁 | CI regression + red team | [promptfoo](/ai/03-frameworks/05/23/) |
+| 第三阶段：上线后要看 traces、feedback、prompts、datasets 的闭环 | 产品化质量闭环 | [Langfuse](/ai/03-frameworks/05/02/) |
+| 第四阶段：出现复杂路径问题，需要开放式根因分析 | trace-first diagnosis | [Phoenix](/ai/03-frameworks/05/09/) |
+| 第五阶段：组织里传统 ML 与 GenAI 都要统一治理 | 平台统一 | [MLflow](/ai/03-frameworks/05/16/) |
 
 这张表最重要的含义是：
 **evaluation framework selection 也是阶段题，而不是一次性终局题。**
@@ -262,6 +262,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.6 Evaluatio
 - [10] https://github.com/promptfoo/promptfoo/blob/main/README.md — promptfoo README
 - [10] https://github.com/confident-ai/deepeval/blob/main/README.md — DeepEval README
 
-上一篇：[03.05 DeepEval](/iopanda-blog/ai/03-frameworks/05/30/)——最后一条 code-first eval 路线立住后，本篇把五条质量路线压成可用的架构判断。
+上一篇：[03.05 DeepEval](/ai/03-frameworks/05/30/)——最后一条 code-first eval 路线立住后，本篇把五条质量路线压成可用的架构判断。
 
-下一篇：回到 [03.05 Evaluation and Observability Frameworks](/iopanda-blog/ai/03-frameworks/05/01/)，从模块入口反向检查阅读顺序与选型逻辑是否顺滑。
+下一篇：回到 [03.05 Evaluation and Observability Frameworks](/ai/03-frameworks/05/01/)，从模块入口反向检查阅读顺序与选型逻辑是否顺滑。

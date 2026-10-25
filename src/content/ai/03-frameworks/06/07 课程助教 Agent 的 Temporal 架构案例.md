@@ -69,6 +69,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.1 Temporal/05 课
 - [6] https://github.com/temporalio/temporal/blob/main/docs/architecture/workflow-lifecycle.md — Temporal workflow lifecycle doc
 - [8] https://github.com/temporalio/temporal/blob/main/docs/architecture/schedules.md — Temporal schedules architecture doc
 
-上一篇：[04 可恢复性、幂等性、补偿与工程边界](/iopanda-blog/ai/03-frameworks/06/06/)
+上一篇：[04 可恢复性、幂等性、补偿与工程边界](/ai/03-frameworks/06/06/)
 
-下一篇：[06 Temporal 与 Airflow、Prefect、Dagster、Kestra 的深度对比](/iopanda-blog/ai/03-frameworks/06/08/)
+下一篇：[06 Temporal 与 Airflow、Prefect、Dagster、Kestra 的深度对比](/ai/03-frameworks/06/08/)

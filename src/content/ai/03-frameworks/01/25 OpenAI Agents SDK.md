@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/04 OpenAI Agents SDK/README"
 ---
 # OpenAI Agents SDK
 
-> 如果说 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) 是从控制流切入，[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) 是从角色团队切入，那么 OpenAI Agents SDK 的切入点更像“把 2025~2026 年现代 Agent 应用反复需要的基础原语，直接做成标准配置”：agents、tools、agents as tools / handoffs、guardrails、human in the loop、sessions、tracing，再加上 sandbox、realtime、voice 这些真实应用很快会碰到的运行环境。[4][15][16][17][18] 它的价值不在于抽象最底层，也不在于角色叙事最强，而在于**把今天构建现代 Agent 应用最常见的组件收拢成一套一致的开发体验**。
+> 如果说 [LangGraph](/ai/03-frameworks/01/03/) 是从控制流切入，[CrewAI](/ai/03-frameworks/01/18/) 是从角色团队切入，那么 OpenAI Agents SDK 的切入点更像“把 2025~2026 年现代 Agent 应用反复需要的基础原语，直接做成标准配置”：agents、tools、agents as tools / handoffs、guardrails、human in the loop、sessions、tracing，再加上 sandbox、realtime、voice 这些真实应用很快会碰到的运行环境。[4][15][16][17][18] 它的价值不在于抽象最底层，也不在于角色叙事最强，而在于**把今天构建现代 Agent 应用最常见的组件收拢成一套一致的开发体验**。
 
 **学习目标**：学完本章，你将能够——
 
 1. 说出 OpenAI Agents SDK 的核心原语，以及它们分别解决什么问题；
 2. 理解为什么 handoffs、guardrails、sessions、tracing 在 2026 年已经应被视为 Agent SDK 的“标配”；
 3. 解释 sandbox agent、realtime agent、voice pipeline 为什么代表了 Agent 正在脱离单纯文本应用；
-4. 区分它与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/)、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) 的边界；
+4. 区分它与 [LangGraph](/ai/03-frameworks/01/03/)、[PydanticAI](/ai/03-frameworks/01/32/)、[CrewAI](/ai/03-frameworks/01/18/) 的边界；
 5. 为一个开发者向的课程助教 Agent 设计 OpenAI Agents SDK 风格的运行结构。
 
 ## 1. 概念：不是一个“聊天包装器”，而是一组现代 Agent 原语的集合
@@ -68,7 +68,7 @@ OpenAI Agents SDK 的 README 开头就给出两个重要信息：
 
 问题是，这种“拼装式架构”很快会出现接口风格不统一、状态边界混乱、调试上下文割裂的问题。OpenAI Agents SDK 的工程判断是：**这些能力已经足够通用，应该被收口到同一个运行时语义里。**
 
-- 这和 [02.04 Tool Use and Protocols](/iopanda-blog/ai/02-agents/04/01/)、[02.07 Evaluation and Observability](/iopanda-blog/ai/02-agents/07/01/) 的演进是完全一致的：当一个模式反复出现，就不该继续靠胶水代码维持。
+- 这和 [02.04 Tool Use and Protocols](/ai/02-agents/04/01/)、[02.07 Evaluation and Observability](/ai/02-agents/07/01/) 的演进是完全一致的：当一个模式反复出现，就不该继续靠胶水代码维持。
 
 ## 3. 核心原语：为什么这一套组合很有代表性
 
@@ -84,7 +84,7 @@ tool 在这里不是插件市场概念，而是 Agent 对外行动的标准接�
 - 有了 tool schema，调用边界才变得可验证；
 - 有了统一 tool 语义，guardrail 和 tracing 才能真正落地。
 
-这与 [提示注入与工具安全](/iopanda-blog/ai/01-models/07/03/) 里的判断完全一致：真正危险的不是模型会说错话，而是它会不会借应用身份把工具调错。
+这与 [提示注入与工具安全](/ai/01-models/07/03/) 里的判断完全一致：真正危险的不是模型会说错话，而是它会不会借应用身份把工具调错。
 
 ### 3.3 Agents as tools / Handoffs
 
@@ -93,7 +93,7 @@ tool 在这里不是插件市场概念，而是 Agent 对外行动的标准接�
 - “agent as tool” 的意思是：一个 Agent 可以把另一个 Agent 当作专长能力来调用；
 - “handoff” 的意思是：控制权可以从一个 Agent 交给另一个 Agent。
 
-这两个能力把多 Agent 从“并排放几个模型”提升到“具备明确委托关系的协作结构”。与 [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) 相比，它不是从群聊式协作切入，而是从**受控委托和控制权转移**切入；与 [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) 相比，它不是先谈角色，而是先谈运行时关系。
+这两个能力把多 Agent 从“并排放几个模型”提升到“具备明确委托关系的协作结构”。与 [AutoGen](/ai/03-frameworks/01/11/) 相比，它不是从群聊式协作切入，而是从**受控委托和控制权转移**切入；与 [CrewAI](/ai/03-frameworks/01/18/) 相比，它不是先谈角色，而是先谈运行时关系。
 
 ### 3.4 Guardrails
 
@@ -103,7 +103,7 @@ OpenAI Agents SDK 直接把 input/output guardrails 做成官方一等概念。[
 
 - 它承认安全与策略校验不该是业务代码里的零散钩子；
 - 它让输入检查、输出检查与 Agent 执行同处一个可观察语义里；
-- 它说明“模型之外的独立控制层”已经从最佳实践变成默认组件，呼应 [护栏与人工复核](/iopanda-blog/ai/01-models/07/04/)。
+- 它说明“模型之外的独立控制层”已经从最佳实践变成默认组件，呼应 [护栏与人工复核](/ai/01-models/07/04/)。
 
 ### 3.5 Sessions
 
@@ -141,10 +141,10 @@ OpenAI Agents SDK 很值得重视的一点，是它没有停在文本 Agent 上�
 | 框架 | 设计中心 | 更适合的首要问题 |
 |---|---|---|
 | OpenAI Agents SDK | 统一现代 Agent 原语 | 我想尽快获得一套完整运行时能力栈 |
-| [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) | 状态图与可恢复执行 | 我首先担心复杂控制流与恢复 |
-| [CrewAI](/iopanda-blog/ai/03-frameworks/01/18/) | 角色团队与业务流程 | 我首先担心角色协作与流程表达 |
-| [PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) | 类型、输出、依赖、能力组合 | 我首先担心工程契约与测试性 |
-| [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) | 多 Agent 对话与事件协作 | 我想理解多 Agent 先驱模式或维护旧系统 |
+| [LangGraph](/ai/03-frameworks/01/03/) | 状态图与可恢复执行 | 我首先担心复杂控制流与恢复 |
+| [CrewAI](/ai/03-frameworks/01/18/) | 角色团队与业务流程 | 我首先担心角色协作与流程表达 |
+| [PydanticAI](/ai/03-frameworks/01/32/) | 类型、输出、依赖、能力组合 | 我首先担心工程契约与测试性 |
+| [AutoGen](/ai/03-frameworks/01/11/) | 多 Agent 对话与事件协作 | 我想理解多 Agent 先驱模式或维护旧系统 |
 
 一句话看差别：
 
@@ -188,7 +188,7 @@ OpenAI Agents SDK 很值得重视的一点，是它没有停在文本 Agent 上�
 
 ## 8. 边界与排错
 
-- **误区一：原语很多 = 适合所有复杂系统。** 如果你主要问题是显式状态恢复和长流程图控制，仍可能更适合 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)；
+- **误区一：原语很多 = 适合所有复杂系统。** 如果你主要问题是显式状态恢复和长流程图控制，仍可能更适合 [LangGraph](/ai/03-frameworks/01/03/)；
 - **误区二：有 guardrail 就自动安全。** guardrail 是控制点，不是免责牌；权限、人工确认、审计仍要补齐；
 - **误区三：handoff = 多 Agent 万能药。** 委托关系设计不好，只会把问题拆散而不是解决；
 - **误区四：provider-agnostic 就等于零迁移成本。** 抽象统一不等于模型差异消失，真实行为、成本、工具效果仍需评测；
@@ -206,14 +206,14 @@ OpenAI Agents SDK 很值得重视的一点，是它没有停在文本 Agent 上�
 
 ## 10. 本目录笔记导航
 
-1. [01 核心原语与运行时设计](/iopanda-blog/ai/03-frameworks/01/26/)
-2. [02 Sandbox、Guardrails、Sessions 与产品化](/iopanda-blog/ai/03-frameworks/01/27/)
-3. [03 Handoffs、Agent-as-Tool 与 MCP 工具生态](/iopanda-blog/ai/03-frameworks/01/28/)
-4. [04 Tracing、Testing、Realtime 与 Voice 的应用形态](/iopanda-blog/ai/03-frameworks/01/29/)
-5. [05 课程助教 Agent 的 OpenAI Agents SDK 架构案例](/iopanda-blog/ai/03-frameworks/01/30/)
-6. [06 OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/31/)
+1. [01 核心原语与运行时设计](/ai/03-frameworks/01/26/)
+2. [02 Sandbox、Guardrails、Sessions 与产品化](/ai/03-frameworks/01/27/)
+3. [03 Handoffs、Agent-as-Tool 与 MCP 工具生态](/ai/03-frameworks/01/28/)
+4. [04 Tracing、Testing、Realtime 与 Voice 的应用形态](/ai/03-frameworks/01/29/)
+5. [05 课程助教 Agent 的 OpenAI Agents SDK 架构案例](/ai/03-frameworks/01/30/)
+6. [06 OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比](/ai/03-frameworks/01/31/)
 
-**思考题**：如果你的 Agent 主要工作是“长流程文档审查 + 多次人工批注 + 故障后从中断点继续”，你会直接选 OpenAI Agents SDK，还是更倾向 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) 一类显式状态图框架？为什么？如果你的核心需求改成“多终端聊天 + 语音 + 专家 Agent 分流”，答案为什么又可能变化？
+**思考题**：如果你的 Agent 主要工作是“长流程文档审查 + 多次人工批注 + 故障后从中断点继续”，你会直接选 OpenAI Agents SDK，还是更倾向 [LangGraph](/ai/03-frameworks/01/03/) 一类显式状态图框架？为什么？如果你的核心需求改成“多终端聊天 + 语音 + 专家 Agent 分流”，答案为什么又可能变化？
 
 > [!note] 参考答案
 > 若首要矛盾是长流程恢复、人工批注和显式状态控制，更偏向状态图与持久化导向的框架，因为复杂度主要落在控制流；OpenAI Agents SDK 依然能做，但它的设计中心不是首先把流程写成图。反过来，如果核心需求变成多终端交互、语音接入、专家分流、输入输出 guardrails 和统一 tracing，那么 OpenAI Agents SDK 的一体化原语优势会非常明显。选型不是看功能清单谁更长，而是看你的系统最先在哪里变复杂。
@@ -226,6 +226,6 @@ OpenAI Agents SDK 很值得重视的一点，是它没有停在文本 Agent 上�
 - [17] https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md — OpenAI Agents handoffs doc
 - [18] https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md — OpenAI Agents guardrails doc
 
-上一篇：[03 CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)——上一章把多 Agent 放进业务团队与流程语义；本章转向一体化现代 Agent 原语。
+上一篇：[03 CrewAI](/ai/03-frameworks/01/18/)——上一章把多 Agent 放进业务团队与流程语义；本章转向一体化现代 Agent 原语。
 
-下一篇：[05 PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/)——如果说 OpenAI Agents SDK 想帮你把原语凑齐，那么 PydanticAI 要解决的是另一件事：这些能力怎样在 Python 工程里变得类型安全、可测试、可维护。
+下一篇：[05 PydanticAI](/ai/03-frameworks/01/32/)——如果说 OpenAI Agents SDK 想帮你把原语凑齐，那么 PydanticAI 要解决的是另一件事：这些能力怎样在 Python 工程里变得类型安全、可测试、可维护。

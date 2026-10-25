@@ -101,6 +101,6 @@ DSPy 的回答是：别再手调 brittle prompts，而是写 compositional Pytho
 - [5] https://dspy.ai/learn/optimization/overview/ — DSPy optimization docs
 - [6] https://dspy.ai/learn/programming/modules/ — DSPy modules docs
 
-上一篇：[03 DSPy](/iopanda-blog/ai/04-tooling/04/14/)——先看目录地图，再进入产品定位。
+上一篇：[03 DSPy](/ai/04-tooling/04/14/)——先看目录地图，再进入产品定位。
 
-下一篇：[02 Signatures、Modules、Optimizers与评测闭环](/iopanda-blog/ai/04-tooling/04/16/)——定位之后，再看它如何把 prompt 工程真正做成程序系统。
+下一篇：[02 Signatures、Modules、Optimizers与评测闭环](/ai/04-tooling/04/16/)——定位之后，再看它如何把 prompt 工程真正做成程序系统。

@@ -74,5 +74,5 @@ sourceId: "3.10.2.5 Memory and Retrieval/README"
 
 ## 衔接
 
-- 上一篇：[Tool Use and Protocols](/iopanda-blog/ai/02-agents/04/)——工具访问外部世界，记忆让 Agent 记住世界状态；
-- 下一篇：[Multi-Agent Systems](/iopanda-blog/ai/02-agents/06/)——单 Agent 有记忆后，看多个带记忆的 Agent 如何协作。
+- 上一篇：[Tool Use and Protocols](/ai/02-agents/04/)——工具访问外部世界，记忆让 Agent 记住世界状态；
+- 下一篇：[Multi-Agent Systems](/ai/02-agents/06/)——单 Agent 有记忆后，看多个带记忆的 Agent 如何协作。

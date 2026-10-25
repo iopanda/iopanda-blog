@@ -32,13 +32,13 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/05 Pathway/README"
 
 ## 本目录笔记导航
 
-1. [01 Real-time RAG 的设计哲学](/iopanda-blog/ai/03-frameworks/02/31/)
-2. [02 Streaming ETL、Incremental Index 与 Update Semantics](/iopanda-blog/ai/03-frameworks/02/32/)
-3. [03 Real-time Retrieval、Windowing 与 Freshness](/iopanda-blog/ai/03-frameworks/02/33/)
-4. [04 生产系统中的吞吐、延迟与治理](/iopanda-blog/ai/03-frameworks/02/34/)
-5. [05 课程助教 Agent 的 Pathway 架构案例](/iopanda-blog/ai/03-frameworks/02/35/)
-6. [06 Pathway 与 LlamaIndex、Haystack、RAGFlow、LightRAG 的深度对比](/iopanda-blog/ai/03-frameworks/02/36/)
+1. [01 Real-time RAG 的设计哲学](/ai/03-frameworks/02/31/)
+2. [02 Streaming ETL、Incremental Index 与 Update Semantics](/ai/03-frameworks/02/32/)
+3. [03 Real-time Retrieval、Windowing 与 Freshness](/ai/03-frameworks/02/33/)
+4. [04 生产系统中的吞吐、延迟与治理](/ai/03-frameworks/02/34/)
+5. [05 课程助教 Agent 的 Pathway 架构案例](/ai/03-frameworks/02/35/)
+6. [06 Pathway 与 LlamaIndex、Haystack、RAGFlow、LightRAG 的深度对比](/ai/03-frameworks/02/36/)
 
-上一篇：[04 LightRAG](/iopanda-blog/ai/03-frameworks/02/23/)
+上一篇：[04 LightRAG](/ai/03-frameworks/02/23/)
 
-下一篇：[01 Real-time RAG 的设计哲学](/iopanda-blog/ai/03-frameworks/02/31/)
+下一篇：[01 Real-time RAG 的设计哲学](/ai/03-frameworks/02/31/)

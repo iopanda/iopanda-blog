@@ -89,6 +89,6 @@ vLLM README 和 kv transfer README 都明确提到 disaggregated prefill/decode�
 - [17] https://github.com/vllm-project/vllm/blob/main/vllm/distributed/kv_transfer/README.md — vLLM KV transfer README
 - [18] https://github.com/vllm-project/vllm/blob/main/examples/disaggregated/disaggregated_serving/README.md — vLLM disaggregated serving example
 
-上一篇：[01 serving engine 的设计哲学](/iopanda-blog/ai/03-frameworks/04/03/)
+上一篇：[01 serving engine 的设计哲学](/ai/03-frameworks/04/03/)
 
-下一篇：[03 OpenAI-compatible API、LoRA、多模型与部署形态](/iopanda-blog/ai/03-frameworks/04/05/)
+下一篇：[03 OpenAI-compatible API、LoRA、多模型与部署形态](/ai/03-frameworks/04/05/)

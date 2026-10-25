@@ -103,6 +103,6 @@ DeepEval 的回答是：**把评测变成测试代码，把质量标准变成断
 - [2] https://deepeval.com/docs/getting-started — DeepEval getting started
 - [3] https://deepeval.com/docs/metrics-introduction — DeepEval metrics intro
 
-上一篇：[04 DeepEval](/iopanda-blog/ai/04-tooling/02/20/)——先看目录地图，再进入产品定位。
+上一篇：[04 DeepEval](/ai/04-tooling/02/20/)——先看目录地图，再进入产品定位。
 
-下一篇：[02 Metrics、Traceability、Datasets 与 CI/CD](/iopanda-blog/ai/04-tooling/02/22/)——定位之后，再看它的能力如何组成工程闭环。
+下一篇：[02 Metrics、Traceability、Datasets 与 CI/CD](/ai/04-tooling/02/22/)——定位之后，再看它的能力如何组成工程闭环。

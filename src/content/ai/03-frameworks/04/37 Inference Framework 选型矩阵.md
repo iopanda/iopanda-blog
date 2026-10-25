@@ -13,7 +13,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 ---
 # Inference Framework 选型矩阵
 
-> 到这里，[vLLM](/iopanda-blog/ai/03-frameworks/04/02/)、[SGLang](/iopanda-blog/ai/03-frameworks/04/09/)、[TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)、[llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/)、[Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/) 五条路线都已经拆开了。现在真正重要的，不再是“它们分别是什么”，而是：**当你的 serving system 出现具体矛盾时，到底该选哪一条路线，为什么不是别的那一条。** 这一篇就是把 inference framework 从知识点压缩成架构判断。
+> 到这里，[vLLM](/ai/03-frameworks/04/02/)、[SGLang](/ai/03-frameworks/04/09/)、[TensorRT-LLM](/ai/03-frameworks/04/16/)、[llama.cpp](/ai/03-frameworks/04/23/)、[Triton Inference Server](/ai/03-frameworks/04/30/) 五条路线都已经拆开了。现在真正重要的，不再是“它们分别是什么”，而是：**当你的 serving system 出现具体矛盾时，到底该选哪一条路线，为什么不是别的那一条。** 这一篇就是把 inference framework 从知识点压缩成架构判断。
 
 **学习目标**：学完本章，你将能够——
 1. 用系统主矛盾，而不是 benchmark 热度，来做 inference framework 选型；
@@ -34,11 +34,11 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 
 | 框架 | 它首先解决什么复杂度 |
 |---|---|
-| [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) | 高频在线 LLM serving 的吞吐、KV cache、调度复杂度 |
-| [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) | 结构化生成、tool use、workflow-aware serving 的控制复杂度 |
-| [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) | NVIDIA 硬件上的执行路径、量化、并行、极限性能复杂度 |
-| [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | 本地、离线、边缘、设备适配与模型工件分发复杂度 |
-| [Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/) | 多模型、多后端、多协议、多环境统一治理复杂度 |
+| [vLLM](/ai/03-frameworks/04/02/) | 高频在线 LLM serving 的吞吐、KV cache、调度复杂度 |
+| [SGLang](/ai/03-frameworks/04/09/) | 结构化生成、tool use、workflow-aware serving 的控制复杂度 |
+| [TensorRT-LLM](/ai/03-frameworks/04/16/) | NVIDIA 硬件上的执行路径、量化、并行、极限性能复杂度 |
+| [llama.cpp](/ai/03-frameworks/04/23/) | 本地、离线、边缘、设备适配与模型工件分发复杂度 |
+| [Triton Inference Server](/ai/03-frameworks/04/30/) | 多模型、多后端、多协议、多环境统一治理复杂度 |
 
 所以第一原则不是“谁最好”，而是：
 **你的系统最贵的复杂度到底是什么。**
@@ -115,7 +115,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 - 长系统提示和课程规则前缀；
 - API 吞吐和延迟是核心。
 
-最自然：[vLLM](/iopanda-blog/ai/03-frameworks/04/02/)
+最自然：[vLLM](/ai/03-frameworks/04/02/)
 
 为什么不是别的：
 - 不是 llama.cpp：主问题不是离线分发；
@@ -129,7 +129,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 - 不是只要快；
 - 而是输出结构、工具调用、会话状态、工作流控制要正式化。
 
-最自然：[SGLang](/iopanda-blog/ai/03-frameworks/04/09/)
+最自然：[SGLang](/ai/03-frameworks/04/09/)
 
 为什么不是别的：
 - 不是 vLLM：它更先解决 serving efficiency；
@@ -143,7 +143,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 - 延迟、吞吐、量化、并行都已进入正式 SLA；
 - 团队愿意为后端深优化投入工程能力。
 
-最自然：[TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)
+最自然：[TensorRT-LLM](/ai/03-frameworks/04/16/)
 
 为什么不是别的：
 - 不是 vLLM：它更偏应用 serving runtime；
@@ -157,7 +157,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 - 模型能否被量化、打包、分发；
 - 能否在现实设备上离线运行。
 
-最自然：[llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/)
+最自然：[llama.cpp](/ai/03-frameworks/04/23/)
 
 为什么不是别的：
 - 不是 vLLM：不需要在线高吞吐；
@@ -172,7 +172,7 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 - 后端很多；
 - 协议、版本、监控、限流、路由都要统一。
 
-最自然：[Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/)
+最自然：[Triton Inference Server](/ai/03-frameworks/04/30/)
 
 为什么不是别的：
 - 不是 vLLM：它更偏单类 LLM serving；
@@ -186,11 +186,11 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 
 | 阶段 | 主问题 | 更自然的框架 |
 |---|---|---|
-| 第一阶段：教师/学生本机离线原型 | 本地部署、量化、分发 | [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) |
-| 第二阶段：在线问答 API | 吞吐、KV cache、OpenAI-compatible 接口 | [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) |
-| 第三阶段：结构化输出 + 工具 + 多轮控制 | workflow-aware serving | [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) |
-| 第四阶段：校园或企业平台统一多模型 | 平台治理 | [Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/) |
-| 第五阶段：明确 NVIDIA 高端集群优化 | 执行路径极限性能 | [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) |
+| 第一阶段：教师/学生本机离线原型 | 本地部署、量化、分发 | [llama.cpp](/ai/03-frameworks/04/23/) |
+| 第二阶段：在线问答 API | 吞吐、KV cache、OpenAI-compatible 接口 | [vLLM](/ai/03-frameworks/04/02/) |
+| 第三阶段：结构化输出 + 工具 + 多轮控制 | workflow-aware serving | [SGLang](/ai/03-frameworks/04/09/) |
+| 第四阶段：校园或企业平台统一多模型 | 平台治理 | [Triton Inference Server](/ai/03-frameworks/04/30/) |
+| 第五阶段：明确 NVIDIA 高端集群优化 | 执行路径极限性能 | [TensorRT-LLM](/ai/03-frameworks/04/16/) |
 
 这张表最重要的含义是：
 **inference framework selection 往往也是阶段题，而不是一次性终局题。**
@@ -263,6 +263,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.6 Inference Framew
 - [8] https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md — Triton model repository doc
 - [12] https://github.com/triton-inference-server/server/blob/main/docs/getting_started/llm.md — Triton LLM getting started doc
 
-上一篇：[03.04 Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/)——最后一条通用平台路线立住后，本篇把五条 serving 路线压成可用的架构判断。
+上一篇：[03.04 Triton Inference Server](/ai/03-frameworks/04/30/)——最后一条通用平台路线立住后，本篇把五条 serving 路线压成可用的架构判断。
 
-下一篇：回到 [03.04 Inference and Serving Frameworks](/iopanda-blog/ai/03-frameworks/04/01/)，从模块入口反向检查阅读顺序与选型逻辑是否顺滑。
+下一篇：回到 [03.04 Inference and Serving Frameworks](/ai/03-frameworks/04/01/)，从模块入口反向检查阅读顺序与选型逻辑是否顺滑。

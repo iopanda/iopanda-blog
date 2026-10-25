@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/06 PydanticAI 与 LangGraph�
 ---
 # PydanticAI 与 LangGraph、CrewAI、OpenAI Agents SDK 的深度对比
 
-> 到这里，PydanticAI 本身已经拆得足够细了：[接口契约](/iopanda-blog/ai/03-frameworks/01/33/)、[graph/durable 升级](/iopanda-blog/ai/03-frameworks/01/34/)、[运行时纪律](/iopanda-blog/ai/03-frameworks/01/35/)、[应用形态](/iopanda-blog/ai/03-frameworks/01/36/)、[课程助教案例](/iopanda-blog/ai/03-frameworks/01/37/)。这一篇不再问“它能做什么”，而是专门回答：**它首先不想解决什么。** 也就是说，当你面对 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 时，PydanticAI 的独特性到底是什么？这篇就从 typed engineering 视角来反向回答。
+> 到这里，PydanticAI 本身已经拆得足够细了：[接口契约](/ai/03-frameworks/01/33/)、[graph/durable 升级](/ai/03-frameworks/01/34/)、[运行时纪律](/ai/03-frameworks/01/35/)、[应用形态](/ai/03-frameworks/01/36/)、[课程助教案例](/ai/03-frameworks/01/37/)。这一篇不再问“它能做什么”，而是专门回答：**它首先不想解决什么。** 也就是说，当你面对 [LangGraph](/ai/03-frameworks/01/03/)、[CrewAI](/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/) 时，PydanticAI 的独特性到底是什么？这篇就从 typed engineering 视角来反向回答。
 
 **学习目标**：学完本章，你将能够——
 
@@ -226,6 +226,6 @@ PydanticAI 则更先把：
 - [23] https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md — Pydantic AI multi-agent applications doc
 - [36] https://github.com/pydantic/pydantic-ai/tree/main/examples/pydantic_ai_examples — Pydantic AI examples tree
 
-上一篇：[05 课程助教 Agent 的 PydanticAI 架构案例](/iopanda-blog/ai/03-frameworks/01/37/)——案例说明了它如何从 typed service 长成真实系统；本篇则说明它在整个版图中的独特位置。
+上一篇：[05 课程助教 Agent 的 PydanticAI 架构案例](/ai/03-frameworks/01/37/)——案例说明了它如何从 typed service 长成真实系统；本篇则说明它在整个版图中的独特位置。
 
-下一篇：回到 [06 Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)，把 PydanticAI 放回 top5 全局版图中复核。
+下一篇：回到 [06 Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)，把 PydanticAI 放回 top5 全局版图中复核。

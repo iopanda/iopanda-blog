@@ -72,6 +72,6 @@ Kestra 文档把 flow 定义得很直接：「a flow is a container for tasks an
 - [34] https://kestra.io/docs/workflow-components/triggers — Kestra triggers concept doc
 - [35] https://kestra.io/docs/workflow-components/tasks — Kestra tasks concept doc
 
-上一篇：[01 event-driven orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/31/)
+上一篇：[01 event-driven orchestration 的设计哲学](/ai/03-frameworks/06/31/)
 
-下一篇：[03 schedules、integrations、events 与 automation](/iopanda-blog/ai/03-frameworks/06/33/)
+下一篇：[03 schedules、integrations、events 与 automation](/ai/03-frameworks/06/33/)

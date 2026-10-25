@@ -84,6 +84,6 @@ experimental/sgl-router README 说明它是 KV-aware、OpenAI-compatible router�
 - [10] https://github.com/sgl-project/sglang/blob/main/experimental/sgl-router/README.md — SGLang router README
 - [11] https://github.com/sgl-project/sglang/blob/main/sgl-model-gateway/README.md — SGLang model gateway README
 
-上一篇：[02 serving、program execution 与结构化输出](/iopanda-blog/ai/03-frameworks/04/11/)
+上一篇：[02 serving、program execution 与结构化输出](/ai/03-frameworks/04/11/)
 
-下一篇：[04 性能优化、部署方式与工程边界](/iopanda-blog/ai/03-frameworks/04/13/)
+下一篇：[04 性能优化、部署方式与工程边界](/ai/03-frameworks/04/13/)

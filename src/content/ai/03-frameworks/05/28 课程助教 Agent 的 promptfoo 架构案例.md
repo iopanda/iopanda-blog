@@ -67,6 +67,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.4 promptfoo
 - [11] https://github.com/promptfoo/promptfoo/blob/main/site/docs/usage/command-line.md — promptfoo command line docs
 - [12] https://github.com/promptfoo/promptfoo/blob/main/site/docs/red-team/quickstart.md — promptfoo red team quickstart
 
-上一篇：[04 团队协作、基线管理与工程边界](/iopanda-blog/ai/03-frameworks/05/27/)
+上一篇：[04 团队协作、基线管理与工程边界](/ai/03-frameworks/05/27/)
 
-下一篇：[06 promptfoo 与 Langfuse、Phoenix、MLflow、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/29/)
+下一篇：[06 promptfoo 与 Langfuse、Phoenix、MLflow、DeepEval 的深度对比](/ai/03-frameworks/05/29/)

@@ -17,11 +17,11 @@ sourceId: "3.10.4.4 Prompt Management/01 Langfuse Prompts/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、Prompt资产化与适用场景](/iopanda-blog/ai/04-tooling/04/03/)
-2. [02 版本、发布、回滚、Playground与协作能力](/iopanda-blog/ai/04-tooling/04/04/)
-3. [03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/05/)
-4. [04 与 Promptfoo、DSPy、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/06/)
-5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp与跨组织采用信号](/iopanda-blog/ai/04-tooling/04/07/)
+1. [01 产品定位、Prompt资产化与适用场景](/ai/04-tooling/04/03/)
+2. [02 版本、发布、回滚、Playground与协作能力](/ai/04-tooling/04/04/)
+3. [03 质量、价格与采用边界](/ai/04-tooling/04/05/)
+4. [04 与 Promptfoo、DSPy、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/06/)
+5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp与跨组织采用信号](/ai/04-tooling/04/07/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.4 Prompt Management/01 Langfuse Prompts/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、Prompt资产化与适用场景](/iopanda-blog/ai/04-tooling/04/03/)
-2. [02 版本、发布、回滚、Playground与协作能力](/iopanda-blog/ai/04-tooling/04/04/)
-3. [03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/05/)
-4. [04 与 Promptfoo、DSPy、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/06/)
-5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp与跨组织采用信号](/iopanda-blog/ai/04-tooling/04/07/)
+1. [01 产品定位、Prompt资产化与适用场景](/ai/04-tooling/04/03/)
+2. [02 版本、发布、回滚、Playground与协作能力](/ai/04-tooling/04/04/)
+3. [03 质量、价格与采用边界](/ai/04-tooling/04/05/)
+4. [04 与 Promptfoo、DSPy、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/06/)
+5. [05 真实组织案例：Canva、Khan Academy、Merck、SumUp与跨组织采用信号](/ai/04-tooling/04/07/)
 
 ## 引用
 
@@ -63,6 +63,6 @@ sourceId: "3.10.4.4 Prompt Management/01 Langfuse Prompts/README"
 - [4] https://langfuse.com/docs/prompt-management/get-started — Langfuse prompt management docs
 - [5] https://langfuse.com/pricing — Langfuse pricing
 
-上一篇：[04.04 Prompt Management](/iopanda-blog/ai/04-tooling/04/01/)——先看整组地图，再进入第一个最像团队协作工作台的 prompt 管理方案。
+上一篇：[04.04 Prompt Management](/ai/04-tooling/04/01/)——先看整组地图，再进入第一个最像团队协作工作台的 prompt 管理方案。
 
-下一篇：[01 产品定位、Prompt资产化与适用场景](/iopanda-blog/ai/04-tooling/04/03/)——先从产品定位与适用边界开始。
+下一篇：[01 产品定位、Prompt资产化与适用场景](/ai/04-tooling/04/03/)——先从产品定位与适用边界开始。

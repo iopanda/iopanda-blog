@@ -108,6 +108,6 @@ README 提供了很有价值的能力：
 - [2] https://raw.githubusercontent.com/guidance-ai/guidance/main/README.md — Guidance README
 - [4] https://guidance.readthedocs.io/en/latest/ — Guidance docs
 
-上一篇：[01 产品定位、受控生成心智与适用场景](/iopanda-blog/ai/04-tooling/04/21/)——先理解定位，再看它如何把约束与控制流放进执行层。
+上一篇：[01 产品定位、受控生成心智与适用场景](/ai/04-tooling/04/21/)——先理解定位，再看它如何把约束与控制流放进执行层。
 
-下一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/23/)——能力之后，再回头判断它是否成熟、适用边界如何。
+下一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/04/23/)——能力之后，再回头判断它是否成熟、适用边界如何。

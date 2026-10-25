@@ -73,6 +73,6 @@ Langfuse 的 platform 路线隐含一个重要判断：
 - [25] https://github.com/langfuse/langfuse/blob/main/README.md — Langfuse README
 - [26] https://github.com/langfuse/langfuse/blob/main/web/src/features/prompts/README.md — Langfuse prompts README
 
-上一篇：[02 traces、scores、datasets 与 feedback loops](/iopanda-blog/ai/03-frameworks/05/04/)
+上一篇：[02 traces、scores、datasets 与 feedback loops](/ai/03-frameworks/05/04/)
 
-下一篇：[04 线上监控、回归与工程边界](/iopanda-blog/ai/03-frameworks/05/06/)
+下一篇：[04 线上监控、回归与工程边界](/ai/03-frameworks/05/06/)

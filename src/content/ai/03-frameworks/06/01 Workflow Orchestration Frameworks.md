@@ -43,11 +43,11 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/README"
 
 | 框架 | 一句话定位 | 设计中心 | 更像什么 | 更适合谁 |
 |---|---|---|---|---|
-| [Temporal](/iopanda-blog/ai/03-frameworks/06/02/) | 面向长生命周期业务流程的 durable execution engine | stateful workflows + retries + recovery | durable workflow engine | 需要可靠恢复、补偿、长时运行流程的团队 |
-| [Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/) | 经典工作流调度平台 | DAG scheduling + task orchestration + ops | 数据/任务调度平台 | 有大量 batch/ETL/定时调度需求的团队 |
-| [Prefect](/iopanda-blog/ai/03-frameworks/06/16/) | Python-native workflow orchestration | developer UX + resilient flows | Python 工作流框架 | 想用 Python 直接写可恢复流程的团队 |
-| [Dagster](/iopanda-blog/ai/03-frameworks/06/23/) | data asset orchestration platform | assets + lineage + software-defined data | 数据资产编排平台 | 数据团队、分析工程团队、资产治理需求强的组织 |
-| [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) | event-driven orchestration & scheduling platform | declarative workflows + triggers + integrations | 事件驱动自动化平台 | 想统一任务、事件、自动化与关键业务流程的团队 |
+| [Temporal](/ai/03-frameworks/06/02/) | 面向长生命周期业务流程的 durable execution engine | stateful workflows + retries + recovery | durable workflow engine | 需要可靠恢复、补偿、长时运行流程的团队 |
+| [Apache Airflow](/ai/03-frameworks/06/09/) | 经典工作流调度平台 | DAG scheduling + task orchestration + ops | 数据/任务调度平台 | 有大量 batch/ETL/定时调度需求的团队 |
+| [Prefect](/ai/03-frameworks/06/16/) | Python-native workflow orchestration | developer UX + resilient flows | Python 工作流框架 | 想用 Python 直接写可恢复流程的团队 |
+| [Dagster](/ai/03-frameworks/06/23/) | data asset orchestration platform | assets + lineage + software-defined data | 数据资产编排平台 | 数据团队、分析工程团队、资产治理需求强的组织 |
+| [Kestra](/ai/03-frameworks/06/30/) | event-driven orchestration & scheduling platform | declarative workflows + triggers + integrations | 事件驱动自动化平台 | 想统一任务、事件、自动化与关键业务流程的团队 |
 
 ## 3. 为什么先不把 n8n / Argo Workflows 放进这一组主角
 
@@ -57,20 +57,20 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/README"
 
 ## 4. 这一模块建议怎么读
 
-1. 先看 [03.06 Temporal](/iopanda-blog/ai/03-frameworks/06/02/)：先把 durable workflow engine 的核心心智钉牢；
-2. 再看 [03.06 Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/)：理解 DAG scheduling 路线；
-3. 再看 [03.06 Prefect](/iopanda-blog/ai/03-frameworks/06/16/)：理解 Python-native orchestration 路线；
-4. 再看 [03.06 Dagster](/iopanda-blog/ai/03-frameworks/06/23/)：理解 asset-first orchestration 路线；
-5. 最后看 [03.06 Kestra](/iopanda-blog/ai/03-frameworks/06/30/)：理解 event-driven orchestration 路线。
+1. 先看 [03.06 Temporal](/ai/03-frameworks/06/02/)：先把 durable workflow engine 的核心心智钉牢；
+2. 再看 [03.06 Apache Airflow](/ai/03-frameworks/06/09/)：理解 DAG scheduling 路线；
+3. 再看 [03.06 Prefect](/ai/03-frameworks/06/16/)：理解 Python-native orchestration 路线；
+4. 再看 [03.06 Dagster](/ai/03-frameworks/06/23/)：理解 asset-first orchestration 路线；
+5. 最后看 [03.06 Kestra](/ai/03-frameworks/06/30/)：理解 event-driven orchestration 路线。
 
 ## 5. 本模块笔记导航
 
-1. [03.06 Temporal](/iopanda-blog/ai/03-frameworks/06/02/)
-2. [03.06 Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/)
-3. [03.06 Prefect](/iopanda-blog/ai/03-frameworks/06/16/)
-4. [03.06 Dagster](/iopanda-blog/ai/03-frameworks/06/23/)
-5. [03.06 Kestra](/iopanda-blog/ai/03-frameworks/06/30/)
-6. [03.06 Workflow Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/06/37/)
+1. [03.06 Temporal](/ai/03-frameworks/06/02/)
+2. [03.06 Apache Airflow](/ai/03-frameworks/06/09/)
+3. [03.06 Prefect](/ai/03-frameworks/06/16/)
+4. [03.06 Dagster](/ai/03-frameworks/06/23/)
+5. [03.06 Kestra](/ai/03-frameworks/06/30/)
+6. [03.06 Workflow Framework 选型矩阵](/ai/03-frameworks/06/37/)
 
 ## 6. 总结
 
@@ -91,6 +91,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/README"
 - [16] https://github.com/n8n-io/n8n — n8n GitHub
 - [17] https://github.com/argoproj/argo-workflows — Argo Workflows GitHub
 
-上一篇：[03.05 Evaluation and Observability Frameworks](/iopanda-blog/ai/03-frameworks/05/01/)——质量系统已经讲完；下一模块开始处理“这些 AI 能力如何跨步骤、跨时间、跨失败模式被编排”。
+上一篇：[03.05 Evaluation and Observability Frameworks](/ai/03-frameworks/05/01/)——质量系统已经讲完；下一模块开始处理“这些 AI 能力如何跨步骤、跨时间、跨失败模式被编排”。
 
-下一篇：[03.06 Temporal](/iopanda-blog/ai/03-frameworks/06/02/)——先从 durable workflow engine 路线开始。
+下一篇：[03.06 Temporal](/ai/03-frameworks/06/02/)——先从 durable workflow engine 路线开始。

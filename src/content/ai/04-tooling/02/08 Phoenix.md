@@ -17,11 +17,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/02 Phoenix/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、诊断视角与适用场景](/iopanda-blog/ai/04-tooling/02/09/)
-2. [02 Tracing、Evals、Datasets、Experiments 与 MCP](/iopanda-blog/ai/04-tooling/02/10/)
-3. [03 质量、社区、价格与开源边界](/iopanda-blog/ai/04-tooling/02/11/)
-4. [04 与 Langfuse、Promptfoo、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/12/)
-5. [05 真实组织案例：Dify、Flowise、LiteLLM、Envoy AI Gateway、BeeAI、Prompt Flow](/iopanda-blog/ai/04-tooling/02/13/)
+1. [01 产品定位、诊断视角与适用场景](/ai/04-tooling/02/09/)
+2. [02 Tracing、Evals、Datasets、Experiments 与 MCP](/ai/04-tooling/02/10/)
+3. [03 质量、社区、价格与开源边界](/ai/04-tooling/02/11/)
+4. [04 与 Langfuse、Promptfoo、DeepEval 的竞品对比](/ai/04-tooling/02/12/)
+5. [05 真实组织案例：Dify、Flowise、LiteLLM、Envoy AI Gateway、BeeAI、Prompt Flow](/ai/04-tooling/02/13/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.2 Observability and Evaluation/02 Phoenix/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、诊断视角与适用场景](/iopanda-blog/ai/04-tooling/02/09/)
-2. [02 Tracing、Evals、Datasets、Experiments 与 MCP](/iopanda-blog/ai/04-tooling/02/10/)
-3. [03 质量、社区、价格与开源边界](/iopanda-blog/ai/04-tooling/02/11/)
-4. [04 与 Langfuse、Promptfoo、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/12/)
-5. [05 真实组织案例：Dify、Flowise、LiteLLM、Envoy AI Gateway、BeeAI、Prompt Flow](/iopanda-blog/ai/04-tooling/02/13/)
+1. [01 产品定位、诊断视角与适用场景](/ai/04-tooling/02/09/)
+2. [02 Tracing、Evals、Datasets、Experiments 与 MCP](/ai/04-tooling/02/10/)
+3. [03 质量、社区、价格与开源边界](/ai/04-tooling/02/11/)
+4. [04 与 Langfuse、Promptfoo、DeepEval 的竞品对比](/ai/04-tooling/02/12/)
+5. [05 真实组织案例：Dify、Flowise、LiteLLM、Envoy AI Gateway、BeeAI、Prompt Flow](/ai/04-tooling/02/13/)
 
 ## 引用
 
@@ -64,6 +64,6 @@ sourceId: "3.10.4.2 Observability and Evaluation/02 Phoenix/README"
 - [5] https://arize.com/docs/phoenix/tracing/llm-traces-1 — Phoenix tracing docs
 - [6] https://arize.com/docs/phoenix/evaluation/how-to-evals/running-pre-tested-evals — Phoenix evals docs
 
-上一篇：[01 Langfuse](/iopanda-blog/ai/04-tooling/02/02/)——上一产品代表更完整的工作台路线；这一篇切到更偏 tracing/diagnostics 的路线。
+上一篇：[01 Langfuse](/ai/04-tooling/02/02/)——上一产品代表更完整的工作台路线；这一篇切到更偏 tracing/diagnostics 的路线。
 
-下一篇：[01 产品定位、诊断视角与适用场景](/iopanda-blog/ai/04-tooling/02/09/)——先从定位、诊断视角与适用边界开始。
+下一篇：[01 产品定位、诊断视角与适用场景](/ai/04-tooling/02/09/)——先从定位、诊断视角与适用边界开始。

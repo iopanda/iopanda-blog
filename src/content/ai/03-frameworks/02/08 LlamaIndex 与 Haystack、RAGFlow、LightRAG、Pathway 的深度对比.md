@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/01 LlamaIndex/06 LlamaIndex 与
 ---
 # LlamaIndex 与 Haystack、RAGFlow、LightRAG、Pathway 的深度对比
 
-> 到这里，LlamaIndex 本身已经讲得比较深了：[对象层](/iopanda-blog/ai/03-frameworks/02/03/)、[ingestion](/iopanda-blog/ai/03-frameworks/02/04/)、[query chain](/iopanda-blog/ai/03-frameworks/02/05/)、[多索引与 agentic retrieval](/iopanda-blog/ai/03-frameworks/02/06/)、[课程助教案例](/iopanda-blog/ai/03-frameworks/02/07/)。现在最后要做的是：**把它放回整个 retrieval framework 版图里，回答它到底最适合解决什么复杂度。**
+> 到这里，LlamaIndex 本身已经讲得比较深了：[对象层](/ai/03-frameworks/02/03/)、[ingestion](/ai/03-frameworks/02/04/)、[query chain](/ai/03-frameworks/02/05/)、[多索引与 agentic retrieval](/ai/03-frameworks/02/06/)、[课程助教案例](/ai/03-frameworks/02/07/)。现在最后要做的是：**把它放回整个 retrieval framework 版图里，回答它到底最适合解决什么复杂度。**
 
 **学习目标**：学完本章，你将能够——
 
@@ -232,6 +232,6 @@ LlamaIndex 也可以做持续更新，但它的第一世界观更偏：
 - [44] https://github.com/HKUDS/LightRAG — LightRAG GitHub
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 
-上一篇：[05 课程助教 Agent 的 LlamaIndex 架构案例](/iopanda-blog/ai/03-frameworks/02/07/)——案例说明了它如何落回真实知识系统；本篇则把它放回整个 retrieval framework 版图里判断。
+上一篇：[05 课程助教 Agent 的 LlamaIndex 架构案例](/ai/03-frameworks/02/07/)——案例说明了它如何落回真实知识系统；本篇则把它放回整个 retrieval framework 版图里判断。
 
-下一篇：回到 [06 RAG Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/02/37/)，把 LlamaIndex 放回 top5 全局版图中复核。
+下一篇：回到 [06 RAG Framework 选型矩阵](/ai/03-frameworks/02/37/)，把 LlamaIndex 放回 top5 全局版图中复核。

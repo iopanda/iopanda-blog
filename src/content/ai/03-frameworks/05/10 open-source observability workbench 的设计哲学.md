@@ -66,10 +66,10 @@ README 里的关键词很能说明它的定位：[25]
 
 | 框架 | 第一性问题 | Phoenix 相比的定位 |
 |---|---|---|
-| [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) | 如何把 LLM 产品工程闭环收进平台 | Phoenix 更像开放 observability/eval workbench |
-| [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 如何统一更广义 AI/ML engineering | Phoenix 更偏 LLM/Agent diagnosis |
-| [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | 如何做 CI-style regression/testing | Phoenix 更偏 interactive diagnosis 和 observability |
-| [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | 如何 code-first 写 eval | Phoenix 更偏 traces + eval workbench |
+| [Langfuse](/ai/03-frameworks/05/02/) | 如何把 LLM 产品工程闭环收进平台 | Phoenix 更像开放 observability/eval workbench |
+| [MLflow](/ai/03-frameworks/05/16/) | 如何统一更广义 AI/ML engineering | Phoenix 更偏 LLM/Agent diagnosis |
+| [promptfoo](/ai/03-frameworks/05/23/) | 如何做 CI-style regression/testing | Phoenix 更偏 interactive diagnosis 和 observability |
+| [DeepEval](/ai/03-frameworks/05/30/) | 如何 code-first 写 eval | Phoenix 更偏 traces + eval workbench |
 
 ## 5. 什么时候最自然进入 Phoenix
 
@@ -99,6 +99,6 @@ README 里的关键词很能说明它的定位：[25]
 - [19] https://github.com/Arize-ai/phoenix — Phoenix GitHub
 - [25] /private/tmp/eval-framework-research/phoenix/README.md — Phoenix README
 
-上一篇：[03.05 Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)
+上一篇：[03.05 Phoenix](/ai/03-frameworks/05/09/)
 
-下一篇：[02 OTEL traces、spans 与诊断界面](/iopanda-blog/ai/03-frameworks/05/11/)
+下一篇：[02 OTEL traces、spans 与诊断界面](/ai/03-frameworks/05/11/)

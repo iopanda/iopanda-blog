@@ -171,6 +171,6 @@ if __name__ == "__main__":
 - [Anthropic:Building Effective Agents(先试最简单方案,不要过早构建多 Agent)](https://www.anthropic.com/engineering/building-effective-agents)
 - [Anthropic:How we built our multi-agent research system(编排者-工作者实战结论)](https://www.anthropic.com/engineering/built-multi-agent-research-system)
 
-上一篇:[多 Agent 框架实践](/iopanda-blog/ai/02-agents/06/06/)——05 章让多 Agent「跑得动」,本章回答它「该不该跑」:失败模式、评测失效与三问选型,02.06 至此收官。
+上一篇:[多 Agent 框架实践](/ai/02-agents/06/06/)——05 章让多 Agent「跑得动」,本章回答它「该不该跑」:失败模式、评测失效与三问选型,02.06 至此收官。
 
 下一篇:进入 02.07 Evaluation and Observability,见其 README——多 Agent 越复杂越要测、越要看得见,下个模块把轨迹级评测与可观测性补齐。

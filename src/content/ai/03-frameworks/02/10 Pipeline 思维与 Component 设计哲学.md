@@ -13,14 +13,14 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/02 Haystack/01 Pipeline 思维�
 ---
 # Pipeline 思维与 Component 设计哲学
 
-> 如果说 [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/03/) 的第一语言是 document / node / index / query engine，那么 Haystack 的第一语言则更像：**component + pipeline**。README 一开头就把自己定义成 open-source AI orchestration framework，强调 explicit control over retrieval, routing, memory, and generation，强调 modular pipelines and agent workflows。[42][54] 这说明 Haystack 的真正问题意识不是“知识对象怎样组织”，而是：**信息在系统里怎样流动、怎样分支、怎样被不同组件显式处理。**
+> 如果说 [LlamaIndex](/ai/03-frameworks/02/03/) 的第一语言是 document / node / index / query engine，那么 Haystack 的第一语言则更像：**component + pipeline**。README 一开头就把自己定义成 open-source AI orchestration framework，强调 explicit control over retrieval, routing, memory, and generation，强调 modular pipelines and agent workflows。[42][54] 这说明 Haystack 的真正问题意识不是“知识对象怎样组织”，而是：**信息在系统里怎样流动、怎样分支、怎样被不同组件显式处理。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释为什么 Haystack 首先像 orchestration framework，而不是单一 RAG 库；
 2. 说出 component、pipeline、route、breakpoint、snapshot 在架构中的不同职责；
 3. 理解 Haystack 为什么非常强调透明、可追踪、可编排的 retrieval/generation 流；
-4. 比较它与 [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) 的对象语言差异；
+4. 比较它与 [LlamaIndex](/ai/03-frameworks/02/02/) 的对象语言差异；
 5. 为一个知识问答系统画出 component flow 图，而不是对象层图。
 
 ## 1. 概念：Haystack 先回答“流程怎么走”，再回答“对象是什么”
@@ -176,6 +176,6 @@ README 专门写到：Built for context engineering，系统应显式控制信�
 - [54] https://github.com/deepset-ai/haystack/blob/main/README.md — Haystack README
 - [55] https://github.com/deepset-ai/haystack/blob/main/haystack/core/pipeline/pipeline.py — Haystack pipeline source
 
-上一篇：[02 Haystack](/iopanda-blog/ai/03-frameworks/02/09/)——总览篇先说明它走的是显式检索管道路线；本篇开始拆它的第一语言。
+上一篇：[02 Haystack](/ai/03-frameworks/02/09/)——总览篇先说明它走的是显式检索管道路线；本篇开始拆它的第一语言。
 
-下一篇：[02 Document Store、Retriever、Ranker、Generator](/iopanda-blog/ai/03-frameworks/02/11/)——pipeline 语言立住后，下一篇继续看组成这条链的核心组件家族。
+下一篇：[02 Document Store、Retriever、Ranker、Generator](/ai/03-frameworks/02/11/)——pipeline 语言立住后，下一篇继续看组成这条链的核心组件家族。

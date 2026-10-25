@@ -244,6 +244,6 @@ sourceId: "3.10.2.8 Applications and Case Studies/02 代码 Agent 深度案例"
 - [VS Code Blog:Introducing GitHub Copilot agent mode(2025-02-24)](https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode)
 - [GitHub Docs:About GitHub Copilot coding agent(云端异步形态)](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent)
 
-上一篇:[Agent 应用形态全景](/iopanda-blog/ai/02-agents/08/02/)——01 章把代码 Agent 排在「工具权限最高、护栏最厚」一格,本章用闭环架构与真实产品把这一格填实。
+上一篇:[Agent 应用形态全景](/ai/02-agents/08/02/)——01 章把代码 Agent 排在「工具权限最高、护栏最厚」一格,本章用闭环架构与真实产品把这一格填实。
 
-下一篇:[数据分析与浏览器 Agent 案例](/iopanda-blog/ai/02-agents/08/04/)——代码 Agent 的闭环是「改代码→跑测试」;下一章的两位主角换成「查数据→出图」与「看网页→点按钮」,失败模式也跟着换。
+下一篇:[数据分析与浏览器 Agent 案例](/ai/02-agents/08/04/)——代码 Agent 的闭环是「改代码→跑测试」;下一章的两位主角换成「查数据→出图」与「看网页→点按钮」,失败模式也跟着换。

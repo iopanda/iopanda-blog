@@ -180,5 +180,5 @@ Agent 有效能力 ≈ 模型能力上限(幻觉率↓、窗口↑、校准↑)
 - [Anthropic:Building effective agents(何时用 Agent、如何控复杂度)](https://www.anthropic.com/engineering/building-effective-agents)
 - [arXiv:Compaction as Epistemic Failure——Agent 工具把半截输出记为「确认成功」(2026)](https://arxiv.org/abs/2607.13071)
 
-上一篇:[Agent 运行循环](/iopanda-blog/ai/02-agents/01/04/)——知道了循环怎么转,这一章看清了驱动循环的模型有哪些先天不足。
-下一篇:[最小 ReAct Agent 实战](/iopanda-blog/ai/02-agents/01/06/)——带着这三条边界的认知,下一章亲手写一个最小 Agent,看看边界如何在轨迹里现形。
+上一篇:[Agent 运行循环](/ai/02-agents/01/04/)——知道了循环怎么转,这一章看清了驱动循环的模型有哪些先天不足。
+下一篇:[最小 ReAct Agent 实战](/ai/02-agents/01/06/)——带着这三条边界的认知,下一章亲手写一个最小 Agent,看看边界如何在轨迹里现形。

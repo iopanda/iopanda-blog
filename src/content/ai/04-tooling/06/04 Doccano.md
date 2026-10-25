@@ -37,7 +37,7 @@ sourceId: "3.10.4.6 Data Curation and Annotation/03 Doccano/README"
 
 ## 引用
 
-- 回到本组总览：[04.06 Data Curation and Annotation](/iopanda-blog/ai/04-tooling/06/01/)
+- 回到本组总览：[04.06 Data Curation and Annotation](/ai/04-tooling/06/01/)
 
-上一篇：[Argilla](/iopanda-blog/ai/04-tooling/06/03/)
-下一篇：[Cleanlab](/iopanda-blog/ai/04-tooling/06/05/)
+上一篇：[Argilla](/ai/04-tooling/06/03/)
+下一篇：[Cleanlab](/ai/04-tooling/06/05/)

@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "model-fine-tuning", "lora"]
 sourceId: "3.10.1.3 Fine-tuning and Alignment/3.5 LoRA 低秩适配"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260929010813.png)
+![](/ai/images/Pasted%20image%2020260929010813.png)
 
 > 上一章你用 LoRA 跑通了第一个 SFT,但那份配置是照抄的。本章不再只是再跑一次训练,而是弄清**为什么不全量微调**、**低秩近似为什么可行**,再有依据地选择注入层与 rank,并验证 adapter 可单独加载。读完你就能解释「r=8、alpha=16」里每个数字在控制什么,而不是把配置名当成咒语。
 
@@ -156,6 +156,6 @@ print(model.peft_config, len(tokenizer))
 - [PEFT:LoRA 方法](https://huggingface.co/docs/peft/main/en/task_guides/lora_based_methods)
 - [LoRA 原始论文](https://arxiv.org/abs/2106.09685)
 
-上一篇:[监督微调 SFT](/iopanda-blog/ai/01-models/03/04/)——第一次真实训练已完成,adapter 的机制与每个参数的含义在本章展开。
+上一篇:[监督微调 SFT](/ai/01-models/03/04/)——第一次真实训练已完成,adapter 的机制与每个参数的含义在本章展开。
 
-下一篇:[QLoRA 量化微调](/iopanda-blog/ai/01-models/03/06/)——显存仍不足时,结合低比特加载基座完成同一任务。
+下一篇:[QLoRA 量化微调](/ai/01-models/03/06/)——显存仍不足时,结合低比特加载基座完成同一任务。

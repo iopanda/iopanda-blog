@@ -192,6 +192,6 @@ Phoenix 为 Prompt Flow 提供 tracing 路线，使工作流执行中的相关�
 - [8] https://docs.beeai.dev/observability/agents-traceability — BeeAI Phoenix observability docs
 - [9] https://arize.com/docs/phoenix/integrations/platforms/prompt-flow — Phoenix Prompt Flow integration
 
-上一篇：[04 与 Langfuse、Promptfoo、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/12/)——看清竞品差异后，再看真实组织/平台为什么会采用 Phoenix。
+上一篇：[04 与 Langfuse、Promptfoo、DeepEval 的竞品对比](/ai/04-tooling/02/12/)——看清竞品差异后，再看真实组织/平台为什么会采用 Phoenix。
 
-下一篇：[03 Promptfoo](/iopanda-blog/ai/04-tooling/02/14/)——下一个产品切到测试/红队/配置驱动的路线。
+下一篇：[03 Promptfoo](/ai/04-tooling/02/14/)——下一个产品切到测试/红队/配置驱动的路线。

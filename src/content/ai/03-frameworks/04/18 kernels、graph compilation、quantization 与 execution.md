@@ -74,6 +74,6 @@ LLM API README 显示，用户不是只能通过底层接口手工拼执行路�
 - [16] https://github.com/NVIDIA/TensorRT-LLM/blob/main/examples/quantization/README.md — TensorRT-LLM quantization README
 - [19] https://github.com/NVIDIA/TensorRT-LLM/blob/main/examples/llm-api/README.md — TensorRT-LLM LLM API README
 
-上一篇：[01 NVIDIA 优化推理栈的设计哲学](/iopanda-blog/ai/03-frameworks/04/17/)
+上一篇：[01 NVIDIA 优化推理栈的设计哲学](/ai/03-frameworks/04/17/)
 
-下一篇：[03 与 Triton、Kubernetes、企业推理平台的关系](/iopanda-blog/ai/03-frameworks/04/19/)
+下一篇：[03 与 Triton、Kubernetes、企业推理平台的关系](/ai/03-frameworks/04/19/)

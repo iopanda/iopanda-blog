@@ -6,3 +6,5 @@ npm-debug.log*
 
 # staging area for imported notes (not published as-is)
 import/
+
+__pycache__/

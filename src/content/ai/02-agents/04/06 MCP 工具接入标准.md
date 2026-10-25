@@ -223,6 +223,6 @@ if __name__ == "__main__":
 - [modelcontextprotocol(GitHub 官方组织:规范、Python/TS SDK 与工具)](https://github.com/modelcontextprotocol)
 - [modelcontextprotocol/servers:参考 server 实现(含 filesystem、database 等)](https://github.com/modelcontextprotocol/servers)
 
-上一篇:[代码执行型工具的风险](/iopanda-blog/ai/02-agents/04/05/)——沙箱管住了「单个高危工具怎么执行」,本章回答工具多了之后「怎么标准化接入」:N×M 集成问题与 MCP 协议。
+上一篇:[代码执行型工具的风险](/ai/02-agents/04/05/)——沙箱管住了「单个高危工具怎么执行」,本章回答工具多了之后「怎么标准化接入」:N×M 集成问题与 MCP 协议。
 
-下一篇:[权限边界与工具安全](/iopanda-blog/ai/02-agents/04/07/)——MCP 把工具接入面从进程内函数扩大到任意 server,下一章回答接入之后的关键问题:每个工具、每次调用能碰什么。
+下一篇:[权限边界与工具安全](/ai/02-agents/04/07/)——MCP 把工具接入面从进程内函数扩大到任意 server,下一章回答接入之后的关键问题:每个工具、每次调用能碰什么。

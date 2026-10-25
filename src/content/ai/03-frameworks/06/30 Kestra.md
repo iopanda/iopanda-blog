@@ -32,13 +32,13 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.5 Kestra/README"
 
 ## 本目录笔记导航
 
-1. [01 event-driven orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/31/)
-2. [02 flows、triggers、tasks 与 declarative workflow](/iopanda-blog/ai/03-frameworks/06/32/)
-3. [03 schedules、integrations、events 与 automation](/iopanda-blog/ai/03-frameworks/06/33/)
-4. [04 运营、扩展性与工程边界](/iopanda-blog/ai/03-frameworks/06/34/)
-5. [05 课程助教与运营自动化的 Kestra 架构案例](/iopanda-blog/ai/03-frameworks/06/35/)
-6. [06 Kestra 与 Temporal、Airflow、Prefect、Dagster 的深度对比](/iopanda-blog/ai/03-frameworks/06/36/)
+1. [01 event-driven orchestration 的设计哲学](/ai/03-frameworks/06/31/)
+2. [02 flows、triggers、tasks 与 declarative workflow](/ai/03-frameworks/06/32/)
+3. [03 schedules、integrations、events 与 automation](/ai/03-frameworks/06/33/)
+4. [04 运营、扩展性与工程边界](/ai/03-frameworks/06/34/)
+5. [05 课程助教与运营自动化的 Kestra 架构案例](/ai/03-frameworks/06/35/)
+6. [06 Kestra 与 Temporal、Airflow、Prefect、Dagster 的深度对比](/ai/03-frameworks/06/36/)
 
-上一篇：[03.06 Dagster](/iopanda-blog/ai/03-frameworks/06/23/)
+上一篇：[03.06 Dagster](/ai/03-frameworks/06/23/)
 
-下一篇：[01 event-driven orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/31/)
+下一篇：[01 event-driven orchestration 的设计哲学](/ai/03-frameworks/06/31/)

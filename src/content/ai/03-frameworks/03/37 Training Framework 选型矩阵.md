@@ -13,7 +13,7 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/06 Training Framework �
 ---
 # Training Framework 选型矩阵
 
-> 到这里，[LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)、[Unsloth](/iopanda-blog/ai/03-frameworks/03/09/)、[PEFT](/iopanda-blog/ai/03-frameworks/03/16/)、[TRL](/iopanda-blog/ai/03-frameworks/03/23/)、[Axolotl](/iopanda-blog/ai/03-frameworks/03/30/) 五条路线都已经单独拆开了。现在真正重要的，不再是“它们分别是什么”，而是：**当你的训练系统出现具体矛盾时，到底该选哪一条路线，为什么不是别的那一条。** 这一篇就是把 training framework 从知识点，压缩成架构判断。
+> 到这里，[LLaMA-Factory](/ai/03-frameworks/03/02/)、[Unsloth](/ai/03-frameworks/03/09/)、[PEFT](/ai/03-frameworks/03/16/)、[TRL](/ai/03-frameworks/03/23/)、[Axolotl](/ai/03-frameworks/03/30/) 五条路线都已经单独拆开了。现在真正重要的，不再是“它们分别是什么”，而是：**当你的训练系统出现具体矛盾时，到底该选哪一条路线，为什么不是别的那一条。** 这一篇就是把 training framework 从知识点，压缩成架构判断。
 
 **学习目标**：学完本章，你将能够——
 
@@ -37,11 +37,11 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/06 Training Framework �
 
 | 框架 | 它首先解决什么复杂度 |
 |---|---|
-| [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) | 多模型、多方法、多模板、多导出目标的统一工厂复杂度 |
-| [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) | 单卡/小团队“训不起来、太慢、太贵”的资源复杂度 |
-| [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) | 现有 HF 训练栈如何优雅接入参数高效微调的能力复杂度 |
-| [TRL](/iopanda-blog/ai/03-frameworks/03/23/) | SFT 之后的偏好、奖励、策略优化复杂度 |
-| [Axolotl](/iopanda-blog/ai/03-frameworks/03/30/) | 多 recipe、多数据格式、多并行后端、多交付动作的配置编排复杂度 |
+| [LLaMA-Factory](/ai/03-frameworks/03/02/) | 多模型、多方法、多模板、多导出目标的统一工厂复杂度 |
+| [Unsloth](/ai/03-frameworks/03/09/) | 单卡/小团队“训不起来、太慢、太贵”的资源复杂度 |
+| [PEFT](/ai/03-frameworks/03/16/) | 现有 HF 训练栈如何优雅接入参数高效微调的能力复杂度 |
+| [TRL](/ai/03-frameworks/03/23/) | SFT 之后的偏好、奖励、策略优化复杂度 |
+| [Axolotl](/ai/03-frameworks/03/30/) | 多 recipe、多数据格式、多并行后端、多交付动作的配置编排复杂度 |
 
 所以第一原则不是“谁最好”，而是：
 **你最痛的是哪一种复杂度。**
@@ -137,7 +137,7 @@ Axolotl 的价值在于：
 - 显存有限；
 - 想快点把第一版 LoRA/QLoRA 微调闭环做出来。
 
-最自然：[Unsloth](/iopanda-blog/ai/03-frameworks/03/09/)
+最自然：[Unsloth](/ai/03-frameworks/03/09/)
 
 为什么不是别的：
 - 不是 LLaMA-Factory：此时复杂度还没大到需要工厂；
@@ -152,7 +152,7 @@ Axolotl 的价值在于：
 - 不想切换框架；
 - 想把参数高效微调方法纳入正式系统能力。
 
-最自然：[PEFT](/iopanda-blog/ai/03-frameworks/03/16/)
+最自然：[PEFT](/ai/03-frameworks/03/16/)
 
 为什么不是别的：
 - 不是 Unsloth：你的痛点不是先跑起来；
@@ -167,7 +167,7 @@ Axolotl 的价值在于：
 - 模型和模板经常更换；
 - 训练到导出的链条需要统一。
 
-最自然：[LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)
+最自然：[LLaMA-Factory](/ai/03-frameworks/03/02/)
 
 为什么不是别的：
 - 不是 PEFT：它只解决方法层，不解决整条工厂链；
@@ -182,7 +182,7 @@ Axolotl 的价值在于：
 - 需要显式表达偏好；
 - 想把 alignment 作为正式训练阶段。
 
-最自然：[TRL](/iopanda-blog/ai/03-frameworks/03/23/)
+最自然：[TRL](/ai/03-frameworks/03/23/)
 
 为什么不是别的：
 - 不是 LLaMA-Factory：虽然能覆盖，但 alignment 不是它最纯粹主线；
@@ -198,7 +198,7 @@ Axolotl 的价值在于：
 - 方法切换频繁；
 - 并行后端、merge、serve、profile 都想统一描述。
 
-最自然：[Axolotl](/iopanda-blog/ai/03-frameworks/03/30/)
+最自然：[Axolotl](/ai/03-frameworks/03/30/)
 
 为什么不是别的：
 - 不是 PEFT：它不做全局编排；
@@ -212,11 +212,11 @@ Axolotl 的价值在于：
 
 | 阶段 | 主问题 | 更自然的框架 |
 |---|---|---|
-| 第一阶段：先训出可演示版本 | 显存、速度、预算 | [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) |
-| 第二阶段：已有 HF 栈，希望系统化用 LoRA/IA3 | 方法抽象 | [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) |
-| 第三阶段：训练任务变多、模型变多 | 工厂统一入口 | [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) |
-| 第四阶段：开始做助教风格、安全、拒答、偏好优化 | alignment | [TRL](/iopanda-blog/ai/03-frameworks/03/23/) |
-| 第五阶段：长期维护多套 recipe 和交付链 | 配置治理 | [Axolotl](/iopanda-blog/ai/03-frameworks/03/30/) |
+| 第一阶段：先训出可演示版本 | 显存、速度、预算 | [Unsloth](/ai/03-frameworks/03/09/) |
+| 第二阶段：已有 HF 栈，希望系统化用 LoRA/IA3 | 方法抽象 | [PEFT](/ai/03-frameworks/03/16/) |
+| 第三阶段：训练任务变多、模型变多 | 工厂统一入口 | [LLaMA-Factory](/ai/03-frameworks/03/02/) |
+| 第四阶段：开始做助教风格、安全、拒答、偏好优化 | alignment | [TRL](/ai/03-frameworks/03/23/) |
+| 第五阶段：长期维护多套 recipe 和交付链 | 配置治理 | [Axolotl](/ai/03-frameworks/03/30/) |
 
 这张表最重要的含义是：
 **training framework selection 往往不是单选题，而是阶段题。**
@@ -291,6 +291,6 @@ Axolotl 的价值在于：
 - [18] https://github.com/huggingface/trl/blob/main/README.md — TRL README
 - [86] https://github.com/hiyouga/LLaMA-Factory/blob/main/README.md — LLaMA-Factory README
 
-上一篇：[05 Axolotl](/iopanda-blog/ai/03-frameworks/03/30/)——最后一条 recipe 编排路线立住后，本篇把五条路线压成可用的架构判断。
+上一篇：[05 Axolotl](/ai/03-frameworks/03/30/)——最后一条 recipe 编排路线立住后，本篇把五条路线压成可用的架构判断。
 
-下一篇：回到 [03.03 Training and Fine-tuning Frameworks](/iopanda-blog/ai/03-frameworks/03/01/)，从模块入口反向检查阅读顺序与选型逻辑是否顺滑。
+下一篇：回到 [03.03 Training and Fine-tuning Frameworks](/ai/03-frameworks/03/01/)，从模块入口反向检查阅读顺序与选型逻辑是否顺滑。

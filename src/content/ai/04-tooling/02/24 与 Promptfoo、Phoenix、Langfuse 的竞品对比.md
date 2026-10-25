@@ -104,6 +104,6 @@ DeepEval 最强的地方，不是功能最多，而是：
 - [5] https://raw.githubusercontent.com/langfuse/langfuse/main/README.md — Langfuse README
 - [7] https://www.confident-ai.com/pricing — Confident AI pricing
 
-上一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/23/)——成熟度清楚后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/02/23/)——成熟度清楚后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC](/iopanda-blog/ai/04-tooling/02/25/)——最后从真实组织案例看，DeepEval 为什么会被采用。
+下一篇：[05 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC](/ai/04-tooling/02/25/)——最后从真实组织案例看，DeepEval 为什么会被采用。

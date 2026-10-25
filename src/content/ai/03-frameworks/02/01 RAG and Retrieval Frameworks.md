@@ -42,11 +42,11 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/README"
 
 | 框架 | 一句话定位 | 设计中心 | 更像什么 | 更适合谁 |
 |---|---|---|---|---|
-| [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) | 文档与索引优先的 LLM data framework | ingestion、index、retriever、query engine | 文档操作系统 | 以知识库/文档问答为核心的团队 |
-| [Haystack](/iopanda-blog/ai/03-frameworks/02/09/) | 检索与生成显式管道框架 | pipeline、components、evaluation、production RAG | 检索流水线框架 | 想显式控制检索/生成/评测链路的团队 |
-| [RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) | 端到端 RAG engine | parsing、indexing、retrieval、agent-capable context layer | RAG 平台/引擎 | 想快速拿到完整 RAG 平台体验的团队 |
-| [LightRAG](/iopanda-blog/ai/03-frameworks/02/23/) | 轻量、快速的 graph-enhanced RAG 路线 | graph-aware retrieval、simple+fast retrieval design | 轻量图检索框架 | 想理解 graph RAG 但不想一上来上重平台的团队 |
-| [Pathway](/iopanda-blog/ai/03-frameworks/02/30/) | 流式数据路径与实时 RAG 路线 | streaming ETL、incremental updates、real-time retrieval | 实时数据管道框架 | 数据在持续变化、不能靠静态离线索引的团队 |
+| [LlamaIndex](/ai/03-frameworks/02/02/) | 文档与索引优先的 LLM data framework | ingestion、index、retriever、query engine | 文档操作系统 | 以知识库/文档问答为核心的团队 |
+| [Haystack](/ai/03-frameworks/02/09/) | 检索与生成显式管道框架 | pipeline、components、evaluation、production RAG | 检索流水线框架 | 想显式控制检索/生成/评测链路的团队 |
+| [RAGFlow](/ai/03-frameworks/02/16/) | 端到端 RAG engine | parsing、indexing、retrieval、agent-capable context layer | RAG 平台/引擎 | 想快速拿到完整 RAG 平台体验的团队 |
+| [LightRAG](/ai/03-frameworks/02/23/) | 轻量、快速的 graph-enhanced RAG 路线 | graph-aware retrieval、simple+fast retrieval design | 轻量图检索框架 | 想理解 graph RAG 但不想一上来上重平台的团队 |
+| [Pathway](/ai/03-frameworks/02/30/) | 流式数据路径与实时 RAG 路线 | streaming ETL、incremental updates、real-time retrieval | 实时数据管道框架 | 数据在持续变化、不能靠静态离线索引的团队 |
 
 ## 3. 为什么先不把 LangChain、向量数据库放进这一组 top 5
 
@@ -56,31 +56,31 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/README"
 
 ## 4. 这一模块建议怎么读
 
-1. 先看 [01 LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/)：理解“文档进入系统以后，索引与查询对象该怎么组织”；
-2. 再看 [02 Haystack](/iopanda-blog/ai/03-frameworks/02/09/)：理解“检索—生成—评测链路如何显式做成 pipeline”；
-3. 再看 [03 RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/)：理解“为什么有人希望直接要一个完整 RAG engine”；
-4. 再看 [04 LightRAG](/iopanda-blog/ai/03-frameworks/02/23/)：理解“graph-enhanced retrieval 如何压低复杂度”；
-5. 最后看 [05 Pathway](/iopanda-blog/ai/03-frameworks/02/30/)：理解“实时更新的数据路径如何改变 retrieval system 的设计”。
+1. 先看 [01 LlamaIndex](/ai/03-frameworks/02/02/)：理解“文档进入系统以后，索引与查询对象该怎么组织”；
+2. 再看 [02 Haystack](/ai/03-frameworks/02/09/)：理解“检索—生成—评测链路如何显式做成 pipeline”；
+3. 再看 [03 RAGFlow](/ai/03-frameworks/02/16/)：理解“为什么有人希望直接要一个完整 RAG engine”；
+4. 再看 [04 LightRAG](/ai/03-frameworks/02/23/)：理解“graph-enhanced retrieval 如何压低复杂度”；
+5. 最后看 [05 Pathway](/ai/03-frameworks/02/30/)：理解“实时更新的数据路径如何改变 retrieval system 的设计”。
 
 ## 4.1 按读者身份的推荐阅读路径
 
 | 你是谁 | 建议先读什么 | 为什么 |
 |---|---|---|
-| Python 后端 / 应用开发者 | [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) → [Haystack](/iopanda-blog/ai/03-frameworks/02/09/) | 前者帮你建立文档/索引/查询对象心智，后者帮你建立显式检索链路心智 |
-| 平台 / 架构师 | [Haystack](/iopanda-blog/ai/03-frameworks/02/09/) → [RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) → [Pathway](/iopanda-blog/ai/03-frameworks/02/30/) | 更容易从“链路治理 → 平台治理 → 实时治理”三个层次看系统 |
-| 做企业知识库 / 文档问答的人 | [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) → [RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) | 一个偏可编程对象体系，一个偏平台化知识层 |
-| 做复杂检索质量优化的人 | [Haystack](/iopanda-blog/ai/03-frameworks/02/09/) → [LightRAG](/iopanda-blog/ai/03-frameworks/02/23/) | 一个擅长显式调链，一个擅长关系增强检索 |
-| 做实时知识流 / 流式问答的人 | [Pathway](/iopanda-blog/ai/03-frameworks/02/30/) | 主矛盾首先在更新语义，而不是静态知识对象或离线索引 |
+| Python 后端 / 应用开发者 | [LlamaIndex](/ai/03-frameworks/02/02/) → [Haystack](/ai/03-frameworks/02/09/) | 前者帮你建立文档/索引/查询对象心智，后者帮你建立显式检索链路心智 |
+| 平台 / 架构师 | [Haystack](/ai/03-frameworks/02/09/) → [RAGFlow](/ai/03-frameworks/02/16/) → [Pathway](/ai/03-frameworks/02/30/) | 更容易从“链路治理 → 平台治理 → 实时治理”三个层次看系统 |
+| 做企业知识库 / 文档问答的人 | [LlamaIndex](/ai/03-frameworks/02/02/) → [RAGFlow](/ai/03-frameworks/02/16/) | 一个偏可编程对象体系，一个偏平台化知识层 |
+| 做复杂检索质量优化的人 | [Haystack](/ai/03-frameworks/02/09/) → [LightRAG](/ai/03-frameworks/02/23/) | 一个擅长显式调链，一个擅长关系增强检索 |
+| 做实时知识流 / 流式问答的人 | [Pathway](/ai/03-frameworks/02/30/) | 主矛盾首先在更新语义，而不是静态知识对象或离线索引 |
 
 ## 4.2 按系统主矛盾的速查表
 
 | 你的系统最先会死在哪 | 优先想到 |
 |---|---|
-| 文档 / 节点 / 索引 / 查询对象组织混乱 | [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) |
-| retrieval / rerank / route / eval 链条不透明 | [Haystack](/iopanda-blog/ai/03-frameworks/02/09/) |
-| 想尽快拿完整知识平台：解析、chunking、citation、testing、共享 | [RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) |
-| 关系语义与跨文档概念联系是主问题 | [LightRAG](/iopanda-blog/ai/03-frameworks/02/23/) |
-| 数据持续变化，freshness / replay / incremental update 是主问题 | [Pathway](/iopanda-blog/ai/03-frameworks/02/30/) |
+| 文档 / 节点 / 索引 / 查询对象组织混乱 | [LlamaIndex](/ai/03-frameworks/02/02/) |
+| retrieval / rerank / route / eval 链条不透明 | [Haystack](/ai/03-frameworks/02/09/) |
+| 想尽快拿完整知识平台：解析、chunking、citation、testing、共享 | [RAGFlow](/ai/03-frameworks/02/16/) |
+| 关系语义与跨文档概念联系是主问题 | [LightRAG](/ai/03-frameworks/02/23/) |
+| 数据持续变化，freshness / replay / incremental update 是主问题 | [Pathway](/ai/03-frameworks/02/30/) |
 
 ## 4.3 这章最容易读偏的三个误区
 
@@ -100,7 +100,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/README"
    - rerank / eval / production / real-time / graph 等差异化能力
    - 课程助教或知识问答案例
    - 与其他框架的深度对比
-4. 最后收口一篇：[06 RAG Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/02/37/)
+4. 最后收口一篇：[06 RAG Framework 选型矩阵](/ai/03-frameworks/02/37/)
 
 ## 6. 本模块的推荐交付物
 
@@ -127,12 +127,12 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/README"
 
 ## 7. 本模块笔记导航
 
-1. [01 LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/)
-2. [02 Haystack](/iopanda-blog/ai/03-frameworks/02/09/)
-3. [03 RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/)
-4. [04 LightRAG](/iopanda-blog/ai/03-frameworks/02/23/)
-5. [05 Pathway](/iopanda-blog/ai/03-frameworks/02/30/)
-6. [06 RAG Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/02/37/)
+1. [01 LlamaIndex](/ai/03-frameworks/02/02/)
+2. [02 Haystack](/ai/03-frameworks/02/09/)
+3. [03 RAGFlow](/ai/03-frameworks/02/16/)
+4. [04 LightRAG](/ai/03-frameworks/02/23/)
+5. [05 Pathway](/ai/03-frameworks/02/30/)
+6. [06 RAG Framework 选型矩阵](/ai/03-frameworks/02/37/)
 
 ## 8. 总结
 
@@ -152,6 +152,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/README"
 - [44] https://github.com/HKUDS/LightRAG — LightRAG GitHub
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 
-上一篇：[Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)——Agent 系统的承载层已经讲完；下一模块开始处理“上下文从哪里来、怎样被检索出来”这件更底层的系统问题。
+上一篇：[Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)——Agent 系统的承载层已经讲完；下一模块开始处理“上下文从哪里来、怎样被检索出来”这件更底层的系统问题。
 
-下一篇：[01 LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/)——先从文档与索引优先的路线开始：为什么 LlamaIndex 会把数据接入、索引与查询对象做成第一语言。
+下一篇：[01 LlamaIndex](/ai/03-frameworks/02/02/)——先从文档与索引优先的路线开始：为什么 LlamaIndex 会把数据接入、索引与查询对象做成第一语言。

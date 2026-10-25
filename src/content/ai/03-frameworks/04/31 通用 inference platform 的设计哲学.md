@@ -64,10 +64,10 @@ Triton 的价值不只在 HTTP/gRPC，而在它把这些能力连在一起：[7]
 
 | 框架 | 第一性问题 | Triton 相比的定位 |
 |---|---|---|
-| [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) | LLM online serving 如何高吞吐 | Triton 更偏通用平台治理 |
-| [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) | 结构化/agentic 生成如何高性能执行 | Triton 更偏跨模型平台 |
-| [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) | NVIDIA 硬件推理如何极致优化 | Triton 更像能承接这类后端的平台壳 |
-| [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | 本地/边缘设备如何便携推理 | Triton 更偏企业运营层 |
+| [vLLM](/ai/03-frameworks/04/02/) | LLM online serving 如何高吞吐 | Triton 更偏通用平台治理 |
+| [SGLang](/ai/03-frameworks/04/09/) | 结构化/agentic 生成如何高性能执行 | Triton 更偏跨模型平台 |
+| [TensorRT-LLM](/ai/03-frameworks/04/16/) | NVIDIA 硬件推理如何极致优化 | Triton 更像能承接这类后端的平台壳 |
+| [llama.cpp](/ai/03-frameworks/04/23/) | 本地/边缘设备如何便携推理 | Triton 更偏企业运营层 |
 
 ## 5. 什么时候最自然进入 Triton
 
@@ -96,6 +96,6 @@ Triton 的价值不只在 HTTP/gRPC，而在它把这些能力连在一起：[7]
 
 - [7] https://github.com/triton-inference-server/server/blob/main/README.md — Triton README
 
-上一篇：[03.04 Triton Inference Server](/iopanda-blog/ai/03-frameworks/04/30/)
+上一篇：[03.04 Triton Inference Server](/ai/03-frameworks/04/30/)
 
-下一篇：[02 model repository、backend、batching 与 ensemble](/iopanda-blog/ai/03-frameworks/04/32/)
+下一篇：[02 model repository、backend、batching 与 ensemble](/ai/03-frameworks/04/32/)

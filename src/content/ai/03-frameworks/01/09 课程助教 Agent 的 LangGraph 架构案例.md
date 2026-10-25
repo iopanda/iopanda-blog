@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/06 课程助教 Agent 的 Lang
 ---
 # 课程助教 Agent 的 LangGraph 架构案例
 
-> 前五篇已经把 LangGraph 的主要能力拆开了：[为什么要用状态图](/iopanda-blog/ai/03-frameworks/01/04/)、[为什么必须有恢复与中断](/iopanda-blog/ai/03-frameworks/01/05/)、[如何借 prebuilt 快速起步](/iopanda-blog/ai/03-frameworks/01/06/)、[状态到底怎么落盘](/iopanda-blog/ai/03-frameworks/01/07/)、[高级控制流怎么组织](/iopanda-blog/ai/03-frameworks/01/08/)。这一章把这些零件重新组装回一个真实案例：**如果要把课程助教 Agent 做成一个可上线、可恢复、可审计、可人工介入的系统，用 LangGraph 应该怎样拆？** 这篇不是官方教程翻译，而是按前面 01.07 和 02 的治理纪律，给一个面向开发者和架构师的完整结构示例。
+> 前五篇已经把 LangGraph 的主要能力拆开了：[为什么要用状态图](/ai/03-frameworks/01/04/)、[为什么必须有恢复与中断](/ai/03-frameworks/01/05/)、[如何借 prebuilt 快速起步](/ai/03-frameworks/01/06/)、[状态到底怎么落盘](/ai/03-frameworks/01/07/)、[高级控制流怎么组织](/ai/03-frameworks/01/08/)。这一章把这些零件重新组装回一个真实案例：**如果要把课程助教 Agent 做成一个可上线、可恢复、可审计、可人工介入的系统，用 LangGraph 应该怎样拆？** 这篇不是官方教程翻译，而是按前面 01.07 和 02 的治理纪律，给一个面向开发者和架构师的完整结构示例。
 
 **学习目标**：学完本章，你将能够——
 
@@ -31,7 +31,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/06 课程助教 Agent 的 Lang
 - 模型回答；
 - 返回结果。
 
-但一旦把 [章导览](/iopanda-blog/ai/02-agents/00/) 与 [风险评审与发布](/iopanda-blog/ai/01-models/07/05/) 的要求带进来，真实系统马上复杂起来：
+但一旦把 [章导览](/ai/02-agents/00/) 与 [风险评审与发布](/ai/01-models/07/05/) 的要求带进来，真实系统马上复杂起来：
 
 1. 有些问题需要检索多轮资料，而不是一次命中；
 2. 有些问题涉及成绩、隐私、课程规则，需要权限判断；
@@ -95,7 +95,7 @@ LangGraph 的价值就在于把这些决策边界显式化。
 | `current_term` / course_id | 课程作用域 |
 | `policy_version` | 风险规则版本 |
 
-这与 [PydanticAI 的依赖边界](/iopanda-blog/ai/03-frameworks/01/33/) 是相通的：**可变业务状态与不可变运行依赖必须分家。**
+这与 [PydanticAI 的依赖边界](/ai/03-frameworks/01/33/) 是相通的：**可变业务状态与不可变运行依赖必须分家。**
 
 ## 4. 再定节点：按“决策边界”拆，而不是按函数名拆
 
@@ -303,6 +303,6 @@ LangGraph 适合承载的是：
 - [28] https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt — LangGraph prebuilt README
 - [29] https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py — LangGraph message graph source
 
-上一篇：[05 Channels、Command、子图与高级控制流](/iopanda-blog/ai/03-frameworks/01/08/)——高级控制流的零件讲完后，本篇把它们组装回一个真实业务案例。
+上一篇：[05 Channels、Command、子图与高级控制流](/ai/03-frameworks/01/08/)——高级控制流的零件讲完后，本篇把它们组装回一个真实业务案例。
 
-下一篇：[07 LangGraph 与 CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比](/iopanda-blog/ai/03-frameworks/01/10/)——案例落地之后，再回头看它和其他框架的根本差异。
+下一篇：[07 LangGraph 与 CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比](/ai/03-frameworks/01/10/)——案例落地之后，再回头看它和其他框架的根本差异。

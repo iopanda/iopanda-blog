@@ -104,6 +104,6 @@ Langfuse Prompts 最强的地方，不是“最会写 prompt”，而是：
 - [4] https://langfuse.com/docs/prompt-management/get-started — Langfuse prompt management docs
 - [5] https://langfuse.com/pricing — Langfuse pricing
 
-上一篇：[03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/05/)——成熟度清楚后，再把它放回竞品版图里。
+上一篇：[03 质量、价格与采用边界](/ai/04-tooling/04/05/)——成熟度清楚后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：Canva、Khan Academy、Merck、SumUp与跨组织采用信号](/iopanda-blog/ai/04-tooling/04/07/)——最后从真实组织案例看，哪些团队已经把 prompt 管理做成组织能力。
+下一篇：[05 真实组织案例：Canva、Khan Academy、Merck、SumUp与跨组织采用信号](/ai/04-tooling/04/07/)——最后从真实组织案例看，哪些团队已经把 prompt 管理做成组织能力。

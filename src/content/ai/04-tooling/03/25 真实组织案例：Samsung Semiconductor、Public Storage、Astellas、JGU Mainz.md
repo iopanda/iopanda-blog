@@ -156,6 +156,6 @@ JGU Mainz 采用 fully open-source stack，由 LLMs、proxy/loadbalancer 和 Ope
 - [6] https://openwebui.com/sovereign-ai — Open WebUI sovereign AI
 - [7] https://docs.openwebui.com/enterprise — Open WebUI enterprise
 
-上一篇：[04 与 Dify、n8n、Langflow、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/24/)——看清竞品差异后，再看真实组织为什么会采用 Open WebUI。
+上一篇：[04 与 Dify、n8n、Langflow、AnythingLLM 的竞品对比](/ai/04-tooling/03/24/)——看清竞品差异后，再看真实组织为什么会采用 Open WebUI。
 
-下一篇：[05 AnythingLLM](/iopanda-blog/ai/04-tooling/03/26/)——下一个产品切到本地知识工作台路线。
+下一篇：[05 AnythingLLM](/ai/04-tooling/03/26/)——下一个产品切到本地知识工作台路线。

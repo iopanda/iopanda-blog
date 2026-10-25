@@ -32,13 +32,13 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.4 llama.cpp/README
 
 ## 本目录笔记导航
 
-1. [01 本地推理运行时的设计哲学](/iopanda-blog/ai/03-frameworks/04/24/)
-2. [02 GGUF、量化、CPU/GPU 后端与 portability](/iopanda-blog/ai/03-frameworks/04/25/)
-3. [03 OpenAI-compatible server、桌面应用与边缘交付](/iopanda-blog/ai/03-frameworks/04/26/)
-4. [04 性能、模型规模与适用边界](/iopanda-blog/ai/03-frameworks/04/27/)
-5. [05 离线课程助教的 llama.cpp 架构案例](/iopanda-blog/ai/03-frameworks/04/28/)
-6. [06 llama.cpp 与 vLLM、SGLang、TensorRT-LLM、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/29/)
+1. [01 本地推理运行时的设计哲学](/ai/03-frameworks/04/24/)
+2. [02 GGUF、量化、CPU/GPU 后端与 portability](/ai/03-frameworks/04/25/)
+3. [03 OpenAI-compatible server、桌面应用与边缘交付](/ai/03-frameworks/04/26/)
+4. [04 性能、模型规模与适用边界](/ai/03-frameworks/04/27/)
+5. [05 离线课程助教的 llama.cpp 架构案例](/ai/03-frameworks/04/28/)
+6. [06 llama.cpp 与 vLLM、SGLang、TensorRT-LLM、Triton 的深度对比](/ai/03-frameworks/04/29/)
 
-上一篇：[03.04 TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)
+上一篇：[03.04 TensorRT-LLM](/ai/03-frameworks/04/16/)
 
-下一篇：[01 本地推理运行时的设计哲学](/iopanda-blog/ai/03-frameworks/04/24/)
+下一篇：[01 本地推理运行时的设计哲学](/ai/03-frameworks/04/24/)

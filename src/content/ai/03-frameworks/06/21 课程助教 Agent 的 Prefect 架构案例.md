@@ -69,6 +69,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.3 Prefect/05 课�
 - [22] https://docs.prefect.io/v3/how-to-guides/workflows/retries — Prefect retries how-to guide
 - [23] https://docs.prefect.io/v3/how-to-guides/automations/creating-automations — Prefect automations how-to guide
 
-上一篇：[04 观测、部署与工程边界](/iopanda-blog/ai/03-frameworks/06/20/)
+上一篇：[04 观测、部署与工程边界](/ai/03-frameworks/06/20/)
 
-下一篇：[06 Prefect 与 Temporal、Airflow、Dagster、Kestra 的深度对比](/iopanda-blog/ai/03-frameworks/06/22/)
+下一篇：[06 Prefect 与 Temporal、Airflow、Dagster、Kestra 的深度对比](/ai/03-frameworks/06/22/)

@@ -97,6 +97,6 @@ metadata 至少建议包含：
 - [66] https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/metadata_management.md — RAGFlow metadata management guide
 - [67] https://github.com/infiniflow/ragflow/blob/main/docs/guides/team/permission_system_overview/index.md — RAGFlow permission overview
 
-上一篇：[04 多用户、权限、平台化运营与评测](/iopanda-blog/ai/03-frameworks/02/20/)
+上一篇：[04 多用户、权限、平台化运营与评测](/ai/03-frameworks/02/20/)
 
-下一篇：[06 RAGFlow 与 LlamaIndex、Haystack、LightRAG、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/22/)
+下一篇：[06 RAGFlow 与 LlamaIndex、Haystack、LightRAG、Pathway 的深度对比](/ai/03-frameworks/02/22/)

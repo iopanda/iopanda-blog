@@ -37,7 +37,7 @@ sourceId: "3.10.4.6 Data Curation and Annotation/05 FiftyOne/README"
 
 ## 引用
 
-- 回到本组总览：[04.06 Data Curation and Annotation](/iopanda-blog/ai/04-tooling/06/01/)
+- 回到本组总览：[04.06 Data Curation and Annotation](/ai/04-tooling/06/01/)
 
-上一篇：[Cleanlab](/iopanda-blog/ai/04-tooling/06/05/)
+上一篇：[Cleanlab](/ai/04-tooling/06/05/)
 下一篇：本产品是本组最后一项；后续可回到本组总览，对比同类工具。

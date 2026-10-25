@@ -20,7 +20,7 @@ sourceId: "3.10.3.1 Agent Frameworks/02 AutoGen/04 Agent Worker、Services 与�
 1. 解释 AutoGen 为什么会引入 workers、services、gateway、event bus 这些系统级概念；
 2. 理解为什么同进程与分布式运行在 AutoGen 里只是部署层变化，不是编程模型突变；
 3. 说出 CloudEvents、gRPC、message session state 在运行时里的职责；
-4. 比较 AutoGen 这种 runtime 视角与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 的差异；
+4. 比较 AutoGen 这种 runtime 视角与 [LangGraph](/ai/03-frameworks/01/03/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/) 的差异；
 5. 为一个可能扩展到多进程/多语言的 Agent 系统画出 runtime 结构图。
 
 ## 1. 概念：AutoGen 不只在造 Agent，也在造 Agent runtime
@@ -188,6 +188,6 @@ AutoGen 设计里一个很成熟的点是：
 - [40] https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md — AutoGen services design
 - [2] https://github.com/microsoft/autogen — AutoGen GitHub
 
-上一篇：[03 AgentChat、RoutedAgent 与消息协议](/iopanda-blog/ai/03-frameworks/01/14/)——消息协议层立住后，本篇继续往更大的 runtime 图景推进。
+上一篇：[03 AgentChat、RoutedAgent 与消息协议](/ai/03-frameworks/01/14/)——消息协议层立住后，本篇继续往更大的 runtime 图景推进。
 
-下一篇：[05 课程助教 Agent 的 AutoGen 架构案例](/iopanda-blog/ai/03-frameworks/01/16/)——把协议与 runtime 结构重新落回课程助教这个真实系统。
+下一篇：[05 课程助教 Agent 的 AutoGen 架构案例](/ai/03-frameworks/01/16/)——把协议与 runtime 结构重新落回课程助教这个真实系统。

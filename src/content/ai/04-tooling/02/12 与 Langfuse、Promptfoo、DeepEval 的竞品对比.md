@@ -119,6 +119,6 @@ Phoenix 最强的地方，不是“功能最多”，而是：
 - [4] https://langfuse.com/docs/observability/overview — Langfuse observability overview
 - [5] https://langfuse.com/docs/evaluation/overview — Langfuse evaluation overview
 
-上一篇：[03 质量、社区、价格与开源边界](/iopanda-blog/ai/04-tooling/02/11/)——成熟度清楚之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与开源边界](/ai/04-tooling/02/11/)——成熟度清楚之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：Dify、Flowise、LiteLLM、Envoy AI Gateway、BeeAI、Prompt Flow](/iopanda-blog/ai/04-tooling/02/13/)——最后从真实组织与平台案例看，Phoenix 为什么会被采用。
+下一篇：[05 真实组织案例：Dify、Flowise、LiteLLM、Envoy AI Gateway、BeeAI、Prompt Flow](/ai/04-tooling/02/13/)——最后从真实组织与平台案例看，Phoenix 为什么会被采用。

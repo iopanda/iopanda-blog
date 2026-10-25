@@ -69,6 +69,6 @@ README 明确说它与 Triton Inference Server 和 NVIDIA Dynamo 无缝集成。
 - [14] https://github.com/NVIDIA/TensorRT-LLM/blob/main/AGENTS.md — TensorRT-LLM AGENTS overview
 - [15] https://github.com/NVIDIA/TensorRT-LLM/blob/main/examples/serve/README.md — TensorRT-LLM serve README
 
-上一篇：[02 kernels、graph compilation、quantization 与 execution](/iopanda-blog/ai/03-frameworks/04/18/)
+上一篇：[02 kernels、graph compilation、quantization 与 execution](/ai/03-frameworks/04/18/)
 
-下一篇：[04 性能、硬件依赖与工程边界](/iopanda-blog/ai/03-frameworks/04/20/)
+下一篇：[04 性能、硬件依赖与工程边界](/ai/03-frameworks/04/20/)

@@ -84,6 +84,6 @@ promptfoo 的比较能力来自 providers 被正式化：
 
 - [11] https://github.com/promptfoo/promptfoo/blob/main/site/docs/usage/command-line.md — promptfoo command line docs
 
-上一篇：[01 AI testing framework 的设计哲学](/iopanda-blog/ai/03-frameworks/05/24/)
+上一篇：[01 AI testing framework 的设计哲学](/ai/03-frameworks/05/24/)
 
-下一篇：[03 regression、red teaming、security scanning 与 CI/CD](/iopanda-blog/ai/03-frameworks/05/26/)
+下一篇：[03 regression、red teaming、security scanning 与 CI/CD](/ai/03-frameworks/05/26/)

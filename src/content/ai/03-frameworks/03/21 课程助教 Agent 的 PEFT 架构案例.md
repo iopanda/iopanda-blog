@@ -58,6 +58,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/03 PEFT/05 课程助教 
 - [20] https://github.com/huggingface/peft/blob/main/docs/source/package_reference/ia3.md — PEFT IA3 doc
 - [21] https://github.com/huggingface/peft/blob/main/docs/source/package_reference/adalora.md — PEFT AdaLoRA doc
 
-上一篇：[04 显存、导出、合并权重与工程边界](/iopanda-blog/ai/03-frameworks/03/20/)
+上一篇：[04 显存、导出、合并权重与工程边界](/ai/03-frameworks/03/20/)
 
-下一篇：[06 PEFT 与 Unsloth、LLaMA-Factory、TRL、Axolotl 的深度对比](/iopanda-blog/ai/03-frameworks/03/22/)
+下一篇：[06 PEFT 与 Unsloth、LLaMA-Factory、TRL、Axolotl 的深度对比](/ai/03-frameworks/03/22/)

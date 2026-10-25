@@ -17,11 +17,11 @@ sourceId: "3.10.4.4 Prompt Management/04 Guidance/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、受控生成心智与适用场景](/iopanda-blog/ai/04-tooling/04/21/)
-2. [02 Constraints、Control Flow、Tool Use与离线语法调试](/iopanda-blog/ai/04-tooling/04/22/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/23/)
-4. [04 与 Langfuse Prompts、Promptfoo、DSPy、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/24/)
-5. [05 公开组织案例有限：可复现实践与开源采用信号](/iopanda-blog/ai/04-tooling/04/25/)
+1. [01 产品定位、受控生成心智与适用场景](/ai/04-tooling/04/21/)
+2. [02 Constraints、Control Flow、Tool Use与离线语法调试](/ai/04-tooling/04/22/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/04/23/)
+4. [04 与 Langfuse Prompts、Promptfoo、DSPy、Outlines 的竞品对比](/ai/04-tooling/04/24/)
+5. [05 公开组织案例有限：可复现实践与开源采用信号](/ai/04-tooling/04/25/)
 
 ## 这一产品为什么值得单开
 
@@ -49,11 +49,11 @@ sourceId: "3.10.4.4 Prompt Management/04 Guidance/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、受控生成心智与适用场景](/iopanda-blog/ai/04-tooling/04/21/)
-2. [02 Constraints、Control Flow、Tool Use与离线语法调试](/iopanda-blog/ai/04-tooling/04/22/)
-3. [03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/23/)
-4. [04 与 Langfuse Prompts、Promptfoo、DSPy、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/24/)
-5. [05 公开组织案例有限：可复现实践与开源采用信号](/iopanda-blog/ai/04-tooling/04/25/)
+1. [01 产品定位、受控生成心智与适用场景](/ai/04-tooling/04/21/)
+2. [02 Constraints、Control Flow、Tool Use与离线语法调试](/ai/04-tooling/04/22/)
+3. [03 质量、社区、价格与采用边界](/ai/04-tooling/04/23/)
+4. [04 与 Langfuse Prompts、Promptfoo、DSPy、Outlines 的竞品对比](/ai/04-tooling/04/24/)
+5. [05 公开组织案例有限：可复现实践与开源采用信号](/ai/04-tooling/04/25/)
 
 ## 引用
 
@@ -62,6 +62,6 @@ sourceId: "3.10.4.4 Prompt Management/04 Guidance/README"
 - [3] https://api.github.com/repos/guidance-ai/guidance — Guidance GitHub API
 - [4] https://guidance.readthedocs.io/en/latest/ — Guidance docs
 
-上一篇：[03 DSPy](/iopanda-blog/ai/04-tooling/04/14/)——上一产品代表程序抽象与优化路线；这一篇切到生成控制与约束路线。
+上一篇：[03 DSPy](/ai/04-tooling/04/14/)——上一产品代表程序抽象与优化路线；这一篇切到生成控制与约束路线。
 
-下一篇：[01 产品定位、受控生成心智与适用场景](/iopanda-blog/ai/04-tooling/04/21/)——先从产品定位与适用边界开始。
+下一篇：[01 产品定位、受控生成心智与适用场景](/ai/04-tooling/04/21/)——先从产品定位与适用边界开始。

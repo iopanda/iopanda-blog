@@ -66,6 +66,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.4 llama.cpp/05 离
 - [10] https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md — llama.cpp server README
 - [11] https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md — llama.cpp quantize README
 
-上一篇：[04 性能、模型规模与适用边界](/iopanda-blog/ai/03-frameworks/04/27/)
+上一篇：[04 性能、模型规模与适用边界](/ai/03-frameworks/04/27/)
 
-下一篇：[06 llama.cpp 与 vLLM、SGLang、TensorRT-LLM、Triton 的深度对比](/iopanda-blog/ai/03-frameworks/04/29/)
+下一篇：[06 llama.cpp 与 vLLM、SGLang、TensorRT-LLM、Triton 的深度对比](/ai/03-frameworks/04/29/)

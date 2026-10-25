@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/01 LlamaIndex/04 多索引、�
 ---
 # 多索引、多数据源与 Agentic Retrieval
 
-> 到这里为止，LlamaIndex 的主线已经逐渐清楚：[对象层](/iopanda-blog/ai/03-frameworks/02/03/) 定义了文档和节点，[ingestion](/iopanda-blog/ai/03-frameworks/02/04/) 定义了数据怎么进入系统，[query chain](/iopanda-blog/ai/03-frameworks/02/05/) 定义了知识怎么被取出并拼成答案。但真实系统很少永远停在“一个索引、一类文档、一种查询模式”。只要系统一长大，就会遇到：多文档源、多索引、多 query engine、多 retriever、甚至更 agentic 的 retrieval decision。LlamaIndex README 里已经明确把 workflows、agents、indices、retrievers、query engines、reranking modules 都列为可定制模块；core 和 integrations 的巨大生态也说明，它从一开始就在为“多源知识系统”做准备。[41][46]
+> 到这里为止，LlamaIndex 的主线已经逐渐清楚：[对象层](/ai/03-frameworks/02/03/) 定义了文档和节点，[ingestion](/ai/03-frameworks/02/04/) 定义了数据怎么进入系统，[query chain](/ai/03-frameworks/02/05/) 定义了知识怎么被取出并拼成答案。但真实系统很少永远停在“一个索引、一类文档、一种查询模式”。只要系统一长大，就会遇到：多文档源、多索引、多 query engine、多 retriever、甚至更 agentic 的 retrieval decision。LlamaIndex README 里已经明确把 workflows、agents、indices、retrievers、query engines、reranking modules 都列为可定制模块；core 和 integrations 的巨大生态也说明，它从一开始就在为“多源知识系统”做准备。[41][46]
 
 **学习目标**：学完本章，你将能够——
 
@@ -205,6 +205,6 @@ LlamaIndex 虽然在这个模块里我们先把它当 retrieval framework 看，
 - [51] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/router_query_engine.py — LlamaIndex router query engine source
 - [52] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/sub_question_query_engine.py — LlamaIndex sub question query engine source
 
-上一篇：[03 Retriever、Query Engine、Rerank 与 Router](/iopanda-blog/ai/03-frameworks/02/05/)——查询对象族已经出现；本篇继续看它如何扩展到多索引、多数据源与更 agentic 的 retrieval。
+上一篇：[03 Retriever、Query Engine、Rerank 与 Router](/ai/03-frameworks/02/05/)——查询对象族已经出现；本篇继续看它如何扩展到多索引、多数据源与更 agentic 的 retrieval。
 
-下一篇：[05 课程助教 Agent 的 LlamaIndex 架构案例](/iopanda-blog/ai/03-frameworks/02/07/)——对象层、ingestion、query chain 和多索引都讲完后，下一篇把它们组装回课程助教这个真实系统。
+下一篇：[05 课程助教 Agent 的 LlamaIndex 架构案例](/ai/03-frameworks/02/07/)——对象层、ingestion、query chain 和多索引都讲完后，下一篇把它们组装回课程助教这个真实系统。

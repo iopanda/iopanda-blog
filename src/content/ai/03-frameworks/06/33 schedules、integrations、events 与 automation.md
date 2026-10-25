@@ -81,6 +81,6 @@ Kestra 用 `Pause` 任务类型（`io.kestra.plugin.core.flow.Pause`）把人工
 - [34] https://kestra.io/docs/workflow-components/triggers — Kestra triggers concept doc
 - [37] https://kestra.io/docs/use-cases/approval-processes — Kestra approval processes use case doc
 
-上一篇：[02 flows、triggers、tasks 与 declarative workflow](/iopanda-blog/ai/03-frameworks/06/32/)
+上一篇：[02 flows、triggers、tasks 与 declarative workflow](/ai/03-frameworks/06/32/)
 
-下一篇：[04 运营、扩展性与工程边界](/iopanda-blog/ai/03-frameworks/06/34/)
+下一篇：[04 运营、扩展性与工程边界](/ai/03-frameworks/06/34/)

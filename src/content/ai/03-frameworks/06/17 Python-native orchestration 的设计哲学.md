@@ -50,10 +50,10 @@ Prefect 的概念文档明确区分了两者的分工：[18]
 
 | 框架 | 第一性问题 | Prefect 相比的定位 |
 |---|---|---|
-| [Temporal](/iopanda-blog/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Prefect 更偏 Python 原生开发体验，而不是重的 durable execution 引擎 |
-| [Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Prefect 更偏“脚本到生产”的最短路径，而不是先立调度平台再填任务 |
-| [Dagster](/iopanda-blog/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Prefect 更偏 flow/task 执行语义，而不是 asset-first |
-| [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) | 如何围绕 triggers/schedules/integrations 做事件驱动自动化 | Prefect 更偏用 Python 代码本身表达逻辑，而不是声明式 YAML |
+| [Temporal](/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Prefect 更偏 Python 原生开发体验，而不是重的 durable execution 引擎 |
+| [Apache Airflow](/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Prefect 更偏“脚本到生产”的最短路径，而不是先立调度平台再填任务 |
+| [Dagster](/ai/03-frameworks/06/23/) | 如何围绕 data assets 组织流程 | Prefect 更偏 flow/task 执行语义，而不是 asset-first |
+| [Kestra](/ai/03-frameworks/06/30/) | 如何围绕 triggers/schedules/integrations 做事件驱动自动化 | Prefect 更偏用 Python 代码本身表达逻辑，而不是声明式 YAML |
 
 ## 5. 什么时候最自然进入 Prefect
 
@@ -83,6 +83,6 @@ Prefect 的概念文档明确区分了两者的分工：[18]
 - [13] https://github.com/PrefectHQ/prefect/blob/main/README.md — Prefect README
 - [18] https://docs.prefect.io/v3/concepts/flows — Prefect flows concept doc
 
-上一篇：[03.06 Prefect](/iopanda-blog/ai/03-frameworks/06/16/)
+上一篇：[03.06 Prefect](/ai/03-frameworks/06/16/)
 
-下一篇：[02 flow、task、state 与 deployment](/iopanda-blog/ai/03-frameworks/06/18/)
+下一篇：[02 flow、task、state 与 deployment](/ai/03-frameworks/06/18/)

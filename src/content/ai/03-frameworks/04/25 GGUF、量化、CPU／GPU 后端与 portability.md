@@ -86,6 +86,6 @@ README 明确提到 CPU+GPU hybrid inference，可以部分加速超过总 VRAM 
 - [11] https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md — llama.cpp quantize README
 - [13] https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md — llama.cpp build README
 
-上一篇：[01 本地推理运行时的设计哲学](/iopanda-blog/ai/03-frameworks/04/24/)
+上一篇：[01 本地推理运行时的设计哲学](/ai/03-frameworks/04/24/)
 
-下一篇：[03 OpenAI-compatible server、桌面应用与边缘交付](/iopanda-blog/ai/03-frameworks/04/26/)
+下一篇：[03 OpenAI-compatible server、桌面应用与边缘交付](/ai/03-frameworks/04/26/)

@@ -205,6 +205,6 @@ Cresta 明确表示，Langfuse 显著加快了其团队测试、学习、改进 
 - [6] https://langfuse.com/customers/hugging-face — Hugging Face 客户案例
 - [7] https://langfuse.com/users/cresta — Cresta 客户案例
 
-上一篇：[04 与 Phoenix、Promptfoo、DeepEval 的竞品对比](/iopanda-blog/ai/04-tooling/02/06/)——看清竞品差异后，再看真实组织为什么会采用 Langfuse。
+上一篇：[04 与 Phoenix、Promptfoo、DeepEval 的竞品对比](/ai/04-tooling/02/06/)——看清竞品差异后，再看真实组织为什么会采用 Langfuse。
 
-下一篇：[02 Phoenix](/iopanda-blog/ai/04-tooling/02/08/)——下一个产品切到更偏 tracing/diagnostics 的路线。
+下一篇：[02 Phoenix](/ai/04-tooling/02/08/)——下一个产品切到更偏 tracing/diagnostics 的路线。

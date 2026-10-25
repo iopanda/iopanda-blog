@@ -102,6 +102,6 @@ Dify 最强的地方，不是某一个单点能力，而是：
 - [2] https://dify.ai/ — Dify homepage
 - [3] https://api.github.com/repos/langgenius/dify — Dify GitHub API
 
-上一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/03/05/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/03/05/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：Volvo Cars、ETS与若干官网公开企业客户](/iopanda-blog/ai/04-tooling/03/07/)——最后从真实组织案例看，Dify 为什么会被采用。
+下一篇：[05 真实组织案例：Volvo Cars、ETS与若干官网公开企业客户](/ai/04-tooling/03/07/)——最后从真实组织案例看，Dify 为什么会被采用。

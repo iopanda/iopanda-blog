@@ -100,6 +100,6 @@ Promptfoo 最强的地方，不是“最懂 prompt”，而是：
 - [5] https://www.promptfoo.dev/docs/configuration/guide/ — Promptfoo config guide
 - [6] https://www.promptfoo.dev/docs/integrations/langfuse/ — Promptfoo Langfuse integration
 
-上一篇：[03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/11/)——成熟度清楚后，再把它放回竞品版图里。
+上一篇：[03 质量、价格与采用边界](/ai/04-tooling/04/11/)——成熟度清楚后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例有限：OpenAI、Anthropic与公开采用信号](/iopanda-blog/ai/04-tooling/04/13/)——最后从真实组织采用信号看，哪些团队真正把 Promptfoo 放进工作流。
+下一篇：[05 真实组织案例有限：OpenAI、Anthropic与公开采用信号](/ai/04-tooling/04/13/)——最后从真实组织采用信号看，哪些团队真正把 Promptfoo 放进工作流。

@@ -110,6 +110,6 @@ Langfuse 最强的地方，不是它某一项功能最深，而是：
 - [4] https://langfuse.com/docs/prompt-management/get-started — Langfuse prompt management
 - [5] https://langfuse.com/docs/evaluation/dataset-runs/datasets — Langfuse datasets
 
-上一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/05/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/02/05/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：Canva、Khan Academy、Merck、SumUp、Hugging Face、Cresta](/iopanda-blog/ai/04-tooling/02/07/)——最后从真实组织案例看，Langfuse 为什么会被真正采用。
+下一篇：[05 真实组织案例：Canva、Khan Academy、Merck、SumUp、Hugging Face、Cresta](/ai/04-tooling/02/07/)——最后从真实组织案例看，Langfuse 为什么会被真正采用。

@@ -73,6 +73,6 @@ README 也明确提到：PEFT 可以应用到 RLHF 相关组件，如 ranker 和
 - [18] https://github.com/huggingface/peft/blob/main/docs/source/quicktour.md — PEFT quicktour
 - [23] https://github.com/huggingface/peft/blob/main/docs/source/package_reference/peft_model.md — PEFT model doc
 
-上一篇：[02 LoRA、IA3、AdaLoRA 与统一抽象](/iopanda-blog/ai/03-frameworks/03/18/)
+上一篇：[02 LoRA、IA3、AdaLoRA 与统一抽象](/ai/03-frameworks/03/18/)
 
-下一篇：[04 显存、导出、合并权重与工程边界](/iopanda-blog/ai/03-frameworks/03/20/)
+下一篇：[04 显存、导出、合并权重与工程边界](/ai/03-frameworks/03/20/)

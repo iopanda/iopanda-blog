@@ -32,13 +32,13 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.5 DeepEval/
 
 ## 本目录笔记导航
 
-1. [01 code-first LLM eval 的设计哲学](/iopanda-blog/ai/03-frameworks/05/31/)
-2. [02 metrics、test cases 与 dataset-driven testing](/iopanda-blog/ai/03-frameworks/05/32/)
-3. [03 pytest-like workflow、CI 集成与 regression](/iopanda-blog/ai/03-frameworks/05/33/)
-4. [04 judge 可靠性、成本与工程边界](/iopanda-blog/ai/03-frameworks/05/34/)
-5. [05 课程助教 Agent 的 DeepEval 架构案例](/iopanda-blog/ai/03-frameworks/05/35/)
-6. [06 DeepEval 与 Langfuse、Phoenix、MLflow、promptfoo 的深度对比](/iopanda-blog/ai/03-frameworks/05/36/)
+1. [01 code-first LLM eval 的设计哲学](/ai/03-frameworks/05/31/)
+2. [02 metrics、test cases 与 dataset-driven testing](/ai/03-frameworks/05/32/)
+3. [03 pytest-like workflow、CI 集成与 regression](/ai/03-frameworks/05/33/)
+4. [04 judge 可靠性、成本与工程边界](/ai/03-frameworks/05/34/)
+5. [05 课程助教 Agent 的 DeepEval 架构案例](/ai/03-frameworks/05/35/)
+6. [06 DeepEval 与 Langfuse、Phoenix、MLflow、promptfoo 的深度对比](/ai/03-frameworks/05/36/)
 
-上一篇：[03.05 promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)
+上一篇：[03.05 promptfoo](/ai/03-frameworks/05/23/)
 
-下一篇：[01 code-first LLM eval 的设计哲学](/iopanda-blog/ai/03-frameworks/05/31/)
+下一篇：[01 code-first LLM eval 的设计哲学](/ai/03-frameworks/05/31/)

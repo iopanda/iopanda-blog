@@ -169,6 +169,6 @@ Haystack 在这些点上特别顺：
 - [55] https://github.com/deepset-ai/haystack/blob/main/haystack/core/pipeline/pipeline.py — Haystack pipeline source
 - [61] https://github.com/deepset-ai/haystack/blob/main/SECURITY.md — Haystack security model
 
-上一篇：[02 Document Store、Retriever、Ranker、Generator](/iopanda-blog/ai/03-frameworks/02/11/)——组件栈立住后，本篇继续看混合检索、评测与 production 纪律。
+上一篇：[02 Document Store、Retriever、Ranker、Generator](/ai/03-frameworks/02/11/)——组件栈立住后，本篇继续看混合检索、评测与 production 纪律。
 
-下一篇：[04 Agentic Pipeline、Routing 与 Tool-aware Retrieval](/iopanda-blog/ai/03-frameworks/02/13/)——生产链路立住后，下一篇继续看它如何向更动态、更具决策性的 retrieval/workflow 扩展。
+下一篇：[04 Agentic Pipeline、Routing 与 Tool-aware Retrieval](/ai/03-frameworks/02/13/)——生产链路立住后，下一篇继续看它如何向更动态、更具决策性的 retrieval/workflow 扩展。

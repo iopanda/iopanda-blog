@@ -79,5 +79,5 @@ sourceId: "3.10.2.9 Agent Implementations/05 Pi Coding Agent/README"
 
 ## 衔接
 
-- 蓝图：[Learning Path](/iopanda-blog/ai/02-agents/09/01/)（八维度统一框架）；上一篇：[04 OpenCode](/iopanda-blog/ai/02-agents/09/15/)（同为 TS 全开源，插件生态路线对照）；下一篇：[06 GitHub Copilot](/iopanda-blog/ai/02-agents/09/22/)（闭源企业级对照）。
+- 蓝图：[Learning Path](/ai/02-agents/09/01/)（八维度统一框架）；上一篇：[04 OpenCode](/ai/02-agents/09/15/)（同为 TS 全开源，插件生态路线对照）；下一篇：[06 GitHub Copilot](/ai/02-agents/09/22/)（闭源企业级对照）。
 - 概念后盾：02.01 Foundations（循环）、02.02 Prompt and Context Engineering（system prompt/技能）、02.04 Tool Use and Protocols（权限/工具安全）、02.05 Memory and Retrieval（会话记忆/压缩）；每章产出「源码分析笔记」：贴代码 + 标 02 概念 + 一条「可抄/要避」结论，最终汇总进 00 八维对比表。

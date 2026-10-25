@@ -116,6 +116,6 @@ README 里直接列出两条路线：
 - [1] https://raw.githubusercontent.com/langflow-ai/langflow/dev/README.md — Langflow README
 - [2] https://www.langflow.org/ — Langflow homepage
 
-上一篇：[01 产品定位、可视化框架心智与适用场景](/iopanda-blog/ai/04-tooling/03/15/)——先理解定位，再看能力如何形成开发者闭环。
+上一篇：[01 产品定位、可视化框架心智与适用场景](/ai/04-tooling/03/15/)——先理解定位，再看能力如何形成开发者闭环。
 
-下一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/17/)——能力之后，再回头判断它是否成熟、贵不贵、采用边界在哪。
+下一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/03/17/)——能力之后，再回头判断它是否成熟、贵不贵、采用边界在哪。

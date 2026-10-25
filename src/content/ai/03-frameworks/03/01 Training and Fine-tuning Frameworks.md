@@ -42,11 +42,11 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/README"
 
 | 框架 | 一句话定位 | 设计中心 | 更像什么 | 更适合谁 |
 |---|---|---|---|---|
-| [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) | 统一高效微调工厂 | SFT、DPO、RLHF、VLM、模板、导出一体化 | 训练平台 / 统一工厂 | 想快速覆盖多模型多任务微调的团队 |
-| [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) | 极致显存/速度优化的微调路线 | 快速 LoRA/QLoRA、低显存、易上手 | 加速器 / 微调提速框架 | 资源紧张、希望迅速把微调跑起来的团队 |
-| [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) | 参数高效微调库 | LoRA/IA3/AdaLoRA 等方法抽象 | 训练能力库 | 已有 Hugging Face 训练栈、只想补 PEFT 能力的团队 |
-| [TRL](/iopanda-blog/ai/03-frameworks/03/23/) | 对齐与偏好优化训练框架 | SFT、DPO、PPO、奖励建模、RLHF | 对齐训练框架 | 重点做 alignment / preference optimization 的团队 |
-| [Axolotl](/iopanda-blog/ai/03-frameworks/03/30/) | 配置驱动的 LLM 微调编排框架 | YAML 驱动、多后端、多训练 recipe | 训练编排框架 | 想用配置管理复杂训练 recipe 的团队 |
+| [LLaMA-Factory](/ai/03-frameworks/03/02/) | 统一高效微调工厂 | SFT、DPO、RLHF、VLM、模板、导出一体化 | 训练平台 / 统一工厂 | 想快速覆盖多模型多任务微调的团队 |
+| [Unsloth](/ai/03-frameworks/03/09/) | 极致显存/速度优化的微调路线 | 快速 LoRA/QLoRA、低显存、易上手 | 加速器 / 微调提速框架 | 资源紧张、希望迅速把微调跑起来的团队 |
+| [PEFT](/ai/03-frameworks/03/16/) | 参数高效微调库 | LoRA/IA3/AdaLoRA 等方法抽象 | 训练能力库 | 已有 Hugging Face 训练栈、只想补 PEFT 能力的团队 |
+| [TRL](/ai/03-frameworks/03/23/) | 对齐与偏好优化训练框架 | SFT、DPO、PPO、奖励建模、RLHF | 对齐训练框架 | 重点做 alignment / preference optimization 的团队 |
+| [Axolotl](/ai/03-frameworks/03/30/) | 配置驱动的 LLM 微调编排框架 | YAML 驱动、多后端、多训练 recipe | 训练编排框架 | 想用配置管理复杂训练 recipe 的团队 |
 
 ## 3. 为什么先不把 DeepSpeed / Transformers / Accelerate 放进这组 top 5 主角
 
@@ -58,31 +58,31 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/README"
 
 ## 4. 这一模块建议怎么读
 
-1. 先看 [03 PEFT](/iopanda-blog/ai/03-frameworks/03/16/)：先把参数高效微调抽象钉牢；
-2. 再看 [04 TRL](/iopanda-blog/ai/03-frameworks/03/23/)：理解对齐/偏好优化为什么是另一层训练问题；
-3. 再看 [01 LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)：理解“统一训练工厂”路线；
-4. 再看 [05 Axolotl](/iopanda-blog/ai/03-frameworks/03/30/)：理解“配置即训练 recipe”路线；
-5. 最后看 [02 Unsloth](/iopanda-blog/ai/03-frameworks/03/09/)：理解“提速和省显存”为什么会成为框架主卖点。
+1. 先看 [03 PEFT](/ai/03-frameworks/03/16/)：先把参数高效微调抽象钉牢；
+2. 再看 [04 TRL](/ai/03-frameworks/03/23/)：理解对齐/偏好优化为什么是另一层训练问题；
+3. 再看 [01 LLaMA-Factory](/ai/03-frameworks/03/02/)：理解“统一训练工厂”路线；
+4. 再看 [05 Axolotl](/ai/03-frameworks/03/30/)：理解“配置即训练 recipe”路线；
+5. 最后看 [02 Unsloth](/ai/03-frameworks/03/09/)：理解“提速和省显存”为什么会成为框架主卖点。
 
 ## 4.1 按读者身份的推荐阅读路径
 
 | 你是谁 | 建议先读什么 | 为什么 |
 |---|---|---|
-| 已有 Hugging Face 训练经验的人 | [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) → [TRL](/iopanda-blog/ai/03-frameworks/03/23/) | 先在熟悉训练栈上叠加 PEFT 与 alignment 能力 |
-| 资源受限 / 单卡开发者 | [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) → [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) | 先解决“跑得起来”，再理解抽象 |
-| 想快速跑多模型、多任务微调的人 | [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) | 统一工厂路线最直接 |
-| 喜欢配置驱动和 recipe 管理的人 | [Axolotl](/iopanda-blog/ai/03-frameworks/03/30/) | 训练编排语言清晰 |
-| 重点做偏好优化 / alignment 的人 | [TRL](/iopanda-blog/ai/03-frameworks/03/23/) | 对齐训练是第一主线 |
+| 已有 Hugging Face 训练经验的人 | [PEFT](/ai/03-frameworks/03/16/) → [TRL](/ai/03-frameworks/03/23/) | 先在熟悉训练栈上叠加 PEFT 与 alignment 能力 |
+| 资源受限 / 单卡开发者 | [Unsloth](/ai/03-frameworks/03/09/) → [PEFT](/ai/03-frameworks/03/16/) | 先解决“跑得起来”，再理解抽象 |
+| 想快速跑多模型、多任务微调的人 | [LLaMA-Factory](/ai/03-frameworks/03/02/) | 统一工厂路线最直接 |
+| 喜欢配置驱动和 recipe 管理的人 | [Axolotl](/ai/03-frameworks/03/30/) | 训练编排语言清晰 |
+| 重点做偏好优化 / alignment 的人 | [TRL](/ai/03-frameworks/03/23/) | 对齐训练是第一主线 |
 
 ## 4.2 按系统主矛盾的速查表
 
 | 你的系统最先会死在哪 | 优先想到 |
 |---|---|
-| 训练方法多、模型多、模板多，统一管理困难 | [LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/) |
-| 显存不够、训练太慢、单卡想把 QLoRA 跑起来 | [Unsloth](/iopanda-blog/ai/03-frameworks/03/09/) |
-| 已有训练栈稳定，只缺参数高效微调抽象 | [PEFT](/iopanda-blog/ai/03-frameworks/03/16/) |
-| 重点是 DPO / PPO / reward modeling / RLHF | [TRL](/iopanda-blog/ai/03-frameworks/03/23/) |
-| 训练 recipe 多、配置复杂、希望 YAML 驱动实验 | [Axolotl](/iopanda-blog/ai/03-frameworks/03/30/) |
+| 训练方法多、模型多、模板多，统一管理困难 | [LLaMA-Factory](/ai/03-frameworks/03/02/) |
+| 显存不够、训练太慢、单卡想把 QLoRA 跑起来 | [Unsloth](/ai/03-frameworks/03/09/) |
+| 已有训练栈稳定，只缺参数高效微调抽象 | [PEFT](/ai/03-frameworks/03/16/) |
+| 重点是 DPO / PPO / reward modeling / RLHF | [TRL](/ai/03-frameworks/03/23/) |
+| 训练 recipe 多、配置复杂、希望 YAML 驱动实验 | [Axolotl](/ai/03-frameworks/03/30/) |
 
 ## 4.3 这章最容易读偏的三个误区
 
@@ -94,17 +94,17 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/README"
 
 如果你现在不是在系统建课，而是在真实项目里要尽快做判断，我建议优先读这三篇：
 
-1. [03 PEFT](/iopanda-blog/ai/03-frameworks/03/16/)
+1. [03 PEFT](/ai/03-frameworks/03/16/)
    - 因为它先把“参数高效微调到底在抽象什么”钉牢；
-2. [04 TRL](/iopanda-blog/ai/03-frameworks/03/23/)
+2. [04 TRL](/ai/03-frameworks/03/23/)
    - 因为它告诉你“普通 SFT”与“alignment / preference optimization”不是一回事；
-3. [06 Training Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/03/37/)
+3. [06 Training Framework 选型矩阵](/ai/03-frameworks/03/37/)
    - 因为最后真正落地时，你要做的是架构判断，而不是框架背诵。
 
 如果读完这三篇你仍然觉得：
-- 训练入口太散，再回去看 [01 LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)；
-- 机器根本训不动，再回去看 [02 Unsloth](/iopanda-blog/ai/03-frameworks/03/09/)；
-- recipe 和长期治理最痛，再回去看 [05 Axolotl](/iopanda-blog/ai/03-frameworks/03/30/)。
+- 训练入口太散，再回去看 [01 LLaMA-Factory](/ai/03-frameworks/03/02/)；
+- 机器根本训不动，再回去看 [02 Unsloth](/ai/03-frameworks/03/09/)；
+- recipe 和长期治理最痛，再回去看 [05 Axolotl](/ai/03-frameworks/03/30/)。
 
 ## 5. 我建议本模块的内容结构
 
@@ -116,7 +116,7 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/README"
    - 分布式/显存/导出/评测 等差异化能力
    - 课程助教或领域助手案例
    - 与其他框架的深度对比
-4. 最后收口一篇：[06 Training Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/03/37/)
+4. 最后收口一篇：[06 Training Framework 选型矩阵](/ai/03-frameworks/03/37/)
 
 ## 6. 本模块的推荐交付物
 
@@ -164,12 +164,12 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/README"
 
 ## 7. 本模块笔记导航
 
-1. [01 LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)
-2. [02 Unsloth](/iopanda-blog/ai/03-frameworks/03/09/)
-3. [03 PEFT](/iopanda-blog/ai/03-frameworks/03/16/)
-4. [04 TRL](/iopanda-blog/ai/03-frameworks/03/23/)
-5. [05 Axolotl](/iopanda-blog/ai/03-frameworks/03/30/)
-6. [06 Training Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/03/37/)
+1. [01 LLaMA-Factory](/ai/03-frameworks/03/02/)
+2. [02 Unsloth](/ai/03-frameworks/03/09/)
+3. [03 PEFT](/ai/03-frameworks/03/16/)
+4. [04 TRL](/ai/03-frameworks/03/23/)
+5. [05 Axolotl](/ai/03-frameworks/03/30/)
+6. [06 Training Framework 选型矩阵](/ai/03-frameworks/03/37/)
 
 ## 8. 总结
 
@@ -193,6 +193,6 @@ sourceId: "3.10.3.3 Training and Fine-tuning Frameworks/README"
 - [84] https://github.com/huggingface/accelerate — Accelerate GitHub
 - [85] https://github.com/OpenRLHF/OpenRLHF — OpenRLHF GitHub
 
-上一篇：[03.02 RAG and Retrieval Frameworks](/iopanda-blog/ai/03-frameworks/02/37/)——检索增强层已经讲完；下一模块开始处理“训练系统如何被框架化”这个更靠近模型改造本身的问题。
+上一篇：[03.02 RAG and Retrieval Frameworks](/ai/03-frameworks/02/37/)——检索增强层已经讲完；下一模块开始处理“训练系统如何被框架化”这个更靠近模型改造本身的问题。
 
-下一篇：[01 LLaMA-Factory](/iopanda-blog/ai/03-frameworks/03/02/)——先从统一微调工厂路线开始。
+下一篇：[01 LLaMA-Factory](/ai/03-frameworks/03/02/)——先从统一微调工厂路线开始。

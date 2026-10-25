@@ -246,6 +246,6 @@ Agent 循环(每轮)
 - [arXiv:2501.09136——Agentic RAG: A Survey(流水线 RAG 到 Agentic RAG 的范式演进综述)](https://arxiv.org/abs/2501.09136)
 - [Anthropic:Building effective agents(Agent 是循环、工具按需调用,RAG 类检索工具在其中的定位)](https://www.anthropic.com/engineering/building-effective-agents)
 
-上一篇:[向量检索与语义记忆](/iopanda-blog/ai/02-agents/05/05/)——向量库解决了「按意思找资料」;本章把检索器装进 Agent 循环,解决「何时查、查到何时为止」。
+上一篇:[向量检索与语义记忆](/ai/02-agents/05/05/)——向量库解决了「按意思找资料」;本章把检索器装进 Agent 循环,解决「何时查、查到何时为止」。
 
-下一篇:[记忆的隐私污染与遗忘](/iopanda-blog/ai/02-agents/05/07/)——RAG 让 Agent 更会「用」外部资料,也让记忆里开始沉淀用户数据;最后一章处理记忆的隐私、污染与遗忘。
+下一篇:[记忆的隐私污染与遗忘](/ai/02-agents/05/07/)——RAG 让 Agent 更会「用」外部资料,也让记忆里开始沉淀用户数据;最后一章处理记忆的隐私、污染与遗忘。

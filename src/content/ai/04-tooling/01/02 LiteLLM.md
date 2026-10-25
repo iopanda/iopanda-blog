@@ -17,11 +17,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/01 LiteLLM/README"
 
 **本目录建议阅读顺序**：
 
-1. [01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/01/03/)
-2. [02 Proxy、Virtual Keys、Budget 与 Routing](/iopanda-blog/ai/04-tooling/01/04/)
-3. [03 质量、社区、价格与商业化成熟度](/iopanda-blog/ai/04-tooling/01/05/)
-4. [04 与 Envoy AI Gateway、APISIX、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/06/)
-5. [05 生态集成案例：OpenHands、OpenAI Agents SDK、Google ADK、Aider、CrewAI](/iopanda-blog/ai/04-tooling/01/07/)
+1. [01 产品定位、能力地图与适用场景](/ai/04-tooling/01/03/)
+2. [02 Proxy、Virtual Keys、Budget 与 Routing](/ai/04-tooling/01/04/)
+3. [03 质量、社区、价格与商业化成熟度](/ai/04-tooling/01/05/)
+4. [04 与 Envoy AI Gateway、APISIX、LocalAI 的竞品对比](/ai/04-tooling/01/06/)
+5. [05 生态集成案例：OpenHands、OpenAI Agents SDK、Google ADK、Aider、CrewAI](/ai/04-tooling/01/07/)
 
 ## 这一产品为什么值得单开
 
@@ -48,11 +48,11 @@ sourceId: "3.10.4.1 Model Gateways and Routing/01 LiteLLM/README"
 
 ## 本目录笔记导航
 
-1. [01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/01/03/)
-2. [02 Proxy、Virtual Keys、Budget 与 Routing](/iopanda-blog/ai/04-tooling/01/04/)
-3. [03 质量、社区、价格与商业化成熟度](/iopanda-blog/ai/04-tooling/01/05/)
-4. [04 与 Envoy AI Gateway、APISIX、LocalAI 的竞品对比](/iopanda-blog/ai/04-tooling/01/06/)
-5. [05 生态集成案例：OpenHands、OpenAI Agents SDK、Google ADK、Aider、CrewAI](/iopanda-blog/ai/04-tooling/01/07/)
+1. [01 产品定位、能力地图与适用场景](/ai/04-tooling/01/03/)
+2. [02 Proxy、Virtual Keys、Budget 与 Routing](/ai/04-tooling/01/04/)
+3. [03 质量、社区、价格与商业化成熟度](/ai/04-tooling/01/05/)
+4. [04 与 Envoy AI Gateway、APISIX、LocalAI 的竞品对比](/ai/04-tooling/01/06/)
+5. [05 生态集成案例：OpenHands、OpenAI Agents SDK、Google ADK、Aider、CrewAI](/ai/04-tooling/01/07/)
 
 ## 引用
 
@@ -60,6 +60,6 @@ sourceId: "3.10.4.1 Model Gateways and Routing/01 LiteLLM/README"
 - [2] https://api.github.com/repos/BerriAI/litellm — LiteLLM GitHub API
 - [3] https://www.litellm.ai/enterprise — LiteLLM Enterprise
 
-上一篇：[04.01 Model Gateways and Routing](/iopanda-blog/ai/04-tooling/01/01/)——先有这一组工具的地图，再进入第一个最典型的 AI-native gateway 产品。
+上一篇：[04.01 Model Gateways and Routing](/ai/04-tooling/01/01/)——先有这一组工具的地图，再进入第一个最典型的 AI-native gateway 产品。
 
-下一篇：[01 产品定位、能力地图与适用场景](/iopanda-blog/ai/04-tooling/01/03/)——先从定位、能力地图和适用边界开始。
+下一篇：[01 产品定位、能力地图与适用场景](/ai/04-tooling/01/03/)——先从定位、能力地图和适用边界开始。

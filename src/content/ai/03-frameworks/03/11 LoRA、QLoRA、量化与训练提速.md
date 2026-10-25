@@ -67,6 +67,6 @@ README 里把训练和部署放得很近：
 
 - [18] https://github.com/unslothai/unsloth/blob/main/README.md — Unsloth README
 
-上一篇：[01 速度、显存与“先跑起来”路线的设计哲学](/iopanda-blog/ai/03-frameworks/03/10/)
+上一篇：[01 速度、显存与“先跑起来”路线的设计哲学](/ai/03-frameworks/03/10/)
 
-下一篇：[03 数据模板、导出、推理衔接与工程边界](/iopanda-blog/ai/03-frameworks/03/12/)
+下一篇：[03 数据模板、导出、推理衔接与工程边界](/ai/03-frameworks/03/12/)

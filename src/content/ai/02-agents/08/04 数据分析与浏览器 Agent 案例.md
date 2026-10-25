@@ -247,6 +247,6 @@ sourceId: "3.10.2.8 Applications and Case Studies/03 数据分析与浏览器 Ag
 - [Anthropic:Claude 3.5 引入 Computer Use(截图观察+动作空间的开山案例)](https://www.anthropic.com/news/3-5-models-and-computer-use)
 - [OpenAI:Introducing Operator(浏览器 Agent 产品化,敏感操作交回人确认)](https://openai.com/index/introducing-operator/)
 - [Playwright Docs:Agents(浏览器 Agent 的标准工具面:快照+动作)](https://playwright.dev/docs/agents)
-上一篇:[代码 Agent 深度案例](/iopanda-blog/ai/02-agents/08/03/)——02 章在沙箱里拿编译器和测试当裁判;本章裁判换成了「查询复核」与「页面重观察」,反馈更软,失败模式更隐蔽。
+上一篇:[代码 Agent 深度案例](/ai/02-agents/08/03/)——02 章在沙箱里拿编译器和测试当裁判;本章裁判换成了「查询复核」与「页面重观察」,反馈更软,失败模式更隐蔽。
 
-下一篇:[失败案例复盘](/iopanda-blog/ai/02-agents/08/05/)——SQL 会写错、图表会骗人、网页会漂移,这些软错误放大成公开事故就是越权、烧钱与夺权;下一章用四起真实事故把防线画清楚。
+下一篇:[失败案例复盘](/ai/02-agents/08/05/)——SQL 会写错、图表会骗人、网页会漂移,这些软错误放大成公开事故就是越权、烧钱与夺权;下一章用四起真实事故把防线画清楚。

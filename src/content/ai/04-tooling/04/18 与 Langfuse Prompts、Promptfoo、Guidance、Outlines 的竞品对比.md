@@ -97,6 +97,6 @@ DSPy 最强的地方，不是“管理 prompt”，而是：
 - [5] https://dspy.ai/learn/optimization/overview/ — DSPy optimization docs
 - [6] https://dspy.ai/learn/programming/modules/ — DSPy modules docs
 
-上一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/04/17/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/04/17/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号](/iopanda-blog/ai/04-tooling/04/19/)——最后从公开采用信号看，DSPy 在真实世界里处于什么位置。
+下一篇：[05 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号](/ai/04-tooling/04/19/)——最后从公开采用信号看，DSPy 在真实世界里处于什么位置。

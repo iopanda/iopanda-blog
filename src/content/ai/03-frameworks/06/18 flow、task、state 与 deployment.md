@@ -83,6 +83,6 @@ Prefect 文档把 deployment 定义得很明确：「Deployments are server-side
 - [20] https://docs.prefect.io/v3/concepts/work-pools — Prefect work pools concept doc
 - [21] https://docs.prefect.io/v3/concepts/task-runners — Prefect task runners concept doc
 
-上一篇：[01 Python-native orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/17/)
+上一篇：[01 Python-native orchestration 的设计哲学](/ai/03-frameworks/06/17/)
 
-下一篇：[03 retries、mapping、events 与 resilient pipelines](/iopanda-blog/ai/03-frameworks/06/19/)
+下一篇：[03 retries、mapping、events 与 resilient pipelines](/ai/03-frameworks/06/19/)

@@ -184,6 +184,6 @@ Langfuse pricing 页面公开写出 50,000+ companies using Langfuse，并将 Pr
 - [8] https://langfuse.com/users/merckgroup — Langfuse Merck 客户案例
 - [9] https://langfuse.com/customers/sumup — Langfuse SumUp 客户案例
 
-上一篇：[04 与 Promptfoo、DSPy、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/06/)——看清竞品差异后，再看真实组织为什么会把 prompt 管理做成正式能力。
+上一篇：[04 与 Promptfoo、DSPy、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/06/)——看清竞品差异后，再看真实组织为什么会把 prompt 管理做成正式能力。
 
-下一篇：[02 Promptfoo](/iopanda-blog/ai/04-tooling/04/08/)——下一个产品切到测试与门禁导向的 prompt 管理路线。
+下一篇：[02 Promptfoo](/ai/04-tooling/04/08/)——下一个产品切到测试与门禁导向的 prompt 管理路线。

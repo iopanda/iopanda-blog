@@ -65,6 +65,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.3 MLflow/05
 - [34] https://github.com/mlflow/mlflow/blob/master/examples/llms/README.md — MLflow LLM examples README
 - [35] https://github.com/mlflow/mlflow/blob/master/docker-compose/README.md — MLflow docker compose README
 
-上一篇：[04 线上监控、权限、成本与工程边界](/iopanda-blog/ai/03-frameworks/05/20/)
+上一篇：[04 线上监控、权限、成本与工程边界](/ai/03-frameworks/05/20/)
 
-下一篇：[06 MLflow 与 Langfuse、Phoenix、promptfoo、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/22/)
+下一篇：[06 MLflow 与 Langfuse、Phoenix、promptfoo、DeepEval 的深度对比](/ai/03-frameworks/05/22/)

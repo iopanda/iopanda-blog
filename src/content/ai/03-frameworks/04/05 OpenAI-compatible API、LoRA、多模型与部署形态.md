@@ -97,6 +97,6 @@ OpenAI-compatible server 文档专门提醒：`--api-key` 并不能保护所有 
 - [14] https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/openai_compatible_server.md — vLLM OpenAI-compatible server doc
 - [15] https://github.com/vllm-project/vllm/blob/main/docs/features/structured_outputs.md — vLLM structured outputs doc
 
-上一篇：[02 continuous batching、paged attention 与 KV cache](/iopanda-blog/ai/03-frameworks/04/04/)
+上一篇：[02 continuous batching、paged attention 与 KV cache](/ai/03-frameworks/04/04/)
 
-下一篇：[04 吞吐、延迟、可观测性与工程边界](/iopanda-blog/ai/03-frameworks/04/06/)
+下一篇：[04 吞吐、延迟、可观测性与工程边界](/ai/03-frameworks/04/06/)

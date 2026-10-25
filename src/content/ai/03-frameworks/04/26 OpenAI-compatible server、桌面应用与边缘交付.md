@@ -84,6 +84,6 @@ SECURITY.md 里明确提醒：
 - [10] https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md — llama.cpp server README
 - [14] https://github.com/ggml-org/llama.cpp/blob/master/SECURITY.md — llama.cpp security policy
 
-上一篇：[02 GGUF、量化、CPU/GPU 后端与 portability](/iopanda-blog/ai/03-frameworks/04/25/)
+上一篇：[02 GGUF、量化、CPU/GPU 后端与 portability](/ai/03-frameworks/04/25/)
 
-下一篇：[04 性能、模型规模与适用边界](/iopanda-blog/ai/03-frameworks/04/27/)
+下一篇：[04 性能、模型规模与适用边界](/ai/03-frameworks/04/27/)

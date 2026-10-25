@@ -40,11 +40,11 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/README"
 
 | 框架 | 一句话定位 | 设计中心 | 更像什么 | 更适合谁 |
 |---|---|---|---|---|
-| [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) | 面向 LLM / Agent / RAG 的开源 AI engineering platform | traces + evals + prompt + datasets + feedback | AI 工程观测平台 | 想把 tracing、eval 和产品反馈放进同一平台的团队 |
-| [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) | 开源 AI observability & evaluation | OTEL-first traces + dataset eval + diagnosis | observability/eval 工作台 | 需要开放 tracing、诊断和 eval 组合的团队 |
-| [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 通用 AI engineering platform | experiments + traces + evals + governance | 通用 AI 实验与追踪平台 | 已有 MLOps/MLflow 体系，想把 GenAI 纳入同一治理面的团队 |
-| [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | prompt / agent / RAG 的 CI-style 测试与红队框架 | declarative eval config + regression + security testing | AI 测试框架 | 想把 eval 纳入 CI/CD、回归和安全扫描的人 |
-| [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | code-first LLM evaluation framework | pytest-like eval + metrics + test authoring | 代码化 eval 库 | 想在 Python/代码环境里直接写 LLM 测试和指标的人 |
+| [Langfuse](/ai/03-frameworks/05/02/) | 面向 LLM / Agent / RAG 的开源 AI engineering platform | traces + evals + prompt + datasets + feedback | AI 工程观测平台 | 想把 tracing、eval 和产品反馈放进同一平台的团队 |
+| [Phoenix](/ai/03-frameworks/05/09/) | 开源 AI observability & evaluation | OTEL-first traces + dataset eval + diagnosis | observability/eval 工作台 | 需要开放 tracing、诊断和 eval 组合的团队 |
+| [MLflow](/ai/03-frameworks/05/16/) | 通用 AI engineering platform | experiments + traces + evals + governance | 通用 AI 实验与追踪平台 | 已有 MLOps/MLflow 体系，想把 GenAI 纳入同一治理面的团队 |
+| [promptfoo](/ai/03-frameworks/05/23/) | prompt / agent / RAG 的 CI-style 测试与红队框架 | declarative eval config + regression + security testing | AI 测试框架 | 想把 eval 纳入 CI/CD、回归和安全扫描的人 |
+| [DeepEval](/ai/03-frameworks/05/30/) | code-first LLM evaluation framework | pytest-like eval + metrics + test authoring | 代码化 eval 库 | 想在 Python/代码环境里直接写 LLM 测试和指标的人 |
 
 ## 3. 为什么先不把 Helicone / LangWatch 放进这一组主角
 
@@ -54,31 +54,31 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/README"
 
 ## 4. 这一模块建议怎么读
 
-1. 先看 [03.05 Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)：先把 AI engineering observability 平台的核心心智钉牢；
-2. 再看 [03.05 Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)：理解 open-source tracing/eval workbench 路线；
-3. 再看 [03.05 promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)：理解 regression / red-team / CI eval 为什么是独立路线；
-4. 再看 [03.05 DeepEval](/iopanda-blog/ai/03-frameworks/05/30/)：理解 code-first eval authoring 路线；
-5. 最后看 [03.05 MLflow](/iopanda-blog/ai/03-frameworks/05/16/)：理解 eval/trace 如何进入更广义 AI engineering platform。
+1. 先看 [03.05 Langfuse](/ai/03-frameworks/05/02/)：先把 AI engineering observability 平台的核心心智钉牢；
+2. 再看 [03.05 Phoenix](/ai/03-frameworks/05/09/)：理解 open-source tracing/eval workbench 路线；
+3. 再看 [03.05 promptfoo](/ai/03-frameworks/05/23/)：理解 regression / red-team / CI eval 为什么是独立路线；
+4. 再看 [03.05 DeepEval](/ai/03-frameworks/05/30/)：理解 code-first eval authoring 路线；
+5. 最后看 [03.05 MLflow](/ai/03-frameworks/05/16/)：理解 eval/trace 如何进入更广义 AI engineering platform。
 
 ## 4.1 按读者身份的推荐阅读路径
 
 | 你是谁 | 建议先读什么 | 为什么 |
 |---|---|---|
-| 做线上 LLM / Agent 产品的人 | [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) → [Evaluation Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/05/37/) | 先把产品化质量闭环的主语钉牢，再做判断 |
-| 做 traces / diagnosis / root cause analysis 的人 | [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) → [Evaluation Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/05/37/) | 先理解开放 diagnosis workbench，再判断是否需要更强平台闭环 |
-| 已有 MLOps / MLflow 体系的人 | [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) | 先看统一 AI governance 是否就是你的主问题 |
-| 想把 eval 接进 PR / CI / release gate 的人 | [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) | 先把 testing / regression / red-team 路线看清楚 |
-| 喜欢在 pytest/vitest 里直接写评估的开发者 | [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) | 先把 code-first eval 语言看清楚 |
+| 做线上 LLM / Agent 产品的人 | [Langfuse](/ai/03-frameworks/05/02/) → [Evaluation Framework 选型矩阵](/ai/03-frameworks/05/37/) | 先把产品化质量闭环的主语钉牢，再做判断 |
+| 做 traces / diagnosis / root cause analysis 的人 | [Phoenix](/ai/03-frameworks/05/09/) → [Evaluation Framework 选型矩阵](/ai/03-frameworks/05/37/) | 先理解开放 diagnosis workbench，再判断是否需要更强平台闭环 |
+| 已有 MLOps / MLflow 体系的人 | [MLflow](/ai/03-frameworks/05/16/) | 先看统一 AI governance 是否就是你的主问题 |
+| 想把 eval 接进 PR / CI / release gate 的人 | [promptfoo](/ai/03-frameworks/05/23/) | 先把 testing / regression / red-team 路线看清楚 |
+| 喜欢在 pytest/vitest 里直接写评估的开发者 | [DeepEval](/ai/03-frameworks/05/30/) | 先把 code-first eval 语言看清楚 |
 
 ## 4.2 按系统主矛盾的速查表
 
 | 你的系统最先会死在哪 | 优先想到 |
 |---|---|
-| traces、prompts、datasets、feedback、evals 分裂 | [Langfuse](/iopanda-blog/ai/03-frameworks/05/02/) |
-| span 级别根因分析、开放 traces、实验分析能力不足 | [Phoenix](/iopanda-blog/ai/03-frameworks/05/09/) |
-| 传统 ML 与 GenAI 平台治理分裂 | [MLflow](/iopanda-blog/ai/03-frameworks/05/16/) |
-| 每次改动缺 regression、red-team、CI gate | [promptfoo](/iopanda-blog/ai/03-frameworks/05/23/) |
-| 开发者缺 code-first 的 metrics/test cases/dataset 测试语言 | [DeepEval](/iopanda-blog/ai/03-frameworks/05/30/) |
+| traces、prompts、datasets、feedback、evals 分裂 | [Langfuse](/ai/03-frameworks/05/02/) |
+| span 级别根因分析、开放 traces、实验分析能力不足 | [Phoenix](/ai/03-frameworks/05/09/) |
+| 传统 ML 与 GenAI 平台治理分裂 | [MLflow](/ai/03-frameworks/05/16/) |
+| 每次改动缺 regression、red-team、CI gate | [promptfoo](/ai/03-frameworks/05/23/) |
+| 开发者缺 code-first 的 metrics/test cases/dataset 测试语言 | [DeepEval](/ai/03-frameworks/05/30/) |
 
 ## 4.3 这章最容易读偏的三个误区
 
@@ -90,17 +90,17 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/README"
 
 如果你现在不是在系统建课，而是在真实项目里要尽快做判断，我建议优先读这三篇：
 
-1. [03.05 Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)
+1. [03.05 Langfuse](/ai/03-frameworks/05/02/)
    - 因为它先把产品化质量闭环的主语钉牢；
-2. [03.05 promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)
+2. [03.05 promptfoo](/ai/03-frameworks/05/23/)
    - 因为它告诉你“评估平台”和“测试门禁”不是一回事；
-3. [03.05 Evaluation Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/05/37/)
+3. [03.05 Evaluation Framework 选型矩阵](/ai/03-frameworks/05/37/)
    - 因为最后真正落地时，你要做的是架构判断，而不是框架背诵。
 
 如果读完这三篇你仍然觉得：
-- traces 和根因分析最痛，再回去看 [03.05 Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)；
-- 组织级 AI 平台治理最痛，再回去看 [03.05 MLflow](/iopanda-blog/ai/03-frameworks/05/16/)；
-- 开发者最需要在代码里直接写测试，再回去看 [03.05 DeepEval](/iopanda-blog/ai/03-frameworks/05/30/)。
+- traces 和根因分析最痛，再回去看 [03.05 Phoenix](/ai/03-frameworks/05/09/)；
+- 组织级 AI 平台治理最痛，再回去看 [03.05 MLflow](/ai/03-frameworks/05/16/)；
+- 开发者最需要在代码里直接写测试，再回去看 [03.05 DeepEval](/ai/03-frameworks/05/30/)。
 
 ## 5. 本模块的推荐交付物
 
@@ -136,12 +136,12 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/README"
 
 ## 6. 本模块笔记导航
 
-1. [03.05 Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)
-2. [03.05 Phoenix](/iopanda-blog/ai/03-frameworks/05/09/)
-3. [03.05 MLflow](/iopanda-blog/ai/03-frameworks/05/16/)
-4. [03.05 promptfoo](/iopanda-blog/ai/03-frameworks/05/23/)
-5. [03.05 DeepEval](/iopanda-blog/ai/03-frameworks/05/30/)
-6. [03.05 Evaluation Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/05/37/)
+1. [03.05 Langfuse](/ai/03-frameworks/05/02/)
+2. [03.05 Phoenix](/ai/03-frameworks/05/09/)
+3. [03.05 MLflow](/ai/03-frameworks/05/16/)
+4. [03.05 promptfoo](/ai/03-frameworks/05/23/)
+5. [03.05 DeepEval](/ai/03-frameworks/05/30/)
+6. [03.05 Evaluation Framework 选型矩阵](/ai/03-frameworks/05/37/)
 
 ## 7. 总结
 
@@ -162,6 +162,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/README"
 - [23] https://github.com/helicone/helicone — Helicone GitHub
 - [24] https://github.com/langwatch/langwatch — LangWatch GitHub
 
-上一篇：[03.04 Inference and Serving Frameworks](/iopanda-blog/ai/03-frameworks/04/01/)——推理系统已经讲完；下一模块开始处理“这些系统如何被验证、被追踪、被证明可用”。
+上一篇：[03.04 Inference and Serving Frameworks](/ai/03-frameworks/04/01/)——推理系统已经讲完；下一模块开始处理“这些系统如何被验证、被追踪、被证明可用”。
 
-下一篇：[03.05 Langfuse](/iopanda-blog/ai/03-frameworks/05/02/)——先从最典型的 AI engineering observability 平台路线开始。
+下一篇：[03.05 Langfuse](/ai/03-frameworks/05/02/)——先从最典型的 AI engineering observability 平台路线开始。

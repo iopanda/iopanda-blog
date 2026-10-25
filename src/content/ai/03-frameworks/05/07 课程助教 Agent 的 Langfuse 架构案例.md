@@ -69,6 +69,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.1 Langfuse/
 - [28] https://github.com/langfuse/langfuse/blob/main/web/src/features/datasets/server/actions/README.md — Langfuse datasets README
 - [29] https://github.com/langfuse/langfuse/blob/main/web/src/features/trace-graph-view/README.md — Langfuse trace graph README
 
-上一篇：[04 线上监控、回归与工程边界](/iopanda-blog/ai/03-frameworks/05/06/)
+上一篇：[04 线上监控、回归与工程边界](/ai/03-frameworks/05/06/)
 
-下一篇：[06 Langfuse 与 Phoenix、MLflow、promptfoo、DeepEval 的深度对比](/iopanda-blog/ai/03-frameworks/05/08/)
+下一篇：[06 Langfuse 与 Phoenix、MLflow、promptfoo、DeepEval 的深度对比](/ai/03-frameworks/05/08/)

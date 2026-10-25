@@ -73,6 +73,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/04 LightRAG/06 LightRAG 与 Lla
 - [43] https://github.com/infiniflow/ragflow — RAGFlow GitHub
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 
-上一篇：[05 课程助教 Agent 的 LightRAG 架构案例](/iopanda-blog/ai/03-frameworks/02/28/)
+上一篇：[05 课程助教 Agent 的 LightRAG 架构案例](/ai/03-frameworks/02/28/)
 
-下一篇：回到 [06 RAG Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/02/37/)
+下一篇：回到 [06 RAG Framework 选型矩阵](/ai/03-frameworks/02/37/)

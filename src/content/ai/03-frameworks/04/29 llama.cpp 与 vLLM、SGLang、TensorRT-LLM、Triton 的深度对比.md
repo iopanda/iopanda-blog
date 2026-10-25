@@ -73,6 +73,6 @@ sourceId: "3.10.3.4 Inference and Serving Frameworks/3.10.3.4.4 llama.cpp/06 lla
 - [8] https://github.com/NVIDIA/TensorRT-LLM — TensorRT-LLM GitHub
 - [10] https://github.com/triton-inference-server/server — Triton Inference Server GitHub
 
-上一篇：[05 离线课程助教的 llama.cpp 架构案例](/iopanda-blog/ai/03-frameworks/04/28/)
+上一篇：[05 离线课程助教的 llama.cpp 架构案例](/ai/03-frameworks/04/28/)
 
-下一篇：回到 [03.04 Inference Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/04/37/)
+下一篇：回到 [03.04 Inference Framework 选型矩阵](/ai/03-frameworks/04/37/)

@@ -149,6 +149,6 @@ LiteLLM 最强的地方，不是“它能做路由”，而是它把 AI 模型�
 - [3] https://github.com/apache/apisix — Apache APISIX GitHub
 - [4] https://github.com/mudler/LocalAI — LocalAI GitHub
 
-上一篇：[03 质量、社区、价格与商业化成熟度](/iopanda-blog/ai/04-tooling/01/05/)——成熟度判断之后，再把 LiteLLM 放回竞品版图里。
+上一篇：[03 质量、社区、价格与商业化成熟度](/ai/04-tooling/01/05/)——成熟度判断之后，再把 LiteLLM 放回竞品版图里。
 
-下一篇：[05 生态集成案例：OpenHands、OpenAI Agents SDK、Google ADK、Aider、CrewAI](/iopanda-blog/ai/04-tooling/01/07/)——最后从生态集成案例看，用户为什么会选择它。
+下一篇：[05 生态集成案例：OpenHands、OpenAI Agents SDK、Google ADK、Aider、CrewAI](/ai/04-tooling/01/07/)——最后从生态集成案例看，用户为什么会选择它。

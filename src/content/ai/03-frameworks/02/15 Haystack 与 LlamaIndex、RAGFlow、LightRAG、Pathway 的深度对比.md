@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/02 Haystack/06 Haystack 与 Lla
 ---
 # Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比
 
-> 到这里，Haystack 本身已经拆得不浅了：[pipeline 语言](/iopanda-blog/ai/03-frameworks/02/10/)、[组件家族](/iopanda-blog/ai/03-frameworks/02/11/)、[production RAG 纪律](/iopanda-blog/ai/03-frameworks/02/12/)、[动态 route](/iopanda-blog/ai/03-frameworks/02/13/)、[课程助教案例](/iopanda-blog/ai/03-frameworks/02/14/)。这一篇要做的，是把 Haystack 放回整个 retrieval framework 版图中：**它到底最适合解决什么复杂度，为什么它不像 LlamaIndex，也不像 RAGFlow、LightRAG 或 Pathway？**
+> 到这里，Haystack 本身已经拆得不浅了：[pipeline 语言](/ai/03-frameworks/02/10/)、[组件家族](/ai/03-frameworks/02/11/)、[production RAG 纪律](/ai/03-frameworks/02/12/)、[动态 route](/ai/03-frameworks/02/13/)、[课程助教案例](/ai/03-frameworks/02/14/)。这一篇要做的，是把 Haystack 放回整个 retrieval framework 版图中：**它到底最适合解决什么复杂度，为什么它不像 LlamaIndex，也不像 RAGFlow、LightRAG 或 Pathway？**
 
 **学习目标**：学完本章，你将能够——
 
@@ -207,6 +207,6 @@ README 里“Built for context engineering”这句话特别关键。[54]
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 - [41] https://github.com/run-llama/llama_index — LlamaIndex GitHub
 
-上一篇：[05 课程助教 Agent 的 Haystack 架构案例](/iopanda-blog/ai/03-frameworks/02/14/)——案例说明了它如何落回真实知识工作流；本篇则把它放回整个 retrieval framework 版图中判断。
+上一篇：[05 课程助教 Agent 的 Haystack 架构案例](/ai/03-frameworks/02/14/)——案例说明了它如何落回真实知识工作流；本篇则把它放回整个 retrieval framework 版图中判断。
 
-下一篇：回到 [06 RAG Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/02/37/)，把 Haystack 放回 top5 全局版图中复核。
+下一篇：回到 [06 RAG Framework 选型矩阵](/ai/03-frameworks/02/37/)，把 Haystack 放回 top5 全局版图中复核。

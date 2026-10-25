@@ -90,6 +90,6 @@ Langflow 最强的地方，不是它最完整，而是：
 - [2] https://www.langflow.org/ — Langflow homepage
 - [3] https://api.github.com/repos/langflow-ai/langflow — Langflow GitHub API
 
-上一篇：[03 质量、社区、价格与采用边界](/iopanda-blog/ai/04-tooling/03/17/)——成熟度判断之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与采用边界](/ai/04-tooling/03/17/)——成熟度判断之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：DataStax与若干官网公开采用信号](/iopanda-blog/ai/04-tooling/03/19/)——最后从真实组织案例与公开采用信号看，Langflow 为什么会被采用。
+下一篇：[05 真实组织案例：DataStax与若干官网公开采用信号](/ai/04-tooling/03/19/)——最后从真实组织案例与公开采用信号看，Langflow 为什么会被采用。

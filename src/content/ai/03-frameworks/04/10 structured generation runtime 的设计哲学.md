@@ -75,10 +75,10 @@ SGLang 真正独特的地方是：
 
 | 框架 | 第一性问题 | SGLang 相比的定位 |
 |---|---|---|
-| [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) | 如何把 LLM online serving 做到高吞吐 | SGLang 更先解决受控生成与程序化推理 |
-| [TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/) | 如何在 NVIDIA 上极限优化执行 | SGLang 更像上层 runtime，而不是只做硬件后端 |
-| [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | 如何在本地和边缘设备跑模型 | SGLang 更偏在线服务与 agent/workflow 场景 |
-| [Triton](/iopanda-blog/ai/03-frameworks/04/30/) | 如何统一多模型平台治理 | SGLang 更偏 LLM generation runtime |
+| [vLLM](/ai/03-frameworks/04/02/) | 如何把 LLM online serving 做到高吞吐 | SGLang 更先解决受控生成与程序化推理 |
+| [TensorRT-LLM](/ai/03-frameworks/04/16/) | 如何在 NVIDIA 上极限优化执行 | SGLang 更像上层 runtime，而不是只做硬件后端 |
+| [llama.cpp](/ai/03-frameworks/04/23/) | 如何在本地和边缘设备跑模型 | SGLang 更偏在线服务与 agent/workflow 场景 |
+| [Triton](/ai/03-frameworks/04/30/) | 如何统一多模型平台治理 | SGLang 更偏 LLM generation runtime |
 
 ## 5. 什么时候最自然进入 SGLang
 
@@ -109,6 +109,6 @@ SGLang 真正独特的地方是：
 - [11] https://github.com/sgl-project/sglang/blob/main/sgl-model-gateway/README.md — SGLang model gateway README
 - [12] https://github.com/sgl-project/sglang/blob/main/sgl-model-gateway/bindings/golang/examples/oai_server/README.md — SGLang Go OpenAI router README
 
-上一篇：[03.04 SGLang](/iopanda-blog/ai/03-frameworks/04/09/)
+上一篇：[03.04 SGLang](/ai/03-frameworks/04/09/)
 
-下一篇：[02 serving、program execution 与结构化输出](/iopanda-blog/ai/03-frameworks/04/11/)
+下一篇：[02 serving、program execution 与结构化输出](/ai/03-frameworks/04/11/)

@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/02 Flows、持久化与业务自�
 ---
 # Flows、持久化与业务自动化
 
-> [上一章](/iopanda-blog/ai/03-frameworks/01/19/)讲的是 CrewAI 的角色团队视角；但如果只停在 Crew，系统很快会遇到一个更传统的软件工程问题：**谁来管理触发条件、顺序、分支、持久化、重试、人工反馈和恢复？** CrewAI 的回答是再造一层 Flow。官方 README 明说：Crews 用于 autonomy and collaborative intelligence，Flows 用于 precise, event-driven control；源码 `crewai/flow/flow.py` 也直接暴露出 `start`、`listen`、`router`、`FlowMeta`、`FlowState` 等 DSL 和 runtime 入口。[1][2][3] 再往 deeper 看，`flow/human_feedback.py`、`flow/persistence/`、`flow/runtime/` 等目录都表明：CrewAI 并不打算把业务自动化全交给 Agent 自由发挥，而是想把它们拉回显式工作流世界。[4]
+> [上一章](/ai/03-frameworks/01/19/)讲的是 CrewAI 的角色团队视角；但如果只停在 Crew，系统很快会遇到一个更传统的软件工程问题：**谁来管理触发条件、顺序、分支、持久化、重试、人工反馈和恢复？** CrewAI 的回答是再造一层 Flow。官方 README 明说：Crews 用于 autonomy and collaborative intelligence，Flows 用于 precise, event-driven control；源码 `crewai/flow/flow.py` 也直接暴露出 `start`、`listen`、`router`、`FlowMeta`、`FlowState` 等 DSL 和 runtime 入口。[1][2][3] 再往 deeper 看，`flow/human_feedback.py`、`flow/persistence/`、`flow/runtime/` 等目录都表明：CrewAI 并不打算把业务自动化全交给 Agent 自由发挥，而是想把它们拉回显式工作流世界。[4]
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释 CrewAI 为什么必须同时拥有 Crew 和 Flow；
 2. 说出 Flow 的 DSL、runtime、persistence、human feedback 在工程上的职责；
 3. 理解为什么业务自动化系统的主矛盾常常不在“智能”，而在“控制”；
-4. 比较 CrewAI Flow 与 [LangGraph](/iopanda-blog/ai/03-frameworks/01/03/) 的状态编排差异；
+4. 比较 CrewAI Flow 与 [LangGraph](/ai/03-frameworks/01/03/) 的状态编排差异；
 5. 为一个审批型 Agent 系统画出 Flow 级架构图。
 
 ## 1. 概念：Flow 是 CrewAI 对“系统复杂度”的回答
@@ -100,7 +100,7 @@ Flow 解决的是：
 - 人类反馈成为流程语义的一部分；
 - 反馈请求与反馈结果都能进事件与审计体系。
 
-这与 [护栏与人工复核](/iopanda-blog/ai/01-models/07/04/) 的纪律高度一致：高风险动作需要人，且人应在系统里有正式位置。
+这与 [护栏与人工复核](/ai/01-models/07/04/) 的纪律高度一致：高风险动作需要人，且人应在系统里有正式位置。
 
 ## 6. persistence / resumability：业务自动化为什么离不开它
 
@@ -193,6 +193,6 @@ Flow 就是把这些问题从“团队默契”变成“系统结构”的地方
 - [3] https://docs.crewai.com — CrewAI docs
 - [4] https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx — CrewAI agents concepts
 
-上一篇：[01 Crews、Tasks 与角色协作](/iopanda-blog/ai/03-frameworks/01/19/)——角色团队解释了“谁干活”；本篇补上“系统怎么管活”。
+上一篇：[01 Crews、Tasks 与角色协作](/ai/03-frameworks/01/19/)——角色团队解释了“谁干活”；本篇补上“系统怎么管活”。
 
-下一篇：[03 AgentExecutor、Reasoning、Knowledge 与 Guardrails](/iopanda-blog/ai/03-frameworks/01/21/)——角色和流程之外，下一篇继续下钻单个业务角色本身为什么会变成一个厚执行单元。
+下一篇：[03 AgentExecutor、Reasoning、Knowledge 与 Guardrails](/ai/03-frameworks/01/21/)——角色和流程之外，下一篇继续下钻单个业务角色本身为什么会变成一个厚执行单元。

@@ -37,7 +37,7 @@ sourceId: "3.10.4.5 Vector Databases and Retrieval/05 Chroma/README"
 
 ## 引用
 
-- 回到本组总览：[04.05 Vector Databases and Retrieval](/iopanda-blog/ai/04-tooling/05/01/)
+- 回到本组总览：[04.05 Vector Databases and Retrieval](/ai/04-tooling/05/01/)
 
-上一篇：[OpenSearch](/iopanda-blog/ai/04-tooling/05/05/)
+上一篇：[OpenSearch](/ai/04-tooling/05/05/)
 下一篇：本产品是本组最后一项；后续可回到本组总览，对比同类工具。

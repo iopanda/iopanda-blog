@@ -64,10 +64,10 @@ README 和 AGENTS.md 都说明，它不只是 kernel 集合，还包括：[13][1
 
 | 框架 | 第一性问题 | TensorRT-LLM 相比的定位 |
 |---|---|---|
-| [vLLM](/iopanda-blog/ai/03-frameworks/04/02/) | 在线 LLM serving 如何高吞吐 | TensorRT-LLM 更先解决 NVIDIA 执行路径 |
-| [SGLang](/iopanda-blog/ai/03-frameworks/04/09/) | 受控生成与 agentic serving 如何高性能执行 | TensorRT-LLM 更偏硬件优化后端 |
-| [llama.cpp](/iopanda-blog/ai/03-frameworks/04/23/) | 本地/边缘设备如何便携推理 | TensorRT-LLM 更偏数据中心 NVIDIA 路线 |
-| [Triton](/iopanda-blog/ai/03-frameworks/04/30/) | 多模型平台如何统一 serving | TensorRT-LLM 更偏优化执行后端，可被 Triton 承接 |
+| [vLLM](/ai/03-frameworks/04/02/) | 在线 LLM serving 如何高吞吐 | TensorRT-LLM 更先解决 NVIDIA 执行路径 |
+| [SGLang](/ai/03-frameworks/04/09/) | 受控生成与 agentic serving 如何高性能执行 | TensorRT-LLM 更偏硬件优化后端 |
+| [llama.cpp](/ai/03-frameworks/04/23/) | 本地/边缘设备如何便携推理 | TensorRT-LLM 更偏数据中心 NVIDIA 路线 |
+| [Triton](/ai/03-frameworks/04/30/) | 多模型平台如何统一 serving | TensorRT-LLM 更偏优化执行后端，可被 Triton 承接 |
 
 ## 5. 什么时候最自然进入 TensorRT-LLM
 
@@ -97,6 +97,6 @@ README 和 AGENTS.md 都说明，它不只是 kernel 集合，还包括：[13][1
 - [13] https://github.com/NVIDIA/TensorRT-LLM/blob/main/README.md — TensorRT-LLM README
 - [14] https://github.com/NVIDIA/TensorRT-LLM/blob/main/AGENTS.md — TensorRT-LLM AGENTS overview
 
-上一篇：[03.04 TensorRT-LLM](/iopanda-blog/ai/03-frameworks/04/16/)
+上一篇：[03.04 TensorRT-LLM](/ai/03-frameworks/04/16/)
 
-下一篇：[02 kernels、graph compilation、quantization 与 execution](/iopanda-blog/ai/03-frameworks/04/18/)
+下一篇：[02 kernels、graph compilation、quantization 与 execution](/ai/03-frameworks/04/18/)

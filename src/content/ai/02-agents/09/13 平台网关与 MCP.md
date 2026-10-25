@@ -226,6 +226,6 @@ platform="cron",
 - [Hermes Agent 官方文档(developer-guide/architecture)](https://hermes-agent.nousresearch.com/docs)
 - [Model Context Protocol 规范(工具发现、调用与懒连接语义)](https://modelcontextprotocol.io/)
 
-上一篇:[记忆系统](/iopanda-blog/ai/02-agents/09/12/)——记忆与技能都挂在 AIAgent 实例上;本章回答:同一颗核心如何被多平台/多入口复用,而每个会话的记忆仍按 session_key 各归各家;cron 又怎样让核心无人值守地自己醒来。
+上一篇:[记忆系统](/ai/02-agents/09/12/)——记忆与技能都挂在 AIAgent 实例上;本章回答:同一颗核心如何被多平台/多入口复用,而每个会话的记忆仍按 session_key 各归各家;cron 又怎样让核心无人值守地自己醒来。
 
-下一篇:[自我进化设计](/iopanda-blog/ai/02-agents/09/14/)——cron 的 skip_memory=False 与回合尾的后台评审派发,把「用中学」从交互会话推广到无人值守会话;05 章把 02~04 章的全部触发点拼成自我进化闭环。
+下一篇:[自我进化设计](/ai/02-agents/09/14/)——cron 的 skip_memory=False 与回合尾的后台评审派发,把「用中学」从交互会话推广到无人值守会话;05 章把 02~04 章的全部触发点拼成自我进化闭环。

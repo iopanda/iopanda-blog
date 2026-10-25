@@ -28,10 +28,10 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/0
 
 | 子问题 | 核心特征 | 框架 |
 |---|---|---|
-| 课程正文资料问答 | 讲义、PDF、课件为主，结构相对静态，元数据丰富（章节、课程、知识点） | [LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/) |
-| 想要完整的知识运营平台 | 需要多教师协作、citation 可追溯、testing、权限隔离，且希望少自己拼零件 | [RAGFlow](/iopanda-blog/ai/03-frameworks/02/16/) |
-| 跨章节概念关系问答 | “这个知识点和哪些前置概念相关”“这条规则依赖哪些前提”这类关系型问题 | [LightRAG](/iopanda-blog/ai/03-frameworks/02/23/) |
-| 课程公告/FAQ/规则问答 | 公告、答疑规则、外部资料高频更新，静态索引很快过期 | [Pathway](/iopanda-blog/ai/03-frameworks/02/30/) |
+| 课程正文资料问答 | 讲义、PDF、课件为主，结构相对静态，元数据丰富（章节、课程、知识点） | [LlamaIndex](/ai/03-frameworks/02/02/) |
+| 想要完整的知识运营平台 | 需要多教师协作、citation 可追溯、testing、权限隔离，且希望少自己拼零件 | [RAGFlow](/ai/03-frameworks/02/16/) |
+| 跨章节概念关系问答 | “这个知识点和哪些前置概念相关”“这条规则依赖哪些前提”这类关系型问题 | [LightRAG](/ai/03-frameworks/02/23/) |
+| 课程公告/FAQ/规则问答 | 公告、答疑规则、外部资料高频更新，静态索引很快过期 | [Pathway](/ai/03-frameworks/02/30/) |
 
 ## 2. 每个子问题的判断依据（为什么选它，为什么不选别的）
 
@@ -45,7 +45,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/0
 
 ## 3. 生产化检索链路能力：贯穿性的评测/编排层
 
-如果课程助教团队需要对以上任意子系统做**显式的检索质量评测**（比如 A/B 测试不同 rerank 策略、比较 hybrid retrieval 和纯向量检索的效果），[Haystack](/iopanda-blog/ai/03-frameworks/02/09/) 的角色不是替代上面四个框架，而是作为**编排/评测层**叠加在某个子系统之上——比如在“课程正文资料问答”这条链路里，用 Haystack 的 pipeline 把 LlamaIndex 产出的检索结果接入一套可评测、可切换组件的生产链路。这说明五个框架不总是互斥选择，Haystack 尤其经常以“链路治理层”的角色和其他框架组合。
+如果课程助教团队需要对以上任意子系统做**显式的检索质量评测**（比如 A/B 测试不同 rerank 策略、比较 hybrid retrieval 和纯向量检索的效果），[Haystack](/ai/03-frameworks/02/09/) 的角色不是替代上面四个框架，而是作为**编排/评测层**叠加在某个子系统之上——比如在“课程正文资料问答”这条链路里，用 Haystack 的 pipeline 把 LlamaIndex 产出的检索结果接入一套可评测、可切换组件的生产链路。这说明五个框架不总是互斥选择，Haystack 尤其经常以“链路治理层”的角色和其他框架组合。
 
 ## 4. 子系统之间怎么交接
 
@@ -94,6 +94,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/06 RAG Framework 选型矩阵/0
 - [44] https://github.com/HKUDS/LightRAG — LightRAG GitHub
 - [45] https://github.com/pathwaycom/pathway — Pathway GitHub
 
-上一篇：[03 典型业务场景对比](/iopanda-blog/ai/03-frameworks/02/40/)
+上一篇：[03 典型业务场景对比](/ai/03-frameworks/02/40/)
 
 下一篇：暂无——`03.02 RAG and Retrieval Frameworks` 模块至此完整收官（LlamaIndex/Haystack/RAGFlow/LightRAG/Pathway 五个框架 + 本选型矩阵均已完成）。

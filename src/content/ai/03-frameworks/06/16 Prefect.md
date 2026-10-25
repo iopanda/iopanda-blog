@@ -32,13 +32,13 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.3 Prefect/README"
 
 ## 本目录笔记导航
 
-1. [01 Python-native orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/17/)
-2. [02 flow、task、state 与 deployment](/iopanda-blog/ai/03-frameworks/06/18/)
-3. [03 retries、mapping、events 与 resilient pipelines](/iopanda-blog/ai/03-frameworks/06/19/)
-4. [04 观测、部署与工程边界](/iopanda-blog/ai/03-frameworks/06/20/)
-5. [05 课程助教 Agent 的 Prefect 架构案例](/iopanda-blog/ai/03-frameworks/06/21/)
-6. [06 Prefect 与 Temporal、Airflow、Dagster、Kestra 的深度对比](/iopanda-blog/ai/03-frameworks/06/22/)
+1. [01 Python-native orchestration 的设计哲学](/ai/03-frameworks/06/17/)
+2. [02 flow、task、state 与 deployment](/ai/03-frameworks/06/18/)
+3. [03 retries、mapping、events 与 resilient pipelines](/ai/03-frameworks/06/19/)
+4. [04 观测、部署与工程边界](/ai/03-frameworks/06/20/)
+5. [05 课程助教 Agent 的 Prefect 架构案例](/ai/03-frameworks/06/21/)
+6. [06 Prefect 与 Temporal、Airflow、Dagster、Kestra 的深度对比](/ai/03-frameworks/06/22/)
 
-上一篇：[03.06 Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/)
+上一篇：[03.06 Apache Airflow](/ai/03-frameworks/06/09/)
 
-下一篇：[01 Python-native orchestration 的设计哲学](/iopanda-blog/ai/03-frameworks/06/17/)
+下一篇：[01 Python-native orchestration 的设计哲学](/ai/03-frameworks/06/17/)

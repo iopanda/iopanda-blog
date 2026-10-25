@@ -113,6 +113,6 @@ README 和 docs 都把 CI/CD 当核心能力。[2][7]
 - [6] https://www.promptfoo.dev/docs/integrations/langfuse/ — Promptfoo Langfuse integration
 - [7] https://www.promptfoo.dev/pricing/ — Promptfoo pricing
 
-上一篇：[01 产品定位、测试驱动Prompt管理与适用场景](/iopanda-blog/ai/04-tooling/04/09/)——先理解定位，再看它如何把 prompt 放进系统化验证流程。
+上一篇：[01 产品定位、测试驱动Prompt管理与适用场景](/ai/04-tooling/04/09/)——先理解定位，再看它如何把 prompt 放进系统化验证流程。
 
-下一篇：[03 质量、价格与采用边界](/iopanda-blog/ai/04-tooling/04/11/)——能力之后，再回头判断它是否成熟、怎么收费、采用边界如何。
+下一篇：[03 质量、价格与采用边界](/ai/04-tooling/04/11/)——能力之后，再回头判断它是否成熟、怎么收费、采用边界如何。

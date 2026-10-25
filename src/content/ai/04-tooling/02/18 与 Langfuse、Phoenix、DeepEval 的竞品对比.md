@@ -103,6 +103,6 @@ Promptfoo 最强的地方，不是它能做评测，而是：
 - [4] https://www.promptfoo.dev/pricing/ — Promptfoo pricing
 - [5] https://www.promptfoo.dev/docs/red-team/quickstart/ — Promptfoo red team quickstart
 
-上一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/17/)——成熟度清楚之后，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/02/17/)——成熟度清楚之后，再把它放回竞品版图里。
 
-下一篇：[05 真实组织案例：OpenAI、Anthropic与若干公开匿名企业客户](/iopanda-blog/ai/04-tooling/02/19/)——最后看真实组织为什么会采用 Promptfoo。
+下一篇：[05 真实组织案例：OpenAI、Anthropic与若干公开匿名企业客户](/ai/04-tooling/02/19/)——最后看真实组织为什么会采用 Promptfoo。

@@ -134,6 +134,6 @@ Promptfoo 还有 Langfuse integration，允许用 `langfuse://` 引用 Langfuse 
 - [6] https://www.promptfoo.dev/docs/code-scanning/ — Promptfoo code scanning
 - [7] https://www.promptfoo.dev/docs/integrations/langfuse/ — Promptfoo Langfuse integration
 
-上一篇：[01 产品定位、配置驱动与适用场景](/iopanda-blog/ai/04-tooling/02/15/)——先理解定位，再看它的能力为什么适合工程团队。
+上一篇：[01 产品定位、配置驱动与适用场景](/ai/04-tooling/02/15/)——先理解定位，再看它的能力为什么适合工程团队。
 
-下一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/02/17/)——能力之后，再回头判断它是否成熟、贵不贵、企业边界在哪里。
+下一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/02/17/)——能力之后，再回头判断它是否成熟、贵不贵、企业边界在哪里。

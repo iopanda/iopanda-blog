@@ -87,6 +87,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.5 Kestra/06 Kestr
 - [15] https://github.com/kestra-io/kestra — Kestra GitHub
 - [38] https://kestra.io/docs/why-kestra — Kestra "Why Kestra" positioning doc
 
-上一篇：[05 课程助教与运营自动化的 Kestra 架构案例](/iopanda-blog/ai/03-frameworks/06/35/)
+上一篇：[05 课程助教与运营自动化的 Kestra 架构案例](/ai/03-frameworks/06/35/)
 
-下一篇：回到 [03.06 Workflow Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/06/37/)
+下一篇：回到 [03.06 Workflow Framework 选型矩阵](/ai/03-frameworks/06/37/)

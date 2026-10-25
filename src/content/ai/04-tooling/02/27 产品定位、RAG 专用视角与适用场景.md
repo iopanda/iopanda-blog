@@ -101,6 +101,6 @@ Ragas 的价值就在于，它把这些典型 RAG 问题显式做成指标与数
 - [2] https://docs.ragas.io/en/latest/ — Ragas docs home
 - [5] https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/ — Ragas metrics docs
 
-上一篇：[05 Ragas](/iopanda-blog/ai/04-tooling/02/26/)——先看目录地图，再进入产品定位。
+上一篇：[05 Ragas](/ai/04-tooling/02/26/)——先看目录地图，再进入产品定位。
 
-下一篇：[02 Metrics、Test Generation、Feedback Loops 与集成能力](/iopanda-blog/ai/04-tooling/02/28/)——定位之后，再看它的能力为什么能形成 RAG 质量闭环。
+下一篇：[02 Metrics、Test Generation、Feedback Loops 与集成能力](/ai/04-tooling/02/28/)——定位之后，再看它的能力为什么能形成 RAG 质量闭环。

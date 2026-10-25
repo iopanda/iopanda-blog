@@ -13,7 +13,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/02 Haystack/05 课程助教 Age
 ---
 # 课程助教 Agent 的 Haystack 架构案例
 
-> 前四篇已经把 Haystack 的核心拆开了：[pipeline 思维](/iopanda-blog/ai/03-frameworks/02/10/)、[核心组件家族](/iopanda-blog/ai/03-frameworks/02/11/)、[production RAG 纪律](/iopanda-blog/ai/03-frameworks/02/12/)、[动态 route 与 tool-aware retrieval](/iopanda-blog/ai/03-frameworks/02/13/)。这一章把这些零件重新组装回你的课程助教主线：**如果课程助教不是先被建成文档对象系统，也不是先被建成多角色团队，而是先被建成一条透明、可评测、可路由的 retrieval pipeline，它在 Haystack 下应该长什么样？**
+> 前四篇已经把 Haystack 的核心拆开了：[pipeline 思维](/ai/03-frameworks/02/10/)、[核心组件家族](/ai/03-frameworks/02/11/)、[production RAG 纪律](/ai/03-frameworks/02/12/)、[动态 route 与 tool-aware retrieval](/ai/03-frameworks/02/13/)。这一章把这些零件重新组装回你的课程助教主线：**如果课程助教不是先被建成文档对象系统，也不是先被建成多角色团队，而是先被建成一条透明、可评测、可路由的 retrieval pipeline，它在 Haystack 下应该长什么样？**
 
 **学习目标**：学完本章，你将能够——
 
@@ -206,6 +206,6 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/02 Haystack/05 课程助教 Age
 - [59] https://github.com/deepset-ai/haystack/blob/main/haystack/components/routers/conditional_router.py — Haystack conditional router source
 - [60] https://github.com/deepset-ai/haystack/blob/main/haystack/components/rankers/llm_ranker.py — Haystack LLM ranker source
 
-上一篇：[04 Agentic Pipeline、Routing 与 Tool-aware Retrieval](/iopanda-blog/ai/03-frameworks/02/13/)——route 与动态 retrieval 讲完后，本篇把它们组装回课程助教这个真实系统。
+上一篇：[04 Agentic Pipeline、Routing 与 Tool-aware Retrieval](/ai/03-frameworks/02/13/)——route 与动态 retrieval 讲完后，本篇把它们组装回课程助教这个真实系统。
 
-下一篇：[06 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比](/iopanda-blog/ai/03-frameworks/02/15/)——案例落地后，再回头看 Haystack 在 retrieval framework 版图里的独特位置。
+下一篇：[06 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比](/ai/03-frameworks/02/15/)——案例落地后，再回头看 Haystack 在 retrieval framework 版图里的独特位置。

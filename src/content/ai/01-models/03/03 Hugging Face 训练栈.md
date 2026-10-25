@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "model-fine-tuning", "hugging-face"]
 sourceId: "3.10.1.3 Fine-tuning and Alignment/3.3 Hugging Face 训练栈"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260929010719.png)
+![](/ai/images/Pasted%20image%2020260929010719.png)
 
 > 上一章交付了人能读的 JSONL 对话数据,本章把 Hugging Face 训练栈(Datasets、Tokenizers、Transformers、Trainer)逐层接通,证明「JSONL → chat template 文本 → token id → 模型」这条管线是通的。本章不训练模型,但这个检查能避免后续花数小时训练错误格式。
 
@@ -176,6 +176,6 @@ python -m finetune.src.inspect_stack
 - [Hugging Face:加载模型](https://huggingface.co/docs/transformers/main/en/models)
 - [Hugging Face:Datasets JSON 加载](https://huggingface.co/docs/datasets/loading#json)
 
-上一篇:[指令数据集设计](/iopanda-blog/ai/01-models/03/02/)——数据已经可以被机器验证。
+上一篇:[指令数据集设计](/ai/01-models/03/02/)——数据已经可以被机器验证。
 
-下一篇:[监督微调 SFT](/iopanda-blog/ai/01-models/03/04/)——在正确模板上完成第一次监督微调。
+下一篇:[监督微调 SFT](/ai/01-models/03/04/)——在正确模板上完成第一次监督微调。

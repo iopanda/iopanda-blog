@@ -20,7 +20,7 @@ sourceId: "3.10.3.2 RAG and Retrieval Frameworks/01 LlamaIndex/01 文档对象�
 1. 解释为什么 LlamaIndex 首先把自己定义成 data framework，而不是只讲 pipeline；
 2. 说出 Document、Node、Index 三层对象在系统里的不同职责；
 3. 理解为什么 `VectorStoreIndex` 只是其中一种 index，而不是 LlamaIndex 的全部；
-4. 比较 LlamaIndex 的对象语言与 [Haystack](/iopanda-blog/ai/03-frameworks/02/09/) 的 pipeline 语言差异；
+4. 比较 LlamaIndex 的对象语言与 [Haystack](/ai/03-frameworks/02/09/) 的 pipeline 语言差异；
 5. 为一个知识问答系统画出文档对象层、节点层、索引层三层结构图。
 
 ## 1. 概念：LlamaIndex 先讲“数据如何成为可查询对象”
@@ -185,6 +185,6 @@ README 里有一句很关键：
 - [47] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/schema.py — LlamaIndex schema source
 - [48] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/indices/vector_store/base.py — LlamaIndex vector store index source
 
-上一篇：[01 LlamaIndex](/iopanda-blog/ai/03-frameworks/02/02/)——总览篇先说它走的是“文档与索引对象优先”路线；本篇开始拆它的第一语言。
+上一篇：[01 LlamaIndex](/ai/03-frameworks/02/02/)——总览篇先说它走的是“文档与索引对象优先”路线；本篇开始拆它的第一语言。
 
-下一篇：[02 Ingestion Pipeline、Chunking 与 Metadata](/iopanda-blog/ai/03-frameworks/02/04/)——对象层立住后，下一步看文档怎样真正进入系统。
+下一篇：[02 Ingestion Pipeline、Chunking 与 Metadata](/ai/03-frameworks/02/04/)——对象层立住后，下一步看文档怎样真正进入系统。

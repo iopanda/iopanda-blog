@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/03 CrewAI/01 Crews、Tasks 与角色协作"
 ---
 # Crews、Tasks 与角色协作
 
-> [AutoGen](/iopanda-blog/ai/03-frameworks/01/12/) 让我们看到多 Agent 协作可以成为系统主线；但 CrewAI 走得更业务化：它不满足于“多个角色会对话”，而是试图把角色、任务、团队协作明确变成一套更贴近企业流程的抽象。官方文档把 Agent 定义为 autonomous unit，把 Crew 定义为 collaborative group of agents，并把 Tasks、Process、Delegation、Reasoning、Guardrail 等都纳入显式字段。[1][2][3] 从源码看，`lib/crewai/src/crewai/agent/core.py` 里的 `Agent` 类依赖了 planning、knowledge、memory、guardrail、checkpoint、skills、event bus 等大量模块，这说明 CrewAI 的 Agent 从一开始就不是“一个 prompt”，而是“一个带业务职责和运行约束的角色对象”。[4]
+> [AutoGen](/ai/03-frameworks/01/12/) 让我们看到多 Agent 协作可以成为系统主线；但 CrewAI 走得更业务化：它不满足于“多个角色会对话”，而是试图把角色、任务、团队协作明确变成一套更贴近企业流程的抽象。官方文档把 Agent 定义为 autonomous unit，把 Crew 定义为 collaborative group of agents，并把 Tasks、Process、Delegation、Reasoning、Guardrail 等都纳入显式字段。[1][2][3] 从源码看，`lib/crewai/src/crewai/agent/core.py` 里的 `Agent` 类依赖了 planning、knowledge、memory、guardrail、checkpoint、skills、event bus 等大量模块，这说明 CrewAI 的 Agent 从一开始就不是“一个 prompt”，而是“一个带业务职责和运行约束的角色对象”。[4]
 
 **学习目标**：学完本章，你将能够——
 
 1. 说出 CrewAI 为什么把 Agent、Task、Crew 视为三层不同抽象；
 2. 理解 role、goal、backstory、tools、reasoning、delegation 等字段为什么都应被视为架构信号；
 3. 解释 Crew 为什么比“多个 Agent 拉群聊天”更接近真实业务流程；
-4. 比较 CrewAI 的角色协作路线与 [AutoGen](/iopanda-blog/ai/03-frameworks/01/11/) 的会话协作路线差异；
+4. 比较 CrewAI 的角色协作路线与 [AutoGen](/ai/03-frameworks/01/11/) 的会话协作路线差异；
 5. 为一个企业场景画出角色—任务—团队三层结构图。
 
 ## 1. 概念：CrewAI 先假设你的系统有“组织结构”
@@ -171,6 +171,6 @@ CrewAI 的角色语义很强，所以它有几个天然优势：
 - [3] https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx — CrewAI crews concepts
 - [4] https://docs.crewai.com — CrewAI docs
 
-上一篇：[03 CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)——总览篇先说明双抽象；本篇专门拆角色、任务与团队协作。
+上一篇：[03 CrewAI](/ai/03-frameworks/01/18/)——总览篇先说明双抽象；本篇专门拆角色、任务与团队协作。
 
-下一篇：[02 Flows、持久化与业务自动化](/iopanda-blog/ai/03-frameworks/01/20/)——角色团队只是前半套抽象，下一篇看 CrewAI 为什么还要再造一层 Flow。
+下一篇：[02 Flows、持久化与业务自动化](/ai/03-frameworks/01/20/)——角色团队只是前半套抽象，下一篇看 CrewAI 为什么还要再造一层 Flow。

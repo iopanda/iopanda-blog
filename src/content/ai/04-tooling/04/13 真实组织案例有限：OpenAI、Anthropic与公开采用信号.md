@@ -188,6 +188,6 @@ Promptfoo 官方 Langfuse integration 文档说明，Promptfoo 可以直接引�
 - [7] https://www.promptfoo.dev/pricing/ — Promptfoo pricing
 - [8] https://www.promptfoo.dev/blog/promptfoo-joining-openai/ — Promptfoo joining OpenAI
 
-上一篇：[04 与 Langfuse Prompts、DSPy、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/12/)——看清竞品差异后，再看真实组织采用信号说明了什么。
+上一篇：[04 与 Langfuse Prompts、DSPy、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/12/)——看清竞品差异后，再看真实组织采用信号说明了什么。
 
-下一篇：[03 DSPy](/iopanda-blog/ai/04-tooling/04/14/)——下一个产品切到程序抽象层的 prompt 管理路线。
+下一篇：[03 DSPy](/ai/04-tooling/04/14/)——下一个产品切到程序抽象层的 prompt 管理路线。

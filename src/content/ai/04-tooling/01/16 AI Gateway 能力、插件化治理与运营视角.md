@@ -130,6 +130,6 @@ APISIX 的 AI 价值不只在技术层，而在运营层：
 - [3] https://github.com/apache/apisix — Apache APISIX GitHub
 - [4] https://apisix.apache.org/blog/2025/04/21/host-mcp-server-with-api-gateway/ — Host MCP Servers via HTTP SSE with APISIX
 
-上一篇：[01 产品定位、插件体系与适用场景](/iopanda-blog/ai/04-tooling/01/15/)——先明确产品是谁，再看它的 AI 能力地图。
+上一篇：[01 产品定位、插件体系与适用场景](/ai/04-tooling/01/15/)——先明确产品是谁，再看它的 AI 能力地图。
 
-下一篇：[03 质量、社区、价格与商业化边界](/iopanda-blog/ai/04-tooling/01/17/)——能力立住以后，再看它成熟不成熟、贵不贵、是不是长期可用。
+下一篇：[03 质量、社区、价格与商业化边界](/ai/04-tooling/01/17/)——能力立住以后，再看它成熟不成熟、贵不贵、是不是长期可用。

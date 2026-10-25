@@ -219,6 +219,6 @@ README 里的 `VectorStoreIndex.from_documents(documents)` 当然非常适合快
 - [46] https://github.com/run-llama/llama_index/blob/main/README.md — LlamaIndex README
 - [49] https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/ingestion/pipeline.py — LlamaIndex ingestion pipeline source
 
-上一篇：[01 文档对象、Node 与 Index 的设计哲学](/iopanda-blog/ai/03-frameworks/02/03/)——对象层立住后，本篇继续看文档怎样进入检索系统。
+上一篇：[01 文档对象、Node 与 Index 的设计哲学](/ai/03-frameworks/02/03/)——对象层立住后，本篇继续看文档怎样进入检索系统。
 
-下一篇：[03 Retriever、Query Engine、Rerank 与 Router](/iopanda-blog/ai/03-frameworks/02/05/)——ingestion 打地基之后，下一步看查询链路怎样真正把知识取出来并拼成答案。
+下一篇：[03 Retriever、Query Engine、Rerank 与 Router](/ai/03-frameworks/02/05/)——ingestion 打地基之后，下一步看查询链路怎样真正把知识取出来并拼成答案。

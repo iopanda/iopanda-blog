@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/07 LangGraph 与 CrewAI、Open
 ---
 # LangGraph 与 CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比
 
-> 到这一篇，LangGraph 本身已经讲得足够深了：从 [状态图](/iopanda-blog/ai/03-frameworks/01/04/) 到 [课程助教架构案例](/iopanda-blog/ai/03-frameworks/01/09/)，你应该已经能回答“LangGraph 是什么”。但架构师真正值钱的最后一步，是回答：**它不是什么。** 也就是说：当一个团队看着 LangGraph、[CrewAI](/iopanda-blog/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/)、[PydanticAI](/iopanda-blog/ai/03-frameworks/01/32/) 都摆在眼前时，到底该怎么判断？这一章不重复一般性的选型矩阵，而是专门站在 LangGraph 的视角，反向比较它和其他主流路线的第一性差异：**为什么它更像运行时，而别的框架更像角色系统、原语 SDK 或 typed 工程框架。**
+> 到这一篇，LangGraph 本身已经讲得足够深了：从 [状态图](/ai/03-frameworks/01/04/) 到 [课程助教架构案例](/ai/03-frameworks/01/09/)，你应该已经能回答“LangGraph 是什么”。但架构师真正值钱的最后一步，是回答：**它不是什么。** 也就是说：当一个团队看着 LangGraph、[CrewAI](/ai/03-frameworks/01/18/)、[OpenAI Agents SDK](/ai/03-frameworks/01/25/)、[PydanticAI](/ai/03-frameworks/01/32/) 都摆在眼前时，到底该怎么判断？这一章不重复一般性的选型矩阵，而是专门站在 LangGraph 的视角，反向比较它和其他主流路线的第一性差异：**为什么它更像运行时，而别的框架更像角色系统、原语 SDK 或 typed 工程框架。**
 
 **学习目标**：学完本章，你将能够——
 
@@ -233,6 +233,6 @@ LangGraph 会更早逼你回答：
 - [19] https://pydantic.dev/docs/ai — Pydantic AI docs
 - [24] https://www.anthropic.com/research/building-effective-agents — Anthropic: Building effective agents
 
-上一篇：[06 课程助教 Agent 的 LangGraph 架构案例](/iopanda-blog/ai/03-frameworks/01/09/)——具体案例说明了 LangGraph 怎么落地；本篇反过来说明它为什么值得被选为主骨架。
+上一篇：[06 课程助教 Agent 的 LangGraph 架构案例](/ai/03-frameworks/01/09/)——具体案例说明了 LangGraph 怎么落地；本篇反过来说明它为什么值得被选为主骨架。
 
-下一篇：回到 [06 Agent Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/01/02/)，把 LangGraph 放回整个 top5 框架版图中复核。
+下一篇：回到 [06 Agent Framework 选型矩阵](/ai/03-frameworks/01/02/)，把 LangGraph 放回整个 top5 框架版图中复核。

@@ -132,6 +132,6 @@ sourceId: "3.10.4.1 Model Gateways and Routing/02 Envoy AI Gateway/04 与 LiteLL
 - [4] https://github.com/mudler/LocalAI — LocalAI GitHub
 - [5] https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/concepts/resources.md — Envoy AI Gateway Resources
 
-上一篇：[03 质量、社区、价格与平台门槛](/iopanda-blog/ai/04-tooling/01/11/)——看完成熟度，再把它放回竞品版图里。
+上一篇：[03 质量、社区、价格与平台门槛](/ai/04-tooling/01/11/)——看完成熟度，再把它放回竞品版图里。
 
-下一篇：[05 公开平台实践：多 Provider、Fallback、限流、监控、Goose、MCP](/iopanda-blog/ai/04-tooling/01/13/)——最后从公开平台实践看它通常如何被使用。
+下一篇：[05 公开平台实践：多 Provider、Fallback、限流、监控、Goose、MCP](/ai/04-tooling/01/13/)——最后从公开平台实践看它通常如何被使用。

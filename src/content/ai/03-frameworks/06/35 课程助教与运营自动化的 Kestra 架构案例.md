@@ -70,6 +70,6 @@ sourceId: "3.10.3.6 Workflow Orchestration Frameworks/3.10.3.6.5 Kestra/05 课�
 - [34] https://kestra.io/docs/workflow-components/triggers — Kestra triggers concept doc
 - [37] https://kestra.io/docs/use-cases/approval-processes — Kestra approval processes use case doc
 
-上一篇：[04 运营、扩展性与工程边界](/iopanda-blog/ai/03-frameworks/06/34/)
+上一篇：[04 运营、扩展性与工程边界](/ai/03-frameworks/06/34/)
 
-下一篇：[06 Kestra 与 Temporal、Airflow、Prefect、Dagster 的深度对比](/iopanda-blog/ai/03-frameworks/06/36/)
+下一篇：[06 Kestra 与 Temporal、Airflow、Prefect、Dagster 的深度对比](/ai/03-frameworks/06/36/)

@@ -169,6 +169,6 @@ Built with DSPy 页面还列出 Stanford CS 224U Homework、DSPy Redteaming、DS
 - [4] https://dspy.ai/ — DSPy homepage
 - [10] https://dspy.ai/community/built-with-dspy/ — Built with DSPy
 
-上一篇：[04 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比](/iopanda-blog/ai/04-tooling/04/18/)——看清竞品差异后，再看公开采用信号说明了什么。
+上一篇：[04 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比](/ai/04-tooling/04/18/)——看清竞品差异后，再看公开采用信号说明了什么。
 
-下一篇：[04 Guidance](/iopanda-blog/ai/04-tooling/04/20/)——下一个产品切到生成控制路线。
+下一篇：[04 Guidance](/ai/04-tooling/04/20/)——下一个产品切到生成控制路线。

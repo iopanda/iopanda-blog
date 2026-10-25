@@ -77,6 +77,6 @@ trace graph 文档说明它是只读 agent graph renderer，能把 observation�
 - [28] https://github.com/langfuse/langfuse/blob/main/web/src/features/datasets/server/actions/README.md — Langfuse datasets README
 - [29] https://github.com/langfuse/langfuse/blob/main/web/src/features/trace-graph-view/README.md — Langfuse trace graph README
 
-上一篇：[01 AI engineering observability 的设计哲学](/iopanda-blog/ai/03-frameworks/05/03/)
+上一篇：[01 AI engineering observability 的设计哲学](/ai/03-frameworks/05/03/)
 
-下一篇：[03 prompt management、experiments 与 product analytics](/iopanda-blog/ai/03-frameworks/05/05/)
+下一篇：[03 prompt management、experiments 与 product analytics](/ai/03-frameworks/05/05/)

@@ -13,14 +13,14 @@ sourceId: "3.10.3.1 Agent Frameworks/05 PydanticAI/04 Realtime、Examples、Eval
 ---
 # Realtime、Examples、Evals 与多 Agent 形态
 
-> 前三篇已经把 PydanticAI 的核心路线讲清楚了：[先稳住契约](/iopanda-blog/ai/03-frameworks/01/33/)、[再按需升级 graph/durable](/iopanda-blog/ai/03-frameworks/01/34/)、[再补运行时治理](/iopanda-blog/ai/03-frameworks/01/35/)。这一篇要补的是另一半：**它并不是一个只适合写后端结构化抽取的小框架。** 从 examples 树和文档可见，PydanticAI 已经覆盖了 realtime voice、WebRTC、medical delegation、data analyst、evals、AG-UI、人类审批、chat app 等非常多样的产品形态。[19][23][36] 这说明它的野心并不只是“让输出更类型安全”，而是：**在不放弃工程契约的前提下，把 Agent 系统逐步扩展到真实应用形态。**
+> 前三篇已经把 PydanticAI 的核心路线讲清楚了：[先稳住契约](/ai/03-frameworks/01/33/)、[再按需升级 graph/durable](/ai/03-frameworks/01/34/)、[再补运行时治理](/ai/03-frameworks/01/35/)。这一篇要补的是另一半：**它并不是一个只适合写后端结构化抽取的小框架。** 从 examples 树和文档可见，PydanticAI 已经覆盖了 realtime voice、WebRTC、medical delegation、data analyst、evals、AG-UI、人类审批、chat app 等非常多样的产品形态。[19][23][36] 这说明它的野心并不只是“让输出更类型安全”，而是：**在不放弃工程契约的前提下，把 Agent 系统逐步扩展到真实应用形态。**
 
 **学习目标**：学完本章，你将能够——
 
 1. 解释为什么 PydanticAI 的 examples 目录本身就暴露了它的产品版图；
 2. 理解 realtime、voice、evals、AG-UI、多 Agent delegation 在这个框架里是怎样被吸纳的；
 3. 说出为什么 typed engineering 路线并不排斥丰富应用形态；
-4. 比较它与 [OpenAI Agents SDK](/iopanda-blog/ai/03-frameworks/01/25/) 在多形态产品支持上的区别；
+4. 比较它与 [OpenAI Agents SDK](/ai/03-frameworks/01/25/) 在多形态产品支持上的区别；
 5. 为一个课程助教系统设计 PydanticAI 风格的应用演化路线。
 
 ## 1. examples 目录为什么值得认真看
@@ -195,6 +195,6 @@ PydanticAI 不是这样。它在 examples 上铺开的版图，恰恰说明：
 - [23] https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md — Pydantic AI multi-agent applications doc
 - [36] https://github.com/pydantic/pydantic-ai/tree/main/examples/pydantic_ai_examples — Pydantic AI examples tree
 
-上一篇：[03 Tools、Capabilities、Usage Limits 与取消语义](/iopanda-blog/ai/03-frameworks/01/35/)——运行时纪律讲完后，本篇继续看它如何扩展到更丰富的产品形态。
+上一篇：[03 Tools、Capabilities、Usage Limits 与取消语义](/ai/03-frameworks/01/35/)——运行时纪律讲完后，本篇继续看它如何扩展到更丰富的产品形态。
 
-下一篇：[05 课程助教 Agent 的 PydanticAI 架构案例](/iopanda-blog/ai/03-frameworks/01/37/)——把这些 typed/runtime 能力重新装回课程助教这个真实系统。
+下一篇：[05 课程助教 Agent 的 PydanticAI 架构案例](/ai/03-frameworks/01/37/)——把这些 typed/runtime 能力重新装回课程助教这个真实系统。

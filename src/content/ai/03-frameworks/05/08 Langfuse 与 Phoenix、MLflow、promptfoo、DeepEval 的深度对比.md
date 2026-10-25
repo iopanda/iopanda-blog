@@ -74,6 +74,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.1 Langfuse/
 - [21] https://github.com/promptfoo/promptfoo — promptfoo GitHub
 - [22] https://github.com/confident-ai/deepeval — DeepEval GitHub
 
-上一篇：[05 课程助教 Agent 的 Langfuse 架构案例](/iopanda-blog/ai/03-frameworks/05/07/)
+上一篇：[05 课程助教 Agent 的 Langfuse 架构案例](/ai/03-frameworks/05/07/)
 
-下一篇：回到 [03.05 Evaluation Framework 选型矩阵](/iopanda-blog/ai/03-frameworks/05/37/)
+下一篇：回到 [03.05 Evaluation Framework 选型矩阵](/ai/03-frameworks/05/37/)

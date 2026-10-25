@@ -84,6 +84,6 @@ ensemble_models 文档展示得很清楚：
 - [9] https://github.com/triton-inference-server/server/blob/main/docs/user_guide/batcher.md — Triton batcher doc
 - [10] https://github.com/triton-inference-server/server/blob/main/docs/user_guide/ensemble_models.md — Triton ensemble models doc
 
-上一篇：[01 通用 inference platform 的设计哲学](/iopanda-blog/ai/03-frameworks/04/31/)
+上一篇：[01 通用 inference platform 的设计哲学](/ai/03-frameworks/04/31/)
 
-下一篇：[03 与 TensorRT-LLM、vLLM、KServe 的集成方式](/iopanda-blog/ai/03-frameworks/04/33/)
+下一篇：[03 与 TensorRT-LLM、vLLM、KServe 的集成方式](/ai/03-frameworks/04/33/)

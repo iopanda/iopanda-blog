@@ -11,7 +11,7 @@ author: "iopanda"
 tags: ["course", "model-fine-tuning", "qlora"]
 sourceId: "3.10.1.3 Fine-tuning and Alignment/3.6 QLoRA 量化微调"
 ---
-![](/iopanda-blog/ai/images/Pasted%20image%2020260929010827.png)
+![](/ai/images/Pasted%20image%2020260929010827.png)
 
 > 本章把上一章的 LoRA 升级为 QLoRA(量化微调):在支持 CUDA 的环境中,把冻结的基座权重以 4-bit 量化「压」进显存,同时仍然只训练少量 LoRA adapter。先弄清楚量化到底改变了什么、QLoRA 与 LoRA 是什么关系、为什么不是所有设备都能用,再动手比较两者的资源与质量账。
 
@@ -142,6 +142,6 @@ peft = LoraConfig(r=8, lora_alpha=16, lora_dropout=0.05,
 - [Transformers:bitsandbytes 量化](https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes)
 - [QLoRA 论文](https://arxiv.org/abs/2305.14314)
 
-上一篇:[LoRA 低秩适配](/iopanda-blog/ai/01-models/03/05/)——LoRA 先降「可训练参数」;本章再把「冻结的基座权重」压到 4-bit。
+上一篇:[LoRA 低秩适配](/ai/01-models/03/05/)——LoRA 先降「可训练参数」;本章再把「冻结的基座权重」压到 4-bit。
 
-下一篇:[偏好优化与对齐](/iopanda-blog/ai/01-models/03/07/)——在可靠的 SFT 之后,学习如何用偏好对改变回答选择。
+下一篇:[偏好优化与对齐](/ai/01-models/03/07/)——在可靠的 SFT 之后,学习如何用偏好对改变回答选择。

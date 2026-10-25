@@ -13,7 +13,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/03 MessagesState、ToolNode �
 ---
 # MessagesState、ToolNode 与 create_react_agent
 
-> 前两篇讲的是 LangGraph 的底层世界观：[状态图](/iopanda-blog/ai/03-frameworks/01/04/)、[持久化与中断](/iopanda-blog/ai/03-frameworks/01/05/)。但真实团队不会永远从零手搭每一个节点——总会问：有没有一些高层构件，既保留图运行时的能力，又别让我每次都从 `StateGraph` 空白纸开始？LangGraph 的答案是有，但方式很有意思：不是把底层图藏掉，而是在 `langgraph-prebuilt` 里提供 `create_react_agent`、`ToolNode`、`ValidationNode`、interrupt schemas 这些更高层的组件。[1][2][3] 再看源码 `graph/message.py`，可以发现 LangGraph 连“消息状态怎样合并”都给了明确 reducer 语义：`MessagesState`、`add_messages`、`MessageGraph`（已弃用）都在表达同一个判断——**即便你在做聊天 Agent，底层仍然是状态图，不是黑箱对话循环。**[4]
+> 前两篇讲的是 LangGraph 的底层世界观：[状态图](/ai/03-frameworks/01/04/)、[持久化与中断](/ai/03-frameworks/01/05/)。但真实团队不会永远从零手搭每一个节点——总会问：有没有一些高层构件，既保留图运行时的能力，又别让我每次都从 `StateGraph` 空白纸开始？LangGraph 的答案是有，但方式很有意思：不是把底层图藏掉，而是在 `langgraph-prebuilt` 里提供 `create_react_agent`、`ToolNode`、`ValidationNode`、interrupt schemas 这些更高层的组件。[1][2][3] 再看源码 `graph/message.py`，可以发现 LangGraph 连“消息状态怎样合并”都给了明确 reducer 语义：`MessagesState`、`add_messages`、`MessageGraph`（已弃用）都在表达同一个判断——**即便你在做聊天 Agent，底层仍然是状态图，不是黑箱对话循环。**[4]
 
 **学习目标**：学完本章，你将能够——
 
@@ -97,7 +97,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/03 MessagesState、ToolNode �
 2. 工具前后状态可以被 tracing / checkpoint / interrupt 看见；
 3. 工具失败、校验、重试更容易接到图边界上。
 
-这与 [02.04 Tool Use and Protocols](/iopanda-blog/ai/02-agents/04/01/) 的结论完全一致：工具不是聊天附属功能，而是 Agent 触达外部世界的边界。LangGraph 的做法是把这个边界显式化。
+这与 [02.04 Tool Use and Protocols](/ai/02-agents/04/01/) 的结论完全一致：工具不是聊天附属功能，而是 Agent 触达外部世界的边界。LangGraph 的做法是把这个边界显式化。
 
 ## 5. `ValidationNode`：为什么工具参数校验不该全靠模型自觉
 
@@ -108,7 +108,7 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/03 MessagesState、ToolNode �
 - 但差不多不等于系统可以接受；
 - 参数校验必须落在图运行时或应用层，而不是落在模型承诺层。
 
-这与 [提示注入与工具安全](/iopanda-blog/ai/01-models/07/03/) 是同一个原则：真正的边界在代码，不在提示词。
+这与 [提示注入与工具安全](/ai/01-models/07/03/) 是同一个原则：真正的边界在代码，不在提示词。
 
 ## 6. `create_react_agent`：为什么它值钱，但不是万用答案
 
@@ -200,6 +200,6 @@ sourceId: "3.10.3.1 Agent Frameworks/01 LangGraph/03 MessagesState、ToolNode �
 - [3] https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt — LangGraph prebuilt README
 - [4] https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py — LangGraph message graph source
 
-上一篇：[02 持久化、中断、人审与工程落地](/iopanda-blog/ai/03-frameworks/01/05/)——工程能力立住后，本篇讨论如何用高层预构件更快落地常见 Agent 形态。
+上一篇：[02 持久化、中断、人审与工程落地](/ai/03-frameworks/01/05/)——工程能力立住后，本篇讨论如何用高层预构件更快落地常见 Agent 形态。
 
-下一篇：[04 Checkpointer、thread_id 与持久化后端选型](/iopanda-blog/ai/03-frameworks/01/07/)——LangGraph 真正走向生产时，最关键的不是是否能跑，而是状态怎么保存、隔离、恢复与清理。
+下一篇：[04 Checkpointer、thread_id 与持久化后端选型](/ai/03-frameworks/01/07/)——LangGraph 真正走向生产时，最关键的不是是否能跑，而是状态怎么保存、隔离、恢复与清理。

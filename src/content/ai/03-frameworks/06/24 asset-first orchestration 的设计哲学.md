@@ -46,10 +46,10 @@ Dagster 把资产直接建模成一等对象：`@dg.asset` 装饰的函数「com
 
 | 框架 | 第一性问题 | Dagster 相比的定位 |
 |---|---|---|
-| [Temporal](/iopanda-blog/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Dagster 更偏数据资产的血缘、新鲜度和治理，而不是业务流程状态恢复 |
-| [Apache Airflow](/iopanda-blog/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Dagster 更偏 asset-first，任务图是资产依赖关系的副产品，而不是主对象 |
-| [Prefect](/iopanda-blog/ai/03-frameworks/06/16/) | 如何用 Python 更自然写 resilient flows | Dagster 更偏资产建模和数据目录，而不是脚本到生产的最短路径 |
-| [Kestra](/iopanda-blog/ai/03-frameworks/06/30/) | 如何围绕 triggers/schedules/integrations 做自动化 | Dagster 更偏资产血缘与目录治理，而不是事件驱动自动化 |
+| [Temporal](/ai/03-frameworks/06/02/) | 如何让 stateful 流程跨失败恢复 | Dagster 更偏数据资产的血缘、新鲜度和治理，而不是业务流程状态恢复 |
+| [Apache Airflow](/ai/03-frameworks/06/09/) | 如何调度 DAG 和 batch tasks | Dagster 更偏 asset-first，任务图是资产依赖关系的副产品，而不是主对象 |
+| [Prefect](/ai/03-frameworks/06/16/) | 如何用 Python 更自然写 resilient flows | Dagster 更偏资产建模和数据目录，而不是脚本到生产的最短路径 |
+| [Kestra](/ai/03-frameworks/06/30/) | 如何围绕 triggers/schedules/integrations 做自动化 | Dagster 更偏资产血缘与目录治理，而不是事件驱动自动化 |
 
 ## 5. 什么时候最自然进入 Dagster
 
@@ -78,6 +78,6 @@ Dagster 把资产直接建模成一等对象：`@dg.asset` 装饰的函数「com
 - [14] https://github.com/dagster-io/dagster — Dagster GitHub / README
 - [25] https://docs.dagster.io/guides/build/assets/defining-assets — Dagster defining assets guide
 
-上一篇：[03.06 Dagster](/iopanda-blog/ai/03-frameworks/06/23/)
+上一篇：[03.06 Dagster](/ai/03-frameworks/06/23/)
 
-下一篇：[02 assets、jobs、ops、resources 与 lineage](/iopanda-blog/ai/03-frameworks/06/25/)
+下一篇：[02 assets、jobs、ops、resources 与 lineage](/ai/03-frameworks/06/25/)

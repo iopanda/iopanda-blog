@@ -77,6 +77,6 @@ Phoenix 的 experiment 视角，就是在解决这种“比较能力”缺失。
 
 - [25] /private/tmp/eval-framework-research/phoenix/README.md — Phoenix README
 
-上一篇：[02 OTEL traces、spans 与诊断界面](/iopanda-blog/ai/03-frameworks/05/11/)
+上一篇：[02 OTEL traces、spans 与诊断界面](/ai/03-frameworks/05/11/)
 
-下一篇：[04 线上诊断、根因分析与工程边界](/iopanda-blog/ai/03-frameworks/05/13/)
+下一篇：[04 线上诊断、根因分析与工程边界](/ai/03-frameworks/05/13/)

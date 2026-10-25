@@ -73,6 +73,6 @@ sourceId: "3.10.3.5 Evaluation and Observability Frameworks/3.10.3.5.3 MLflow/03
 
 - [31] https://github.com/mlflow/mlflow/blob/master/README.md — MLflow README
 
-上一篇：[02 experiments、traces、evals 与 model lifecycle](/iopanda-blog/ai/03-frameworks/05/18/)
+上一篇：[02 experiments、traces、evals 与 model lifecycle](/ai/03-frameworks/05/18/)
 
-下一篇：[04 线上监控、权限、成本与工程边界](/iopanda-blog/ai/03-frameworks/05/20/)
+下一篇：[04 线上监控、权限、成本与工程边界](/ai/03-frameworks/05/20/)

@@ -173,6 +173,6 @@ Dify 官网还公开列出 Adobe、Google、Panasonic、Mercedes-Benz、Volkswag
 - [2] https://dify.ai/ — Dify homepage
 - [4] https://dify.ai/pricing — Dify pricing
 
-上一篇：[04 与 n8n、Langflow、Open WebUI、AnythingLLM 的竞品对比](/iopanda-blog/ai/04-tooling/03/06/)——看清竞品差异后，再看真实组织为什么会采用 Dify。
+上一篇：[04 与 n8n、Langflow、Open WebUI、AnythingLLM 的竞品对比](/ai/04-tooling/03/06/)——看清竞品差异后，再看真实组织为什么会采用 Dify。
 
-下一篇：[02 n8n](/iopanda-blog/ai/04-tooling/03/08/)——下一个产品切到自动化工作流平台路线。
+下一篇：[02 n8n](/ai/04-tooling/03/08/)——下一个产品切到自动化工作流平台路线。
