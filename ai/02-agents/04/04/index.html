@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.04.04 只读与写入之间那道线 · iopanda</title><meta name="description" content="02.04.04 只读与写入之间那道线 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/04/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.04.04 只读与写入之间那道线 · iopanda"><meta property="og:description" content="02.04.04 只读与写入之间那道线 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/04/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="04" data-active-subsection data-active-article="/ai/02-agents/04/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具调用与协议"></button><a class="tree-link tree-link--section" href="/ai/02-agents/04/"><span class="tree-number">04</span><span class="tree-title">工具调用与协议</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/04/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">只读与写入之间那道线</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/04/">工具调用与协议</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">只读与写入之间那道线</span></nav><header class="ai-article-header"><p class="ai-number">02.04.04</p><h1>只读与写入之间那道线</h1><p class="ai-meta"><time datetime="2026-09-07T10:10">2026-09-07</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>tool-permission</li></ul></header><div class="ai-prose"><h1 id="只读与写入之间那道线">只读与写入之间那道线</h1>
+<p>同一个下午，两个工具各出一次错。</p>
+<p><code>search_documents</code> 返回了空结果，因为索引重建时它指向的别名暂时失效。调用方重试了四次，全部失败，任务降级成“未找到相关资料”，用户收到一句说明。损失是零。</p>
+<p><code>update_student_score</code> 被调用了两次，一次来自模型的提议，一次来自调用方在超时后的自动重试。第二次覆盖了老师刚手工改过的分。为了恢复，教务系统跑了整晚的数据比对。</p>
+<p>两次都是“工具失败”，后果差三个量级。<strong>分级的标准应当看它改变了什么，以及改坏了能不能退回去。</strong></p>
+<h2 id="四类工具与四道闸">四类工具与四道闸</h2>
+<p>按副作用分四类，每类配一道不同的闸。</p>
+<p><strong>只读。</strong> 查询、检索、读取文件。不改变任何状态，可以任意重试。闸门是速率限制与返回体积上限。</p>
+<p><strong>幂等写。</strong> 带着唯一键的写入、状态置位、去重插入。重复执行结果相同。闸门是幂等键校验。</p>
+<p><strong>非幂等写。</strong> 追加记录、累加计数、发送通知。重复执行结果不同。闸门是“写前先读”或者显式确认。</p>
+<p><strong>不可逆。</strong> 删除、转账、对外发送、发布。没有撤销路径。闸门是人工确认。</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>例子</th>
+<th>重试</th>
+<th>闸门</th>
+<th>失败代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只读</td>
+<td>检索、查库、读文件</td>
+<td>可以</td>
+<td>速率、体积</td>
+<td>一次无效调用</td>
+</tr>
+<tr>
+<td>幂等写</td>
+<td>按 id 更新、去重插入</td>
+<td>可以（同键）</td>
+<td>幂等键</td>
+<td>一次覆盖</td>
+</tr>
+<tr>
+<td>非幂等写</td>
+<td>追加日志、发通知</td>
+<td>不可以</td>
+<td>写前读、确认</td>
+<td>重复记录</td>
+</tr>
+<tr>
+<td>不可逆</td>
+<td>删除、转账、发布</td>
+<td>绝不</td>
+<td>人工确认</td>
+<td>无法恢复</td>
+</tr>
+</tbody>
+</table>
+<p>这张表最有用的一行是最后一行。只要一个动作没有撤销路径，它就不应该由模型单独触发——无论提示词里写了多少“请谨慎”。</p>
+<h2 id="只读工具的风险在返回侧">只读工具的风险在返回侧</h2>
+<p>只读工具本身的危险很小，风险集中在它带回来的内容。</p>
+<p><strong>注入。</strong> 检索到的网页正文里埋着指令，第二章第 7 节讲过。工具越“能读”，这个入口越宽。</p>
+<p><strong>体积。</strong> 一次返回一万八千字，四轮之后上下文见底。截断与标注是必须的。</p>
+<p><strong>敏感信息。</strong> 查询结果里带出手机号、身份证号、内部地址。这些进了上下文，就可能出现在回答里，也可能进入下一轮的日志。</p>
+<p>所以只读工具也要设计：返回字段白名单、脱敏规则、条数上限。<strong>读得越多，要防的越多。</strong></p>
+<h2 id="写入工具的三条纪律">写入工具的三条纪律</h2>
+<p><strong>幂等键。</strong> 每次写请求带一个由调用方生成的 <code>request_id</code>，服务端记录已处理键，重复到达时返回首次结果。这一条挡住超时重试造成的重复写入，也是唯一能挡住这类问题的办法——重试是必要的，幂等是重试的前提。</p>
+<p><strong>写前读。</strong> 非幂等写在执行前先查当前状态，把状态一起回填给模型。“当前该学生成绩为 87 分，将更新为 90 分”——这句回填让模型有机会发现自己的参数错了。它同时是一份可审计的证据。</p>
+<p><strong>变更预览。</strong> 高风险写操作先返回 dry-run 结果，由模型确认后再执行。多一次往返，换掉一整类事故。</p>
+<h2 id="不可逆动作的确认点">不可逆动作的确认点</h2>
+<p>删除、支付、对外发布，三个位置值得让流程停一下。</p>
+<p>确认应当发生在<strong>执行前</strong>，并且把后果说清楚：删什么、影响多少条记录、能不能撤销。一句“确认执行吗？“是不够的——用户与模型都不知道”确认“意味着什么。</p>
+<p>有一个反直觉的经验：不可逆动作的确认，交给人的时候要<strong>缩短路径</strong>，不要增加选项。人面对五个选项会犹豫，面对“删除 17 份作业引用中的这一题？[删除] [取消]“会做判断。</p>
+<h2 id="边界是效果不是名字">边界是效果，不是名字</h2>
+<p>分类看的是实际效果，与工具名无关。</p>
+<p><code>get_logs</code> 听起来只读。如果它在服务端写一条访问日志、或者触发一次缓存刷新，它就已经是写操作。<code>preview_import</code> 听起来无害，如果它把文件落盘到一个临时目录，也改变了状态。</p>
+<p>反过来，<code>delete_draft</code> 听起来危险，但如果它只是把状态置位为“已废弃”、随时可以恢复，那它是幂等写，不需要人工确认。</p>
+<p>判定方法很直接：<strong>问自己“这个调用失败或者重复执行，会留下什么”。</strong> 留下可恢复的痕迹，是写；留下不可恢复的痕迹，是不可逆；什么都没留下，才是只读。</p>
+<h2 id="它挡不住的部分">它挡不住的部分</h2>
+<p><strong>权限越过了分级。</strong> 一个只读工具用管理员身份连库，读到的是全库数据，分级做得再细也没用。身份要与工具用途匹配，这条在 4.6 节展开。</p>
+<p><strong>模型绕过闸门。</strong> 它在多步任务里把一次危险操作拆成若干次安全操作——单看每一步都合规，合起来是一次删除。闸门要能看任务，不能只看单次调用。</p>
+<p><strong>人也会点错。</strong> 确认框的存在不保证判断正确。审计日志的意义在这里：事后能还原是谁、在什么上下文里批准的。</p>
+<h2 id="下一步最难隔离的一类">下一步：最难隔离的一类</h2>
+<p>上面四类工具，无论哪一类，行为都是你在代码里写定的。</p>
+<p>代码执行型工具不一样：模型每次现场写一段代码，你事先无法枚举它能做什么。这个形态的风险结构与前三类完全不同，需要另一套装置。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>OWASP. <em>LLM06: Excessive Agency.</em> <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">https://genai.owasp.org/llmrisk/llm062025-excessive-agency/</a></li>
+<li>Anthropic. <em>Building effective agents — tool design.</em> <a href="https://www.anthropic.com/engineering/building-effective-agents">https://www.anthropic.com/engineering/building-effective-agents</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/04/03/"><span>上一篇</span><strong>02.04.03 工具描述是写给模型看的</strong></a><a class="ai-pager-next" href="/ai/02-agents/04/05/"><span>下一篇</span><strong>02.04.05 沙箱划得住什么</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#四类工具与四道闸">四类工具与四道闸</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#只读工具的风险在返回侧">只读工具的风险在返回侧</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#写入工具的三条纪律">写入工具的三条纪律</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#不可逆动作的确认点">不可逆动作的确认点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#边界是效果不是名字">边界是效果，不是名字</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它挡不住的部分">它挡不住的部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#下一步最难隔离的一类">下一步：最难隔离的一类</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.02.04 AgentChat、RoutedAgent 与消息协议 · iopanda</title><meta name="description" content="03.01.02.04 AgentChat、RoutedAgent 与消息协议 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/02/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.02.04 AgentChat、RoutedAgent 与消息协议 · iopanda"><meta property="og:description" content="03.01.02.04 AgentChat、RoutedAgent 与消息协议 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/02/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="02" data-active-article="/ai/03-frameworks/01/02/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 AutoGen"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/02/"><span class="tree-number">02</span><span class="tree-title">AutoGen</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/02/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">AgentChat、RoutedAgent 与消息协议</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/02/">AutoGen</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">AgentChat、RoutedAgent 与消息协议</span></nav><header class="ai-article-header"><p class="ai-number">03.01.02.04</p><h1>AgentChat、RoutedAgent 与消息协议</h1><p class="ai-meta"><time datetime="2026-09-03T19:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>autogen</li><li>agentchat</li><li>routedagent</li><li>message-protocol</li></ul></header><div class="ai-prose"><h1 id="agentchatroutedagent-与消息协议">AgentChat、RoutedAgent 与消息协议</h1>
+<blockquote>
+<p>前两篇已经把 AutoGen 的大轮廓立住了：<a href="/ai/03-frameworks/01/02/02/">多 Agent 会话与事件驱动</a>解释了它为什么在 2023~2026 年影响巨大，<a href="/ai/03-frameworks/01/02/03/">维护模式与迁移</a>解释了为什么今天要谨慎看待它。现在该往下钻到更具体的技术层：<strong>AutoGen 的多 Agent 协作到底是怎么落到代码里的？</strong> 从 docs 和源码看，它至少有两层关键技术面：上层是 AgentChat 这类面向对话编排的抽象，下层是 <code>RoutedAgent</code>、<code>message_handler</code>、runtime、topic、message context 这些更像事件系统协议的东西。[7][37][38] 这一章就专门讲这部分：为什么 AutoGen 看起来像聊天团队，但源码骨架其实很像消息总线系统。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释 AgentChat 与 Core runtime 在 AutoGen 里的分工；</li>
+<li>理解 <code>RoutedAgent</code>、<code>message_handler</code>、topic、MessageContext 在协作系统里的职责；</li>
+<li>说明为什么消息在 AutoGen 里更像协议，而不是自由文本；</li>
+<li>比较 AutoGen 的消息协作模型与 <a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a> 的 handoff 模型差异；</li>
+<li>为一个多 Agent 系统画出“会话层 + 消息协议层”的双层结构图。</li>
+</ol>
+<h2 id="1-概念agentchat-是表层体验core-runtime-才是骨架">1. 概念：AgentChat 是表层体验，Core runtime 才是骨架</h2>
+<p>AutoGen 一个很容易被误读的地方是：很多人第一次见到它，是通过 AssistantAgent、GroupChat、UserProxy 这类“对话角色”示例，于是以为 AutoGen 的本体就是一套更会聊天的 agent 库。</p>
+<p>其实不是。</p>
+<p>更准确的理解是：</p>
+<ul>
+<li>AgentChat 负责“你如何直观地组织会话协作”；</li>
+<li>Core runtime 负责“这些协作如何被路由、订阅、分发、调度和持久理解”。</li>
+</ul>
+<p>也就是说：</p>
+<ul>
+<li>AgentChat 是舞台表现；</li>
+<li>Core runtime 是后台机械装置。</li>
+</ul>
+<h2 id="2-routedagent为什么这个名字本身就暴露了框架的本质">2. <code>RoutedAgent</code>：为什么这个名字本身就暴露了框架的本质</h2>
+<p><code>autogen_core/_routed_agent.py</code> 这个文件名就已经说明很多问题了。[37]</p>
+<p>它不叫：</p>
+<ul>
+<li><code>chat_agent.py</code></li>
+<li><code>conversation_agent.py</code></li>
+<li><code>llm_agent.py</code></li>
+</ul>
+<p>而叫 <code>RoutedAgent</code>。</p>
+<p>这背后的工程判断很明确：<strong>Agent 的核心职责不是“会说话”，而是“能正确接收、处理、再发出消息”。</strong></p>
+<p>这让 AutoGen 从一开始就不像单纯 prompt framework，而更像一个：</p>
+<ul>
+<li>消息处理系统</li>
+<li>事件订阅系统</li>
+<li>分布式协作系统</li>
+</ul>
+<h2 id="3-message_handler为什么-handler-的签名和类型这么重要">3. <code>message_handler</code>：为什么 handler 的签名和类型这么重要</h2>
+<p>在 <code>_routed_agent.py</code> 里，<code>@message_handler</code> 要求的东西非常工程化：[37]</p>
+<ul>
+<li>必须是 async 方法；</li>
+<li>必须有 <code>self, message, ctx</code> 这类明确签名；</li>
+<li>message 类型要有 type hints；</li>
+<li>return 类型也要有 type hints；</li>
+<li>还可以通过 <code>match</code> 做二次路由。</li>
+</ul>
+<p>这说明三件事：</p>
+<ol>
+<li><strong>消息不是随便来一段字符串</strong>；</li>
+<li><strong>处理器不是自由 prompt，而是带协议的 handler</strong>；</li>
+<li><strong>路由不是全靠模型“理解场景”，而是能落到代码规则。</strong></li>
+</ol>
+<p>这正是 AutoGen 最被低估的地方：它看起来像聊天系统，底层却很强调协议性。</p>
+<h2 id="4-topic--subscription为什么它比谁回复谁更底层">4. topic / subscription：为什么它比“谁回复谁”更底层</h2>
+<p>在 docs/tutorial 以及测试/样例里，AutoGen 不断出现 topic、default subscription、publish message 这些词。[7][37]</p>
+<p>这说明协作不是靠“角色之间互相 @”实现的，而是靠：</p>
+<ul>
+<li>订阅某类消息；</li>
+<li>在某个 topic 上发布消息；</li>
+<li>由 runtime 负责把消息送到对应 agent/handler。</li>
+</ul>
+<p>换句话说，AutoGen 角色表面上像在聊天，实际上底层更像：</p>
+<ul>
+<li>message bus</li>
+<li>pub-sub system</li>
+<li>event router</li>
+</ul>
+<p>这和很多只会把上下文传来传去的“多 Agent demo”完全不是一个严肃程度。</p>
+<h2 id="5-agentchat为什么它对开发者如此有吸引力">5. AgentChat：为什么它对开发者如此有吸引力</h2>
+<p>虽然底层很工程化，但 AutoGen 没要求所有人一开始都面对 runtime internals。AgentChat 的价值就是：</p>
+<ul>
+<li>给你更直观的多角色体验；</li>
+<li>让你先看见协作；</li>
+<li>让你更容易实验 group chat、用户代理、专家代理、handoff message 等模式。[38]</li>
+</ul>
+<p>这也是它当年火起来的原因：</p>
+<ul>
+<li>不是所有人都先关心消息总线；</li>
+<li>大家先关心“能不能让几个角色合作”；</li>
+<li>AgentChat 恰好让这件事足够好理解。</li>
+</ul>
+<p>所以它的成功，很大程度上来自这层“降低协作心智门槛”的设计。</p>
+<h2 id="6-为什么它同时强大又危险">6. 为什么它同时强大又危险</h2>
+<h3 id="强大">强大</h3>
+<ul>
+<li>多角色模式很自然；</li>
+<li>更容易实验专家分工；</li>
+<li>更适合研究“协作是否比单体更强”；</li>
+<li>底层协议性又足够强，不只是 prompt 堆砌。</li>
+</ul>
+<h3 id="危险">危险</h3>
+<ul>
+<li>表层太像聊天，容易让人忘记底层其实是复杂 runtime；</li>
+<li>控制流容易从显式规则退化成会话习惯；</li>
+<li>角色一多，谁负责什么开始变得模糊；</li>
+<li>如果只用 AgentChat，不理解 Core runtime，系统演化时很容易失控。</li>
+</ul>
+<p>也就是说，AutoGen 最危险的地方不是它不够强，而是它太容易让人只看到“会聊”的那一面。</p>
+<h2 id="7-和-openai-agents-sdkcrewai-的差异">7. 和 OpenAI Agents SDK、CrewAI 的差异</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>协作表层像什么</th>
+<th>底层组织方式更像什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AutoGen</td>
+<td>多角色会话</td>
+<td>pub-sub / routed message system</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a></td>
+<td>triage + specialist</td>
+<td>runtime primitives + handoff ownership</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+<td>角色团队</td>
+<td>role/task/flow 业务组织系统</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：</p>
+<ul>
+<li>AutoGen 更像“让一组角色通过消息总线彼此协作”；</li>
+<li>OpenAI Agents SDK 更像“让一组 specialist 在 runtime 内受控接管”；</li>
+<li>CrewAI 更像“把组织结构直接翻译成 agent system”。</li>
+</ul>
+<h2 id="8-给开发者和架构师的真正启示">8. 给开发者和架构师的真正启示</h2>
+<p>如果你是开发者，AutoGen 给你的启示是：</p>
+<ul>
+<li>多 Agent 协作最好不要只停在 prompt 层；</li>
+<li>一旦上工程，就需要 message、handler、context、routing 这些协议概念。</li>
+</ul>
+<p>如果你是架构师，AutoGen 给你的启示是：</p>
+<ul>
+<li>会话只是表层；</li>
+<li>真正复杂的是消息语义与协作协议；</li>
+<li>如果这层不显式，系统很快就会变成“会跑但说不清怎么跑”。</li>
+</ul>
+<h2 id="9-动手活动为课程助教画一张会话层--协议层双层图">9. 动手活动：为课程助教画一张“会话层 + 协议层”双层图</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>autogen-two-layer-map.md</code></p>
+<p><strong>目标</strong>：别只画角色聊天图，而是同时画出底层消息协议层。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>表层画角色：研究员、撰写员、审查员、用户代理；</li>
+<li>底层画消息：问题消息、资料消息、审查消息、停止消息；</li>
+<li>标每类消息由谁订阅、谁发布；</li>
+<li>标哪些消息会触发工具、哪些消息会触发人工；</li>
+<li>写一句结论：为什么“看起来像聊天”并不代表本质是聊天。</li>
+</ol>
+<p><strong>完成标准</strong>：别人能从你的图里同时看懂“角色如何交流”和“系统如何路由消息”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：把 AgentChat 当 AutoGen 全部。</strong> 它只是更友好的入口；</li>
+<li><strong>误区二：有 handler 就天然可治理。</strong> 若消息语义和停止条件不清，系统照样混乱；</li>
+<li><strong>误区三：topic/subscription 只是实现细节。</strong> 它们其实定义了协作拓扑；</li>
+<li><strong>误区四：会话自然就代表架构自然。</strong> 自然不等于可恢复、可追责；</li>
+<li><strong>误区五：看到消息总线就以为它一定适合一切系统。</strong> 若主矛盾是显式状态与恢复，其他框架可能更合适。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AutoGen 的表层是什么</td>
+<td>多角色会话协作</td>
+</tr>
+<tr>
+<td>AutoGen 的骨架是什么</td>
+<td>RoutedAgent + message handler + pub-sub 协议</td>
+</tr>
+<tr>
+<td><code>message_handler</code> 的意义</td>
+<td>让协作从自然语言习惯变成带类型和规则的处理器系统</td>
+</tr>
+<tr>
+<td>topic/subscription 的意义</td>
+<td>定义谁接收什么消息、谁参与哪条协作链</td>
+</tr>
+<tr>
+<td>最大优点</td>
+<td>多 Agent 协作既直观又有底层协议支撑</td>
+</tr>
+<tr>
+<td>最大风险</td>
+<td>太容易只看到“会聊”，忽略底层复杂 runtime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个“表面上很像聊天团队”的系统，如果底层其实是复杂的消息路由和订阅网络，就必须比普通聊天机器人更认真地做协议设计？如果不做，会先坏在哪一层？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为这类系统真正依赖的不是模型能不能说，而是消息能否被正确理解、送达、处理和终止。若协议不清，最先坏掉的通常不是回答质量，而是协作语义：谁该接消息、何时停止、谁能触发副作用、哪些消息代表失败或转人工，都会变得模糊。表面上像聊天，底层却像分布式系统；不按分布式系统的纪律设计协议，迟早出问题。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[7] <a href="https://microsoft.github.io/autogen/stable">https://microsoft.github.io/autogen/stable</a> — AutoGen stable docs</li>
+<li>[37] <a href="https://github.com/microsoft/autogen/blob/main/python/packages/autogen-core/src/autogen_core/_routed_agent.py">https://github.com/microsoft/autogen/blob/main/python/packages/autogen-core/src/autogen_core/_routed_agent.py</a> — AutoGen routed agent source</li>
+<li>[38] <a href="https://github.com/microsoft/autogen/tree/main/python/packages/autogen-agentchat/src/autogen_agentchat">https://github.com/microsoft/autogen/tree/main/python/packages/autogen-agentchat/src/autogen_agentchat</a> — AutoGen AgentChat source tree</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/02/03/"><span>上一篇</span><strong>03.01.02.03 维护模式、迁移与遗留系统治理</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/02/05/"><span>下一篇</span><strong>03.01.02.05 Agent Worker、Services 与分布式运行时</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念agentchat-是表层体验core-runtime-才是骨架">1. 概念：AgentChat 是表层体验，Core runtime 才是骨架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-routedagent为什么这个名字本身就暴露了框架的本质">2. RoutedAgent：为什么这个名字本身就暴露了框架的本质</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-message_handler为什么-handler-的签名和类型这么重要">3. message_handler：为什么 handler 的签名和类型这么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-topic--subscription为什么它比谁回复谁更底层">4. topic / subscription：为什么它比“谁回复谁”更底层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-agentchat为什么它对开发者如此有吸引力">5. AgentChat：为什么它对开发者如此有吸引力</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-为什么它同时强大又危险">6. 为什么它同时强大又危险</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#强大">强大</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#危险">危险</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-和-openai-agents-sdkcrewai-的差异">7. 和 OpenAI Agents SDK、CrewAI 的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-给开发者和架构师的真正启示">8. 给开发者和架构师的真正启示</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动为课程助教画一张会话层--协议层双层图">9. 动手活动：为课程助教画一张“会话层 + 协议层”双层图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

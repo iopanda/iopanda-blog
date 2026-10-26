@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.07.05 风险评审与发布 · iopanda</title><meta name="description" content="01.07.05 风险评审与发布 · 模型 / 安全与治理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/07/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.07.05 风险评审与发布 · iopanda"><meta property="og:description" content="01.07.05 风险评审与发布 · 模型 / 安全与治理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/07/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="07" data-active-subsection data-active-article="/ai/01-models/07/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/07"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 安全与治理"></button><a class="tree-link tree-link--section" href="/ai/01-models/07/"><span class="tree-number">07</span><span class="tree-title">安全与治理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/07/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">风险评审与发布</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/07/">安全与治理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">风险评审与发布</span></nav><header class="ai-article-header"><p class="ai-number">01.07.05</p><h1>风险评审与发布</h1><p class="ai-meta"><time datetime="2026-09-03T01:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>risk-review</li><li>release</li></ul></header><div class="ai-prose"><h1 id="风险评审与发布">风险评审与发布</h1>
+<blockquote>
+<p>01~04 章把课程助教从「能力达标」一路护送到「受管状态」:数据治理(01)登记了每条数据流的来源、保留与删除,模型卡(02)写清了能做什么、不能做什么,提示注入与工具安全(03)给工具调用上了权限锁,护栏与人工复核(04)把输入、输出与高风险动作纳入四层防线。四份治理产物各自通过,但「每一关都有人守」不等于「整条防线没有缝」——上线前的最后一步,是把这些证据汇合起来做一次系统级裁定:课程助教现在可以见真实用户了吗?本章是 01.07 的收官,也是 01 Models 全链路的收官:理解发布评审(release review)与发布(release)的概念,把数据、模型、评测、护栏、监控、回滚六类证据压成一张评审清单,基于证据给出「上线 / 有条件上线 / 不上线」的决定,并安排发布后的监控与回滚演练——动手产出 release-review.md,把 01.06/07 评测报告的「能上线」,升级成治理上真正负责任的「可以放行」。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>区分发布评审与部署动作、评测报告,说明发布评审回答什么问题,为什么放行决定必须留痕;</li>
+<li>把 NIST AI RMF 的四个治理函数(GOV/MAP/MEASURE/MANAGE)对应到本单元各章,说出发布评审在治理循环中的位置;</li>
+<li>用七项评审清单(数据治理、模型卡、安全评测、工具权限、护栏、监控、回滚)逐项核对证据,并区分「文档说行」与「验证过行」;</li>
+<li>基于证据给出三态上线决定,有条件上线必须逐条列出条件、复核人与复查日期;</li>
+<li>说出发布后要监控的指标与触发回滚的证据,完成一次回滚演练并写入发布记录。</li>
+</ol>
+<h2 id="1-概念发布评审是系统检查发布是有依据的放行">1. 概念:发布评审是系统检查,发布是有依据的放行</h2>
+<ul>
+<li><strong>发布评审(release review)</strong>:上线前对「模型 + 数据 + API + 护栏 + 人」整套系统的检查。它不是再跑一遍评测,而是把散落在各章的治理产物(治理文档、模型卡、安全评测报告、护栏规则表、运维清单)汇总,逐项核对「这一关的承诺有没有兑现、有没有留下证据」。</li>
+<li><strong>发布(release)</strong>:把新版本交给真实用户的决定。它首先是治理动作而不是部署动作——部署只是执行「上线」这个决定;评审通过的标志是有负责人签名的放行记录,而不是 docker compose up 的输出(呼应 01.04/07)。</li>
+<li>与评测报告的分工:01.06/07 的评测报告裁定「能力行不行」,本章的发布评审裁定「系统整体可不可以见真实用户」。能力是必要条件而不是充分条件——能力全达标,但日志里满是未脱敏的学号,同样不能放行。</li>
+<li>NIST AI RMF 的精神:Manage 函数的第一个子项就是「确定 AI 系统是否达到预期目的、是否应继续开发或部署」——上线与否是一个明确的、可追溯的治理决定,而不是顺水推舟的默认动作。</li>
+<li>一个类比:机长起飞前对照放行单逐项打钩、签字,而不是「发动机听起来没问题,飞吧」。逐项打钩的意义不在钩本身,而在每一项背后都有可核查的证据。</li>
+</ul>
+<h2 id="2-为什么需要功能完成--可以上线">2. 为什么需要:功能完成 ≠ 可以上线</h2>
+<ul>
+<li>单点检查各有盲区,风险住在接缝里:01 章说「日志必须脱敏」,02 章说「禁止用途必须声明」,03 章说「工具必须最小权限」,04 章说「高风险动作必须人工确认」——每份文档在自己的范围里都对,但模型卡声称「禁止用于成绩判定」、护栏规则表里却没有对应拦截时,这份声明就只是纸面承诺;发布评审专门检查文档与文档之间的对不齐。</li>
+<li>评审把「单点通过」升级为「系统级判断」:PII 泄露、注入越权、不安全输出、服务不可用,任何一类单独发生都是事故;评审要回答的是「这些风险合起来,是否已降到可接受水平」,而不是「每一关是否各自及格」。</li>
+<li>上线是单向门:一旦面对真实用户,流量、日志、口碑都开始积累,修复要经历「发现 → 定位 → 修 → 重评 → 再发布」的完整回路;错误在评审时发现,代价是推迟几天,在线上被发现,代价是事故报告与信任损失。</li>
+<li>决定必须可问责:NIST AI RMF 的 GOV(治理)函数强调责任结构——谁有权放行、谁对后果负责,要写清楚并存档;两个月后有人问「当初为什么放行」,答案应是签名与证据,而不是「大家都觉得可以」。</li>
+<li>呼应 01.06/07:评测报告里「有条件上线」写下的每条条件,必须在本章评审中逐条核对关闭情况——上一阶段欠的债,不能带着上线。</li>
+</ul>
+<h2 id="3-位置发布评审是治理循环里的闸门不是终点">3. 位置:发布评审是治理循环里的闸门,不是终点</h2>
+<p>NIST AI RMF 把 AI 风险管理组织为 GOV / MAP / MEASURE / MANAGE 四个函数,强调它们构成连续循环、贯穿 AI 系统生命周期。把本单元各章放进去,发布评审的位置一目了然:</p>
+<table>
+<thead>
+<tr>
+<th>AI RMF 函数</th>
+<th>干的活</th>
+<th>本单元对应产物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOV 治理(贯穿各阶段)</td>
+<td>定规则、定责任人、留痕</td>
+<td>01 治理规则、02 模型卡、本章的放行签名</td>
+</tr>
+<tr>
+<td>MAP 映射(识别风险)</td>
+<td>摸清系统与数据、列出风险</td>
+<td>01 数据流登记与风险识别、01.06/05 错误分析</td>
+</tr>
+<tr>
+<td>MEASURE 度量(评估风险)</td>
+<td>用评测与测试量化风险</td>
+<td>01.06 全章评测、03 注入复现、04 拦截率与误伤率</td>
+</tr>
+<tr>
+<td>MANAGE 管理(处置风险)</td>
+<td>缓解、放行、监控、响应</td>
+<td>03 工具权限、04 护栏与人工复核、本章评审 + 监控 + 回滚</td>
+</tr>
+</tbody>
+</table>
+<p>三个要点:</p>
+<ul>
+<li><strong>发布评审是 MANAGE 里的一个闸门,不是治理的终点</strong>:放行之后「运营与监控」阶段随即开始,线上指标与事件会喂回 MAP/MEASURE,触发下一轮评测与再评审——「治理循环」的意思正是:评审一次 ≠ 管住一生;</li>
+<li><strong>GOV 贯穿始终</strong>:01 章的规则与本章的签名都是 GOV 的产物,没有治理在前,评审清单本身都无从定义;</li>
+<li>位置决定心态:本章不是「写最后一份文档交差」,而是把 01.06/07「能不能上线」的结论,升级为带责任人、带监控、带回滚的完整交付闭环。</li>
+</ul>
+<h2 id="4-评审清单七个检查项与证据来源">4. 评审清单:七个检查项与证据来源</h2>
+<p>发布评审的核心是一张清单——每一关「承诺了什么、证据在哪、谁核的」:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>检查项</th>
+<th>核对什么</th>
+<th>证据来自</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>数据治理与隐私</td>
+<td>数据流登记齐、PII 脱敏已落实、保留与删除流程可执行</td>
+<td>01 章 data-governance.md 与脱敏脚本</td>
+</tr>
+<tr>
+<td>2</td>
+<td>模型卡与文档</td>
+<td>预期用途、禁止用途、限制、评测摘要、维护者与版本齐备</td>
+<td>02 章 model-card.md</td>
+</tr>
+<tr>
+<td>3</td>
+<td>安全评测</td>
+<td>attack set 双比率达标、修复已回归、遗留风险已声明</td>
+<td>01.06/06 安全报告与 03 章重测</td>
+</tr>
+<tr>
+<td>4</td>
+<td>提示注入与工具权限</td>
+<td>最小权限、调用白名单、敏感操作确认已生效</td>
+<td>03 章 injection-report.md</td>
+</tr>
+<tr>
+<td>5</td>
+<td>护栏与人工复核</td>
+<td>四层护栏生效、升级路径有人接、审计日志在记</td>
+<td>04 章护栏规则表与审计样例</td>
+</tr>
+<tr>
+<td>6</td>
+<td>监控与告警</td>
+<td>指标基线、告警阈值、告警通道与值班人就绪</td>
+<td>01.04/06 压测基线、本章监控表</td>
+</tr>
+<tr>
+<td>7</td>
+<td>回滚与负责人</td>
+<td>回滚演练过、发布记录含版本指纹、放行人有签名</td>
+<td>01.04/07 发布演练、本章演练记录</td>
+</tr>
+</tbody>
+</table>
+<p>要点:</p>
+<ul>
+<li>每项必须<strong>链到可复现的证据</strong>,而不是一句「已完成」:勾第 1 项要能打开脱敏脚本与样例输出,勾第 5 项要能展示一条真实触发的审计日志;</li>
+<li><strong>安全是硬红线</strong>:沿用 01.06/07 的纪律——任何一条未缓解的「不安全」都是 blocker,不允许用「总体达标」稀释;第 3、4、5 项任一不过,结论直接降级;</li>
+<li>清单不是 01~04 章文档的复读机,而是验证:文档写了 ≠ 代码里生效,评审要抽查(跑一次脱敏、触发一次拦截)而不是通读一遍。</li>
+</ul>
+<h2 id="5-上线决定三态与依据">5. 上线决定:三态与依据</h2>
+<p>评审的产出必须是一个明确的决定,与 01.06/07 的三态一脉相承、覆盖面更广(不止能力,而是整个系统):</p>
+<table>
+<thead>
+<tr>
+<th>决定</th>
+<th>含义</th>
+<th>评审文档必须给出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上线</td>
+<td>七项全过、证据充分</td>
+<td>支持性证据清单、使用者须知、放行人签名</td>
+</tr>
+<tr>
+<td>有条件上线</td>
+<td>大体就绪但有明确缺口</td>
+<td>逐条列出条件:改什么、谁复核、何时复查、如何关闭</td>
+</tr>
+<tr>
+<td>不上线</td>
+<td>存在 blocker</td>
+<td>主要 blocker、下一轮改进方向、重新评审的触发条件</td>
+</tr>
+</tbody>
+</table>
+<p>以课程助教为例的决策演示(数字为示例,写文档时换成自己评审的真实结果):</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>示例评审结果</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据治理与隐私</td>
+<td>脱敏脚本抽查通过、保留期表齐</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>模型卡与文档</td>
+<td>八要素齐、禁止用途已声明并链到护栏规则</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>安全评测</td>
+<td>攻击样本不安全率 0(修复后回归)、误伤率 2%</td>
+<td>通过(误伤入调优 backlog)</td>
+</tr>
+<tr>
+<td>提示注入与工具权限</td>
+<td>注入复现全部被白名单与确认拦截</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>护栏与人工复核</td>
+<td>四层规则生效、升级通道有人接、审计在记</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>监控与告警</td>
+<td>延迟/错误率/拦截率已接告警;线上拦截率基线暂无</td>
+<td>部分通过</td>
+</tr>
+<tr>
+<td>回滚与负责人</td>
+<td>演练 3 分钟成功、版本指纹完整、放行人签名</td>
+<td>通过</td>
+</tr>
+</tbody>
+</table>
+<p>结论:<strong>有条件上线</strong>——唯一条件是「72 小时密切观察」:期间仅限课程内部试用并保持人工复核,每日复核护栏拦截与误伤日志,72 小时后由复核人按监控数据关闭条件、转为正式上线。注意这里的决策链:不是「四份文档都写好了所以上线」,而是「每项承诺都有可核查证据,唯一缺口(线上拦截率基线未知)有明确观察窗口与关闭动作」。若第 3 项仍是 12.5% 的不安全率,结论就应是不上线——与文档写得是否漂亮无关。</p>
+<h2 id="6-发布后监控上线是治理循环的下一圈">6. 发布后监控:上线是治理循环的下一圈</h2>
+<p>放行不是结束,而是把风险从「评审时点」移交到「持续运行」;NIST AI RMF 的 MANAGE 明确要求对已部署系统持续监控与改进:</p>
+<ul>
+<li><strong>盯什么指标</strong>:延迟(P95,对照 01.04/06 压测基线)、错误率(4xx/5xx 与超时)、护栏拦截率与误伤率(线上计数)、不安全输出举报数、成本(每千次调用金额)与用户反馈——质量指标与安全指标缺一不可;</li>
+<li><strong>漂移也要盯</strong>:真实问题分布与黄金集不同,正确率会悄悄下滑(数据漂移);system prompt 或资料库更新可能引入新失败(配置漂移);监控的意义正是发现「评测时并不存在的风险」;</li>
+<li><strong>告警分层</strong>:阈值告警(如错误率 &gt; 2%、P95 &gt; 2 秒)通知值班人;升级告警(持续 15 分钟未恢复)走人工复核通道;重大安全事件(泄露、越权)直接触发 01 章定义的泄露响应流程;</li>
+<li><strong>72 小时密切观察</strong>:放行后前三天每日人工复核拦截日志与误伤,之后转入常规周报;观察期内的问题记入 backlog,按严重度决定热修、回滚还是排期;</li>
+<li><strong>定期复审</strong>:每周看指标趋势,每月用更新的威胁情报(OWASP、MITRE ATLAS)补攻击集、重跑安全评测——把线上数据喂回 MAP/MEASURE,治理循环开始下一圈,直到下一次版本评审。</li>
+</ul>
+<h2 id="7-回滚演练出问题如何回到上一版">7. 回滚演练:出问题如何回到上一版</h2>
+<ul>
+<li>呼应 01.04/07 的纪律:一次发布 = 镜像 tag + 模型 ID + adapter hash + 配置版本,全部记入发布日志;回滚 = 停掉新容器、用上个已验证的 tag 重新启动——演示规模下是两条命令,前提是发布时把「版本指纹」记全,否则「回到上个好版本」无从谈起;</li>
+<li><strong>发布前先演练回滚</strong>:评审清单第 7 项的通过标准不是「文档里写了回滚步骤」,而是「刚按步骤演练过、计时、成功」;能回滚是上线的前提——没有验证过的逃生通道,任何上线都是豪赌;</li>
+<li>何时触发回滚由证据决定:健康检查持续失败、错误率或 P95 突破告警阈值、护栏拦截率异常飙升或误伤暴增、确认的安全事件——触发条件要写进监控表,而不是等值班人「感觉不对」;</li>
+<li>回滚 ≠ 修复:回滚只是把服务恢复到上个好版本,根因(数据、提示还是权重?)要单独排查;复盘记录与修复后的重新评审,才是治理循环的完整闭环。</li>
+</ul>
+<h2 id="8-动手活动对课程助教执行完整发布评审">8. 动手活动:对课程助教执行完整发布评审</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:执行发布评审,产出 release-review.md</p>
+<p><strong>目标</strong>:在服务或评测目录下产出 <code>release-review.md</code>,给出明确的三态决定、监控指标表与回滚演练记录。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>收集证据:01 章 data-governance.md、02 章 model-card.md、03 章 injection-report.md、04 章护栏规则表与审计样例、01.06/07 eval-report.md,以及 01.04/07 的发布记录;</li>
+<li>按第 4 节七项清单逐项核对:每项标注「通过 / 缺口 / 证据路径」,缺口写明严重度与修复方向;</li>
+<li>抽查验证:跑一次脱敏脚本、触发一次护栏拦截、打开审计日志确认记录在案——拒绝「文档说行」;</li>
+<li>演练回滚:按 01.04/07 的命令把服务切回上一版本再切回,记录耗时与结果;</li>
+<li>写下三态决定与理由;若有条件上线,逐条列出条件、复核人与复查日期,并写清条件如何关闭;</li>
+<li>建立监控指标表:指标 / 基线 / 告警阈值 / 告警动作 / 负责人,附 72 小时密切观察计划。</li>
+</ol>
+<p><strong>完成标准</strong>:一个没参与过治理流程的人,只读 release-review.md 就能回答「为什么放行、残余风险是什么、出事先看哪个指标、找谁、怎么回滚」——这份文档就是课程助教上线当天的值班手册。</p>
+</div>
+<h2 id="9-边界与排错">9. 边界与排错</h2>
+<ul>
+<li><strong>评审沦为盖章仪式</strong>:每项都勾「通过」却链不出证据,清单就只是自我安慰;每个勾选必须能点击到可复现产物;</li>
+<li><strong>只读文档不验证</strong>:治理文档写「已脱敏」、代码里没跑脱敏,是评审最该抓的错位——第 3 步的抽查不是可选项;</li>
+<li><strong>只评审「上线那一刻」</strong>:没有监控表与回滚演练的评审,等于默认「上线后一定没事」;本章评审缺了第 6、7 项就不完整;</li>
+<li><strong>「有条件上线」的条件无人关闭</strong>:条件要与复核人、复查日期一起写死,到期未复核就等于悄悄变成无条件上线——这正是 01.06/07 里说的「别让有条件变成悄悄上线」;</li>
+<li><strong>没有独立视角</strong>:写代码的人评审自己的代码天然乐观;请导师或协作者扮演审计者复核清单与决定,至少完成一次交叉检查;</li>
+<li><strong>签名缺位</strong>:没有放行人签名的评审无法问责;决定、日期、签名是 release-review.md 的必填字段。</li>
+</ul>
+<h2 id="10-总结">10. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发布评审是什么</td>
+<td>上线前对模型、数据、API、护栏、人整套系统的检查,产出有依据的上线决定</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>功能完成 ≠ 可以上线;风险住在治理文档的接缝里,需要系统级裁定与问责</td>
+</tr>
+<tr>
+<td>在治理循环中的位置</td>
+<td>MANAGE 里的闸门:吃进 GOV/MAP/MEASURE 的产物,放行后由监控与回滚开启下一圈</td>
+</tr>
+<tr>
+<td>七项清单</td>
+<td>数据治理、模型卡、安全评测、工具权限、护栏、监控、回滚——每项链到证据并抽查验证</td>
+</tr>
+<tr>
+<td>三态决定</td>
+<td>上线 / 有条件上线(逐条列条件与复核)/ 不上线(列 blocker)</td>
+</tr>
+<tr>
+<td>发布后监控</td>
+<td>延迟、错误率、拦截率、反馈、成本;72 小时密切观察;定期复审重开循环</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>版本指纹记全、发布前演练、证据触发、回滚后仍要根因复盘</td>
+</tr>
+<tr>
+<td>动手产物</td>
+<td>release-review.md:清单勾选 + 抽查记录 + 三态决定 + 监控表 + 回滚演练</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:七项清单全部通过,但示例中 2% 的护栏误伤率没有任何缓解措施——这个「上线」决定站得住吗?发布后监控发现错误率没涨,但「查成绩」类请求的拦截率从 0.1% 涨到 8%,值班人应该先做什么?如果你只有时间做一件发布前准备(演练回滚 / 写监控表 / 交叉复核),选哪件,为什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>站不住或至少不完整:2% 误伤意味着约 2% 的正常请求被护栏拦下,直接伤害用户体验,没有缓解措施就不满足「每个残余风险都有处理」的评审纪律;正确做法是把它列为上线条件——调优降低误伤、指定复核人、约定复查日期(如观察期结束日),误伤率回到基线才能转正。拦截率从 0.1% 涨到 8% 是典型的「护栏行为漂移」信号:可能是新资料或提示更新让护栏把正常提问误判成攻击(误伤暴涨),也可能真有学生开始批量试探越权;值班人应先看被拦样本的原始日志区分两种情况——多数是正常提问就优先调规则,确有越权试探则确认是否已成功并升级处理。只选一件时选演练回滚:监控表写得再全,系统挂了也要先恢复服务;回滚是唯一能让「上线」这个决定可撤销的动作,而可撤销正是承担发布风险的前提——这也是本章把回滚放进七项清单的原因。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF:AI 风险管理框架 1.0</a></li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook">NIST AI RMF Playbook(治理实践、示例指标与模板)</a></li>
+<li><a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence">NIST AI 600-1:面向生成式 AI 的 AI RMF 配置文件</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/07/04/"><span>上一篇</span><strong>01.07.04 护栏与人工复核</strong></a><a class="ai-pager-next" href="/ai/02-agents/01/01/"><span>下一篇</span><strong>02.01.01 引言：当模型开始动手</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念发布评审是系统检查发布是有依据的放行">1. 概念:发布评审是系统检查,发布是有依据的放行</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要功能完成--可以上线">2. 为什么需要:功能完成 ≠ 可以上线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-位置发布评审是治理循环里的闸门不是终点">3. 位置:发布评审是治理循环里的闸门,不是终点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-评审清单七个检查项与证据来源">4. 评审清单:七个检查项与证据来源</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-上线决定三态与依据">5. 上线决定:三态与依据</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-发布后监控上线是治理循环的下一圈">6. 发布后监控:上线是治理循环的下一圈</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-回滚演练出问题如何回到上一版">7. 回滚演练:出问题如何回到上一版</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动对课程助教执行完整发布评审">8. 动手活动:对课程助教执行完整发布评审</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-边界与排错">9. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-总结">10. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.03.01 微调策略与基线 · iopanda</title><meta name="description" content="01.03.01 微调策略与基线 · 模型 / 微调与对齐，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/03/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.03.01 微调策略与基线 · iopanda"><meta property="og:description" content="01.03.01 微调策略与基线 · 模型 / 微调与对齐，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/03/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="03" data-active-subsection data-active-article="/ai/01-models/03/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 微调与对齐"></button><a class="tree-link tree-link--section" href="/ai/01-models/03/"><span class="tree-number">03</span><span class="tree-title">微调与对齐</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/03/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">微调策略与基线</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/03/">微调与对齐</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">微调策略与基线</span></nav><header class="ai-article-header"><p class="ai-number">01.03.01</p><h1>微调策略与基线</h1><p class="ai-meta"><time datetime="2026-09-02T21:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-fine-tuning</li><li>baseline</li></ul></header><div class="ai-prose"><blockquote>
+<p>本章是 01.03 Fine-tuning and Alignment 的开篇。先想清楚三件事再动手指令微调:<strong>什么是微调、什么时候该微调(而不是用 RAG 或提示词)、为什么必须先建立基线</strong>。读完你会带着一份「可比较的对照组」进入后续 7 章,而不是盲目训练。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出微调、RAG、提示词三条路线的取舍,判断何时该微调;</li>
+<li>区分基座模型与指令模型,解释「微调改变了什么」;</li>
+<li>选择合适开源基座并在本地运行推理;</li>
+<li>定义任务、成功条件并建立可复现的基线记录;</li>
+<li>判断「何时不应微调」。</li>
+</ol>
+<h2 id="1-概念微调是什么">1. 概念:微调是什么</h2>
+<ul>
+<li><strong>微调(Fine-tuning)</strong>:在预训练模型的基础上继续训练,让模型参数稍微改变,使某类输入更倾向产生某种输出。它<strong>不是</strong>把新教材“塞进”模型,也<strong>不是</strong>检索资料,而是用大量「输入 → 期望输出」示例调整模型的输出倾向。</li>
+<li>举例:反复给「数据库课程问题 → 三点式、准确、简洁的答案」,模型会更稳定地模仿这种回答习惯——但它仍可能编造事实,也不会自动拥有实时信息。</li>
+<li>为什么叫「微」调?因为绝大多数知识在预训练(01.02)已经学完;微调只是把「通用通才」塑造成「某个领域的听话助手」。</li>
+</ul>
+<h3 id="11-基座模型-vs-指令模型">1.1 基座模型 vs 指令模型</h3>
+<ul>
+<li>语言模型可以理解为一个巨大的「下一词猜测器」:读到「主键不能」后,根据训练中见过的大量文字给每个可能的下一个 token 打分,连续重复就形成一句回答。</li>
+<li><strong>基础模型(Base Model)</strong>:在通用文本上训练出的通才——能续写,但不一定“听话”。</li>
+<li><strong>指令模型(Instruct Model)</strong>:在通才基础上学习了「听从用户问题、以对话格式回答」的版本(如 Qwen2.5-Instruct)。</li>
+<li><strong>微调</strong>做的正是在这两者之间的再塑形:让某个领域的输入稳定产出期望输出。</li>
+</ul>
+<h2 id="2-为什么需要微调三条路线的取舍">2. 为什么需要微调:三条路线的取舍</h2>
+<p>拿到一个任务,先别急着训练。有三条路线,各自解决不同问题:</p>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>做什么</th>
+<th>适合场景</th>
+<th>代价/局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>提示词(Prompt)</strong></td>
+<td>在输入里写清要求与少量示例</td>
+<td>任务数量少、规则可描述</td>
+<td>长 prompt 占上下文、能力有限</td>
+</tr>
+<tr>
+<td><strong>RAG(检索增强)</strong></td>
+<td>从外部库检索资料拼进上下文</td>
+<td>知识频繁变化、需引用原文</td>
+<td>检索质量决定上限,有延迟</td>
+</tr>
+<tr>
+<td><strong>微调(Fine-tuning)</strong></td>
+<td>用示例改变模型参数</td>
+<td>行为/格式/术语风格需稳定变化</td>
+<td>需高质量数据,有成本</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>微调适合</strong>:行为、格式、术语风格需要<strong>稳定变化</strong>,且有<strong>高质量示例</strong>的问题。例如“课程助教用三点式回答”。</li>
+<li><strong>不适合</strong>:知识频繁变化(应 RAG)、必须逐条引用原文(应 RAG)、提示词已能满足且数量很少(不必训练)。</li>
+<li><strong>一句话决策</strong>:微调改变“怎么答”,RAG 提供“答什么”,提示词规定“这一问怎么答”。工程上常组合使用。</li>
+</ul>
+<h2 id="3-项目范围做什么不做什么">3. 项目范围:做什么,不做什么</h2>
+<ul>
+<li>本系列项目:把 <code>Qwen/Qwen2.5-0.5B-Instruct</code> 适配成「课程助教」——根据给定课程资料回答问题,答不出来时明确说不知道。</li>
+<li>它是<strong>练习模型</strong>,不可用于高风险决策。</li>
+<li>动手前先在 Hugging Face 模型页查看:许可证、语言支持、显存要求、使用限制。<strong>模型能下载不表示可任意商用或再发布</strong>(呼应 01.02 第 2 章的数据许可纪律)。</li>
+</ul>
+<h2 id="4-为什么必须先建立基线">4. 为什么必须先建立基线</h2>
+<ul>
+<li>若没有「改前成绩」,你无法判断微调是否真的有用。模型微调后回答变长、语气更自信,<strong>不代表更正确</strong>——它可能只是记住了训练问题。</li>
+<li><strong>基线要求</strong>:固定问题、固定 system prompt、固定生成参数(如 <code>do_sample=False</code>),这样唯一变量才是模型本身。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70"> A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">冻结的评测问题</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">原模型基线</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">审核过的训练示例</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">微调 adapter</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> D </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">同一评测问题</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> F</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">逐条比较</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> E </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> F</span></span>
+<span class="line"><span style="color:#FFAB70"> F </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> G</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">保留</span><span style="color:#E1E4E8">、</span><span style="color:#9ECBFF">改数据或放弃</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<ul>
+<li>这份对照,是后续每一章(数据、SFT、LoRA、DPO)证明自己价值的<strong>标尺</strong>。</li>
+</ul>
+<h2 id="5-动手建立项目与运行基线">5. 动手:建立项目与运行基线</h2>
+<p>在上一阶段的 <code>minigpt-course</code> 根目录执行(仍需激活 <code>.venv</code>):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> finetune/{data,configs,src,runs,reports,eval}</span></span>
+<span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> "transformers&gt;=4.45"</span><span style="color:#9ECBFF"> datasets</span><span style="color:#9ECBFF"> accelerate</span><span style="color:#9ECBFF"> peft</span><span style="color:#9ECBFF"> trl</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>Windows PowerShell 用 <code>mkdir finetune/data, finetune/configs, finetune/src, finetune/runs, finetune/reports, finetune/eval</code>。创建 <code>finetune/src/baseline.py</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> pipeline</span></span>
+<span class="line"><span style="color:#E1E4E8">model_id </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Qwen/Qwen2.5-0.5B-Instruct"</span></span>
+<span class="line"><span style="color:#E1E4E8">pipe </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pipeline(</span><span style="color:#9ECBFF">"text-generation"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">model</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">model_id, </span><span style="color:#FFAB70">device_map</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">messages </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [{</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"你是课程助教。没有依据时说不知道。"</span><span style="color:#E1E4E8">}, {</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"什么是主键？"</span><span style="color:#E1E4E8">}]</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(pipe(messages, </span><span style="color:#FFAB70">max_new_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">160</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">do_sample</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">)[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"generated_text"</span><span style="color:#E1E4E8">][</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">])</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行 <code>python -m finetune.src.baseline</code>。首次会下载模型;若内存不足,改用更小模型或云端 GPU,<strong>不要</strong>通过删除错误信息假装成功。将完整问题、模型 ID、生成参数、原始回答写进 <code>finetune/reports/baseline.md</code>。</p>
+<h3 id="51-排错速查">5.1 排错速查</h3>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>401/403</code></td>
+<td>阅读模型页访问要求并登录 HF</td>
+<td>需先获得访问授权</td>
+</tr>
+<tr>
+<td><code>CUDA out of memory</code></td>
+<td>用较短输入或更小模型</td>
+<td>显存不足;后续章节用 LoRA/QLoRA</td>
+</tr>
+<tr>
+<td>输出 <code>cpu</code></td>
+<td>可继续,训练更慢</td>
+<td>正常设备选择</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-动手活动固定基线">6. 动手活动:固定基线</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:固定基线</p>
+<p><strong>目标</strong>:完成 <code>baseline.md</code>,建立后续所有微调实验的对照组。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>写 10 条真实课程问题,至少含 2 条资料未覆盖的问题;</li>
+<li>用完全相同 system prompt 和 <code>do_sample=False</code> 运行;</li>
+<li>逐条标记:正确 / 错误 / 无依据 / 格式不符。</li>
+</ol>
+<p><strong>完成标准</strong>:报告保留全部输入输出,并写出微调要改善的一个可测目标,例如「10 条中至少 8 条按三点结构回答」。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键判断</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微调是什么</td>
+<td>用示例小幅改变参数,让某类输入稳定产出期望输出</td>
+</tr>
+<tr>
+<td>什么时候该微调</td>
+<td>行为/格式/风格需稳定变化且有高质量示例</td>
+</tr>
+<tr>
+<td>什么时候不微调</td>
+<td>知识频繁(用 RAG)、提示词已够(不训)</td>
+</tr>
+<tr>
+<td>基线为什么重要</td>
+<td>没有改前成绩,无法证明训练有效</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「微调后回答更自信」不能作为成功证据?基线记录为什么必须包含生成参数?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>更自信可能只是模仿了训练数据的语气,不代表事实正确;没有固定生成参数,输出差异可能来自采样随机性而非模型变化。基线用 <code>do_sample=False</code> 就是为了排除随机性,让唯一变量是模型本身。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/main/en/training">Transformers 训练文档</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct">Qwen2.5-0.5B-Instruct 模型卡</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/02/10/"><span>上一篇</span><strong>01.02.10 实验追踪与可复现性</strong></a><a class="ai-pager-next" href="/ai/01-models/03/02/"><span>下一篇</span><strong>01.03.02 指令数据集设计</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念微调是什么">1. 概念:微调是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-基座模型-vs-指令模型">1.1 基座模型 vs 指令模型</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要微调三条路线的取舍">2. 为什么需要微调:三条路线的取舍</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-项目范围做什么不做什么">3. 项目范围:做什么,不做什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-为什么必须先建立基线">4. 为什么必须先建立基线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手建立项目与运行基线">5. 动手:建立项目与运行基线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-排错速查">5.1 排错速查</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动固定基线">6. 动手活动:固定基线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

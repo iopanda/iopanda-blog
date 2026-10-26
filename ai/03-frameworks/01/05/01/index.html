@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.05.01 PydanticAI 概览 · iopanda</title><meta name="description" content="03.01.05.01 PydanticAI 概览 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/05/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.05.01 PydanticAI 概览 · iopanda"><meta property="og:description" content="03.01.05.01 PydanticAI 概览 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/05/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="05" data-active-article="/ai/03-frameworks/01/05/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 PydanticAI"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/05/"><span class="tree-number">05</span><span class="tree-title">PydanticAI</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/05/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">PydanticAI 概览</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/05/">PydanticAI</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">PydanticAI 概览</span></nav><header class="ai-article-header"><p class="ai-number">03.01.05.01</p><h1>PydanticAI 概览</h1><p class="ai-meta"><time datetime="2026-09-03T13:40">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>pydantic-ai</li></ul></header><div class="ai-prose"><h1 id="pydanticai-概览">PydanticAI 概览</h1>
+<blockquote>
+<p>很多 Agent 框架最先解决的是“怎么跑起来”，而 PydanticAI 想优先解决另一件事：<strong>跑起来以后，怎么像一个正经 Python 后端系统那样维护下去。</strong> 它把自己定义为 the Python AI SDK：typed、extensible，agent loop 可以通过 capabilities 组合，模型可字符串级替换，同一个 Agent 可运行在 web、CLI、voice、durable background queue 等不同界面里。[5][19] 更进一步，它并不把 graph、multi-agent、durable execution、structured output、usage limits 当作框架外的附属物，而是把它们逐步纳入同一个工程词汇表。[20][21][22][23] 如果说 <a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a> 的强项是现代运行时原语，PydanticAI 的强项就是：<strong>把这些原语放进 Python 工程纪律里，尽量让 IDE、类型系统、校验器和运行时站到同一边。</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释 PydanticAI 为什么把类型、依赖和输出契约视为一等公民；</li>
+<li>说出 Agent、output_type、deps_type、capabilities、graph、durable execution 在框架中的位置；</li>
+<li>理解它为什么对 Python 后端团队特别友好，而不只是“另一个 Agent SDK”；</li>
+<li>区分它与 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>、<a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a>、<a href="/ai/03-frameworks/01/03/01/">CrewAI</a> 的差别；</li>
+<li>为一个开发者向课程助教 Agent 写出 PydanticAI 风格的工程边界设计。</li>
+</ol>
+<h2 id="1-概念pydanticai-的中心不是agent-会不会思考而是代码有没有契约">1. 概念：PydanticAI 的中心不是“Agent 会不会思考”，而是“代码有没有契约”</h2>
+<p>PydanticAI 官方对 Agent 的描述非常清楚：Agent 是它与 LLM 交互的主接口，概念上是一个容器，里面装着 instructions、function tools / toolsets、structured output type、dependency type constraint、LLM model、model settings 和 capabilities。[20]</p>
+<p>这一定义和很多框架比，最大的差异在于：</p>
+<ul>
+<li>它一上来就谈 <strong>output type</strong>；</li>
+<li>它一上来就谈 <strong>dependencies</strong>；</li>
+<li>它一上来就谈 <strong>capabilities composition</strong>。</li>
+</ul>
+<p>这意味着在 PydanticAI 的世界里，Agent 不是“能调模型的对象”，而是：</p>
+<ul>
+<li>有输入依赖约束；</li>
+<li>有输出契约；</li>
+<li>有能力组合边界；</li>
+<li>能被 IDE、类型检查器、运行时校验共同约束的工程对象。</li>
+</ul>
+<p>这和 Pydantic 生态的气质是一脉相承的：<strong>先把数据结构和契约钉住，再谈业务逻辑。</strong></p>
+<h2 id="2-为什么这种路线重要agent-最大的问题常常不是智力而是不可维护">2. 为什么这种路线重要：Agent 最大的问题常常不是智力，而是不可维护</h2>
+<p>很多 Agent 原型在 demo 阶段看起来工作正常，但一旦进入真实工程，会立即暴露三类问题：</p>
+<ol>
+<li><strong>输出不稳定</strong>：下游代码以为会拿到 JSON，实际拿到半段散文；</li>
+<li><strong>依赖混乱</strong>：数据库连接、HTTP client、鉴权信息、缓存对象通过闭包和全局变量四处漂；</li>
+<li><strong>能力拼装不可控</strong>：一旦加工具、加记忆、加 tracing、加 cost limit、加多 Agent，系统变成胶水堆。</li>
+</ol>
+<p>PydanticAI 的回答不是“写更强的 prompt”，而是把这些问题上升为框架级契约：</p>
+<ul>
+<li>output_type 让结果必须经过验证；</li>
+<li>deps_type 让运行依赖显式化；</li>
+<li>capabilities 让能力组合从“散装钩子”变成可重用单元；</li>
+<li>usage limits、graph、durability 则把成本、控制流和恢复继续纳入统一语言。</li>
+</ul>
+<p>所以它吸引的不是“只想试试玩 Agent 的人”，而是<strong>已经感受到维护成本的人</strong>。</p>
+<h2 id="3-agent为什么它像-ai-版-fastapi而不像一个-prompt-helper">3. Agent：为什么它像 AI 版 FastAPI，而不像一个 prompt helper</h2>
+<p>官方文档直接用一个很好的比喻：Agents are designed for reuse, like FastAPI Apps。[20] 这个比喻非常到位。</p>
+<p>它暗示了三层含义：</p>
+<ol>
+<li>Agent 应该是可复用的应用组件，而不是一次性脚本；</li>
+<li>你可以像复用路由器一样复用 Agent；</li>
+<li>真正重要的是接口和依赖约束，而不只是生成文本本身。</li>
+</ol>
+<p>从开发者角度，这种心智模型会带来非常实际的好处：</p>
+<ul>
+<li>Agent 更容易纳入现有 Python 服务架构；</li>
+<li>测试时更容易 mock 依赖；</li>
+<li>输出结构更容易被下游消费；</li>
+<li>IDE、类型提示、代码审查都会变得更有抓手。</li>
+</ul>
+<p>这就是为什么很多 Python 后端团队会对 PydanticAI 有天然亲和力：它让 Agent 像自己熟悉的工程组件，而不是一块难以驯服的“神秘 LLM 黑盒”。</p>
+<h2 id="4-capabilities为什么它把能力而不是插件做成组合单元">4. Capabilities：为什么它把“能力”而不是“插件”做成组合单元</h2>
+<p>PydanticAI 文档把 capabilities 定义为可重用的 bundles：可以把 tools、hooks、instructions、model settings 等相关行为打包、组合、共享。[19][20]</p>
+<p>这比常见的插件思路更进一步，因为它解决的不是“多一个工具”，而是“多一个能力域”。</p>
+<p>比如一个“Coder”能力，不只是增加几个 shell 工具，而是连带：</p>
+<ul>
+<li>文件系统访问；</li>
+<li>shell 执行；</li>
+<li>repo context；</li>
+<li>planning；</li>
+<li>sub-agents；</li>
+<li>context management。</li>
+</ul>
+<p>这很重要，因为真实 Agent 的复杂度从来不是线性加法。你以为自己只是加了一个工具，实际上同时引入了：权限、输出限制、上下文管理、观测、预算、重试等一整串问题。capabilities 的价值就在于：<strong>把这串问题作为一个整体去封装。</strong></p>
+<p>与同类相比：</p>
+<ul>
+<li><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a> 也有丰富原语，但更强调统一运行时概念；</li>
+<li>PydanticAI 则更强调能力组合与类型契约在 Python 代码里的可维护性。</li>
+</ul>
+<h2 id="5-graph为什么它明明不是图框架却仍然提供-graph">5. Graph：为什么它明明不是图框架，却仍然提供 graph</h2>
+<p>PydanticAI 文档对 graph 的态度非常有趣，甚至有点“反营销”：它明确提醒你，别为了看起来酷就上 graph；graph 是更重的工具，不是默认答案。[21]</p>
+<p>这段态度本身就说明了框架的工程品味：</p>
+<ul>
+<li>graph 很强；</li>
+<li>但 graph 也更重；</li>
+<li>先确认自己真的有复杂控制流问题，再上 graph。</li>
+</ul>
+<p>这和 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a> 正好形成鲜明对照：</p>
+<ul>
+<li>LangGraph 从一开始就把 graph 当主舞台；</li>
+<li>PydanticAI 把 graph 当高级控制工具，而不是默认入口。</li>
+</ul>
+<p>所以两者并不冲突，而是服务于不同类型的团队心智：</p>
+<ul>
+<li>如果你首先是“我要一张显式状态图”，LangGraph 更直接；</li>
+<li>如果你首先是“我要一个类型安全的 Agent 应用”，PydanticAI 更自然，graph 只是你后面可能升级的工具。</li>
+</ul>
+<h2 id="6-durable-execution为什么它把-temporaldbosprefectrestate-都纳进来了">6. Durable execution：为什么它把 Temporal、DBOS、Prefect、Restate 都纳进来了</h2>
+<p>PydanticAI 的 durable execution 文档明确写道：它支持构建 durable agents，以跨 transient failures、应用重启、长时异步流程和 human-in-the-loop 工作流，并正式支持 Temporal、DBOS、Prefect、Restate 等解决方案。[22]</p>
+<p>这件事的含义很大：</p>
+<ul>
+<li>它承认 Agent 系统最终会进入工作流与可靠性世界；</li>
+<li>它不把 durability 当成某个供应商绑定能力，而是作为可插拔后端能力；</li>
+<li>它让开发者能在自己熟悉的 Python 工程接口下，逐步接入生产级持久执行系统。</li>
+</ul>
+<p>对架构师来说，这意味着 PydanticAI 并不是“玩具型 typed SDK”。它是有明确向生产流程编排靠拢路径的。</p>
+<h2 id="7-multi-agent它不是不支持多-agent而是不把多-agent-当第一入口">7. Multi-agent：它不是不支持多 Agent，而是不把多 Agent 当第一入口</h2>
+<p>PydanticAI 文档把多 Agent 应用的复杂度分成五个层级：</p>
+<ol>
+<li>单 Agent workflows；</li>
+<li>Agent delegation；</li>
+<li>Programmatic hand-off；</li>
+<li>Graph-based control flow；</li>
+<li>Deep Agents。[23]</li>
+</ol>
+<p>这个分层非常值得记住，因为它体现了 PydanticAI 的整体哲学：<strong>复杂度应该渐进升级，而不是一开始就堆到最高档。</strong></p>
+<p>与 <a href="/ai/03-frameworks/01/02/01/">AutoGen</a> 那种天然从多 Agent 出发的框架不同，PydanticAI 更像在说：</p>
+<ul>
+<li>先把单 Agent 工程做好；</li>
+<li>再引入 delegation；</li>
+<li>再考虑 hand-off；</li>
+<li>实在需要，再上 graph；</li>
+<li>更复杂时，才走到 deep agents。</li>
+</ul>
+<p>这很符合多数后端团队的现实：<strong>先解决工程稳定性，再放大协作复杂度。</strong></p>
+<h2 id="8-与同类产品相比它的独特位置在哪里">8. 与同类产品相比，它的独特位置在哪里</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>设计中心</th>
+<th>更像什么</th>
+<th>最吸引谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PydanticAI</td>
+<td>类型、输出契约、依赖、能力组合</td>
+<td>AI 版 FastAPI / typed runtime</td>
+<td>Python 后端团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a></td>
+<td>现代 Agent 原语统一运行时</td>
+<td>battery-included SDK</td>
+<td>产品型 Agent 团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/01/01/">LangGraph</a></td>
+<td>图、状态、恢复</td>
+<td>编排运行时</td>
+<td>控制流复杂的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+<td>角色团队与流程</td>
+<td>业务自动化框架</td>
+<td>组织协作明确的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/02/01/">AutoGen</a></td>
+<td>多 Agent 对话与消息协作</td>
+<td>协作范式先驱</td>
+<td>研究/迁移视角的团队</td>
+</tr>
+</tbody>
+</table>
+<p>一句话概括：PydanticAI 不是最强调“Agent 像人”，而是最强调“Agent 像系统组件”。</p>
+<h2 id="9-动手活动给课程助教-agent-写一张-typed-contract-设计卡">9. 动手活动：给课程助教 Agent 写一张 typed contract 设计卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>pydanticai-design.md</code></p>
+<p><strong>目标</strong>：不用急着写代码，先把课程助教 Agent 的类型边界、依赖边界和能力边界写清楚。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>定义输出契约：普通问答返回 <code>AnswerResult</code>，成绩查询返回 <code>ScoreResult</code>，风险请求返回 <code>EscalationResult</code>；</li>
+<li>定义依赖：数据库 client、检索 client、审计 logger、当前用户身份；</li>
+<li>定义能力组合：
+<ul>
+<li>基础问答能力</li>
+<li>检索能力</li>
+<li>安全审查能力</li>
+<li>tracing / usage limit 能力</li>
+</ul>
+</li>
+<li>判断是否需要 graph：若只有单轮问答 + 检索，不需要；若存在审批、重试、人工插入、长流程恢复，再考虑 graph；</li>
+<li>判断是否需要 durable execution：若流程可能跨异步队列、人工审核或长时任务，提前设计 durability 接口。</li>
+</ol>
+<p><strong>完成标准</strong>：你能让另一个后端工程师只看类型和依赖设计，就大致明白这个 Agent 能输入什么、输出什么、依赖什么、在哪些地方会被强约束。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：类型安全 = 业务安全。</strong> output_type 能保证结构，不自动保证语义正确；评测和护栏仍不可少；</li>
+<li><strong>误区二：什么都抽成 capability。</strong> 组合能力有价值，但抽象过度会让系统变得难追踪；</li>
+<li><strong>误区三：明明只是单 Agent，却过早上 graph。</strong> PydanticAI 官方自己都提醒 graph 是重工具，不要为了酷而用；</li>
+<li><strong>误区四：只看 Python 体验，不看运行时需求。</strong> 如果你的核心矛盾是超复杂状态图恢复，LangGraph 也许更贴切；</li>
+<li><strong>误区五：以为 typed output 就能替代人工复核。</strong> 结构化正确，不等于业务判断安全，尤其涉及隐私、授权和不可逆动作时仍要回到 <a href="/ai/01-models/07/03/">提示注入与工具安全</a>、<a href="/ai/01-models/07/04/">护栏与人工复核</a> 与 <a href="/ai/01-models/07/05/">风险评审与发布</a>。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PydanticAI 是什么</td>
+<td>面向 Python 工程化的 typed Agent SDK</td>
+</tr>
+<tr>
+<td>核心价值</td>
+<td>输出契约、依赖注入、能力组合、渐进复杂度升级</td>
+</tr>
+<tr>
+<td>为什么开发者喜欢它</td>
+<td>IDE、类型检查、测试和运行时代码更容易站在同一边</td>
+</tr>
+<tr>
+<td>graph 的位置</td>
+<td>是高级控制工具，不是默认入口</td>
+</tr>
+<tr>
+<td>durable execution 的位置</td>
+<td>把可靠性世界自然接入 Agent 世界</td>
+</tr>
+<tr>
+<td>最适合什么</td>
+<td>Python 后端团队、重工程纪律、重可维护性的 Agent 系统</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-本目录笔记导航">12. 本目录笔记导航</h2>
+<ol>
+<li><a href="/ai/03-frameworks/01/05/02/">01 类型系统、依赖注入与输出契约</a></li>
+<li><a href="/ai/03-frameworks/01/05/03/">02 Graph、Durable Execution 与工程化升级</a></li>
+<li><a href="/ai/03-frameworks/01/05/04/">03 Tools、Capabilities、Usage Limits 与取消语义</a></li>
+<li><a href="/ai/03-frameworks/01/05/05/">04 Realtime、Examples、Evals 与多 Agent 形态</a></li>
+<li><a href="/ai/03-frameworks/01/05/06/">05 课程助教 Agent 的 PydanticAI 架构案例</a></li>
+<li><a href="/ai/03-frameworks/01/05/07/">06 PydanticAI 与 LangGraph、CrewAI、OpenAI Agents SDK 的深度对比</a></li>
+</ol>
+<p><strong>思考题</strong>：如果你的团队最痛的不是“模型效果不够”，而是“下游常因输出不稳定而报错、依赖注入混乱、测试难写、成本难控”，你会更偏向 PydanticAI 还是更偏向以控制流为中心的框架？为什么？如果半年后流程复杂度陡增，需要人工插入和长时恢复，你的答案会怎么变？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>当主要痛点是输出契约、依赖边界、测试与成本控制时，PydanticAI 往往更贴近根因，因为这些正是它的一等抽象；你需要先把 Agent 从“胶水脚本”收敛成“可维护组件”。但如果半年后复杂控制流、人工插入、长时恢复变成新的首要矛盾，就要重新评估是否引入 graph 甚至外部 durable orchestration。框架不是信仰，而是阶段性复杂度管理工具：首要矛盾变了，最优框架也会变。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[5] <a href="https://github.com/pydantic/pydantic-ai">https://github.com/pydantic/pydantic-ai</a> — PydanticAI GitHub</li>
+<li>[19] <a href="https://pydantic.dev/docs/ai">https://pydantic.dev/docs/ai</a> — Pydantic AI docs</li>
+<li>[20] <a href="https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/agent.md">https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/agent.md</a> — Pydantic AI agent doc</li>
+<li>[21] <a href="https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/graph.md">https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/graph.md</a> — Pydantic AI graph doc</li>
+<li>[22] <a href="https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/durable_execution/overview.md">https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/durable_execution/overview.md</a> — Pydantic AI durable execution doc</li>
+<li>[23] <a href="https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md">https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md</a> — Pydantic AI multi-agent applications doc</li>
+<li>[4] <a href="https://github.com/openai/openai-agents-python">https://github.com/openai/openai-agents-python</a> — OpenAI Agents SDK GitHub</li>
+<li>[15] <a href="https://openai.github.io/openai-agents-python">https://openai.github.io/openai-agents-python</a> — OpenAI Agents SDK docs</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/04/07/"><span>上一篇</span><strong>03.01.04.07 OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/05/02/"><span>下一篇</span><strong>03.01.05.02 类型系统、依赖注入与输出契约</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念pydanticai-的中心不是agent-会不会思考而是代码有没有契约">1. 概念：PydanticAI 的中心不是“Agent 会不会思考”，而是“代码有没有契约”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这种路线重要agent-最大的问题常常不是智力而是不可维护">2. 为什么这种路线重要：Agent 最大的问题常常不是智力，而是不可维护</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-agent为什么它像-ai-版-fastapi而不像一个-prompt-helper">3. Agent：为什么它像 AI 版 FastAPI，而不像一个 prompt helper</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-capabilities为什么它把能力而不是插件做成组合单元">4. Capabilities：为什么它把“能力”而不是“插件”做成组合单元</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-graph为什么它明明不是图框架却仍然提供-graph">5. Graph：为什么它明明不是图框架，却仍然提供 graph</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-durable-execution为什么它把-temporaldbosprefectrestate-都纳进来了">6. Durable execution：为什么它把 Temporal、DBOS、Prefect、Restate 都纳进来了</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-multi-agent它不是不支持多-agent而是不把多-agent-当第一入口">7. Multi-agent：它不是不支持多 Agent，而是不把多 Agent 当第一入口</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-与同类产品相比它的独特位置在哪里">8. 与同类产品相比，它的独特位置在哪里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动给课程助教-agent-写一张-typed-contract-设计卡">9. 动手活动：给课程助教 Agent 写一张 typed contract 设计卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#12-本目录笔记导航">12. 本目录笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

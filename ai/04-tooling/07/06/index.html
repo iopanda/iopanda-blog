@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.07.06 本地模型与开发 概览 · iopanda</title><meta name="description" content="04.07.06 本地模型与开发 概览 · 工具链 / 本地模型与开发，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/07/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.07.06 本地模型与开发 概览 · iopanda"><meta property="og:description" content="04.07.06 本地模型与开发 概览 · 工具链 / 本地模型与开发，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/07/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="07" data-active-subsection data-active-article="/ai/04-tooling/07/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/07"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 本地模型与开发"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/07/"><span class="tree-number">07</span><span class="tree-title">本地模型与开发</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/07/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">本地模型与开发 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/07/">本地模型与开发</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">本地模型与开发 概览</span></nav><header class="ai-article-header"><p class="ai-number">04.07.06</p><h1>本地模型与开发 概览</h1><p class="ai-meta"><time datetime="2026-09-03T18:29">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>local-models-development</li></ul></header><div class="ai-prose"><h1 id="本地模型与开发-概览">本地模型与开发 概览</h1>
+<blockquote>
+<p><code>01.04 Inference and Deployment</code> 讲过推理服务怎么部署；<code>04.07</code> 则聚焦开发者更常碰到的另一面：<strong>当你需要在本地机器、实验环境、私有服务器甚至边缘设备上跑模型、调接口、验证 OpenAI 兼容性、压缩开发闭环时，应该认识哪些开源工具？</strong> 这一章不只看“能不能跑”，更看它们各自如何平衡开发体验、性能、硬件门槛与兼容层。</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分本地运行、轻量推理、统一兼容接口、高吞吐 serving、开发者体验几条路线；</li>
+<li>比较 Ollama、llama.cpp、LocalAI、vLLM、SGLang 的角色差异；</li>
+<li>理解“本地可跑”与“生产可扛”不是一回事；</li>
+<li>为课程助教 Agent 设计一条从本地调试到服务化部署的演进路径；</li>
+<li>知道什么时候应该优先追求开发闭环，什么时候必须优先吞吐与性能。</li>
+</ol>
+<h2 id="1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</h2>
+<ul>
+<li>如果每次调试都依赖远端商业 API，成本、延迟、隐私和可控性都会变成阻力；</li>
+<li>本地模型工具看似都在“跑模型”，但有的重开发体验，有的重极致轻量，有的重 OpenAI 兼容，有的重高吞吐 serving；</li>
+<li>学习这组工具的重点是看清它们分别服务于哪种阶段：个人开发、团队内测、私有化 PoC、正式服务；</li>
+<li>本章也帮助读者把 <code>01</code> 的推理知识，重新映射回日常开发工作流。</li>
+</ul>
+<h2 id="2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/04-tooling/07/01/01/">Ollama</a></td>
+<td>最强调本地开发者体验的模型运行工具</td>
+<td>model pull/run、simple local UX、OpenAI-compatible habits</td>
+<td>先要快速把模型跑起来的开发者</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/07/02/01/">llama.cpp</a></td>
+<td>轻量、高可移植、本地推理的基础设施经典</td>
+<td>C/C++ inference、GGUF、hardware reach</td>
+<td>需要极强可移植性和轻量化的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/07/03/01/">LocalAI</a></td>
+<td>统一本地多模型能力的自托管引擎</td>
+<td>OpenAI-compatible local engine、multi-modality</td>
+<td>想私有化统一模型接口的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/07/04/01/">vLLM</a></td>
+<td>高吞吐与内存效率优先的 serving 引擎</td>
+<td>throughput、serving、OpenAI-compatible server</td>
+<td>需要把模型服务正式托起来的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/07/05/01/">SGLang</a></td>
+<td>兼顾程序表达与高性能 serving 的路线</td>
+<td>serving + structured execution</td>
+<td>对性能与程序控制都敏感的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-这一模块建议怎么读">3. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/04-tooling/07/01/01/">01 Ollama</a> 与 <a href="/ai/04-tooling/07/02/01/">02 llama.cpp</a>：先建立本地运行的两种直觉——开发友好 vs 极致轻量；</li>
+<li>再看 <a href="/ai/04-tooling/07/03/01/">03 LocalAI</a>：理解自托管统一接口的私有化路线；</li>
+<li>然后看 <a href="/ai/04-tooling/07/04/01/">04 vLLM</a> 与 <a href="/ai/04-tooling/07/05/01/">05 SGLang</a>：理解什么时候开发环境要升级成正式 serving 层。</li>
+</ol>
+<h2 id="4-我建议本模块的内容结构">4. 我建议本模块的内容结构</h2>
+<p>这一模块可以复用你已经稳定下来的写法：</p>
+<ol>
+<li>本组总览 README；</li>
+<li>每个产品一个文件夹与 <code>README.md</code>；</li>
+<li>每个产品至少拆成 4~6 篇：
+<ul>
+<li>它为什么存在 / 解决什么首要复杂度；</li>
+<li>核心抽象、架构与部署形态；</li>
+<li>与同类产品相比的设计中心；</li>
+<li>在课程助教或企业内部知识系统中的落点；</li>
+<li>适用边界、排错与迁移成本；</li>
+</ul>
+</li>
+<li>最终再补一篇本组的选型矩阵：回答“为什么选 A，不选 B”。</li>
+</ol>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>local-to-serving-roadmap.md</td>
+<td>定义从本地调试到服务化的演进路径</td>
+<td>能解释每一阶段为什么换工具</td>
+</tr>
+<tr>
+<td>private-inference-stack-card.md</td>
+<td>为私有化课程助教设计本地/服务端推理栈</td>
+<td>兼顾硬件、兼容性、吞吐与维护成本</td>
+</tr>
+<tr>
+<td>dev-loop-acceleration-plan.md</td>
+<td>定义开发调试如何缩短闭环</td>
+<td>避免每次迭代都依赖高成本远端调用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/04-tooling/07/01/01/">01 Ollama</a></li>
+<li><a href="/ai/04-tooling/07/02/01/">02 llama.cpp</a></li>
+<li><a href="/ai/04-tooling/07/03/01/">03 LocalAI</a></li>
+<li><a href="/ai/04-tooling/07/04/01/">04 vLLM</a></li>
+<li><a href="/ai/04-tooling/07/05/01/">05 SGLang</a></li>
+</ol>
+<h2 id="7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</h2>
+<ul>
+<li>不要先记安装命令，先问它把哪类复杂度当作一等公民；</li>
+<li>不要只看 happy path，重点看治理、排错、迁移、协作与上线证据；</li>
+<li>不要问“谁最强”，要问“谁最匹配当前系统的首要矛盾”；</li>
+<li>不要把开源工具当成银弹，工具只是把某类工程纪律做成现成组件。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>本地模型运行、统一接口、自托管与高性能 serving</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>开发闭环、隐私与成本常常要求你把模型拉回自己手里</td>
+</tr>
+<tr>
+<td>代表产品</td>
+<td>Ollama / llama.cpp / LocalAI / vLLM / SGLang</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>区分“本地好用”与“生产能扛”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[161] <a href="https://github.com/ollama/ollama">https://github.com/ollama/ollama</a> — Ollama GitHub</li>
+<li>[162] <a href="https://github.com/ggml-org/llama.cpp">https://github.com/ggml-org/llama.cpp</a> — llama.cpp GitHub</li>
+<li>[163] <a href="https://github.com/mudler/LocalAI">https://github.com/mudler/LocalAI</a> — LocalAI GitHub</li>
+<li>[164] <a href="https://github.com/vllm-project/vllm">https://github.com/vllm-project/vllm</a> — vLLM GitHub</li>
+<li>[165] <a href="https://github.com/sgl-project/sglang">https://github.com/sgl-project/sglang</a> — SGLang GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/07/05/01/"><span>上一篇</span><strong>04.07.05.01 SGLang 概览</strong></a><a class="ai-pager-next" href="/ai/04-tooling/08/01/01/"><span>下一篇</span><strong>04.08.01.01 NeMo Guardrails 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-这一模块建议怎么读">3. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-我建议本模块的内容结构">4. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

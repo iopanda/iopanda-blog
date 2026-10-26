@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.05.03 Streaming ETL、Incremental Index 与 Update Semantics · iopanda</title><meta name="description" content="03.02.05.03 Streaming ETL、Incremental Index 与 Update Semantics · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/05/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.05.03 Streaming ETL、Incremental Index 与 Update Semantics · iopanda"><meta property="og:description" content="03.02.05.03 Streaming ETL、Incremental Index 与 Update Semantics · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/05/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="05" data-active-article="/ai/03-frameworks/02/05/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pathway"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/05/"><span class="tree-number">05</span><span class="tree-title">Pathway</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/05/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">Streaming ETL、Incremental Index 与 Update Semantics</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/05/">Pathway</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Streaming ETL、Incremental Index 与 Update Semantics</span></nav><header class="ai-article-header"><p class="ai-number">03.02.05.03</p><h1>Streaming ETL、Incremental Index 与 Update Semantics</h1><p class="ai-meta"><time datetime="2026-09-03T22:35">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>pathway</li><li>streaming</li><li>incremental</li><li>index</li></ul></header><div class="ai-prose"><h1 id="streaming-etlincremental-index-与-update-semantics">Streaming ETL、Incremental Index 与 Update Semantics</h1>
+<blockquote>
+<p>Pathway README 最有分量的一句，不是“支持 RAG”，而是：same code can be used for batch jobs, stream replays, and processing data streams；底层由 Rust engine + Differential Dataflow 驱动 incremental computation。[68] 再看 external index integration 文档，就更清楚了：索引不是静态库，而是图计算中的一部分，新增、删除、查询都要纳入更新语义。[71]</p>
+</blockquote>
+<p><strong>学习目标</strong>：</p>
+<ol>
+<li>解释为什么 Pathway 把 streaming ETL 和 retrieval 放在同一个世界里；</li>
+<li>理解 incremental index 的价值和限制；</li>
+<li>说出 update semantics 为什么比 top-k 参数更关键；</li>
+<li>判断什么时候 query stream 必须 append-only；</li>
+<li>为一个持续更新知识系统设计增量索引思路。</li>
+</ol>
+<h2 id="1-streaming-etl-为什么和-rag-是同一问题">1. streaming ETL 为什么和 RAG 是同一问题</h2>
+<p>只要知识源在动，RAG 的难点就不只在 query，而在：</p>
+<ul>
+<li>新文档何时进入系统；</li>
+<li>旧文档删除怎样反映到结果；</li>
+<li>延迟和一致性如何平衡；</li>
+<li>重放和故障恢复时结果是否一致。</li>
+</ul>
+<p>这本质上已经是流式数据工程问题。</p>
+<h2 id="2-external-index-文档暴露了什么">2. external index 文档暴露了什么</h2>
+<p><code>external_index_readme.md</code> 很关键：</p>
+<ul>
+<li>提到 as-of-now mode</li>
+<li>query stream 应 append only</li>
+<li>外部 index 要实现 add/remove/search</li>
+<li>每个 worker 拿自己的 index instance。[71]</li>
+</ul>
+<p>这说明 Pathway 对索引的理解不是黑箱后端，而是计算图中的一个可增量更新对象。</p>
+<h2 id="3-update-semantics-是什么">3. update semantics 是什么</h2>
+<p>在静态 RAG 里，更新通常意味着“重建索引”；
+在 Pathway 世界里，更新更像：</p>
+<ul>
+<li>add</li>
+<li>remove</li>
+<li>recompute</li>
+<li>replay</li>
+<li>consistency under late/out-of-order data</li>
+</ul>
+<p>这决定了系统质量的不只是召回好不好，还有：</p>
+<ul>
+<li>新数据多久可见；</li>
+<li>删除多久生效；</li>
+<li>重启后是否丢状态。</li>
+</ul>
+<h2 id="4-为什么-append-only-query-stream-很重要">4. 为什么 append-only query stream 很重要</h2>
+<p>external index 文档明确写到：对某些集成，query stream 应 append only，否则后续修改不会触发旧查询答案重算。[71]</p>
+<p>这很重要，因为它提醒你：</p>
+<ul>
+<li>real-time retrieval 不是无限自由；</li>
+<li>不同索引集成对更新语义支持不同；</li>
+<li>不是所有 live 系统都天然支持“历史查询自动回滚重算”。</li>
+</ul>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>pathway-update-semantics.md</code></p>
+<p>以课程助教为例，列出哪些数据会新增、会删除、会重放，哪些查询只需要 append-only，哪些场景必须重新计算结果。写一句结论：为什么这已经不是普通离线索引问题。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>streaming ETL 与 RAG 为什么连在一起</td>
+<td>数据一变，检索层就必须跟着变</td>
+</tr>
+<tr>
+<td>incremental index 的价值</td>
+<td>让结果随更新而增量演化，而非全量重建</td>
+</tr>
+<tr>
+<td>query append-only 提醒了什么</td>
+<td>实时系统的查询语义也有限制</td>
+</tr>
+<tr>
+<td>Pathway 的重点</td>
+<td>更新语义和一致性，不只是召回效果</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[68] <a href="https://github.com/pathwaycom/pathway/blob/main/README.md">https://github.com/pathwaycom/pathway/blob/main/README.md</a> — Pathway README</li>
+<li>[71] <a href="https://github.com/pathwaycom/pathway/blob/main/src/external_integration/external_index_readme.md">https://github.com/pathwaycom/pathway/blob/main/src/external_integration/external_index_readme.md</a> — Pathway external index integration readme</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/05/02/"><span>上一篇</span><strong>03.02.05.02 Real-time RAG 的设计哲学</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/05/04/"><span>下一篇</span><strong>03.02.05.04 Real-time Retrieval、Windowing 与 Freshness</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-streaming-etl-为什么和-rag-是同一问题">1. streaming ETL 为什么和 RAG 是同一问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-external-index-文档暴露了什么">2. external index 文档暴露了什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-update-semantics-是什么">3. update semantics 是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-为什么-append-only-query-stream-很重要">4. 为什么 append-only query stream 很重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

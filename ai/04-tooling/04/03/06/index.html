@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.04.03.06 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号 · iopanda</title><meta name="description" content="04.04.03.06 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号 · 工具链 / 提示管理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/04/03/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.04.03.06 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号 · iopanda"><meta property="og:description" content="04.04.03.06 公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号 · 工具链 / 提示管理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/04/03/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="04" data-active-subsection="03" data-active-article="/ai/04-tooling/04/03/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 提示管理"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/04/"><span class="tree-number">04</span><span class="tree-title">提示管理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/04/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 DSPy"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/04/03/"><span class="tree-number">03</span><span class="tree-title">DSPy</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/04/03/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/">提示管理</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/03/">DSPy</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号</span></nav><header class="ai-article-header"><p class="ai-number">04.04.03.06</p><h1>公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号</h1><p class="ai-meta"><time datetime="2026-09-03T22:45">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>prompt-management</li><li>dspy</li><li>case-studies</li></ul></header><div class="ai-prose"><h1 id="公开组织案例有限stanford-ovalibmsnowflake与开源采用信号">公开组织案例有限：Stanford OVAL、IBM、Snowflake与开源采用信号</h1>
+<blockquote>
+<p>本章聚焦公开可验证的组织采用信号。需要先说明一个现实边界：DSPy 当前公开具名企业客户故事明显少于 Langfuse、n8n 这类平台产品。它更像研究—工程框架，因此公开证据更多体现为：官方 Built with DSPy 页面中的组织/项目信号、组织级集成列表、以及由 Stanford OVAL 牵引的开源生态。[2][4][10]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解 DSPy 在公开组织案例上的证据边界；</li>
+<li>区分“具名客户故事”与“开源采用信号”的差异；</li>
+<li>从公开资料中判断哪些组织最容易采用 DSPy；</li>
+<li>了解为什么 DSPy 更常以项目和生态形式扩散；</li>
+<li>学会在教材中诚实处理案例稀缺问题。</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">说明</p>
+<p>以下内容不把一般集成文档硬写成客户案例。只有当公开资料能支持“组织、研究团队或生态平台确实在使用或围绕 DSPy 构建东西”时，才将其写作采用信号。对于缺乏细节披露的部分，不推断 ROI 或内部流程。</p>
+</div>
+<h2 id="案例-1stanford-oval--storm">案例 1：Stanford OVAL / STORM</h2>
+<p><strong>背景</strong>
+DSPy 官方 Built with DSPy 页面明确列出 STORM（由 Stanford OVAL 维护，页面写作 STORM Report Generation），并描述其用途为 “Writing Wikipedia-like Articles From Scratch”。[10]</p>
+<p><strong>痛点</strong>
+这类系统面对的并不是简单 prompt 调优，而是：</p>
+<ul>
+<li>多步骤生成；</li>
+<li>检索与写作组合；</li>
+<li>需要将复杂任务组织成可优化的程序管线。</li>
+</ul>
+<p><strong>采用方式</strong>
+Built with DSPy 页面把 STORM 作为代表性项目展示，说明 DSPy 已被用于真实的多阶段知识密集型生成系统，而不只是教学 demo。[10]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：这类系统 adoption 需要较强工程和研究能力；</li>
+<li>收益：能够把复杂生成流程转化为可组合、可优化程序；</li>
+<li>产品意义：说明 DSPy 对研究驱动和系统级 AI 项目非常有吸引力。</li>
+</ul>
+<p><strong>结果</strong>
+公开可确认的结果是：Stanford OVAL 相关项目已被 DSPy 官方作为“Built with DSPy”的代表案例展示，说明其在知识密集型生成工作流中具有现实价值。[10]</p>
+<h2 id="案例-2ibm组织级采用信号">案例 2：IBM（组织级采用信号）</h2>
+<p><strong>背景</strong>
+DSPy 官方 Built with DSPy 页面在 Providers and Integrations 区域明确列出 IBM。[10]</p>
+<p><strong>痛点</strong>
+像 IBM 这类组织会更关注：</p>
+<ul>
+<li>如何把 LM 程序抽象接进更大系统；</li>
+<li>如何与企业级开发栈结合；</li>
+<li>如何把研究性框架转入工程实践。</li>
+</ul>
+<p><strong>采用方式</strong>
+公开资料并未展开 IBM 的具体实施细节，因此这里只能将其视作组织级采用信号，而非详细客户故事。[10]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：没有公开细节，不能夸大；</li>
+<li>收益：至少说明 DSPy 已进入大型技术组织的视野和集成面；</li>
+<li>产品意义：对于框架型产品，出现在这类组织的公开采用面本身就是重要信号。</li>
+</ul>
+<p><strong>结果</strong>
+公开可确认的是：IBM 被列入 DSPy 官方采用/集成生态列表，说明其不只是学术圈工具。[10]</p>
+<h2 id="案例-3snowflake组织级采用信号">案例 3：Snowflake（组织级采用信号）</h2>
+<p><strong>背景</strong>
+Built with DSPy 页面同样公开列出 Snowflake。[10]</p>
+<p><strong>痛点</strong>
+数据平台型组织通常需要：</p>
+<ul>
+<li>可编程、可评测的 LM 工作流；</li>
+<li>与数据与检索系统协同；</li>
+<li>可模块化的 AI 架构，而不是单一聊天模板。</li>
+</ul>
+<p><strong>采用方式</strong>
+与 IBM 类似，Snowflake 的公开信息更多体现为 DSPy 生态中的组织级采用信号，而非详细案例叙事。[10]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：证据强度弱于完整客户案例；</li>
+<li>收益：能证明 DSPy 已进入主流数据/平台型组织视野；</li>
+<li>产品意义：这支持 DSPy 作为“复杂 AI 系统工程框架”的定位。</li>
+</ul>
+<p><strong>结果</strong>
+公开可确认的是：Snowflake 已被 DSPy 官方纳入采用/集成生态展示。[10]</p>
+<h2 id="案例-4arizelangfuselangwatchportkey-等生态平台信号">案例 4：Arize、Langfuse、LangWatch、Portkey 等生态平台信号</h2>
+<p><strong>背景</strong>
+Built with DSPy 页面还列出 Arize、Langfuse、LangWatch、Portkey、Weaviate、Qdrant、Milvus、Neo4j、Lightning AI、Haystack、LlamaIndex 等生态对象。[10]</p>
+<p><strong>痛点</strong>
+DSPy 如果只是一个孤立研究框架，就很难进入真实工程工作流。只有当它能和 observability、vector DB、agent 平台、数据栈协同时，才可能进入生产实践。</p>
+<p><strong>采用方式</strong>
+这些公开信号说明 DSPy 已被广泛纳入更大 AI 工程生态中，适合作为更复杂系统中的程序化 prompt / module 层。[10]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：这不是具名企业 ROI 案例；</li>
+<li>收益：能强力说明 DSPy 的工程可连接性；</li>
+<li>产品意义：对框架型产品来说，生态嵌入本身就是 adoption 关键指标。</li>
+</ul>
+<p><strong>结果</strong>
+公开可确认的是：DSPy 并不是一个孤立研究库，而是已经处于多个主流 AI 工程生态节点的连接面上。[10]</p>
+<h2 id="案例-5社区项目与教学采用信号">案例 5：社区项目与教学采用信号</h2>
+<p><strong>背景</strong>
+Built with DSPy 页面还列出 Stanford CS 224U Homework、DSPy Redteaming、DSPy Theory of Mind、Text2SQL 优化、PII masking demo 等社区与教学项目。[10]</p>
+<p><strong>痛点</strong>
+这说明 DSPy 的使用面不仅在产品组织中，也在：</p>
+<ul>
+<li>教学；</li>
+<li>研究原型；</li>
+<li>安全测试；</li>
+<li>结构化任务优化；</li>
+<li>高度定制的语言任务场景。</li>
+</ul>
+<p><strong>采用方式</strong>
+这些项目通常并不以传统企业客户故事方式出现，但它们构成了框架型产品最真实的采用基础：被研究者、教学者、工程师持续拿来构建新东西。[10]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：不适合用来证明企业 ROI；</li>
+<li>收益：非常适合证明方法与框架的生命力；</li>
+<li>产品意义：对于 DSPy 这样的工具，这类信号往往比少数营销案例更能说明其真实位置。</li>
+</ul>
+<p><strong>结果</strong>
+公开可确认的是：DSPy 在教学、研究和社区项目中已有持续使用与扩展信号。[10]</p>
+<h2 id="6-这些信号共同说明了什么">6. 这些信号共同说明了什么</h2>
+<p>这些公开采用信号共同说明：</p>
+<ol>
+<li>DSPy 最容易被哪些组织采用？
+<ul>
+<li>研究型团队；</li>
+<li>强工程平台团队；</li>
+<li>知识密集、多步骤系统开发团队。</li>
+</ul>
+</li>
+<li>为什么它的具名客户故事少？
+<ul>
+<li>因为它更像底层工程框架，而不是面向业务采购的前台平台。</li>
+</ul>
+</li>
+<li>这是否削弱它的价值？
+<ul>
+<li>不一定。对框架型产品来说，开源项目、生态平台与研究组织的持续使用，往往比营销化客户故事更真实。</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>组织/信号</th>
+<th>DSPy 扮演的角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stanford OVAL / STORM</td>
+<td>知识密集型多阶段生成框架</td>
+</tr>
+<tr>
+<td>IBM</td>
+<td>大型技术组织的采用信号</td>
+</tr>
+<tr>
+<td>Snowflake</td>
+<td>数据/平台组织的采用信号</td>
+</tr>
+<tr>
+<td>Arize / Langfuse / Portkey 等</td>
+<td>AI 工程生态中的可连接程序层</td>
+</tr>
+<tr>
+<td>教学与社区项目</td>
+<td>方法论扩散与框架生命力信号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么对于 DSPy 这类框架，“被谁集成、被哪些项目构建”常常比“有多少客户故事”更能说明真实价值？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为框架型产品的主要价值不在前台采购，而在它能否进入真实工程和研究工作流。若大量项目和生态平台围绕它构建，说明它具备方法论和工程生命力；这对长期价值往往比几个营销案例更重要。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[2] <a href="https://raw.githubusercontent.com/stanfordnlp/dspy/main/README.md">https://raw.githubusercontent.com/stanfordnlp/dspy/main/README.md</a> — DSPy README</li>
+<li>[4] <a href="https://dspy.ai/">https://dspy.ai/</a> — DSPy homepage</li>
+<li>[10] <a href="https://dspy.ai/community/built-with-dspy/">https://dspy.ai/community/built-with-dspy/</a> — Built with DSPy</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/04/03/05/"><span>上一篇</span><strong>04.04.03.05 与 Langfuse Prompts、Promptfoo、Guidance、Outlines 的竞品对比</strong></a><a class="ai-pager-next" href="/ai/04-tooling/04/04/01/"><span>下一篇</span><strong>04.04.04.01 Guidance 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-1stanford-oval--storm">案例 1：Stanford OVAL / STORM</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-2ibm组织级采用信号">案例 2：IBM（组织级采用信号）</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-3snowflake组织级采用信号">案例 3：Snowflake（组织级采用信号）</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-4arizelangfuselangwatchportkey-等生态平台信号">案例 4：Arize、Langfuse、LangWatch、Portkey 等生态平台信号</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-5社区项目与教学采用信号">案例 5：社区项目与教学采用信号</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-这些信号共同说明了什么">6. 这些信号共同说明了什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

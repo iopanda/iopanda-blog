@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.05.03 图文数据准备 · iopanda</title><meta name="description" content="01.05.03 图文数据准备 · 模型 / 多模态模型，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/05/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.05.03 图文数据准备 · iopanda"><meta property="og:description" content="01.05.03 图文数据准备 · 模型 / 多模态模型，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/05/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="05" data-active-subsection data-active-article="/ai/01-models/05/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 多模态模型"></button><a class="tree-link tree-link--section" href="/ai/01-models/05/"><span class="tree-number">05</span><span class="tree-title">多模态模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/05/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">图文数据准备</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/05/">多模态模型</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">图文数据准备</span></nav><header class="ai-article-header"><p class="ai-number">01.05.03</p><h1>图文数据准备</h1><p class="ai-meta"><time datetime="2026-09-03T00:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>multimodal</li><li>image-text-data</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章讲清了「图像怎么变成 LLM 能读的 token」;本章回答「拿什么数据教它」。纯文本数据集一把 JSONL 就能装下,图文数据却要在<strong>图像文件、配文质量、许可、泄漏</strong>四条线上同时把关——caption 质量决定模型上限,配错、模糊、PII 与版权风险则决定数据集能否合法存在。读完你会交付 20~30 对可审计的图文数据、一份 schema 与许可记录、一个自动检查脚本。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说清 VLM 微调样本是(图像、指令、回答)三元组,并解释 caption 质量为何决定模型能力上限;</li>
+<li>写出与 01.03 一脉相承、图像以特殊 content 块进入消息的 JSONL schema;</li>
+<li>用「图文匹配、分辨率、重复、PII、许可、平衡」六维清单给图文对做质检;</li>
+<li>解释数据泄漏:训练图与评测图重叠为何导致「记忆而非泛化」;</li>
+<li>用检查脚本输出数据集的 schema、数量、图像信息与许可记录,交付数据卡。</li>
+</ol>
+<h2 id="1-概念vlm-微调样本是图像指令回答三元组">1. 概念:VLM 微调样本是(图像、指令、回答)三元组</h2>
+<ul>
+<li>沿用上一章的模型结构:图像 → 视觉编码器 → 视觉 token,与文本 token 一起送入 LLM。模型要学的不再是「读完文本作答」,而是「看完这张图、听懂这句话、给出这个回答」——因此一条训练样本天然由三部分组成:<strong>(图像, 指令, 回答)</strong>。</li>
+<li>与 01.03 监督微调共用同一条铁律:损失只算在 assistant 回答上,system 与 user 只作上下文被读取。区别仅在 user 消息里多了一个图像内容块,它被视觉编码器变成视觉 token 后参与整段注意力——<strong>下一章会把这整条链路拿去微调,图像侧的配错与低质会像文本错误一样被原样学走</strong>。</li>
+<li>「caption 质量决定模型上限」:模型看到什么、被要求回答什么、标准答案是什么,全由数据定义。若 caption 把图里的猫写成狗,模型学到的就是「这类图要答狗」;若问题永远只问「这是什么颜色」,模型就不会长出数数能力。<strong>数据是模型的天花板,训练只是逼近它</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>数据形态</th>
+<th>图像角色</th>
+<th>典型样本</th>
+<th>用在哪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图像-文本对</td>
+<td>整图配一句描述</td>
+<td>(图片,「一只橘猫趴在键盘上」)</td>
+<td>对齐阶段,训投影器</td>
+</tr>
+<tr>
+<td>图文指令(本章重点)</td>
+<td>图中的内容可被提问</td>
+<td>(图片,「图中有几只猫?」,「两只」)</td>
+<td>微调:学看图答领域问题</td>
+</tr>
+<tr>
+<td>多轮图文对话</td>
+<td>图像贯穿多轮上下文</td>
+<td>(图片,追问,再追问,……)</td>
+<td>贴近产品形态,数据成本最高</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>LLaVA 的开创性正在第三列:用 GPT-4 围绕 COCO 图像生成约 15 万条「对话、详细描述、复杂推理」三类指令,把「看图说话」从输出描述升级为<strong>视觉指令跟随</strong>。本单元复刻的正是这条路线的小型版,LLaVA-Instruct-150K 就是它的成品数据。</li>
+</ul>
+<h2 id="2-数据-schema图像路径--消息数组的-jsonl">2. 数据 schema:图像路径 + 消息数组的 JSONL</h2>
+<ul>
+<li>schema 在 01.03 的 messages 之上只增加两样东西:<strong>顶层 image 字段</strong>(图像路径或 URL)与 <strong>user 消息里的图像 content 块</strong>。图像本身不进 JSON,进文件系统;JSON 只存引用——每行因此保持可读、可 diff、可审计。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"t-001"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"image"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"images/slide07.png"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"messages"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"你是课程答疑助手,只能依据截图内容回答;图里没有的信息要明确说看不到。"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"type"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"type"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"text"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"text"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"这张架构图里,哪一部分负责把图像变成向量?"</span><span style="color:#E1E4E8">}]},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"assistant"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"图中最左侧的视觉编码器负责把图像编码成向量,再经投影层送入语言模型。"</span><span style="color:#E1E4E8">}]}</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"t-002"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"image"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"images/slide07.png"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"messages"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"你是课程答疑助手,只能依据截图内容回答;图里没有的信息要明确说看不到。"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"type"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"type"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"text"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"text"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"训练完成后,投影层还能继续调整吗?"</span><span style="color:#E1E4E8">}]},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"assistant"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"截图上没有说明训练后的调整方式;我只能看到架构图,无法回答这个问题。"</span><span style="color:#E1E4E8">}]}</span></span></code></pre><span class="code-lang" data-lang="json" aria-hidden="true">json</span></div>
+<ul>
+<li>字段约定:<code>image</code> 一律用<strong>相对路径</strong>(相对数据目录),个人绝对路径会让数据换机器即坏、上传 Hub 即泄漏隐私;用 URL 也可以,但必须<strong>记录抓取日期并把图像本地留档</strong>,否则许可核验与复现都无从谈起。</li>
+<li>训练时,processor 会把 <code>type:image</code> 块替换成特殊标记(如 <code>&lt;image&gt;</code>),再调用视觉编码器把真实像素变成视觉 token——<strong>JSONL 里永远看不到像素,它只声明「这里有张图」</strong>,与 01.03 里「schema 干净,脏数据在转换时静默变脏信号」同理。</li>
+<li>01.03 的 schema 铁律原样继承:<strong>最后一条消息必须是 assistant</strong>;system 规则全文一致,不写互相矛盾的要求;每行一个完整 JSON 对象、对象内部不换行。</li>
+</ul>
+<h2 id="3-为什么图文数据比纯文本更难">3. 为什么图文数据比纯文本更难</h2>
+<p>纯文本数据的错误大多「看得见」:拼写、事实、格式。图文数据的错误藏在<strong>图像与文字的关系</strong>里,而且常常要等训练完、模型说出奇怪答案时才发现:</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>表现</th>
+<th>代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配错(misalignment)</td>
+<td>文字描述 A 图,配图却是 B 图</td>
+<td>模型学到「图与文可以无关」</td>
+</tr>
+<tr>
+<td>模糊 / 低分辨率</td>
+<td>小图、强压缩、文字糊掉</td>
+<td>OCR 类能力永远学不会</td>
+</tr>
+<tr>
+<td>近似重复</td>
+<td>同一事件连拍、同图多处引用</td>
+<td>训练集虚胖、评测失真</td>
+</tr>
+<tr>
+<td>PII</td>
+<td>人脸、车牌、工牌、聊天记录</td>
+<td>隐私事故,训练后难以清除</td>
+</tr>
+<tr>
+<td>许可不明</td>
+<td>来源未知或商用受限的图</td>
+<td>合法风险,数据集可能被下架</td>
+</tr>
+<tr>
+<td>图文不匹配任务</td>
+<td>拿通用 caption 当指令数据</td>
+<td>学不到「按问题作答」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>许可不是小概率事件,而是真实事故</strong>。Hugging Face 上曾广受欢迎的 <code>lambdalabs/pokemon-blip-captions</code>(约 830 张宝可梦图 + BLIP 自动 caption),就因宝可梦公司国际部发出 DMCA 通知被整体下架;教程转而推荐的 naruto 同款数据集,数据集卡上<strong>干脆没有 license 元数据</strong>(图像抓自同人维基)。两案并读的教训与 01.02 数据许可纪律完全一致:可复现 ≠ 可商用,来源与权利必须逐条记录;<strong>「数据集卡上缺失 license 字段」本身就是红旗</strong>。</li>
+<li>自动 caption 是另一个隐性坑:BLIP 这类模型生成的描述<strong>未经人工核验</strong>,带着机器的盲区(数错数量、忽略细节),许可再干净也补不了质量问题——机器写的只能当草稿,不能当标准答案。</li>
+<li>LLaVA-Instruct-150K 是「叠加许可」的典型:数据集本体 CC-BY-4.0,<strong>同时</strong>要求遵守 OpenAI 使用条款(内容由 GPT-4 生成)。读数据集卡不能只看 license 一行,还要读卡正文的附加条款。</li>
+</ul>
+<h2 id="4-质量检查六维清单呼应-0102-数据治理">4. 质量检查:六维清单(呼应 01.02 数据治理)</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>怎么查</th>
+<th>通过标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图文匹配</td>
+<td>人工逐张看;量大时用 CLIP 算图文相似度,先查最低分</td>
+<td>每对图文主题一致,无张冠李戴</td>
+</tr>
+<tr>
+<td>分辨率</td>
+<td>脚本输出每图宽高</td>
+<td>最小边 ≥ 384 px,图上文字清晰可辨</td>
+</tr>
+<tr>
+<td>重复</td>
+<td>感知哈希近似去重;同图多次引用合并为一条</td>
+<td>训练集内无近似重复图</td>
+</tr>
+<tr>
+<td>PII</td>
+<td>人工逐张确认是否含人脸、证件、工牌</td>
+<td>全部剔除,或打码后记录处理方式</td>
+</tr>
+<tr>
+<td>许可</td>
+<td>每图一行来源记录(文件、作者、许可、URL)</td>
+<td>逐条可回指,商用授权明确</td>
+</tr>
+<tr>
+<td>平衡</td>
+<td>按图像内容类别统计数量</td>
+<td>无单一类别占比超过 60%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>图里若有文字,先问一句「模型需要读出它吗」:需要,就必须保证清晰、未裁切、不被水印遮挡——<strong>模糊截图是 OCR 类任务的头号死因</strong>,而本单元收官项目的核心恰恰是读懂课程截图。</li>
+</ul>
+<h2 id="5-泄漏训练图与评测图重叠--记忆而非泛化">5. 泄漏:训练图与评测图重叠 = 记忆而非泛化</h2>
+<ul>
+<li>VLM 对图像的记忆力极强:同一张图只要进过训练,评测时模型很可能直接背出见过的问答,而不是真的学会「看新图作答」。这与 01.03 的 valid 纪律同源,但<strong>图文泄漏多一层</strong>:文本 valid 只要求「不同题」,图文 valid 还要求「不同图」。</li>
+<li>泄漏自检三问:1) valid 的每张图是否从未以任何形态出现在 train(原图、裁剪、二次截图都算)?2) 同一事件的连拍图是否被拆进两个集合?3) 数据卡是否记录了 train/valid 图集无交集?</li>
+<li>泄漏的恶果:valid 分数虚高,一旦上线面对真实新图立刻现形。<strong>「考过的题」不算能力,「没见过的图答对了」才算</strong>——这也是下一章微调前后对比必须遵守的考场纪律。</li>
+</ul>
+<h2 id="6-动手活动自建图文对数据">6. 动手活动:自建图文对数据</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动 1:制作 24+6 图文对</p>
+<p><strong>目标</strong>:产出 <code>vlmdemo/data/</code> 下可训练、可审计的图文数据(train 24 条 + valid 6 条)。</p>
+<p><strong>步骤</strong>:场景沿用单元主线「课程截图问答」。图像来源两种:自己截的课程 PPT/讲义图(自有无版权障碍),或 Wikimedia Commons 等平台标注 CC0 / CC-BY 的图(CC-BY 需在 licenses.csv 里记录署名)。先定三条规则,再写样本:答案只能依据图中可见信息;图上没有的信息明确拒答;图像不含人脸等 PII。</p>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>vlmdemo/data/</span></span>
+<span class="line"><span>├── images/           # t-001.png、t-002.png、……</span></span>
+<span class="line"><span>├── train.jsonl       # 24 条</span></span>
+<span class="line"><span>├── valid.jsonl       # 6 条</span></span>
+<span class="line"><span>└── licenses.csv      # 每张图的来源与许可</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<blockquote>
+<ul>
+<li>写 24 条 train + 6 条 valid;<strong>valid 必须用 train 从未出现过的图</strong>,每张图配一个问题,难度先窄后宽:描述内容 → 数数量 → 关系判断 → 「图里没有的」拒答边界;</li>
+<li>每条样本按第 4 章六维清单人工勾选;<strong>刻意放 3~5 条边界样本</strong>:问题涉及图上没有的信息,标准答案写拒答——模型学会「看不到就说看不到」,靠的正是这类样本;</li>
+<li><code>licenses.csv</code> 一行一图,字段 <code>file,source,author,license,url,note</code>;自己的截图 source 填 <code>self-captured</code>、license 填 <code>own</code>——<strong>没有来源记录的图,不允许进入数据集</strong>。</li>
+</ul>
+</blockquote>
+<h2 id="7-动手活动检查脚本与数据卡">7. 动手活动:检查脚本与数据卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动 2:自动化检查并交付数据卡</p>
+<p><strong>目标</strong>:用脚本证明数据「schema 正确、图像达标、无泄漏」,并交付 <code>data-card.md</code>。</p>
+<p><strong>步骤</strong>:创建 <code>vlmdemo/src/check_data.py</code>,让它自动做五件事:逐行解析 JSON 并校验顶层字段;校验最后一条消息是 assistant;检查每张图存在且最小边 ≥ 384 px;检查 train/valid 图集无交集(泄漏);汇总 licenses.csv 的许可分布。</p>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> json</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#79B8FF"> PIL</span><span style="color:#F97583"> import</span><span style="color:#E1E4E8"> Image</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">BASE</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"vlmdemo/data"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> split </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"valid"</span><span style="color:#E1E4E8">]:</span></span>
+<span class="line"><span style="color:#E1E4E8">    rows </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [json.loads(x) </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">BASE</span><span style="color:#F97583"> /</span><span style="color:#F97583"> f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">split</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">.jsonl"</span><span style="color:#E1E4E8">).read_text().splitlines() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> x]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows:</span></span>
+<span class="line"><span style="color:#F97583">        assert</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">} </span><span style="color:#F97583">&lt;=</span><span style="color:#79B8FF"> set</span><span style="color:#E1E4E8">(r), </span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">split</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 缺字段: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">r.get(</span><span style="color:#9ECBFF">'id'</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#F97583">        assert</span><span style="color:#E1E4E8"> r[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">][</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "assistant"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">split</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 末条非 assistant: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">r.get(</span><span style="color:#9ECBFF">'id'</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#E1E4E8">        im </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Image.open(</span><span style="color:#79B8FF">BASE</span><span style="color:#F97583"> /</span><span style="color:#E1E4E8"> r[</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#F97583">        assert</span><span style="color:#79B8FF"> min</span><span style="color:#E1E4E8">(im.size) </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> 384</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"图太小: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">r[</span><span style="color:#9ECBFF">'image'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#79B8FF"> {</span><span style="color:#E1E4E8">im.size</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(split, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(rows), </span><span style="color:#9ECBFF">"schema 与图像检查通过"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">tr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {json.loads(x)[</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">BASE</span><span style="color:#F97583"> /</span><span style="color:#9ECBFF"> "train.jsonl"</span><span style="color:#E1E4E8">).read_text().splitlines() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> x}</span></span>
+<span class="line"><span style="color:#E1E4E8">va </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {json.loads(x)[</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">BASE</span><span style="color:#F97583"> /</span><span style="color:#9ECBFF"> "valid.jsonl"</span><span style="color:#E1E4E8">).read_text().splitlines() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> x}</span></span>
+<span class="line"><span style="color:#F97583">assert</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> (tr </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8"> va), </span><span style="color:#9ECBFF">"泄漏:train/valid 图集存在重叠"</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"泄漏检查通过:train 与 valid 图集无交集"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<blockquote>
+<p>运行 <code>python vlmdemo/src/check_data.py</code>,报错要逐条修:<strong>图不达标就换图或重新截图,不要放宽阈值</strong>——阈值是你对图像质量的承诺。最后交付数据卡 <code>vlmdemo/data/data-card.md</code>,字段照抄 01.03 的实践:来源、作者、数量(train/valid)、许可记录、拒答样本数、人工审核人、六维检查结果。</p>
+<p><strong>完成标准</strong>:脚本无报错;valid 与 train 图集零重叠;数据卡能定位每张图的来源与许可。</p>
+</blockquote>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键判断</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据形态</td>
+<td>VLM 微调 = (图像、指令、回答) 三元组;caption 质量决定模型上限</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>messages 铁律不变;顶层 image 引用 + user 内 type:image 内容块</td>
+</tr>
+<tr>
+<td>为什么难</td>
+<td>配错、模糊、重复、PII、许可、平衡,六类错误都藏在图文关系里</td>
+</tr>
+<tr>
+<td>许可</td>
+<td>读数据集卡不能只看 license 一行;DMCA 下架与缺失许可字段都是真实红旗</td>
+</tr>
+<tr>
+<td>泄漏</td>
+<td>valid 必须「不同题且不同图」;考过的题不算能力</td>
+</tr>
+<tr>
+<td>验证</td>
+<td>检查脚本输出 schema、数量、图像信息与许可分布;数据卡留档</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「同一张图换个问题」放进 valid 会让验证失去意义?为什么说「数据集卡上缺失 license 字段」本身就是红旗?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>VLM 对图像的记忆极强,该图一旦在训练中出现过,模型就可能直接背出见过的问答,valid 分数只能证明它记住了图,不能证明它对陌生图泛化——泄漏把验证从「没见过的考场」退化成「背过的题」。而数据集卡是下游使用者判断能否商用的唯一入口,缺失许可字段意味着权利链条断裂,任何商用或再分发都会把自己暴露在法律风险中,正规项目会直接拒绝采用这样的数据。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2304.08485">LLaVA:Visual Instruction Tuning(arXiv:2304.08485)</a></li>
+<li><a href="https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K">Hugging Face:liuhaotian/LLaVA-Instruct-150K(数据集卡与许可条款)</a></li>
+<li><a href="https://huggingface.co/docs/datasets/index">Hugging Face Datasets 文档</a></li>
+<li><a href="https://huggingface.co/docs/hub/datasets-cards">Hugging Face:数据集卡最佳实践</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/05/02/"><span>上一篇</span><strong>01.05.02 视觉编码器与视觉语言模型</strong></a><a class="ai-pager-next" href="/ai/01-models/05/04/"><span>下一篇</span><strong>01.05.04 微调视觉语言模型</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念vlm-微调样本是图像指令回答三元组">1. 概念:VLM 微调样本是(图像、指令、回答)三元组</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-数据-schema图像路径--消息数组的-jsonl">2. 数据 schema:图像路径 + 消息数组的 JSONL</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么图文数据比纯文本更难">3. 为什么图文数据比纯文本更难</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-质量检查六维清单呼应-0102-数据治理">4. 质量检查:六维清单(呼应 01.02 数据治理)</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-泄漏训练图与评测图重叠--记忆而非泛化">5. 泄漏:训练图与评测图重叠 = 记忆而非泛化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动自建图文对数据">6. 动手活动:自建图文对数据</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动检查脚本与数据卡">7. 动手活动:检查脚本与数据卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

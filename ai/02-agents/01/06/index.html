@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.01.06 循环：Agent 的心跳 · iopanda</title><meta name="description" content="02.01.06 循环：Agent 的心跳 · 智能体 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/01/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.01.06 循环：Agent 的心跳 · iopanda"><meta property="og:description" content="02.01.06 循环：Agent 的心跳 · 智能体 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/01/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="01" data-active-subsection data-active-article="/ai/02-agents/01/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/02-agents/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/01/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">循环：Agent 的心跳</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">循环：Agent 的心跳</span></nav><header class="ai-article-header"><p class="ai-number">02.01.06</p><h1>循环：Agent 的心跳</h1><p class="ai-meta"><time datetime="2026-09-03T02:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>react</li><li>agent-loop</li></ul></header><div class="ai-prose"><h1 id="循环agent-的心跳">循环：Agent 的心跳</h1>
+<p>设想这样一条轨迹。任务是把一份 PDF 里的表格提取成 JSON。Agent 走了十一步，输出一份结构完整的 JSON，声明任务完成。人工核对时发现，其中七行数据是错的。</p>
+<p>回放轨迹后原因很清楚：第二步的文件读取工具因为编码问题返回了空字符串，而循环把这当成一个正常观察写回了上下文。模型看到的是“文件内容为空”，它没有报错，也没有追问，而是依据任务描述和先验知识把表格“补”了出来——补得相当合理，格式完全正确。后面的九步都建立在这份捏造的数据上。</p>
+<p>这条轨迹说明了循环的两个事实。第一，循环让系统具备了多步能力；第二，循环同时把每一个中间结果的错误，放大成后续所有决策的前提。理解后者比理解前者更重要，因为前者是宣传语，后者是工程现实。</p>
+<h2 id="为什么必须循环">为什么必须循环</h2>
+<p>如果不是为了处理不确定性，一次生成就够了。循环存在的理由可以归结为四条，按重要性排列。</p>
+<p><strong>信息在行动之后才出现。</strong> 回答“外键和级联删除有什么区别”之前，系统并不知道课程资料里是怎么写的。一次生成只能依赖模型参数中已有的知识；循环允许它先查、再看、后答。</p>
+<p><strong>后一步依赖前一步的输出。</strong> 检索到什么决定怎么组织回答；学员的实际进度决定练习题难度。这种依赖链无法预先展开成固定脚本——这正是第 2.4 节讲的、workflow 列不出路径的情形。</p>
+<p><strong>环境会失败。</strong> 工具超时、返回为空、权限不足、接口变更。循环提供了唯一的补救位置：看到失败，换一条路。一次生成没有第二次机会。</p>
+<p><strong>错误可以局部化。</strong> 一次生成二十步的任务，中间错一步，整段输出作废；循环里每一步只看当前观察，错了重做这一步，前面九步的成果仍然有效。这条性质是循环最实际的收益，也是最容易被忽视的——它意味着你把一个长任务的可靠性，从“整体正确”降级为“单步正确 + 可重试”。</p>
+<h2 id="最脆的是观察">最脆的是观察</h2>
+<p>循环的四个环节是感知、规划、行动、观察。教科书式的讲解会平均分配篇幅，但从故障分布看，它们的权重极不平均。</p>
+<p>规划环节的失效最显眼：模型判断错了方向，或是在没有查证的情况下宣称“已查到”。这类错误容易发现，因为轨迹里的推理是明文的。</p>
+<p>行动环节的失效最常见于工程实现：工具名拼错、参数类型不符、解析器无法从模型输出中提取出结构化动作。这类问题有明确的报错，修复也直接。</p>
+<p>观察环节的失效最隐蔽，也最危险。工具调用“成功”了——HTTP 200，进程退出码 0——但返回的内容是空的、被截断的、或者是一段错误信息被当成了数据。模型没有能力区分“这里确实没有内容”和“这里本该有内容但读取失败”，它会用先验知识填补空白，然后继续往下走。</p>
+<p>本文开头那条轨迹，失效就在观察环节。它没有报错，没有异常，只在第七行数据的语义上与原文不符——而这一步之后，系统一直在正确地处理错误的数据。</p>
+<h2 id="react把推理钉在外部事实上">ReAct：把推理钉在外部事实上</h2>
+<p>ReAct（Yao et al., 2022, arXiv:2210.03629）的核心主张可以用一句话概括：让推理与行动交替进行，使想法持续暴露在外部反馈之下。</p>
+<p>它的形式是三段交错：Thought 写下当前判断与下一步意图，Action 执行一个具体动作，Observation 接收真实结果。与思维链（chain-of-thought）的关键差别在第三段：思维链是一次性想完再给答案，推理过程不与外部世界接触，因此错误无法被发现；ReAct 每一步都要拿到外部结果才能继续，错误被迫提前暴露。</p>
+<p>这个设计有一个副作用值得注意：<strong>ReAct 把“模型在想什么”变成了可观测的产物</strong>。思维链的输出是给人看的解释，未必是真实推理过程；而 ReAct 的 Thought 后面必须跟一个 Action，Action 的后果由环境裁决。判断是否一致，有外部依据。</p>
+<h2 id="观察是瓶颈">观察是瓶颈</h2>
+<p>如果只能在这一节留下一条工程建议，是这一条：<strong>把工具返回当作产品接口来设计，而不是当作调试输出。</strong></p>
+<p>具体来说，有三个做法能显著降低观察环节的故障率。</p>
+<p><strong>区分“空”与“失败”。</strong> 工具返回空列表和工具失败必须有不同的表示。前者是 <code>{"items": [], "ok": true}</code>，后者是 <code>{"error": "ENCODING", "detail": "utf-8 decode failed at byte 1024", "retryable": true}</code>。让模型读到结构化差异，它才可能做出不同决策。返回 <code>null</code> 或者让异常冒泡到框架里被吞掉，等于把决策权交给了模型的想象。</p>
+<p><strong>主动截断，并显式标注。</strong> 工具返回超过预算时必须截断，但截断本身要写在返回内容里——<code>{"truncated": true, "shown": 2000, "total": 18000}</code>。否则模型会以为看到的就是全部。</p>
+<p><strong>错误信息要有建议。</strong> <code>retryable: false</code> 比一句“操作失败”有用得多，它直接告诉模型换路，而不是重试。</p>
+<p>这三条都不复杂，但它们决定了循环在第 5 步是面对现实，还是面对幻觉。</p>
+<h2 id="误差累积为什么第-12-步会突然崩">误差累积：为什么第 12 步会突然崩</h2>
+<p>单步成功率 95% 听起来很好。如果任务需要十二步全部正确，整体成功率是 0.95¹² ≈ 54%。二十步则是 36%。</p>
+<p>这个算术解释了为什么多步 Agent 的表现常常“突然变差”：模型并没有在第 12 步变笨；前面每一步都在收取利息。它也解释了为什么降低步数比提升单步质量更划算——把平均步数从 20 降到 8，成功率能从 36% 提到 66%，这通常比换一个更强的模型容易。</p>
+<p>工程上的应对有三种：减少步数（合并工具、提供更高层的原语）、提高单步可靠性（更好的观察、更明确的指令）、以及在关键节点插入可验证的检查点（比如“提取出的 JSON 必须能通过 schema 校验，否则重做”）。第三种最容易被忽略，效果也最直接——它把误差累积截断在一处。</p>
+<h2 id="终止责任在代码不在模型">终止：责任在代码，不在模型</h2>
+<p>循环必须有终止条件，这一点没有争议；有争议的是谁来负责终止。</p>
+<p>模型可以宣告完成，但它没有可靠的自我停止能力。它会在该停的时候继续找“还差的一步”，也会在没完成时宣布完成。因此终止条件必须由代码持有，且至少有三层。</p>
+<p><strong>任务完成</strong>：模型输出终止信号，或产出一个通过校验的最终答案。这一层负责正确结束。</p>
+<p><strong>预算上限</strong>：步数、token、金额、墙钟时间。任意一项超限即中断，并向用户报告已完成的进度。这一层负责兜底。</p>
+<p><strong>重复检测</strong>：连续若干轮的动作序列相同，或上下文没有实质变化。这一层负责识别“世界没有变化但还在继续行动”的状态——它通常是观察环节故障的外部表征。</p>
+<p>还有第四种终止，常在设计中缺席：<strong>承认失败</strong>。查不到资料时，向用户说明并建议替代方案，比继续重试更专业。这需要在提示中明确允许模型放弃，也需要在代码里给放弃留一条正常的退出路径，而不是让它以异常收场。</p>
+<h2 id="轨迹循环的副产品也是主要资产">轨迹：循环的副产品，也是主要资产</h2>
+<p>循环的每一轮都会产生一组 Thought、Action、Observation。把它们按顺序记录下来，就是轨迹（trace）。</p>
+<p>轨迹的价值在四个地方：调试时它是唯一能定位“想错、做错还是看错”的材料；对用户它是可解释性；对评测它是第 2.7 节的验收对象；对改进它是把成功路径蒸馏回提示词的原料。</p>
+<p>因此从第一版实现开始就应该打印轨迹，而不是等到出问题再加。下面是一个最小循环的骨架，省略了模型调用与工具实现：</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">context </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> task                      </span><span style="color:#6A737D"># 任务描述</span></span>
+<span class="line"><span style="color:#E1E4E8">trace, seen_actions </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [], </span><span style="color:#79B8FF">set</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> step </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> range</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">MAX_STEPS</span><span style="color:#E1E4E8">):       </span><span style="color:#6A737D"># 终止②：预算上限</span></span>
+<span class="line"><span style="color:#E1E4E8">    thought, action </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model(context)          </span><span style="color:#6A737D"># 规划</span></span>
+<span class="line"><span style="color:#E1E4E8">    trace.append((</span><span style="color:#9ECBFF">"thought"</span><span style="color:#E1E4E8">, thought))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> action.kind </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "final"</span><span style="color:#E1E4E8">:                </span><span style="color:#6A737D"># 终止①：任务完成</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> action.payload, trace</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> action.signature </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> seen_actions:      </span><span style="color:#6A737D"># 终止③：重复动作</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> fail(</span><span style="color:#9ECBFF">"no progress"</span><span style="color:#E1E4E8">, trace)</span></span>
+<span class="line"><span style="color:#E1E4E8">    seen_actions.add(action.signature)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        obs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> call_tool(action)               </span><span style="color:#6A737D"># 行动</span></span>
+<span class="line"><span style="color:#F97583">    except</span><span style="color:#E1E4E8"> ToolError </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> e:</span></span>
+<span class="line"><span style="color:#E1E4E8">        obs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">: e.code, </span><span style="color:#9ECBFF">"retryable"</span><span style="color:#E1E4E8">: e.retryable}   </span><span style="color:#6A737D"># 失败也是观察</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    trace.append((</span><span style="color:#9ECBFF">"observation"</span><span style="color:#E1E4E8">, obs))</span></span>
+<span class="line"><span style="color:#E1E4E8">    context </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> render(thought, action, obs)   </span><span style="color:#6A737D"># 观察回流：缺这一步，循环无效</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">return</span><span style="color:#E1E4E8"> fail(</span><span style="color:#9ECBFF">"budget exhausted"</span><span style="color:#E1E4E8">, trace)        </span><span style="color:#6A737D"># 终止②：预算耗尽</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>这段代码里有三处值得注意。失败被转换成结构化的观察，而不是抛给调用方；动作签名进入去重集合，用于识别停滞；唯一改变上下文的语句是 <code>context +=</code>，如果这一行缺失，循环在形式上完整、在功能上无效——这正是第 2.1 节第二条判据的代码形态。</p>
+<p>循环给了系统多步能力，同时把每一步的错误变成后续的前提。因此循环的质量不取决于它转得多快，而取决于每一步的观察有多可靠。</p>
+<p>而观察的可靠性，最终受限于模型能理解什么、能记住什么。下一节讨论这条边界。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Yao, S. et al. (2022). <em>ReAct: Synergizing Reasoning and Acting in Language Models.</em> arXiv:2210.03629</li>
+<li>ReAct 项目主页（含示例轨迹）: <a href="https://react-lm.github.io/">https://react-lm.github.io/</a></li>
+<li>Anthropic (2024). <em>Building effective agents.</em> 关于 agentic loop 的工程化描述。</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/01/05/"><span>上一篇</span><strong>02.01.05 自主度是有价格的</strong></a><a class="ai-pager-next" href="/ai/02-agents/01/07/"><span>下一篇</span><strong>02.01.07 模型的边界就是 Agent 的边界</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#为什么必须循环">为什么必须循环</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#最脆的是观察">最脆的是观察</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#react把推理钉在外部事实上">ReAct：把推理钉在外部事实上</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#观察是瓶颈">观察是瓶颈</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#误差累积为什么第-12-步会突然崩">误差累积：为什么第 12 步会突然崩</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#终止责任在代码不在模型">终止：责任在代码，不在模型</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#轨迹循环的副产品也是主要资产">轨迹：循环的副产品，也是主要资产</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

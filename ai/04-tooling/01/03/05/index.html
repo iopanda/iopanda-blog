@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.01.03.05 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比 · iopanda</title><meta name="description" content="04.01.03.05 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比 · 工具链 / 模型网关与路由，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/01/03/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.01.03.05 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比 · iopanda"><meta property="og:description" content="04.01.03.05 与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比 · 工具链 / 模型网关与路由，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/01/03/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="01" data-active-subsection="03" data-active-article="/ai/04-tooling/01/03/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型网关与路由"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/01/"><span class="tree-number">01</span><span class="tree-title">模型网关与路由</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/01/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Apache APISIX"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/01/03/"><span class="tree-number">03</span><span class="tree-title">Apache APISIX</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/01/03/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/01/">模型网关与路由</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/01/03/">Apache APISIX</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比</span></nav><header class="ai-article-header"><p class="ai-number">04.01.03.05</p><h1>与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比</h1><p class="ai-meta"><time datetime="2026-09-03T19:02">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>model-gateways-and-routing</li><li>apache-apisix</li><li>competitive-analysis</li></ul></header><div class="ai-prose"><h1 id="与-litellmenvoy-ai-gatewaylocalai-的竞品对比">与 LiteLLM、Envoy AI Gateway、LocalAI 的竞品对比</h1>
+<blockquote>
+<p>APISIX 的竞品分析，如果只看功能，很容易得出“大家都能路由、限流、鉴权”的空结论。真正有区分度的，是它们分别从哪个世界长出来：LiteLLM 来自 AI-native 接入层，Envoy AI Gateway 来自 Envoy/Gateway API 平台路线，APISIX 来自成熟 API Gateway 世界，LocalAI 则来自本地推理运行时世界。[1][2][3][4]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>把 APISIX 放进更准确的竞品坐标系；</li>
+<li>理解它与 LiteLLM、Envoy、LocalAI 的边界；</li>
+<li>根据组织现状判断哪条路线更顺；</li>
+<li>避免把“都叫 gateway”误当成“都是同一类产品”；</li>
+<li>给出更可信的选型建议。</li>
+</ol>
+<h2 id="1-总览对比">1. 总览对比</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Apache APISIX</th>
+<th>LiteLLM</th>
+<th>Envoy AI Gateway</th>
+<th>LocalAI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品出发点</td>
+<td>API Gateway 向 AI Gateway 延展 [1][2]</td>
+<td>AI-native 模型统一入口 [3]</td>
+<td>Envoy Gateway 承接 GenAI 流量 [4]</td>
+<td>本地自托管 AI 引擎</td>
+</tr>
+<tr>
+<td>第一主角</td>
+<td>插件化流量治理</td>
+<td>provider abstraction + unified API</td>
+<td>control plane / data plane / gateway policy</td>
+<td>模型运行与本地 API</td>
+</tr>
+<tr>
+<td>主要服务对象</td>
+<td>已有 API 平台传统的组织</td>
+<td>AI 应用团队、平台初创团队</td>
+<td>K8s / Envoy 平台团队</td>
+<td>私有化、本地推理团队</td>
+</tr>
+<tr>
+<td>强项</td>
+<td>API 与 AI traffic 合流、插件生态、成熟度</td>
+<td>快速多 provider 接入</td>
+<td>平台分层治理、自托管模型入口</td>
+<td>本地模型运行</td>
+</tr>
+<tr>
+<td>主要短板</td>
+<td>对纯 AI 团队不够直给</td>
+<td>平台深度较弱于重型网关体系</td>
+<td>平台门槛高</td>
+<td>不解决多 provider 平台治理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-apisix-vs-litellm">2. APISIX vs LiteLLM</h2>
+<p>这是一组“API-native”与“AI-native”的对比。</p>
+<ul>
+<li>LiteLLM 先解决的是 AI 应用团队怎样快速统一 provider；[3]</li>
+<li>APISIX 先解决的是组织怎样统一治理流量，再把 AI 纳入其中。[1][2]</li>
+</ul>
+<p>所以：</p>
+<ul>
+<li>如果你的核心痛点是“尽快统一十几家模型 API”，LiteLLM 更直接；</li>
+<li>如果你的核心痛点是“API 和 AI 流量最好都走同一套治理体系”，APISIX 更自然。</li>
+</ul>
+<p>一句话概括：LiteLLM 更像 AI 团队的加速器，APISIX 更像平台团队的延续线。</p>
+<h2 id="3-apisix-vs-envoy-ai-gateway">3. APISIX vs Envoy AI Gateway</h2>
+<p>这是一组“平台路线内部”的对比。</p>
+<ul>
+<li>Envoy AI Gateway 更强调 control plane / data plane、AIGatewayRoute、AIServiceBackend 这类 AI 专门资源建模；[4]</li>
+<li>APISIX 更强调插件系统与成熟 API Gateway 能力，把 AI 作为新流量类型吸收进去。[1][2]</li>
+</ul>
+<p>粗略地说：</p>
+<ul>
+<li>Envoy AI Gateway：更像专门为 GenAI traffic 构一层平台入口；</li>
+<li>APISIX：更像让原有 API gateway 世界学会处理 AI。</li>
+</ul>
+<p>如果组织已经在 Envoy / Gateway API 体系里，Envoy 路线更顺；如果组织原本就在 APISIX 或传统 API Gateway 体系里，APISIX 增量成本更低。</p>
+<h2 id="4-apisix-vs-localai">4. APISIX vs LocalAI</h2>
+<p>严格说这不是同层竞品，而是上下层。</p>
+<ul>
+<li>LocalAI 解决“模型怎么在本地或私有环境跑起来”；</li>
+<li>APISIX 解决“这些模型入口和 AI 流量怎么被统一治理”。</li>
+</ul>
+<p>因此它们可以组合：</p>
+<ul>
+<li>LocalAI 暴露本地模型 API；</li>
+<li>APISIX 统一接住外部 provider 与本地模型的流量，并加上鉴权、限流、日志、审计。</li>
+</ul>
+<h2 id="5-apisix-的真正竞争优势">5. APISIX 的真正竞争优势</h2>
+<p>APISIX 最强的地方，不是某一个 AI 功能特别新，而是：</p>
+<ol>
+<li>它本来就擅长治理流量；</li>
+<li>它有成熟插件生态；</li>
+<li>它可以同时管 API 与 AI；</li>
+<li>它的无厂商锁定叙事强；</li>
+<li>对已有平台传统的组织迁移成本低。[1][2]</li>
+</ol>
+<h2 id="6-谁不该优先选它">6. 谁不该优先选它</h2>
+<p>以下情况通常不该先选 APISIX：</p>
+<ul>
+<li>只想快速统一少量模型接入；</li>
+<li>团队没有任何 API Gateway 运维经验；</li>
+<li>主要目标是本地推理而不是统一入口治理；</li>
+<li>项目还处在很早期的单应用试验阶段。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>和 LiteLLM 的差别</td>
+<td>一个 AI-native，一个 API-native</td>
+</tr>
+<tr>
+<td>和 Envoy AI Gateway 的差别</td>
+<td>一个更插件化传统网关，一个更显式 AI 平台建模</td>
+</tr>
+<tr>
+<td>和 LocalAI 的差别</td>
+<td>一个管入口治理，一个管模型运行</td>
+</tr>
+<tr>
+<td>APISIX 的优势</td>
+<td>成熟网关能力可直接延展到 AI 流量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么“组织已经在用 APISIX”会极大改变 AI 网关选型结论？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为这意味着认证、限流、日志、插件开发、运维流程、组织认知和发布体系大概率已经存在。此时继续扩展 APISIX 承接 AI，通常比引入一套全新网关体系的组织阻力更小。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://raw.githubusercontent.com/apache/apisix/master/README.md">https://raw.githubusercontent.com/apache/apisix/master/README.md</a> — Apache APISIX README</li>
+<li>[2] <a href="https://apisix.apache.org/ai-gateway/">https://apisix.apache.org/ai-gateway/</a> — APISIX AI Gateway landing page</li>
+<li>[3] <a href="https://raw.githubusercontent.com/BerriAI/litellm/main/README.md">https://raw.githubusercontent.com/BerriAI/litellm/main/README.md</a> — LiteLLM README</li>
+<li>[4] <a href="https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/README.md">https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/README.md</a> — Envoy AI Gateway README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/01/03/04/"><span>上一篇</span><strong>04.01.03.04 质量、社区、价格与商业化边界</strong></a><a class="ai-pager-next" href="/ai/04-tooling/01/03/06/"><span>下一篇</span><strong>04.01.03.06 公开实践与企业采用信号：AI Gateway、MCP、限流、RAG、提示安全</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-总览对比">1. 总览对比</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-apisix-vs-litellm">2. APISIX vs LiteLLM</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-apisix-vs-envoy-ai-gateway">3. APISIX vs Envoy AI Gateway</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-apisix-vs-localai">4. APISIX vs LocalAI</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-apisix-的真正竞争优势">5. APISIX 的真正竞争优势</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-谁不该优先选它">6. 谁不该优先选它</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

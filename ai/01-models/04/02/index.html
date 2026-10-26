@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.04.02 生成参数控制 · iopanda</title><meta name="description" content="01.04.02 生成参数控制 · 模型 / 推理与部署，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/04/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.04.02 生成参数控制 · iopanda"><meta property="og:description" content="01.04.02 生成参数控制 · 模型 / 推理与部署，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/04/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="04" data-active-subsection data-active-article="/ai/01-models/04/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与部署"></button><a class="tree-link tree-link--section" href="/ai/01-models/04/"><span class="tree-number">04</span><span class="tree-title">推理与部署</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/04/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">生成参数控制</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/04/">推理与部署</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">生成参数控制</span></nav><header class="ai-article-header"><p class="ai-number">01.04.02</p><h1>生成参数控制</h1><p class="ai-meta"><time datetime="2026-09-02T23:05">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-inference</li><li>generation-controls</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章回答「模型跑多快」,本章回答「模型说什么」。同一个模型面对同一个问题,回答可以每次一模一样,也可以每次不同——差别不在权重,而在生成时怎样从概率分布里<strong>挑选下一个 token</strong>。没有明确控制,用户得到的结果不可复现,模型还可能无限输出。本章把「随机性」变成有记录、可选择的接口参数:先走通 logits→概率→采样的完整流程,再逐个掌握 temperature、top-k/top-p、max_new_tokens 与 stop,最后以固定题目比较两套配置,为课程问答接口定下可复现的生成参数。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>复述 logits→概率→采样的链路,说出每一步由谁决定;</li>
+<li>用数学直觉解释 temperature 为何通过「除以温度」改变分布陡峭度;</li>
+<li>对比 top-k 与 top-p 的机制差异,说明各自在控制什么风险;</li>
+<li>比较贪心解码与随机采样,理解 seed 对可复现性的作用;</li>
+<li>按任务性质(确定性 vs 创意)选择起步参数,并设置长度上限与停止条件;</li>
+<li>判断哪些问题调参可解、哪些问题调参也救不回来。</li>
+</ol>
+<h2 id="1-概念从分数到文字">1. 概念:从分数到文字</h2>
+<h3 id="11-logits概率采样一次生成的完整链路">1.1 logits→概率→采样:一次生成的完整链路</h3>
+<p>模型每生成一步只做三件事:<strong>打分 → 归一化 → 选词</strong>。</p>
+<ul>
+<li><strong>打分(logits)</strong>:解码器最后一层为词表上每一个候选 token 输出一个未归一化的分数,叫 <strong>logit</strong>。它可正可负、没有上界,数值由模型权重决定——权重来自训练,此刻冻结,接口调不了。</li>
+<li><strong>归一化(softmax)</strong>:把一串 logits 压成总和为 1 的概率分布,分数越高概率越大,但其余 token 仍保留非零概率——这正是「次优选择偶尔也会发生」的根源。</li>
+<li><strong>选词(采样)</strong>:最后一步决定到底输出哪个 token。每选出一个,就拼到已有文本末尾,再对下一个位置重复「打分→归一化→选词」,直到满足停止条件,这就是自回归生成。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>是什么</th>
+<th>由谁决定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>logits</td>
+<td>词表上未归一化的原始分数</td>
+<td>模型权重(训练决定,接口调不了)</td>
+</tr>
+<tr>
+<td>softmax → 概率</td>
+<td>分数压缩成和为 1 的分布</td>
+<td>数学变换(温度在这里介入)</td>
+</tr>
+<tr>
+<td>采样选词</td>
+<td>从分布中挑一个 token</td>
+<td>解码参数(贪心/采样/top-k/top-p)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>关键认识</strong>:解码参数只作用在最后一步「怎么选」,不触碰前面的 logits。这就是为什么调参永远改不了「模型会什么」,只能改「模型这次怎么说」。01.02 第 9 章曾从零实现过这个循环,本章换成 <code>model.generate</code> 的参数,结论一致。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70"> A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">打分:词表 logits</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">归一化:softmax / 温度</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">概率分布</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> C </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">{</span><span style="color:#9ECBFF">选词策略</span><span style="color:#F97583">}</span></span>
+<span class="line"><span style="color:#FFAB70"> D </span><span style="color:#F97583">--&gt;|</span><span style="color:#9ECBFF">贪心</span><span style="color:#F97583">|</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">恒取最高概率</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> D </span><span style="color:#F97583">--&gt;|</span><span style="color:#9ECBFF">采样</span><span style="color:#F97583">|</span><span style="color:#FFAB70"> F</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">按概率抽签</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> F </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> G</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">top</span><span style="color:#E1E4E8">-</span><span style="color:#9ECBFF">k/top</span><span style="color:#E1E4E8">-</span><span style="color:#9ECBFF">p 预先裁剪候选</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> E </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> H</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">拼回上下文,预测下一个</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> G </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> H</span></span>
+<span class="line"><span style="color:#FFAB70"> H </span><span style="color:#F97583">--&gt;|</span><span style="color:#9ECBFF">未到停止条件</span><span style="color:#F97583">|</span><span style="color:#FFAB70"> B</span></span>
+<span class="line"><span style="color:#FFAB70"> H </span><span style="color:#F97583">--&gt;|</span><span style="color:#9ECBFF">EOS / max_new_tokens / stop</span><span style="color:#F97583">|</span><span style="color:#FFAB70"> I</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">结束</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<h3 id="12-temperature除以温度改变分布陡峭度">1.2 temperature:除以温度,改变分布陡峭度</h3>
+<p>采样之前,先把每个 logit 除以温度 T,再做 softmax:</p>
+<p><code>p_i = exp(z_i / T) / Σ_j exp(z_j / T)</code></p>
+<ul>
+<li><strong>T = 1</strong>:分布原样,照模型学到的概率抽。</li>
+<li><strong>T &lt; 1</strong>(如 0.2):除以小于 1 的数等于放大分数差距,分布变得更陡峭——高概率 token 更占优,输出更确定、更保守、更少意外。</li>
+<li><strong>T &gt; 1</strong>(如 1.2):分数差距被压缩,分布趋平,低概率候选也有机会被选中,输出更多样,也更容易跑偏。</li>
+<li><strong>T → 0</strong>:概率几乎全部集中到最高分那个 token,等价于贪心。</li>
+</ul>
+<p>直观例子:某一步三个候选的 logits 为 2.0、1.0、0.0,不同温度下的分布:</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>除以 T 后的 logits</th>
+<th>softmax 后概率(从高到低)</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.5</td>
+<td>4.0, 2.0, 0.0</td>
+<td>0.867, 0.117, 0.016</td>
+<td>分布更陡:几乎只选第一名</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>2.0, 1.0, 0.0</td>
+<td>0.665, 0.245, 0.090</td>
+<td>原始分布</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>1.0, 0.5, 0.0</td>
+<td>0.507, 0.307, 0.186</td>
+<td>分布趋平:第三名机会明显上升</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>低温度不等于更聪明</strong>:它只是让模型更「笃定」地押注自己原本就偏好的答案;若偏好本身是错的,只会更自信地重复错误。</li>
+<li><strong>实操要点</strong>:只有 <code>do_sample=True</code> 时 temperature 才生效;想要稳定输出,要么用贪心,要么用低温度加固定 seed。</li>
+</ul>
+<h3 id="13-top-k-与-top-p先裁掉明显离谱的候选">1.3 top-k 与 top-p:先裁掉明显离谱的候选</h3>
+<p>temperature 重塑分布的「形状」,top-k/top-p 负责裁剪候选「名单」——把明显不靠谱的 token 在采样前清零,避免随机性把它们抬上来。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>机制</th>
+<th>候选集合</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>top-k</strong></td>
+<td>只保留概率最高的前 k 个(如 50),其余概率清零后重新归一化</td>
+<td>固定 k 个</td>
+<td>k 靠拍脑袋:分布平缓时 k 太小会误伤该留的;分布尖锐时 k 太大又放进该裁的</td>
+</tr>
+<tr>
+<td><strong>top-p</strong>(nucleus 采样)</td>
+<td>从最高概率往下累加,保留「累计概率刚好达到 p(如 0.9)」的最小集合</td>
+<td>大小随分布自适应</td>
+<td>更贴合分布形状,但同样只裁候选,不补质量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>何时用哪个</strong>:候选长尾很长时(开放续写)top-p 更稳;想严格排除某类低概率 token 时 top-k 更直接。两者常与 temperature 组合成一套采样配置。</li>
+<li>框架内部三者的组合顺序实现各异,不必记死;记住它们都在采样前完成即可:先重塑分布、再裁剪候选、最后抽签。</li>
+</ul>
+<h3 id="14-贪心解码-vs-随机采样">1.4 贪心解码 vs 随机采样</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>贪心(<code>do_sample=False</code>)</th>
+<th>采样(<code>do_sample=True</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每步怎么选</td>
+<td>恒取概率最高的 token</td>
+<td>按概率抽签,低概率也可能中选</td>
+</tr>
+<tr>
+<td>可复现性</td>
+<td>同 prompt 恒同输出</td>
+<td>需固定 seed(<code>torch.manual_seed(42)</code>)才可复现</td>
+</tr>
+<tr>
+<td>典型风险</td>
+<td>重复、平淡、绕圈;一步选错没有回头路</td>
+<td>多样但发散,可能跑题、乱码</td>
+</tr>
+<tr>
+<td>适合任务</td>
+<td>问答、抽取、翻译等「要准」的任务</td>
+<td>故事、文案、头脑风暴等「要新」的任务</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>贪心不是「更正确」</strong>:它只是「更确定」。若模型最确定的那个 token 就是错的(如事实性错误),贪心会把错误稳稳地写出来。</li>
+<li><strong>seed 是评测纪律</strong>:比较两套参数前先固定 seed,才能保证差异来自参数而不是运气——与上一章做性能基线时先固定 seed 是同一纪律。</li>
+</ul>
+<h3 id="15-何时停max_new_tokens-与-stop">1.5 何时停:max_new_tokens 与 stop</h3>
+<p>理想情况下模型自己输出结束符(EOS)就停;但无人值守时不能只依赖它——模型可能迟迟不输出 EOS,陷入重复或跑题,无限续写。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+<th>不设会怎样</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_new_tokens</code></td>
+<td>新增 token 数的硬上限,到达即截断</td>
+<td>输出可能无限增长:成本失控、内容跑偏</td>
+</tr>
+<tr>
+<td><code>stop</code>(stop strings)</td>
+<td>出现指定字符串立即停止</td>
+<td>固定结尾格式(JSON、分隔符等)无法保证</td>
+</tr>
+<tr>
+<td>EOS 正常结束</td>
+<td>模型自认答完</td>
+<td>属理想情况,不能当作唯一保险</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>截断是<strong>信号不是故障</strong>:输出恰好撞到 <code>max_new_tokens</code>,先检查上限是否太小、模型是否在绕圈,不要立刻认定模型坏了。</li>
+<li>线上接口永远要设上限与停止条件——这是控制成本与风险的第一道闸。</li>
+</ul>
+<h3 id="16-为什么参数不能修复质量">1.6 为什么参数不能修复质量</h3>
+<ul>
+<li>概率分布的「候选名单」由训练决定。若高概率的候选全是错的(事实错误、语病、幻觉),任何采样策略都只是<strong>在这些错误里换一种选法</strong>。</li>
+<li>参数能改的是确定性、多样性、长度,改不了知识、事实与训练数据质量。答错就调低 temperature,只是让模型更笃定地重复错误;答错就调高 temperature,只是让它在错误里更随机地挑一个。</li>
+<li>质量问题的正确出路不在解码参数:事实性靠检索(RAG)或换模型,行为风格靠微调(01.03),约束靠 system prompt——参数只负责把这些手段的结果稳定地、按需地表达出来。</li>
+</ul>
+<h2 id="2-按任务选参确定性-vs-创意">2. 按任务选参:确定性 vs 创意</h2>
+<p>没有「万能默认参数」。动手前先回答:这个任务要的是<strong>每次尽量一样且正确</strong>,还是<strong>每次尽量不同且有趣</strong>?以此为起点查表:</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>起步设置</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程问答/抽取</td>
+<td><code>do_sample=False</code></td>
+<td>最可复现</td>
+</tr>
+<tr>
+<td>头脑风暴</td>
+<td><code>temperature=0.8, top_p=0.9</code></td>
+<td>保留适度多样性</td>
+</tr>
+<tr>
+<td>任何线上接口</td>
+<td><code>max_new_tokens</code> + stop</td>
+<td>控制成本与跑偏</td>
+</tr>
+<tr>
+<td>翻译/改写/代码</td>
+<td><code>temperature=0.2</code> 或 <code>do_sample=False</code></td>
+<td>语义要准,不允许乱发挥</td>
+</tr>
+<tr>
+<td>客服/事实问答</td>
+<td><code>do_sample=False</code></td>
+<td>错误代价高,稳定优先</td>
+</tr>
+<tr>
+<td>创意文案/故事</td>
+<td><code>temperature=0.8~1.0, top_p=0.9</code></td>
+<td>鼓励表达多样</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>表只是<strong>起点</strong>:换模型后要重新验证,不同模型学到的分布陡峭度不同,同一套参数表现会变。</li>
+<li>两套配置对照时,固定模型、prompt、seed,让唯一变量是参数本身。</li>
+<li>重复与呆板(确定性过高)和发散与乱码(随机性过高)是同一枚硬币的两面,调参是在中间找平衡点,而不是把某个数值奉为真理。</li>
+</ul>
+<h2 id="3-动手修改并比较生成配置">3. 动手:修改并比较生成配置</h2>
+<p>在 <code>generate.py</code> 的 <code>model.generate</code> 调用中依次运行(沿用其中已加载的 <code>model</code>、<code>tokenizer</code>、<code>ids</code>):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">cases </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"greedy"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"do_sample"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"creative"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"do_sample"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"temperature"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">0.8</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"top_p"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">0.9</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> case </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> cases:</span></span>
+<span class="line"><span style="color:#E1E4E8">    torch.manual_seed(</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model.generate(ids, </span><span style="color:#FFAB70">max_new_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">120</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">eos_token_id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">tokenizer.eos_token_id, </span><span style="color:#F97583">**</span><span style="color:#E1E4E8">{k:v </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> k,v </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> case.items() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">!=</span><span style="color:#9ECBFF"> "name"</span><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(case[</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">], tokenizer.decode(result[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">][ids.shape[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">]:], </span><span style="color:#FFAB70">skip_special_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>用 5 个固定问题各跑两种设置,原样写入 <code>reports/generation-controls.md</code>。不要只挑一条漂亮结果;分别标注事实性、重复、是否按时停止和格式遵守。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:发布生成配置表</p>
+<p><strong>目标</strong>:<code>generation-controls.md</code>。</p>
+<p><strong>步骤</strong>:固定模型、prompt、seed;比较两套设置;选一套给课程问答接口;说明上限与停止条件。</p>
+<p><strong>完成标准</strong>:别人可复制参数重现对比,且你能说明为何确定性问答不用高 temperature。</p>
+</div>
+<h2 id="4-总结与排错">4. 总结与排错</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>一句话作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>temperature</code></td>
+<td>缩放 logits,改变分布陡峭度</td>
+<td>&lt;1 更确定,&gt;1 更多样;仅采样时生效</td>
+</tr>
+<tr>
+<td><code>top_k</code></td>
+<td>只留概率最高的前 k 个候选</td>
+<td>候选集合固定</td>
+</tr>
+<tr>
+<td><code>top_p</code></td>
+<td>保留累计概率达 p 的最小候选集</td>
+<td>候选集合随分布自适应</td>
+</tr>
+<tr>
+<td><code>max_new_tokens</code></td>
+<td>生成长度的硬上限</td>
+<td>线上接口必设</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>遇到指定字符串即停</td>
+<td>配合固定结尾格式</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>先检查</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出每次不一样</td>
+<td>是否需要可复现</td>
+<td>固定 seed,或改用 <code>do_sample=False</code></td>
+</tr>
+<tr>
+<td><code>do_sample=False</code> 却传了 temperature/top-p</td>
+<td>参数是否生效</td>
+<td>不会起作用,应去掉以免误导</td>
+</tr>
+<tr>
+<td>输出被截断</td>
+<td><code>max_new_tokens</code> 与 stop</td>
+<td>上限太小或模型绕圈;不要先怀疑模型坏了</td>
+</tr>
+<tr>
+<td>答得自信但错误</td>
+<td>分布里有没有「对」的候选</td>
+<td>调参救不回,回到数据、RAG 或微调</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「确定性问答」不用高 temperature?对比两套参数时为什么必须固定 seed?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>高 temperature 会把分布拉平,让低概率(常是跑题、错误)的候选也有机会被选中,事实性问答承受不起这种随机性。不固定 seed 时,同一套参数两次运行结果都可能不同,你无法判断差异来自参数还是运气——固定 seed 才能让唯一变量是生成配置。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/main/en/generation_strategies">Transformers:生成策略</a></li>
+<li><a href="https://huggingface.co/blog/how-to-generate">Hugging Face 博客:How to generate text</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/04/01/"><span>上一篇</span><strong>01.04.01 推理基础</strong></a><a class="ai-pager-next" href="/ai/01-models/04/03/"><span>下一篇</span><strong>01.04.03 模型量化</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念从分数到文字">1. 概念:从分数到文字</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-logits概率采样一次生成的完整链路">1.1 logits→概率→采样:一次生成的完整链路</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#12-temperature除以温度改变分布陡峭度">1.2 temperature:除以温度,改变分布陡峭度</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#13-top-k-与-top-p先裁掉明显离谱的候选">1.3 top-k 与 top-p:先裁掉明显离谱的候选</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#14-贪心解码-vs-随机采样">1.4 贪心解码 vs 随机采样</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#15-何时停max_new_tokens-与-stop">1.5 何时停:max_new_tokens 与 stop</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#16-为什么参数不能修复质量">1.6 为什么参数不能修复质量</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-按任务选参确定性-vs-创意">2. 按任务选参:确定性 vs 创意</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-动手修改并比较生成配置">3. 动手:修改并比较生成配置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-总结与排错">4. 总结与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

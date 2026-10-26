@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.03.05 多用户、权限、平台化运营与评测 · iopanda</title><meta name="description" content="03.02.03.05 多用户、权限、平台化运营与评测 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/03/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.03.05 多用户、权限、平台化运营与评测 · iopanda"><meta property="og:description" content="03.02.03.05 多用户、权限、平台化运营与评测 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/03/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="03" data-active-article="/ai/03-frameworks/02/03/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAGFlow"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/03/"><span class="tree-number">03</span><span class="tree-title">RAGFlow</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/03/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">多用户、权限、平台化运营与评测</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/03/">RAGFlow</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">多用户、权限、平台化运营与评测</span></nav><header class="ai-article-header"><p class="ai-number">03.02.03.05</p><h1>多用户、权限、平台化运营与评测</h1><p class="ai-meta"><time datetime="2026-09-03T22:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>ragflow</li><li>permissions</li><li>evaluation</li><li>platform</li></ul></header><div class="ai-prose"><h1 id="多用户权限平台化运营与评测">多用户、权限、平台化运营与评测</h1>
+<blockquote>
+<p>RAGFlow 和很多 retrieval framework 的最大差别之一，是它很早就把团队协作、权限、资源共享、dataset retrieval testing 放进同一个产品面板语境里。[65][66][67] 这说明它不是只在乎“开发者怎样编程”，而是也在乎“组织怎样运营知识层”。</p>
+</blockquote>
+<p><strong>学习目标</strong>：</p>
+<ol>
+<li>解释为什么 RAGFlow 对团队、权限、共享范围讲得这么重；</li>
+<li>理解 dataset testing、metadata、permission system 为什么都是 retrieval platform 的一部分；</li>
+<li>说出平台型 RAG 与框架型 RAG 在运营层的差异；</li>
+<li>判断什么时候团队真正需要平台化，而不是只需要 SDK；</li>
+<li>为一个多用户知识系统设计运营视角下的 retrieval 规则。</li>
+</ol>
+<h2 id="1-permissions-说明它不是单用户-demo">1. permissions 说明它不是单用户 demo</h2>
+<p>权限系统总览明确写出三层：team membership、resource sharing scope、resource operation permissions。[67]</p>
+<p>这说明 RAGFlow 默认的世界里：</p>
+<ul>
+<li>知识库是共享资源；</li>
+<li>agent 也是共享资源；</li>
+<li>memories、search apps、chat 等都有资源边界。</li>
+</ul>
+<p>这和只在代码里 new 一个 retriever 的框架完全不同。</p>
+<h2 id="2-metadata-说明治理不是事后补丁">2. metadata 说明治理不是事后补丁</h2>
+<p>metadata 文档强调：metadata 可来自 built-in fields、auto generation、table column roles、manual maintenance，并用于 filtering、retrieval range restriction、result analysis。[66]</p>
+<p>这意味着：</p>
+<ul>
+<li>metadata 不只是检索技巧；</li>
+<li>还是运营、治理、权限、分析的一部分。</li>
+</ul>
+<h2 id="3-retrieval-testing-说明评测是平台一等能力">3. retrieval testing 说明评测是平台一等能力</h2>
+<p>RAGFlow 的 retrieval testing 文档本质上在要求团队：</p>
+<ul>
+<li>先测召回；</li>
+<li>再测聊天；</li>
+<li>再测 agent；</li>
+<li>问题排查按 parsing → chunk → metadata → retrieval params 的顺序做。[65]</li>
+</ul>
+<p>这和只在 notebook 里跑几次 query 的工作方式差别很大。它把评测做成了平台工作流的一部分。</p>
+<h2 id="4-什么时候平台化是刚需">4. 什么时候平台化是刚需</h2>
+<p>当系统开始出现：</p>
+<ul>
+<li>多团队共享知识库；</li>
+<li>多角色管理 Agent / dataset；</li>
+<li>权限和共享范围要治理；</li>
+<li>retrieval testing 要成为日常流程；</li>
+<li>parsing / chunking 要可视化和可运营；
+平台化就不再是“好看 UI”，而是系统需求。</li>
+</ul>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>ragflow-platform-governance.md</code></p>
+<p>为课程助教系统写一页平台运营规则：哪些 dataset 共享，哪些 metadata 必填，哪些 retrieval params 需要被测试后才能进生产，哪些权限只给教师或管理员。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAGFlow 为什么像平台</td>
+<td>因为它把权限、共享、测试、知识运营一起纳入产品主线</td>
+</tr>
+<tr>
+<td>permission system 的意义</td>
+<td>知识层天然是多用户资源</td>
+</tr>
+<tr>
+<td>metadata 的意义</td>
+<td>不只是召回技巧，也是治理字段</td>
+</tr>
+<tr>
+<td>retrieval testing 的意义</td>
+<td>把检索验收纳入平台流程</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[65] <a href="https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/retrieval_testing.md">https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/retrieval_testing.md</a> — RAGFlow retrieval testing guide</li>
+<li>[66] <a href="https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/metadata_management.md">https://github.com/infiniflow/ragflow/blob/main/docs/guides/dataset/metadata_management.md</a> — RAGFlow metadata management guide</li>
+<li>[67] <a href="https://github.com/infiniflow/ragflow/blob/main/docs/guides/team/permission_system_overview/index.md">https://github.com/infiniflow/ragflow/blob/main/docs/guides/team/permission_system_overview/index.md</a> — RAGFlow permission overview</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/03/04/"><span>上一篇</span><strong>03.02.03.04 Retrieval、Context Layer 与 Agent Integration</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/03/06/"><span>下一篇</span><strong>03.02.03.06 课程助教 Agent 的 RAGFlow 架构案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-permissions-说明它不是单用户-demo">1. permissions 说明它不是单用户 demo</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-metadata-说明治理不是事后补丁">2. metadata 说明治理不是事后补丁</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-retrieval-testing-说明评测是平台一等能力">3. retrieval testing 说明评测是平台一等能力</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-什么时候平台化是刚需">4. 什么时候平台化是刚需</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

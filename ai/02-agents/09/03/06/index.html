@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.03.06 自我进化设计 · iopanda</title><meta name="description" content="02.09.03.06 自我进化设计 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/03/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.03.06 自我进化设计 · iopanda"><meta property="og:description" content="02.09.03.06 自我进化设计 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/03/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="03" data-active-article="/ai/02-agents/09/03/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Hermes Agent"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/03/"><span class="tree-number">03</span><span class="tree-title">Hermes Agent</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/03/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">自我进化设计</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/03/">Hermes Agent</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">自我进化设计</span></nav><header class="ai-article-header"><p class="ai-number">02.09.03.06</p><h1>自我进化设计</h1><p class="ai-meta"><time datetime="2026-09-03T07:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>hermes-source</li></ul></header><div class="ai-prose"><h1 id="自我进化设计">自我进化设计</h1>
+<blockquote>
+<p>前四章拆的是「器官」:循环、技能、记忆、网关;本章把它们装回一个活体——闭合学习环。Hermes 是本子目录 README 定位的「六对象中唯一主打自我进化」的实现,但它从不靠模型「自觉反思」:每一处进化都有确定性触发点——计数器、阈值、状态机、预算,LLM 只出现在「写什么」的最后一步决策。收官章的目标,是让你能指着代码说清:技能从哪一刻开始学、记忆在哪个回合沉淀、画像如何变深、行为凭什么改善,以及这套闭环哪些能抄、哪些必须避。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>画出「用中学技能 → 沉淀记忆 → 画像变深 → 行为改善」闭合学习环,并为每个环节标出文件:行号;</li>
+<li>解释 memory 与 skill 两种 nudge 为何计数不同步(memory 按用户轮、skill 按工具迭代),以及评审为何必须放在响应送达之后;</li>
+<li>说清 curator 的双轨制——确定性状态机(默认)与 LLM umbrella 合并(consolidate 显式开启),以及后台评审 fork 如何防递归、防越权、防烧钱;</li>
+<li>依据各对象 README(不臆测源码)横向对比 6 个实现的「进化」形态,指出 Hermes 闭环的独特点;</li>
+<li>形成收官判断:自我进化的工程本质是「用确定性机制约束 LLM 反思」,并交出一份可抄 / 要避清单。</li>
+</ol>
+<h2 id="1-概念闭合学习环--四个环节--一个钟摆">1. 概念:闭合学习环 = 四个环节 + 一个钟摆</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>用中学技能 ──► 沉淀记忆 ──► 画像变深 ──► 行为改善</span></span>
+<span class="line"><span>  (回合内)      (回合尾)      (跨会话)      (下一轮 prompt)</span></span>
+<span class="line"><span>     ▲                                            │</span></span>
+<span class="line"><span>     └──────── 行为改善反过来让技能更好用 ◄─────────┘</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>载体</th>
+<th>关键触发点(文件:行号)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 用中学技能</td>
+<td>会话内 skill_view 加载 + skill_manage 更新</td>
+<td>工具迭代计数 conversation_loop.py:2369-2373</td>
+</tr>
+<tr>
+<td>② 沉淀记忆</td>
+<td>MEMORY.md / 技能库</td>
+<td>memory nudge turn_context.py:869;skill nudge 判定 turn_finalizer.py:794-800</td>
+</tr>
+<tr>
+<td>③ 画像变深</td>
+<td>USER.md(与记忆共用同一条评审链)</td>
+<td>评审提示词把 persona/preferences 列第一关注 background_review.py:465-473</td>
+</tr>
+<tr>
+<td>④ 行为改善</td>
+<td>下轮/下会话 system prompt 注入</td>
+<td>技能索引+冻结快照进 volatile 段 system_prompt.py:925-937;快照重载 :1084-1085</td>
+</tr>
+</tbody>
+</table>
+<p>四环节没有一个是模型主动完成的:①的计数在每轮工具迭代后自增,②的判定在回合边界检查阈值,③④的生效依赖「下次构建 prompt 时读盘」。模型只回答「这段对话里什么值得沉淀、沉淀成什么」——背景 03 章已证:这是把「何时/何地/多大」交给确定性代码、「写什么」交给 LLM 的分工。</p>
+<h2 id="2-为什么这样设计">2. 为什么这样设计</h2>
+<ul>
+<li><strong>「自我进化」是模块定位签名,不是附带功能</strong>:本子目录 README 明确 Hermes 是六对象中唯一主打自我进化的实现,并把技能、记忆、画像当作<strong>运行时可变资产</strong>——能力上限不只看模型,还看循环积累。仓库自己就是活例子:skills/autonomous-ai-agents/ 分类里沉淀着 hermes-agent/codex/claude-code/opencode 等子技能(编排自主 Agent 的经验),optional-skills/dogfood/ 存对抗性自测——「用自己、改进自己」既是产品也是开发方式。</li>
+<li><strong>LLM 反思不可靠,进化节奏必须确定</strong>:模型不会记得「上上个回合该写记忆了」,计数与阈值因此落在宿主代码里;让模型自选时机 = 把 token 预算交给随机性。Hermes 的回答是双轨制(见 4.3):该不该动、动哪些、花多少钱,由状态机与计数器裁决;LLM 只做「写什么内容」这最后一跳。</li>
+<li><strong>进化不能打扰主任务</strong>:评审 fork 一次约 3 万 token、要再跑一个完整 agent 回合,若与用户任务抢模型注意力,「学会」就成了「变慢」。所以所有后台进化都钉在<strong>响应送达之后</strong>(turn_finalizer.py:810-830 注释原话:runs AFTER the response is delivered),而 cron 这类无人在环的会话干脆整体跳过(4.5)。</li>
+</ul>
+<h2 id="3-作用位置闭环触发点全景">3. 作用位置:闭环触发点全景</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>回合内   conversation_loop.py:2369  每轮工具迭代 _iters_since_skill += 1(仅 skill_manage 可用时)</span></span>
+<span class="line"><span>         turn_context.py:869         每用户轮 _turns_since_memory += 1(仅 memory 工具可用且 MemoryStore 在)</span></span>
+<span class="line"><span>回合边界 turn_finalizer.py:794-800   skill 计数 ≥ _skill_nudge_interval → should_review_skills=True,清零</span></span>
+<span class="line"><span>         turn_context.py:875-877      memory 计数 ≥ 阈值 → should_review_memory=True,清零</span></span>
+<span class="line"><span>送达之后 turn_finalizer.py:810-830   四条件齐 → _spawn_background_review(messages_snapshot=list(messages))</span></span>
+<span class="line"><span>后台线程 background_review.py:1754   spawn_background_review_thread:挑提示词 + 建最小工具集 fork</span></span>
+<span class="line"><span>         curator.py:1977-1978        评审 agent 自身 nudge 置 0 —— 防递归</span></span>
+<span class="line"><span>离线/周期 curator.py:305              apply_automatic_transitions:确定性 stale/archive 状态机</span></span>
+<span class="line"><span>         curator.py:1521              run_curator_review;consolidate 门 curator.py:204(默认 OFF)</span></span>
+<span class="line"><span>         cron/scheduler.py:6738       cron 会话 skip_background_review=True(省 ~30K tok/event)</span></span>
+<span class="line"><span>网关侧   gateway/run.py:24598         每回合返回后 _run_post_turn_hooks(/goal 续跑、/loop 周期)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-环节用中学技能按工具迭代计数的-skill-nudge">4.1 环节①:用中学技能——按工具迭代计数的 skill nudge</h3>
+<p>「学」发生在用之后:模型在任务中加载技能(skill_view)、或用户纠正了它的做法,这些回合结束时最有沉淀价值。skill nudge 的钟摆是<strong>工具迭代</strong>——每完成一轮「LLM 调用 + 工具执行」自增一次(agent/conversation_loop.py:2369-2373):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Track tool-calling iterations for skill nudge.</span></span>
+<span class="line"><span style="color:#6A737D"># Counter resets whenever skill_manage is actually used.</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (agent._skill_nudge_interval </span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#F97583">        and</span><span style="color:#9ECBFF"> "skill_manage"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> agent.valid_tool_names):</span></span>
+<span class="line"><span style="color:#E1E4E8">    agent._iters_since_skill </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>真正的判定在回合收尾(turn_finalizer.py:794-800):<code>_iters_since_skill &gt;= _skill_nudge_interval</code>(默认 10,agent/agent_init.py:2032)即置 <code>_should_review_skills = True</code> 并清零。注意两个门控细节:工具集里没有 skill_manage 就不计数(评审 fork 无 skill_manage 时不会自旋);一旦模型真的用过 skill_manage 写技能,计数器在 agent/tool_executor.py:711-712 归零——「刚写过就不催」。</p>
+<h3 id="42-环节沉淀记忆与画像变深按用户轮的-memory-nudge">4.2 环节②③:沉淀记忆与画像变深——按用户轮的 memory nudge</h3>
+<p>memory nudge 走<strong>用户轮</strong>(回合开始处,turn_context.py:869-877):<code>_turns_since_memory += 1</code>,达到 <code>_memory_nudge_interval</code>(默认 10)置 should_review_memory;会话恢复时按历史用户轮数补齐计数(:821-825),任一 memory 写操作成功即清零(agent/tool_executor.py:710)。两种钟摆刻意不同步:memory 绑用户轮、skill 绑工具迭代——一个闲聊型回合只走 memory 钟,一个重工具回合主要走 skill 钟,避免两个评审在同一回合集中爆发。</p>
+<p>「画像变深」没有独立代码路径,它与记忆共用评审链:内存评审提示词把用户侧信息列第一优先级(agent/background_review.py:465-473,原文 “Has the user revealed things about themselves — their persona, desires, preferences, or personal details worth remembering?”),模型经 memory 工具选 target 落 MEMORY.md 或 USER.md——03 章双文件在闭环里合流。</p>
+<h3 id="43-派发与执行送达后的后台评审-fork">4.3 派发与执行:送达后的后台评审 fork</h3>
+<p>满足「有最终回复、未中断、未跳过、任一评审标记」四条件即派发(agent/turn_finalizer.py:810-830):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    final_response</span></span>
+<span class="line"><span style="color:#F97583">    and</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> interrupted</span></span>
+<span class="line"><span style="color:#F97583">    and</span><span style="color:#F97583"> not</span><span style="color:#79B8FF"> getattr</span><span style="color:#E1E4E8">(agent, </span><span style="color:#9ECBFF">"skip_background_review"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    and</span><span style="color:#E1E4E8"> (_should_review_memory </span><span style="color:#F97583">or</span><span style="color:#E1E4E8"> _should_review_skills)</span></span>
+<span class="line"><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">        # _spawn_background_review clones the snapshot structurally so</span></span>
+<span class="line"><span style="color:#6A737D">        # the fork's in-place sanitizers can't reach the live transcript.</span></span>
+<span class="line"><span style="color:#E1E4E8">        agent._spawn_background_review(</span></span>
+<span class="line"><span style="color:#FFAB70">            messages_snapshot</span><span style="color:#F97583">=</span><span style="color:#79B8FF">list</span><span style="color:#E1E4E8">(messages),</span></span>
+<span class="line"><span style="color:#FFAB70">            review_memory</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">_should_review_memory,</span></span>
+<span class="line"><span style="color:#FFAB70">            review_skills</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">_should_review_skills,</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#F97583">    except</span><span style="color:#79B8FF"> Exception</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        pass</span><span style="color:#6A737D">  # Background review is best-effort</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>线程构造在 agent/background_review.py:1754 <code>spawn_background_review_thread</code>(按触发标记选 _MEMORY_REVIEW_PROMPT :465 / _SKILL_REVIEW_PROMPT :476 / _COMBINED_REVIEW_PROMPT :615,<code>/refine</code> 聚焦可追加用户指令 :1769-1773)。fork 被刻意削成最小面:工具集只开 skills、按需前置 memory(background_review.py:1539-1541),无终端、读文件只读白名单——它整份工作就是发 memory / skill_manage 两种调用。防递归在 curator.py:1976-1978,注释即设计:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Disable recursive nudges — the curator must never spawn its own review.</span></span>
+<span class="line"><span style="color:#E1E4E8">review_agent._memory_nudge_interval </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#E1E4E8">review_agent._skill_nudge_interval </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>再加一道身份标记:<code>review_agent._memory_write_origin = "background_review"</code>(curator.py:1986)——skill_manage 的后台评审写保护(read-before-write)靠它识别「这是评审 fork 在写,不是主会话在写」。</p>
+<h3 id="44-技能生命周期curator-双轨制">4.4 技能生命周期:curator 双轨制</h3>
+<p>技能侧的长期进化由 <code>hermes curator run</code> 驱动,agent/curator.py:1521 <code>run_curator_review</code> 文档串起四步:①确定性状态迁移(纯代码,无 LLM)→ ②consolidate 开启且有 agent 创建技能时,才 fork 子 AIAgent 跑 LLM 评审 → ③写 .curator_state → ④回调 on_summary。第一轨 <code>apply_automatic_transitions</code>(curator.py:305)按 .usage.json(tools/skill_usage.py:84-85)里的最近真实活动时间,把技能在 active/stale/archived 三态间搬运(tools/skill_usage.py:53-55),只管理 agent 创建(created_by: agent)的技能,内置/用户自有技能另有保护;第二轨 LLM umbrella 由 <code>consolidate</code> 门控(curator.py:204 <code>get_consolidate</code>,配置默认 OFF,<code>hermes curator run --consolidate</code> 才开):fork 一个 <code>max_iterations=9999</code> 的评审 agent(curator.py:1970)跑合并评审。合并动作有两层约束:回合尾技能评审提示词给出「patch 已加载且 curator-managed 的技能 → patch 现有 umbrella → 加 references/ 支持文件 → 新建 class 级 umbrella」的优先序(background_review.py:501-513);curator 的合并轮再按「并入现有 umbrella → 新建 class 级 umbrella → 降级为 references/templates/scripts 支持文件」三种方式执行(curator.py:488-541),硬规则包括:不动 bundled/hub/external 技能、archive 是最大破坏动作、跳过 pinned 与 cron=yes 技能、禁止把 PR 号/错误串/一次性任务名写成新技能名(curator.py:446-471、:535-538)。默认 OFF 是刻意的:确定性 prune 零模型成本,LLM 合并是可选增强。</p>
+<h3 id="45-成本闸门与无人值守cron-的-skip_background_review">4.5 成本闸门与无人值守:cron 的 skip_background_review</h3>
+<p>后台评审再省也是「又一个完整 agent 回合」,注释直说约 3 万 token/事件(turn_finalizer.py:812-814)。cron 定时会话没有人在环,评审结论无人即时受益,于是 job 构造 AIAgent 时硬编码 <code>skip_background_review=True</code>(cron/scheduler.py:6738,注释原文:Cron has no human-in-the-loop need for skill/memory review forks(~30K tok/event))——同时 <code>skip_memory=False</code>(:6737),即<strong>前台记忆读写照常、后台进化分叉关掉</strong>,区分「用户要的持久化」与「agent 自发的反思」两种成本。</p>
+<h3 id="46-行为改善的收口网关-post-turn-hooks">4.6 行为改善的收口:网关 post-turn hooks</h3>
+<p>进化不只在单回合:网关每回合返回后跑 <code>_run_post_turn_hooks</code>(gateway/run.py:24598,调用点 :20431),内部收口 /goal 续跑(:24622)与 /loop 周期完成(:24658)——长时目标把多回合串成持续改进,同一核心在 Telegram/Discord/CLI 任何触达面上都走这条钩子。至此闭环四环节全部落位:回合内学、回合尾沉淀、跨会话生效、多端长时目标持续驱动。</p>
+<h3 id="47-横向对比六对象的进化形态仅-readme-核证">4.7 横向对比:六对象的「进化」形态(仅 README 核证)</h3>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>README 核证的形态</th>
+<th>与 Hermes 闭环对照</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 Claude Code</td>
+<td>闭源核心 + MIT SDK;SKILL.md 为跨厂商开放标准;hooks 可编程介入授权</td>
+<td>技能标准同源,但无后台自我评审:进化靠外部文件显式供给</td>
+</tr>
+<tr>
+<td>02 OpenAI Codex</td>
+<td>Rust 极简 CLI;AGENTS.md 沿路径分层拼接=「项目记忆」</td>
+<td>记忆主体是项目文件而非 agent 自身,无画像/自动沉淀</td>
+</tr>
+<tr>
+<td>04 OpenCode</td>
+<td>TS 全开源;AGENTS.md 自举(dogfooding)是「AGENTS.md 即项目记忆」活样本</td>
+<td>自举精神同 Hermes,但记忆随项目走、不随 profile 走</td>
+</tr>
+<tr>
+<td>05 Pi Coding Agent</td>
+<td>最小内核四工具;skills 渐进披露不炸 prompt cache;dynamic context 可挂 RAG/长期记忆</td>
+<td>进化留给扩展生态;Hermes 是「内置闭环」与「外置扩展」两种路线对照</td>
+</tr>
+<tr>
+<td>06 GitHub Copilot</td>
+<td>automations 定时/事件触发 = 无人值守编排;PR 为检查点与人工闸门</td>
+<td>无人值守编排对应 Hermes cron,但进化检查点在外部的 PR 而非内部记忆库</td>
+</tr>
+</tbody>
+</table>
+<p>Hermes 的独特处一句话:其余对象把「记忆/进化」放在项目文件(AGENTS.md)或外部工作流(PR),Hermes 把它做成 <strong>profile 级运行时资产 + 确定性触发</strong>——换项目技能记忆仍在,无人在环自动收敛成本。</p>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:列闭环触发点清单,并给出你自己的抄 / 避结论表</p>
+<p><strong>目标</strong>:不看本章,只凭源码把四环节的每个触发点找齐;再对照你自己的项目写出「抄什么、避什么」。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>打开 agent/turn_context.py:869-877 与 agent/conversation_loop.py:2369-2373,对比两种 nudge 的计数粒度与清零时机;</li>
+<li>打开 agent/turn_finalizer.py:794-830,把「判定 → 派发」两段补成一行伪代码,标出四条件;</li>
+<li>打开 agent/curator.py:1970-1986 与 agent/background_review.py:1539-1541,列出 fork 的四个「最小化」手段(nudge 置 0 / 写 origin / 工具集 / 快照克隆);</li>
+<li>打开 cron/scheduler.py:6738,读注释,回答:为什么 cron 要保留 skip_memory=False 而只关 skip_background_review?</li>
+<li>输出清单:闭环触发点表(≥8 处,含文件:行号)+ 一张「可抄 / 要避」结论表。</li>
+</ol>
+<p><strong>完成标准</strong>:清单中每个触发点都能说出「谁计数、何时判定、在哪派发、写到哪里」;抄/避表每条都有依据(可抄的给出 Hermes 文件:行号,要避的给出反例场景);能一句话解释「为什么 LLM 不负责进化时机」。</p>
+</div>
+<h2 id="6-边界与坑要避清单">6. 边界与坑:要避清单</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>原因</th>
+<th>处理(要避)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MEMORY.md 越写越满,每回合 prompt 越来越长</td>
+<td>无界追加 = 记忆膨胀</td>
+<td>抄 Hermes 的字符预算(2200)与快照冻结;超限提示 replace 合并,别让记忆无限生长</td>
+</tr>
+<tr>
+<td>技能库变成几百条「一次会话一条」的窄技能</td>
+<td>无约束的自动沉淀 = 技能失控</td>
+<td>抄 skill 评审优先序(background_review.py:501-513):先 patch 已加载技能/现有伞,新伞必须 class 级;curator 硬规则禁动 bundled/hub/pinned/cron 技能(curator.py:446-471)</td>
+</tr>
+<tr>
+<td>后台 fork 拿到终端与全部工具</td>
+<td>自主写记忆/执行 = 权限失控</td>
+<td>抄最小工具集(background_review.py:1539-1541)+ 无终端 + 只读文件白名单;后台身份要可标记(curator.py:1986)</td>
+</tr>
+<tr>
+<td>评审 spawn 评审,费用雪崩</td>
+<td>递归反思</td>
+<td>抄 nudge 置 0(curator.py:1977-1978)与 cron 跳过(:6738);后台路径 best-effort 全吞异常</td>
+</tr>
+<tr>
+<td>记忆文件被注入毒内容</td>
+<td>记忆是 prompt 输入面</td>
+<td>抄 strict 威胁扫描 → <code>[BLOCKED:]</code> 占位(memory_tool.py:266-300);写记忆是变更动作,参照 02.08 助教章「写默认人确认」</td>
+</tr>
+<tr>
+<td>写了记忆但行为没改善</td>
+<td>冻结快照:会话内 prompt 不刷新是特性</td>
+<td>别当 bug 改;把「生效时点」设计进产品(下会话/压缩恢复 system_prompt.py:1084),并向用户说清</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>闭合学习环</td>
+<td>用中学(工具迭代计数)→ 沉淀(回合尾 nudge)→ 画像变深(共用评审链写 USER.md)→ 行为改善(下会话快照注入),四环节循环</td>
+</tr>
+<tr>
+<td>确定性触发</td>
+<td>计数/阈值/状态机/预算全是宿主代码;LLM 只做「写什么」最后一跳——时机永远不交给模型</td>
+</tr>
+<tr>
+<td>双轨 curator</td>
+<td>确定性 stale/archive 默认跑(零成本);LLM umbrella 合并由 consolidate 显式开启(curator.py:204)</td>
+</tr>
+<tr>
+<td>评审 fork 最小化</td>
+<td>nudge 置 0 防递归、写 origin 标记、memory/skills 两工具集、无终端、快照结构克隆</td>
+</tr>
+<tr>
+<td>成本闸门</td>
+<td>响应送达后才跑(不抢注意力);cron 无人在环整体跳过(省 ~30K tok/事件)</td>
+</tr>
+<tr>
+<td>收官判断</td>
+<td>Hermes 的自我进化 = 把 LLM 反思装进确定性笼子;可抄的是笼子(机制),要避的是让反思裸奔</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 memory nudge 按「用户轮」计数、skill nudge 按「工具迭代」计数,互换会出什么问题?如果让评审 fork 也拥有全部工具,Hermes 的闭环会从哪一环开始崩坏?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>memory 沉淀的是「用户是谁、偏好什么」,只在用户说话时才有新信息,按用户轮计数使闲聊与工具密集回合公平;skill 沉淀的是「任务怎么做」,只在干活(工具迭代)时才有素材,若按用户轮计数,一轮 30 次工具调用的深度任务与一句「你好」同等计权,长任务的技能评审会被严重推迟。互换后:memory 钟被工具密集回合空转拉快(每次都是同一用户的旧信息),skill 钟被纯对话拖慢(阈值永远到不了)。②fork 若有全部工具,「后台反思」就变成「后台自主行动」:能写记忆也就能跑终端、改文件、出网——一旦 fork 读到恶意内容并照做(它继承的正是要沉淀的那段对话),递归防御(curator.py:1977)只挡 nudge 不挡工具调用,越权即发生;Hermes 用「两工具集 + 无终端 + 写 origin 标记触发 read-before-write」把 fork 钉死在「只许沉淀」上——这正是 02.08 助教章「最小权限 + 变更人确认」防线在自我进化场景的转写。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/NousResearch/hermes-agent">NousResearch/hermes-agent(源码仓库,MIT;self-evolving 特性与 learning loop 主文档)</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs">Hermes Agent 官方文档(developer-guide/architecture;记忆、技能与 curator 说明)</a></li>
+<li><a href="https://agentskills.io">Agent Skills 开放标准(agentskills.io;SKILL.md 跨厂商采用,横向对比背景)</a></li>
+<li><a href="https://github.com/anthropics/skills">anthropics/skills(官方技能规范与范例;01 Claude Code 子单元同源标准)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/03/05/"><span>上一篇</span><strong>02.09.03.05 平台网关与 MCP</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/04/01/"><span>下一篇</span><strong>02.09.04.01 OpenCode 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念闭合学习环--四个环节--一个钟摆">1. 概念:闭合学习环 = 四个环节 + 一个钟摆</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这样设计">2. 为什么这样设计</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用位置闭环触发点全景">3. 作用位置:闭环触发点全景</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-环节用中学技能按工具迭代计数的-skill-nudge">4.1 环节①:用中学技能——按工具迭代计数的 skill nudge</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-环节沉淀记忆与画像变深按用户轮的-memory-nudge">4.2 环节②③:沉淀记忆与画像变深——按用户轮的 memory nudge</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-派发与执行送达后的后台评审-fork">4.3 派发与执行:送达后的后台评审 fork</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-技能生命周期curator-双轨制">4.4 技能生命周期:curator 双轨制</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-成本闸门与无人值守cron-的-skip_background_review">4.5 成本闸门与无人值守:cron 的 skip_background_review</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#46-行为改善的收口网关-post-turn-hooks">4.6 行为改善的收口:网关 post-turn hooks</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#47-横向对比六对象的进化形态仅-readme-核证">4.7 横向对比:六对象的「进化」形态(仅 README 核证)</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑要避清单">6. 边界与坑:要避清单</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

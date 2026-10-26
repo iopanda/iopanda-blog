@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.04.02 核心原语与运行时设计 · iopanda</title><meta name="description" content="03.01.04.02 核心原语与运行时设计 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/04/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.04.02 核心原语与运行时设计 · iopanda"><meta property="og:description" content="03.01.04.02 核心原语与运行时设计 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/04/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="04" data-active-article="/ai/03-frameworks/01/04/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 OpenAI Agents SDK"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/04/"><span class="tree-number">04</span><span class="tree-title">OpenAI Agents SDK</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/04/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">核心原语与运行时设计</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/04/">OpenAI Agents SDK</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">核心原语与运行时设计</span></nav><header class="ai-article-header"><p class="ai-number">03.01.04.02</p><h1>核心原语与运行时设计</h1><p class="ai-meta"><time datetime="2026-09-03T14:56">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>openai-agents-sdk</li><li>runtime</li></ul></header><div class="ai-prose"><h1 id="核心原语与运行时设计">核心原语与运行时设计</h1>
+<blockquote>
+<p><a href="/ai/03-frameworks/01/04/01/">总览篇</a>已经说明 OpenAI Agents SDK 的吸引力不在“再造一个 Agent 类”，而在于它试图把 2026 年现代 Agent 系统高频重复出现的原语一次收口：tools、handoffs、guardrails、sessions、tracing、sandbox、realtime、voice。[1][2] 这一章要深入的问题是：<strong>为什么这些东西会被收进同一个 SDK，它们之间的关系到底是什么？</strong> 从源码 <code>src/agents/agent.py</code> 可以直接看到 <code>AgentBase</code> 顶层就挂着 tools、MCP servers、handoffs、guardrails、model settings、stream handling 等一整套运行时概念；这不是“接口越来越多”，而是它在把 Agent 定义为一个真正的运行时单元。[3]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>说出 OpenAI Agents SDK 为什么把 tools、handoffs、guardrails、sessions、tracing 视为同一层问题；</li>
+<li>理解 <code>AgentBase</code>、nested agent、tool state、strict schema 这些源码关键词在表达什么；</li>
+<li>解释 handoff 和 agent-as-tool 为什么比“多个 Agent 并排摆着”更成熟；</li>
+<li>比较它与 <a href="/ai/03-frameworks/01/02/01/">AutoGen</a>、<a href="/ai/03-frameworks/01/03/01/">CrewAI</a> 的协作观差异；</li>
+<li>为一个多 specialist 的 Agent 系统设计 runtime 结构。</li>
+</ol>
+<h2 id="1-概念openai-agents-sdk-在收口现代-agent-最常见的胶水层">1. 概念：OpenAI Agents SDK 在收口“现代 Agent 最常见的胶水层”</h2>
+<p>一个 2026 年像样的 Agent 应用，往往都会反复遇到这些问题：</p>
+<ul>
+<li>工具怎么接；</li>
+<li>工具结果怎么再反馈给模型；</li>
+<li>多 Agent 怎么委托；</li>
+<li>哪一层做 guardrail；</li>
+<li>多轮上下文怎么管理；</li>
+<li>运行轨迹怎么 trace；</li>
+<li>某些工作是不是应该进 sandbox；</li>
+<li>某些交互是不是应该实时/语音化。</li>
+</ul>
+<p>OpenAI Agents SDK 的设计判断是：这些不再是“各项目自由拼装”的偶然需求，而是<strong>现代 Agent 系统的共性基础设施</strong>。[2]</p>
+<p>所以它做的事不是“让你更快发 prompt”，而是“让你少写一整层运行时胶水”。</p>
+<h2 id="2-agentbase源码说明它不是薄包装">2. <code>AgentBase</code>：源码说明它不是薄包装</h2>
+<p>在 <code>src/agents/agent.py</code> 里，<code>AgentBase</code> 顶层就包含：</p>
+<ul>
+<li><code>name</code></li>
+<li><code>handoff_description</code></li>
+<li><code>tools</code></li>
+<li><code>mcp_servers</code></li>
+<li><code>mcp_config</code>
+以及后续与 handoff、tool name reservation、model settings、streaming 等相关的运行时逻辑。[3]</li>
+</ul>
+<p>这几个字段非常说明问题：</p>
+<ol>
+<li><strong>Agent 有身份</strong>：不是匿名函数；</li>
+<li><strong>Agent 有可委托语义</strong>：handoff description 说明它可能成为别人的 specialist；</li>
+<li><strong>Agent 有能力面</strong>：tool 与 MCP server 共同定义它能触达的外部世界；</li>
+<li><strong>Agent 有运行配置</strong>：并非“同一个模型到处跑”。</li>
+</ol>
+<p>换句话说，OpenAI Agents SDK 里的 Agent 从第一天起就被设计成：<strong>可独立运行、可被委托、可接工具、可被观测的执行单元。</strong></p>
+<h2 id="3-tools为什么它把工具当系统边界而不是功能点">3. tools：为什么它把工具当系统边界，而不是功能点</h2>
+<p>tool 在 Agent 体系里最大的问题从来不是“能不能调用”，而是：</p>
+<ul>
+<li>输入结构是否严格；</li>
+<li>调用错误是否可归因；</li>
+<li>返回结果是否还能继续驱动下一轮推理；</li>
+<li>有没有副作用；</li>
+<li>是否该被 guardrail 审查。</li>
+</ul>
+<p>OpenAI Agents SDK 之所以成熟，在于它没把 tool 当成一个“随手的 Python 函数”，而是当成运行时的重要边界：</p>
+<ul>
+<li>有 tool input schema；</li>
+<li>有 tool state；</li>
+<li>有 tool guardrail；</li>
+<li>有 tool as agent 的委托能力。</li>
+</ul>
+<p>这说明它真正关心的是：<strong>模型通过工具走出对话框以后，系统边界是否还能站住。</strong></p>
+<h2 id="4-handoffs--agents-as-tools为什么这是更成熟的多-agent-路线">4. handoffs / agents-as-tools：为什么这是更成熟的多 Agent 路线</h2>
+<p>和 AutoGen 的“角色互相说话”不同，OpenAI Agents SDK 对多 Agent 更强调<strong>受控委托关系</strong>。[2]</p>
+<p>这体现在两个概念：</p>
+<ul>
+<li>Agent as tool：把 specialist agent 作为一种能力提供给上层 agent；</li>
+<li>handoff：把控制权交给另一个 agent。</li>
+</ul>
+<p>这两种方式的好处是：</p>
+<ol>
+<li>协作关系更显式；</li>
+<li>专长边界更清楚；</li>
+<li>更容易 trace 谁在什么时候接管了任务；</li>
+<li>比群聊式协作更适合产品化与治理。</li>
+</ol>
+<p>你可以把这看成多 Agent 协作从“会话范式”走向“运行时范式”的一步。</p>
+<h2 id="5-strict-schema为什么现代-agent-sdk-会越来越强调结构约束">5. strict schema：为什么现代 Agent SDK 会越来越强调结构约束</h2>
+<p>在 <code>agent.py</code> 顶部可直接看到 <code>ensure_strict_json_schema</code> 之类依赖。[3] 这件事说明一个现实趋势：</p>
+<ul>
+<li>现代 Agent 应用越来越少只是输出自由文本；</li>
+<li>越来越多要输出结构化数据、被下游系统消费；</li>
+<li>所以 schema 不再是 nice-to-have，而是运行时基础设施的一部分。</li>
+</ul>
+<p>这和 <a href="/ai/02-agents/02/05/">结构化输出约束</a> 的结论一模一样：输出约束不是礼仪，是系统契约。</p>
+<h2 id="6-tracing为什么运行轨迹在这里被当成核心原语">6. tracing：为什么运行轨迹在这里被当成核心原语</h2>
+<p>源码目录里 <code>src/agents/tracing/</code> 单独是一大片子系统：spans、traces、processors、setup、provider、logger 等。[1] 这足以说明 tracing 在这里不是调试附件，而是正式运行时能力。</p>
+<p>其架构含义非常清楚：</p>
+<ul>
+<li>Agent 不是一个黑箱调用；</li>
+<li>Agent run 是可分段、可关联、可处理的事件链；</li>
+<li>只有把 tracing 做成一等公民，多 agent/handoff/tool/guardrail 才真的可排障。</li>
+</ul>
+<h2 id="7-与同类框架相比它的运行时哲学是什么">7. 与同类框架相比，它的运行时哲学是什么</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>协作/编排的第一语言</th>
+<th>OpenAI Agents SDK 的不同</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AutoGen</td>
+<td>角色会话</td>
+<td>它更强调受控委托，而非自由对话</td>
+</tr>
+<tr>
+<td>CrewAI</td>
+<td>角色团队 + 业务流程</td>
+<td>它更强调通用运行时原语，而非业务语义</td>
+</tr>
+<tr>
+<td>LangGraph</td>
+<td>状态图</td>
+<td>它更强调原语组合，而非显式图建模</td>
+</tr>
+<tr>
+<td>PydanticAI</td>
+<td>类型契约 + capability</td>
+<td>它更强调统一运行时体验，而非 Python 类型系统先行</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：OpenAI Agents SDK 的第一性问题不是“状态图怎么画”，也不是“团队角色怎么讲”，而是“现代 Agent 应用最常见的运行时原语如何一次给齐”。</p>
+<h2 id="8-动手活动为课程助教设计-router--specialists-架构">8. 动手活动：为课程助教设计 router + specialists 架构</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>openai-agents-runtime-plan.md</code></p>
+<p><strong>目标</strong>：不是画角色团队，而是画运行时委托结构。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>设计一个 Router Agent；</li>
+<li>设计三个 specialists：课程问答、成绩查询、治理规则；</li>
+<li>决定哪些是 handoff，哪些是 agent-as-tool；</li>
+<li>给成绩查询 specialist 明确 tool 与 schema；</li>
+<li>写明 tracing 里最想观察哪几类事件。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚说明“谁在什么时候接管任务，为什么不是所有 Agent 平铺同时运行”。</p>
+</div>
+<h2 id="9-边界与排错">9. 边界与排错</h2>
+<ul>
+<li><strong>误区一：有多个 Agent 就等于会多 Agent 设计。</strong> 委托关系不清，系统照样混乱；</li>
+<li><strong>误区二：tool 只是能力点。</strong> 它其实是系统边界与风险边界；</li>
+<li><strong>误区三：handoff 和 tool 混为一谈。</strong> 一个是控制权转移，一个是能力调用；</li>
+<li><strong>误区四：有 tracing 就自动可调。</strong> 你还要先把关键原语和责任边界设计清楚；</li>
+<li><strong>误区五：统一运行时 = 适合所有复杂状态系统。</strong> 当主矛盾变成显式状态图与恢复时，图式框架仍可能更合适。</li>
+</ul>
+<h2 id="10-总结">10. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>它在解决什么</td>
+<td>现代 Agent 应用的共性运行时胶水层</td>
+</tr>
+<tr>
+<td><code>AgentBase</code> 暴露了什么</td>
+<td>Agent 是身份、能力、委托、观测合一的执行单元</td>
+</tr>
+<tr>
+<td>tool 在这里是什么</td>
+<td>外部世界边界，而不只是功能接口</td>
+</tr>
+<tr>
+<td>handoff 的价值</td>
+<td>让多 Agent 协作从群聊变成受控委托</td>
+</tr>
+<tr>
+<td>tracing 的位置</td>
+<td>正式原语，不是调试附件</td>
+</tr>
+<tr>
+<td>最适合什么</td>
+<td>想快速获得完整现代 Agent runtime 的团队</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个拥有 tools、handoffs、sessions、tracing 的 SDK，仍然不一定自动适合所有复杂 Agent 系统？什么时候“原语齐全”仍然不如“控制流显式”？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为原语齐全解决的是“能力拼装问题”，并不天然解决“复杂状态如何建模与恢复”的问题。若系统复杂度主要来自 specialist 分流、工具接入、多轮会话、输入输出校验与 trace，一体化 runtime 会非常高效；但若复杂度主要来自长流程分支、节点级暂停恢复、共享状态聚合与审批链，显式控制流往往比原语齐全更重要。不是原语越多越高级，而是要看你的系统先被哪类复杂度压垮。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://github.com/openai/openai-agents-python">https://github.com/openai/openai-agents-python</a> — OpenAI Agents SDK GitHub</li>
+<li>[2] <a href="https://openai.github.io/openai-agents-python">https://openai.github.io/openai-agents-python</a> — OpenAI Agents SDK docs</li>
+<li>[3] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/agents.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/agents.md</a> — OpenAI Agents core agents doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/04/01/"><span>上一篇</span><strong>03.01.04.01 OpenAI Agents SDK 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/04/03/"><span>下一篇</span><strong>03.01.04.03 Sandbox、Guardrails、Sessions 与产品化</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念openai-agents-sdk-在收口现代-agent-最常见的胶水层">1. 概念：OpenAI Agents SDK 在收口“现代 Agent 最常见的胶水层”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-agentbase源码说明它不是薄包装">2. AgentBase：源码说明它不是薄包装</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-tools为什么它把工具当系统边界而不是功能点">3. tools：为什么它把工具当系统边界，而不是功能点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-handoffs--agents-as-tools为什么这是更成熟的多-agent-路线">4. handoffs / agents-as-tools：为什么这是更成熟的多 Agent 路线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-strict-schema为什么现代-agent-sdk-会越来越强调结构约束">5. strict schema：为什么现代 Agent SDK 会越来越强调结构约束</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-tracing为什么运行轨迹在这里被当成核心原语">6. tracing：为什么运行轨迹在这里被当成核心原语</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-与同类框架相比它的运行时哲学是什么">7. 与同类框架相比，它的运行时哲学是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动为课程助教设计-router--specialists-架构">8. 动手活动：为课程助教设计 router + specialists 架构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-边界与排错">9. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-总结">10. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

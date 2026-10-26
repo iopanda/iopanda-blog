@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.05.06 课程助教 Agent 的 Pathway 架构案例 · iopanda</title><meta name="description" content="03.02.05.06 课程助教 Agent 的 Pathway 架构案例 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/05/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.05.06 课程助教 Agent 的 Pathway 架构案例 · iopanda"><meta property="og:description" content="03.02.05.06 课程助教 Agent 的 Pathway 架构案例 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/05/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="05" data-active-article="/ai/03-frameworks/02/05/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pathway"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/05/"><span class="tree-number">05</span><span class="tree-title">Pathway</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/05/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教 Agent 的 Pathway 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/05/">Pathway</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 Pathway 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.02.05.06</p><h1>课程助教 Agent 的 Pathway 架构案例</h1><p class="ai-meta"><time datetime="2026-09-03T22:35">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>pathway</li><li>case-study</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-pathway-架构案例">课程助教 Agent 的 Pathway 架构案例</h1>
+<blockquote>
+<p>课程助教大多数时候并不是最典型的 Pathway 场景，因为它通常不像实时日志系统那样高频流式更新。但如果你把课程资料、FAQ、规则、作业说明、教学公告、日历变更都纳入同一知识流，并要求“资料一更新，检索层就尽快反映”，那课程助教就开始变得非常像 Pathway 的世界。这个案例不是它最典型的第一用法，但恰好很适合说明：<strong>什么时候课程助教开始从静态知识库变成实时知识流系统。</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：</p>
+<ol>
+<li>判断课程助教在什么条件下适合 Pathway；</li>
+<li>设计课程资料实时更新的 retrieval path；</li>
+<li>区分静态课程问答与实时课程知识流的架构差异；</li>
+<li>为课程助教设计 freshness 与 replay 需求；</li>
+<li>写出一段“为什么这里值得用或不值得用 Pathway”的结论。</li>
+</ol>
+<h2 id="1-什么时候课程助教会变成-pathway-场景">1. 什么时候课程助教会变成 Pathway 场景</h2>
+<p>当这些条件同时出现时：</p>
+<ul>
+<li>课程公告经常变化；</li>
+<li>FAQ 和规则持续被修订；</li>
+<li>外部源（Drive / Notion / SharePoint / DB）持续同步；</li>
+<li>希望查询尽快反映最新内容；</li>
+<li>重启后仍要恢复知识更新状态。</li>
+</ul>
+<h2 id="2-适合的设计">2. 适合的设计</h2>
+<p>可以把：</p>
+<ul>
+<li>讲义更新流</li>
+<li>FAQ 更新流</li>
+<li>规则更新流</li>
+<li>作业说明更新流</li>
+<li>教学公告流
+接成一条 live data pipeline，再由 Pathway 支撑实时索引和查询服务。[68][70]</li>
+</ul>
+<h2 id="3-不适合的情况">3. 不适合的情况</h2>
+<p>如果课程资料：</p>
+<ul>
+<li>很静态；</li>
+<li>更新频率低；</li>
+<li>更关注 chunk/metadata/query-engine 设计；
+那 LlamaIndex / Haystack 往往更自然。</li>
+</ul>
+<h2 id="4-动手活动">4. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>course-ta-pathway-fit.md</code></p>
+<p>列课程助教的更新源、更新频率、可接受延迟、失败恢复要求。写一句结论：它还只是静态知识库，还是已经进入 live knowledge system 阶段。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教什么时候适合 Pathway</td>
+<td>当它的知识层持续变化并要求近实时反映</td>
+</tr>
+<tr>
+<td>不适合什么时候</td>
+<td>当它仍主要是静态知识问答系统</td>
+</tr>
+<tr>
+<td>Pathway 在这里的价值</td>
+<td>让知识更新流本身成为系统主骨架</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[68] <a href="https://github.com/pathwaycom/pathway/blob/main/README.md">https://github.com/pathwaycom/pathway/blob/main/README.md</a> — Pathway README</li>
+<li>[70] <a href="https://github.com/pathwaycom/pathway/blob/main/examples/projects/question-answering-rag/README.md">https://github.com/pathwaycom/pathway/blob/main/examples/projects/question-answering-rag/README.md</a> — Pathway question answering RAG example</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/05/05/"><span>上一篇</span><strong>03.02.05.05 生产系统中的吞吐、延迟与治理</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/05/07/"><span>下一篇</span><strong>03.02.05.07 Pathway 与 LlamaIndex、Haystack、RAGFlow、LightRAG 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-什么时候课程助教会变成-pathway-场景">1. 什么时候课程助教会变成 Pathway 场景</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-适合的设计">2. 适合的设计</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-不适合的情况">3. 不适合的情况</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动">4. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

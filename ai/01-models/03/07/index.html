@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.03.07 偏好优化与对齐 · iopanda</title><meta name="description" content="01.03.07 偏好优化与对齐 · 模型 / 微调与对齐，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/03/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.03.07 偏好优化与对齐 · iopanda"><meta property="og:description" content="01.03.07 偏好优化与对齐 · 模型 / 微调与对齐，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/03/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="03" data-active-subsection data-active-article="/ai/01-models/03/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 微调与对齐"></button><a class="tree-link tree-link--section" href="/ai/01-models/03/"><span class="tree-number">03</span><span class="tree-title">微调与对齐</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/03/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">偏好优化与对齐</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/03/">微调与对齐</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">偏好优化与对齐</span></nav><header class="ai-article-header"><p class="ai-number">01.03.07</p><h1>偏好优化与对齐</h1><p class="ai-meta"><time datetime="2026-09-02T22:30">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-alignment</li><li>preference-optimization</li></ul></header><div class="ai-prose"><blockquote>
+<p>SFT(第 4 章)已经教会模型「答案应该长什么样」,但现实里常有两个回答都能答、一个却更可靠或更守边界的情形。本章引入偏好优化:制作可审计的偏好对,并在小样本上运行最小 DPO,让模型在「同样能答」时学会倾向更好的那一个。全程要守住一条边界——偏好优化不会让模型自动「安全」或「真实」,也不能替代安全机制。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 SFT 与偏好优化的差别,解释为什么「只有一个标准答案」表达不了相对偏好;</li>
+<li>写同一 prompt 下的 <code>chosen</code>/<code>rejected</code> 偏好对,并为每对附上人工审核理由;</li>
+<li>解释为什么 prompt 必须相同、<code>beta</code> 在控制什么;</li>
+<li>在 LoRA 上运行最小 DPO,并从日志读出偏好指标;</li>
+<li>说明 DPO 的约束原理,以及它为什么不能替代安全机制。</li>
+</ol>
+<h2 id="1-概念偏好优化与-sft-差在哪">1. 概念:偏好优化与 SFT 差在哪</h2>
+<p>SFT 的标准答案只表达「一个答案应该长什么样」,却难以表达「两个都能回答、但一个更可靠或更守边界」的相对取舍。偏好优化把同一问题的优选答案(<code>chosen</code>)和拒选答案(<code>rejected</code>)放在一起训练,使模型倾向前者。本章解决「让模型学会选择更合适的回答」这一问题;它不等于价值观真理,也不能替代安全机制。</p>
+<h3 id="11-sft-vs-偏好优化">1.1 SFT vs 偏好优化</h3>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>SFT(第 4 章)</th>
+<th>偏好优化(本章 DPO)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据形态</td>
+<td>一个问题 → 一个标准答案</td>
+<td>同一 prompt → <code>chosen</code>/<code>rejected</code> 一对</td>
+</tr>
+<tr>
+<td>学习信号</td>
+<td>增加标准答案的续写概率(模仿示例)</td>
+<td>拉大 <code>chosen</code> 相对 <code>rejected</code> 的偏好差距(对比)</td>
+</tr>
+<tr>
+<td>能表达</td>
+<td>「答案应该长什么样」</td>
+<td>「两个都能答,但 A 更可靠、更守边界」</td>
+</tr>
+<tr>
+<td>局限</td>
+<td>无法表达相对取舍;标准答案未必最优</td>
+<td>只反映偏好数据的取舍,不新增知识,仍会幻觉</td>
+</tr>
+</tbody>
+</table>
+<p>一句话概括:SFT 教模型「这样答」,偏好优化教模型「同样能答时,优先这样答」——前者是模仿,后者是对比。</p>
+<h3 id="12-chosen--rejected--beta-是什么">1.2 chosen / rejected / beta 是什么</h3>
+<ul>
+<li><strong><code>chosen</code>(优选)</strong>:同一问题下人工认为更符合要求的回答;</li>
+<li><strong><code>rejected</code>(拒选)</strong>:同一问题下被放弃的回答——它不必是错误答案,常常只是「次优」;</li>
+<li><strong>人工理由</strong>:每对都要写出「为什么 chosen 更好」,这是结果可解释的前提,也是事后审核的依据;</li>
+<li><strong><code>beta</code></strong>:DPO 的超参数,控制偏好变化的强弱。它同时约束「模型偏离未更新参考行为的程度」——<code>beta</code> 越大,模型越坚决贴合偏好,也越容易走偏;<code>beta</code> 越小,更新越温和。</li>
+</ul>
+<h3 id="13-为什么-prompt-必须相同">1.3 为什么 prompt 必须相同</h3>
+<p>偏好学习本质是一场对照实验:唯一允许变化的变量应当是「回答本身」,所以 <code>chosen</code> 与 <code>rejected</code> 必须共享同一个 <code>prompt</code>。若 prompt 不同,模型无法分辨输出差异来自回答质量,还是来自题目难度、话题或措辞——它可能只是学到「某种问法配某种答法」,而不是「这个回答更好」。同理,两个回答只应在质量上拉开差距:不能把「更长」误当「更好」,更长的回答如果夹带编造,反而更差。</p>
+<h3 id="14-dpo-的约束原理为什么它不需要奖励模型">1.4 DPO 的约束原理:为什么它不需要奖励模型</h3>
+<p>经典的 RLHF 需要先训练一个奖励模型,再用 PPO 让策略去最大化奖励——两阶段、重且难调。DPO(Direct Preference Optimization,引用见文末)发现:偏好数据本身足以定义隐式奖励,于是把对齐直接写成二分类式 loss,省掉奖励模型与 PPO 两套组件。</p>
+<p>但 DPO 并非无约束地「往偏好方向猛推」,它有两个内建约束:</p>
+<ul>
+<li><strong>参考锚点</strong>:loss 中以训练前的模型为参考策略(reference policy),用 <code>log πθ/πref</code> 的比值衡量每一步偏离——模型可以改变,但不能为了迎合训练偏好而把预训练学到的能力冲掉太多;</li>
+<li><strong>KL 强度 <code>beta</code></strong>:<code>beta</code> 就是这条约束的松紧旋钮,控制「偏好收益」与「偏离参考代价」之间的权衡。</li>
+</ul>
+<p>本章沿用 LoRA 只更新 adapter、基座冻结(呼应 05/06 章),这从工程上又加了一层限制,让偏离天然更小——小样本偏好训练尤其需要这种保守。</p>
+<h3 id="15-它不能替代安全机制">1.5 它不能替代安全机制</h3>
+<p>偏好优化只会反映「偏好数据与训练设置」里的取舍,有三件它做不到的事:</p>
+<ul>
+<li>数据里有偏见或仇恨,模型会学着放大,而不是学会拒绝——<code>rejected</code> 的选择本身就是一种价值观输入;</li>
+<li>它不改变模型的底层知识,也不保证事实正确,幻觉不会因此消失;</li>
+<li>政策、权限控制、人类审核与安全评测是另一套机制,一个都不能省。</li>
+</ul>
+<p>数据量很小时尤其容易过拟合「写法」:模型学会了更礼貌、更长的措辞,可观察行为却没有真正变可靠——这正是本章动手活动要用留出问题验证的原因。</p>
+<h2 id="2-动手制作偏好对">2. 动手:制作偏好对</h2>
+<p>SFT 告诉模型「应该输出什么」;DPO 告诉模型「对于相同 prompt,A 比 B 更好」。创建 <code>finetune/data/preferences.jsonl</code>,每一行必须有同一问题、一个优选和一个拒选,不能把「更长」误当「更好」:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"prompt"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"你是课程助教。没有依据时说不知道。"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"主键允许重复吗？"</span><span style="color:#E1E4E8">}],</span><span style="color:#79B8FF">"chosen"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"assistant"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"不允许。主键用于唯一标识每一行，因此值必须唯一且不能为 NULL。"</span><span style="color:#E1E4E8">}],</span><span style="color:#79B8FF">"rejected"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"assistant"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"主键一般允许重复，只要查询速度快即可。"</span><span style="color:#E1E4E8">}]}</span></span></code></pre><span class="code-lang" data-lang="json" aria-hidden="true">json</span></div>
+<p>写至少 15 对,覆盖三类:有依据的正确回答、拒绝编造、遵守简洁格式。每对由人工写出「为什么 chosen 更好」,并确认 rejected 不含仇恨、隐私、恶意指令等不应反复训练的内容。逐行自检:</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prompt 完全一致</td>
+<td><code>chosen</code>/<code>rejected</code> 必须共享同一问题,不允许「换题」</td>
+</tr>
+<tr>
+<td>rejected 可接受</td>
+<td>只是次优,不含仇恨、隐私、恶意指令等不该训练的内容</td>
+</tr>
+<tr>
+<td>理由可解释</td>
+<td>能写出「为什么 chosen 更好」,而不是「因为更长/更礼貌」</td>
+</tr>
+<tr>
+<td>覆盖三类</td>
+<td>有依据正确 / 拒绝编造 / 简洁格式 都要有样本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-动手运行最小-dpo">3. 动手:运行最小 DPO</h2>
+<p>先在 <code>check_data.py</code> 增加 JSON 加载检查:每行 <code>prompt</code>/<code>chosen</code>/<code>rejected</code> 三字段齐全,且 <code>chosen</code> 与 <code>rejected</code> 的 prompt 部分逐字一致。再创建 <code>finetune/src/train_dpo.py</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> datasets </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> load_dataset</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> peft </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> LoraConfig</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AutoModelForCausalLM, AutoTokenizer, TrainingArguments</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> trl </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> DPOTrainer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">model_id </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Qwen/Qwen2.5-0.5B-Instruct"</span></span>
+<span class="line"><span style="color:#E1E4E8">data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> load_dataset(</span><span style="color:#9ECBFF">"json"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">data_files</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"finetune/data/preferences.jsonl"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">split</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">tokenizer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoTokenizer.from_pretrained(model_id); tokenizer.pad_token </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer.eos_token</span></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoModelForCausalLM.from_pretrained(model_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">args </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> TrainingArguments(</span><span style="color:#FFAB70">output_dir</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"finetune/runs/dpo-v1"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">per_device_train_batch_size</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    gradient_accumulation_steps</span><span style="color:#F97583">=</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">learning_rate</span><span style="color:#F97583">=</span><span style="color:#79B8FF">5e-6</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">num_train_epochs</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    logging_steps</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">report_to</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"none"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">seed</span><span style="color:#F97583">=</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">peft </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoraConfig(</span><span style="color:#FFAB70">r</span><span style="color:#F97583">=</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_alpha</span><span style="color:#F97583">=</span><span style="color:#79B8FF">16</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">target_modules</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"q_proj"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"v_proj"</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">task_type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"CAUSAL_LM"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">trainer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DPOTrainer(</span><span style="color:#FFAB70">model</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">model, </span><span style="color:#FFAB70">args</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">args, </span><span style="color:#FFAB70">train_dataset</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">data, </span><span style="color:#FFAB70">processing_class</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">tokenizer,</span></span>
+<span class="line"><span style="color:#FFAB70">    peft_config</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">peft, </span><span style="color:#FFAB70">beta</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">trainer.train(); trainer.save_model(</span><span style="color:#9ECBFF">"finetune/runs/dpo-v1/adapter"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>先运行 3 step,查看日志是否有 <code>rewards/chosen</code>、<code>rewards/rejected</code> 或当前版本等价指标;版本 API 不匹配时,按 TRL 官方版本文档调整,不能混抄旧教程参数。</p>
+<h3 id="31-排错速查">3.1 排错速查</h3>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日志没有 <code>rewards/chosen</code> 类指标</td>
+<td>对照 TRL 当前版本文档找等价字段</td>
+<td>不同 TRL 版本指标命名不同</td>
+</tr>
+<tr>
+<td>报错提示字段/API 不存在</td>
+<td>按官方版本文档调整,勿抄旧教程</td>
+<td>版本不匹配</td>
+</tr>
+<tr>
+<td>训练很快结束且指标无变化</td>
+<td>检查 <code>preferences.jsonl</code> 是否被正确加载、行数是否足够</td>
+<td>数据没进训练或样本过少</td>
+</tr>
+<tr>
+<td>回答变得更「油滑」而非更可靠</td>
+<td>用留出问题复查,考虑降低 <code>beta</code></td>
+<td>小数据过拟合偏好写法</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-动手活动偏好前后对比">4. 动手活动:偏好前后对比</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:偏好前后对比</p>
+<p><strong>目标</strong>:<code>preferences.jsonl</code>、<code>reports/dpo.md</code>。</p>
+<p><strong>步骤</strong>:至少挑 5 条未参与偏好训练的问题,使用同一 seed/参数对比 SFT 与 DPO adapter;记录所有输出和失败例。</p>
+<p><strong>完成标准</strong>:能定位每条偏好数据的审核理由,并明确 DPO 改善或未改善了哪个可观察行为。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SFT 与偏好优化的差别</td>
+<td>SFT 教「这样答」(模仿),DPO 教「同样能答时优先这样答」(对比)</td>
+</tr>
+<tr>
+<td>chosen / rejected</td>
+<td>同一 prompt 下的优选与拒选,每对必须附人工理由</td>
+</tr>
+<tr>
+<td>为什么 prompt 必须相同</td>
+<td>偏好是对照实验,唯一变量应是回答质量而非题目</td>
+</tr>
+<tr>
+<td>beta 在控制什么</td>
+<td>偏好变化的强弱,同时约束对参考模型的偏离程度</td>
+</tr>
+<tr>
+<td>DPO 的约束原理</td>
+<td>以训练前模型为锚点、<code>beta</code> 作 KL 约束强度,省掉奖励模型与 PPO</td>
+</tr>
+<tr>
+<td>它不能替代什么</td>
+<td>政策、权限、人类审核、安全评测;也不消除幻觉</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么说「rejected 里没有仇恨内容」只是底线,而不是「数据已经安全」?小样本 DPO 训练后回答变得更礼貌,能说明对齐成功吗?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>rejected 无仇恨/隐私/恶意指令只是避免把不该学的内容放大;偏好数据仍可能含偏见、片面取舍,所以还需要政策与人工审核,不能只靠数据干净。回答变礼貌可能只是过拟合了偏好数据的「写法」(更长、更客气),并不代表行为更可靠或更守边界;必须用未参与训练的留出问题逐条对比 SFT 与 DPO,确认某个可观察行为真的改善。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/trl/main/en/dpo_trainer">TRL:DPOTrainer</a></li>
+<li><a href="https://arxiv.org/abs/2305.18290">DPO 论文</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/03/06/"><span>上一篇</span><strong>01.03.06 QLoRA 量化微调</strong></a><a class="ai-pager-next" href="/ai/01-models/03/08/"><span>下一篇</span><strong>01.03.08 领域适配收官项目</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念偏好优化与-sft-差在哪">1. 概念:偏好优化与 SFT 差在哪</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-sft-vs-偏好优化">1.1 SFT vs 偏好优化</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#12-chosen--rejected--beta-是什么">1.2 chosen / rejected / beta 是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#13-为什么-prompt-必须相同">1.3 为什么 prompt 必须相同</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#14-dpo-的约束原理为什么它不需要奖励模型">1.4 DPO 的约束原理:为什么它不需要奖励模型</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#15-它不能替代安全机制">1.5 它不能替代安全机制</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-动手制作偏好对">2. 动手:制作偏好对</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-动手运行最小-dpo">3. 动手:运行最小 DPO</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-排错速查">3.1 排错速查</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动偏好前后对比">4. 动手活动:偏好前后对比</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.01.05 多索引、多数据源与 Agentic Retrieval · iopanda</title><meta name="description" content="03.02.01.05 多索引、多数据源与 Agentic Retrieval · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/01/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.01.05 多索引、多数据源与 Agentic Retrieval · iopanda"><meta property="og:description" content="03.02.01.05 多索引、多数据源与 Agentic Retrieval · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/01/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="01" data-active-article="/ai/03-frameworks/02/01/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 LlamaIndex"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/01/"><span class="tree-number">01</span><span class="tree-title">LlamaIndex</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/01/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">多索引、多数据源与 Agentic Retrieval</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/01/">LlamaIndex</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">多索引、多数据源与 Agentic Retrieval</span></nav><header class="ai-article-header"><p class="ai-number">03.02.01.05</p><h1>多索引、多数据源与 Agentic Retrieval</h1><p class="ai-meta"><time datetime="2026-09-03T21:06">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>llamaindex</li><li>multi-index</li><li>workflow</li><li>agentic-retrieval</li></ul></header><div class="ai-prose"><h1 id="多索引多数据源与-agentic-retrieval">多索引、多数据源与 Agentic Retrieval</h1>
+<blockquote>
+<p>到这里为止，LlamaIndex 的主线已经逐渐清楚：<a href="/ai/03-frameworks/02/01/02/">对象层</a> 定义了文档和节点，<a href="/ai/03-frameworks/02/01/03/">ingestion</a> 定义了数据怎么进入系统，<a href="/ai/03-frameworks/02/01/04/">query chain</a> 定义了知识怎么被取出并拼成答案。但真实系统很少永远停在“一个索引、一类文档、一种查询模式”。只要系统一长大，就会遇到：多文档源、多索引、多 query engine、多 retriever、甚至更 agentic 的 retrieval decision。LlamaIndex README 里已经明确把 workflows、agents、indices、retrievers、query engines、reranking modules 都列为可定制模块；core 和 integrations 的巨大生态也说明，它从一开始就在为“多源知识系统”做准备。[41][46]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释为什么真实 RAG 系统很快会从单索引长成多索引、多数据源系统；</li>
+<li>理解 LlamaIndex 为什么天然适合“对象扩展式”地进入 agentic retrieval；</li>
+<li>说出多索引、多数据源、多 query engine 系统最核心的架构问题；</li>
+<li>区分“复杂 retrieval”与“把检索也做成 agent”之间的边界；</li>
+<li>为一个课程助教或企业知识系统设计多索引 retrieval 架构。</li>
+</ol>
+<h2 id="1-为什么单索引心智很快就不够用">1. 为什么单索引心智很快就不够用</h2>
+<p>最小 RAG 往往从：</p>
+<ul>
+<li>一个文档目录；</li>
+<li>一个切块策略；</li>
+<li>一个向量索引；</li>
+<li>一个 query engine
+开始。</li>
+</ul>
+<p>这在 demo 阶段常常够用，但真实系统很快会遇到：</p>
+<ul>
+<li>不同知识域：FAQ、政策、讲义、数据库说明；</li>
+<li>不同查询模式：事实问答、规则说明、复杂比较、汇总型问题；</li>
+<li>不同更新节奏：有些文档每天变，有些几乎不变；</li>
+<li>不同权限边界：有些可公开，有些只对特定身份开放。</li>
+</ul>
+<p>这时若还试图用一个统一索引硬扛，问题通常不是“完全不能用”，而是：</p>
+<ul>
+<li>召回不稳定；</li>
+<li>路由不清；</li>
+<li>metadata 过滤压力越来越大；</li>
+<li>评测和调试越来越困难。</li>
+</ul>
+<h2 id="2-为什么-llamaindex-特别适合多索引系统">2. 为什么 LlamaIndex 特别适合多索引系统</h2>
+<p>LlamaIndex 的对象层设计天然适合扩展：</p>
+<ul>
+<li>不同数据源可以是不同 Document 集；</li>
+<li>不同索引可以承载不同 Node 集；</li>
+<li>不同 retriever / query engine 可以按知识域分开；</li>
+<li>最后用 RouterQueryEngine、SubQuestionQueryEngine 或 workflow 式编排把它们连接起来。[46][50][51][52]</li>
+</ul>
+<p>这和某些“从单条 pipeline 起手”的框架不同。LlamaIndex 更像在说：
+<strong>先把知识对象世界搭出来，再让查询对象世界接管复杂度。</strong></p>
+<h2 id="3-多数据源为什么接入能力不是会读-pdf那么简单">3. 多数据源：为什么接入能力不是“会读 PDF”那么简单</h2>
+<p>README 里反复强调 data connectors 与 300+ integrations。[46] 这意味着在 LlamaIndex 里，多数据源不是例外，而是常态。</p>
+<p>对架构师来说，多数据源真正带来的问题包括：</p>
+<ul>
+<li>接入格式不同；</li>
+<li>更新节奏不同；</li>
+<li>metadata 规范不同；</li>
+<li>权限模型不同；</li>
+<li>是否该进入同一 index 也不同。</li>
+</ul>
+<p>所以“多数据源”真正的系统问题不是能否读入，而是：</p>
+<ul>
+<li>是否该共用 node schema；</li>
+<li>是否该共用 chunk strategy；</li>
+<li>是否该共用 retriever；</li>
+<li>是否该共用 query engine。</li>
+</ul>
+<h2 id="4-多索引为什么有时分开存比全混一起检更专业">4. 多索引：为什么有时“分开存”比“全混一起检”更专业</h2>
+<p>多索引不是炫技，而是知识域治理。</p>
+<p>适合分索引的典型情况：</p>
+<ul>
+<li>课程讲义 vs 课程规则；</li>
+<li>FAQ vs 历史工单；</li>
+<li>公开文档 vs 敏感内部文档；</li>
+<li>结构化数据库说明 vs 非结构化说明文档。</li>
+</ul>
+<p>分索引的好处：</p>
+<ol>
+<li>路由更清楚；</li>
+<li>召回质量更容易优化；</li>
+<li>metadata 过滤压力降低；</li>
+<li>权限边界更容易分层。</li>
+</ol>
+<p>代价是：</p>
+<ul>
+<li>需要路由；</li>
+<li>需要跨索引组合查询策略；</li>
+<li>需要更明确的评测体系。</li>
+</ul>
+<h2 id="5-agentic-retrieval什么时候-retrieval-本身开始像-agent">5. agentic retrieval：什么时候 retrieval 本身开始“像 Agent”</h2>
+<p>LlamaIndex 虽然在这个模块里我们先把它当 retrieval framework 看，但 README 已经明确把 agentic applications、workflows、retrievers、query engines 放在同一个大版图里。[46]</p>
+<p>这说明在它的世界里，retrieval 会逐渐长出更 agentic 的行为，例如：</p>
+<ul>
+<li>先尝试一个 retriever；</li>
+<li>发现证据不足，再换另一个；</li>
+<li>先路由到 FAQ，再发现应该查规则库；</li>
+<li>先拆子问题，再分别交给不同 query engines。</li>
+</ul>
+<p>这类行为介于传统检索和完整 agent system 之间。它不是“检索就是个被动函数”，而更像“检索也会决策下一步”。</p>
+<h2 id="6-但别把一切复杂-retrieval-都叫-agentic-retrieval">6. 但别把一切复杂 retrieval 都叫 agentic retrieval</h2>
+<p>这点非常重要。</p>
+<p>复杂 retrieval 不等于 agentic retrieval。</p>
+<p>例如：</p>
+<ul>
+<li>固定的 hybrid search + rerank</li>
+<li>固定的 router 规则</li>
+<li>固定的多索引 fallback</li>
+</ul>
+<p>这些可以很复杂，但仍然是确定性系统。</p>
+<p>只有当系统开始出现：</p>
+<ul>
+<li>动态选择 retriever；</li>
+<li>动态决定是否拆子问题；</li>
+<li>动态选择 query engine 组合；</li>
+<li>动态决定要不要继续找更多证据；
+才更接近 agentic retrieval。</li>
+</ul>
+<p>这一区分很值钱，因为它直接影响：</p>
+<ul>
+<li>你该用 deterministic pipeline 还是更自由的 query/workflow system；</li>
+<li>评测该怎么做；</li>
+<li>护栏和预算该怎么设。</li>
+</ul>
+<h2 id="7-课程助教很适合做多索引示例">7. 课程助教很适合做多索引示例</h2>
+<p>课程助教天然可以拆成：</p>
+<ul>
+<li><code>course_content_index</code></li>
+<li><code>course_policy_index</code></li>
+<li><code>faq_index</code></li>
+<li><code>assignment_index</code></li>
+</ul>
+<p>再进一步：</p>
+<ul>
+<li>普通知识问答先走 course_content；</li>
+<li>规则问题走 policy；</li>
+<li>复杂复习比较题走 sub-question；</li>
+<li>如果资料不足，可再追加 FAQ 或作业说明。</li>
+</ul>
+<p>这比“把所有文档混成一个大索引”更能说明系统为什么答对，也更容易做后续评测和治理。</p>
+<h2 id="8-为什么这条路线对开发者和架构师都友好">8. 为什么这条路线对开发者和架构师都友好</h2>
+<h3 id="对开发者">对开发者</h3>
+<ul>
+<li>组件可渐进扩展；</li>
+<li>从单 index 慢慢长到多 index，不必推倒重来；</li>
+<li>可以先用 query engine objects 控制复杂度。</li>
+</ul>
+<h3 id="对架构师">对架构师</h3>
+<ul>
+<li>能把知识域边界显式化；</li>
+<li>能讨论索引策略和权限策略；</li>
+<li>能区分数据组织问题和模型回答问题。</li>
+</ul>
+<p>这就是 LlamaIndex 的一大优势：复杂度是沿对象家族自然长出来的，而不是一开始就要求你接受全量大 pipeline。</p>
+<h2 id="9-动手活动给课程助教设计多索引-retrieval-架构">9. 动手活动：给课程助教设计多索引 retrieval 架构</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>llamaindex-multi-index-plan.md</code></p>
+<p><strong>目标</strong>：把课程助教从单索引 demo 升级成多索引 retrieval system。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>按知识域拆索引：讲义、规则、FAQ、作业说明；</li>
+<li>为每个索引定义 node 粒度和 metadata；</li>
+<li>定义哪类问题走哪类 query engine；</li>
+<li>定义哪些复杂问题走 sub-question；</li>
+<li>写一句结论：为什么不能一直靠一个统一索引解决所有问题。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚说明“多索引不是增加复杂度，而是在控制复杂度”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：多索引 = 更高级。</strong> 若知识域不清，拆太多会徒增路由负担；</li>
+<li><strong>误区二：一出现复杂查询就要上 Agent。</strong> 很多时候 Router/SubQuestion 已够；</li>
+<li><strong>误区三：多数据源一定要共用一套 ingestion。</strong> 数据语义不同，未必该共用；</li>
+<li><strong>误区四：agentic retrieval 越多越好。</strong> 决策越动态，评测和预算也越难；</li>
+<li><strong>误区五：复杂 retrieval 和复杂工作流是一回事。</strong> retrieval 复杂度和 agent workflow 复杂度应区分。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>为什么单索引不够</td>
+<td>多知识域、多更新节奏、多权限边界会把它压垮</td>
+</tr>
+<tr>
+<td>LlamaIndex 为什么适合扩到多索引</td>
+<td>对象层和查询对象层都支持渐进扩展</td>
+</tr>
+<tr>
+<td>agentic retrieval 的正确理解</td>
+<td>retrieval 开始动态决定下一步，而不只是被动 top-k</td>
+</tr>
+<tr>
+<td>多索引的价值</td>
+<td>让知识域边界、路由边界和治理边界更清楚</td>
+</tr>
+<tr>
+<td>课程助教为什么适合这条路线</td>
+<td>它天然就是多知识域系统</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个系统越是想回答“复杂问题”，越不能只靠一个大索引和统一 top-k 检索硬扛？LlamaIndex 的多 query engine / 多索引路线，本质上是在替系统管理哪一类增长中的复杂度？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为复杂问题往往不是“同一个知识域里再多找几段”就能解决，而是需要不同知识域、不同检索策略和不同合成方式协同。一个大索引会把这些差异压平，导致召回、路由、治理和评测都越来越糊。LlamaIndex 的多 query engine / 多索引路线，本质上是在替系统管理“查询形态和知识域同时增长”的复杂度。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[41] <a href="https://github.com/run-llama/llama_index">https://github.com/run-llama/llama_index</a> — LlamaIndex GitHub</li>
+<li>[46] <a href="https://github.com/run-llama/llama_index/blob/main/README.md">https://github.com/run-llama/llama_index/blob/main/README.md</a> — LlamaIndex README</li>
+<li>[51] <a href="https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/router_query_engine.py">https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/router_query_engine.py</a> — LlamaIndex router query engine source</li>
+<li>[52] <a href="https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/sub_question_query_engine.py">https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/query_engine/sub_question_query_engine.py</a> — LlamaIndex sub question query engine source</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/01/04/"><span>上一篇</span><strong>03.02.01.04 Retriever、Query Engine、Rerank 与 Router</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/01/06/"><span>下一篇</span><strong>03.02.01.06 课程助教 Agent 的 LlamaIndex 架构案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么单索引心智很快就不够用">1. 为什么单索引心智很快就不够用</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么-llamaindex-特别适合多索引系统">2. 为什么 LlamaIndex 特别适合多索引系统</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-多数据源为什么接入能力不是会读-pdf那么简单">3. 多数据源：为什么接入能力不是“会读 PDF”那么简单</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-多索引为什么有时分开存比全混一起检更专业">4. 多索引：为什么有时“分开存”比“全混一起检”更专业</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-agentic-retrieval什么时候-retrieval-本身开始像-agent">5. agentic retrieval：什么时候 retrieval 本身开始“像 Agent”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-但别把一切复杂-retrieval-都叫-agentic-retrieval">6. 但别把一切复杂 retrieval 都叫 agentic retrieval</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-课程助教很适合做多索引示例">7. 课程助教很适合做多索引示例</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-为什么这条路线对开发者和架构师都友好">8. 为什么这条路线对开发者和架构师都友好</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#对开发者">对开发者</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#对架构师">对架构师</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动给课程助教设计多索引-retrieval-架构">9. 动手活动：给课程助教设计多索引 retrieval 架构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

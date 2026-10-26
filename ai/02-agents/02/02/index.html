@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.02.02 系统提示定义的是决策框架 · iopanda</title><meta name="description" content="02.02.02 系统提示定义的是决策框架 · 智能体 / 提示与上下文工程，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/02/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.02.02 系统提示定义的是决策框架 · iopanda"><meta property="og:description" content="02.02.02 系统提示定义的是决策框架 · 智能体 / 提示与上下文工程，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/02/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="02" data-active-subsection data-active-article="/ai/02-agents/02/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 提示与上下文工程"></button><a class="tree-link tree-link--section" href="/ai/02-agents/02/"><span class="tree-number">02</span><span class="tree-title">提示与上下文工程</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/02/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">系统提示定义的是决策框架</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/02/">提示与上下文工程</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">系统提示定义的是决策框架</span></nav><header class="ai-article-header"><p class="ai-number">02.02.02</p><h1>系统提示定义的是决策框架</h1><p class="ai-meta"><time datetime="2026-09-03T03:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>system-prompt</li></ul></header><div class="ai-prose"><h1 id="系统提示定义的是决策框架">系统提示定义的是决策框架</h1>
+<p>设想一份写了十四条规定、编号整齐的系统提示。测试时发现，模型稳定遵守其中十一条，剩下三条反复失效：一条要求“回答前先检索资料”，一条要求“遇到不确定的表达要标注置信度”，一条要求“输出必须是三点式”。</p>
+<p>追下去会发现失效的原因各不相同。第一条与工具调用的既有惯性冲突——模型更愿意直接回答，因为那更省 token；第二条要求的能力模型本身不具备，它无法内省自己的置信度；第三条则与另一条规则打架，那里写着“回答要自然、像人说话”。</p>
+<p>这三条失效指向同一个结论：<strong>系统提示不是一份规则清单，它是一个决策框架。</strong> 写进去的东西要能影响模型在每一步如何权衡，而不是像贴墙上的制度一样摆在那里。</p>
+<h2 id="它真正做的四件事">它真正做的四件事</h2>
+<p>多数人把系统提示理解为“设定语气”，语气是它最不重要的功能。它实际承担四项工作。</p>
+<p><strong>划定知识边界。</strong> 哪些问题在范围内，范围外如何应答。这一条决定了模型是“有用的助手”还是“什么都能聊的通用回答器”。缺了它，模型会对外部问题给出流畅但不负责任的答案。</p>
+<p><strong>定义输出契约。</strong> 回答的形状：结构、长度、字段、语言、代码块格式。在 Agent 里这一条尤其硬，因为下游往往是代码——解析器读不懂散文。</p>
+<p><strong>规定工具策略。</strong> 什么时候必须调工具、什么时候不许调、拿到结果后如何引用。缺了它，模型会在“我记得大概是这样”和“我去查一下”之间随机选择。</p>
+<p><strong>规定失败协议。</strong> 查不到、工具报错、超出能力时怎么办。这是最常被漏掉的一项，也是 Agent 与聊天机器人分野最明显的地方：聊天机器人可以糊过去，Agent 必须把失败变成一个可被处理的事件。</p>
+<p>四项里缺任何一项，你都会看到一种典型的坏行为：缺边界→乱答；缺契约→格式漂移；缺工具策略→该查不查；缺失败协议→编造成功。</p>
+<h2 id="规则改变概率改不了机制">规则改变概率，改不了机制</h2>
+<p>系统提示改变的是概率分布；执行机制不受影响。这句话的工程含义很具体：<strong>凡是必须保证的事，都不能只写在提示里。</strong></p>
+<p>必须保证“每个工具调用都有超时”？写在代码里。必须保证“不能给未缴费的学员发成绩”？写成权限检查。必须保证“输出能被解析”？加一层 schema 校验和失败重试。</p>
+<p>系统提示负责的是让正常情形下的行为稳定、让模型在模糊处倾向于正确的方向。它不负责兜底。</p>
+<p>我在评审里常用一个问题来区分这两类：<strong>如果模型完全无视这条规则，系统会不会出事？</strong> 会出事，那这条规则就不该只存在于提示里。</p>
+<h2 id="三个让它失效的原因">三个让它失效的原因</h2>
+<p><strong>矛盾。</strong> “回答要专业严谨”与“语气要亲切自然”、“必须三点式”与“像人说话一样流畅”——这类冲突不会报错，模型会在两难处随机选一边，表现为“有时守、有时不守”。评审系统提示时，第一件事是找互相打架的条目。</p>
+<p><strong>稀释。</strong> 提示越长，中段的约束越容易被忽略。这不是玄学：注意力在长文本上不均匀，开头与结尾权重更高。把二十条规则平铺开来，效果通常不如分成四组、每组两句，再加两个示例说明。</p>
+<p><strong>不可执行的抽象。</strong> “准确”“专业”“有同理心”“不要幻觉”——这些词的可解释空间太大，模型只能猜。可执行的是行为描述：“先给结论，再列理由，每条理由单独一行”；“资料未覆盖时回答『课程资料中没有相关内容』，并给出两个可查的方向”。</p>
+<h2 id="一次重写">一次重写</h2>
+<p>把十四条规则重写成四组，是这类改造的典型动作。原稿的关键问题在层级混乱：角色、约束、格式、风格混在一起，互相牵制。</p>
+<p>重写后的结构大致是：</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>【身份与范围】</span></span>
+<span class="line"><span>你是 X 课程的助教。回答范围限于课程资料覆盖的数据库主题。</span></span>
+<span class="line"><span>范围外的问题：说明未覆盖，给出两个可查方向，不猜测。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>【输出契约】</span></span>
+<span class="line"><span>先给一句话结论，再列 2–4 条理由，每条一行。</span></span>
+<span class="line"><span>代码用 markdown 代码块并标注语言。</span></span>
+<span class="line"><span>不确定的地方标注"未在资料中找到依据"，不要补全。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>【工具策略】</span></span>
+<span class="line"><span>涉及具体分数、进度、作业状态时，必须先调用查询工具，不得凭记忆回答。</span></span>
+<span class="line"><span>工具返回为空时，视为失败，不得据此推断。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>【失败协议】</span></span>
+<span class="line"><span>工具报错：如实说明失败与错误类型，给出重试或替代方案。</span></span>
+<span class="line"><span>超出能力：明确说明，不提供猜测性答案。</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<p>对比原稿，删掉的是所有形容词式的风格要求与重复表述，补上的是原先缺失的失败协议，以及“工具返回为空视为失败”这条硬约束——它正是第 1.6 节那个事故的直接对策。</p>
+<p>两个示例通常比十条规则更有效，尤其是在“范围外如何应答”这种需要拿捏的分支上。示例的写法是下一节的主题。</p>
+<h2 id="系统提示是要版本管理的产物">系统提示是要版本管理的产物</h2>
+<p>一旦它被用来评测，它就和代码同级：需要版本、需要回归集、需要变更记录。</p>
+<p>具体到操作：每次改动另存新版本，不在原文件上直接改；记录改了什么、为什么改；维护一组固定的测试问题（十到二十条足够），任何改动先跑一遍再上线；模型升级后重跑同一组问题——为小模型调好的提示，换到大模型上经常需要重新收一遍。</p>
+<p>没有回归集的提示修改是盲改。你会遇到“改了 A，B 坏了，但两周后才发现”这种情形，而且无法解释。</p>
+<h2 id="它不是安全边界">它不是安全边界</h2>
+<p>最后一点必须说清楚：系统提示挡不住恶意输入。</p>
+<p>不可信的用户消息与你的系统提示在同一个上下文窗口里，模型没有“哪句话具有系统权威”的硬隔离。用户写“忽略上面的规则”，模型有时会照做——尤其是当那句话读起来像一条更新的指令时。</p>
+<p>因此权限、审计、过滤这些必须落在代码层，系统提示只负责让正常用户得到稳定行为。这条边界在讲提示注入的那一节还会展开，那里会解释为什么它没有“参数化查询”式的干净解法。</p>
+<h2 id="从提示转向预算">从提示转向预算</h2>
+<p>系统提示是上下文里唯一常驻、完全由你控制的部分，写好它相当于把地板铺平。但地板之上还有大量内容在争夺同一个窗口：历史、工具返回、检索结果。</p>
+<p>下一节处理这件事——窗口是一份有限的预算。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>OpenAI. <em>Prompt engineering guide.</em> <a href="https://platform.openai.com/docs/guides/prompt-engineering">https://platform.openai.com/docs/guides/prompt-engineering</a></li>
+<li>Anthropic. <em>Prompt engineering overview.</em> <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview</a></li>
+<li>OWASP. <em>LLM01: Prompt Injection.</em> <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">https://owasp.org/www-project-top-10-for-large-language-model-applications/</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/02/01/"><span>上一篇</span><strong>02.02.01 引言：同一个模型，两种结果</strong></a><a class="ai-pager-next" href="/ai/02-agents/02/03/"><span>下一篇</span><strong>02.02.03 上下文是一份有限的预算</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#它真正做的四件事">它真正做的四件事</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#规则改变概率改不了机制">规则改变概率，改不了机制</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#三个让它失效的原因">三个让它失效的原因</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#一次重写">一次重写</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#系统提示是要版本管理的产物">系统提示是要版本管理的产物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它不是安全边界">它不是安全边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#从提示转向预算">从提示转向预算</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

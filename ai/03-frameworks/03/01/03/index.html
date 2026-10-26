@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.03.01.03 Dataset、Template、Recipe 与 Export · iopanda</title><meta name="description" content="03.03.01.03 Dataset、Template、Recipe 与 Export · 框架 / 训练与微调框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/03/01/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.03.01.03 Dataset、Template、Recipe 与 Export · iopanda"><meta property="og:description" content="03.03.01.03 Dataset、Template、Recipe 与 Export · 框架 / 训练与微调框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/03/01/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="03" data-active-subsection="01" data-active-article="/ai/03-frameworks/03/01/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 训练与微调框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/03/"><span class="tree-number">03</span><span class="tree-title">训练与微调框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/03/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 LLaMA-Factory"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/03/01/"><span class="tree-number">01</span><span class="tree-title">LLaMA-Factory</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/03/01/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">Dataset、Template、Recipe 与 Export</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/">训练与微调框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/01/">LLaMA-Factory</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Dataset、Template、Recipe 与 Export</span></nav><header class="ai-article-header"><p class="ai-number">03.03.01.03</p><h1>Dataset、Template、Recipe 与 Export</h1><p class="ai-meta"><time datetime="2026-09-04T00:12">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>training</li><li>fine-tuning</li><li>llama-factory</li><li>dataset</li><li>template</li><li>export</li></ul></header><div class="ai-prose"><h1 id="datasettemplaterecipe-与-export">Dataset、Template、Recipe 与 Export</h1>
+<blockquote>
+<p>统一训练工厂真正值钱的地方，不在于“支持很多模型”，而在于把训练链路中最容易分叉的几层统一起来：数据格式、chat template、训练 recipe、导出目标。LLaMA-Factory 的 README、数据文档和 examples 非常清楚地说明了这一点：数据通过 <code>dataset_info.json</code> 和格式描述管理；模板必须在训练与推理中保持一致；训练通过一组 YAML examples 驱动；导出又能走 merge、量化、API、vLLM、Ollama 等不同目标。[86][91][92]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释为什么 dataset / template / recipe / export 是训练工厂最核心的四层；</li>
+<li>说出 alpaca、sharegpt、openai format、preference 数据在 LLaMA-Factory 中如何被统一；</li>
+<li>理解“训练和推理必须使用同一 template”为什么是硬纪律；</li>
+<li>说明 examples 目录为什么本质上是一套 recipe 库；</li>
+<li>为一个领域助手设计数据—模板—训练—导出链。</li>
+</ol>
+<h2 id="1-dataset为什么它不只是加载-json">1. dataset：为什么它不只是“加载 JSON”</h2>
+<p>数据 README 明确说明：</p>
+<ul>
+<li>支持 alpaca / sharegpt 两大格式；</li>
+<li>支持 json、jsonl、csv、parquet、arrow；</li>
+<li>通过 <code>dataset_info.json</code> 描述 file_name、formatting、ranking、columns、tags 等信息。[91]</li>
+</ul>
+<p>这意味着它并不是随手读数据，而是在强迫你回答：</p>
+<ul>
+<li>这份数据是什么格式；</li>
+<li>这列是什么角色；</li>
+<li>这是不是 preference dataset；</li>
+<li>这是不是 multimodal dataset；</li>
+<li>系统该如何把它转进统一训练语义。</li>
+</ul>
+<h2 id="2-template为什么它是训练成败的硬边界">2. template：为什么它是训练成败的硬边界</h2>
+<p>README 里有一句特别关键：<strong>Remember to use the SAME template in training and inference.</strong> [86]</p>
+<p>这不是小提醒，而是整个工厂纪律的核心。因为对于 chat/instruct 模型来说：</p>
+<ul>
+<li>template 决定了消息如何序列化；</li>
+<li>决定 system / user / assistant / tool call 等角色如何被编码；</li>
+<li>也决定训练分布是否与推理分布一致。</li>
+</ul>
+<p>如果 template 错配，最常见的后果不是程序报错，而是：</p>
+<ul>
+<li>模型答非所问；</li>
+<li>tool 格式错；</li>
+<li>推理体验和训练完全不一致。</li>
+</ul>
+<p>所以 template 在 LLaMA-Factory 里不是可选修饰，而是数据和模型之间的协议层。</p>
+<h2 id="3-recipe为什么-examples-目录本质上就是训练-recipe-库">3. recipe：为什么 examples 目录本质上就是训练 recipe 库</h2>
+<p>examples README 直接展示了大量训练 recipe：[92]</p>
+<ul>
+<li>LoRA SFT</li>
+<li>LoRA DPO</li>
+<li>reward modeling</li>
+<li>KTO</li>
+<li>QLoRA</li>
+<li>full-parameter fine-tuning</li>
+<li>DeepSpeed ZeRO-3</li>
+<li>Ray</li>
+<li>merge LoRA</li>
+<li>quantization</li>
+<li>API / webchat / vLLM inference</li>
+</ul>
+<p>这说明 examples 目录不是单纯 demo，而是一套：
+<strong>可复制的训练配方库。</strong></p>
+<p>对团队来说，这意味着：</p>
+<ul>
+<li>recipe 是组织经验的地方；</li>
+<li>训练方法切换不必从零写脚本；</li>
+<li>复杂度更多被压进 config，而不是散在 shell 命令和 notebook 里。</li>
+</ul>
+<h2 id="4-export为什么训练结束不是终点而是另一个系统边界">4. export：为什么训练结束不是终点，而是另一个系统边界</h2>
+<p>examples 里明确有：</p>
+<ul>
+<li>merge LoRA adapters</li>
+<li>quantizing model using AutoGPTQ</li>
+<li>save Ollama modelfile</li>
+<li>chat / webchat / OpenAI-style API / vLLM inference。[92]</li>
+</ul>
+<p>这说明 LLaMA-Factory 从一开始就不把训练看成“跑完 checkpoint 就结束”，而是把训练结果视作要进入：</p>
+<ul>
+<li>推理</li>
+<li>部署</li>
+<li>API</li>
+<li>量化</li>
+<li>多种后端
+的工件。</li>
+</ul>
+<p>这很重要，因为训练系统最容易脱节的地方之一，就是：</p>
+<ul>
+<li>训练能跑；</li>
+<li>但导不出；</li>
+<li>或导出后推理模板错；</li>
+<li>或推理后端与训练权重形式不兼容。</li>
+</ul>
+<h2 id="5-dataengine为什么它说明数据接入本身就是框架子系统">5. DataEngine：为什么它说明“数据接入”本身就是框架子系统</h2>
+<p>中文 DataEngine 文档清楚描述了：</p>
+<ul>
+<li>通过 <code>DataArguments</code> 接入数据源；</li>
+<li>读取 dataset_info；</li>
+<li>load_dataset；</li>
+<li>build_data_index；</li>
+<li>converter plugins 做统一格式化；</li>
+<li>支持 streaming 与非 streaming 模式。[91]</li>
+</ul>
+<p>这意味着 LLaMA-Factory 并不是简单把 datasets.load_dataset 裸露给用户，而是在做一个统一 data engine。它的意义在于：</p>
+<ul>
+<li>多数据源接入更统一；</li>
+<li>数据格式转换更规范；</li>
+<li>数据索引和采样策略更可控；</li>
+<li>streaming dataset 也有正式位置。</li>
+</ul>
+<h2 id="6-为什么这四层一起看才是训练工厂">6. 为什么这四层一起看，才是训练工厂</h2>
+<p>把 dataset、template、recipe、export 放在一起看，你会发现：</p>
+<ul>
+<li>dataset 解决原材料；</li>
+<li>template 解决协议；</li>
+<li>recipe 解决工序；</li>
+<li>export 解决成品交付。</li>
+</ul>
+<p>这正是“工厂”一词最准确的含义。LLaMA-Factory 的价值不只是会训，而是把训练链的主要分叉点都收进同一世界观。</p>
+<h2 id="7-动手活动为课程助教写一张训练配方卡">7. 动手活动：为课程助教写一张训练配方卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>llamafactory-recipe-card.md</code></p>
+<p><strong>目标</strong>：为课程助教写一张数据—模板—训练—导出配方卡。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>定数据格式：alpaca / sharegpt / preference；</li>
+<li>定 template：训练和推理必须一致；</li>
+<li>选 recipe：LoRA SFT / DPO / QLoRA；</li>
+<li>定导出目标：HF、vLLM、OpenAI-style API、Ollama；</li>
+<li>写一句结论：为什么这不是一条 shell 命令，而是一条完整配方链。</li>
+</ol>
+<p><strong>完成标准</strong>：你能回答“为什么这份数据配这个 template、这套 recipe、这个导出目标”。</p>
+</div>
+<h2 id="8-边界与排错">8. 边界与排错</h2>
+<ul>
+<li><strong>误区一：dataset 能加载就行。</strong> 格式、角色标签、ranking 属性都会影响训练语义；</li>
+<li><strong>误区二：template 可以训练时随便选，推理再改。</strong> 这是最常见也最隐蔽的错；</li>
+<li><strong>误区三：examples 只是 demo。</strong> 在 LLaMA-Factory 里，examples 更像 recipe catalogue；</li>
+<li><strong>误区四：训练结束就算完成。</strong> 导出、推理、API 接口一致性同样是工程主线；</li>
+<li><strong>误区五：工厂化会掩盖细节。</strong> 它只是把细节组织起来，不是让细节消失。</li>
+</ul>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dataset 在做什么</td>
+<td>统一原材料格式与元信息</td>
+</tr>
+<tr>
+<td>template 在做什么</td>
+<td>定义训练和推理共享的消息协议</td>
+</tr>
+<tr>
+<td>recipe 在做什么</td>
+<td>把训练方法变成可重复执行的配置配方</td>
+</tr>
+<tr>
+<td>export 在做什么</td>
+<td>把 checkpoint 变成可部署工件</td>
+</tr>
+<tr>
+<td>为什么四层一起重要</td>
+<td>它们共同定义了一条完整训练装配线</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么很多训练项目真正翻车的地方，不是学习率调得不对，而是数据格式、template、导出目标之间的隐式错配？LLaMA-Factory 在这方面真正帮团队收敛的是什么？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为学习率错误通常很快能在 loss 曲线上暴露，而数据格式、template、导出接口错配常常能“正常跑完”，却在推理阶段才全面翻车。LLaMA-Factory 真正帮团队收敛的，是训练链中这些最容易被忽视的协议层复杂度：数据如何解释、消息如何编码、权重如何导出、推理如何接上。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[86] <a href="https://github.com/hiyouga/LLaMA-Factory/blob/main/README.md">https://github.com/hiyouga/LLaMA-Factory/blob/main/README.md</a> — LLaMA-Factory README</li>
+<li>[91] <a href="https://github.com/hiyouga/LLaMA-Factory/blob/main/data/README.md">https://github.com/hiyouga/LLaMA-Factory/blob/main/data/README.md</a> — LLaMA-Factory data README</li>
+<li>[92] <a href="https://github.com/hiyouga/LLaMA-Factory/blob/main/examples/README.md">https://github.com/hiyouga/LLaMA-Factory/blob/main/examples/README.md</a> — LLaMA-Factory examples README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/03/01/02/"><span>上一篇</span><strong>03.03.01.02 统一训练工厂的设计哲学</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/03/01/04/"><span>下一篇</span><strong>03.03.01.04 SFT、DPO、VLM 与多任务统一抽象</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-dataset为什么它不只是加载-json">1. dataset：为什么它不只是“加载 JSON”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-template为什么它是训练成败的硬边界">2. template：为什么它是训练成败的硬边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-recipe为什么-examples-目录本质上就是训练-recipe-库">3. recipe：为什么 examples 目录本质上就是训练 recipe 库</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-export为什么训练结束不是终点而是另一个系统边界">4. export：为什么训练结束不是终点，而是另一个系统边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-dataengine为什么它说明数据接入本身就是框架子系统">5. DataEngine：为什么它说明“数据接入”本身就是框架子系统</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-为什么这四层一起看才是训练工厂">6. 为什么这四层一起看，才是训练工厂</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动为课程助教写一张训练配方卡">7. 动手活动：为课程助教写一张训练配方卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-边界与排错">8. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.10 模型能力与局限 · iopanda</title><meta name="description" content="01.01.10 模型能力与局限 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/10/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.10 模型能力与局限 · iopanda"><meta property="og:description" content="01.01.10 模型能力与局限 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/10/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/10/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/10/" aria-current="page"><span class="tree-number">10</span><span class="tree-title">模型能力与局限</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">模型能力与局限</span></nav><header class="ai-article-header"><p class="ai-number">01.01.10</p><h1>模型能力与局限</h1><p class="ai-meta"><time datetime="2026-09-02T18:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-models</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>这是 Foundations 单元的收尾章:前面九章回答了「模型怎么造出来、怎么跑起来」,本章回答「<strong>它到底能做什么、不能做什么,不能做的事如何兜底</strong>」。读完你会得到一张「能力地图 + 失效清单 + 责任分工表」,这是进入预训练、微调、评测等后续单元前的必要认知装备。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>列出语言模型最擅长的五类任务,并解释「为什么擅长」;</li>
+<li>说出四类核心局限(幻觉/知识时效/上下文/非确定性)的成因与各自缓解手段;</li>
+<li>识别提示注入、信息泄露等系统级风险,并把防线分到模型/系统/人三层;</li>
+<li>用「任务定义 → 评测集 → 持续指标」三步法评估任何一次模型使用;</li>
+<li>说出「模型-系统-人」三层责任原则,并为某个 AI 功能画出责任分工。</li>
+</ol>
+<h2 id="1-概念能力与局限是一枚硬币的两面">1. 概念:能力与局限是一枚硬币的两面</h2>
+<ul>
+<li><strong>模型能力</strong>:模型把训练数据中学到的<strong>统计规律</strong>泛化到新输入上的本领——会改写、会总结、会接话、会续写。</li>
+<li><strong>模型局限</strong>:同一套机制在<strong>信息不足、分布之外或缺少校验</strong>时的必然失效——编造、过时、健忘、时好时坏。</li>
+<li>为什么两者必须一起讲?因为模型<strong>没有内置的「我知道/不知道」开关</strong>(01 章已提示):它不会主动报告自己的不确定。能力是「会说话」,局限是「说的话不一定为真」——两者源于同一个机制:它学的是「下一个词像什么」,不是「下一个词对不对」。</li>
+</ul>
+<blockquote>
+<p>生活类比:模型像一个<strong>读过海量书、反应极快、但从不查证、记忆只有最近几页</strong>的速读者。你问它什么它都能接上话,却分不清「记得的」和「编的」。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>擅长的一面</th>
+<th>同源的另一面(局限)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生成流畅自然</td>
+<td>流畅不等于事实正确(幻觉)</td>
+</tr>
+<tr>
+<td>记住海量训练知识</td>
+<td>知识停留在训练截止日</td>
+</tr>
+<tr>
+<td>一次可处理很长的输入</td>
+<td>窗口有限,超出即忘</td>
+</tr>
+<tr>
+<td>每次回答有创造性</td>
+<td>同一问题结果可能不同</td>
+</tr>
+</tbody>
+</table>
+<p><strong>作用</strong>:把「能力地图」和「失效清单」同时装进脑子,工程决策(哪里敢全自动、哪里必须加人)才有依据。本章不是让你害怕模型,而是让你<strong>在知道边界的前提下放心用</strong>。</p>
+<h2 id="2-为什么需要边界决定架构责任决定成败">2. 为什么需要:边界决定架构,责任决定成败</h2>
+<ul>
+<li>对模型能力与局限的误判,是 AI 工程最常见的两类失败:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>误判</th>
+<th>表现</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高估能力</td>
+<td>把输出直接当事实入库、直接执行动作</td>
+<td>幻觉污染数据、自动操作酿成事故</td>
+</tr>
+<tr>
+<td>低估能力</td>
+<td>明明可自动化仍全流程人工</td>
+<td>成本与效率优势归零,失去采用价值</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>边界决定架构</strong>:局限不是「缺点清单」,而是系统设计的输入——哪类局限用检索补(时效、事实)、哪类用工具补(实时数据、计算)、哪类用校验补(格式、权限)、哪类用人补(高风险判断):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>局限/风险</th>
+<th>首选系统手段</th>
+<th>对应后续章节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事实错误、幻觉</td>
+<td>RAG 检索增强、输出注明来源</td>
+<td>01.06 评测与基准</td>
+</tr>
+<tr>
+<td>知识过时</td>
+<td>搜索/工具调用实时取数</td>
+<td>01.02 数据管线</td>
+</tr>
+<tr>
+<td>上下文不够</td>
+<td>摘要压缩 + 检索切片</td>
+<td>01.04 部署与生成控制</td>
+</tr>
+<tr>
+<td>非确定输出</td>
+<td>低温 + schema + 重试校验</td>
+<td>01.04 Generation Controls</td>
+</tr>
+<tr>
+<td>高风险动作</td>
+<td>人工复核、最小权限</td>
+<td>01.07 安全与治理</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一句话:<strong>读本章前,你看到的是「模型什么都会」;读完后,你看到的是「每个能力旁边都写着使用条件」。</strong></li>
+</ul>
+<h2 id="3-它擅长什么五类核心能力">3. 它擅长什么:五类核心能力</h2>
+<ul>
+<li>语言模型本质是「在约束下续写文本」的机器,因此凡是<strong>能用语言表达、且答案藏在语言规律里</strong>的任务,它都表现出色。最常用的五类:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>是什么</th>
+<th>为什么擅长</th>
+<th>典型场景</th>
+<th>使用注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>改写</strong></td>
+<td>换风格、换语气、扩写/缩写而语义不变</td>
+<td>续写天然擅长「保持语义换说法」</td>
+<td>文案润色、翻译、代码转译</td>
+<td>检查是否丢了限定条件</td>
+</tr>
+<tr>
+<td><strong>总结</strong></td>
+<td>把长文压成要点</td>
+<td>注意力机制能从长上下文抓重点(05/06 章)</td>
+<td>会议纪要、文档摘要</td>
+<td>关键数字需抽查核对</td>
+</tr>
+<tr>
+<td><strong>分类</strong></td>
+<td>把文本归入预设类别或抽取字段</td>
+<td>分类 = 输出受限的续写,给几个示例(few-shot)即可</td>
+<td>工单路由、情感分析、实体抽取</td>
+<td>领域漂移后要重新评测</td>
+</tr>
+<tr>
+<td><strong>生成</strong></td>
+<td>开放创作:初稿、代码、创意</td>
+<td>从语言分布采样(07 章),分布学得越广越能组合</td>
+<td>代码补全、头脑风暴、写初稿</td>
+<td>质量波动大,需要审阅门槛</td>
+</tr>
+<tr>
+<td><strong>模式发现</strong></td>
+<td>从非结构化文本中找规律、聚类、找异常</td>
+<td>预训练压缩了海量文本的统计关联</td>
+<td>日志归纳、合同异常条款扫描</td>
+<td>「规律」可能是巧合,必须验证</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一个「全能实习生」的比喻:它上手快、语感好、知识面广,但<strong>不能独立对事实负责</strong>——你给它明确任务和复核机制,它产出惊人;你撒手不管,它就一本正经地胡说。</li>
+<li><strong>作用</strong>:这五类能力是上层所有应用(助手、Agent、搜索)的积木;先识别任务属于哪一类,再决定用提示词、RAG 还是微调去落地。</li>
+</ul>
+<h2 id="4-详细介绍四类核心局限与缓解">4. 详细介绍:四类核心局限与缓解</h2>
+<ul>
+<li>共同根源只有一条:<strong>模型只学过「文本像什么」,从未学过「世界是什么」</strong>。训练目标是最大化下一个词的概率,不是建立可查证的事实库;因此以下四类失效是结构性的,只能缓解、无法根除。</li>
+</ul>
+<h3 id="41-幻觉hallucination">4.1 幻觉(Hallucination)</h3>
+<ul>
+<li><strong>概念</strong>:模型输出<strong>语法流畅、自信满满但与事实或用户提供的上下文不符</strong>的内容。可分两类:事实幻觉(编造事件、数据、来源)与忠实性幻觉(与对话中的既有材料矛盾)。</li>
+<li><strong>为什么发生</strong>:① 生成时它只是在做「最像样的续写」,事实对它只是统计上的「常见搭配」;② 知识以参数形式压缩,冷门细节在训练中被「平均」掉;③ 训练与对齐普遍奖励「给出答案」而非「承认不知道」,模型学到的倾向是猜,而不是说「不知道」。</li>
+<li><strong>缓解</strong>:检索增强(RAG)强迫它「看着资料说话」并要求给出来源;提示里写明「没有依据就明说不知道」;事实型任务调低 temperature;高风险场景人工复核。IBM 的结论值得记住:<strong>幻觉可以显著减少,但无法完全消除</strong>——所以系统必须默认「它偶尔会编」。</li>
+</ul>
+<h3 id="42-知识时效">4.2 知识时效</h3>
+<ul>
+<li><strong>概念</strong>:模型的知识冻结在<strong>训练数据截止日期</strong>,此后发生的事它不知道;而它不会主动声明「我的知识过时了」。</li>
+<li><strong>为什么发生</strong>:预训练一次成本极高(09 章),不可能随新闻实时更新;参数化知识也不支持「改一条记录」式的增量修改。</li>
+<li><strong>缓解</strong>:需要时效信息的任务,优先接<strong>工具调用/搜索引擎/数据库</strong>,让它「去查」而不是「回忆」;或走 RAG 把最新文档喂进上下文;只有长期稳定的领域知识才值得用重训或微调刷新。</li>
+</ul>
+<h3 id="43-上下文限制">4.3 上下文限制</h3>
+<ul>
+<li><strong>概念</strong>:模型一次只能「看到」上下文窗口内的 token(常见 4K~200K 不等),窗口之外的内容对它不存在;窗口内的记忆只是<strong>临时工作台</strong>,对话结束即清零。</li>
+<li><strong>为什么发生</strong>:注意力计算量随序列长度增长(05/06 章),窗口大小是算力与成本的工程取舍;同时研究发现模型对超长上下文的中间部分利用率偏低(lost in the middle)。</li>
+<li><strong>缓解</strong>:长文档先<strong>摘要压缩</strong>再处理;用检索只把<strong>相关片段</strong>放进窗口,而不是整库硬塞;把长任务拆成多轮短任务;把「数据库」放在系统侧(向量库),窗口只当「工作台」。</li>
+</ul>
+<h3 id="44-非确定性">4.4 非确定性</h3>
+<ul>
+<li><strong>概念</strong>:同一提示、同一模型,多次调用结果可能<strong>每次不同</strong>,尤其 temperature &gt; 0 时;这对测试、复现、对账都是挑战。</li>
+<li><strong>为什么发生</strong>:推理本质是<strong>从概率分布采样</strong>(07 章);temperature 控制分布尖锐程度,top-p/top-k 控制候选范围,采样本身自带随机性。</li>
+<li><strong>缓解</strong>:事实与代码类任务把 temperature 调低或置 0、固定 seed;用结构化输出约束格式(schema/JSON);业务侧做幂等设计与重试校验;评测时<strong>多次采样看分布</strong>,不要用单次结果下结论。</li>
+</ul>
+<h3 id="45-局限与缓解一览">4.5 局限与缓解一览</h3>
+<table>
+<thead>
+<tr>
+<th>局限</th>
+<th>一句话成因</th>
+<th>一句话缓解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>幻觉</td>
+<td>学「像不像」,不学「对不对」</td>
+<td>RAG + 要求注明不确定 + 人工复核</td>
+</tr>
+<tr>
+<td>知识时效</td>
+<td>知识是训练快照</td>
+<td>工具调用/搜索取实时数据</td>
+</tr>
+<tr>
+<td>上下文限制</td>
+<td>窗口有限,且只是临时工作台</td>
+<td>压缩 + 检索切片 + 任务拆分</td>
+</tr>
+<tr>
+<td>非确定性</td>
+<td>生成是随机采样</td>
+<td>低温 + schema + 多次采样评测</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-风险从模型局限到系统事故">5. 风险:从模型局限到系统事故</h2>
+<ul>
+<li>前四节是<strong>模型单点</strong>的局限;一旦模型被接进系统、喂进外部数据、授予工具权限,局限就会放大成<strong>风险</strong>。OWASP《LLM 应用十大风险(2025)》把这类问题排在最前——工程上必须按风险对待,而不是按「模型怪癖」容忍。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>风险</th>
+<th>是什么</th>
+<th>为什么会发生</th>
+<th>主要防线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>提示注入</strong>(LLM01)</td>
+<td>输入内容(用户提问,或网页/文档里的隐藏文字)篡改模型行为,令其执行攻击者指令</td>
+<td>模型分不清「指令」与「数据」,外部内容也能指挥它</td>
+<td>指令/数据分离、输出校验、最小工具权限;不把系统提示当安全边界</td>
+</tr>
+<tr>
+<td><strong>敏感信息泄露</strong>(LLM02)</td>
+<td>输出泄露训练数据中记住的、或上下文中的隐私与密钥</td>
+<td>模型会复述记忆与上下文;日志、插件都可能成为出口</td>
+<td>脱敏与数据最小化、密钥不进提示词、DLP 检测</td>
+</tr>
+<tr>
+<td><strong>偏见放大</strong></td>
+<td>对特定人群或话题输出系统性偏差</td>
+<td>训练语料本身含社会偏见,模型学会并放大</td>
+<td>分群体评测、提示去偏、敏感场景人工审查</td>
+</tr>
+<tr>
+<td><strong>版权与抄袭</strong></td>
+<td>逐字复现训练语料中的受版权文本</td>
+<td>高频文本被模型「背下来」</td>
+<td>输出相似度检测、合规审查、审慎用于商业发布</td>
+</tr>
+<tr>
+<td><strong>过度自动化</strong></td>
+<td>模型被授予过高行动权限,幻觉直接变成真实动作(删数据、下单、发信)</td>
+<td>权限过宽、缺少人在回路</td>
+<td>最小权限、分级自动化、高影响动作强制人工确认</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>注意共同模式:<strong>这些风险大多不是「模型太笨」,而是「系统把模型的输出当成了可信事实或可信指令」</strong>——防线应设在系统与人,而不是指望模型永远不出错。</li>
+</ul>
+<h2 id="6-如何正确评估别用感觉要用测量">6. 如何正确评估:别用「感觉」,要用「测量」</h2>
+<ul>
+<li><strong>概念</strong>:评估 = 用可复现的方法回答「这个模型在我的任务上到底行不行」,而不是拿几个漂亮 demo 下结论。</li>
+<li><strong>为什么需要</strong>:模型的「强」是平均意义上的强,换到你的领域、你的输入分布,表现可能完全不同;没有评测的「感觉好用」不可靠(01 章第四问)。</li>
+<li><strong>三步法</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>做什么</th>
+<th>常见错误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 任务定义</td>
+<td>写清输入/输出、成功标准、错误代价</td>
+<td>任务边界模糊,无法判断对错</td>
+</tr>
+<tr>
+<td>② 评测集</td>
+<td>建黄金数据集:典型样例 + 边界样例 + 已知失败样例</td>
+<td>样例太少、只测顺利路径</td>
+</tr>
+<tr>
+<td>③ 持续指标</td>
+<td>上线后持续监控准确率、拒绝率、漂移、抽检反馈</td>
+<td>上线即停测,退化无人知</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>详细介绍三点:<strong>任务定义</strong>决定「对错」标准——摘要任务看要点覆盖还是逐字忠实?客服任务看解决率还是语气?标准不同,同一个模型的结论可能相反。<strong>评测集</strong>要覆盖失败模式(幻觉多发的问题、长输入、对抗输入),而不是只报平均分;平均分漂亮但特定失败致命的情况很常见(01.06 评测单元会展开)。<strong>持续指标</strong>要接生产:模型会换代、输入会漂移,指标必须能报警。</li>
+<li>一句话:**能力需要证明,局限需要测量。**两者都靠评测,不靠印象。</li>
+</ul>
+<h2 id="7-模型-系统-人三层责任原则">7. 模型-系统-人:三层责任原则</h2>
+<ul>
+<li><strong>概念</strong>:AI 出错时,责任不该笼统落在「模型不行」或「用户不小心」上,而应按<strong>在哪一层可以预防</strong>来分配:<strong>模型层负责选对与声明边界,系统层负责兜底与拦截,人层负责判断与复核</strong>。</li>
+<li><strong>为什么需要</strong>:真实事故几乎都是三层同时失守——模型幻觉(模型层)+ 没有校验与权限控制(系统层)+ 无人复核就自动执行(人层)。NIST《AI 风险管理框架(AI RMF)》的核心思想正是:把可信性要求贯穿设计、开发、使用全生命周期,由各角色分担责任。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>负责什么</th>
+<th>典型手段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模型层</strong></td>
+<td>选对模型、如实声明能力边界</td>
+<td>模型卡(model card)、任务与模型匹配、能力外任务不用它</td>
+</tr>
+<tr>
+<td><strong>系统层</strong></td>
+<td>把「模型可能错」当默认前提,工程兜底</td>
+<td>RAG、护栏、输出 schema 校验、最小权限、日志审计、持续评测</td>
+</tr>
+<tr>
+<td><strong>人层</strong></td>
+<td>在错误代价高的地方把关</td>
+<td>高风险动作人工复核、对最终输出负责、合规与数据权限管理</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一个实用判断:<strong>谁最后按下按钮,谁就要能校验结果</strong>。全自动的前提不是「模型足够可靠」,而是「出错代价足够小、系统能发现并回滚」。</li>
+<li>责任划分也回答一个常见困惑:「幻觉是模型的错吗?」——模型层只能说它没把边界说清楚;<strong>把幻觉输出直接当事实执行,是系统与人的失职</strong>。把责任放到能预防的那一层,问题才真正可解。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<h3 id="81-本章一览">8.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>能力来源</td>
+<td>模型擅长的是语言统计规律,不是世界知识</td>
+</tr>
+<tr>
+<td>五类擅长</td>
+<td>改写、总结、分类、生成、模式发现</td>
+</tr>
+<tr>
+<td>四类局限</td>
+<td>幻觉、知识时效、上下文限制、非确定性(可缓解、难根除)</td>
+</tr>
+<tr>
+<td>系统风险</td>
+<td>提示注入、信息泄露、偏见、版权、过度自动化</td>
+</tr>
+<tr>
+<td>评估三步</td>
+<td>任务定义 → 评测集 → 持续指标</td>
+</tr>
+<tr>
+<td>责任三层</td>
+<td>模型选对与声明、系统兜底与拦截、人判断与复核</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-思考题">8.2 思考题</h3>
+<ol>
+<li>为什么说「生成越流畅,越要警惕幻觉」?两者共享哪个机制?</li>
+<li>一个客服机器人需要回答实时价目表问题:该用 RAG、工具调用还是重训模型?为什么?</li>
+<li>什么是间接提示注入?为什么它比用户直接输入的恶意指令更难防?</li>
+<li>你要上线「AI 自动回复客户邮件」功能:按模型-系统-人三层,每层至少写出一条措施。</li>
+<li>「模型通过了我们 200 条评测样例」能说明它可靠吗?还缺什么?</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>两者都源于「下一个词预测」:模型只追求「像样」,流畅度来自分布学得好,事实性却没有任何机制保证——流畅恰恰是它「自信地错」的放大器。</li>
+<li>优先用工具调用/搜索 API 实时取数,或 RAG 检索最新价目表:价目表更新频繁且事实要求高,重训成本高且时效仍差;把「数据」放在模型之外,让模型只负责组织语言。</li>
+<li>间接提示注入是攻击者把指令藏在网页、文档、邮件等外部内容里,模型读取内容时被「带跑」。它更难防是因为内容本身是正常业务数据、用户并未恶意,系统无法靠「过滤用户输入」挡住,必须做指令/数据分离与输出校验。</li>
+<li>模型层:选指令遵循能力强的模型,并声明适用边界;系统层:只授只读权限、输出过 PII 与敏感词过滤、全程留日志、每日抽检;人层:设定「仅低风险内容可自动发送」,其余转人工确认。</li>
+<li>不够:200 条样例无法覆盖真实输入分布;还需要任务定义明确、样例覆盖失败模式与边界情况、上线后持续监控指标,并测算错误代价以决定是否需人工兜底。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.ibm.com/think/topics/ai-hallucinations">IBM:什么是 AI 幻觉(What are AI hallucinations)</a></li>
+<li><a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP:LLM 应用十大风险 Top 10 for LLM Applications 2025(LLM01 提示注入)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)">Wikipedia:幻觉(人工智能)Hallucination (artificial intelligence)</a></li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST:AI 风险管理框架(AI RMF)与生成式 AI Profile</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/09/"><span>上一篇</span><strong>01.01.09 训练、推理与服务</strong></a><a class="ai-pager-next" href="/ai/01-models/02/01/"><span>下一篇</span><strong>01.02.01 预训练目标与约束</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念能力与局限是一枚硬币的两面">1. 概念:能力与局限是一枚硬币的两面</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要边界决定架构责任决定成败">2. 为什么需要:边界决定架构,责任决定成败</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它擅长什么五类核心能力">3. 它擅长什么:五类核心能力</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍四类核心局限与缓解">4. 详细介绍:四类核心局限与缓解</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-幻觉hallucination">4.1 幻觉(Hallucination)</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-知识时效">4.2 知识时效</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-上下文限制">4.3 上下文限制</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-非确定性">4.4 非确定性</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-局限与缓解一览">4.5 局限与缓解一览</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-风险从模型局限到系统事故">5. 风险:从模型局限到系统事故</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-如何正确评估别用感觉要用测量">6. 如何正确评估:别用「感觉」,要用「测量」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-模型-系统-人三层责任原则">7. 模型-系统-人:三层责任原则</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#81-本章一览">8.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#82-思考题">8.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

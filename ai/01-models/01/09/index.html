@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.09 训练、推理与服务 · iopanda</title><meta name="description" content="01.01.09 训练、推理与服务 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/09/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.09 训练、推理与服务 · iopanda"><meta property="og:description" content="01.01.09 训练、推理与服务 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/09/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/09/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/09/" aria-current="page"><span class="tree-number">09</span><span class="tree-title">训练、推理与服务</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">训练、推理与服务</span></nav><header class="ai-article-header"><p class="ai-number">01.01.09</p><h1>训练、推理与服务</h1><p class="ai-meta"><time datetime="2026-09-02T19:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>training-inference-serving</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>前八章回答「模型是什么、为什么能学、长什么样」;本章回答「一个模型从出生到上线服务的完整旅程」。预训练烧掉天文数字的算力、后训练把它调教成听话的助手、推理让它在毫秒间响应、服务化让成千上万用户安全稳定地用上它——这四个环节的资源特征、衡量指标和工程手段完全不同。读完后你会理解:为什么训练看重吞吐、服务看重延迟;KV cache、量化、连续批处理这些词到底在解决什么问题;以及「把模型上线」为什么远不止「把模型跑起来」。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用一张图讲清训练、推理、服务三阶段的分工与资源特征;</li>
+<li>区分预训练与后训练,并说清 SFT、偏好优化(RLHF/DPO)、对齐各自解决什么问题;</li>
+<li>解释延迟、吞吐、批处理、KV cache、量化五个推理性能核心概念;</li>
+<li>列举服务化工程的关键环节:认证限流、日志脱敏、版本回滚、回归评测;</li>
+<li>为一个具体场景判断:该直接调用 API、该微调开源模型,还是自己训练。</li>
+</ol>
+<h2 id="1-概念训练推理与服务是什么">1. 概念:训练、推理与服务是什么</h2>
+<ul>
+<li>回到第一章的公式 <code>y = f(x; θ)</code>:<strong>训练</strong>是调整参数 <code>θ</code>;<strong>推理</strong>是固定 <code>θ</code>,对一条新输入 <code>x</code> 计算输出 <code>y</code>;<strong>服务</strong>是把「推理」包装成 7×24 小时稳定、安全、可计费、可回滚的在线能力。</li>
+<li>三者的关系可以类比开车:<strong>训练</strong>=驾校练车(成本高、要专门场地、练完技能内化在身体里);<strong>推理</strong>=每次上路驾驶(一次只服务一段行程,延迟决定体验);<strong>服务</strong>=出租车公司运营(把驾驶组织成千上万人随时叫得到、出了事故能追责的车队)。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>在做什么</th>
+<th>时间尺度</th>
+<th>资源与成本特征</th>
+<th>主要失败代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练</td>
+<td>从海量数据中学参数</td>
+<td>数周~数月(离线)</td>
+<td>数千张 GPU 集群,一次性大额投入</td>
+<td>训坏了重来,烧钱烧时间</td>
+</tr>
+<tr>
+<td>推理</td>
+<td>固定参数,对请求前向计算</td>
+<td>毫秒~秒(在线)</td>
+<td>单卡到数十卡,按用量持续产生</td>
+<td>出错只丢这一次请求</td>
+</tr>
+<tr>
+<td>服务</td>
+<td>把推理组织成可运营的系统</td>
+<td>7×24 持续运行</td>
+<td>GPU + CPU 网关/存储,运营成本</td>
+<td>出错影响全体用户与口碑</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-为什么需要区分三个阶段">2. 为什么需要区分三个阶段</h2>
+<h3 id="21-训练与推理是两种相反的优化目标">2.1 训练与推理是两种「相反」的优化目标</h3>
+<ul>
+<li><strong>训练追求吞吐,不在乎延迟</strong>:数据是预先准备好的大批量,跑得慢一点没关系,甚至可以失败后断点重来;它关心的是「单位算力算出多少梯度、模型收敛多快」,所以总是一次喂几千条样本(大 batch)把 GPU 喂饱。</li>
+<li><strong>推理追求延迟,用户在线等</strong>:每次请求只有一条输入,用户多等 100 毫秒都能感知到;它关心「单条请求多快返回、单位时间能服务多少请求」,因此 GPU 常常喂不饱也要先响应。</li>
+<li>同一份权重,训练时的前向传播还要跟反向传播、梯度更新绑定,显存占用与计算量通常是纯推理的数倍——这就是为什么训练需要集群,而一个 7B 模型推理有时单张消费级显卡就够用的原因。</li>
+</ul>
+<h3 id="22-服务是推理--工程化不是推理">2.2 服务是「推理 + 工程化」,不是「推理」</h3>
+<ul>
+<li>推理只是一次计算;服务要回答一连串工程问题:谁来用(认证)?一次能用多少(限流与计量)?出问题怎么第一时间发现(日志与监控)?新版本改坏了怎么退回(回滚)?能力有没有悄悄变差(回归评测)?</li>
+<li>类比:<strong>实验室里做出新药(训练)和建厂量产、通过药监、供给全国药店(服务)是两套完全不同的能力</strong>——很多团队模型训得出来,却死在上线后的可靠性上。</li>
+</ul>
+<h2 id="3-它有什么作用">3. 它有什么作用</h2>
+<ul>
+<li><strong>看清成本结构</strong>:训练是一次性大额投入;推理成本随调用量持续累积,高频 C 端应用运营两三年,推理总成本常常超过训练。预算与定价都要按这个结构来设计。</li>
+<li><strong>提供选型决策框架</strong>:绝大多数团队不该从零预训练。正确顺序通常是:先直接调用现成 API 验证效果 → 效果不够再用 RAG 与提示词工程补 → 还不够才考虑微调开源模型 → 只有算力、数据、人才都齐备的极少数情况才自训基座模型。</li>
+<li><strong>让「快、便宜、稳、安全」变成可度量的工程指标</strong>:延迟、吞吐、每千 token 成本、可用性 SLA、安全审计,这些是模型能否真正成为产品的分水岭。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-训练预训练--后训练">4.1 训练:预训练 → 后训练</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>预训练(自监督) → 基座模型(会续写,不会对话) → SFT(学会遵循指令)</span></span>
+<span class="line"><span>→ 偏好优化 RLHF/DPO(学会「好回答」= 对齐)→ 部署服务 → 上线后评测反馈</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h4 id="411-预训练pre-training">4.1.1 预训练(Pre-training)</h4>
+<ul>
+<li><strong>概念</strong>:用海量无标注文本做自监督学习——上一章讲过,目标就是「预测下一个 token」。模型从网页、书籍、论文、代码里吸收语言规律与世界知识。</li>
+<li><strong>为什么需要</strong>:语言能力无法靠人工标注获得(谁标得起几万亿 token?);「预测下一个词」天然免费提供标签,规模可以无限放大。</li>
+<li><strong>作用</strong>:产出<strong>基座模型(base model)</strong>——它只会续写,不会问答,但承载了后续一切能力的底座。公开例证:Meta 训练 Llama 3 70B 用了约 16000 张 H100 跑数十天。</li>
+<li><strong>详细介绍</strong>:数据规模以万亿 token 计、动辄数千 GPU 数月;损失只对预测的 token 计算交叉熵;工程上依赖数据并行、张量并行等分布式手段(见 01.03)。注意区分:预训练是「学知识」,不等于「学会做人」——它甚至分不清自己在被提问。</li>
+</ul>
+<h4 id="412-后训练post-trainingsft偏好优化与对齐">4.1.2 后训练(Post-training):SFT、偏好优化与对齐</h4>
+<ul>
+<li><strong>SFT(监督微调)</strong>:<strong>概念</strong>——用人工整理的「指令—理想回答」对继续训练,让模型从「续写模式」切到「指令遵循模式」。<strong>为什么需要</strong>:基座模型知识渊博却「听不懂人话」,你问它北京有什么好吃的,它会继续写「北京有什么好玩的」;SFT 就是教它:看到问题要回答问题。<strong>作用</strong>:把通用能力收束成可用的助手。<strong>详细介绍</strong>:数据量远小于预训练(万~百万条),但质量优先——1000 条高质量数据胜过百万条噪音;实践中常混入少量预训练数据防止「灾难性遗忘」。</li>
+<li><strong>偏好优化(RLHF/DPO)</strong>:<strong>概念</strong>——SFT 只教「像答案」,不教「什么是更好的答案」;RLHF 收集人类对多个回答的排序,先训练奖励模型,再用 PPO 强化学习优化策略;DPO 则省掉奖励模型,直接从偏好数据优化。<strong>为什么需要</strong>:只做 SFT 的模型仍会一本正经胡说八道、回答有害问题、废话连篇——它不知道人类更喜欢「准确、简洁、安全」的回答。<strong>作用</strong>:实现<strong>对齐(Alignment)</strong>——让模型有用、诚实、无害。InstructGPT 论文的著名结论:1.3B 参数、经 RLHF 的模型在人类评估中胜过 175B 的原始 GPT-3。</li>
+<li><strong>对比小结</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>预训练</th>
+<th>SFT</th>
+<th>偏好优化(RLHF/DPO)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据</td>
+<td>万亿 token 无标注文本</td>
+<td>万~百万条指令对</td>
+<td>人类偏好排序/对比数据</td>
+</tr>
+<tr>
+<td>教什么</td>
+<td>语言规律与世界知识</td>
+<td>遵循指令、会问答</td>
+<td>回答「更好」而非只是「对」</td>
+</tr>
+<tr>
+<td>成本量级</td>
+<td>千万~亿美元</td>
+<td>百万级</td>
+<td>百万级,RLHF 比 DPO 更高</td>
+</tr>
+<tr>
+<td>产物</td>
+<td>基座模型</td>
+<td>指令模型(可对话)</td>
+<td>对齐模型(可安全上线)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-推理模型如何用起来">4.2 推理:模型如何「用」起来</h3>
+<h4 id="421-自回归生成与延迟的两段论">4.2.1 自回归生成与延迟的两段论</h4>
+<ul>
+<li>Decoder-only 模型逐 token 生成:先对整段输入做一次预填充(prefill),得到第一个输出 token;之后每生成一个 token 都依赖全部历史。因此一次请求的总延迟被切成两段,工程上分别度量:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>含义</th>
+<th>为什么重要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TTFT(首 token 延迟)</td>
+<td>从请求发出到吐出第一个字</td>
+<td>决定用户「第一印象」,对话流式体验的关键</td>
+</tr>
+<tr>
+<td>TPOT(每 token 延迟)</td>
+<td>每生成一个字的耗时</td>
+<td>决定长回答的总等待:总时长 ≈ TTFT + TPOT × 输出字数</td>
+</tr>
+<tr>
+<td>吞吐(Throughput)</td>
+<td>单位时间处理的请求数或 token 数</td>
+<td>决定单卡能服务多少用户、每 token 成本</td>
+</tr>
+<tr>
+<td>延迟(Latency)</td>
+<td>用户感受到的单次请求总时长</td>
+<td>直接决定产品体验与 SLA</td>
+</tr>
+</tbody>
+</table>
+<h4 id="422-batching为什么合起来算反而更快">4.2.2 Batching:为什么「合起来算」反而更快</h4>
+<ul>
+<li><strong>概念</strong>:GPU 擅长并行矩阵运算,把多条请求拼成一批同时前向计算,单位时间产出的 token 数远高于逐条处理。<strong>为什么需要</strong>:单条请求喂不饱 GPU(类似出租车空驶率高),批处理是推理吞吐的杠杆。<strong>详细介绍</strong>:早期<strong>静态批处理</strong>要等一批请求凑满才开工,早到的请求干等;现代推理引擎用<strong>连续批处理(continuous batching)</strong>——任何一条请求生成完毕就腾出位置插入新请求,不再等整批结束。vLLM 论文报告,这类优化带来 2~4 倍吞吐提升。</li>
+</ul>
+<h4 id="423-kv-cache自回归的记忆与显存大头">4.2.3 KV cache:自回归的「记忆」与显存大头</h4>
+<ul>
+<li><strong>概念</strong>:生成第 N 个 token 时,前 N-1 个 token 的注意力 Key/Value 向量其实早就算过;KV cache 就是把这些向量缓存下来,避免每一步都重算全部历史。<strong>为什么需要</strong>:没有缓存,计算量随序列长度平方级增长,长文本几乎不可用。<strong>代价</strong>:缓存随序列长度线性增长,长上下文场景下它占掉 GPU 显存的大头——显存不够,批处理就装不下,吞吐就上不去。<strong>详细介绍</strong>:vLLM 用 <strong>PagedAttention</strong> 把 KV cache 切成固定大小的块、按需分配——灵感来自操作系统的虚拟内存分页,把内部碎片和浪费降到接近零,还支持多请求共享相同前缀(如同一条 system prompt)的缓存。这是 2023 年后所有主流推理引擎的标配。</li>
+</ul>
+<h4 id="424-量化与其他加速手段">4.2.4 量化与其他加速手段</h4>
+<ul>
+<li><strong>概念</strong>:把权重从 FP16(16 位浮点)压缩到 INT8/INT4 等低精度表示。<strong>为什么需要</strong>:显存占用近似减半或减到四分之一,单卡能装下更大模型,同时访存变少、吞吐上升。<strong>代价</strong>:精度损失,需要校准数据并评测验证;GPTQ、AWQ、GGUF 等是常见落地格式。<strong>详细介绍</strong>:工程上通常「先量化再压榨」——先保证延迟达标,再看吞吐与成本。此外还有<strong>投机解码</strong>(小模型起草、大模型一次验证多个 token)、前缀缓存、分布式张量并行等手段,目标都是让推理更快、更省。</li>
+</ul>
+<h3 id="43-服务化工程把推理变成产品">4.3 服务化工程:把推理变成产品</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>客户端 → API 网关(认证 / 限流 / 计量)→ 推理引擎(GPU,批处理 + KV cache)</span></span>
+<span class="line"><span>              ↓                              ↓</span></span>
+<span class="line"><span>        审计与脱敏日志                评测流水线(回归检测)</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>        模型版本库(权重 + 配置,支持回滚)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h4 id="431-认证限流与计量">4.3.1 认证、限流与计量</h4>
+<ul>
+<li><strong>认证</strong>:API Key、OAuth 或网关签名,确认「谁在用」;按团队/项目做密钥隔离与权限分级,防止越权调用。</li>
+<li><strong>限流</strong>:按 QPS、并发数或 token 配额限速,防止个别用户打爆 GPU、也防恶意刷量;超限返回 429 并排队或降级。类比:食堂窗口再多也要排队,否则所有人都吃不上。</li>
+<li><strong>计量</strong>:按输入/输出 token 数记录用量,支撑计费、成本分摊与容量规划——token 是推理时代的「流量计」。</li>
+</ul>
+<h4 id="432-日志与数据脱敏">4.3.2 日志与数据脱敏</h4>
+<ul>
+<li>服务日志要记录请求与响应用于排障,但输入输出里常含手机号、身份证、密钥等<strong>个人敏感信息(PII)</strong>;落库前必须做脱敏(掩码、哈希、丢弃),满足《个人信息保护法》、GDPR 等合规要求。</li>
+<li>两个提醒:提示词日志既是宝贵的排障资产,也是泄密风险源(员工可能把内部信息贴进 prompt);日志系统本身要防注入、限访问。</li>
+</ul>
+<h4 id="433-版本管理与回滚">4.3.3 版本管理与回滚</h4>
+<ul>
+<li>模型上线要像软件发布一样管理:每个版本记录「权重文件 + 推理配置 + 评测结果 + 发布时间」,可复现、可追溯。</li>
+<li>发布策略:先<strong>影子模式</strong>(新老并行、新模型输出只记录不服务)观察差异 → <strong>金丝雀</strong>(小流量试点)→ 全量;一旦指标异常,<strong>蓝绿部署</strong>可在一分钟内切回旧版本。注意 prompt 与模型版本是耦合的,回滚时两者要一起回。</li>
+</ul>
+<h4 id="434-回归评测">4.3.4 回归评测</h4>
+<ul>
+<li><strong>概念</strong>:维护一套覆盖核心场景的评测集(golden set:标准问答、安全用例、格式遵循、领域考题),每次换模型、改 prompt、调参数后自动全量跑一遍。<strong>为什么需要</strong>:新模型往往「这里变好、那里变差」,没有评测,上线就是开盲盒;评测是防止能力悄悄退化的安全网(与下一章的「能力与局限」直接相关)。<strong>详细介绍</strong>:对比基线模型逐项打分,任何关键指标下滑即拦截发布;评测集本身也要随线上 badcase 持续扩充,避免「评测过拟合」。</li>
+</ul>
+<h2 id="5-总结">5. 总结</h2>
+<h3 id="51-本章一览">5.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三阶段分工</td>
+<td>训练调参数、推理用参数、服务把推理组织成可靠产品</td>
+</tr>
+<tr>
+<td>预训练 vs 后训练</td>
+<td>前者学知识与语言,后者教「听话」与「好回答」(SFT → RLHF/DPO)</td>
+</tr>
+<tr>
+<td>推理两大指标</td>
+<td>TTFT 决定第一印象,TPOT × 字数决定总等待;批处理提升吞吐</td>
+</tr>
+<tr>
+<td>KV cache</td>
+<td>缓存历史 K/V 避免重复计算,是显存与吞吐的胜负手(PagedAttention)</td>
+</tr>
+<tr>
+<td>服务化四件事</td>
+<td>认证限流、日志脱敏、版本回滚、回归评测</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-思考题">5.2 思考题</h3>
+<ol>
+<li>为什么训练可以离线慢慢跑,推理却对延迟如此敏感?两者的 GPU 利用策略有何不同?</li>
+<li>只做 SFT、不做偏好优化的模型会有什么典型毛病?偏好优化(RLHF/DPO)补上了什么?</li>
+<li>某服务首 token 要 8 秒,后续每个字 20 毫秒,用户抱怨「太慢」。你会先优化哪个指标,为什么?</li>
+<li>上线新模型前,为什么要先跑回归评测而不是只看新模型的演示效果?</li>
+<li>哪些请求数据不能直接写进日志?脱敏通常怎么做?</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>训练是离线批量任务,可重试可断点,追求用大 batch 喂饱 GPU 提高算力利用率;推理是用户在线等待,必须先响应,常牺牲吞吐保延迟(或用连续批处理在两者间平衡)。</li>
+<li>只做 SFT 的模型会一本正经胡说、回答有害问题、输出冗长废话——它不知道什么是「更好」;偏好优化用人类排序教它朝有用、诚实、无害的方向对齐。</li>
+<li>先优化 TTFT(首 token 延迟):8 秒的 TTFT 会让用户觉得「卡死」,把它降到 1 秒内,配合流式输出,体验立即改善;TPOT 影响的是长回答的总时长。</li>
+<li>新模型往往有得有失,演示样本是挑选过的;回归评测用统一基准对比新旧模型,任何关键项下滑都会暴露,防止「换了个更强的模型,线上反而变差」。</li>
+<li>含手机号、身份证、密钥等 PII 的输入输出不能原文落库;先掩码/哈希/丢弃敏感字段再写日志,并做访问控制与审计。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2309.06180">vLLM:PagedAttention 论文(Efficient Memory Management for LLM Serving, SOSP 2023)</a></li>
+<li><a href="https://docs.vllm.ai/en/latest/design/paged_attention/">vLLM 官方文档:Paged Attention 设计</a></li>
+<li><a href="https://arxiv.org/abs/2203.02155">InstructGPT:用人类反馈训练模型遵循指令(RLHF 原始论文)</a></li>
+<li><a href="https://arxiv.org/abs/2305.18290">DPO:Direct Preference Optimization 论文</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/08/"><span>上一篇</span><strong>01.01.08 模型架构</strong></a><a class="ai-pager-next" href="/ai/01-models/01/10/"><span>下一篇</span><strong>01.01.10 模型能力与局限</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念训练推理与服务是什么">1. 概念:训练、推理与服务是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要区分三个阶段">2. 为什么需要区分三个阶段</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-训练与推理是两种相反的优化目标">2.1 训练与推理是两种「相反」的优化目标</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-服务是推理--工程化不是推理">2.2 服务是「推理 + 工程化」,不是「推理」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它有什么作用">3. 它有什么作用</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-训练预训练--后训练">4.1 训练:预训练 → 后训练</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-推理模型如何用起来">4.2 推理:模型如何「用」起来</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-服务化工程把推理变成产品">4.3 服务化工程:把推理变成产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-本章一览">5.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-思考题">5.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

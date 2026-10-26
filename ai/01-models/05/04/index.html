@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.05.04 微调视觉语言模型 · iopanda</title><meta name="description" content="01.05.04 微调视觉语言模型 · 模型 / 多模态模型，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/05/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.05.04 微调视觉语言模型 · iopanda"><meta property="og:description" content="01.05.04 微调视觉语言模型 · 模型 / 多模态模型，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/05/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="05" data-active-subsection data-active-article="/ai/01-models/05/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 多模态模型"></button><a class="tree-link tree-link--section" href="/ai/01-models/05/"><span class="tree-number">05</span><span class="tree-title">多模态模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/05/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">微调视觉语言模型</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/05/">多模态模型</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">微调视觉语言模型</span></nav><header class="ai-article-header"><p class="ai-number">01.05.04</p><h1>微调视觉语言模型</h1><p class="ai-meta"><time datetime="2026-09-03T00:05">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>multimodal</li><li>vlm-finetune</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章交付了 24+6 对通过六维质检的课程截图问答数据——本章让它们真正改变一个模型。你会在 01.03 学过的 LoRA 之上,把战场从纯文本换成「看图说话」:视觉编码器冻结、LoRA 只注入语言分支的注意力投影、损失只落在回答的文本 token 上。读完你会用 TRL 跑通第一次 VLM 微调小实验,并在同一组「从未见过的图」上对比微调前后,判断模型是学会了看课程截图答领域问题,还是只会复读。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 VLM 微调与 01.03 纯文本 SFT 的异同:冻结范围、数据形态、损失位置;</li>
+<li>解释为什么视觉编码器通常冻结、LoRA 注入语言分支就能改变「看图说话」;</li>
+<li>说明图像预处理与损失掩码:像素如何进批次、为什么 loss 只算文本部分;</li>
+<li>用 TRL 在上一章的 24 条图文数据上跑通 LoRA 微调并保存 adapter;</li>
+<li>用留出的 6 条图文对对比微调前后,写出一份不偏袒的结果记录。</li>
+</ol>
+<h2 id="1-概念微调--教模型看你的图">1. 概念:微调 = 教模型「看你的图」</h2>
+<ul>
+<li>通用 VLM 见过海量自然图片,却没上过你的课:课程 PPT 的版式、术语、圈注、报错截图里的字段,它认得出「这里有东西」,却答不对「这对我意味着什么」。微调就是用第 3 章审核过的(图像、指令、回答)示例,把「看图作答的方式」掰向你的领域。</li>
+<li>与纯文本 SFT 同构:仍是「预测下一个 token」,仍只改输出倾向、不改知识库;区别是输入里多了一路视觉 token。上一章说过配错的图会被原样学走——本章让这条链路真的转起来。</li>
+<li>与纯文本 LoRA 的差别在「改哪里」。Qwen2.5-VL 这类模型由三件套组成:视觉编码器(把像素变成 patch 特征)、merger 投影器(把视觉特征对齐到文本空间)、语言模型(做推理与生成)。<strong>视觉编码器通常冻结</strong>——它在通用视觉特征上已经很强,而你的数据只有几十张图,解冻只会让它把这几张图背下来、冲掉通用视觉能力(灾难性遗忘)。LoRA 主要注入<strong>语言分支的注意力投影</strong> <code>q_proj</code>、<code>v_proj</code>,让 LLM 学会「依据这些视觉 token 按领域方式作答」。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>01.03 纯文本 SFT</th>
+<th>本章 VLM 微调</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>样本形态</td>
+<td>问题–回答文本</td>
+<td>(图像、指令、回答),user 消息带图像内容块</td>
+</tr>
+<tr>
+<td>损失位置</td>
+<td>回答 token</td>
+<td>回答的<strong>文本</strong> token;图像与 padding 掩码为 -100</td>
+</tr>
+<tr>
+<td>改动范围</td>
+<td>语言模型注意力投影</td>
+<td>视觉编码器冻结;LoRA 注入语言分支(q/v 投影,可选 merger)</td>
+</tr>
+<tr>
+<td>基座示例</td>
+<td>Qwen2.5-0.5B-Instruct</td>
+<td>Qwen2.5-VL-3B-Instruct</td>
+</tr>
+<tr>
+<td>处理对象</td>
+<td>tokenizer</td>
+<td>processor(分词器 + 图像处理器)</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>TRL SFTTrainer</td>
+<td>TRL SFTTrainer(<code>processing_class=processor</code>)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关于「投影器要不要调」存在两种流派:LLaVA 式两阶段会单独训练投影器对齐视觉与文本空间(第 2 章讲过);TRL 单阶段路线默认冻结一切、只 LoRA 语言侧,靠注意力层的小幅修正完成任务。本章跟官方 cookbook 走单阶段;若你的版式与预训练分布差异很大,可把 merger 加入 <code>target_modules</code> 作为备选实验。</li>
+</ul>
+<h2 id="2-为什么需要通用-vlm-不认识你的领域图">2. 为什么需要:通用 VLM 不认识你的领域图</h2>
+<ul>
+<li><strong>领域图是长尾</strong>:课程截图、产品主图、内部报表不在通用预训练数据的重心上。模型对它们「能描述、不会用」——问「这张架构图里 merger 的作用」,通用 VLM 会泛泛而谈,因为没人教过它「这类图 + 这类问题 = 这类答案」。</li>
+<li><strong>微调改变的是回答方式,不是事实来源</strong>:图里没有的信息,微调也变不出来。上一章刻意放进的拒答样本(「截图上没有说明,无法回答」)在这里兑现价值:模型要在你的领域里学会「看不到就说看不到」,否则幻觉照旧。</li>
+<li><strong>为什么不换更大的模型</strong>:换大模型治标不治本(更大的通用模型同样不懂你的术语),且成本线性上涨;PEFT 让「改行为」的成本降到几十 MB 的 adapter 与一张消费级显卡——这正是 01.03 选 LoRA 的同一理由,只是数据换成了图文对。</li>
+</ul>
+<h2 id="3-动手前置核对模型里真实存在的层">3. 动手前置:核对模型里真实存在的层</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> "from transformers import AutoModelForImageTextToText as A; m=A.from_pretrained('Qwen/Qwen2.5-VL-3B-Instruct'); print([n for n,_ in m.named_modules() if n.endswith('q_proj')][:4]); print([n for n,_ in m.named_modules() if n.endswith('qkv')][:2])"</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<ul>
+<li>预期看到两族名字:<strong>语言模型</strong>每层有 <code>q_proj/k_proj/v_proj/o_proj</code>;<strong>视觉编码器</strong>里是融合的 <code>qkv</code>。因此 <code>target_modules=["q_proj","v_proj"]</code> 只命中语言分支,视觉塔天然不被触碰——名字对不上就改配置,不要盲抄别的架构。</li>
+</ul>
+<h2 id="4-训练设置trl-替你接好图像管线">4. 训练设置:TRL 替你接好图像管线</h2>
+<h3 id="41-图像预处理像素怎么变成批次">4.1 图像预处理:像素怎么变成批次</h3>
+<ul>
+<li>processor = 分词器 + 图像处理器。图像处理器负责:按模型约束缩放(如 Qwen2.5-VL 的 min/max pixels 动态分辨率,保持宽高比、不暴力拉伸)、ImageNet 式归一化、必要时切 patch/分块——输出 <code>pixel_values</code> 与位置网格,文本则照常 tokenize,图像位置插入 <code>&lt;|vision_start|&gt;</code> 等特殊标记。</li>
+<li>上一章 JSONL 里 <code>{"type":"image"}</code> 只是占位声明;训练前必须把<strong>真实图像对象</strong>填进消息,由 processor 一起处理——「JSONL 里看不到像素」的约定到此为止。</li>
+</ul>
+<h3 id="42-损失掩码为什么只算文本">4.2 损失掩码:为什么只算文本</h3>
+<ul>
+<li>序列里同时有视觉 token 与文本 token,但监督信号只有文本:图像 token、padding 的位置标签一律置为忽略索引 <code>-100</code>,系统与用户消息按配置(如 <code>completion_only_loss</code>)同样排除。模型永远不会因为「猜对下一个视觉 patch」得到奖励,loss 只衡量「看完图之后,回答续写得像不像标准答案」。</li>
+</ul>
+<h3 id="43-训练脚本">4.3 训练脚本</h3>
+<p>创建 <code>vlmdemo/finetune/train_vlm.py</code>(结构对齐 01.03 的 <code>train_sft.py</code>,只多出图像一环):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> json</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#79B8FF"> PIL</span><span style="color:#F97583"> import</span><span style="color:#E1E4E8"> Image</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> datasets </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Dataset</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> peft </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> LoraConfig</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AutoModelForImageTextToText, AutoProcessor, TrainingArguments</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> trl </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> SFTTrainer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">DATA</span><span style="color:#E1E4E8">, model_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"vlmdemo/data"</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">"Qwen/Qwen2.5-VL-3B-Instruct"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> build</span><span style="color:#E1E4E8">(name):</span></span>
+<span class="line"><span style="color:#E1E4E8">    samples </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> line </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">DATA</span><span style="color:#F97583"> /</span><span style="color:#F97583"> f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">name</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">.jsonl"</span><span style="color:#E1E4E8">).read_text().splitlines():</span></span>
+<span class="line"><span style="color:#E1E4E8">        r </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> json.loads(line)</span></span>
+<span class="line"><span style="color:#E1E4E8">        img </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Image.open(</span><span style="color:#79B8FF">DATA</span><span style="color:#F97583"> /</span><span style="color:#E1E4E8"> r[</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">]).convert(</span><span style="color:#9ECBFF">"RGB"</span><span style="color:#E1E4E8">)     </span><span style="color:#6A737D"># 03 章:相对路径</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> r[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">]:                                </span><span style="color:#6A737D"># 占位块换成真图</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> c[</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "user"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">                c[</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [{</span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">: img}] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> \</span></span>
+<span class="line"><span style="color:#E1E4E8">                               [x </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> c[</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> x[</span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "text"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">        samples.append({</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">: r[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">]})</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> Dataset.from_list(samples)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">processor </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoProcessor.from_pretrained(model_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoModelForImageTextToText.from_pretrained(</span></span>
+<span class="line"><span style="color:#E1E4E8">    model_id, </span><span style="color:#FFAB70">torch_dtype</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"bfloat16"</span><span style="color:#E1E4E8">)          </span><span style="color:#6A737D"># 显存不足:4-bit 加载走 QLoRA</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">peft </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoraConfig(</span><span style="color:#FFAB70">r</span><span style="color:#F97583">=</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_alpha</span><span style="color:#F97583">=</span><span style="color:#79B8FF">16</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_dropout</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.05</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">                  target_modules</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"q_proj"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"v_proj"</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">task_type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"CAUSAL_LM"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">args </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> TrainingArguments(</span></span>
+<span class="line"><span style="color:#FFAB70">    output_dir</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"vlmdemo/runs/vlm-lora-v1"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">num_train_epochs</span><span style="color:#F97583">=</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    per_device_train_batch_size</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">gradient_accumulation_steps</span><span style="color:#F97583">=</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">,  </span><span style="color:#6A737D"># 24 条 → 每 epoch 6 步</span></span>
+<span class="line"><span style="color:#FFAB70">    learning_rate</span><span style="color:#F97583">=</span><span style="color:#79B8FF">2e-4</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">bf16</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">gradient_checkpointing</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    logging_steps</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">eval_strategy</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"steps"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">eval_steps</span><span style="color:#F97583">=</span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    save_strategy</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"steps"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">save_steps</span><span style="color:#F97583">=</span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">report_to</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"none"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">seed</span><span style="color:#F97583">=</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">trainer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> SFTTrainer(</span><span style="color:#FFAB70">model</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">model, </span><span style="color:#FFAB70">args</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">args, </span><span style="color:#FFAB70">train_dataset</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">build(</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#FFAB70">    eval_dataset</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">build(</span><span style="color:#9ECBFF">"valid"</span><span style="color:#E1E4E8">), </span><span style="color:#FFAB70">peft_config</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">peft, </span><span style="color:#FFAB70">processing_class</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">processor)</span></span>
+<span class="line"><span style="color:#E1E4E8">trainer.train()</span></span>
+<span class="line"><span style="color:#E1E4E8">trainer.save_model(</span><span style="color:#9ECBFF">"vlmdemo/runs/vlm-lora-v1/best-adapter"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行 <code>python -m vlmdemo.finetune.train_vlm</code>,确认三件事:train loss 在降;valid loss 同步出现;<code>runs/vlm-lora-v1/</code> 下有 adapter 与日志。可训练参数应只占极小比例——打印方式与 01.03/05 相同。</p>
+<h2 id="5-评测同一考场微调前后各答一次">5. 评测:同一考场,微调前后各答一次</h2>
+<ul>
+<li>考场纪律来自上一章:valid 的 6 张图从未以任何形态进过 train。评测把 base(微调前)与 adapter(微调后)<strong>并排</strong>放在这 6 张新图上,逐问记录,而不是只挑变好的样例。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AutoModelForImageTextToText, AutoProcessor</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> peft </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> PeftModel</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">proc </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoProcessor.from_pretrained(model_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">base </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoModelForImageTextToText.from_pretrained(model_id, </span><span style="color:#FFAB70">torch_dtype</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"bfloat16"</span><span style="color:#E1E4E8">).to(</span><span style="color:#9ECBFF">"cuda"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">ft   </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> PeftModel.from_pretrained(base, </span><span style="color:#9ECBFF">"vlmdemo/runs/vlm-lora-v1/best-adapter"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> ask</span><span style="color:#E1E4E8">(model, row):                                  </span><span style="color:#6A737D"># row 来自 build("valid")</span></span>
+<span class="line"><span style="color:#E1E4E8">    msgs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> row[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">][:</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">]                       </span><span style="color:#6A737D"># system + user(含图)</span></span>
+<span class="line"><span style="color:#E1E4E8">    img  </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> next</span><span style="color:#E1E4E8">(c[</span><span style="color:#9ECBFF">"image"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> msgs[</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> c[</span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "image"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> proc.apply_chat_template(msgs, </span><span style="color:#FFAB70">tokenize</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">add_generation_prompt</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    inp  </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> proc(</span><span style="color:#FFAB70">text</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[text], </span><span style="color:#FFAB70">images</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[img], </span><span style="color:#FFAB70">return_tensors</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"pt"</span><span style="color:#E1E4E8">).to(</span><span style="color:#9ECBFF">"cuda"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    out  </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model.generate(</span><span style="color:#F97583">**</span><span style="color:#E1E4E8">inp, </span><span style="color:#FFAB70">max_new_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">do_sample</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">)  </span><span style="color:#6A737D"># 冻结采样,可复现</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> proc.decode(out[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">][inp[</span><span style="color:#9ECBFF">"input_ids"</span><span style="color:#E1E4E8">].shape[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">]:], </span><span style="color:#FFAB70">skip_special_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> i, row </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> enumerate</span><span style="color:#E1E4E8">(build(</span><span style="color:#9ECBFF">"valid"</span><span style="color:#E1E4E8">)):</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"[</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">i</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">] 微调前:"</span><span style="color:#E1E4E8">, ask(base, row))</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"[</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">i</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">] 微调后:"</span><span style="color:#E1E4E8">, ask(ft, row))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<ul>
+<li>按「正确 / 错误 / 拒答」三态给每条打分;生成参数冻结(<code>do_sample=False</code>)、题目与图完全一致,才谈得上「差异来自微调」。valid loss 下降与样例变好要<strong>同时</strong>看:loss 是整体信号,样例回答是你能读懂的局部证据。</li>
+</ul>
+<h2 id="6-动手活动跑通并记录第一次-vlm-微调">6. 动手活动:跑通并记录第一次 VLM 微调</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:第一次 VLM 微调</p>
+<p><strong>目标</strong>:<code>vlmdemo/reports/vlm-finetune.md</code>,含 loss 曲线与 6 问对比表。</p>
+<p><strong>步骤</strong>:先保存 base 在 6 条 valid 图上的回答(基线)→ 跑 <code>train_vlm.py</code> → 用第 5 节脚本生成微调后回答 → 三态打分并逐条写评语(改好了哪句、哪里还在瞎编)。</p>
+<p><strong>完成标准</strong>:报告含 train/valid loss 记录、6 问对比表、至少 2 条改善与 1 条失败的定性分析;写明基座 ID、adapter 路径与生成参数,供下一章复用。不能只贴变好的一条。</p>
+</div>
+<h2 id="7-常见错误与边界">7. 常见错误与边界</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显存不足</td>
+<td>换 4-bit QLoRA(<code>BitsAndBytesConfig</code> + 同款 LoRA),或换 SmolVLM 等更小基座</td>
+<td>3B 权重 + 激活仍吃显存;adapter 只省可训练参数</td>
+</tr>
+<tr>
+<td>loss 降了,valid 问答却没改善</td>
+<td>回查数据:问题是否太散、答案是否只靠文本就能猜出</td>
+<td>数据量小(24 条)时,微调学到的是「表面风格」</td>
+</tr>
+<tr>
+<td>loss 异常高或不降</td>
+<td>核对 transformers/trl 版本与模型卡要求,检查图像是否成功打开</td>
+<td>VLM 支持依赖较新版本;图像加载失败会静默破坏样本</td>
+</tr>
+<tr>
+<td>图上小字仍读错、回答仍幻觉</td>
+<td>提高截图分辨率并复查拒答样本占比;微调不消除幻觉</td>
+<td>OCR 与分辨率是模型能力边界,不是参数能补的</td>
+</tr>
+<tr>
+<td>换了环境后 adapter 输出异常</td>
+<td>报告里固定基座 ID、transformers 版本与 processor</td>
+<td>adapter 只是 ΔW,必须叠回同一基座(01.03/05)</td>
+</tr>
+</tbody>
+</table>
+<p>一句话结论:<strong>视觉编码器冻结 + 语言分支 LoRA + loss 只算文本</strong>,就能用几十条图文对把通用 VLM 的输出倾向掰向你的领域;但「看图答对」的真伪,永远要由没见过的图说了算。</p>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VLM 微调改哪里</td>
+<td>视觉编码器冻结;LoRA 注入语言分支注意力投影,可选 merger</td>
+</tr>
+<tr>
+<td>与纯文本 SFT 的异同</td>
+<td>同构的 next-token 学习;差别在输入含视觉 token、损失只算文本</td>
+</tr>
+<tr>
+<td>图像预处理谁负责</td>
+<td>processor:缩放/归一化/特殊标记 + 文本 tokenize,一步完成</td>
+</tr>
+<tr>
+<td>loss 为什么只算文本</td>
+<td>视觉 token 与 padding 置 -100;模型学的是「看完图怎么答」</td>
+</tr>
+<tr>
+<td>评测纪律</td>
+<td>留出集必须「不同题且不同图」;base 与微调后并排三态打分</td>
+</tr>
+<tr>
+<td>边界</td>
+<td>微调改输出倾向;幻觉、OCR 与分辨率限制依然存在</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 VLM 微调通常冻结视觉编码器,而纯文本微调不存在「冻结哪一半」的问题?如果 valid 里混入一张 train 见过的图,「微调后答对了」还能证明什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>视觉编码器提供通用视觉特征,几十张领域图不足以、也不应该改写它——解冻会让它过拟合这几张图并冲掉通用能力(灾难性遗忘);纯文本模型没有「视觉一半」,LoRA 注入语言层即可。valid 混入见过的图属于泄漏:模型可能直接背出训练时的回答,只能证明它记住了图,不能证明它对陌生图泛化——考过的题不算能力,这与 01.03 与第 3 章的考场纪律一致。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/learn/cookbook/en/fine_tuning_vlm_trl">Hugging Face Cookbook:Fine-Tuning a Vision Language Model with TRL</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct">Qwen/Qwen2.5-VL-3B-Instruct(模型卡)</a></li>
+<li><a href="https://huggingface.co/docs/transformers/main/en/model_doc/qwen2_5_vl">Transformers:Qwen2.5-VL 文档</a></li>
+<li><a href="https://huggingface.co/docs/trl/main/en/sft_trainer">TRL:SFTTrainer</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/05/03/"><span>上一篇</span><strong>01.05.03 图文数据准备</strong></a><a class="ai-pager-next" href="/ai/01-models/05/05/"><span>下一篇</span><strong>01.05.05 多模态收官项目</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念微调--教模型看你的图">1. 概念:微调 = 教模型「看你的图」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要通用-vlm-不认识你的领域图">2. 为什么需要:通用 VLM 不认识你的领域图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-动手前置核对模型里真实存在的层">3. 动手前置:核对模型里真实存在的层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-训练设置trl-替你接好图像管线">4. 训练设置:TRL 替你接好图像管线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-图像预处理像素怎么变成批次">4.1 图像预处理:像素怎么变成批次</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-损失掩码为什么只算文本">4.2 损失掩码:为什么只算文本</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-训练脚本">4.3 训练脚本</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-评测同一考场微调前后各答一次">5. 评测:同一考场,微调前后各答一次</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动跑通并记录第一次-vlm-微调">6. 动手活动:跑通并记录第一次 VLM 微调</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-常见错误与边界">7. 常见错误与边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

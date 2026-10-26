@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.05.06 向量数据库与检索 概览 · iopanda</title><meta name="description" content="04.05.06 向量数据库与检索 概览 · 工具链 / 向量数据库与检索，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/05/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.05.06 向量数据库与检索 概览 · iopanda"><meta property="og:description" content="04.05.06 向量数据库与检索 概览 · 工具链 / 向量数据库与检索，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/05/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="05" data-active-subsection data-active-article="/ai/04-tooling/05/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 向量数据库与检索"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/05/"><span class="tree-number">05</span><span class="tree-title">向量数据库与检索</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/05/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">向量数据库与检索 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/05/">向量数据库与检索</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">向量数据库与检索 概览</span></nav><header class="ai-article-header"><p class="ai-number">04.05.06</p><h1>向量数据库与检索 概览</h1><p class="ai-meta"><time datetime="2026-09-03T18:29">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>vector-db-retrieval</li></ul></header><div class="ai-prose"><h1 id="向量数据库与检索-概览">向量数据库与检索 概览</h1>
+<blockquote>
+<p><code>03.02 RAG and Retrieval Frameworks</code> 已经回答了“检索系统如何被框架组织起来”；<code>04.05</code> 则回到更底层的问题：<strong>那些真正承载 embedding、payload、filter、hybrid search、ANN、索引更新与查询语义的检索后端，应该怎样理解？</strong> 这一章的重点不是把向量库当成“存 embedding 的桶”，而是看它们分别把什么复杂度当作一等公民。</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分 vector database、search engine、hybrid retrieval backend 各自解决的问题；</li>
+<li>解释 Qdrant、Weaviate、Milvus、OpenSearch、Chroma 的设计中心差异；</li>
+<li>理解过滤、payload/schema、hybrid search、规模化、实时更新为何会改变选型；</li>
+<li>为课程助教或企业知识库画出 retrieval backend 选型卡；</li>
+<li>知道什么时候该把复杂度留给 framework，什么时候必须下沉到底层检索后端。</li>
+</ol>
+<h2 id="1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</h2>
+<ul>
+<li>很多人第一次做 RAG 时只盯着 chunk 和 prompt，却忽略了底层查询语义、过滤、索引维护与运维成本；</li>
+<li>向量数据库之间不是“谁都差不多”，它们在 schema、云原生、混合检索、开发体验、规模化上差异很大；</li>
+<li>这一章承接 <code>03.02</code>：前者讲如何组织 retrieval system，这里讲 retrieval system 靠什么底座站住；</li>
+<li>学习重点不是背 ANN 名词，而是知道系统最先会被哪类检索复杂度拖住。</li>
+</ul>
+<h2 id="2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/04-tooling/05/01/01/">Qdrant</a></td>
+<td>强调 payload 过滤与工程易用性的向量检索后端</td>
+<td>vector search + filtering + practical API</td>
+<td>想快速做工程落地的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/05/02/01/">Weaviate</a></td>
+<td>对象与向量并存、偏 schema / module 生态的路线</td>
+<td>objects + vectors、modules、cloud-native</td>
+<td>重视对象建模与可扩展生态的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/05/03/01/">Milvus</a></td>
+<td>高性能、云原生、规模化 ANN 的经典路线</td>
+<td>scale、performance、cloud-native vector DB</td>
+<td>数据量大、吞吐与集群能力要求高的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/05/04/01/">OpenSearch</a></td>
+<td>从通用搜索引擎延伸到向量与混合检索</td>
+<td>text search + filters + vector/hybrid</td>
+<td>本来就有搜索基础设施的组织</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/05/05/01/">Chroma</a></td>
+<td>强调开发者友好与本地原型的检索基础设施</td>
+<td>developer UX、local-first、simple collections</td>
+<td>先做原型和中小规模应用的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-这一模块建议怎么读">3. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/04-tooling/05/01/01/">01 Qdrant</a> 与 <a href="/ai/04-tooling/05/05/01/">05 Chroma</a>：从工程易用与原型体验切入；</li>
+<li>再看 <a href="/ai/04-tooling/05/02/01/">02 Weaviate</a>：理解对象建模与模块生态路线；</li>
+<li>然后看 <a href="/ai/04-tooling/05/03/01/">03 Milvus</a>：理解规模化与性能为什么会改变架构；</li>
+<li>最后看 <a href="/ai/04-tooling/05/04/01/">04 OpenSearch</a>：理解搜索引擎世界如何与向量检索合流。</li>
+</ol>
+<h2 id="4-我建议本模块的内容结构">4. 我建议本模块的内容结构</h2>
+<p>这一模块可以复用你已经稳定下来的写法：</p>
+<ol>
+<li>本组总览 README；</li>
+<li>每个产品一个文件夹与 <code>README.md</code>；</li>
+<li>每个产品至少拆成 4~6 篇：
+<ul>
+<li>它为什么存在 / 解决什么首要复杂度；</li>
+<li>核心抽象、架构与部署形态；</li>
+<li>与同类产品相比的设计中心；</li>
+<li>在课程助教或企业内部知识系统中的落点；</li>
+<li>适用边界、排错与迁移成本；</li>
+</ul>
+</li>
+<li>最终再补一篇本组的选型矩阵：回答“为什么选 A，不选 B”。</li>
+</ol>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retrieval-backend-selection-card.md</td>
+<td>按规模、过滤、更新、混合检索需求选后端</td>
+<td>能说清“为什么选这个库，不选那个库”</td>
+</tr>
+<tr>
+<td>metadata-and-filtering-plan.md</td>
+<td>设计 metadata schema 与过滤策略</td>
+<td>避免只有相似度、没有业务约束</td>
+</tr>
+<tr>
+<td>rag-infra-boundary.md</td>
+<td>定义 framework 与 backend 的分工边界</td>
+<td>知道复杂度应落在哪层</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/04-tooling/05/01/01/">01 Qdrant</a></li>
+<li><a href="/ai/04-tooling/05/02/01/">02 Weaviate</a></li>
+<li><a href="/ai/04-tooling/05/03/01/">03 Milvus</a></li>
+<li><a href="/ai/04-tooling/05/04/01/">04 OpenSearch</a></li>
+<li><a href="/ai/04-tooling/05/05/01/">05 Chroma</a></li>
+</ol>
+<h2 id="7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</h2>
+<ul>
+<li>不要先记安装命令，先问它把哪类复杂度当作一等公民；</li>
+<li>不要只看 happy path，重点看治理、排错、迁移、协作与上线证据；</li>
+<li>不要问“谁最强”，要问“谁最匹配当前系统的首要矛盾”；</li>
+<li>不要把开源工具当成银弹，工具只是把某类工程纪律做成现成组件。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>RAG 背后的检索后端与向量数据库</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>很多 RAG 失败不是因为模型差，而是因为检索底座太弱</td>
+</tr>
+<tr>
+<td>代表产品</td>
+<td>Qdrant / Weaviate / Milvus / OpenSearch / Chroma</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>看过滤、更新、规模化与混合检索的真实代价</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[141] <a href="https://github.com/qdrant/qdrant">https://github.com/qdrant/qdrant</a> — Qdrant GitHub</li>
+<li>[142] <a href="https://github.com/weaviate/weaviate">https://github.com/weaviate/weaviate</a> — Weaviate GitHub</li>
+<li>[143] <a href="https://github.com/milvus-io/milvus">https://github.com/milvus-io/milvus</a> — Milvus GitHub</li>
+<li>[144] <a href="https://github.com/opensearch-project/OpenSearch">https://github.com/opensearch-project/OpenSearch</a> — OpenSearch GitHub</li>
+<li>[145] <a href="https://github.com/chroma-core/chroma">https://github.com/chroma-core/chroma</a> — Chroma GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/05/05/01/"><span>上一篇</span><strong>04.05.05.01 Chroma 概览</strong></a><a class="ai-pager-next" href="/ai/04-tooling/06/01/01/"><span>下一篇</span><strong>04.06.01.01 Label Studio 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-这一模块建议怎么读">3. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-我建议本模块的内容结构">4. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

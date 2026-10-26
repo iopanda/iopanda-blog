@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.04.04.03 Constraints、Control Flow、Tool Use与离线语法调试 · iopanda</title><meta name="description" content="04.04.04.03 Constraints、Control Flow、Tool Use与离线语法调试 · 工具链 / 提示管理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/04/04/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.04.04.03 Constraints、Control Flow、Tool Use与离线语法调试 · iopanda"><meta property="og:description" content="04.04.04.03 Constraints、Control Flow、Tool Use与离线语法调试 · 工具链 / 提示管理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/04/04/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="04" data-active-subsection="04" data-active-article="/ai/04-tooling/04/04/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 提示管理"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/04/"><span class="tree-number">04</span><span class="tree-title">提示管理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/04/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Guidance"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/04/04/"><span class="tree-number">04</span><span class="tree-title">Guidance</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/04/04/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">Constraints、Control Flow、Tool Use与离线语法调试</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/">提示管理</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/04/">Guidance</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Constraints、Control Flow、Tool Use与离线语法调试</span></nav><header class="ai-article-header"><p class="ai-number">04.04.04.03</p><h1>Constraints、Control Flow、Tool Use与离线语法调试</h1><p class="ai-meta"><time datetime="2026-09-04T10:07">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>prompt-management</li><li>guidance</li><li>capabilities</li></ul></header><div class="ai-prose"><h1 id="constraintscontrol-flowtool-use与离线语法调试">Constraints、Control Flow、Tool Use与离线语法调试</h1>
+<blockquote>
+<p>Guidance 的能力主线非常清楚：regex constraints、CFG、<code>select()</code>、conditionals、loops、tool use、token healing，以及用 Mock model 做离线 grammar 调试。[2][4] 这不是一堆零碎功能，而是一整套“如何让模型在边界内生成”的执行层工具箱。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>看懂 Guidance 的核心能力为什么围绕执行控制组织；</li>
+<li>区分约束、控制流、工具调用和离线调试各自的角色；</li>
+<li>理解它为什么比单纯 prompt 文案更稳定，但也更工程化；</li>
+<li>判断哪些能力最先带来 ROI；</li>
+<li>避免把 Guidance 误解成“只是 prompt 模板语法糖”。</li>
+</ol>
+<h2 id="1-regex-与-cfg把输出边界显式化">1. Regex 与 CFG：把输出边界显式化</h2>
+<p>Guidance README 明确给出了两类关键约束：</p>
+<ul>
+<li>regex constraints；</li>
+<li>context free grammar 约束。[2]</li>
+</ul>
+<p>这意味着：</p>
+<ul>
+<li>数字、枚举、结构片段可以直接限制；</li>
+<li>输出不再完全依赖自然语言提示理解；</li>
+<li>复杂结构可由 grammar 约束保证。</li>
+</ul>
+<h2 id="2-select有限选择比开放生成更可靠">2. <code>select()</code>：有限选择比开放生成更可靠</h2>
+<p>README 里的 <code>select(["A", "B", "C", "D"])</code> 示例非常典型。[2]</p>
+<p>它的产品意义在于：</p>
+<ul>
+<li>当答案空间已知时，不应该再让模型自由生成；</li>
+<li>可以把“请只回答 ABCD 之一”变成硬约束；</li>
+<li>在分类、路由、工具选择等场景中尤其重要。</li>
+</ul>
+<h2 id="3-control-flow条件循环与隐藏复杂度">3. Control Flow：条件、循环与隐藏复杂度</h2>
+<p>Guidance 的一大特色是把 conditionals、loops 和 generation 无缝交织。[2][4]</p>
+<p>这带来的价值是：</p>
+<ul>
+<li>多步交互不必拆成松散脚本；</li>
+<li>控制逻辑和 prompt 处在同一个执行流里；</li>
+<li>更适合复杂问答、agent 子流程和多轮生成。</li>
+</ul>
+<h2 id="4-tool-use把外部能力放进同一生成程序">4. Tool Use：把外部能力放进同一生成程序</h2>
+<p>官方文档明确包含 “Getting language models to use external tools” 的主题。[4]</p>
+<p>这说明 Guidance 不只约束输出，也支持：</p>
+<ul>
+<li>在生成流程中接外部工具；</li>
+<li>将工具调用纳入同一控制逻辑；</li>
+<li>让 prompt、tool、branching 形成一个整体程序。</li>
+</ul>
+<h2 id="5-离线-grammar-调试降低高约束场景的试错成本">5. 离线 Grammar 调试：降低高约束场景的试错成本</h2>
+<p>README 提供了很有价值的能力：</p>
+<ul>
+<li>可直接验证 candidate strings 是否匹配 grammar；</li>
+<li>可用 Mock model 本地测试完整约束流；</li>
+<li>不必每次都消耗真实模型调用。[2]</li>
+</ul>
+<p>这对高约束输出场景非常关键，因为很多错误其实发生在 grammar 设计阶段，而不是模型推理阶段。</p>
+<h2 id="6-token-healing-与-acceleration执行层的工程细节">6. Token Healing 与 Acceleration：执行层的工程细节</h2>
+<p>文档中还单列了 token healing 和 guidance acceleration。[4]</p>
+<p>这说明 Guidance 不只关心“能不能约束”，还关心：</p>
+<ul>
+<li>token 边界问题；</li>
+<li>约束执行效率；</li>
+<li>真实工程里的时延与成本。</li>
+</ul>
+<h2 id="7-哪些能力最先见效">7. 哪些能力最先见效</h2>
+<p>通常顺序是：</p>
+<ol>
+<li>先在关键输出上加 regex 或 <code>select()</code>；</li>
+<li>再把复杂结构升级成 grammar；</li>
+<li>再把工具调用和控制流接入；</li>
+<li>最后再做 token healing 与 acceleration 优化。</li>
+</ol>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>它回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regex / CFG</td>
+<td>输出边界如何被硬约束 [2]</td>
+</tr>
+<tr>
+<td><code>select()</code></td>
+<td>有限候选如何稳定选择</td>
+</tr>
+<tr>
+<td>Conditionals / Loops</td>
+<td>多步逻辑如何与生成合并 [2][4]</td>
+</tr>
+<tr>
+<td>Tool Use</td>
+<td>外部能力如何并入同一程序 [4]</td>
+</tr>
+<tr>
+<td>Mock / Grammar Debug</td>
+<td>高约束流程如何低成本调试 [2]</td>
+</tr>
+<tr>
+<td>Token Healing / Acceleration</td>
+<td>约束执行如何更稳更快 [4]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么高可靠生成系统往往需要“硬约束 + 控制流”，而不是只写更长的 prompt？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为长 prompt 仍然主要依赖模型自行遵守要求，而硬约束和控制流会把规则直接前移到执行层，显著降低格式漂移、越界输出和流程失控的概率。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[2] <a href="https://raw.githubusercontent.com/guidance-ai/guidance/main/README.md">https://raw.githubusercontent.com/guidance-ai/guidance/main/README.md</a> — Guidance README</li>
+<li>[4] <a href="https://guidance.readthedocs.io/en/latest/">https://guidance.readthedocs.io/en/latest/</a> — Guidance docs</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/04/04/02/"><span>上一篇</span><strong>04.04.04.02 产品定位、受控生成心智与适用场景</strong></a><a class="ai-pager-next" href="/ai/04-tooling/04/04/04/"><span>下一篇</span><strong>04.04.04.04 质量、社区、价格与采用边界</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-regex-与-cfg把输出边界显式化">1. Regex 与 CFG：把输出边界显式化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-select有限选择比开放生成更可靠">2. select()：有限选择比开放生成更可靠</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-control-flow条件循环与隐藏复杂度">3. Control Flow：条件、循环与隐藏复杂度</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-tool-use把外部能力放进同一生成程序">4. Tool Use：把外部能力放进同一生成程序</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-离线-grammar-调试降低高约束场景的试错成本">5. 离线 Grammar 调试：降低高约束场景的试错成本</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-token-healing-与-acceleration执行层的工程细节">6. Token Healing 与 Acceleration：执行层的工程细节</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-哪些能力最先见效">7. 哪些能力最先见效</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

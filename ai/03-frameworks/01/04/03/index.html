@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.04.03 Sandbox、Guardrails、Sessions 与产品化 · iopanda</title><meta name="description" content="03.01.04.03 Sandbox、Guardrails、Sessions 与产品化 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/04/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.04.03 Sandbox、Guardrails、Sessions 与产品化 · iopanda"><meta property="og:description" content="03.01.04.03 Sandbox、Guardrails、Sessions 与产品化 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/04/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="04" data-active-article="/ai/03-frameworks/01/04/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 OpenAI Agents SDK"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/04/"><span class="tree-number">04</span><span class="tree-title">OpenAI Agents SDK</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/04/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">Sandbox、Guardrails、Sessions 与产品化</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/04/">OpenAI Agents SDK</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Sandbox、Guardrails、Sessions 与产品化</span></nav><header class="ai-article-header"><p class="ai-number">03.01.04.03</p><h1>Sandbox、Guardrails、Sessions 与产品化</h1><p class="ai-meta"><time datetime="2026-09-03T15:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>openai-agents-sdk</li><li>guardrails</li><li>sandbox</li></ul></header><div class="ai-prose"><h1 id="sandboxguardrailssessions-与产品化">Sandbox、Guardrails、Sessions 与产品化</h1>
+<blockquote>
+<p><a href="/ai/03-frameworks/01/04/02/">上一章</a>讲的是 OpenAI Agents SDK 如何把现代 Agent 原语收进统一运行时；这一章讲它为什么特别适合真实产品和开发者工具类场景。只看官方首页，你会先看到 sandbox agent、realtime agent、voice pipeline、human-in-the-loop、sessions、guardrails 等概念；若再看源码，会发现 <code>src/agents/sandbox/</code>、<code>src/agents/tool_guardrails.py</code>、<code>src/agents/agent_tool_state.py</code>、<code>src/agents/tracing/</code> 已经不是几段示例代码，而是一整套围绕隔离、审批、恢复和轨迹的基础设施。[1][2][3][4] 这说明 OpenAI Agents SDK 之所以对“产品化”有吸引力，并不是因为 demo 好看，而是因为它开始认真处理 Agent 走出聊天框之后会遇到的现实问题。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释 sandbox、guardrails、sessions 为什么是产品化 Agent 的硬需求；</li>
+<li>理解 tool input/output guardrail 与普通输入输出过滤的区别；</li>
+<li>说出 OpenAI Agents SDK 为什么适合开发者工具、代码 Agent 和多终端交互型系统；</li>
+<li>比较它与 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>、<a href="/ai/03-frameworks/01/05/01/">PydanticAI</a> 在治理与工程化上的差别；</li>
+<li>为一个高风险 Agent 设计 session、tool guardrail 与 sandbox 策略。</li>
+</ol>
+<h2 id="1-sandbox为什么代码-agent-一离开沙箱就危险">1. sandbox：为什么代码 Agent 一离开沙箱就危险</h2>
+<p>官方文档把 <code>SandboxAgent</code> 单列出来，用于读文件、跑命令、打补丁、维护长时间工作状态。[2]</p>
+<p>这说明它已经不把 Agent 只看成聊天机器人，而是看成可能会：</p>
+<ul>
+<li>访问文件系统；</li>
+<li>执行终端命令；</li>
+<li>修改工作区；</li>
+<li>跨多轮保存上下文。</li>
+</ul>
+<p>一旦进入这个场景，风险立刻升级：</p>
+<ul>
+<li>错误工具调用不再只是回答错误，而可能是副作用错误；</li>
+<li>上下文不再只是消息历史，而包括工作区状态；</li>
+<li>失败恢复不再只是重问，而可能涉及半完成文件或中断命令。</li>
+</ul>
+<p>所以 sandbox 的价值不只是“能执行代码”，而是<strong>把高风险执行环境放进可管理边界里</strong>。</p>
+<h2 id="2-sessions为什么上下文治理是系统问题不是聊天记录问题">2. sessions：为什么上下文治理是系统问题，不是聊天记录问题</h2>
+<p>OpenAI Agents SDK 把 sessions 作为 core concepts 之一。[2] 这很重要，因为多轮 Agent 最容易出问题的地方恰恰是：</p>
+<ul>
+<li>上一轮哪些信息该继承；</li>
+<li>哪些敏感信息该隔离；</li>
+<li>哪些 specialist 间不该共享上下文；</li>
+<li>会话重启后该从哪恢复。</li>
+</ul>
+<p>如果 session 只是一个“顺手保存几轮消息”的小功能，就撑不起真实产品。把它提升为官方抽象，等于承认：
+<strong>上下文边界是系统设计问题，不是 UI 问题。</strong></p>
+<p>对开发者来说，这意味着：</p>
+<ul>
+<li>需要设计会话生命周期；</li>
+<li>需要设计隔离策略；</li>
+<li>需要把身份、任务类型、敏感级别和 session 联系起来。</li>
+</ul>
+<h2 id="3-tool-guardrails为什么真正危险的是工具边界而不是文本边界">3. tool guardrails：为什么真正危险的是工具边界，而不是文本边界</h2>
+<p><code>src/agents/tool_guardrails.py</code> 的设计非常说明问题。[4]</p>
+<p>它不是只提供一个“过不过”的布尔值，而是提供多种行为：</p>
+<ul>
+<li>allow</li>
+<li>reject_content</li>
+<li>raise_exception</li>
+</ul>
+<p>并且区分：</p>
+<ul>
+<li>ToolInputGuardrail</li>
+<li>ToolOutputGuardrail</li>
+</ul>
+<p>这背后的设计成熟度很高：</p>
+<ol>
+<li><strong>工具调用前后的风险并不相同</strong>；</li>
+<li><strong>拦截动作也不只有一种</strong>；</li>
+<li><strong>有时要阻止工具执行，有时要把结果改写为给模型的反馈，而不是让整个系统崩掉。</strong></li>
+</ol>
+<p>这和普通“输入关键词过滤”完全不是一个层级。它已经是在治理：</p>
+<ul>
+<li>模型能不能请求这个动作；</li>
+<li>这个动作的结果能不能继续流回模型；</li>
+<li>如果不允许，系统是告诉模型“换条路”，还是直接终止执行。</li>
+</ul>
+<h2 id="4-approvals--interruptions为什么产品化-agent-必须认真处理人类许可">4. approvals / interruptions：为什么产品化 Agent 必须认真处理“人类许可”</h2>
+<p>从 <code>agent_tool_state.py</code> 里可以看到 approval、interruption、resume checkpoint 相关逻辑。[1] 这说明：</p>
+<ul>
+<li>某些工具执行不是只看模型决定；</li>
+<li>人类批准项会影响后续恢复状态；</li>
+<li>嵌套 agent/tool 的恢复不是拍脑袋，而是有状态快照。</li>
+</ul>
+<p>这对高风险应用尤其关键：</p>
+<ul>
+<li>写库</li>
+<li>发信</li>
+<li>导出数据</li>
+<li>改代码</li>
+<li>操作浏览器</li>
+</ul>
+<p>这些都不应只是“模型决定要做就做”，而要有正式的许可与恢复语义。</p>
+<h2 id="5-为什么它特别适合开发者工具和多终端产品">5. 为什么它特别适合开发者工具和多终端产品</h2>
+<p>把 sandbox、sessions、tool guardrails、tracing、voice、realtime 放在一起看，就能明白 OpenAI Agents SDK 很适合两大类场景：</p>
+<h3 id="51-开发者工具--代码-agent">5.1 开发者工具 / 代码 Agent</h3>
+<p>因为它天然关心：</p>
+<ul>
+<li>工作区</li>
+<li>文件变更</li>
+<li>命令执行</li>
+<li>恢复与继续</li>
+<li>审批与安全边界</li>
+</ul>
+<h3 id="52-多终端--多模态产品">5.2 多终端 / 多模态产品</h3>
+<p>因为它也天然关心：</p>
+<ul>
+<li>文本之外的实时连接</li>
+<li>语音输入输出</li>
+<li>统一 tracing</li>
+<li>session 生命周期</li>
+<li>specialist handoff</li>
+</ul>
+<p>很多框架只擅长其中一类；OpenAI Agents SDK 的野心是把它们都纳入同一运行时词汇表。</p>
+<h2 id="6-与同类框架相比产品化路径有什么不同">6. 与同类框架相比，产品化路径有什么不同</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>产品化时最先强调什么</th>
+<th>OpenAI Agents SDK 的不同</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LangGraph</td>
+<td>显式状态图、恢复、人审节点</td>
+<td>OpenAI Agents SDK 更强调统一原语和多运行形态</td>
+</tr>
+<tr>
+<td>PydanticAI</td>
+<td>typed output、deps、capabilities、durable backends</td>
+<td>OpenAI Agents SDK 更偏即插即用 runtime experience</td>
+</tr>
+<tr>
+<td>CrewAI</td>
+<td>角色团队与业务流程</td>
+<td>OpenAI Agents SDK 更偏通用产品与开发者工具场景</td>
+</tr>
+<tr>
+<td>AutoGen</td>
+<td>多 Agent 协作范式</td>
+<td>OpenAI Agents SDK 更偏治理完善的现代 runtime</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：它不是最像工作流引擎的，也不是最像 typed framework 的，但它非常像一套<strong>面向现代 Agent 产品的通用运行底座</strong>。</p>
+<h2 id="7-为什么-guardrails-在这里不只是安全话题也是产品体验话题">7. 为什么 guardrails 在这里不只是安全话题，也是产品体验话题</h2>
+<p>很多人看到 guardrail 只想到“安全”。其实在产品系统里，它还直接影响：</p>
+<ul>
+<li>用户是否拿到清晰错误；</li>
+<li>specialist 是否会走错分流；</li>
+<li>tool 失败后是中断、改写还是重试；</li>
+<li>多轮任务是不是会因为一处异常整轮崩溃。</li>
+</ul>
+<p>所以 guardrails 同时是：</p>
+<ul>
+<li>安全控制</li>
+<li>失败管理</li>
+<li>用户体验控制</li>
+<li>系统稳定性控制</li>
+</ul>
+<p>这也是为什么它被 SDK 提升为正式抽象，而不是留给每个业务自己写零散 try/except。</p>
+<h2 id="8-动手活动为课程助教设计-sandbox--session--tool-guardrail-方案">8. 动手活动：为课程助教设计 sandbox + session + tool guardrail 方案</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>openai-agents-safety-plan.md</code></p>
+<p><strong>目标</strong>：把课程助教从“会调工具”推进到“调工具仍可控”。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>设计 session 隔离：普通问答、成绩查询、治理咨询三类会话分开；</li>
+<li>设计 tool input guardrail：成绩查询必须验证本人身份；</li>
+<li>设计 tool output guardrail：返回结果不得出现其他学生信息；</li>
+<li>设计 sandbox 边界：允许只读资料访问，禁止任意 shell；</li>
+<li>设计 approval 策略：任何导出或写入动作需要人工确认。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚说出“哪类风险在 session 层解决，哪类风险在 tool guardrail 层解决，哪类风险在 sandbox 层解决”。</p>
+</div>
+<h2 id="9-边界与排错">9. 边界与排错</h2>
+<ul>
+<li><strong>误区一：sandbox = 能跑命令就行。</strong> 真正重要的是隔离与恢复边界；</li>
+<li><strong>误区二：session = 聊天历史。</strong> 更准确地说，它是上下文生命周期管理；</li>
+<li><strong>误区三：guardrail 只是拦截文本。</strong> 高风险系统真正要拦的是工具边界；</li>
+<li><strong>误区四：human approval 是 UI 需求。</strong> 它其实是运行时语义；</li>
+<li><strong>误区五：有这些原语就自动安全。</strong> 没有权限模型、审计纪律和风险评审，原语再全也可能被错误组合。</li>
+</ul>
+<h2 id="10-总结">10. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sandbox 的价值</td>
+<td>让高风险执行环境被隔离、可恢复、可治理</td>
+</tr>
+<tr>
+<td>session 的价值</td>
+<td>让上下文生命周期和隔离策略成为系统设计问题</td>
+</tr>
+<tr>
+<td>tool guardrail 的价值</td>
+<td>在真正危险的边界上控制 Agent 行为</td>
+</tr>
+<tr>
+<td>approval 的价值</td>
+<td>把人类许可纳入运行时与恢复语义</td>
+</tr>
+<tr>
+<td>它最吸引谁</td>
+<td>做代码 Agent、开发者工具、多终端 Agent 产品的团队</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个能跑 shell、能改文件、能跨会话保留上下文的 Agent，如果没有 sandbox、session 隔离和 tool guardrails，危险程度会比普通聊天机器人高一个量级？这些风险里，哪些是模型本身的问题，哪些其实是系统设计的问题？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为它已经不只是“生成文本”，而是在执行动作、接触状态、跨轮延续上下文。没有 sandbox，会把副作用暴露给真实环境；没有 session 隔离，会把敏感上下文和任务状态串扰；没有 tool guardrails，模型就可能把错误决策直接升级成错误操作。这里当然有模型不确定性的因素，但更关键的是系统设计：风险的大头来自你赋予它的执行半径与缺失的边界，而不是模型会不会“更听话”。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://github.com/openai/openai-agents-python">https://github.com/openai/openai-agents-python</a> — OpenAI Agents SDK GitHub</li>
+<li>[2] <a href="https://openai.github.io/openai-agents-python">https://openai.github.io/openai-agents-python</a> — OpenAI Agents SDK docs</li>
+<li>[3] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md</a> — OpenAI Agents guardrails doc</li>
+<li>[4] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md</a> — OpenAI Agents handoffs doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/04/02/"><span>上一篇</span><strong>03.01.04.02 核心原语与运行时设计</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/04/04/"><span>下一篇</span><strong>03.01.04.04 Handoffs、Agent-as-Tool 与 MCP 工具生态</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-sandbox为什么代码-agent-一离开沙箱就危险">1. sandbox：为什么代码 Agent 一离开沙箱就危险</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-sessions为什么上下文治理是系统问题不是聊天记录问题">2. sessions：为什么上下文治理是系统问题，不是聊天记录问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-tool-guardrails为什么真正危险的是工具边界而不是文本边界">3. tool guardrails：为什么真正危险的是工具边界，而不是文本边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-approvals--interruptions为什么产品化-agent-必须认真处理人类许可">4. approvals / interruptions：为什么产品化 Agent 必须认真处理“人类许可”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-为什么它特别适合开发者工具和多终端产品">5. 为什么它特别适合开发者工具和多终端产品</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-开发者工具--代码-agent">5.1 开发者工具 / 代码 Agent</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-多终端--多模态产品">5.2 多终端 / 多模态产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-与同类框架相比产品化路径有什么不同">6. 与同类框架相比，产品化路径有什么不同</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-为什么-guardrails-在这里不只是安全话题也是产品体验话题">7. 为什么 guardrails 在这里不只是安全话题，也是产品体验话题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动为课程助教设计-sandbox--session--tool-guardrail-方案">8. 动手活动：为课程助教设计 sandbox + session + tool guardrail 方案</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-边界与排错">9. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-总结">10. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

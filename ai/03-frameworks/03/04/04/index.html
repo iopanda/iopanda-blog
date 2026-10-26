@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.03.04.04 与 PEFT, Transformers, Accelerate 的组合方式 · iopanda</title><meta name="description" content="03.03.04.04 与 PEFT, Transformers, Accelerate 的组合方式 · 框架 / 训练与微调框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/03/04/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.03.04.04 与 PEFT, Transformers, Accelerate 的组合方式 · iopanda"><meta property="og:description" content="03.03.04.04 与 PEFT, Transformers, Accelerate 的组合方式 · 框架 / 训练与微调框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/03/04/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="03" data-active-subsection="04" data-active-article="/ai/03-frameworks/03/04/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 训练与微调框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/03/"><span class="tree-number">03</span><span class="tree-title">训练与微调框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/03/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 TRL"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/03/04/"><span class="tree-number">04</span><span class="tree-title">TRL</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/03/04/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">与 PEFT, Transformers, Accelerate 的组合方式</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/">训练与微调框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/04/">TRL</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">与 PEFT, Transformers, Accelerate 的组合方式</span></nav><header class="ai-article-header"><p class="ai-number">03.03.04.04</p><h1>与 PEFT, Transformers, Accelerate 的组合方式</h1><p class="ai-meta"><time datetime="2026-09-04T02:09">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>training</li><li>fine-tuning</li><li>trl</li><li>peft</li><li>transformers</li><li>accelerate</li></ul></header><div class="ai-prose"><h1 id="与-peft-transformers-accelerate-的组合方式">与 PEFT, Transformers, Accelerate 的组合方式</h1>
+<blockquote>
+<p>TRL 从来不是孤立使用的。README 直接说明它 built on top of Transformers ecosystem，[18] 各个 trainer 文档则反复展示它如何与 PEFT、Accelerate、vLLM、DeepSpeed 一起工作。[20][21][23][25] 所以理解 TRL，不能只看 trainer 名字，还要看它在整套训练栈中的位置。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释 TRL、PEFT、Transformers、Accelerate 的职责边界；</li>
+<li>说明为什么 TRL 常常是“任务层”，而不是最底层执行层；</li>
+<li>理解 PEFT 在 TRL 中为什么如此自然；</li>
+<li>判断什么时候该用 full fine-tuning，什么时候该加 PEFT；</li>
+<li>画出一张 TRL 训练栈组合图。</li>
+</ol>
+<h2 id="1-transformers宿主与基础-trainer-语义">1. Transformers：宿主与基础 trainer 语义</h2>
+<p>TRL 的各类 Trainer 本质上是对 Transformers Trainer 语义的专用化扩展。[18][20][21]
+因此：</p>
+<ul>
+<li>model loading 沿用 HF 体系；</li>
+<li>tokenizer / dataset / training args 也延续 HF 生态；</li>
+<li>TRL 在其上增加 alignment-specific loss 与流程。</li>
+</ul>
+<h2 id="2-accelerate分布式与执行层">2. Accelerate：分布式与执行层</h2>
+<p>README 明确写到 TRL 的 trainer 原生支持 DDP、DeepSpeed ZeRO、FSDP 等分布式方式。[18]
+也就是说：</p>
+<ul>
+<li>TRL 决定“优化什么”；</li>
+<li>Accelerate / DeepSpeed 决定“怎么把它跑起来”。</li>
+</ul>
+<h2 id="3-peft最自然的方法层搭子">3. PEFT：最自然的方法层搭子</h2>
+<p>PEFT integration 文档非常明确：[25]</p>
+<ul>
+<li>各主要 trainer 都支持 <code>peft_config</code>；</li>
+<li>CLI 可以 <code>--use_peft</code>；</li>
+<li>LoRA/QLoRA 是最常见组合；</li>
+<li>DPO + PEFT 时甚至不需要单独 ref model，可直接冻结 base model 作为 reference。</li>
+</ul>
+<p>这说明 TRL 和 PEFT 的关系非常像：</p>
+<ul>
+<li>TRL 管对齐任务；</li>
+<li>PEFT 管参数高效适配。</li>
+</ul>
+<h2 id="4-为什么这种组合特别强">4. 为什么这种组合特别强</h2>
+<p>因为 alignment 往往比普通 SFT 更贵：</p>
+<ul>
+<li>DPO 需要 chosen/rejected 双路；</li>
+<li>PPO/GRPO 需要 rollout；</li>
+<li>reward model 还要额外训练。</li>
+</ul>
+<p>所以 TRL + PEFT 能让 alignment 从“理论上可以做”变成“资源上可接受”。</p>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>trl-stack.md</code></p>
+<p>画一张组合图：Transformers 是宿主，Accelerate 是执行层，PEFT 是参数高效层，TRL 是 alignment 任务层。写一句结论：你的系统主复杂度住在哪一层。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transformers</td>
+<td>模型与 trainer 宿主</td>
+</tr>
+<tr>
+<td>Accelerate / DeepSpeed / FSDP</td>
+<td>执行与分布式层</td>
+</tr>
+<tr>
+<td>PEFT</td>
+<td>参数高效微调层</td>
+</tr>
+<tr>
+<td>TRL</td>
+<td>alignment / post-training 任务层</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[18] <a href="https://github.com/huggingface/trl/blob/main/README.md">https://github.com/huggingface/trl/blob/main/README.md</a> — TRL README</li>
+<li>[20] <a href="https://github.com/huggingface/trl/blob/main/docs/source/sft_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/sft_trainer.md</a> — TRL SFTTrainer doc</li>
+<li>[21] <a href="https://github.com/huggingface/trl/blob/main/docs/source/dpo_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/dpo_trainer.md</a> — TRL DPOTrainer doc</li>
+<li>[23] <a href="https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md</a> — TRL GRPOTrainer doc</li>
+<li>[25] <a href="https://github.com/huggingface/trl/blob/main/docs/source/peft_integration.md">https://github.com/huggingface/trl/blob/main/docs/source/peft_integration.md</a> — TRL PEFT integration doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/03/04/03/"><span>上一篇</span><strong>03.03.04.03 SFT、DPO、PPO、Reward Modeling 的统一视角</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/03/04/05/"><span>下一篇</span><strong>03.03.04.05 训练稳定性、评测与工程边界</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-transformers宿主与基础-trainer-语义">1. Transformers：宿主与基础 trainer 语义</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-accelerate分布式与执行层">2. Accelerate：分布式与执行层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-peft最自然的方法层搭子">3. PEFT：最自然的方法层搭子</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-为什么这种组合特别强">4. 为什么这种组合特别强</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

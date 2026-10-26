@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.02.03 文档存储、检索器、排序器与生成器 · iopanda</title><meta name="description" content="03.02.02.03 文档存储、检索器、排序器与生成器 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/02/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.02.03 文档存储、检索器、排序器与生成器 · iopanda"><meta property="og:description" content="03.02.02.03 文档存储、检索器、排序器与生成器 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/02/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="02" data-active-article="/ai/03-frameworks/02/02/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Haystack"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/02/"><span class="tree-number">02</span><span class="tree-title">Haystack</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/02/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">文档存储、检索器、排序器与生成器</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/02/">Haystack</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">文档存储、检索器、排序器与生成器</span></nav><header class="ai-article-header"><p class="ai-number">03.02.02.03</p><h1>文档存储、检索器、排序器与生成器</h1><p class="ai-meta"><time datetime="2026-09-03T21:50">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>haystack</li><li>document-store</li><li>retriever</li><li>ranker</li><li>generator</li></ul></header><div class="ai-prose"><h1 id="文档存储检索器排序器与生成器">文档存储、检索器、排序器与生成器</h1>
+<blockquote>
+<p>Haystack 的 pipeline 语言如果没有组件家族支撑，只会变成漂亮流程图。真正让它成立的，是一组职责边界很清楚的组件：document store、retriever、ranker、generator，以及把它们串起来的 builder/routers/writers。源码里 <code>InMemoryDocumentStore</code>、<code>InMemoryBM25Retriever</code>、<code>InMemoryEmbeddingRetriever</code>、<code>LLMRanker</code> 这些对象非常能说明它的设计习惯：每个组件职责明确、输入输出明确、可序列化、可插入 pipeline。[56][57][58][60]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>说出 document store、retriever、ranker、generator 在 Haystack 中的职责边界；</li>
+<li>理解为什么 BM25、embedding retrieval、LLM rerank 会被拆成不同组件；</li>
+<li>解释 document store 在 Haystack 里为什么不仅是存储，而是检索行为的一部分；</li>
+<li>比较 Haystack 的组件家族与 LlamaIndex 的对象家族差异；</li>
+<li>为一个 RAG 系统设计检索核心组件栈。</li>
+</ol>
+<h2 id="1-document-store为什么它是行为边界不只是数据库句柄">1. Document Store：为什么它是行为边界，不只是数据库句柄</h2>
+<p><code>InMemoryDocumentStore</code> 的实现里能直接看到：</p>
+<ul>
+<li>BM25 tokenization</li>
+<li>embedding similarity function</li>
+<li>shared/local storage</li>
+<li>async executor</li>
+<li>filtering</li>
+<li>score scaling。[56]</li>
+</ul>
+<p>这说明在 Haystack 里，document store 并不是“纯存储接口”，而是已经承担了一部分 retrieval semantics：</p>
+<ul>
+<li>文档如何被 tokenized；</li>
+<li>BM25 算法如何算；</li>
+<li>embedding 相似度怎样比较；</li>
+<li>filters 如何应用。</li>
+</ul>
+<p>所以 document store 在这里更像“检索后端对象”，而不只是数据库连接器。</p>
+<h2 id="2-bm25retriever为什么-keyword-retrieval-仍然是一等组件">2. BM25Retriever：为什么 keyword retrieval 仍然是一等组件</h2>
+<p><code>InMemoryBM25Retriever</code> 很清楚地说明：</p>
+<ul>
+<li>它是 component；</li>
+<li>输入是 query、filters、top_k；</li>
+<li>输出是 documents；</li>
+<li>filter policy 可 REPLACE 或 MERGE。[57]</li>
+</ul>
+<p>这说明 Haystack 并没有把 keyword retrieval 当成“落后技术”，而是把它保留成现代 RAG 里的正式一层。原因很简单：</p>
+<ul>
+<li>稀疏检索对关键词、术语、专有名词仍然非常有效；</li>
+<li>很多规则、编号、课程章节名比 embedding 更适合 BM25；</li>
+<li>hybrid retrieval 本来就需要它。</li>
+</ul>
+<h2 id="3-embeddingretriever为什么稠密检索也被明确拆出来">3. EmbeddingRetriever：为什么稠密检索也被明确拆出来</h2>
+<p><code>InMemoryEmbeddingRetriever</code> 的设计与 BM25Retriever 非常平行，只是输入变成 query_embedding。[58]</p>
+<p>这暴露了 Haystack 的一个很成熟的工程习惯：</p>
+<ul>
+<li>不把“检索”混成一个黑箱；</li>
+<li>而是让不同 retrieval semantics 用不同 component 表达。</li>
+</ul>
+<p>这样做的好处是：</p>
+<ul>
+<li>稀疏和稠密检索可以独立调参；</li>
+<li>可以组合 hybrid retrieval；</li>
+<li>可以在 pipeline 里清楚知道哪一步做了什么。</li>
+</ul>
+<h2 id="4-ranker为什么重排在-haystack-里是单独的一层">4. Ranker：为什么重排在 Haystack 里是单独的一层</h2>
+<p><code>LLMRanker</code> 的源码非常具有代表性：</p>
+<ul>
+<li>有独立 prompt template；</li>
+<li>要求返回结构化 JSON 排名；</li>
+<li>明确 top_k；</li>
+<li>明确 failure fallback 行为。[60]</li>
+</ul>
+<p>这说明 Haystack 的态度是：</p>
+<ul>
+<li>rerank 不是 retriever 的小尾巴；</li>
+<li>rerank 是正式 component；</li>
+<li>rerank 失败也需要明确定义系统怎么退化。</li>
+</ul>
+<p>这非常工程化。因为很多团队会把 rerank 当“小修饰”，而实际上它常常是回答质量能否真正落地的关键层。</p>
+<h2 id="5-generator为什么它在-haystack-里通常是链路后段而不是全部主角">5. Generator：为什么它在 Haystack 里通常是链路后段，而不是全部主角</h2>
+<p>Haystack 当然支持很多 generator，但从整个框架表达上看，generator 更像 pipeline 后段的一环，而不是全部系统的中心。[54]</p>
+<p>这说明它的价值观是：</p>
+<ul>
+<li>generator 很重要；</li>
+<li>但 generator 之前的 retrieval / ranking / routing / filtering 一样重要；</li>
+<li>production RAG 不该由模型单独吃下全部复杂度。</li>
+</ul>
+<p>这和许多“把 prompt 和模型当绝对主角”的做法不同。</p>
+<h2 id="6-filter-policy为什么它说明检索不是只看相似度">6. filter policy：为什么它说明检索不是只看相似度</h2>
+<p>BM25Retriever 和 EmbeddingRetriever 都支持 filters 和 filter_policy。[57][58]</p>
+<p>这很关键，因为真实系统的 retrieval 不只是“谁最像”，还包括：</p>
+<ul>
+<li>哪些文档合法；</li>
+<li>哪些文档属于本租户；</li>
+<li>哪些文档在这个场景下才应进入召回集；</li>
+<li>runtime filters 和 default filters 应怎样合并。</li>
+</ul>
+<p>这说明 Haystack 从组件层就把“治理”和“检索”绑在一起看，而不是后面再补。</p>
+<h2 id="7-为什么这套组件家族特别适合架构化思考">7. 为什么这套组件家族特别适合架构化思考</h2>
+<p>因为每一层都能被单独问责：</p>
+<ul>
+<li>document store 是否存对了、算对了；</li>
+<li>retriever 是否召回对了；</li>
+<li>ranker 是否排序对了；</li>
+<li>generator 是否表达对了。</li>
+</ul>
+<p>这和一条黑箱“query in, answer out”差别非常大。它使评测也能分层：</p>
+<ul>
+<li>recall</li>
+<li>ranking</li>
+<li>answer quality
+而不是只看最终回答好不好。</li>
+</ul>
+<h2 id="8-和-llamaindex-的最大差异组件职责-vs-对象家族">8. 和 LlamaIndex 的最大差异：组件职责 vs 对象家族</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Haystack</th>
+<th>LlamaIndex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首先怎么拆系统</td>
+<td>component families</td>
+<td>object families</td>
+</tr>
+<tr>
+<td>retriever/engine 表达</td>
+<td>pipeline 组件</td>
+<td>query object</td>
+</tr>
+<tr>
+<td>document/store 表达</td>
+<td>检索后端组件</td>
+<td>文档/节点/索引对象</td>
+</tr>
+<tr>
+<td>更适合谁</td>
+<td>想按处理阶段显式拆链路的团队</td>
+<td>想按知识对象显式拆系统的团队</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：</p>
+<ul>
+<li>Haystack 更像“处理工位”；</li>
+<li>LlamaIndex 更像“知识对象层级”。</li>
+</ul>
+<h2 id="9-动手活动给课程助教设计一套-haystack-组件栈">9. 动手活动：给课程助教设计一套 Haystack 组件栈</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>haystack-component-stack.md</code></p>
+<p><strong>目标</strong>：把课程助教的 retrieval stack 拆成显式组件，而不是一句“我们做了 RAG”。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>选 document store；</li>
+<li>选 BM25 / embedding retriever；</li>
+<li>判断是否需要 ranker；</li>
+<li>指定 generator 在链路中的位置；</li>
+<li>写一段说明：每层失败时你最先查哪。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚说明“系统是召回错了、排序错了，还是生成错了”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：document store 只是数据库。</strong> 在 Haystack 里它已经包含部分检索语义；</li>
+<li><strong>误区二：BM25 过时，不必管。</strong> 很多规则和术语问题它非常重要；</li>
+<li><strong>误区三：rerank 可以后面再说。</strong> 往往真正可用性卡在这里；</li>
+<li><strong>误区四：generator 足够强，前面都不重要。</strong> 这和 Haystack 的价值观相反；</li>
+<li><strong>误区五：filters 只是小功能。</strong> 它们经常决定系统是否合法可用。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Store 在这里是什么</td>
+<td>带检索语义的后端对象</td>
+</tr>
+<tr>
+<td>BM25Retriever 的意义</td>
+<td>稀疏检索仍是正式一层</td>
+</tr>
+<tr>
+<td>EmbeddingRetriever 的意义</td>
+<td>稠密检索必须被显式表达</td>
+</tr>
+<tr>
+<td>LLMRanker 的意义</td>
+<td>重排不是附件，而是单独质量层</td>
+</tr>
+<tr>
+<td>Generator 的位置</td>
+<td>后段关键组件，而不是全部主角</td>
+</tr>
+<tr>
+<td>Haystack 的优势</td>
+<td>让 retrieval stack 每层都可替换、可评测、可问责</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个系统如果把 document store、retriever、rerank、generator 全都揉在一起，很快就会失去可调试性和可评测性？Haystack 这种显式组件拆分，真正帮团队保住了哪种能力？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为一旦揉在一起，任何失败最后都只表现为“答案不好”，团队很难判断是存储问题、召回问题、排序问题还是生成问题。Haystack 的显式组件拆分，真正保住的是分层诊断和分层演进能力：你可以单独换 retriever、单独调 ranker、单独测 generator，而不用把整个系统当黑箱重试。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[54] <a href="https://github.com/deepset-ai/haystack/blob/main/README.md">https://github.com/deepset-ai/haystack/blob/main/README.md</a> — Haystack README</li>
+<li>[56] <a href="https://github.com/deepset-ai/haystack/blob/main/haystack/document_stores/in_memory/document_store.py">https://github.com/deepset-ai/haystack/blob/main/haystack/document_stores/in_memory/document_store.py</a> — Haystack in-memory document store source</li>
+<li>[57] <a href="https://github.com/deepset-ai/haystack/blob/main/haystack/components/retrievers/in_memory/bm25_retriever.py">https://github.com/deepset-ai/haystack/blob/main/haystack/components/retrievers/in_memory/bm25_retriever.py</a> — Haystack BM25 retriever source</li>
+<li>[58] <a href="https://github.com/deepset-ai/haystack/blob/main/haystack/components/retrievers/in_memory/embedding_retriever.py">https://github.com/deepset-ai/haystack/blob/main/haystack/components/retrievers/in_memory/embedding_retriever.py</a> — Haystack embedding retriever source</li>
+<li>[60] <a href="https://github.com/deepset-ai/haystack/blob/main/haystack/components/rankers/llm_ranker.py">https://github.com/deepset-ai/haystack/blob/main/haystack/components/rankers/llm_ranker.py</a> — Haystack LLM ranker source</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/02/02/"><span>上一篇</span><strong>03.02.02.02 Pipeline 思维与 Component 设计哲学</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/02/04/"><span>下一篇</span><strong>03.02.02.04 Hybrid Retrieval、Evaluation 与 Production RAG</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-document-store为什么它是行为边界不只是数据库句柄">1. Document Store：为什么它是行为边界，不只是数据库句柄</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-bm25retriever为什么-keyword-retrieval-仍然是一等组件">2. BM25Retriever：为什么 keyword retrieval 仍然是一等组件</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-embeddingretriever为什么稠密检索也被明确拆出来">3. EmbeddingRetriever：为什么稠密检索也被明确拆出来</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-ranker为什么重排在-haystack-里是单独的一层">4. Ranker：为什么重排在 Haystack 里是单独的一层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-generator为什么它在-haystack-里通常是链路后段而不是全部主角">5. Generator：为什么它在 Haystack 里通常是链路后段，而不是全部主角</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-filter-policy为什么它说明检索不是只看相似度">6. filter policy：为什么它说明检索不是只看相似度</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-为什么这套组件家族特别适合架构化思考">7. 为什么这套组件家族特别适合架构化思考</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-和-llamaindex-的最大差异组件职责-vs-对象家族">8. 和 LlamaIndex 的最大差异：组件职责 vs 对象家族</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动给课程助教设计一套-haystack-组件栈">9. 动手活动：给课程助教设计一套 Haystack 组件栈</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

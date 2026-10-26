@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.03.04 记忆系统 · iopanda</title><meta name="description" content="02.09.03.04 记忆系统 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/03/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.03.04 记忆系统 · iopanda"><meta property="og:description" content="02.09.03.04 记忆系统 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/03/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="03" data-active-article="/ai/02-agents/09/03/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Hermes Agent"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/03/"><span class="tree-number">03</span><span class="tree-title">Hermes Agent</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/03/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">记忆系统</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/03/">Hermes Agent</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">记忆系统</span></nav><header class="ai-article-header"><p class="ai-number">02.09.03.04</p><h1>记忆系统</h1><p class="ai-meta"><time datetime="2026-09-03T07:10">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>hermes-source</li></ul></header><div class="ai-prose"><h1 id="记忆系统">记忆系统</h1>
+<blockquote>
+<p>模型是无状态的,跨会话的「记得」全靠外部载体——02 章看完技能(怎么做事),本章看记忆(记住你是谁、说过什么、偏好什么)。Hermes 的记忆不追求「像人一样记住一切」,而是把「取回成本」分三层:会话全量进 SQLite 可检索、长期笔记与画像压成两个有界小文件常驻 prompt、写入靠回合尾的 nudge 后台沉淀。最反直觉的一处设计是:记忆写入后<strong>当前会话的 prompt 不会变</strong>——那是前缀缓存换来的稳定性,也是本章要读懂的第一行代码。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 Hermes 三层记忆各自的载体、容量与读写工具,并对照 02.05/01 的四种形态说明取舍;</li>
+<li>解释 MemoryStore 的「双状态」设计——为何冻结快照进 prompt、活状态只进工具结果,前缀缓存如何受益;</li>
+<li>画出会话检索的 FTS5 三索引路由(fts5 / fts_cjk / trigram / like_scan),并说明 CJK 二元组扩展解决了什么问题;</li>
+<li>在代码中指认 nudge 触发点(memory 按用户轮、skill 按工具迭代,默认 10)与后台评审派发路径;</li>
+<li>建立「记忆该存什么、不该存什么」的工程判断,为 05 章自我进化闭环铺路。</li>
+</ol>
+<h2 id="1-概念三层记忆--一个运行时库--两个有界文件">1. 概念:三层记忆 = 一个运行时库 + 两个有界文件</h2>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>载体</th>
+<th>内容</th>
+<th>对应 02.05 形态</th>
+<th>取回方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会话记忆</td>
+<td>SQLite SessionDB(hermes_state.py,messages 表)</td>
+<td>全部消息与工具调用,含 FTS5 全文索引</td>
+<td>工作记忆 + 情景记忆</td>
+<td>当前回合直接进上下文;历史按需全文检索</td>
+</tr>
+<tr>
+<td>长期记忆</td>
+<td><code>~/.hermes/memories/MEMORY.md</code>(默认 2200 字符)</td>
+<td>Agent 给自己的笔记:事实、偏好、跨会话承诺</td>
+<td>语义记忆</td>
+<td>memory 工具读写;冻结快照常驻 prompt</td>
+</tr>
+<tr>
+<td>用户画像</td>
+<td>同目录 <code>USER.md</code>(默认 1375 字符)</td>
+<td>who the user is:身份、习惯、沟通风格</td>
+<td>用户模型</td>
+<td>同上(target=“user”)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>载体路径由 <code>get_memory_dir()</code> 返回 <code>get_hermes_home() / "memories"</code>(tools/memory_tool.py:64-66),profile 切换(HERMES_HOME)即换一套记忆;</li>
+<li>条目以 <code>ENTRY_DELIMITER = "\n§\n"</code> 分隔(tools/memory_tool.py:78),动作 add / replace / remove,支持批量 operations;</li>
+<li>技能(02 章)是「程序记忆」的另一载体——它不进记忆文件,走 skills/ 目录与 curator 状态机。三层都服务于 02.05/01 的判断:分层依据是<strong>取回成本</strong>——会话历史量大,只按需检索(图书馆);笔记与画像小而常驻,每回合都带着(便签/笔记本)。</li>
+</ul>
+<h2 id="2-为什么这样设计">2. 为什么这样设计</h2>
+<ul>
+<li><strong>无状态模型的必然</strong>:跨会话只能靠外部持久化。三层的差异不在「存不存」,而在「取回成本」:全量历史塞进 prompt 会撑爆上下文(01 章压缩机制兜底),所以历史留库、按查询取;常驻内容必须小,所以长期记忆做<strong>字符预算</strong>而非无限追加——2200 字符约等于一屏,超限时工具返回 usage 并要求模型合并重试。</li>
+<li><strong>prompt 必须稳定</strong>:常驻注入的内容每回合都要重复出现,若随写随变,前缀缓存(01 章三层 system prompt 设计)每回合失效一次。于是 MemoryStore 载入时生成<strong>冻结快照</strong>,会话内写操作只改活状态与磁盘,不改快照——稳定性换缓存命中率。</li>
+<li><strong>检索用 FTS5 关键词而非向量</strong>:会话检索的本质是「记得说过什么」的字面子串召回——要的是精确、可审计、零模型成本;语义相近的模糊召回留给 02.05/04 的向量记忆,由外部 provider(Honcho 等)承担,不进内置主路径。</li>
+</ul>
+<h2 id="3-作用位置谁持有谁注入谁检索">3. 作用位置:谁持有、谁注入、谁检索</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>AIAgent(每会话一个实例)</span></span>
+<span class="line"><span>├─ _memory_store = MemoryStore            # tools/memory_tool.py:159</span></span>
+<span class="line"><span>│    加载:load_from_disk()                # :227  载入即生成冻结快照</span></span>
+<span class="line"><span>│    注入:format_for_system_prompt()      # :706  只读快照 → system prompt</span></span>
+<span class="line"><span>├─ system_prompt.py volatile 段           # :928-937 内存块+画像块追加在技能索引后</span></span>
+<span class="line"><span>├─ SessionDB(SQLite)                      # hermes_state.py</span></span>
+<span class="line"><span>│    检索入口:search_messages()           # hermes_state_search.py:1431</span></span>
+<span class="line"><span>├─ 写入触发:turn_context.py:869(memory nudge 判定)</span></span>
+<span class="line"><span>│           turn_finalizer.py:810(回合后派发后台评审)</span></span>
+<span class="line"><span>└─ 可选外部 provider:memory_provider.py:110 ABC</span></span>
+<span class="line"><span>     编排:agent/memory_manager.py:433 MemoryManager(builtin + 1 external)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-memorystore双文件--双状态--威胁扫描">4.1 MemoryStore:双文件 + 双状态 + 威胁扫描</h3>
+<p>MemoryStore 每 AIAgent 一个(tools/memory_tool.py:159),维护两套并行状态(tools/memory_tool.py:160-168 类注释):<code>_system_prompt_snapshot</code> 载入时冻结、永不中途变更;<code>memory_entries / user_entries</code> 是活状态,随工具调用改并落盘。默认容量 <code>memory_char_limit: int = 2200, user_char_limit: int = 1375</code>(tools/memory_tool.py:178-179)。</p>
+<p><code>load_from_disk()</code>(tools/memory_tool.py:227)读两个文件后立即做三件事:去重、<strong>strict 级威胁扫描</strong>、生成快照。扫描命中(中毒记忆文件、供应链投毒、姊妹会话写入)不静默丢弃——快照里替换为 <code>[BLOCKED: …]</code> 占位,原文留在活列表供用户查看删除(tools/memory_tool.py:266-300,<code>_sanitize_entries_for_snapshot</code> 以 <code>scan_for_threats(entry, scope="strict")</code> 判定):记忆进的是 system prompt,注入防线在这里与 01 章安全基线汇合。超限合并失败有单回合 3 次熔断(<code>_MAX_CONSOLIDATION_FAILURES_PER_TURN = 3</code>,tools/memory_tool.py:174),防脆弱 replace/add 把回合拖到预算耗尽。</p>
+<p>注入侧的函数把设计意图写在 docstring 里(tools/memory_tool.py:706-717):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> format_for_system_prompt</span><span style="color:#E1E4E8">(self, target: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">) -&gt; Optional[</span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">]:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """</span></span>
+<span class="line"><span style="color:#9ECBFF">    Return the frozen snapshot for system prompt injection.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">    This returns the state captured at load_from_disk() time, NOT the live</span></span>
+<span class="line"><span style="color:#9ECBFF">    state. Mid-session writes do not affect this. This keeps the system</span></span>
+<span class="line"><span style="color:#9ECBFF">    prompt stable across all turns, preserving the prefix cache.</span></span>
+<span class="line"><span style="color:#9ECBFF">    """</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>快照经 <code>_render_block()</code>(tools/memory_tool.py:755)渲染为 <code>MEMORY (your personal notes) [n%]</code> 与 <code>USER PROFILE (who the user is)</code> 两段(块头常量 tools/memory_tool.py:73-76),带用量百分比提示模型「快满了」。</p>
+<h3 id="42-注入位置与重载时机">4.2 注入位置与重载时机</h3>
+<p>两块都进 system prompt 的 volatile 段,且排在技能索引之后(agent/system_prompt.py:928-937:<code>mem_block</code>、<code>user_block</code> 依次 <code>volatile_parts.append(...)</code>,技能在前 :926)——记忆变更只破 volatile 段缓存,stable 段(角色/规则)与技能快照不受影响。压缩或会话恢复时重载快照——<code>if agent._memory_store: agent._memory_store.load_from_disk()</code>(agent/system_prompt.py:1084-1085),所以「写后立即生效」只发生在下一回合的恢复路径,常规回合内新记忆通过工具结果回流给模型,而不是改 prompt。</p>
+<h3 id="43-外部-provider一次一个的插件口">4.3 外部 provider:一次一个的插件口</h3>
+<p>内置双文件只是默认实现;<code>class MemoryProvider(ABC)</code>(agent/memory_provider.py:110)定义插件契约,实现放 <code>plugins/memory/&lt;name&gt;</code>,一次仅启用一个,由 MemoryManager 编排(agent/memory_manager.py:433)。生命周期覆盖:回合前 <code>prefetch</code>(有语义信号才拉取——<code>is_trivial_prompt</code>(agent/memory_provider.py:90)把「hi / thanks / ok」这类无信号回合挡在阻塞网络往返之外)、回合末 <code>sync_turn</code>、压缩前 <code>on_pre_compress</code>(可 opt-in fail-closed 的 checkpoint 契约 <code>PRE_COMPRESS_CHECKPOINT_API_VERSION = 2</code>,agent/memory_provider.py:48)。记忆写入口(hook)可镜像给 provider——内部三层与外部 provider 不是二选一,而是共存。</p>
+<h3 id="44-会话检索fts5-三索引路由与-cjk-二元组">4.4 会话检索:FTS5 三索引路由与 CJK 二元组</h3>
+<p>SessionDB 为 messages 维护三套全文索引:<code>messages_fts</code>(unicode61)、<code>messages_fts_trigram</code>(SQLite ≥3.34)、<code>messages_fts_cjk</code>(外部 tokenizer <code>cjk_unicode61</code>,工具行排除)。入口 <code>search_messages()</code>(hermes_state_search.py:1431)是带计时的包装器:慢查询日志阈值 <code>HERMES_SEARCH_SLOW_MS</code> 默认 1000ms(hermes_state_search.py:1449/1468),每条日志带路由路径——docstring 自述这是 2026-07 会话检索事故的产物:「the next regression is a grep」。</p>
+<p>路由判定 <code>_describe_search_path()</code>(hermes_state_search.py:1481-1503):非 CJK 查询 → <code>fts5</code>;含 CJK 且 cjk 索引可用、无孤立 CJK 短段 → <code>fts_cjk</code>;CJK ≥3 字符且 trigram 可用 → <code>trigram</code>;否则 <code>like_scan</code> 兜底。为什么要第三套索引?<strong>trigram 每 token 至少 3 个字符</strong>,1-2 字的 CJK 词(「记忆」「画像」)根本进不了 trigram MATCH,早年全落 LIKE 全表扫(笔记实测 6.8GB 表 3-6 秒/查询)。修复是 native/fts5_cjk/fts5_cjk.c——约 250 行零依赖的 unicode61 包装:CJK 连续串重发射为<strong>重叠字符二元组</strong>(Lucene CJKAnalyzer 语义,单字退化 unigram),查询词转连续 bigram 短语即可索引级命中 ≥2 字符精确子串。装到 <code>~/.hermes/lib/libfts5_cjk.so</code>(<code>HERMES_FTS5_CJK_SO</code> 可覆盖,<code>sessions.cjk_fts: false</code> 可关)。CJK 表 DDL(hermes_state.py:4186-4200):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">CREATE</span><span style="color:#F97583"> VIEW</span><span style="color:#B392F0"> IF</span><span style="color:#F97583"> NOT</span><span style="color:#F97583"> EXISTS</span><span style="color:#E1E4E8"> messages_fts_cjk_src </span><span style="color:#F97583">AS</span></span>
+<span class="line"><span style="color:#F97583">    SELECT</span><span style="color:#E1E4E8"> id, </span><span style="color:#F97583">role</span><span style="color:#E1E4E8">, content, tool_name, tool_calls</span></span>
+<span class="line"><span style="color:#F97583">    FROM</span><span style="color:#E1E4E8"> messages</span></span>
+<span class="line"><span style="color:#F97583">    WHERE</span><span style="color:#F97583"> role</span><span style="color:#F97583"> &lt;&gt;</span><span style="color:#9ECBFF"> 'tool'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">CREATE</span><span style="color:#E1E4E8"> VIRTUAL </span><span style="color:#F97583">TABLE</span><span style="color:#F97583"> IF</span><span style="color:#F97583"> NOT</span><span style="color:#F97583"> EXISTS</span><span style="color:#E1E4E8"> messages_fts_cjk </span><span style="color:#F97583">USING</span><span style="color:#E1E4E8"> fts5(</span></span>
+<span class="line"><span style="color:#E1E4E8">    content,</span></span>
+<span class="line"><span style="color:#E1E4E8">    tool_name,</span></span>
+<span class="line"><span style="color:#E1E4E8">    tool_calls,</span></span>
+<span class="line"><span style="color:#E1E4E8">    content</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'messages_fts_cjk_src'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    content_rowid</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'id'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    tokenize</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'cjk_unicode61'</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre><span class="code-lang" data-lang="sql" aria-hidden="true">sql</span></div>
+<p>外部内容表的关键是<strong>触发器门控</strong>:插入/删除触发器只在 id 越过 <code>fts_cjk_rebuild_high_water</code> / <code>fts_cjk_rebuild_progress</code> 双 marker 时才生效(hermes_state.py:4202-4224)——注释写明:陈旧索引对从未持有的 rowid 执行外部内容 delete 是 FTS5 经典损坏源(:4180-4185)。自愈路径 <code>_ensure_fts_cjk_schema()</code>(hermes_state.py:6040):tokenizer 不可用就先写 breadcrumb 再删 cjk 触发器,写消息永不挂,降级 trigram/LIKE 路由继续工作;<code>hermes sessions optimize-storage</code> 可回填重建。</p>
+<h3 id="45-写入触发nudge-与后台评审">4.5 写入触发:nudge 与后台评审</h3>
+<p>记忆写入不靠模型自觉,靠<strong>回合尾 nudge 计数</strong>。默认间隔 10:内存 <code>agent._memory_nudge_interval = 10</code>(agent/agent_init.py:1903,可配 <code>memory.nudge_interval</code> :1929);技能侧同默认(agent/agent_init.py:2032/2035)。memory 按<strong>用户轮</strong>计数,判定点在回合开始(turn_context.py:869-877):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Track memory nudge trigger (turn-based, checked here).</span></span>
+<span class="line"><span style="color:#E1E4E8">should_review_memory </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> False</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (agent._memory_nudge_interval </span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#F97583">        and</span><span style="color:#9ECBFF"> "memory"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> agent.valid_tool_names</span></span>
+<span class="line"><span style="color:#F97583">        and</span><span style="color:#E1E4E8"> agent._memory_store):</span></span>
+<span class="line"><span style="color:#E1E4E8">    agent._turns_since_memory </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> agent._turns_since_memory </span><span style="color:#F97583">&gt;=</span><span style="color:#E1E4E8"> agent._memory_nudge_interval:</span></span>
+<span class="line"><span style="color:#E1E4E8">        should_review_memory </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> True</span></span>
+<span class="line"><span style="color:#E1E4E8">        agent._turns_since_memory </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>任一 memory 工具调用成功即清零(agent/tool_executor.py:709-710);会话恢复时从历史补齐计数。skill 按<strong>工具迭代</strong>计数(agent/conversation_loop.py:2369-2373,仅 <code>skill_manage</code> 可用时自增),用 skill_manage 后清零(agent/tool_executor.py:711-712)。真正的执行在回合<strong>响应送达之后</strong>(agent/turn_finalizer.py:810-830):满足 <code>final_response and not interrupted and not skip_background_review and (_should_review_memory or _should_review_skills)</code> 就 <code>_spawn_background_review(messages_snapshot=list(messages), review_memory=…, review_skills=…)</code>——快照结构克隆,后台 fork 的就地清洗器碰不到现场转录;异常全吞(best-effort)。后台线程见 agent/background_review.py:1754;评审 agent 自身把两个 nudge 间隔置 0 防递归(curator.py:1977-1978),fork 的整份工作就是发 memory / skill_manage 两种工具调用(background_review.py:388-391);cron 会话无人在环,默认 <code>skip_background_review=True</code>(每个评审事件约 3 万 token,turn_finalizer.py:812-814 注释)。</p>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:画记忆读写时序图,并解释 FTS5 CJK 为何「够用」</p>
+<p><strong>目标</strong>:把「用户说话 → nudge 计数 → 后台评审写 MEMORY.md → 下会话生效」与「查询 → 三索引路由」两条链路画成一张时序图,每步标文件:行号。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>先画写入链路(参考下图),再打开 tools/memory_tool.py:159-300 与 :706-717 核对「活状态 vs 冻结快照」的分叉点;</li>
+<li>打开 agent/turn_context.py:869-877 与 agent/turn_finalizer.py:810-830,把判定与派发两行注释补进图;</li>
+<li>打开 hermes_state_search.py:1481-1503,为检索链路补上四个分支(fts5 / fts_cjk / trigram / like_scan)的进入条件;</li>
+<li>回答:FTS5 关键词检索没有向量语义,为何对 Hermes 的会话记忆「够用」?</li>
+</ol>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>用户第 N 轮消息 ─► turn_context.py:869 计数(按用户轮)</span></span>
+<span class="line"><span>     │ N ≥ 10 → should_review_memory = True,计数清零</span></span>
+<span class="line"><span>     ▼</span></span>
+<span class="line"><span>回合响应送达后 ─► turn_finalizer.py:810 满足四条件</span></span>
+<span class="line"><span>     ▼ _spawn_background_review(messages_snapshot=list(messages))</span></span>
+<span class="line"><span>后台评审 agent(curator 模式,只准发 memory/skill_manage)</span></span>
+<span class="line"><span>     ▼ memory(action=add, …)</span></span>
+<span class="line"><span>MemoryStore 写活状态 + 落盘 MEMORY.md(本回合 prompt 仍是旧快照)</span></span>
+<span class="line"><span>     ▼ 下会话 load_from_disk() → 生成新冻结快照 → 注入 prompt</span></span>
+<span class="line"><span>查询链路:session_search(query) ─► search_messages hermes_state_search.py:1431</span></span>
+<span class="line"><span>     └─ 非 CJK→fts5 / CJK→fts_cjk / CJK≥3字→trigram / 兜底→like_scan</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<p><strong>完成标准</strong>:图中每个箭头都能指到文件:行号;能解释「为什么第 N 轮写入、第 N 轮的回答里看不到新记忆」;能用「二元组分词 vs trigram 字符数下限」一句话说清 CJK 扩展的必要性;给出「FTS5 够用」的两条理由(含「与向量记忆的分工」)。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>记忆「写了没生效」</td>
+<td>冻结快照设计:会话内 prompt 不变是特性</td>
+<td>用 memory 工具结果验证写入;新值下会话或压缩恢复后进 prompt</td>
+</tr>
+<tr>
+<td>MEMORY.md 超 2200 字符</td>
+<td>条目太多太碎</td>
+<td>按工具提示 replace 合并;单回合 3 次失败熔断,别硬撑</td>
+</tr>
+<tr>
+<td>1-2 字中文搜不到或极慢</td>
+<td>trigram 需 ≥3 字符,落入 like_scan 兜底</td>
+<td>确认 cjk 索引已建(<code>optimize-storage</code> 回填),查慢日志路由路径</td>
+</tr>
+<tr>
+<td>cjk tokenizer 加载失败</td>
+<td>.so 缺失或被 HERMES_FTS5_CJK_SO 指错</td>
+<td>重跑 native/fts5_cjk/build.sh;进程已自愈删触发器,写消息不挂</td>
+</tr>
+<tr>
+<td>记忆文件被投毒</td>
+<td>供应链/姊妹会话写入恶意条目</td>
+<td>strict 扫描命中→快照 <code>[BLOCKED:]</code> 占位,原文保留可删——别静默丢弃</td>
+</tr>
+<tr>
+<td>外部 provider 每轮都慢</td>
+<td>问候轮也触发 prefetch</td>
+<td>trivial prompt 门控(memory_provider.py:90)只放行有语义信号的回合</td>
+</tr>
+<tr>
+<td>后台评审烧 token</td>
+<td>每事件约 3 万 token</td>
+<td>cron 会话默认 skip_background_review;本地高频会话可调大 nudge_interval</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>存什么的判断</strong>:存跨会话才值钱的事实与偏好(项目约束、用户习惯、长期承诺);不存一次性能检索到的细节(会话库就是档案)、明文密钥、可变指令(该进技能/system prompt,02 章路径)。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三层记忆</td>
+<td>SessionDB 全量可检索 / MEMORY.md 2200 字符 / USER.md 1375 字符,分层的依据是取回成本</td>
+</tr>
+<tr>
+<td>双状态</td>
+<td>冻结快照进 prompt 保前缀缓存;活状态进工具结果,下会话快照才更新</td>
+</tr>
+<tr>
+<td>双文件读写</td>
+<td>memory 工具 add/replace/remove 批量操作,strict 威胁扫描,3 次熔断防死循环</td>
+</tr>
+<tr>
+<td>三索引路由</td>
+<td>fts5 / fts_cjk / trigram / like_scan 按查询形状选路,慢日志带路径可 grep</td>
+</tr>
+<tr>
+<td>CJK 扩展</td>
+<td>trigram 卡 ≥3 字符 → cjk_unicode61 重叠二元组,索引级命中 1-2 字词</td>
+</tr>
+<tr>
+<td>nudge 写入</td>
+<td>memory 按用户轮、skill 按工具迭代,默认 10;回合送达后后台评审派发</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 Hermes 选择「关键词检索 + 冻结快照」而不是向量记忆常驻 prompt?如果某轮用户说「忘掉我刚写的那条记忆」,最快什么时候能真正生效?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>①会话检索要的是「说过什么」的字面召回——精确、可审计、零模型成本,查询本身还能解释;向量适合语义模糊召回(02.05/04),那是外部 provider(Honcho 等)的活,且 prefetch 进的是易失上下文而非长期快照。②冻结快照是前缀缓存换稳定:立即执行 memory(action=remove)能删活状态与磁盘,但本回合 prompt 里仍是旧快照,真正消失要等下次 <code>load_from_disk()</code>(压缩恢复 system_prompt.py:1084 或新会话);「立刻让模型不知道」做不到——这与 02.05/06 的遗忘设计一致:遗忘是持久化层的承诺,不是上下文层的即时抹除。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/NousResearch/hermes-agent">NousResearch/hermes-agent(源码仓库,MIT)</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs">Hermes Agent 官方文档(developer-guide/architecture)</a></li>
+<li><a href="https://www.sqlite.org/fts5.html">SQLite FTS5 全文检索(trigram 与外部内容表语义)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/03/03/"><span>上一篇</span><strong>02.09.03.03 技能系统</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/03/05/"><span>下一篇</span><strong>02.09.03.05 平台网关与 MCP</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念三层记忆--一个运行时库--两个有界文件">1. 概念:三层记忆 = 一个运行时库 + 两个有界文件</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这样设计">2. 为什么这样设计</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用位置谁持有谁注入谁检索">3. 作用位置:谁持有、谁注入、谁检索</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-memorystore双文件--双状态--威胁扫描">4.1 MemoryStore:双文件 + 双状态 + 威胁扫描</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-注入位置与重载时机">4.2 注入位置与重载时机</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-外部-provider一次一个的插件口">4.3 外部 provider:一次一个的插件口</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-会话检索fts5-三索引路由与-cjk-二元组">4.4 会话检索:FTS5 三索引路由与 CJK 二元组</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-写入触发nudge-与后台评审">4.5 写入触发:nudge 与后台评审</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

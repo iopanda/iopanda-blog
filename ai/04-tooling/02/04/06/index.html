@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.02.04.06 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC · iopanda</title><meta name="description" content="04.02.04.06 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC · 工具链 / 可观测性与评估，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/02/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.02.04.06 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC · iopanda"><meta property="og:description" content="04.02.04.06 真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC · 工具链 / 可观测性与评估，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/02/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="02" data-active-subsection="04" data-active-article="/ai/04-tooling/02/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 可观测性与评估"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/02/"><span class="tree-number">02</span><span class="tree-title">可观测性与评估</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/02/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 DeepEval"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/02/04/"><span class="tree-number">04</span><span class="tree-title">DeepEval</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/02/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/02/">可观测性与评估</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/02/04/">DeepEval</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC</span></nav><header class="ai-article-header"><p class="ai-number">04.02.04.06</p><h1>真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC</h1><p class="ai-meta"><time datetime="2026-09-03T21:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>observability-and-evaluation</li><li>deepeval</li><li>case-studies</li></ul></header><div class="ai-prose"><h1 id="真实组织案例rldatixfinomhumachcybozuintec">真实组织案例：RLDatix、Finom、Humach、Cybozu、INTEC</h1>
+<blockquote>
+<p>本章聚焦公开可验证的组织采用案例。需要先说明一个现实边界：DeepEval 作为开源评测框架，本身公开披露的命名客户故事不如 Langfuse 那样集中；更多组织案例分散在两类资料中：一类是 Confident AI 官方 case study，明确说明其平台建立在 DeepEval 之上；另一类是公司工程博客中对 DeepEval 的真实 PoC 与导入实践。[1][2][3][4][5][6][7][8]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>从真实组织案例理解 DeepEval 的产品落点；</li>
+<li>区分“DeepEval 开源框架采用”和“DeepEval/Confident AI 生态平台采用”；</li>
+<li>从背景、痛点、集成、成本收益、结果五个维度分析案例；</li>
+<li>理解哪些组织最容易被 DeepEval 吸引；</li>
+<li>明确 DeepEval 在企业中的真实角色往往是“评测引擎”而不是“前台平台”。</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">说明</p>
+<p>以下案例全部采用公开可验证资料。RLDatix、Finom、Humach 来自 Confident AI 官方 case study，其中明确提到平台以 DeepEval 为开源评测基础；Cybozu 与 INTEC 则来自公司工程博客，体现 DeepEval 在真实团队中的 PoC 与技术采用实践。[6][7][8][4][5]</p>
+</div>
+<h2 id="案例-1rldatix">案例 1：RLDatix</h2>
+<p><strong>背景</strong>
+Confident AI 官网与独立 case study 明确写到，RLDatix 将 Confident AI 作为全公司统一的 evaluation、observability 与 red teaming 平台；案例中还明确指出 Confident AI “built on DeepEval”。[3][6]</p>
+<p><strong>痛点</strong>
+RLDatix 的 AI 场景属于高风险医疗软件：</p>
+<ul>
+<li>产品覆盖 NHS 与全球医疗机构；</li>
+<li>AI 功能不仅影响体验，还可能影响患者护理与合规流程；</li>
+<li>多个团队并行做 AI，原先各自维护 eval stack，缺少统一标准。[6]</li>
+</ul>
+<p><strong>集成方法</strong>
+RLDatix 选择将 Confident AI/DeepEval 作为平台层基础设施，而不是让每个产品团队各自拼测试体系。工程团队通过 SDK/CI 工作流接入，产品经理和领域专家则通过统一平台参与评测与标注。[6]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要组织级标准化与平台化 adoption；</li>
+<li>收益：每个 AI 产品不再从零搭建评测流程，安全、信任和质量标准获得统一；</li>
+<li>产品意义：这说明 DeepEval 的价值在大组织中，不只是写几个测试，而是成为统一质量标准的开源基础层。</li>
+</ul>
+<p><strong>结果</strong>
+公开材料明确给出几个结果：</p>
+<ul>
+<li>RLDatix 用它统一 enterprise-wide evals；</li>
+<li>“With Confident AI” time to production 为 3 weeks，相比 “Without Confident AI” 的 3 months；</li>
+<li>组织把 AI quality、trust、safety 从团队级做法升级为 shared infrastructure。[3][6]</li>
+</ul>
+<h2 id="案例-2finom">案例 2：Finom</h2>
+<p><strong>背景</strong>
+Confident AI case study 明确写到，Finom 使用该平台来支撑其 agentic financial workflows，而平台给工程师的一面明确是 DeepEval：clean SDK、pytest、CI pipelines。[7]</p>
+<p><strong>痛点</strong>
+Finom 的 AI agents 能执行真实金融动作，如发卡、设限额、会计相关操作，因此测试不能停留在 vibe checks；同时，prompt/dataset/eval 的改进过度依赖工程师，导致改进周期非常长。[7]</p>
+<p><strong>集成方法</strong>
+Finom 通过 Confident AI + DeepEval，把 product managers、data scientists、engineers 拉进同一条评测链：</p>
+<ul>
+<li>工程师使用 DeepEval SDK/pytest/CI；</li>
+<li>产品侧在平台中直接管理 evals、datasets 和多轮仿真。[7]</li>
+</ul>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要建立跨产品、跨角色的一套评测标准；</li>
+<li>收益：降低工程师在 prompt improvement cycle 上的阻塞；</li>
+<li>产品意义：这说明 DeepEval 不只是本地测试库，也可以成为 AI product iteration loop 的底层引擎。</li>
+</ul>
+<p><strong>结果</strong>
+公开数据很强：</p>
+<ul>
+<li>改进周期从 10 天缩短到 3 小时；</li>
+<li>27x faster iteration cycles；</li>
+<li>预计节省 €250K+；</li>
+<li>60+ 小时/周被节省。[7]</li>
+</ul>
+<h2 id="案例-3humach">案例 3：Humach</h2>
+<p><strong>背景</strong>
+Confident AI 官方 case study 写到，Humach 采用其平台来评估企业级 voice AI agents，而平台能力同样建立在 DeepEval / DeepTeam 生态之上。[8]</p>
+<p><strong>痛点</strong>
+Humach 需要服务像 McDonald’s、Visa、Amazon 这样的企业客户，其 voice AI 代理面临：</p>
+<ul>
+<li>多轮对话复杂度；</li>
+<li>企业级合规与治理要求；</li>
+<li>评测过程涉及工程、QA、AI Whisperers、PM 等多角色协作。[8]</li>
+</ul>
+<p><strong>集成方法</strong>
+Humach 使用该平台统一 annotation、evaluation 和 multi-turn simulations。DeepEval 的价值在这里体现为：工程团队拥有标准化 eval engine，非技术团队也能围绕同一质量标准协作。[8]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要把原本分散的评测数据、CSV、人工流程迁移到统一体系；</li>
+<li>收益：多轮 voice AI 测试和治理不再依赖 ad-hoc 工具链；</li>
+<li>产品意义：这说明 DeepEval 生态对语音 AI 与高合规对话代理也成立，而不只是文本问答。</li>
+</ul>
+<p><strong>结果</strong>
+公开结果包括：</p>
+<ul>
+<li>speed to market 提升 200%；</li>
+<li>节省 $100K+ engineering costs；</li>
+<li>20+ annotators enabled；</li>
+<li>3+ workflows centralized。[8]</li>
+</ul>
+<h2 id="案例-4cybozu工程团队-poc">案例 4：Cybozu（工程团队 PoC）</h2>
+<p><strong>背景</strong>
+Zenn 上由作者发表于 <code>CYBOZU SUMMER BLOG FES '25</code> 的文章明确写到：其团队在开发生成式 AI 功能过程中，使用 DeepEval 对 LLM-as-a-Judge 进行 PoC，并且 PoC 仍在持续中。[4]</p>
+<p><strong>痛点</strong>
+文章明确描述了几个很典型的企业产品问题：</p>
+<ul>
+<li>prompt tuning 很难验证是否真的提升质量；</li>
+<li>新模型导入有精度退化风险；</li>
+<li>新 AI 功能上线前需要更稳定的质量判断；</li>
+<li>团队还希望未来让更多开发团队都能接手 AI 功能开发，而不只是少数专家。[4]</li>
+</ul>
+<p><strong>集成方法</strong>
+Cybozu 的做法是把 DeepEval 用作 LLM-as-a-Judge 的评估框架，通过 PoC 重点验证：</p>
+<ul>
+<li>分数是否可信；</li>
+<li>指标是否能对质量变化保持敏感；</li>
+<li>学习成本和开发效率是否可接受。[4]</li>
+</ul>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：要投入时间做指标设计和信度验证；</li>
+<li>收益：把 prompt 调优和模型切换从人工反复验证，转成更可系统化的评测流程；</li>
+<li>产品意义：这类 PoC 非常典型，说明企业在真正大规模推广前，会先验证 DeepEval 是否能成为组织内通用评测基线。</li>
+</ul>
+<p><strong>结果</strong>
+Cybozu 文中公开结论是：在 PoC 水平上，DeepEval 在信赖性、妥当性和感度方面没有发现“大问题”，并且在 Python/pytest 工作流下具备较低导入门槛。[4]</p>
+<h2 id="案例-5intec">案例 5：INTEC</h2>
+<p><strong>背景</strong>
+Qiita 上由 <code>株式会社インテック</code> 署名的文章明确介绍了 DeepEval 与 G-Eval，并从企业工程视角整理 LLM evaluation metrics 的意义和用法。[5]</p>
+<p><strong>痛点</strong>
+文章聚焦的问题非常典型：</p>
+<ul>
+<li>LLM 输出难以用传统字符串一致性方法评估；</li>
+<li>需要更贴近语义的评价指标；</li>
+<li>团队需要找到“更像人类判断”的质量度量方式。[5]</li>
+</ul>
+<p><strong>集成方法</strong>
+INTEC 通过 DeepEval 尝试 G-Eval，并梳理了 metrics、score、reason、threshold 等核心概念，说明其团队已将 DeepEval 作为评估方法研究和实践的一部分。[5]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要引入 judge 模型调用成本，并学习新型评估方法；</li>
+<li>收益：从传统统计指标转向更贴近业务质量的 LLM-based evaluation；</li>
+<li>产品意义：这说明 DeepEval 对数据/AI 工程团队的吸引力，很大程度来自它能把“评价标准”工程化。</li>
+</ul>
+<p><strong>结果</strong>
+公开结果不是商业 ROI，而是方法论结论：INTEC 认为 DeepEval/G-Eval 是值得尝试的 LLM 评测路线，并对其基础架构与适用边界做了系统整理。[5]</p>
+<h2 id="6-这些案例共同说明了什么">6. 这些案例共同说明了什么</h2>
+<p>这 5 个组织覆盖了：</p>
+<ul>
+<li>医疗/GRC 企业平台；</li>
+<li>金融科技 agent 产品；</li>
+<li>企业语音 AI 服务商；</li>
+<li>企业软件工程团队；</li>
+<li>数据/AI 技术团队。</li>
+</ul>
+<p>共同点非常一致：</p>
+<ol>
+<li>它们都不是只在做“提示词小实验”，而是在把 AI 纳入真实产品或企业流程；</li>
+<li>它们采用 DeepEval/Confident AI 生态时，首先看重的是“评测能不能真正进入工程流”；</li>
+<li>DeepEval 最常见的角色不是单独的前台平台，而是 repo、CI、平台标准里的评测引擎；</li>
+<li>在高风险、高协作、高变更频率场景下，这类评测引擎的价值会显著放大。</li>
+</ol>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>组织</th>
+<th>DeepEval 扮演的角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RLDatix</td>
+<td>企业级 AI 质量标准的开源基础层</td>
+</tr>
+<tr>
+<td>Finom</td>
+<td>金融 agent 系统的 eval engine</td>
+</tr>
+<tr>
+<td>Humach</td>
+<td>企业语音 AI 治理与多轮评测底座</td>
+</tr>
+<tr>
+<td>Cybozu</td>
+<td>企业 AI 功能评测 PoC 基线</td>
+</tr>
+<tr>
+<td>INTEC</td>
+<td>语义评测方法工程化工具</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么 DeepEval 在这些组织里，往往不是“主平台”的名字，却依然很关键？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为 DeepEval 最核心的价值不是充当前台工作台，而是把“AI 质量怎样被定义和验证”这件事嵌进工程体系。前台可能是 Confident AI，也可能是企业自己的产品或平台，但底层评测引擎如果不可靠，整个质量流程就很难成立。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://raw.githubusercontent.com/confident-ai/deepeval/main/README.md">https://raw.githubusercontent.com/confident-ai/deepeval/main/README.md</a> — DeepEval README</li>
+<li>[3] <a href="https://www.confident-ai.com/pricing">https://www.confident-ai.com/pricing</a> — Confident AI pricing</li>
+<li>[4] <a href="https://zenn.dev/takamin55/articles/3c7c4e1fedfd4f">https://zenn.dev/takamin55/articles/3c7c4e1fedfd4f</a> — Cybozu Summer Blog FES DeepEval PoC article</li>
+<li>[5] <a href="https://qiita.com/ayoyo/items/50a64d47802d927142da">https://qiita.com/ayoyo/items/50a64d47802d927142da</a> — INTEC article on DeepEval metrics</li>
+<li>[6] <a href="https://www.confident-ai.com/case-study/rldatix">https://www.confident-ai.com/case-study/rldatix</a> — RLDatix case study</li>
+<li>[7] <a href="https://www.confident-ai.com/case-study/finom">https://www.confident-ai.com/case-study/finom</a> — Finom case study</li>
+<li>[8] <a href="https://www.confident-ai.com/case-study/humach">https://www.confident-ai.com/case-study/humach</a> — Humach case study</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/02/04/05/"><span>上一篇</span><strong>04.02.04.05 与 Promptfoo、Phoenix、Langfuse 的竞品对比</strong></a><a class="ai-pager-next" href="/ai/04-tooling/02/05/01/"><span>下一篇</span><strong>04.02.05.01 Ragas 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-1rldatix">案例 1：RLDatix</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-2finom">案例 2：Finom</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-3humach">案例 3：Humach</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-4cybozu工程团队-poc">案例 4：Cybozu（工程团队 PoC）</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-5intec">案例 5：INTEC</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-这些案例共同说明了什么">6. 这些案例共同说明了什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

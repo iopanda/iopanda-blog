@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.01.05 自主度是有价格的 · iopanda</title><meta name="description" content="02.01.05 自主度是有价格的 · 智能体 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/01/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.01.05 自主度是有价格的 · iopanda"><meta property="og:description" content="02.01.05 自主度是有价格的 · 智能体 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/01/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="01" data-active-subsection data-active-article="/ai/02-agents/01/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/02-agents/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/01/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">自主度是有价格的</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">自主度是有价格的</span></nav><header class="ai-article-header"><p class="ai-number">02.01.05</p><h1>自主度是有价格的</h1><p class="ai-meta"><time datetime="2026-09-03T03:55">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>autonomy</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="自主度是有价格的">自主度是有价格的</h1>
+<p>设想两个团队做同一件事：把杂乱的客户反馈整理成结构化的问题清单。</p>
+<p>A 团队的方案是 workflow：先分类，再按类别走不同的提取模板，最后合并去重。三步，每步都是一次模型调用，流程固化在代码中。B 团队的方案是 Agent：给模型一组工具（读文件、搜索相似反馈、写条目、合并），让它自己决定怎么处理，跑到它认为完成。</p>
+<p>六个月后 A 的方案每天处理 4000 条，B 的处理 900 条。B 的效果在复杂样本上确实更好——那些跨多条反馈的合并判断，Agent 做得比固定模板细。但 B 的失败也更难查：同样的输入，两次运行结果不同，有一半的工单需要人工复核，因为没人能确定它是漏了还是判断了不该合并。</p>
+<p>B 团队并未做错什么，他们只是选择了成本更高的自主度，而没有先问清楚这份自主度能带来什么回报。</p>
+<h2 id="谁在决定下一步">谁在决定下一步</h2>
+<p>“是不是 Agent”经常是个错问题。更有用的问题是：<strong>它在自主度的哪个位置，为什么在那里。</strong></p>
+<p>最左端是 Copilot：人主导，模型建议，人接受或拒绝。代码补全、行内翻译、IDE 里的重构建议都在这里。往右一格是 workflow：流程由人预先固定，模型只负责其中若干节点的判断，比如“这条工单属于哪个队列”。再往右是 Agent：给定目标，模型自己决定步骤和顺序。最右是多 Agent：多个模型分工、互相审查或竞争。</p>
+<p>判断位置可以用一句话：<strong>如果我中途离开，它能自己把事办完并停下来吗？</strong> 能，且停得合理，偏 Agent；不能，那就是 Copilot 或 workflow。</p>
+<p>这句话里其实藏了两个独立问题：<strong>谁决定下一步</strong>，和<strong>谁承担后果</strong>。位置越往右，第二个问题的答案越模糊——这也是为什么自主度高的系统在组织里推进得更慢，它不只是技术选型，还是一次责任分配的变更。</p>
+<h2 id="可预测性评测成本护栏">可预测性、评测成本、护栏</h2>
+<p>自主度每往右一档，你都要多付三样东西，而且这三样没法靠“更努力”省掉。</p>
+<p><strong>第一笔：可预测性。</strong> 同样的输入可能走不同的路径，测试从“断言输出”变成“断言不变量”——比如“不管怎么走，都不能发出超过一封邮件”“不管合并多少次，条目总数不能增加”。写不变量比写断言难得多，而且它只能防住你能想到的坏事。</p>
+<p><strong>第二笔：评测成本。</strong> 单步任务可以离线跑一千条样本算准确率；多步任务的失败分布是长尾的，你得设计轨迹级评测，还得专门构造“任务没完成但也没报错”这种最难发现的失败。B 团队一半的人工复核，本质就是在用人力补评测缺口。</p>
+<p><strong>第三笔：护栏必须硬件化。</strong> 人盯着的时候可以靠常识兜底；人不在的时候，权限、预算、审批点必须写进系统，而不是写进提示词。提示词是建议，代码才是约束——这句话值得在每个 Agent 项目中反复强调。</p>
+<h2 id="列得出路径就别用-agent">列得出路径，就别用 Agent</h2>
+<p>Anthropic 在 2024 年底的《Building effective agents》里把 workflow 和 agent 明确分开，并给了一条很实用的建议：<strong>从最简单的方案开始，只在它能买到东西的时候才加复杂度。</strong></p>
+<p>这句话经常被引用错，读成“别用 Agent”。它实际是在说，自主度是花钱买来的，你得知道买到了什么。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>workflow</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>路径</td>
+<td>人预先定义</td>
+<td>模型逐步决定</td>
+</tr>
+<tr>
+<td>失败定位</td>
+<td>定位到具体失效步骤</td>
+<td>需审阅整条轨迹</td>
+</tr>
+<tr>
+<td>测试</td>
+<td>断点断言</td>
+<td>不变量 + 抽样复核</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>路径可枚举、步骤稳定</td>
+<td>路径取决于中间结果</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>低且可预测</td>
+<td>随任务长度超线性增长</td>
+</tr>
+</tbody>
+</table>
+<p>一个可操作的判断流程是这样的：先把任务的所有可能路径列出来。能列完，用 workflow；列不完但能列出大部分，用 workflow 加一个“兜底分支交给模型”；完全列不出来，才考虑 Agent。</p>
+<p>实践中还有第三种选择，往往比纯 Agent 更好：<strong>用 Agent 做规划，用 workflow 做执行。</strong> 模型只负责决定“该做哪几件事、什么顺序”，具体的动作由确定的代码执行。这样你既拿到了灵活性，又保住了可测试性——B 团队若采用这种结构，分类和合并的具体动作就能被单元测试覆盖，只有“怎么分组”这一步是不可预测的。</p>
+<h2 id="分阶段配置自主度">分阶段配置自主度</h2>
+<p>自主度不必是全局的开关，它可以按阶段配。这可能是最被低估的一个技巧。</p>
+<p>以课程助教为例：读取学员进度是确定性的（工具调用，无自主度）；决定讲多深、出什么题，可以让模型自主；但把题发给学员、给作业打分，必须有确认或复核环节。也就是说，同一个系统里，规划段是 Agent，执行段的某些动作是 Copilot，另一些是 workflow。</p>
+<p>把这条思路做成工程，就是给每个动作标一个<strong>风险等级</strong>，然后按等级决定要不要人确认：</p>
+<ul>
+<li>只读操作（查进度、读讲义）→ 自动执行</li>
+<li>可逆写操作（存草稿、改标签）→ 自动执行，留审计日志</li>
+<li>不可逆写操作（发消息、改成绩、删除数据）→ 必须确认</li>
+<li>涉及金钱或对外承诺 → 必须确认 + 预算上限</li>
+</ul>
+<p>这套分级的意义不只是安全，它还让评测变得可行：你不需要对所有轨迹都做人审，只需要对高风险动作的触发点做人审。</p>
+<h2 id="步数成本影响半径">步数、成本、影响半径</h2>
+<p>既然自主度有价格，就该有预算。实践中通常只需要三个数：</p>
+<p><strong>步数上限。</strong> 超过 N 步还没完成，停下来问人或放弃。这个数不应凭直觉设定，而应从任务分布中推算——如果 95% 的成功任务在 8 步内完成，那 15 步就是很宽松的上限。</p>
+<p><strong>成本上限。</strong> 单任务的 token 或金额上限。多步任务的成本是超线性的，一个失控的循环能在数分钟内耗尽单日预算。</p>
+<p><strong>影响半径。</strong> 这个任务最坏能改到什么程度。发一封邮件是一个半径，批量更新一万条记录是另一个半径。半径大的动作，确认门槛要高。</p>
+<p>三个数写进代码，不写进提示词。提示词里写“请不要超过 10 步”的团队，最后往往拿到一个跑了 60 步的结果。</p>
+<p>自主度是一个可调参数，而非身份标签。调至哪一档，取决于你能承受多少不可预测性、能付多少评测成本、能给多少动作加护栏。</p>
+<p>下一节拆开循环本身——那是所有自主度的承载体。你会看到它有多脆：任何一步的观察质量下降，后面几步都会连锁走偏。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Anthropic (2024). <em>Building effective agents.</em> <a href="https://www.anthropic.com/research/building-effective-agents">https://www.anthropic.com/research/building-effective-agents</a></li>
+<li>Google (2024). <em>Agents.</em> 白皮书，对 agent 与 workflow 的产品视角区分。</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/01/04/"><span>上一篇</span><strong>02.01.04 五个角色：模型、上下文、规划、工具、记忆</strong></a><a class="ai-pager-next" href="/ai/02-agents/01/06/"><span>下一篇</span><strong>02.01.06 循环：Agent 的心跳</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#谁在决定下一步">谁在决定下一步</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#可预测性评测成本护栏">可预测性、评测成本、护栏</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#列得出路径就别用-agent">列得出路径，就别用 Agent</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#分阶段配置自主度">分阶段配置自主度</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#步数成本影响半径">步数、成本、影响半径</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

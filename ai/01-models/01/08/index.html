@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.08 模型架构 · iopanda</title><meta name="description" content="01.01.08 模型架构 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/08/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.08 模型架构 · iopanda"><meta property="og:description" content="01.01.08 模型架构 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/08/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/08/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/08/" aria-current="page"><span class="tree-number">08</span><span class="tree-title">模型架构</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">模型架构</span></nav><header class="ai-article-header"><p class="ai-number">01.01.08</p><h1>模型架构</h1><p class="ai-meta"><time datetime="2026-09-02T17:30">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-architectures</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>06、07 两章确立了主心骨:Transformer 是骨架、「预测下一个词」是目标。但现实世界不只有「写文本」这一件事——还有看图、听声、生成图像,以及「参数越少越便宜」的工程约束。本章把镜头拉远,回答:<strong>模型到底可以长成哪些样子,每种样子擅长什么、为什么</strong>。你会得到一张架构全景图(CNN、RNN/LSTM、Transformer、Diffusion、MoE),以及一套按任务选架构的决策框架。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>画出主流架构全景:CNN、RNN/LSTM、Transformer、Diffusion、MoE 各自解决什么问题、活跃在哪些场景;</li>
+<li>解释 Encoder-only、Decoder-only、Encoder-Decoder 三类架构的结构差异、代表模型与擅长任务;</li>
+<li>说清 Dense 与 MoE 的区别:路由器、总参数 vs 激活参数、负载均衡;</li>
+<li>描述多模态模型「视觉编码器 + 对齐」的融合思路,并对比两条实现路线;</li>
+<li>面对一个具体任务,用选型框架选出合适的架构,并读懂模型卡上的关键字段。</li>
+</ol>
+<h2 id="1-概念模型架构是什么">1. 概念:模型架构是什么</h2>
+<ul>
+<li><strong>模型架构(architecture)= 数据在模型内部流动的「管线设计」</strong>:层怎么堆叠、token 之间通过什么机制交换信息(卷积窗口、循环状态还是注意力)、前馈部分长什么样、每个输入实际激活多少参数。</li>
+<li>它是「模型」三维度里最先被定下的一个:上一章讲过,训练目标是<strong>学什么</strong>(预测下一个词),架构则是<strong>用什么形状的机器去学</strong>。同一个目标,套在不同骨架上,能力和代价完全不同。</li>
+<li>架构 ≈ 工程师对任务的<strong>先验判断</strong>——「我认为这类数据里,哪些结构关系是重要的」。比如图像里「相邻像素才相关」,文本里「任意两词都可能相关」。先验对了,学习事半功倍;先验错了,模型再大也学不动。</li>
+</ul>
+<h3 id="11-一张图记住全景">1.1 一张图记住全景</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>模型架构家族(按「信息怎么流」记忆)</span></span>
+<span class="line"><span>├─ CNN ───────────── 像素网格:卷积核滑窗(局部相关)─── 图像理解</span></span>
+<span class="line"><span>├─ RNN / LSTM ────── 时间序列:隐藏状态串行传递 ─────── 早期序列任务、时序预测</span></span>
+<span class="line"><span>├─ Transformer ───── 任意序列:注意力一步直达(全对全)── 文本/多模态主骨架</span></span>
+<span class="line"><span>│   ├─ Encoder-only ────── 双向读(BERT)→ 理解/检索</span></span>
+<span class="line"><span>│   ├─ Decoder-only ────── 因果写(GPT)→ 生成,现代 LLM 主流</span></span>
+<span class="line"><span>│   ├─ Encoder-Decoder ─── 先读后写(T5)→ 翻译/摘要</span></span>
+<span class="line"><span>│   ├─ + MoE 稀疏化 ────── 专家路由(Mixtral/DeepSeek-V3)→ 大容量低成本</span></span>
+<span class="line"><span>│   └─ + 视觉/音频编码器 ── 多模态融合(LLaVA/GPT-4o)→ 看图说话</span></span>
+<span class="line"><span>└─ Diffusion ──────── 噪声→数据:逐步去噪 ──────────── 图像/视频/音频生成</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>注意结构:CNN、RNN 是 Transformer 之外的「经典家族」;MoE 与多模态不是新家族,而是<strong>叠在 Transformer 上的改造</strong>——这也解释了为什么今天几乎所有大模型,你都能在它的模型卡里找到「Transformer」字样。</li>
+</ul>
+<h2 id="2-为什么需要架构数据不会自己告诉你它长什么样">2. 为什么需要架构:数据不会自己告诉你它长什么样</h2>
+<ul>
+<li><strong>不同数据形态有天然的结构</strong>,把结构写进模型(而不是让模型从头猜),是深度学习几十年的核心经验:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>数据形态</th>
+<th>内在结构</th>
+<th>写进架构后的效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图像</td>
+<td>局部性:相邻像素构成纹理/边缘</td>
+<td>CNN 滑窗:参数少、天然平移不变</td>
+</tr>
+<tr>
+<td>语音/时间序列</td>
+<td>时序性:当前值依赖过去</td>
+<td>RNN 状态传递(曾);如今多被 Transformer 取代</td>
+</tr>
+<tr>
+<td>文本</td>
+<td>长程依赖:句首决定句尾</td>
+<td>注意力:任意两位置一步可达(06 章)</td>
+</tr>
+<tr>
+<td>连续高维生成(图像)</td>
+<td>目标分布复杂、无「标准答案序列」</td>
+<td>扩散:把生成拆成一步步去噪</td>
+</tr>
+<tr>
+<td>超大规模 LLM</td>
+<td>容量要大、单次推理要省</td>
+<td>MoE:专家分工、稀疏激活</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>没有万能架构(No Free Lunch)</strong>:图像用「全对全注意力」也能做(如 ViT),但要更多数据才能学会局部性;文本用「滑窗卷积」也能做,但长程依赖要堆很深。架构的价值是<strong>把数据里确定的结构免费送进模型</strong>,省下学习成本。</li>
+<li>三个现实约束驱动架构演进:① <strong>并行与算力</strong>(GPU 时代,串行 RNN 出局);② <strong>容量与成本</strong>(参数越多越聪明,但显存和推理费也越高);③ <strong>生态与工具链</strong>(主流架构才有成熟的训练、量化、部署工具)。</li>
+</ul>
+<h2 id="3-它有什么作用架构决定能力成本与部署方式">3. 它有什么作用:架构决定能力、成本与部署方式</h2>
+<ul>
+<li><strong>对能力</strong>:架构决定模型能捕获哪种关系(长程/局部/时序),也就划定了能力上限;同等数据下,架构与任务越匹配,效果越好。</li>
+<li><strong>对成本</strong>:架构区分出两笔账——<strong>总参数</strong>决定显存与存储(权重要全部驻留),<strong>激活参数</strong>决定每个 token 的算力与延迟。MoE 的精妙就在把这两笔账分开(4.3 节)。</li>
+<li><strong>对部署</strong>:架构决定推理时的关键资源:自回归要维护 KV cache(09 章会讲)、扩散要跑多步采样、多模态要处理高分辨率 patch——选型直接写进你的算力预算单。</li>
+<li><strong>对生态</strong>:架构即「方言」。同一种架构(如 decoder-only)才有统一的开源权重、量化工具、推理框架支持;冷门架构往往要自己踩坑。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-全景五大架构家族">4.1 全景:五大架构家族</h3>
+<table>
+<thead>
+<tr>
+<th>家族</th>
+<th>核心机制</th>
+<th>主要解决什么问题</th>
+<th>典型代表</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNN</td>
+<td>卷积核滑窗,局部连接+权值共享</td>
+<td>图像的局部性与平移不变</td>
+<td>AlexNet、ResNet</td>
+<td>图像分类、检测、OCR</td>
+</tr>
+<tr>
+<td>RNN/LSTM</td>
+<td>隐藏状态逐 token 串行传递</td>
+<td>变长序列的时序依赖(曾)</td>
+<td>LSTM、GRU</td>
+<td>早期翻译/语音;如今时序预测</td>
+</tr>
+<tr>
+<td>Transformer</td>
+<td>注意力让任意位置直接交互</td>
+<td>长程依赖 + 并行训练(06 章)</td>
+<td>GPT、BERT、T5</td>
+<td>文本与多模态的主骨架</td>
+</tr>
+<tr>
+<td>Diffusion</td>
+<td>前向加噪、反向学去噪</td>
+<td>稳定生成高维连续数据</td>
+<td>DDPM、Stable Diffusion</td>
+<td>文生图、图生图、视频、音频</td>
+</tr>
+<tr>
+<td>MoE</td>
+<td>FFN 复制为多个专家,路由器挑选</td>
+<td>容量大但单个 token 算得少</td>
+<td>Mixtral、DeepSeek-V3</td>
+<td>超大 LLM 的训练与低成本推理</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>CNN(卷积神经网络)</strong>:用可学习的卷积核在像素网格上滑动,同一套权重扫过全图(权值共享),天然假设「相邻像素相关、目标平移位置不影响类别」。AlexNet(2012)凭它引爆深度学习;ResNet(2015)用残差连接让上百层可训练。今天视觉主干仍是 CNN 与 ViT 并存——CNN 高效省算力,适合移动端;ViT(2020)证明纯注意力也能做视觉,但需要更多数据。</li>
+<li><strong>RNN/LSTM(循环网络)</strong>:把序列压缩进一个「隐藏状态」,逐词往后传。LSTM(1997)用门控缓解梯度消失,曾是翻译、语音的主力(05 章讲过它引出注意力)。致命伤是<strong>串行</strong>:第 t 步必须等前 t−1 步,喂不饱 GPU。如今文本任务几乎全被 Transformer 取代,RNN 退守金融时序、流式信号等小场景,以及近年 RWKV、Mamba 这类「线性注意力/状态空间」改良。</li>
+<li><strong>Transformer</strong>:06 章已拆解,此处只定位:它是<strong>当前唯一主线</strong>——注意力解决了长程依赖与并行训练两大难题,且规模法则清晰(参数、数据、算力按幂律换能力)。</li>
+<li><strong>Diffusion(扩散模型)</strong>:概念上是「两步走」——<strong>前向过程</strong>把图像逐步加高斯噪声直到变成纯噪声(固定规则,不需学习);<strong>反向过程</strong>训练一个神经网络学会「从带噪图像一步步去噪还原」。为什么需要它?直接建模图像分布极其困难,GAN 对抗训练又出了名地不稳定;扩散把「一次生成」拆成上千个<strong>简单的去噪子任务</strong>,每步目标明确、训练稳定。它有什么作用?文生图/图生图/视频/音频生成的事实标准(Stable Diffusion、Midjourney 均属此类)。关键参数:<strong>时间步数 T</strong>(如 1000 步的噪声调度)、<strong>采样步数</strong>(DDIM 等加速采样器可用 20~50 步出图)。技术细节:Stable Diffusion(LDM,2022)把去噪搬进 VAE 的<strong>潜空间</strong>大幅降算力,以 U-Net 为骨干、用交叉注意力注入文本条件。注意一个对照:<strong>图像是连续高维数据,扩散合适;语言是离散 token,自回归解码更自然</strong>——这正是 LLM 清一色 decoder-only 的深层原因。</li>
+</ul>
+<h3 id="42-按信息流分encoder-only--decoder-only--encoder-decoder">4.2 按信息流分:Encoder-only / Decoder-only / Encoder-Decoder</h3>
+<ul>
+<li>06 章讲过:Transformer 原版由编码器(Encoder,双向读输入)与解码器(Decoder,因果地逐词生成)组成。<strong>取哪一半、怎么拼,就是三类架构</strong>,本质区别只有一个:<strong>注意力能看见谁</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Encoder-only</th>
+<th>Decoder-only</th>
+<th>Encoder-Decoder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注意力方向</td>
+<td>双向(能看两侧)</td>
+<td>单向(因果,只看左侧)</td>
+<td>输入双向 + 输出单向</td>
+</tr>
+<tr>
+<td>一句话</td>
+<td>「读」</td>
+<td>「写」</td>
+<td>「先读后写」</td>
+</tr>
+<tr>
+<td>预训练目标</td>
+<td>掩码语言建模(BERT,见 07 章)</td>
+<td>因果语言建模(GPT)</td>
+<td>去噪自编码 / text-to-text</td>
+</tr>
+<tr>
+<td>代表模型</td>
+<td>BERT、RoBERTa、DeBERTa</td>
+<td>GPT、Llama、Mistral、Qwen、DeepSeek</td>
+<td>原版 Transformer、T5、BART</td>
+</tr>
+<tr>
+<td>擅长任务</td>
+<td>分类、语义检索/嵌入、抽取</td>
+<td>对话、写作、代码、Agent</td>
+<td>翻译、摘要、语音识别等转换任务</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>为什么 decoder-only 成了今天的主流?</strong> ① 生成是产品的主形态(聊天、写作、代码),而生成<strong>必须</strong>因果,decoder-only 是最直接的实现;② 同一个权重既能生成也能做理解(把分类题写成「请回答……」),接口统一;③ 推理服务简单:只需维护一份 KV cache,不区分「编码阶段/解码阶段」。Encoder-only 则仍是<strong>嵌入/检索</strong>赛道的常客(向量数据库里的 embedding 模型多出自它);Encoder-Decoder 在「输入很长且结构转化强」的任务(翻译、摘要)上仍有结构性优势——这也是为什么 T5 至今未被完全淘汰。</li>
+<li>选型直觉:<strong>要「理解出结果」→ encoder-only;要「生成内容」→ decoder-only;输入输出都是长文本且需转换 → encoder-decoder</strong>。今天的 API 生态里,decoder-only 大模型已顺带覆盖后两类,但本地部署小模型时这个区分仍很实用。</li>
+</ul>
+<h3 id="43-dense-vs-moe路由器激活参数与负载均衡">4.3 Dense vs MoE:路由器、激活参数与负载均衡</h3>
+<ul>
+<li><strong>概念</strong>:传统 Transformer 的每一层 FFN 是一整块,<strong>每个 token 都经过它的全部参数</strong>,这叫稠密(Dense)模型。<strong>MoE(Mixture of Experts,混合专家)<strong>把每层 FFN 复制成 N 个结构相同的「专家」,前面加一个</strong>路由器(gating network)</strong>:路由器看当前 token 的表示,给它打分,只挑分数最高的 top-k 个专家真正计算,输出按路由权重加权求和。</li>
+<li><strong>为什么需要它</strong>:大模型的能力大致随<strong>总参数</strong>(知识容量)增长,但推理成本随<strong>每次实际计算的参数</strong>(激活参数)增长。Dense 模型两笔账绑死——想要 70B 的能力就得付 70B 的算力。MoE 把它们解耦:<strong>总参数管容量,激活参数管成本</strong>,用稀疏激活实现「知识量接近大模型、单 token 算力接近小模型」。</li>
+<li><strong>关键组件与参数</strong>:
+<ol>
+<li><strong>路由器</strong>:一个小的线性层,对每个 token 输出在 N 个专家上的概率分布,取 top-k;</li>
+<li><strong>总参数 vs 激活参数</strong>:两者之比≈「稀疏度」。Mixtral 8x7B:总参数 46.7B、激活 12.9B(每层 8 专家、top-2);DeepSeek-V3:总参数 671B、激活约 37B(每层 256 个路由专家加 1 个共享专家、每个 token 激活 8 个);</li>
+<li><strong>负载均衡</strong>:若所有 token 都涌向同一个专家,其余专家闲置、硬件利用率崩盘。经典做法是给损失函数加<strong>辅助负载均衡损失</strong>(惩罚路由分布不均匀,Switch Transformer 起使用);DeepSeek-V3 进一步提出<strong>无辅助损失的均衡策略</strong>(给每个专家加动态偏置来调节路由),训练更稳;</li>
+<li><strong>专家并行(EP)</strong>:把不同专家放到不同 GPU,配合 all-to-all 通信,是超大 MoE 训练的标配。</li>
+</ol>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Dense(稠密)</th>
+<th>MoE(稀疏)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每层结构</td>
+<td>一个 FFN,所有参数参与</td>
+<td>N 个专家 FFN,路由器挑 top-k</td>
+</tr>
+<tr>
+<td>总参数 vs 激活</td>
+<td>相等</td>
+<td>总 ≫ 激活(常差 5~20 倍)</td>
+</tr>
+<tr>
+<td>单 token 算力</td>
+<td>随总参数线性增长</td>
+<td>只随激活参数增长</td>
+</tr>
+<tr>
+<td>显存/存储</td>
+<td>全量权重</td>
+<td>所有专家都须驻留显存(总参数)</td>
+</tr>
+<tr>
+<td>代表</td>
+<td>Llama 3 8B / 70B</td>
+<td>Mixtral 8x7B、DeepSeek-V3、Qwen-MoE</td>
+</tr>
+<tr>
+<td>短板</td>
+<td>容量与算力绑死</td>
+<td>路由开销、显存大、微调/量化更复杂</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>工程判断</strong>:MoE 用「更大的显存/存储」换「更低的算力/延迟」——只在<strong>总参数足够大、并发足够高</strong>时才划算;小模型、低并发或边缘设备上,Dense 反而更省心。这也是为什么开源社区既有 Dense 的 Llama,也有 MoE 的 Mixtral、DeepSeek 并存。</li>
+</ul>
+<h3 id="44-多模态架构视觉编码器与对齐">4.4 多模态架构:视觉编码器与对齐</h3>
+<ul>
+<li><strong>概念</strong>:让一个模型同时处理文本与图像(乃至音频、视频)。Transformer 只吃 token,所以多模态的核心问题是:<strong>怎么把图像变成模型能读的 token,并让这些 token 与文本 token 「说同一种语言」</strong>。</li>
+<li><strong>机制拆解(以 LLaVA 为代表的对齐路线)</strong>:① <strong>视觉编码器</strong>:用 ViT 把图像切成 16×16 的 patch,编码成一组向量(直接借 CLIP 预训练好的 ViT-L/14,便宜又有效);② <strong>投影层(对齐)</strong>:一个线性层或小 MLP,把视觉向量映射到<strong>文本 embedding 的维度空间</strong>;③ <strong>融合</strong>:对齐后的视觉向量与文本 token 拼接,一起送进 decoder-only 的 LLM。训练分两阶段:先冻结编码器做特征对齐预训练,再对全模型做指令微调。</li>
+<li><strong>两条实现路线</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>做法</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外挂对齐</td>
+<td>现成 LLM + 视觉编码器 + 投影层拼接,分阶段训练</td>
+<td>LLaVA、MiniGPT-4</td>
+</tr>
+<tr>
+<td>原生多模态</td>
+<td>从预训练起就把图像 patch、音频帧 token 化进统一词表,一个 Transformer 端到端学</td>
+<td>GPT-4o、Gemini</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>为什么需要它</strong>:现实世界的信息本就是多模态的(看图、听音、读文档);单模态模型既浪费了数据,也撑不起「视觉问答、语音助手、视频理解」这类产品。</li>
+<li><strong>作用与工程要点</strong>:一个接口同时吃图文,解锁看图说话、文档解析、屏幕理解等能力;CLIP(2021)用<strong>对比学习</strong>在 4 亿图文对上训练双塔(拉近配对图文、推远错配),产出的视觉表示成了整个对齐路线的底座。工程上要注意:<strong>patch 数随分辨率平方增长</strong>(512×512 图≈上千个视觉 token),直接推高算力与 KV cache——所以多模态推理的账单往往由「图」而不是「字」决定。</li>
+</ul>
+<h3 id="45-选型框架从任务到架构">4.5 选型框架:从任务到架构</h3>
+<table>
+<thead>
+<tr>
+<th>你的任务</th>
+<th>推荐架构</th>
+<th>代表模型</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本分类/抽取/语义检索(要 embedding)</td>
+<td>Encoder-only</td>
+<td>BERT 系、bge 系</td>
+<td>双向表示更利于理解;检索要高质量向量</td>
+</tr>
+<tr>
+<td>对话/写作/代码/Agent</td>
+<td>Decoder-only</td>
+<td>Llama、Qwen、DeepSeek</td>
+<td>生成型产品的主形态,生态最全</td>
+</tr>
+<tr>
+<td>翻译/长文档摘要(结构转化强)</td>
+<td>Encoder-Decoder</td>
+<td>T5、BART</td>
+<td>编码器先消化全文,解码器再产出</td>
+</tr>
+<tr>
+<td>看图说话/文档解析/多模态问答</td>
+<td>多模态(对齐或原生)</td>
+<td>LLaVA、GPT-4o、Gemini</td>
+<td>任务本身跨模态</td>
+</tr>
+<tr>
+<td>文生图/图生图/视频生成</td>
+<td>Diffusion</td>
+<td>Stable Diffusion 系</td>
+<td>连续高维数据生成的事实标准</td>
+</tr>
+<tr>
+<td>图像分类/检测(非生成)</td>
+<td>CNN 或 ViT</td>
+<td>ResNet、ViT</td>
+<td>任务传统、模型小、延迟低</td>
+</tr>
+<tr>
+<td>预算有限但想要大模型能力</td>
+<td>Decoder-only + MoE</td>
+<td>Mixtral 8x7B、DeepSeek-V3</td>
+<td>激活参数小,推理单价低</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>读模型卡(config.json)四件事</strong>:① <code>architectures</code> 字段——确认是哪类(如 <code>LlamaForCausalLM</code> = decoder-only);② 总参数 vs 激活参数(区分 MoE);③ 上下文长度与分词器;④ 精度(FP16/BF16/量化)。看懂这四项,你就能在选型时把「能力、显存、单价、延迟」四本账算清楚——这正是下一章训练、推理与服务的入口。</li>
+</ul>
+<h2 id="5-总结">5. 总结</h2>
+<h3 id="51-本章一览">5.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型架构</td>
+<td>数据流过模型的计算管线,体现对任务的先验</td>
+</tr>
+<tr>
+<td>五大家族</td>
+<td>CNN(图像局部)、RNN(时序,已退场)、Transformer(文本主线)、Diffusion(图像生成)、MoE(稀疏化改造)</td>
+</tr>
+<tr>
+<td>三类信息流</td>
+<td>Encoder-only 读(BERT)、Decoder-only 写(GPT,主流)、Encoder-Decoder 读写(T5)</td>
+</tr>
+<tr>
+<td>Dense vs MoE</td>
+<td>Dense:总参数=激活参数;MoE:路由器挑 top-k 专家,容量与算力解耦</td>
+</tr>
+<tr>
+<td>多模态</td>
+<td>视觉编码器(ViT)+ 投影对齐 + LLM;或原生统一 token 空间</td>
+</tr>
+<tr>
+<td>选型本质</td>
+<td>任务形态 → 信息流方向 → 容量与成本预算 → 生态支持</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-思考题">5.2 思考题</h3>
+<ol>
+<li>为什么「生成图像用扩散、生成文本用自回归 decoder」?两者的数据形态差异在哪?</li>
+<li>Mixtral 8x7B 总参数 46.7B、激活 12.9B:推理算力对标多大的 Dense 模型?部署显存又得按哪个数准备?</li>
+<li>同样做文本理解,BERT 为什么常被拿来当检索模型,而很少直接做聊天?</li>
+<li>多模态的「对齐」到底在对齐什么?直接把视觉向量和文本向量拼一起,会遇到什么问题?</li>
+<li>拿到一个新模型,你会先看模型卡(config.json)的哪几个字段来判断它适不适合自己的任务与机器?</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>图像是连续高维数据,没有天然的「逐词展开」顺序,直接回归像素极难,扩散把生成拆成上千步简单去噪,稳定可控;语言是离散 token,天然有从左到右的顺序,自回归解码(每步一个 token)既简单又和语言结构一致。</li>
+<li>推理算力对标约 13B 的 Dense(激活参数 12.9B);但部署显存要按总参数 46.7B 准备(约 94GB FP16,4-bit 量化约 24GB),因为所有专家都要驻留显存。</li>
+<li>BERT 双向编码,擅长把输入「压成」高质量表示,适合产出 embedding 做检索/相似度;它不会逐词生成,天然不适合对话这种生成任务。</li>
+<li>对齐是把视觉向量映射到与文本 token 相同的表示空间(同一维度、相近语义),这样注意力才能在图文之间自由交互;直接拼接,视觉向量与文本向量「语言不通」,模型学不到图文关系,还会因分布不匹配拖慢训练。</li>
+<li>看 <code>architectures</code>(哪类架构)、总参数 vs 激活参数(是否 MoE,决定显存与单价)、上下文长度(决定能装多长的输入)与精度要求(决定能否本地部署)。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2006.11239">Ho et al.:Denoising Diffusion Probabilistic Models(DDPM, 2020)</a></li>
+<li><a href="https://arxiv.org/abs/2103.00020">Radford et al.:Learning Transferable Visual Models From Natural Language Supervision(CLIP, 2021)</a></li>
+<li><a href="https://arxiv.org/abs/2401.04088">Jiang et al.:Mixtral of Experts(Mistral AI, 2024)</a></li>
+<li><a href="https://arxiv.org/abs/2412.19437">DeepSeek-AI:DeepSeek-V3 Technical Report(2024)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/07/"><span>上一篇</span><strong>01.01.07 语言建模</strong></a><a class="ai-pager-next" href="/ai/01-models/01/09/"><span>下一篇</span><strong>01.01.09 训练、推理与服务</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念模型架构是什么">1. 概念:模型架构是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-一张图记住全景">1.1 一张图记住全景</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要架构数据不会自己告诉你它长什么样">2. 为什么需要架构:数据不会自己告诉你它长什么样</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它有什么作用架构决定能力成本与部署方式">3. 它有什么作用:架构决定能力、成本与部署方式</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-全景五大架构家族">4.1 全景:五大架构家族</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-按信息流分encoder-only--decoder-only--encoder-decoder">4.2 按信息流分:Encoder-only / Decoder-only / Encoder-Decoder</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-dense-vs-moe路由器激活参数与负载均衡">4.3 Dense vs MoE:路由器、激活参数与负载均衡</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-多模态架构视觉编码器与对齐">4.4 多模态架构:视觉编码器与对齐</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-选型框架从任务到架构">4.5 选型框架:从任务到架构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-本章一览">5.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-思考题">5.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

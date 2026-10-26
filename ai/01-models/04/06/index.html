@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.04.06 压测与容量规划 · iopanda</title><meta name="description" content="01.04.06 压测与容量规划 · 模型 / 推理与部署，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.04.06 压测与容量规划 · iopanda"><meta property="og:description" content="01.04.06 压测与容量规划 · 模型 / 推理与部署，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="04" data-active-subsection data-active-article="/ai/01-models/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与部署"></button><a class="tree-link tree-link--section" href="/ai/01-models/04/"><span class="tree-number">04</span><span class="tree-title">推理与部署</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">压测与容量规划</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/04/">推理与部署</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">压测与容量规划</span></nav><header class="ai-article-header"><p class="ai-number">01.04.06</p><h1>压测与容量规划</h1><p class="ai-meta"><time datetime="2026-09-02T23:40">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-deployment</li><li>load-testing</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章验证了 API「能答对」,本章回答「能扛住多少」:用受控请求测量服务,而不是凭单次体验估计并发能力。你会先弄清并发、吞吐、分位数延迟与失败率各回答什么问题、为什么平均值会骗人,再按「单变量、逐步加压、档间恢复」的方法论跑三档小压测,最后从实测证据推出一个保守的容量上限,并认清哪些边界不可逾越。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出并发、吞吐、P50/P95 延迟与失败率的定义,以及每个指标回答什么问题;</li>
+<li>解释为什么平均延迟会骗人,为什么体验目标要用分位数表达;</li>
+<li>说明「单变量、逐步加压、档间恢复」的压测方法论及其理由;</li>
+<li>在本机 API 上运行小规模压测,并完整记录负载条件;</li>
+<li>从实测证据推导保守的容量上限并给出依据;</li>
+<li>遵守压测边界:只测自己的服务,不碰未获授权的目标。</li>
+</ol>
+<h2 id="1-概念四个指标各回答一个问题">1. 概念:四个指标,各回答一个问题</h2>
+<p>压测报告里最常见的四个数字,分别回答四个不同的问题,先对齐定义:</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>定义</th>
+<th>回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>并发(concurrency)</strong></td>
+<td>同一时刻已发出但尚未收到响应的请求数</td>
+<td>「同时有多少请求在途」</td>
+</tr>
+<tr>
+<td><strong>吞吐(throughput)</strong></td>
+<td>每秒完成的请求数(requests/s)</td>
+<td>「单位时间能消化多少请求」</td>
+</tr>
+<tr>
+<td><strong>P50 / P95 延迟</strong></td>
+<td>把一次压测的所有延迟排序,P50 是中位数,P95 是「95% 的请求都不超过」的延迟</td>
+<td>「用户实际要等多久」</td>
+</tr>
+<tr>
+<td><strong>失败率(failure rate)</strong></td>
+<td>非 2xx 响应数 ÷ 总请求数</td>
+<td>「多少请求根本没得到好结果」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>并发是你施加的压力,不是结果</strong>:把并发从 1 提到 10,只是同时放进 10 个在途请求;系统随后表现出什么延迟、什么吞吐,才是被测对象。并发数字必须写进报告,否则结果无法复现。</li>
+<li><strong>吞吐回答产能,延迟回答体验</strong>:吞吐高只说明「单位时间完成得多」,不说明「单个用户等得久不久」。一个批处理式系统可以吞吐很高而每个请求都很慢——两个指标必须分开看。</li>
+<li><strong>P50/P95 描述体验分布</strong>:P50 是典型用户感受(一半请求比它快);P95 描述尾部——最慢的 5% 用户等了多久。P95 达标意味着 95% 的用户体验在目标内;想承诺「几乎所有人都不超过 X ms」,就要盯 P99。</li>
+<li><strong>失败率是底线指标</strong>:任何压测结论都必须同时报告失败率。若某档并发下 20% 请求返回 503 或超时,那这一档的 P95 再好看也没有意义——它只是「活下来的请求」的延迟。</li>
+<li><strong>失败也要分类记录</strong>:超时、连接拒绝与 5xx 含义不同——503 是服务明确拒绝,超时可能是排队太久或网络问题。只记一个「失败数」会丢掉定位线索。</li>
+</ul>
+<h3 id="11-在-llm-服务里这些指标长什么样">1.1 在 LLM 服务里,这些指标长什么样</h3>
+<ul>
+<li>生成式推理是两阶段的(见 01 推理基础):<strong>prefill</strong> 处理整段提示、产出第一个 token,决定 TTFT(用户看到第一个字要等多久);<strong>decode</strong> 逐 token 生成,决定整段回答的总时长。一次 HTTP 请求的总延迟 ≈ TTFT + 逐 token 时间 × 输出长度。</li>
+<li>因此压测 <code>/ask</code> 时,提示越长、<code>max_tokens</code> 越大,每个请求占用 GPU 与 KV cache 的时间就越久,能测出的 requests/s 就越低。<strong>报告吞吐时必须同时写清输入提示长度与输出上限</strong>,否则同一个服务的两个数字无法比较。</li>
+<li>若工具支持,可把「每秒生成 token 数(tokens/s)」一并记录:它在输出长度不同的两档压测之间,比 requests/s 更能反映模型本身的产能。</li>
+</ul>
+<h2 id="2-为什么平均值会骗人">2. 为什么平均值会骗人</h2>
+<ul>
+<li>平均延迟(mean)把所有请求的延迟加总再平分,少数极端慢的请求就能把均值拉高——而它们往往正是排队、重试或资源竞争的产物,不代表典型体验。</li>
+<li>一个直觉例子:10 个请求里 9 个耗时 100 ms,1 个耗时 10 s。平均值 ≈ 1.09 s,看起来「平均一秒多」;但 P50 是 100 ms(典型用户很快),而 P95 是 10 s(最慢的 10% 用户等了整整 10 秒)。三个数字讲的是三个故事,平均值那个最容易误导决策。</li>
+<li>更糟的是,负载下的延迟常呈<strong>长尾分布</strong>:请求进队列要等、GPU 上前一个长输出未结束、KV cache 换出……这些偶发事件制造长尾。均值把长尾摊进每个请求,让「本可以很快」的服务看起来「普遍很慢」;反之,个别慢请求也可能被大量快请求稀释得无影无踪。</li>
+<li>因此体验目标(以及告警、SLO)应当用分位数表达,例如「P95 ≤ 2 s、失败率 &lt; 1%」;平均值最多作为参考,不作为承诺。</li>
+<li>均值对<strong>告警</strong>同样不友好:尾部劣化(某几秒内涌入大量慢请求)对均值影响小、变化平缓,等均值明显抬升时问题往往已持续很久;P95/P99 能在尾部一劣化就触发告警。</li>
+</ul>
+<h2 id="3-为什么需要压测单次体验不等于负载能力">3. 为什么需要压测:单次体验不等于负载能力</h2>
+<ul>
+<li>一个 curl 成功只证明「功能通」,不证明「扛得住」。上一章的 <code>/ask</code> 单人试用时一切正常;当并发上升,请求开始争用同一批资源——GPU 算力、KV cache(见 01 推理基础)、CPU 与网络带宽。</li>
+<li>排队效应是核心原因:服务忙碌时把新请求排进队列。队列理论的一个朴素结论是——利用率越接近 100%,排队时间增长得越快,延迟在系统「看起来还没满」时就先起飞。所以不能靠「感觉不太忙」推断容量。</li>
+<li>更精确地说:<strong>当到达率逼近服务率,队列会失控</strong>。请求到达速度一旦接近服务的处理速度,队列越积越长,延迟失去上限,直到请求超时或被服务拒绝(503)——这就是「感觉还没满、其实已饱和」的机制。</li>
+<li><strong>不压测的代价</strong>:容量上限只能靠猜,上线后第一个真实峰值就可能打穿服务,用户看到超时与 503,你只能事后从日志反推。受控压测把「猜」提前到上线之前,成本只是一次本机测量。</li>
+<li>压测就是把「负载 → 延迟 / 吞吐 / 失败率」的曲线<strong>测量</strong>出来:它不改进性能,只提供决策数字。容量上限、要不要限流、要不要扩容,都应当由这条曲线决定,而不是由「模型参数多不多」决定。</li>
+</ul>
+<h2 id="4-压测方法论单变量逐步加压档间恢复">4. 压测方法论:单变量、逐步加压、档间恢复</h2>
+<ul>
+<li><strong>单变量</strong>:一次只改一个变量。想测并发,就固定模型、硬件、提示长度、最大输出与版本,只改 <code>-c</code>;同时改两个变量,结果出问题时无法归因。</li>
+<li><strong>逐步加压</strong>:从 <code>c=1</code> 开始,依次 <code>c=2</code>、<code>c=4</code>……观察延迟与失败率从哪一档开始劣化。逐步加压才能找到「拐点」——拐点之前的并发,就是容量上限的候选。</li>
+<li><strong>档间恢复</strong>:每档之间让机器恢复——等队列排空、显存回落、进程稳定后再跑下一档。若连续加压,上一档堆积的排队会污染下一档的读数,整条曲线失真。</li>
+<li><strong>并发翻倍 ≠ 吞吐翻倍</strong>:资源饱和前,吞吐随并发上升而上升;饱和后吞吐基本走平,延迟却继续恶化。看到「吞吐不再涨、延迟开始涨」的档位,就是饱和点——这是容量决策最有用的一张图。</li>
+<li><strong>完整记录负载条件</strong>:压测结果只在「模型、硬件、提示长度、最大输出、版本和并发均相同」的条件下有效。每档必须记录:总数、成功数、平均、P95、requests/s、模型输出限制与峰值显存。缺了条件的数字无法对比、无法复现,等于没测。</li>
+<li><strong>小规模起步</strong>:先跑 20<del>40 个请求、并发 1</del>4,验证工具与读数可靠,再决定是否加大;不要在没弄清工具输出前就发起大流量。同一档可重复一两次取稳定读数,避免单次运行的抖动被当成趋势。</li>
+</ul>
+<h2 id="5-动手运行安全的小压测">5. 动手:运行安全的小压测</h2>
+<p>前置:按 04、05 章启动 vLLM 与 FastAPI 服务(监听 <code>127.0.0.1:8080</code>)。压测只对自己的本机服务执行。<code>hey</code> 可通过包管理器或官方发布页安装;若 <code>pip install hey</code> 不可靠,使用 ApacheBench 或组织批准的工具。以下以 <code>hey</code> 为例:</p>
+<p>开压前先 <code>curl http://127.0.0.1:8080/health</code> 确认服务就绪;压测进行中可在另一终端用 <code>nvidia-smi</code> 观察显存,把峰值记进报告(无 GPU 的环境如实写「不适用」,与 03 章的做法一致)。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hey</span><span style="color:#79B8FF"> -n</span><span style="color:#79B8FF"> 20</span><span style="color:#79B8FF"> -c</span><span style="color:#79B8FF"> 1</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> POST</span><span style="color:#79B8FF"> -H</span><span style="color:#9ECBFF"> 'Content-Type: application/json'</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> '{"question":"什么是主键？"}'</span><span style="color:#9ECBFF"> http://127.0.0.1:8080/ask</span></span>
+<span class="line"><span style="color:#B392F0">hey</span><span style="color:#79B8FF"> -n</span><span style="color:#79B8FF"> 40</span><span style="color:#79B8FF"> -c</span><span style="color:#79B8FF"> 2</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> POST</span><span style="color:#79B8FF"> -H</span><span style="color:#9ECBFF"> 'Content-Type: application/json'</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> '{"question":"什么是主键？"}'</span><span style="color:#9ECBFF"> http://127.0.0.1:8080/ask</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>先做 <code>c=1</code>,再做 <code>c=2</code>、<code>c=4</code>,每档之间让机器恢复。每档记录总数、成功数、平均、P95、requests/s、模型输出限制与峰值显存;若出现非 2xx,把状态码一并记下。</p>
+<p><code>hey</code> 的输出分四块读:<code>Summary</code> 给出总数与耗时;<code>Status code distribution</code> 出现非 200 即失败请求;<code>Latency distribution</code> 给出 50%/95%/99% 等分位延迟;<code>Requests/sec</code> 即吞吐。把四块数字抄进报告,不要只抄第一行。</p>
+<p>若 <code>c=2</code> 就出现 503 或超时:先回到 <code>c=1</code> 确认基线读数正常,再检查 vLLM 是否就绪、<code>max_tokens</code> 是否过大;不要直接跳到更大并发去「试运气」——低档失败通常意味着环境问题,而不是容量问题。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:容量建议</p>
+<p><strong>目标</strong>:完成 <code>reports/load-test.md</code>,给出一条基于证据的容量建议。</p>
+<p><strong>步骤</strong>:三档并发各运行一次;原样粘贴工具摘要;画表记录 P50/P95、吞吐、失败率。</p>
+<p><strong>完成标准</strong>:给出一个保守最大并发及依据,例如「c=2 时 P95 满足目标、c=4 出现 503,因此当前限制为 2」。</p>
+</div>
+<h2 id="6-容量规划从证据定上限">6. 容量规划:从证据定上限</h2>
+<ul>
+<li><strong>容量上限 = 「体验目标仍成立」的最高实测档位</strong>。先定义目标(如 P95 ≤ 2 s、失败率 = 0),再逐档对照;目标成立的最大并发,就是当前配置下的保守上限。</li>
+<li><strong>读数的顺序很重要:失败率先看,延迟后看</strong>。c=4 出现 503,说明已越过实际容量——503(见 05 章的状态码语义)是服务在明确说「我不行了」,这一档的延迟数字已无意义。503 或超时出现的那一档,通常就是上限的邻居。</li>
+<li><strong>用整条曲线下结论,而不是孤立的单档数字</strong>:例如三档实测为——c=1:P50 80 ms / P95 120 ms / 11 req/s;c=2:P50 150 ms / P95 300 ms / 19 req/s;c=4:P50 700 ms / P95 2.4 s,且出现 503。若体验目标是 P95 ≤ 1 s,则 c=4 不合格;c=2 离目标还有余量,但距离 c=4 的崩溃只有一倍并发,建议值取 2 并写明依据。</li>
+<li><strong>上限要保守</strong>:真实流量不会像压测一样均匀——用户请求有长有短、有突发。应取「达标档位」而非「崩溃前一档」作为建议值,并写明该数字依赖的负载条件。</li>
+<li>变坏时先查三层,再谈硬件:①排队(并发是否已超服务能力);②输出长度与 <code>max_tokens</code>(长输出占用 GPU 与 KV cache 更久);③KV cache 与显存(是否已触发换出)。这三层查完,才轮到「加机器、换模型」这类扩容讨论。</li>
+<li><strong>上限要变成配置才算落地</strong>:得出保守上限后,把它转成限流与告警阈值(见 07 章),例如「并发超过 2 时排队或返回 429」;否则报告里的数字不会自动保护服务。</li>
+<li>容量不是模型参数量的别名,而是<strong>特定负载下的实测结论</strong>:同一个模型,短问答与长文生成的容量可能差一个数量级;报告必须写清是在什么输入形状下测得的。</li>
+</ul>
+<h2 id="7-压测的边界只测自己的服务">7. 压测的边界:只测自己的服务</h2>
+<ul>
+<li>本章的压测目标只有一个:你在 <code>127.0.0.1:8080</code> 上的<strong>自己的服务</strong>。不要对未获授权的公共 API 或生产服务压测——那是在消耗别人的算力与稳定性,可能违反服务条款甚至法律;对生产环境压测也必须有授权窗口与回滚预案。这与 05 章的边界是同一纪律:演示服务无认证、无限流,本就不该暴露公网,压测同样只在自家院子里进行。</li>
+<li>边界还包括「结论的范围」:压测只证明被测服务在给定条件下的表现,不证明别的机器、别的负载形状、别家的模型也如此。不要把一个数字外推到它没被测量过的场景。</li>
+<li><strong>突发与稳定是两种负载</strong>:<code>hey</code> 的固定并发是稳定负载,真实流量常有突发(瞬间到达的请求峰);上文「上限要保守、取达标档位」的建议,正是为突发预留缓冲。</li>
+<li><strong>没有依据不下结论</strong>:若某档因环境限制未能测得,如实写「未测得」,不要用低档数据外推高档表现;边界的另一面是诚实。</li>
+<li>最后记住压测的定位:它是<strong>测量</strong>,不是<strong>修复</strong>。发现 P95 劣化,价值在于给你一张「在哪一档、因什么而坏」的地图;如何封装、监控与改进,是下一章与后续优化的事。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>并发/吞吐/P50/P95/失败率</td>
+<td>并发是你施加的压力;吞吐看产能;P50/P95 看体验分布;失败率是底线</td>
+</tr>
+<tr>
+<td>为什么平均值会骗人</td>
+<td>长尾请求把均值拉偏,分位数才描述典型与尾部体验</td>
+</tr>
+<tr>
+<td>压测方法论</td>
+<td>单变量、逐步加压、档间恢复,并完整记录负载条件</td>
+</tr>
+<tr>
+<td>容量上限从哪来</td>
+<td>「体验目标仍成立」的最高实测档位,取保守值并附依据</td>
+</tr>
+<tr>
+<td>压测边界</td>
+<td>只测自己的服务;压测是测量,不是修复</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「平均延迟 300 ms」不能作为体验承诺?为什么 c=4 出现 503 时,这一档的 P95 不再值得报告?同一个模型,为什么短问答与长文生成的容量可能差一个数量级?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>平均值会被少数长尾请求拉偏,可能掩盖「典型用户很快、最慢 5% 极慢」的真实分布,承诺必须用 P95/P99 等分位数表达。503 表示服务已明确拒绝或过载,「活下来的请求」的延迟不能代表系统在该负载下的真实体验,所以要先看失败率、再看延迟。长输出占用 GPU 计算与 KV cache 的时间随序列长度增长,单位时间能服务的请求数随之下降;容量是「特定输入形状下的实测结论」,不是固定数字。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://sre.google/sre-book/monitoring-distributed-systems/">Google SRE:延迟与分位数</a></li>
+<li><a href="https://github.com/rakyll/hey">hey:HTTP 负载生成工具</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/04/05/"><span>上一篇</span><strong>01.04.05 构建推理 API</strong></a><a class="ai-pager-next" href="/ai/01-models/04/07/"><span>下一篇</span><strong>01.04.07 部署与运维</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念四个指标各回答一个问题">1. 概念:四个指标,各回答一个问题</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-在-llm-服务里这些指标长什么样">1.1 在 LLM 服务里,这些指标长什么样</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么平均值会骗人">2. 为什么平均值会骗人</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么需要压测单次体验不等于负载能力">3. 为什么需要压测:单次体验不等于负载能力</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-压测方法论单变量逐步加压档间恢复">4. 压测方法论:单变量、逐步加压、档间恢复</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手运行安全的小压测">5. 动手:运行安全的小压测</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-容量规划从证据定上限">6. 容量规划:从证据定上限</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-压测的边界只测自己的服务">7. 压测的边界:只测自己的服务</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

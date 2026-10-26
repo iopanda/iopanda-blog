@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.01.02.02 产品定位、两层网关与适用场景 · iopanda</title><meta name="description" content="04.01.02.02 产品定位、两层网关与适用场景 · 工具链 / 模型网关与路由，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/01/02/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.01.02.02 产品定位、两层网关与适用场景 · iopanda"><meta property="og:description" content="04.01.02.02 产品定位、两层网关与适用场景 · 工具链 / 模型网关与路由，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/01/02/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="01" data-active-subsection="02" data-active-article="/ai/04-tooling/01/02/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型网关与路由"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/01/"><span class="tree-number">01</span><span class="tree-title">模型网关与路由</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/01/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Envoy AI Gateway"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/01/02/"><span class="tree-number">02</span><span class="tree-title">Envoy AI Gateway</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/01/02/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">产品定位、两层网关与适用场景</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/01/">模型网关与路由</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/01/02/">Envoy AI Gateway</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">产品定位、两层网关与适用场景</span></nav><header class="ai-article-header"><p class="ai-number">04.01.02.02</p><h1>产品定位、两层网关与适用场景</h1><p class="ai-meta"><time datetime="2026-09-03T18:52">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>model-gateways-and-routing</li><li>envoy-ai-gateway</li><li>product-positioning</li></ul></header><div class="ai-prose"><h1 id="产品定位两层网关与适用场景">产品定位、两层网关与适用场景</h1>
+<blockquote>
+<p>Envoy AI Gateway 最值得先理解的，不是它支持多少 provider，而是它用什么世界观来理解 AI 接入。官方 README 一上来就写得很直白：这是一个“using Envoy Gateway to handle request traffic from application clients to Generative AI services”的开源项目，并明确提出 two-tier gateway pattern：Tier One Gateway 负责集中入口、认证、顶层路由和全局限流；Tier Two Gateway 负责进入自托管模型服务集群时的细粒度控制。[1]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用产品经理语言定义 Envoy AI Gateway；</li>
+<li>理解什么叫两层网关模式，以及它为什么服务于大组织；</li>
+<li>区分它和 LiteLLM 这种 AI-native 接入层的根本差异；</li>
+<li>识别它最适合的组织条件和应用场景；</li>
+<li>判断什么时候上 Envoy AI Gateway 是“平台升级”，什么时候只是“过度设计”。</li>
+</ol>
+<h2 id="1-envoy-ai-gateway-到底是什么">1. Envoy AI Gateway 到底是什么</h2>
+<p>一句话定义：<strong>Envoy AI Gateway 是一个建立在 Envoy Gateway 之上的 GenAI 流量入口层，目标是把模型访问、策略、限流、安全和自托管推理入口，纳入统一的云原生网关治理体系。</strong>[1][2]</p>
+<p>这句话里有三层重点：</p>
+<ol>
+<li>它首先是 gateway，而不是 SDK；</li>
+<li>它建立在 Envoy / Kubernetes / Gateway API 这些平台能力之上；</li>
+<li>它关心的不只是访问 SaaS 模型，也关心如何进入 self-hosted model serving cluster。[1][2]</li>
+</ol>
+<p>所以它的起点非常“平台工程”：不是让单个开发团队更方便，而是让组织里所有 AI 流量更统一、更安全、更可控。</p>
+<h2 id="2-两层网关模式为什么这是它最有辨识度的设计">2. 两层网关模式：为什么这是它最有辨识度的设计</h2>
+<p>README 明确把 Envoy AI Gateway 的 usage 描述为 two-tier gateway pattern。[1]</p>
+<ul>
+<li><strong>Tier One Gateway</strong>：集中入口，负责 authentication、top-level routing、global rate limiting；</li>
+<li><strong>Tier Two Gateway</strong>：负责进入自托管模型服务集群时的细粒度控制，并支持 endpoint picker 以配合推理优化。[1]</li>
+</ul>
+<p>从产品经理角度看，这套设计回答的是一个大型组织真实存在的问题：</p>
+<ul>
+<li>第一层管组织级入口、权限和全局策略；</li>
+<li>第二层管模型服务集群内部的细节、模型池和性能优化；</li>
+<li>这样既不会把所有复杂度都压在入口，也不会让模型集群直接暴露给业务侧。</li>
+</ul>
+<p>这和“单层代理 + 多 provider key”的思路完全不同。它更像一套可治理的 AI 流量基础设施分层，而不是接模型的便捷层。</p>
+<h2 id="3-它服务的是谁">3. 它服务的是谁</h2>
+<p>官方 Overview 页把项目目标写得非常企业化：统一路由和管理 LLM/AI traffic、自动 failover、端到端安全、usage limiting、observability、以及建立在 battle-tested Envoy Proxy 之上的可靠基础。[2]</p>
+<p>这意味着它最自然服务的是这类组织：</p>
+<ul>
+<li>已经在 Kubernetes 上跑业务；</li>
+<li>已有 Envoy Gateway / Gateway API / 平台工程能力；</li>
+<li>不只接外部 provider，也可能有自托管模型服务；</li>
+<li>对认证、策略、限流、安全、可观测有统一治理要求。</li>
+</ul>
+<p>换句话说，它首先面向的是<strong>平台团队、基础设施团队、企业 AI 平台团队</strong>，而不只是某个单一 AI 应用小组。</p>
+<h2 id="4-核心价值不是多模型支持而是平台一致性">4. 核心价值：不是“多模型支持”，而是“平台一致性”</h2>
+<p>很多人看 AI Gateway 会先问：“支持哪些 provider？” Envoy AI Gateway 当然支持很多 provider，但这并不是它最核心的差异化卖点。[1]</p>
+<p>它更重要的产品价值在于：</p>
+<ul>
+<li>把 AI 流量纳入已有云原生治理模型；</li>
+<li>让认证、限流、安全、资源编排进入标准化路径；</li>
+<li>用控制面 + 数据面的方式管理 AI 流量；</li>
+<li>兼容外部 provider 与自托管模型两类入口。[1][2]</li>
+</ul>
+<p>如果用一句更产品化的话说：<strong>Envoy AI Gateway 卖的不是“接得上模型”，而是“AI 流量不必成为组织里的例外流量”。</strong></p>
+<h2 id="5-最适合的场景">5. 最适合的场景</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>为什么适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企业统一 AI 入口</td>
+<td>Tier One 适合承接统一认证、全局路由与限流 [1]</td>
+</tr>
+<tr>
+<td>自托管模型集群 + 外部 provider 混用</td>
+<td>Tier Two + self-hosted model serving 是官方主线之一 [1][2]</td>
+</tr>
+<tr>
+<td>已采用 Envoy / Envoy Gateway / Gateway API</td>
+<td>接入组织现有平台能力更顺 [1][2]</td>
+</tr>
+<tr>
+<td>需要策略治理和平台标准化</td>
+<td>CRD、控制面、数据面模型更适合大团队协作 [2][3]</td>
+</tr>
+<tr>
+<td>需要把 AI 接入与一般 API 治理合流</td>
+<td>它本质上仍是 gateway 路线，而不是纯 AI SDK 路线</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-不太适合的场景">6. 不太适合的场景</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>为什么不一定先选</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单应用、单 provider 的早期项目</td>
+<td>平台门槛过高，收益未必覆盖运维成本</td>
+</tr>
+<tr>
+<td>没有 Kubernetes / Envoy 能力的团队</td>
+<td>学习和上线门槛明显高于 LiteLLM 这类产品</td>
+</tr>
+<tr>
+<td>主要目标是快速比较不同 SaaS provider</td>
+<td>LiteLLM 往往更直接</td>
+</tr>
+<tr>
+<td>主要目标是本地推理运行</td>
+<td>更像 LocalAI / vLLM / Ollama 的问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-和-litellm-的第一眼差异">7. 和 LiteLLM 的第一眼差异</h2>
+<p>如果把 LiteLLM 和 Envoy AI Gateway 放在一起看，最关键差别不是功能列表，而是“默认服务对象”不同：</p>
+<ul>
+<li>LiteLLM 默认服务 AI 应用团队，要尽快统一模型接入；</li>
+<li>Envoy AI Gateway 默认服务平台团队，要把 AI 流量放回组织基础设施语境里。</li>
+</ul>
+<p>所以，选择 Envoy AI Gateway 的团队通常不是在问“怎样最快接十家模型”，而是在问：</p>
+<ul>
+<li>AI 流量怎么纳入现有平台入口；</li>
+<li>自托管模型集群怎么治理；</li>
+<li>认证、限流、观察、策略怎么统一。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Envoy AI Gateway 是什么</td>
+<td>建立在 Envoy Gateway 上的 GenAI 流量治理入口 [1][2]</td>
+</tr>
+<tr>
+<td>它最独特的设计是什么</td>
+<td>两层网关模式：组织级入口 + 自托管模型细粒度入口 [1]</td>
+</tr>
+<tr>
+<td>最适合谁</td>
+<td>已有 Kubernetes / Envoy / 平台工程能力的组织</td>
+</tr>
+<tr>
+<td>不适合谁</td>
+<td>只想快速做多模型接入的小团队</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么“两层网关”对大组织是价值，对小团队却可能是负担？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为大组织本来就有分层治理、权限、平台边界和多团队协作需求；两层网关能把复杂度放到恰当位置。小团队则往往只有一个应用和很少的上游，分层反而会把本来不存在的问题提前工程化。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/README.md">https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/README.md</a> — Envoy AI Gateway README</li>
+<li>[2] <a href="https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/index.md">https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/index.md</a> — Envoy AI Gateway Overview</li>
+<li>[3] <a href="https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/concepts/resources.md">https://raw.githubusercontent.com/envoyproxy/ai-gateway/main/site/docs/concepts/resources.md</a> — Envoy AI Gateway Resources</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/01/02/01/"><span>上一篇</span><strong>04.01.02.01 Envoy AI Gateway 概览</strong></a><a class="ai-pager-next" href="/ai/04-tooling/01/02/03/"><span>下一篇</span><strong>04.01.02.03 AIGatewayRoute、AIServiceBackend 与流量治理</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-envoy-ai-gateway-到底是什么">1. Envoy AI Gateway 到底是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-两层网关模式为什么这是它最有辨识度的设计">2. 两层网关模式：为什么这是它最有辨识度的设计</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它服务的是谁">3. 它服务的是谁</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-核心价值不是多模型支持而是平台一致性">4. 核心价值：不是“多模型支持”，而是“平台一致性”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-最适合的场景">5. 最适合的场景</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-不太适合的场景">6. 不太适合的场景</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-和-litellm-的第一眼差异">7. 和 LiteLLM 的第一眼差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

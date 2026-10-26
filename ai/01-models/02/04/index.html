@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.02.04 数据切分与混合 · iopanda</title><meta name="description" content="01.02.04 数据切分与混合 · 模型 / 预训练与训练，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/02/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.02.04 数据切分与混合 · iopanda"><meta property="og:description" content="01.02.04 数据切分与混合 · 模型 / 预训练与训练，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/02/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="02" data-active-subsection data-active-article="/ai/01-models/02/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 预训练与训练"></button><a class="tree-link tree-link--section" href="/ai/01-models/02/"><span class="tree-number">02</span><span class="tree-title">预训练与训练</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/02/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">数据切分与混合</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/02/">预训练与训练</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">数据切分与混合</span></nav><header class="ai-article-header"><p class="ai-number">01.02.04</p><h1>数据切分与混合</h1><p class="ai-meta"><time datetime="2026-09-02T20:04">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-pretraining</li><li>dataset-splits</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章把语料洗干净,这一章决定它们「往哪儿去」:多少给模型背、多少留给自己看、多少锁进保险柜留作最终考试,以及多个来源的语料按什么比例混在一起。读完你要能回答三个问题:<strong>训练/验证/测试三集各管什么?为什么测试集一次都不能用来调参?为什么多来源语料不能按原始大小直接拼接?</strong> 最后亲手产出一份可复现的切分报告。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说清训练集、验证集、测试集的不同职责,并解释为什么用测试集调参会让最终分数失真;</li>
+<li>使用固定随机种子完成 90%/5%/5% 的文档级切分,并验证重复运行结果一致;</li>
+<li>识别「内容泄漏」与「时间泄漏」两类风险,并说出各自的规避方法;</li>
+<li>解释数据混合(data mixture)的概念,以及为什么不能按各来源原始大小直接拼接;</li>
+<li>为多来源语料制定明确的采样比例,连同 seed 与文件 hash 一起写入配置与报告。</li>
+</ol>
+<h2 id="1-数据切分一份语料三个互不重叠的去向">1. 数据切分:一份语料,三个互不重叠的去向</h2>
+<ul>
+<li><strong>概念</strong>:数据切分(dataset split)就是把清洗后的语料,按<strong>文档/段落</strong>为单位,划分成三个互不重叠的子集:训练集、验证集、测试集。上一章的去重决定了「留哪些文本」,本章决定「这些文本分别给谁用」。</li>
+<li><strong>为什么预训练必须切分</strong>:预训练的目标是让模型学会语言规律,而不是背下语料。一个会背的模型在训练文本上 loss 可以趋近于 0,但碰到没见过的文本照样乱猜——所以只看训练损失,永远无法判断模型是否真的学会了。评估必须使用<strong>训练时没见过的文本</strong>,切分就是为评估准备「干净的新题」。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>集合</th>
+<th>谁在看</th>
+<th>用途</th>
+<th>允许改什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练集 train</td>
+<td>优化器</td>
+<td>更新权重,让 loss 下降</td>
+<td>权重本身</td>
+</tr>
+<tr>
+<td>验证集 valid</td>
+<td>开发者,可反复看</td>
+<td>选超参数、判断何时停训、比较结构</td>
+<td>学习率、层数、上下文长度、混合比例等一切超参数</td>
+</tr>
+<tr>
+<td>测试集 test</td>
+<td>只在最后看一次</td>
+<td>给「模型面对全新数据」的最终证据</td>
+<td>什么都不许改</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-为什么测试集一次都不能用来调参">1.1 为什么测试集一次都不能用来调参</h3>
+<ul>
+<li>测试集存在的唯一意义,是充当**「没见过的新数据」的无偏样本**——它是你对泛化能力最诚实的一次估计。这份诚实只存在于「从未影响过任何决定」的前提下。</li>
+<li>污染机制:假设你看到测试 loss 偏高,于是调低学习率、再测、再调……每一轮「看一个数 → 改一个决定」,都把测试集的信息写进了模型选择。几轮之后,测试集实际上变成了验证集:模型是<strong>在测试集上被选出来的</strong>,最终分数必然虚高,上线后面对真新数据立刻回落。这称为<strong>测试集污染(test set contamination)</strong>。</li>
+<li>类比考试:训练=做练习册;验证=平时测验,可以看错题、调整复习计划;测试=期末考,考完才公布成绩。如果考前就偷看期末卷并据此复习,分数就再也说明不了真实水平。</li>
+<li>因此纪律是:<strong>测试集只在全部调参结束后运行一次</strong>。一旦它影响过任何决定,它就降级为验证集,必须重新隔离一份从未看过的测试集。</li>
+</ul>
+<h3 id="12-为什么文本不能按-token-随机切分">1.2 为什么文本不能按 token 随机切分</h3>
+<ul>
+<li>表格数据可以按行随机抽 90/10;文本不行——语言数据有结构:一篇文章的相邻段落主题连贯、用词相关,把它们随机分进 train 和 valid,验证就退化成「记忆检测」:模型只要记住上一段的措辞,就能「预测」下一段。</li>
+<li>Mini GPT 的实践:<strong>以文档或章节为切分单元</strong>,而不是 token 或句子。</li>
+<li>若语料是单一长文(如整本书),则使用<strong>不重叠的连续区间</strong>切分,并在报告中说明局限:全书风格统一,valid 与 train 再小心也可能高度相似。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70">    A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">清洗后语料</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">文档级打乱</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">90% train</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">5% valid</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">5% test</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    C </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> F</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">更新权重</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    D </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> G</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">反复选超参</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    E </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> H</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">只在最后评估一次</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<h2 id="2-两种泄漏让验证分数虚高的元凶">2. 两种泄漏:让验证分数「虚高」的元凶</h2>
+<ul>
+<li><strong>概念</strong>:数据泄漏(data leakage)指训练信息以非预期方式进入了评估集,模型在评估时「见过」数据,分数虚高,而真实部署时不会重现。第 1 节的全部纪律,本质上都是为防泄漏。文本语料要特别提防下面两种。</li>
+</ul>
+<h3 id="21-内容泄漏切分不重叠--文本不重复">2.1 内容泄漏:切分不重叠 ≠ 文本不重复</h3>
+<ul>
+<li>切分只能保证<strong>索引</strong>不重叠,不能保证<strong>文本</strong>不重复:同一篇文章可能以转载、改写等不同形式同时出现在两个集合里。上一章虽已去重,切分后仍应再做一次<strong>跨集合内容 hash 校验</strong>(第 4 节动手),确认任意两份的 hash 集合交集为空。</li>
+</ul>
+<h3 id="22-时间泄漏不能让模型见过未来">2.2 时间泄漏:不能让模型「见过未来」</h3>
+<ul>
+<li>若来源带时间信息(新闻日期、Reddit 时间戳、GitHub commit 时间),把较晚的数据放进训练、较早的数据放进验证,等于让模型「见过未来」——此时评估的是回忆,不是对新数据的预测。</li>
+<li>正确做法是<strong>按时间切分</strong>:用较早数据训练、用较晚数据验证/测试,以模拟真实部署时「未来数据」的样子。</li>
+<li>这不是教学洁癖:大规模模型中广泛讨论的<strong>基准污染</strong>(评测题文本混进训练爬虫语料),正是公开榜单分数与真实体验不符的已知原因之一。</li>
+</ul>
+<h2 id="3-数据混合为什么不能按原始大小直接拼接">3. 数据混合:为什么不能按原始大小直接拼接</h2>
+<ul>
+<li><strong>概念</strong>:数据混合(data mixture)指把多个来源(网页通用文本、书籍、代码、数学、多语言……)按<strong>显式设定的比例</strong>合并成训练流,并决定每个来源被采样多少轮。切分解决「数据怎么分」,混合解决「不同来源怎么配」。</li>
+<li><strong>为什么不能按原始大小拼接</strong>:真实语料来源极不均衡——网页爬虫数据以 TB 计,代码和高质量书籍只有 GB 级。若把各来源原样拼成一个大文件再均匀采样,每个 batch 几乎全是网页文本,模型练满全程也见不到几次代码,「大来源淹没小来源」。</li>
+<li>数值直觉:来源 A 有 900 GB 网页文本,来源 B 只有 10 GB 代码。按原始大小拼接后均匀采样,平均每 91 个 token 里只有 1 个来自代码。想让模型真正具备 10% 的代码能力,必须对代码来源<strong>过采样</strong>(重复多轮),同时给网页来源降权。</li>
+<li>工业界例证:一是 The Pile(EleutherAI,2020),825 GiB、22 个子集,是最早把每个子集配比与来源一起公开的语料之一;二是 Llama 3(Meta,2024),最终混合约为 <strong>50% 通用知识、25% 数学与推理、17% 代码、8% 多语言 token</strong>——这个比例不是按来源大小推出来的,而是先用知识分类器给网页数据分类、再靠小模型缩放定律实验(scaling law)试出来的。可见<strong>混合比例本质上是超参数</strong>,值得用实验对待。</li>
+<li>教学项目不必做缩放实验,直接采用显式方案起步即可,例如:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>按原始大小的占比</th>
+<th>目标混合比例</th>
+<th>手段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通用中文文本</td>
+<td>约 95%</td>
+<td>70%</td>
+<td>降采样</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>约 4%</td>
+<td>20%</td>
+<td>过采样(重复)</td>
+</tr>
+<tr>
+<td>指令格式文本</td>
+<td>约 1%</td>
+<td>10%</td>
+<td>过采样(重复)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>混合改变的是采样比例,<strong>不改变来源的出处与合规责任</strong>:每个来源仍必须保留自己的许可与清洗记录(第 02、03 章)。</li>
+<li><strong>验证/测试集不要按训练混合比例「补齐」</strong>:train 决定「喂什么」,valid/test 决定「考什么」——它们应代表你想检验的使用情景。例如模型主要服务中文说明书续写,valid 里就应有独立的中文说明书,而不是按训练配比混出来的短英文句子。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>合格条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可复现</td>
+<td>保存 seed、切分规则与文件 hash</td>
+</tr>
+<tr>
+<td>无泄漏</td>
+<td>训练与验证/测试无重复文档</td>
+</tr>
+<tr>
+<td>代表性</td>
+<td>验证集覆盖常见与边界样本</td>
+</tr>
+<tr>
+<td>可解释</td>
+<td>混合比例与选择理由写入配置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-动手活动完成一次文档级切分">4. 动手活动:完成一次文档级切分</h2>
+<p>下面假设上一章清洗产出的 <code>data/processed/documents.txt</code> 每一行是一篇完整段落。脚本先用<strong>稳定的随机源</strong>打乱文档,再切出三个互不重叠的列表。创建 <code>src/split_data.py</code>,复制完整内容;实践中把随机种子、输入文件 hash、比例以及本次输出 hash 一起写入报告。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> random</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> hashlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> sha256</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">seed </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 42</span></span>
+<span class="line"><span style="color:#E1E4E8">documents </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [line </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> line </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"data/processed/documents.txt"</span><span style="color:#E1E4E8">).read_text(</span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">).splitlines() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> line]</span></span>
+<span class="line"><span style="color:#E1E4E8">rng </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> random.Random(seed)</span></span>
+<span class="line"><span style="color:#E1E4E8">rng.shuffle(documents)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">total </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(documents)</span></span>
+<span class="line"><span style="color:#E1E4E8">train_end </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> int</span><span style="color:#E1E4E8">(total </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 0.90</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">valid_end </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> train_end </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> int</span><span style="color:#E1E4E8">(total </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 0.05</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">splits </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">    "train"</span><span style="color:#E1E4E8">: documents[:train_end],</span></span>
+<span class="line"><span style="color:#9ECBFF">    "valid"</span><span style="color:#E1E4E8">: documents[train_end:valid_end],</span></span>
+<span class="line"><span style="color:#9ECBFF">    "test"</span><span style="color:#E1E4E8">: documents[valid_end:],</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> name, rows </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> splits.items():</span></span>
+<span class="line"><span style="color:#E1E4E8">    output </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Path(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"data/processed/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">name</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">.txt"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    output.write_text(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">.join(rows) </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    digest </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sha256(output.read_bytes()).hexdigest()</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(name, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(rows), digest)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行并验证三份数据互不重叠:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#9ECBFF"> src/split_data.py</span></span>
+<span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> "from pathlib import Path; a=set(Path('data/processed/train.txt').read_text().splitlines()); b=set(Path('data/processed/valid.txt').read_text().splitlines()); c=set(Path('data/processed/test.txt').read_text().splitlines()); print(len(a &amp; b), len(a &amp; c), len(b &amp; c))"</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>最后一行必须是 <code>0 0 0</code>。将三份 split 的数量和 hash 写到 <code>reports/split-report.md</code>;再运行一次脚本,hash 应完全一致。若不一致,检查是否固定了 <code>seed</code>、输入文件是否被手工改过。</p>
+<ul>
+<li><strong>更进一步(内容级校验)</strong>:上面的代码只能证明索引不重叠,不能证明文本本身不重复。对每个文档标准化后计算 hash,检查任意两个 split 的 hash 集合交集为空。</li>
+<li><strong>更进一步(时间切分)</strong>:若来源含日期,优先用较早数据训练、较晚数据验证/测试,模拟真实的未来数据(见 2.2)。</li>
+</ul>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:生成可复现切分</p>
+<p><strong>目标</strong>:输出 <code>train.txt</code>、<code>valid.txt</code>、<code>test.txt</code> 与 <code>split-report.md</code>。</p>
+<p><strong>步骤</strong>:固定随机种子;按文档或段落切分 90%/5%/5%;计算每份的样本数、字符数和 hash;检查交集;将 seed 和比例写入 <code>configs/data.yaml</code>。</p>
+<p><strong>完成标准</strong>:重复运行后文件 hash 不变;报告显示任意两份数据没有重复样本。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>先执行</th>
+<th>通常原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重跑后 hash 变了</td>
+<td>对比输入文件 hash</td>
+<td>未固定 seed,或输入文件被手工改动</td>
+</tr>
+<tr>
+<td>交集不是 <code>0 0 0</code></td>
+<td>检查切分单元</td>
+<td>同一文档的相邻段落被随机分到两个集合,或语料本身有重复行(需先完成第 03 章去重)</td>
+</tr>
+<tr>
+<td>valid 只有几十行、loss 抖动</td>
+<td>打印三份长度</td>
+<td>语料太小,5% 过少;可提高验证比例或改用分层切分</td>
+</tr>
+<tr>
+<td>测试集被拿来调参了</td>
+<td>重留一份测试集</td>
+<td>纪律问题:旧测试集改称 valid,重新隔离一份从未看过的测试集</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>产物</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>train/valid/test.txt</code></td>
+<td>三个互不重叠、可复现的数据去向</td>
+</tr>
+<tr>
+<td><code>reports/split-report.md</code></td>
+<td>记录 seed、比例、数量与 hash,让切分可审计</td>
+</tr>
+<tr>
+<td><code>configs/data.yaml</code></td>
+<td>固化混合比例与选择理由,让配置可解释</td>
+</tr>
+</tbody>
+</table>
+<p>验证集用于过程决策,测试集用于最终证据。数据切分一旦确定,除非发现真实错误,不应为了提高分数而随意调整。</p>
+<p><strong>思考题</strong>:为什么同一篇文章的相邻段落不应随机分到 train 和 valid?若测试集被看过一次并据此调整了学习率,应该如何处理?某来源的原始数据量是另一来源的 100 倍,直接按原始大小拼接训练,模型最可能在哪方面变差?为什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>相邻段落通常内容高度相似,会使验证变成记忆检测——模型记住前一段就等于「会做」后一段,验证分数失去意义。</li>
+<li>该测试集已经参与决策,不再是「从未见过的数据」;应将它改称验证集,并重新隔离一份从未查看的测试集作为最终证据。</li>
+<li>大来源会淹没小来源:每个 batch 几乎全部来自大来源,小来源领域(如代码、数学)样本太少,模型几乎学不到,该领域能力明显偏弱;应显式设定混合比例,并对小来源过采样。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">scikit-learn:train_test_split 的随机状态与分层概念</a></li>
+<li><a href="https://developers.google.com/machine-learning/crash-course/overfitting/regularization">Google ML Crash Course:过拟合与泛化</a></li>
+<li><a href="https://pile.eleuther.ai/">The Pile:825 GiB、22 子集的公开混合语料</a></li>
+<li><a href="https://arxiv.org/abs/2407.21783">Llama 3 Herd of Models(数据混合 50/25/17/8)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/02/03/"><span>上一篇</span><strong>01.02.03 数据清洗与去重</strong></a><a class="ai-pager-next" href="/ai/01-models/02/05/"><span>下一篇</span><strong>01.02.05 训练分词器</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-数据切分一份语料三个互不重叠的去向">1. 数据切分:一份语料,三个互不重叠的去向</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-为什么测试集一次都不能用来调参">1.1 为什么测试集一次都不能用来调参</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#12-为什么文本不能按-token-随机切分">1.2 为什么文本不能按 token 随机切分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-两种泄漏让验证分数虚高的元凶">2. 两种泄漏:让验证分数「虚高」的元凶</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-内容泄漏切分不重叠--文本不重复">2.1 内容泄漏:切分不重叠 ≠ 文本不重复</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-时间泄漏不能让模型见过未来">2.2 时间泄漏:不能让模型「见过未来」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-数据混合为什么不能按原始大小直接拼接">3. 数据混合:为什么不能按原始大小直接拼接</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动完成一次文档级切分">4. 动手活动:完成一次文档级切分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.02.05 Agentic Pipeline、Routing 与 Tool-aware Retrieval · iopanda</title><meta name="description" content="03.02.02.05 Agentic Pipeline、Routing 与 Tool-aware Retrieval · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/02/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.02.05 Agentic Pipeline、Routing 与 Tool-aware Retrieval · iopanda"><meta property="og:description" content="03.02.02.05 Agentic Pipeline、Routing 与 Tool-aware Retrieval · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/02/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="02" data-active-article="/ai/03-frameworks/02/02/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Haystack"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/02/"><span class="tree-number">02</span><span class="tree-title">Haystack</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/02/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">Agentic Pipeline、Routing 与 Tool-aware Retrieval</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/02/">Haystack</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Agentic Pipeline、Routing 与 Tool-aware Retrieval</span></nav><header class="ai-article-header"><p class="ai-number">03.02.02.05</p><h1>Agentic Pipeline、Routing 与 Tool-aware Retrieval</h1><p class="ai-meta"><time datetime="2026-09-03T21:50">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>haystack</li><li>routing</li><li>agentic-pipeline</li><li>tools</li></ul></header><div class="ai-prose"><h1 id="agentic-pipelinerouting-与-tool-aware-retrieval">Agentic Pipeline、Routing 与 Tool-aware Retrieval</h1>
+<blockquote>
+<p>Haystack 的一个容易被忽略的特点是：它虽然首先是 pipeline framework，但并不意味着它只能做僵硬直线流程。README 明确提到 loops、branches、conditional logic，以及 agent workflows；<code>ConditionalRouter</code> 则直接把条件路由做成正式 component。[54][59] 这说明 Haystack 的态度不是“要么完全 deterministic，要么上自由 agent”，而是允许你在显式 pipeline 里逐步引入更动态的检索和工具感知逻辑。对 retrieval system 来说，这非常重要：很多真实问题的复杂度，恰恰卡在“什么时候该换路、什么时候该取更多上下文、什么时候该调用别的能力”。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释为什么 Haystack 的 pipeline 可以逐渐长出 agentic 行为；</li>
+<li>理解 ConditionalRouter 在系统里为什么是关键组件；</li>
+<li>说出 tool-aware retrieval 与普通 retrieval 的区别；</li>
+<li>比较 Haystack 的动态 pipeline 路线与 LlamaIndex 的 Router/SubQuestion 路线差异；</li>
+<li>为一个知识问答系统设计带 route 的 retrieval chain。</li>
+</ol>
+<h2 id="1-概念agentic-pipeline-不是放弃显式控制而是把动态决策拉回显式链路">1. 概念：agentic pipeline 不是放弃显式控制，而是把动态决策拉回显式链路</h2>
+<p>很多人一听到 agentic，就以为意味着：</p>
+<ul>
+<li>完全交给模型自己决定一切；</li>
+<li>链路不再可预测。</li>
+</ul>
+<p>但 Haystack 这条路不是这样。它更像：</p>
+<ul>
+<li>基础骨架仍然是 pipeline；</li>
+<li>只是某些节点开始做动态判断；</li>
+<li>loops、branches、routes 仍然是显式表达的。</li>
+</ul>
+<p>这和纯 agent-first 路线不同。它试图保住：</p>
+<ul>
+<li>可追踪；</li>
+<li>可调试；</li>
+<li>可替换；</li>
+<li>可评测。</li>
+</ul>
+<h2 id="2-conditionalrouter为什么它是动态-pipeline-的关键支点">2. <code>ConditionalRouter</code>：为什么它是动态 pipeline 的关键支点</h2>
+<p><code>ConditionalRouter</code> 的实现很有代表性：[59]</p>
+<ul>
+<li>route 由 condition / output / output_name / output_type 定义；</li>
+<li>用 Jinja2 表达条件和输出；</li>
+<li>可以根据输入 kwargs 选择不同输出通道；</li>
+<li>甚至支持 passthrough 路由复杂对象。</li>
+</ul>
+<p>这说明 Haystack 对“动态决策”的理解非常系统：</p>
+<ul>
+<li>不是隐藏在 prompt 里；</li>
+<li>而是做成显式 routing node。</li>
+</ul>
+<p>这样做的好处非常直接：</p>
+<ul>
+<li>你知道为什么走这条路；</li>
+<li>你知道另一条路为什么没走；</li>
+<li>你可以单独测试这个路由条件；</li>
+<li>你可以把路由接到完全不同的 retrieval chain 上。</li>
+</ul>
+<h2 id="3-routing-在-retrieval-system-里为什么重要">3. routing 在 retrieval system 里为什么重要</h2>
+<p>真实 RAG 系统很快会遇到这些问题：</p>
+<ul>
+<li>这是 FAQ 问题还是规则问题？</li>
+<li>这次应该走 BM25 还是 embedding retrieval？</li>
+<li>召回太少时要不要退回宽搜索？</li>
+<li>问题是否需要调用外部工具，而不是只查文档？</li>
+</ul>
+<p>如果没有显式 route，这些逻辑就会逐渐埋进：</p>
+<ul>
+<li>prompt</li>
+<li>if/else</li>
+<li>隐式 helper 函数</li>
+</ul>
+<p>到最后会非常难以维护。Haystack 的 routing component 化，正是在提前阻止这种隐式复杂度蔓延。</p>
+<h2 id="4-tool-aware-retrieval为什么检索有时不只查-document-store">4. tool-aware retrieval：为什么“检索”有时不只查 document store</h2>
+<p>Haystack 既讲 pipelines，也讲 agents/workflows。[54] 这意味着在更复杂的系统里，retrieval chain 可能会包含：</p>
+<ul>
+<li>document retriever</li>
+<li>web search</li>
+<li>database lookup</li>
+<li>skill/tool invocation</li>
+<li>memory retrieval</li>
+</ul>
+<p>这种时候，retrieval 已经不只是“向量库 top-k”，而是“为当前回答寻找合适上下文来源”的 broader process。</p>
+<p>tool-aware retrieval 的关键不是“工具更多”，而是：</p>
+<ul>
+<li>某些查询应查文档；</li>
+<li>某些查询应查数据库；</li>
+<li>某些查询应先扩问题再查；</li>
+<li>某些查询应直接转人工或走别的 toolchain。</li>
+</ul>
+<p>而这些在 Haystack 里最自然的表达方式，不是单个 giant agent，而是<strong>显式的路由与组件组合</strong>。</p>
+<h2 id="5-为什么这条路线适合现实业务而不是只适合-demo">5. 为什么这条路线适合现实业务，而不是只适合 Demo</h2>
+<p>现实业务系统往往不会问你“你是不是 agentic”。它只会问：</p>
+<ul>
+<li>遇到这类问题系统能不能换一条更正确的路？</li>
+<li>问题不适合文档检索时，系统会不会傻傻继续检索？</li>
+<li>某类高风险请求会不会被分流到更安全的链路？</li>
+</ul>
+<p>Haystack 的价值正在这里：</p>
+<ul>
+<li>动态决策不必牺牲显式结构；</li>
+<li>工具和检索仍可作为 component 被治理；</li>
+<li>路由依旧可追踪、可测试、可评测。</li>
+</ul>
+<h2 id="6-与-llamaindex-的差别路由也有两种语言">6. 与 LlamaIndex 的差别：路由也有两种语言</h2>
+<p>LlamaIndex 的 route 更常落在：</p>
+<ul>
+<li>RouterQueryEngine</li>
+<li>SubQuestionQueryEngine
+这类 query objects 上。</li>
+</ul>
+<p>Haystack 的 route 更常落在：</p>
+<ul>
+<li>ConditionalRouter</li>
+<li>pipeline branching</li>
+<li>component graph
+这类流程图上。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Haystack</th>
+<th>LlamaIndex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>动态决策主要表达在哪</td>
+<td>pipeline/component/route graph</td>
+<td>query object family</td>
+</tr>
+<tr>
+<td>更像什么</td>
+<td>流程级路由</td>
+<td>查询级路由</td>
+</tr>
+<tr>
+<td>最适合什么</td>
+<td>多链路检索系统</td>
+<td>多查询对象知识系统</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：同样是 routing，Haystack 更像“流程分叉”，LlamaIndex 更像“查询对象分派”。</p>
+<h2 id="7-课程助教很适合做路由型-retrieval-案例">7. 课程助教很适合做路由型 retrieval 案例</h2>
+<p>课程助教天然会遇到：</p>
+<ul>
+<li>FAQ 问题</li>
+<li>课程概念问答</li>
+<li>课程规则问答</li>
+<li>成绩/隐私敏感问题</li>
+</ul>
+<p>一个合理的 Haystack 路由可以是：</p>
+<ul>
+<li>FAQ → FAQ retrieval chain</li>
+<li>概念 → content retrieval chain</li>
+<li>规则 → policy retrieval chain</li>
+<li>敏感问题 → approval / manual review path</li>
+</ul>
+<p>这说明课程助教在 Haystack 下特别适合通过 ConditionalRouter 表达，而不必一开始就上完整 agent framework。</p>
+<h2 id="8-动手活动给课程助教设计一个-route-first-retrieval-flow">8. 动手活动：给课程助教设计一个 route-first retrieval flow</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>haystack-routing-plan.md</code></p>
+<p><strong>目标</strong>：不要只画一条检索链，而是为不同问题类型设计显式分流。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>列问题类型：FAQ、课程内容、课程规则、敏感请求；</li>
+<li>定义 ConditionalRouter 条件；</li>
+<li>为每条路分别定义 retriever / ranker / generator；</li>
+<li>标哪些链路要转人工或调用外部工具；</li>
+<li>写一句结论：为什么动态 retrieval 不等于黑箱 agent。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚说明“这条问题为什么走这条链，而不是别的链”。</p>
+</div>
+<h2 id="9-边界与排错">9. 边界与排错</h2>
+<ul>
+<li><strong>误区一：一动态就该交给 Agent。</strong> 很多动态性可以先靠显式 route 解决；</li>
+<li><strong>误区二：ConditionalRouter 只是 if/else 语法糖。</strong> 它的价值在于进入 pipeline graph 和测试体系；</li>
+<li><strong>误区三：tool-aware retrieval 就是工具乱接。</strong> 真正重要的是路由和边界；</li>
+<li><strong>误区四：显式 route 会太死板。</strong> 事实上它常常比隐式 prompt 路由更稳；</li>
+<li><strong>误区五：routing 不需要评测。</strong> 实际上 route 错了，后面全链路都白跑。</li>
+</ul>
+<h2 id="10-总结">10. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>agentic pipeline 在这里是什么</td>
+<td>动态决策被保留在显式 pipeline 结构内</td>
+</tr>
+<tr>
+<td>ConditionalRouter 的意义</td>
+<td>把分流逻辑做成正式可观测组件</td>
+</tr>
+<tr>
+<td>tool-aware retrieval 的意义</td>
+<td>查询上下文来源不再局限于单一文档检索</td>
+</tr>
+<tr>
+<td>Haystack 的独特性</td>
+<td>动态 retrieval 不必放弃流程透明性</td>
+</tr>
+<tr>
+<td>课程助教为什么适合</td>
+<td>问题类型天然分流、治理要求明显</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么很多团队在 retrieval system 复杂起来后，最容易犯的错误不是“没加 enough tools”，而是“没把换路逻辑显式化”？Haystack 的 routing 世界观，本质上是在提前预防哪类系统退化？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为系统一复杂，最先失控的往往不是工具数量，而是系统不知道什么时候该走哪条链。若换路逻辑不显式，最终就会埋进 prompt、helper 和零散分支里，导致调试、测试、评测和治理都越来越困难。Haystack 的 routing 世界观，本质上是在预防 retrieval system 从“可解释流程”退化成“隐式 decision soup”。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[54] <a href="https://github.com/deepset-ai/haystack/blob/main/README.md">https://github.com/deepset-ai/haystack/blob/main/README.md</a> — Haystack README</li>
+<li>[59] <a href="https://github.com/deepset-ai/haystack/blob/main/haystack/components/routers/conditional_router.py">https://github.com/deepset-ai/haystack/blob/main/haystack/components/routers/conditional_router.py</a> — Haystack conditional router source</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/02/04/"><span>上一篇</span><strong>03.02.02.04 Hybrid Retrieval、Evaluation 与 Production RAG</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/02/06/"><span>下一篇</span><strong>03.02.02.06 课程助教 Agent 的 Haystack 架构案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念agentic-pipeline-不是放弃显式控制而是把动态决策拉回显式链路">1. 概念：agentic pipeline 不是放弃显式控制，而是把动态决策拉回显式链路</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-conditionalrouter为什么它是动态-pipeline-的关键支点">2. ConditionalRouter：为什么它是动态 pipeline 的关键支点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-routing-在-retrieval-system-里为什么重要">3. routing 在 retrieval system 里为什么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-tool-aware-retrieval为什么检索有时不只查-document-store">4. tool-aware retrieval：为什么“检索”有时不只查 document store</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-为什么这条路线适合现实业务而不是只适合-demo">5. 为什么这条路线适合现实业务，而不是只适合 Demo</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-与-llamaindex-的差别路由也有两种语言">6. 与 LlamaIndex 的差别：路由也有两种语言</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-课程助教很适合做路由型-retrieval-案例">7. 课程助教很适合做路由型 retrieval 案例</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动给课程助教设计一个-route-first-retrieval-flow">8. 动手活动：给课程助教设计一个 route-first retrieval flow</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-边界与排错">9. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-总结">10. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

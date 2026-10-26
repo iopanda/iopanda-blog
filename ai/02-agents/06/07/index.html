@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.06.07 多 Agent 的失败模式与选型 · iopanda</title><meta name="description" content="02.06.07 多 Agent 的失败模式与选型 · 智能体 / 多 Agent 系统，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/06/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.06.07 多 Agent 的失败模式与选型 · iopanda"><meta property="og:description" content="02.06.07 多 Agent 的失败模式与选型 · 智能体 / 多 Agent 系统，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/06/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="06" data-active-subsection data-active-article="/ai/02-agents/06/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 多 Agent 系统"></button><a class="tree-link tree-link--section" href="/ai/02-agents/06/"><span class="tree-number">06</span><span class="tree-title">多 Agent 系统</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/06/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">多 Agent 的失败模式与选型</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/06/">多 Agent 系统</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">多 Agent 的失败模式与选型</span></nav><header class="ai-article-header"><p class="ai-number">02.06.07</p><h1>多 Agent 的失败模式与选型</h1><p class="ai-meta"><time datetime="2026-09-03T05:25">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>multi-agent</li></ul></header><div class="ai-prose"><h1 id="多-agent-的失败模式与选型">多 Agent 的失败模式与选型</h1>
+<blockquote>
+<p>01~05 章把多 Agent 越讲越顺手:角色化、三种协作模式、通信协议、框架执行——课程助教已经能「组队干活」了。可 01 章末尾那盆冷水——通信成本、级联错误、责任归属、成本爆炸——一直没泼透:它们以什么方式坏、坏了为什么特别难查、以及最该记住的一句「能单 Agent 解决就不要上多 Agent」。本章是 02.06 Multi-Agent Systems 的收官课,回答:多 Agent 的典型失败模式、为什么单 Agent 的评测方法在此失效(02.07 展开),并给出一张三问决策清单与 5 任务选型判断表——看完你会理解,多 Agent 的默认答案为什么是「不用」。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>列举四大失败模式(级联错误放大、上下文互相污染、成本失控、调试困难)并各举一个课程助教实例;</li>
+<li>用「组件可靠性相乘」解释级联错误为什么随 Agent 数放大;</li>
+<li>解释为什么多 Agent 让单 Agent 评测方法失效、失败难以归因(预告 02.07);</li>
+<li>对 5 个给定任务运用三问决策清单,给出用/不用多 Agent 的结论与理由;</li>
+<li>说出至少三条多 Agent 护栏(预算上限、超时与人工闸门、轨迹日志),并复述本章结论。</li>
+</ol>
+<h2 id="1-概念多-agent-的四大失败模式">1. 概念:多 Agent 的四大失败模式</h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>机理</th>
+<th>课程助教实例</th>
+<th>早期信号</th>
+<th>防线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>级联错误放大</td>
+<td>错误沿 agent 链传递并叠加:单步 95% 可靠的三级流水线,整链成功率仅约 86%(0.95³);MAST 实证研究里主流框架任务失败率高达 41%~86.7%,且多数失败源于「组织设计」而非单个模型不行</td>
+<td>检索员查错档案 → 计算员算出漂亮数字 → 回答员一本正经解读错的数字(04 章「假成功」的放大版)</td>
+<td>输出「自信但错」,单步抽查却都对</td>
+<td>每步 schema 校验;关键步人工抽检;评测集兜底</td>
+</tr>
+<tr>
+<td>上下文互相污染</td>
+<td>多角色共享/复读同一段上下文,一方的幻觉污染公共黑板;MAST 把「带着错误假设继续推进」(FM-2.2,占 11.65%)与「历史上下文丢失」(FM-1.4)单列为高频模式</td>
+<td>辩论里正方编了个数据,反方懒得核实直接引用;批改员顺手把共享学员档案写脏</td>
+<td>角色输出出现别的角色的措辞/数据</td>
+<td>角色上下文隔离;共享状态只读+版本号(04 章)</td>
+</tr>
+<tr>
+<td>成本失控</td>
+<td>调用次数 = 角色数 × 轮数,token 又因每角色重述上下文而膨胀;辩论与重试是放大器</td>
+<td>一次答疑从单 Agent 的 1 次调用变成编排者+3 worker 的 4+ 次,还带重试</td>
+<td>账单翻倍但质量没涨</td>
+<td>预算上限;轮数上限;小模型干杂活</td>
+</tr>
+<tr>
+<td>调试困难</td>
+<td>状态分散在多个角色与轮次,「改一行 prompt 全线漂移」;MAST 三分类中执行期的 agent 间错位(FC2,约 37%)最难一眼定位</td>
+<td>学员投诉批改不公:分不清是评分细则、检索到的历史、还是回答员的表达哪一环坏了</td>
+<td>修一个 bug 引出三个新 bug</td>
+<td>轨迹日志;单步重放(02.07)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>证据来源:UC Berkeley 的 MAST 研究对 7 个主流多 Agent 框架的 200+ 条真实轨迹做标注,归纳出 14 种细粒度失败模式、三大类(规格问题 FC1 ≈ 41.8%、Agent 间错位 FC2 ≈ 36.9%、任务验证不足 FC3 ≈ 21.3%),并发现<strong>带显式验证角色的系统(如 MetaGPT)整体失败更少</strong>——但验证者不是银弹,有的系统成功率仍低到 33%。这条证据链说明:<strong>失败主要是设计问题,不是模型问题</strong>。</li>
+</ul>
+<h2 id="2-为什么需要隐性税与评测失效">2. 为什么需要:隐性税与评测失效</h2>
+<h3 id="21-可靠性相乘成本相乘">2.1 可靠性相乘、成本相乘</h3>
+<ul>
+<li>假设单次模型调用 95% 可靠(已经很乐观):单 Agent 一次任务 ≈ 95%;02 章编排 Demo 至少 4 次调用(编排者 + 3 worker),全对概率 ≈ 81%;加一次失败重试、一次辩论回合,轻松掉到 70% 以下。<strong>多 Agent 用调用次数换质量上限,也同时把可靠性做成乘法</strong>——每一步都必须有校验,否则整链精度被最弱一环拖死。</li>
+<li>成本:调用次数倍增之外,每个角色都要背一份上下文(02.02 的窗口管理在多 Agent 里按角色重复计费)。单 Agent 一次 1 万 token 的任务,编排版轻松到 5 万以上;辩论按轮数再翻倍。<strong>预算上限不是优化项,是启动条件</strong>。</li>
+</ul>
+<h3 id="22-评测难单-agent-方法为什么失效">2.2 评测难:单 Agent 方法为什么失效</h3>
+<ul>
+<li>单 Agent 评测(01.06)是「同一问题 → 一次回答 → 与参考答案比对」;多 Agent 下,一次交付是 N 次调用 + 通信的产物,同一条「错的答案」可能源自检索错、计算错、编排拆错、上下文污染或回答员跑题——<strong>只比对最终答案无法归因</strong>。</li>
+<li>MAST 显示近半数失败发生在执行过程中(步骤重复、带错假设推进、提前终止),最终答案反而「看起来正常」;只评结果会漏掉大部分病灶。</li>
+<li>再加上 01 章的责任归属问题:多角色时「谁为坏结果负责」没有天然答案。<strong>结论:多 Agent 需要 02.07 的轨迹级评测与可观测性;没有它们,多 Agent 就是不可调试的黑盒加速器</strong>——这是本章把评测难列为头号风险的原因。</li>
+</ul>
+<h2 id="3-作用三问决策清单">3. 作用:三问决策清单</h2>
+<ul>
+<li>上多 Agent 前,逐条回答三个问题,<strong>全为「是」才继续</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>问</th>
+<th>判断标准</th>
+<th>反例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1 任务能拆吗</td>
+<td>存在边界清晰、天然独立的子任务</td>
+<td>「总结这段讲义」——拆成 5 段各写各的,合并质量反而差</td>
+</tr>
+<tr>
+<td>Q2 角色真不同吗</td>
+<td>各角色需要不同工具/上下文/约束,不是同一模型换段 prompt</td>
+<td>「查成绩+算平均」——两步都是工具调用,一个 Agent 就能做</td>
+</tr>
+<tr>
+<td>Q3 单 Agent+工具搞不定吗</td>
+<td>有评测证据(02.07 黄金任务集),不是感觉</td>
+<td>「再跑个辩论试试」——没有评测对照,加了也不知道好不好</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>任务进来</span></span>
+<span class="line"><span>  └─ 先用单 Agent + 工具跑,过评测集(02.07)</span></span>
+<span class="line"><span>        ├─ 达标 → 结束(默认答案:不用多 Agent)</span></span>
+<span class="line"><span>        └─ 不达标 → 过三问</span></span>
+<span class="line"><span>              ├─ 任一为「否」→ 回到单 Agent:补工具/补 prompt/补记忆</span></span>
+<span class="line"><span>              └─ 三问全真 → 上多 Agent,同时装齐护栏:</span></span>
+<span class="line"><span>                  预算上限 | 每步超时与重试 | 人工闸门 | 轨迹日志</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>护栏不是可选项,是 02~04 章工程手段的汇总:预算与超时(04 章)、失败传播带原因(04 章)、人工确认闸门(02 章)、每步打点(02.07)——<strong>没有护栏的多 Agent 上线 = 开着没刹车的车</strong>。</li>
+</ul>
+<h2 id="4-详细介绍5-个任务选型判断">4. 详细介绍:5 个任务选型判断</h2>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>Q1 可拆?</th>
+<th>Q2 角色真不同?</th>
+<th>Q3 单 Agent 不够?</th>
+<th>结论</th>
+<th>理由与替代方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A 学员问「我第三章练习平均分在班里什么水平?」</td>
+<td>弱(查+算两步)</td>
+<td>否(查与算都是工具调用,不需要两个 Agent 人格)</td>
+<td>否</td>
+<td><strong>不用多 Agent</strong></td>
+<td>单 Agent + 成绩查询与计算工具一次调用;02 章拆三 worker 是为教学演示,不是该问题的最优解</td>
+</tr>
+<tr>
+<td>B 「500 篇作业逐篇批改并写评语」</td>
+<td>强(每篇独立)</td>
+<td>否(500 篇是同一批改角色 × 500,不是 5 种角色)</td>
+<td>否(串行慢,但能做)</td>
+<td><strong>不用多 Agent;可并行 worker 提速</strong></td>
+<td>真正缺的是并行不是新角色:同一 worker 起 10 个副本各批 50 篇;要盯的是批改质量评测</td>
+</tr>
+<tr>
+<td>C 「每周自动生成课程更新简报:抓各章 diff、核对引用出处、写摘要」</td>
+<td>强</td>
+<td>是(diff 检索要搜索工具,核对要引用库,摘要要写作上下文)</td>
+<td>是(三者工具与上下文互斥,塞一个窗口会角色冲突,呼应 01 章)</td>
+<td><strong>用多 Agent</strong></td>
+<td>编排者-工作者(02 章):diff-worker、verify-worker、writer-worker;每步产物可审计、可单独重跑</td>
+</tr>
+<tr>
+<td>D 「学员情绪激动投诉『助教根本没批我作业』」</td>
+<td>否(事实核查+安抚,一气呵成)</td>
+<td>否</td>
+<td>否</td>
+<td><strong>不用多 Agent</strong></td>
+<td>单 Agent 查批改记录 + 道歉模板最快最稳;多 Agent 的延迟与出错面只会火上浇油</td>
+</tr>
+<tr>
+<td>E 「出一份『多 Agent 是否值得』的正反方辩论展示」</td>
+<td>强(正/反/裁决三角色)</td>
+<td>是(正反方 prompt 必须隔离才不会一边倒,裁决者须独立)</td>
+<td>是(一人分饰两角容易自说自话)</td>
+<td><strong>用多 Agent(辩论模式),须加护栏</strong></td>
+<td>03 章辩论:正反方各执一词 + 裁决者;护栏:轮数上限、预算上限、裁决者用更强模型、要求先找茬再赞同(防互相附和)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>看表要抓住两个陷阱:<strong>「任务大」≠「需要多 Agent」</strong>(B 是同一角色 × 500,要的是并行,不是角色分化);<strong>「角色多」≠「值得拆」</strong>(D 拆了只会更慢更易错)。多 Agent 只对 C/E 这类「角色、工具、上下文确实分化且有评测可证收益」的任务成立。</p>
+</li>
+<li>
+<p><strong>一页纸备忘(不用的红旗)</strong>:任务单轮能答;角色全靠换 prompt 凑;没有评测集兜底;失败代价高却无人确认;预算敏感;团队没人能维护 N 个角色的 prompt——出现任一条,回到单 Agent + 好工具。</p>
+</li>
+</ul>
+<h2 id="5-动手活动5-任务选型决策--失败模式实验">5. 动手活动:5 任务选型决策 + 失败模式实验</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:multi_agent_decision.py 与两个失败实验</p>
+<p><strong>目标</strong>:运行决策脚本核对 4 节选型表;亲手制造并观察「假成功级联」与「脏数据污染」两条失败路径;把判断过程写成 checklist。
+<strong>步骤</strong>:</p>
+<ol>
+<li>保存并运行 multi_agent_decision.py(纯标准库,离线可跑),对照 4 节表格核对 A~E 的结论与理由;</li>
+<li>打开 02 章 orchestrator_workers.py,把 Calculator.run 的平均分改成永远返回 None 但保留 ok=True——模拟「假成功」,观察 None 如何穿过 require() 直达交付(答案里出现 None);这演示了 schema 校验只查形状、不查内容时的级联漏洞;</li>
+<li>给 Retriever 的档案里塞一条脏数据(如把某学员第三次成绩改成 150),再跑一次,观察上下文污染如何让计算员、回答员在「正确代码」下输出错误答案;</li>
+<li>写 reports/selection-checklist.md:对 A~E 各填一行「三问答案 → 结论 → 若上多 Agent 会装哪两条护栏」;</li>
+<li>从课程助教真实问题里挑一个单 Agent 能答的问题,写一份「硬拆成多 Agent」的演示稿,再用三问否决它,记录否决理由。
+<strong>完成标准</strong>:脚本输出与 4 节表结论一致;能画出「假成功级联」与「脏数据污染」的传播路径并解释防线(内容校验、只读共享状态);checklist 五行三问与结论齐全。</li>
+</ol>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># multi_agent_decision.py —— 06 章动手:三问决策清单代码化(纯标准库,离线可跑)</span></span>
+<span class="line"><span style="color:#6A737D"># 三问(本章 3 节):</span></span>
+<span class="line"><span style="color:#6A737D">#   Q1 splittable    任务能拆成边界清晰的独立子任务吗?</span></span>
+<span class="line"><span style="color:#6A737D">#   Q2 distinct_role 角色/工具/上下文真的不同吗?(只是换 system prompt 不算)</span></span>
+<span class="line"><span style="color:#6A737D">#   Q3 single_fails  单 Agent + 工具确实搞不定、或评测不达标吗?(用 02.07 的评测说话)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> decide</span><span style="color:#E1E4E8">(splittable, distinct_role, single_fails):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """三问全真才上多 Agent;否则返回 avoid 并给出否决理由"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    reasons </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> splittable:</span></span>
+<span class="line"><span style="color:#E1E4E8">        reasons.append(</span><span style="color:#9ECBFF">"任务不可拆:拆分只是增加通信与出错面"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> distinct_role:</span></span>
+<span class="line"><span style="color:#E1E4E8">        reasons.append(</span><span style="color:#9ECBFF">"角色同质:只是换 prompt,不是真分工"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> single_fails:</span></span>
+<span class="line"><span style="color:#E1E4E8">        reasons.append(</span><span style="color:#9ECBFF">"单 Agent + 工具能完成:多 Agent 是纯开销"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> splittable </span><span style="color:#F97583">and</span><span style="color:#E1E4E8"> distinct_role </span><span style="color:#F97583">and</span><span style="color:#E1E4E8"> single_fails:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> "USE"</span><span style="color:#E1E4E8">, reasons </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"三问全过:分工带来可测收益,上多 Agent 并装护栏"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> "AVOID"</span><span style="color:#E1E4E8">, reasons</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">CASES</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [  </span><span style="color:#6A737D"># (任务, 可拆?, 角色真不同?, 单Agent+工具失败?)</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"A:问平均分与班级水平"</span><span style="color:#E1E4E8">,     </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"B:500 篇作业逐篇批改"</span><span style="color:#E1E4E8">,      </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"C:每周课程更新简报"</span><span style="color:#E1E4E8">,        </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"D:情绪化投诉处理"</span><span style="color:#E1E4E8">,          </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"E:正反方辩论展示"</span><span style="color:#E1E4E8">,          </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,  </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> name, q1, q2, q3 </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> CASES</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        verdict, why </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> decide(q1, q2, q3)</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">] </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (verdict, name))</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> line </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> why:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"    - </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> line)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<ul>
+<li>说明:A 的「可拆」判为否,是因为查+算两步合起来一次调用就能完成——可拆性要按「拆了是否有收益」来判,不是按「能不能拆成两句话」来判;这与 4 节表格的「弱可拆」同义,代码里为保持三问的布尔语义取「否」。</li>
+</ul>
+<h2 id="6-边界与排错多-agent-系统坏掉的早期信号">6. 边界与排错:多 Agent 系统「坏掉」的早期信号</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>可能原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上多 Agent 后质量反而低于单 Agent</td>
+<td>级联错误 / 角色同质 / 拆错任务</td>
+<td>回到单 Agent 做对照评测(02.07);三问重过</td>
+</tr>
+<tr>
+<td>token 账单翻倍却无质量收益</td>
+<td>每角色重述上下文;轮数失控</td>
+<td>预算与轮数上限;减角色;压缩共享上下文</td>
+</tr>
+<tr>
+<td>一次失败整个流程重跑</td>
+<td>无检查点,失败即从头(05 章)</td>
+<td>上 checkpointer;失败进状态分流(05 章 Demo)</td>
+</tr>
+<tr>
+<td>改一个 worker prompt,全线漂移</td>
+<td>上下文污染:旧轨迹/共享黑板串扰</td>
+<td>角色上下文隔离;共享状态只读;重跑回归评测</td>
+</tr>
+<tr>
+<td>辩论双方互相夸,结论空泛</td>
+<td>附和(03 章):无对抗指令或裁决者弱</td>
+<td>裁决者独立且更强;要求先找茬再赞同;轮数封顶</td>
+</tr>
+<tr>
+<td>出了事故找不到责任环节</td>
+<td>无轨迹日志</td>
+<td>02.07 tracing:每步打点,失败可重放</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:本章的「不用多 Agent」不是否定 01<del>05 章——01</del>05 章教会你「拆」,本章给你「什么时候才值得拆」的标尺。生产环境里课程助教 90% 的问题应走单 Agent + 工具;多 Agent 留给 C/E 这类「拆了有可测收益」的任务,且每次上马都带护栏与评测。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>四大失败模式</td>
+<td>级联错误(可靠性相乘)、上下文污染(共享变脏)、成本失控(角色×轮数×token)、调试困难(归因无门)</td>
+</tr>
+<tr>
+<td>评测失效</td>
+<td>最终答案 ≠ 病灶;轨迹级评测与可观测性是解药(02.07)</td>
+</tr>
+<tr>
+<td>三问决策清单</td>
+<td>可拆?角色真不同?单 Agent + 工具搞不定?——三问全真才上</td>
+</tr>
+<tr>
+<td>护栏</td>
+<td>预算上限、超时重试、人工闸门、轨迹日志,缺一不可</td>
+</tr>
+<tr>
+<td>结论</td>
+<td>能用单 Agent + 好工具解决的,不要上多 Agent</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:「500 篇作业批改」被判不用多 Agent;若任务改成「先按 A/B/C 分级,再按级用不同细则批改」,三问的答案会怎么变?多 Agent 出错后,为什么「重跑一遍」常常没用?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>批 500 篇是同一角色 × 500,角色数没变,要的是并行;加分级后,角色出现真分化:分级员(读作业判级,判错代价高)与 A/B/C 各级批改员(细则、查重与引用工具各不相同),Q2 变真;若单 Agent 一锅炖的准确率经评测(02.07)确实不达标,Q3 也真——此时编排者-工作者才有依据,且分级结果值得人工抽检。重跑没用,因为级联错误既有随机性也有系统性:随机部分重跑可能换个样子再现,系统性部分(拆解设计缺陷、验证不足)重跑必然重现同类错误——MAST 案例里 ChatDev 被反复提示仍产出同一类 bug。正确动作是轨迹归因:定位是哪一步、哪个角色、哪类失败,改设计后重跑回归评测,而不是原地重试。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2503.13657">arXiv:2503.13657 Why Do Multi-Agent LLM Systems Fail?(MAST 失败分类学)</a></li>
+<li><a href="https://multi-agent-systems-failure-taxonomy.github.io/MAST/">MAST 项目主页(失败模式定义与标注数据集)</a></li>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic:Building Effective Agents(先试最简单方案,不要过早构建多 Agent)</a></li>
+<li><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">Anthropic:How we built our multi-agent research system(编排者-工作者实战结论)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/06/06/"><span>上一篇</span><strong>02.06.06 多 Agent 框架实践</strong></a><a class="ai-pager-next" href="/ai/02-agents/07/01/"><span>下一篇</span><strong>02.07.01 评估与可观测性 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念多-agent-的四大失败模式">1. 概念:多 Agent 的四大失败模式</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要隐性税与评测失效">2. 为什么需要:隐性税与评测失效</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-可靠性相乘成本相乘">2.1 可靠性相乘、成本相乘</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-评测难单-agent-方法为什么失效">2.2 评测难:单 Agent 方法为什么失效</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用三问决策清单">3. 作用:三问决策清单</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍5-个任务选型判断">4. 详细介绍:5 个任务选型判断</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动5-任务选型决策--失败模式实验">5. 动手活动:5 任务选型决策 + 失败模式实验</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错多-agent-系统坏掉的早期信号">6. 边界与排错:多 Agent 系统「坏掉」的早期信号</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

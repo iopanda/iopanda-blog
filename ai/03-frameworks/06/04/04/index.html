@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.04.04 传感器、分区与数据平台工作流 · iopanda</title><meta name="description" content="03.06.04.04 传感器、分区与数据平台工作流 · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/04/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.04.04 传感器、分区与数据平台工作流 · iopanda"><meta property="og:description" content="03.06.04.04 传感器、分区与数据平台工作流 · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/04/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection="04" data-active-article="/ai/03-frameworks/06/04/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/06/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Dagster"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/06/04/"><span class="tree-number">04</span><span class="tree-title">Dagster</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/04/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">传感器、分区与数据平台工作流</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/04/">Dagster</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">传感器、分区与数据平台工作流</span></nav><header class="ai-article-header"><p class="ai-number">03.06.04.04</p><h1>传感器、分区与数据平台工作流</h1><p class="ai-meta"><time datetime="2026-09-09T10:04">2026-09-09</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>workflow</li><li>orchestration</li><li>dagster</li><li>sensors</li><li>partitions</li></ul></header><div class="ai-prose"><h1 id="传感器分区与数据平台工作流">传感器、分区与数据平台工作流</h1>
+<blockquote>
+<p>如果第 01、02 篇讲的是“资产是什么”，这一篇讲的是数据平台里两个最常见的现实问题：<strong>数据什么时候该被重新生产</strong>（sensors）和<strong>数据应该按什么颗粒度被追踪与重算</strong>（partitions）。[28][29][30] 两者合起来，才构成一个真正能长期运营的 data platform workflow。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解 sensor 与 schedule 的差异，以及为什么两者会共存；</li>
+<li>说出 partition 的几种典型策略，以及它为什么能支撑增量处理；</li>
+<li>理解 backfill 存在的两个典型原因；</li>
+<li>判断你的资产应该按什么维度分区，什么时候需要 single-run backfill；</li>
+<li>为系统写一张 data-platform-workflow card。</li>
+</ol>
+<h2 id="1-sensor-在解决事件发生了该不该动">1. sensor 在解决“事件发生了，该不该动”</h2>
+<p>sensor 的机制是「check for events at regular intervals and either perform an action or provide an explanation for why the action was skipped」。[28] 它靠 <code>@sensor</code> 装饰的评估函数工作：满足条件就用 <code>RunRequest</code> 发起一次运行，不满足就返回 <code>SkipReason</code> 解释为什么跳过。[28] 典型监听对象包括「a run completes in Dagster」「a job materializes a specific asset」「a file appears in an s3 bucket」「an external system is down」，典型动作包括「launching a run」「sending a Slack message」「inserting a row into a database」。[28]</p>
+<p>为了避免同一个事件触发重复运行，sensor 用 <code>run_key</code> 去重：「Dagster will skip processing requests with previously used run keys, ensuring that duplicate runs won’t be created」；面对持续事件流（比如目录里不断出现新文件），还可以用 cursor 记录“上次处理到哪”，避免每次重新扫描全部数据。[28]</p>
+<h2 id="2-sensor-与-schedule-为什么会共存">2. sensor 与 schedule 为什么会共存</h2>
+<p>schedule 是按固定时间节奏触发（这更接近 Airflow 的调度心智），sensor 是持续轮询、按条件触发。两者不是互斥关系：一个资产平台里，日常按天更新的资产可以用 schedule，而“外部文件到达”“上游资产刚物化完成”这类事件驱动的场景更适合 sensor（其中 asset sensor 甚至可以读取上游物化的 partition key，直接触发匹配 partition 的下游任务）。[28]</p>
+<h2 id="3-partition-在解决数据该按什么颗粒度追踪">3. partition 在解决“数据该按什么颗粒度追踪”</h2>
+<p>partition 的价值很直接：「partitioning is a powerful technique for managing large datasets, improving pipeline performance, and enabling incremental processing」。[29] Dagster 支持多种分区策略：[29]</p>
+<ul>
+<li><strong>按时间</strong>：如 <code>DailyPartitionsDefinition</code>，一个资产按天切分，每次运行只处理一天的数据；</li>
+<li><strong>按静态类别</strong>：如按地区（<code>us</code>/<code>eu</code>/<code>jp</code>）切分；</li>
+<li><strong>二维分区</strong>：同时按“日期 × 地区”切分；</li>
+<li><strong>动态分区</strong>：类别在运行时才确定，可以由 sensor 动态创建；</li>
+<li><strong>自定义日历</strong>：比如排除节假日的交易日日历。</li>
+</ul>
+<p>每个 partition 可以独立物化，下游资产按匹配的 partition 依赖上游，这就是“增量处理”的具体实现：不是每次都重算整张表，而是只算变化的那一小片。文档也给出了规模上限的提醒：单个资产的 partition 数量建议不超过 10 万，否则 UI 加载会变慢。[29]</p>
+<h2 id="4-backfill-在解决历史数据逻辑变化怎么补">4. backfill 在解决“历史数据/逻辑变化怎么补”</h2>
+<p>backfill 是「the process of running partitions for assets that either don’t exist or updating existing records」。[30] 它的两个典型触发场景是：[30]</p>
+<ul>
+<li><strong>首次搭建 pipeline 时的历史数据</strong>：资产上线前就存在的历史数据需要被补算；</li>
+<li><strong>逻辑变更后的历史重算</strong>：修改了资产的计算逻辑后，历史 partition 相对新逻辑已经“过期”，需要重新物化。</li>
+</ul>
+<p>默认情况下，backfill 会给每个 partition 单独发起一次 run（N 个 partition 就是 N 次 run）；如果你在用 Spark、Snowflake 这类自带并行能力的外部引擎，重复发起大量小 run 反而低效，这时可以用 <code>backfill_policy</code> 配置成 single-run backfill——一次 run 处理整段 partition 区间，Dagster 仍然会在这次 run 完成后正确记录所有 partition 都已被填补。[30]</p>
+<h2 id="5-三者合起来是什么">5. 三者合起来是什么</h2>
+<ul>
+<li>sensor 回答“什么时候该重新生产这份资产”；</li>
+<li>partition 回答“这份资产应该按什么颗粒度被追踪和重算”；</li>
+<li>backfill 回答“历史数据或逻辑变化之后，怎么把缺口补齐”。</li>
+</ul>
+<p>这三者组合起来，才是一个真正的数据平台工作流——不是“跑一次脚本”，而是一个持续运营、能对事件响应、能增量处理、能补历史缺口的系统。</p>
+<h2 id="6-动手活动">6. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>dagster-platform-workflow-card.md</code></p>
+<p>列你的资产里哪些该用 schedule、哪些该用 sensor 触发；哪些资产该按天/按类别/按二维分区；哪些场景需要 backfill，是否该用 single-run backfill。写一句结论：你现在的“增量处理”和“历史补数”逻辑，是分散在脚本里，还是已经收进 partition/backfill 这类正式语义。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sensor 在解决什么</td>
+<td>让流程对事件（而非固定时间）做出响应</td>
+</tr>
+<tr>
+<td>partition 在解决什么</td>
+<td>把资产按颗粒度切分，支撑增量处理</td>
+</tr>
+<tr>
+<td>backfill 在解决什么</td>
+<td>补历史数据缺口，或用新逻辑重算历史 partition</td>
+</tr>
+<tr>
+<td>三者合起来是什么</td>
+<td>一个可持续运营、可增量处理、可补历史的数据平台工作流</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[28] <a href="https://docs.dagster.io/guides/automate/sensors">https://docs.dagster.io/guides/automate/sensors</a> — Dagster sensors guide</li>
+<li>[29] <a href="https://docs.dagster.io/guides/build/partitions-and-backfills/partitioning-assets">https://docs.dagster.io/guides/build/partitions-and-backfills/partitioning-assets</a> — Dagster partitioning assets guide</li>
+<li>[30] <a href="https://docs.dagster.io/guides/build/partitions-and-backfills/backfilling-data">https://docs.dagster.io/guides/build/partitions-and-backfills/backfilling-data</a> — Dagster backfilling data guide</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/04/03/"><span>上一篇</span><strong>03.06.04.03 assets、jobs、ops、resources 与 lineage</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/06/04/05/"><span>下一篇</span><strong>03.06.04.05 资产治理、可观测性与工程边界</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-sensor-在解决事件发生了该不该动">1. sensor 在解决“事件发生了，该不该动”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-sensor-与-schedule-为什么会共存">2. sensor 与 schedule 为什么会共存</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-partition-在解决数据该按什么颗粒度追踪">3. partition 在解决“数据该按什么颗粒度追踪”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-backfill-在解决历史数据逻辑变化怎么补">4. backfill 在解决“历史数据/逻辑变化怎么补”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-三者合起来是什么">5. 三者合起来是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动">6. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

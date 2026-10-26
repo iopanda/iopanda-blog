@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.03.02 任务拆到多细 · iopanda</title><meta name="description" content="02.03.02 任务拆到多细 · 智能体 / 规划与推理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/03/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.03.02 任务拆到多细 · iopanda"><meta property="og:description" content="02.03.02 任务拆到多细 · 智能体 / 规划与推理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/03/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="03" data-active-subsection data-active-article="/ai/02-agents/03/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 规划与推理"></button><a class="tree-link tree-link--section" href="/ai/02-agents/03/"><span class="tree-number">03</span><span class="tree-title">规划与推理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/03/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">任务拆到多细</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/03/">规划与推理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">任务拆到多细</span></nav><header class="ai-article-header"><p class="ai-number">02.03.02</p><h1>任务拆到多细</h1><p class="ai-meta"><time datetime="2026-09-05T10:10">2026-09-05</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>decomposition</li></ul></header><div class="ai-prose"><h1 id="任务拆到多细">任务拆到多细</h1>
+<p>让模型一步交出“第 5 章的单元测验，十道题，覆盖全部知识点，难度分布 4:4:2”。</p>
+<p>它交了。十道题里有三道考的内容不在这一章：模型按“这门课大概会讲什么”补充了进来的知识点。题目本身质量不差，覆盖是假的。</p>
+<p>换成五步：先用工具读出章节的小节标题，再据此列知识点清单，再分配题数与难度，再逐题生成，最后校验每题对应的知识点是否在清单内。第二轮跑完，十道题全部落在章节范围内。</p>
+<p>同样的模型，同样的一次性输入。分解改变了什么？</p>
+<h2 id="分解降低了单次判断的宽度">分解降低了单次判断的宽度</h2>
+<p>一次性完成任务时，模型要在一次生成里同时满足全部约束：范围、数量、难度分布、格式、每道题的知识归属。约束越多，同时满足的概率越低，而且失败是整体的——一道题越界，整份卷子不可用。</p>
+<p>分解之后，每一步只面对少量约束。抽知识点时不用管题数，分配题数时不用管具体表述，生成单题时不用管覆盖。每一步的失败可以被单独发现，也可以被单独重做。</p>
+<p>代价也清楚。五步就是五次模型调用，加上工具调用，延迟从三秒变成二十秒；每一步的输入输出都要进上下文，token 成本大约翻三倍；而且步骤之间会传递错误——第一步的知识点清单漏了一个概念，后面四步都在这个缺口上正确工作。</p>
+<p><strong>分解不会让能力变强，只会让错误变小、变早、变得可定位。</strong> 判断值不值得，就看这三件事对你的任务有没有意义。</p>
+<h2 id="粒度拆到每一步都能被验证">粒度：拆到每一步都能被验证</h2>
+<p>分解粒度是这一节唯一有操作性的问题。有两种常见错误。</p>
+<p><strong>拆得太粗。</strong> “第一步：分析这一章；第二步：出题。“这不是分解，只是把一句话分两行写。第一步的产出没法判断对错，第二步依然要一次满足全部约束。</p>
+<p><strong>拆得太细。</strong> “第一步：打开文件；第二步：读第一段；第三步：读第二段……“每一步都不产生可验证的结论，调用次数翻十倍，全局一致性反而丢了——第 40 步时模型已经忘了这份卷子要覆盖全章。</p>
+<p>可用的标准有两条，同时满足才算拆到位。</p>
+<p><strong>每一步的产出可以被外部检查。</strong> 知识点清单可以用“是否都出现在章节正文里”检查；题数分配可以数；单题的知识点归属可以比对清单。检查可以是一条规则、一段代码、一个更小的模型调用，但必须是模型之外的东西。</p>
+<p><strong>每一步的输入能装进当前预算。</strong> 第 2.3 节给过配额：单次输入控制在 100K 以内。如果某一步需要把整本书塞进去才能完成，说明这一步还太粗。</p>
+<p>按这个标准，给一门课出测验的合理粒度是五步，而不是三步或十五步——因为五步里的每一步都有一个能对上的产出物。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>产出</th>
+<th>怎么验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>取章节正文</td>
+<td>章节全文</td>
+<td>非空、长度合理</td>
+</tr>
+<tr>
+<td>抽知识点</td>
+<td>知识点清单（带出处小节）</td>
+<td>每条能在正文里找到</td>
+</tr>
+<tr>
+<td>分配题数与难度</td>
+<td>配额表</td>
+<td>总数、比例、和不超过知识点数</td>
+</tr>
+<tr>
+<td>逐题生成</td>
+<td>单题（题干、选项、答案、归属）</td>
+<td>schema + 归属在清单内</td>
+</tr>
+<tr>
+<td>覆盖校验</td>
+<td>缺失知识点列表</td>
+<td>清单减去已覆盖，结果为空</td>
+</tr>
+</tbody>
+</table>
+<p>这张表的用处，是把“计划好不好”变成一串可以执行的检查。没有这张表，计划只是模型的一段文字，评审时无法争论。</p>
+<h2 id="什么时候不该拆">什么时候不该拆</h2>
+<p>三种情况，分解的代价超过收益。</p>
+<p><strong>任务短。</strong> 两步以内、单次生成就能做对的事，拆开只会增加延迟。写一句 SQL 不需要先列计划。</p>
+<p><strong>验证不了。</strong> 如果某一步的产出无法被检查，它就是纯粹的额外成本——既不能让错误变早，也不能让错误变少。写文案、做取舍这类任务，中间产物没有客观的验收标准，硬拆只会把一个连贯的判断切成几个互不知情的片段。</p>
+<p><strong>强耦合。</strong> 有些任务的所有部分必须同时考虑才能做好。翻译整章时，术语一致性要求全局视野；拆成十段分别翻译，每段都正确，拼起来术语是乱的。</p>
+<h2 id="分解挡不住的东西">分解挡不住的东西</h2>
+<p><strong>错误的计划。</strong> 分解本身由模型生成，它可能漏掉一个必要步骤。上面那个五步计划里如果缺了“确认教材版本”，后面全是无效工作。所以第 3.5 节要讲重新规划。</p>
+<p><strong>错误的步骤。</strong> 每一步都可能做错，分解只是让错误可定位，不负责不让它发生。这一步交给 3.4 节的失败处理。</p>
+<p><strong>能力的上限。</strong> 模型读不懂某一章的内容时，拆成二十步依然读不懂，只是多了十九次失败。</p>
+<h2 id="下一步单步怎么做好">下一步：单步怎么做好</h2>
+<p>分解解决的是“横向”——把任务切成几步。剩下一个“纵向”问题：单独一步内部，怎么让模型把这一步做对。</p>
+<p>下一节讲这件事，从一句“先一步一步想”开始。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Wei, J. et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.</em> arXiv:2201.11903</li>
+<li>Anthropic. <em>Building effective agents.</em> <a href="https://www.anthropic.com/engineering/building-effective-agents">https://www.anthropic.com/engineering/building-effective-agents</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/03/01/"><span>上一篇</span><strong>02.03.01 引言：会想，也要会改</strong></a><a class="ai-pager-next" href="/ai/02-agents/03/03/"><span>下一篇</span><strong>02.03.03 让模型先写草稿</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#分解降低了单次判断的宽度">分解降低了单次判断的宽度</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#粒度拆到每一步都能被验证">粒度：拆到每一步都能被验证</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#什么时候不该拆">什么时候不该拆</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#分解挡不住的东西">分解挡不住的东西</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#下一步单步怎么做好">下一步：单步怎么做好</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

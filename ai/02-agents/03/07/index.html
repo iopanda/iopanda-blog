@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.03.07 计划的好坏怎么量 · iopanda</title><meta name="description" content="02.03.07 计划的好坏怎么量 · 智能体 / 规划与推理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/03/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.03.07 计划的好坏怎么量 · iopanda"><meta property="og:description" content="02.03.07 计划的好坏怎么量 · 智能体 / 规划与推理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/03/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="03" data-active-subsection data-active-article="/ai/02-agents/03/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 规划与推理"></button><a class="tree-link tree-link--section" href="/ai/02-agents/03/"><span class="tree-number">03</span><span class="tree-title">规划与推理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/03/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">计划的好坏怎么量</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/03/">规划与推理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">计划的好坏怎么量</span></nav><header class="ai-article-header"><p class="ai-number">02.03.07</p><h1>计划的好坏怎么量</h1><p class="ai-meta"><time datetime="2026-09-05T11:00">2026-09-05</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>evaluation</li><li>budget</li></ul></header><div class="ai-prose"><h1 id="计划的好坏怎么量">计划的好坏怎么量</h1>
+<p>一个团队给助教加了“自我修正”环节，演示时效果明显：出错的题被它自己改对了。上线三周后，成功率没有变化，单次对话的费用涨了四成。</p>
+<p>问题出在验收方式上。他们看的是演示里那几次成功修正，没有跑固定任务集，也没有统计“把对的改成错的”有多少次——而后者几乎与前者相当。</p>
+<p>这一章讲的所有做法都要付出成本：分解、推理链、重规划、修正。衡量它们是否值得，只能靠一套固定的口径。<strong>规划改进的收益通常小到无法靠主观感受区分，这件事必须用数字。</strong></p>
+<h2 id="六个指标">六个指标</h2>
+<p><strong>任务成功率。</strong> 唯一的总指标。前提是“成功”有明确判据——出题任务的一条硬判据可以是“十道题全部落在章节范围内，题数与难度比例符合要求”，由代码判定，不靠人看。</p>
+<p><strong>平均步数。</strong> 完成一个任务用了几轮模型调用。它同时是效率指标和健康指标：步数突然上涨通常意味着漂移或重复。</p>
+<p><strong>无效步占比。</strong> 对最终结果没有贡献的步骤占比。实现上不好自动统计，常用近似：重复动作次数、失败的工具调用数、被丢弃的中间产物数。</p>
+<p><strong>重规划次数。</strong> 平均值与分布。零次说明计划僵硬，频繁说明计划质量差。健康的分布集中在零到一次。</p>
+<p><strong>费用与延迟。</strong> 按任务计，按 P50 与 P95 报。只看平均会掩盖长尾——一次跑了两百步的任务足以吃掉一天的预算。</p>
+<p><strong>人工介入次数。</strong> 每百次任务里，人被迫接管几次。这是最能反映可用性的数字，也是最容易被漏掉的。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>口径</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>成功率</td>
+<td>代码判定，逐任务</td>
+<td>决定是否上线</td>
+</tr>
+<tr>
+<td>步数</td>
+<td>模型调用轮次</td>
+<td>效率与漂移预警</td>
+</tr>
+<tr>
+<td>无效步占比</td>
+<td>重复动作 + 失败调用</td>
+<td>提示词与工具质量</td>
+</tr>
+<tr>
+<td>重规划次数</td>
+<td>每任务计数</td>
+<td>计划质量</td>
+</tr>
+<tr>
+<td>费用/延迟</td>
+<td>P50、P95</td>
+<td>预算与容量</td>
+</tr>
+<tr>
+<td>人工介入</td>
+<td>每百任务次数</td>
+<td>可用性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实验怎么搭">实验怎么搭</h2>
+<p>四条要求，缺一条结论就不可信。</p>
+<p><strong>固定任务集。</strong> 三十到五十个任务，按难度分层：单步、三到五步、十步以上各占一部分。任务集要覆盖真实分布，也要专门放几个已知的困难样本——只测容易的任务，任何改动都显得有效。</p>
+<p><strong>每个任务跑三次以上。</strong> 温度不为零时，同一任务的结果差异很大。跑一次就下结论，等于把一个采样当成了系统的性质。</p>
+<p><strong>同模型、同参数、只改一个变量。</strong> 比较 ReAct 与 Plan-and-Execute，就不能同时换模型；比较加不加修正环节，就不能同时改提示词。控制变量听起来是常识，实际做的时候最常见的错误是“顺手优化了几处”。</p>
+<p><strong>开放式任务用盲评。</strong> 成功判据无法代码化时（写提纲、改文案），让评审在不知道版本的情况下打分。否则评分者会偏好自己预期的那个版本。</p>
+<h2 id="怎么读结果">怎么读结果</h2>
+<p>有一个固定的判读顺序，顺序错了会得出反向结论。</p>
+<p><strong>先看成功率。</strong> 改动没有提高成功率，后面所有数字都不用看——更便宜的失败没有价值。</p>
+<p><strong>成功率持平，再看费用。</strong> 同成功率下，费用低四成是显著收益；费用低一成，考虑到实现复杂度，通常不值得。</p>
+<p><strong>再看延迟。</strong> 用户能接受的等待上限通常是十到三十秒，超过这个量级，节省的费用换不回流失。</p>
+<p><strong>最后看失败形状。</strong> 成功率相同但失败更集中（都发生在同一类任务上）比均匀失败更好处理——可以针对性放弃这类任务。</p>
+<p>用一组示意数字说明这个顺序：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>成功率</th>
+<th>平均步数</th>
+<th>每任务费用 (P95)</th>
+<th>人工介入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基线 ReAct</td>
+<td>71%</td>
+<td>8.4</td>
+<td>0.42 元</td>
+<td>9/100</td>
+</tr>
+<tr>
+<td>加分解</td>
+<td>84%</td>
+<td>9.1</td>
+<td>0.55 元</td>
+<td>4/100</td>
+</tr>
+<tr>
+<td>加分解 + 修正</td>
+<td>83%</td>
+<td>11.6</td>
+<td>0.78 元</td>
+<td>4/100</td>
+</tr>
+</tbody>
+</table>
+<p>第三行是常见结局：修正环节没有提高成功率，只是把失败的尝试也做了两遍。它的价值要到成功率不再受格式类错误拖累时才会显现，那种场景下表里不会这么写。</p>
+<h2 id="预算怎么定">预算怎么定</h2>
+<p>三道限制都写在代码里，都从数据里取，而不是从感觉里取。</p>
+<p><strong>步数上限</strong>：取成功轨迹步数的 P95，乘以 1.5。低于 P95 会砍掉正常任务，高于 1.5 倍会让失控跑很久。</p>
+<p><strong>费用上限</strong>：同样按 P95 取，按任务类型分别设。出题和改文案的单任务预算不该是同一个数。</p>
+<p><strong>时间上限</strong>：用户可接受的等待，通常十到三十秒；后台任务可以放到几分钟。超时不是失败，超时是“交给人工或转异步”的信号。</p>
+<p>预算的作用不止省钱。它是<strong>终止条件的来源</strong>：一个 Agent 必须有“什么时候停”的确定规则，否则它会一直在“再试一次”上消耗。</p>
+<h2 id="它挡不住的部分">它挡不住的部分</h2>
+<p><strong>评测集过拟合。</strong> 拿同一批任务反复调提示词，调到 90% 之后上线只有 60%，这是最常见的落差来源。留一批不参与调优的保留集，只在最终验收时跑。</p>
+<p><strong>判据本身错了。</strong> 成功率 92% 但判据只看格式，等于测了一件事，上线后崩在另一件事上。判据要覆盖任务真正的价值点，这通常需要产品方参与定义。</p>
+<p><strong>指标之间的交换。</strong> 提高成功率、降低成本、缩短延迟三者互相牵制。任何一次改动都要说明它牺牲了什么，只说收益的报告不可信。</p>
+<h2 id="这一章之后">这一章之后</h2>
+<p>规划与推理到这里讲完了：分解、单步推理、两种编排、失败处理、重新规划、评测。</p>
+<p>这些能力有一个共同前提——模型能影响外部世界。工具调用是那个接口，也是整个 Agent 里风险最集中的地方。</p>
+<p>下一节从 function calling 的机制讲起，终点是权限边界。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Anthropic. <em>Building effective agents.</em> <a href="https://www.anthropic.com/engineering/building-effective-agents">https://www.anthropic.com/engineering/building-effective-agents</a></li>
+<li>Yao, S. et al. <em>ReAct.</em> arXiv:2210.03629</li>
+<li>Google. <em>Agent evaluation best practices.</em> <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-overview">https://cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-overview</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/03/06/"><span>上一篇</span><strong>02.03.06 计划要能被推翻</strong></a><a class="ai-pager-next" href="/ai/02-agents/04/01/"><span>下一篇</span><strong>02.04.01 引言：模型伸出手的地方</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#六个指标">六个指标</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#实验怎么搭">实验怎么搭</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#怎么读结果">怎么读结果</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#预算怎么定">预算怎么定</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它挡不住的部分">它挡不住的部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#这一章之后">这一章之后</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

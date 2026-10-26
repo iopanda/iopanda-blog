@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.03.01.02 统一训练工厂的设计哲学 · iopanda</title><meta name="description" content="03.03.01.02 统一训练工厂的设计哲学 · 框架 / 训练与微调框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/03/01/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.03.01.02 统一训练工厂的设计哲学 · iopanda"><meta property="og:description" content="03.03.01.02 统一训练工厂的设计哲学 · 框架 / 训练与微调框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/03/01/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="03" data-active-subsection="01" data-active-article="/ai/03-frameworks/03/01/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 训练与微调框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/03/"><span class="tree-number">03</span><span class="tree-title">训练与微调框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/03/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 LLaMA-Factory"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/03/01/"><span class="tree-number">01</span><span class="tree-title">LLaMA-Factory</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/03/01/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">统一训练工厂的设计哲学</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/">训练与微调框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/01/">LLaMA-Factory</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">统一训练工厂的设计哲学</span></nav><header class="ai-article-header"><p class="ai-number">03.03.01.02</p><h1>统一训练工厂的设计哲学</h1><p class="ai-meta"><time datetime="2026-09-04T00:10">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>training</li><li>fine-tuning</li><li>llama-factory</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="统一训练工厂的设计哲学">统一训练工厂的设计哲学</h1>
+<blockquote>
+<p>如果说 <a href="/ai/03-frameworks/03/03/01/">PEFT</a> 更像参数高效微调能力库，<a href="/ai/03-frameworks/03/04/01/">TRL</a> 更像对齐训练框架，那么 LLaMA-Factory 的第一性问题是另一种：<strong>当你的训练任务不再只是“跑一个 LoRA 脚本”，而是要同时覆盖 100+ 模型、多种 chat template、SFT/DPO/RLHF/VLM、多种导出与推理后端时，训练系统该怎么被工厂化？</strong> README 直接把它定义成 “Unified Efficient Fine-Tuning of 100+ Language Models”，并把模型支持、训练方法、量化方式、加速技巧、评测监控、推理导出全都收进一个统一项目里。[79][86]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释为什么 LLaMA-Factory 首先像“训练工厂”，而不是单一 trainer 包装；</li>
+<li>说出它为什么要把模型、模板、数据、训练方法、导出放进同一套语言；</li>
+<li>理解“统一”在训练框架里意味着什么，又不意味着什么；</li>
+<li>比较它与 <a href="/ai/03-frameworks/03/05/01/">Axolotl</a>、<a href="/ai/03-frameworks/03/02/01/">Unsloth</a>、<a href="/ai/03-frameworks/03/03/01/">PEFT</a> 的定位差异；</li>
+<li>判断一个项目什么时候真的需要“统一训练工厂”。</li>
+</ol>
+<h2 id="1-概念llama-factory-的主角不是某个-trainer而是统一入口">1. 概念：LLaMA-Factory 的主角不是某个 trainer，而是“统一入口”</h2>
+<p>从 README 的 Features 可以直接看出，它试图统一处理的东西非常多：[86]</p>
+<ul>
+<li>各种模型：LLaMA、Qwen、DeepSeek、Gemma、GLM、Phi、LLaVA、Qwen-VL 等；</li>
+<li>各种训练方法：pre-training、SFT、reward modeling、PPO、DPO、KTO、ORPO、SimPO；</li>
+<li>各种资源形态：全参、冻结、LoRA、QLoRA、多种量化格式；</li>
+<li>各种工程技巧：FlashAttention、Unsloth、Liger Kernel、RoPE scaling 等；</li>
+<li>各种使用方式：CLI、Web UI、OpenAI-style API、vLLM/SGLang 推理。</li>
+</ul>
+<p>这说明它想解决的不是“一个方法怎么训练”，而是：
+<strong>一套训练系统如何在方法、模型、模板、导出、推理之间保持统一心智。</strong></p>
+<h2 id="2-为什么训练会自然长成工厂问题">2. 为什么训练会自然长成“工厂问题”</h2>
+<p>训练在 demo 阶段通常只需要回答几个问题：</p>
+<ul>
+<li>用什么模型？</li>
+<li>用什么数据？</li>
+<li>用什么 LoRA 参数？</li>
+<li>跑多久？</li>
+</ul>
+<p>但一旦进入真实工程，问题会迅速扩展成：</p>
+<ul>
+<li>这个模型该用哪个 template？</li>
+<li>数据是 alpaca、sharegpt、openai format 还是 preference format？</li>
+<li>是 SFT 还是 DPO？是否多模态？</li>
+<li>导出给谁用？HF、vLLM、Ollama 还是 OpenAI-compatible API？</li>
+<li>评测如何接？日志如何看？</li>
+<li>如果模型和模板不匹配，会不会整条链都错？</li>
+</ul>
+<p>这时候训练就不再只是算法问题，而会自然长成“工厂问题”：</p>
+<ul>
+<li>原材料是什么；</li>
+<li>模板怎么匹配；</li>
+<li>工序怎么切换；</li>
+<li>成品导向哪里。</li>
+</ul>
+<p>LLaMA-Factory 正是在解决这个层面的复杂度。</p>
+<h2 id="3-readme-里最重要的一句不是支持-100-模型而是统一">3. README 里最重要的一句不是“支持 100+ 模型”，而是“统一”</h2>
+<p>很多人第一次看 LLaMA-Factory，会只记住：</p>
+<ul>
+<li>支持模型多；</li>
+<li>功能很多；</li>
+<li>有 Web UI。</li>
+</ul>
+<p>但真正关键的是它那篇论文标题和项目定位里的 unified。[79][86]</p>
+<p>“统一”在这里至少包括五件事：</p>
+<ol>
+<li><strong>统一模型入口</strong>：不同模型走同一训练入口，但配不同 template；</li>
+<li><strong>统一数据入口</strong>：不同数据格式最终要被规整到统一训练语义；</li>
+<li><strong>统一方法入口</strong>：SFT、DPO 等通过同一套 config/recipe 体系被切换；</li>
+<li><strong>统一导出入口</strong>：训练完成后的权重与推理后端尽量能顺滑衔接；</li>
+<li><strong>统一用户入口</strong>：CLI、Web UI、API 不要求用户重学一整套新栈。</li>
+</ol>
+<p>所以它的价值并不只是“多”，而是“多而不散”。</p>
+<h2 id="4-它为什么像工厂而不像能力库">4. 它为什么像工厂，而不像能力库</h2>
+<p>和 PEFT 这种能力库相比，LLaMA-Factory 的差别非常明显：</p>
+<ul>
+<li>PEFT 更像你在既有训练栈里插入一个微调方法抽象；</li>
+<li>LLaMA-Factory 更像你直接进入一个完整训练装配线。</li>
+</ul>
+<p>这也是为什么它对很多团队特别有吸引力：</p>
+<ul>
+<li>你不用先把 training stack 自己搭好；</li>
+<li>你可以直接站在一个“能训练、能导出、能评测、能部署”的大框架里思考。</li>
+</ul>
+<p>代价则是：</p>
+<ul>
+<li>抽象层更多；</li>
+<li>你更需要接受它的统一语言，而不是完全按自己原有代码组织方式来。</li>
+</ul>
+<h2 id="5-它和-axolotlunslothpeft-的本质差异">5. 它和 Axolotl、Unsloth、PEFT 的本质差异</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>第一性问题</th>
+<th>LLaMA-Factory 相比的定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/03/05/01/">Axolotl</a></td>
+<td>配置如何表达复杂训练 recipe</td>
+<td>LLaMA-Factory 更像训练工厂，而不只是 YAML 编排器</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/02/01/">Unsloth</a></td>
+<td>如何在有限资源上更快更省显存地训起来</td>
+<td>LLaMA-Factory 更强调统一工厂，不只强调提速</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/03/01/">PEFT</a></td>
+<td>参数高效微调方法如何抽象</td>
+<td>LLaMA-Factory 把 PEFT 当能力之一，放进更大的工厂体系</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/04/01/">TRL</a></td>
+<td>alignment / preference optimization 如何训练</td>
+<td>LLaMA-Factory 覆盖更广，但 TRL 在对齐方法论上更纯粹</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：LLaMA-Factory 更像“统一训练生产线”，而其他很多框架更像“生产线上的关键机器或工序”。</p>
+<h2 id="6-为什么-web-ui-和-openai-style-api-这类功能很能说明它的野心">6. 为什么 Web UI 和 OpenAI-style API 这类功能很能说明它的野心</h2>
+<p>README 里不仅有 CLI，还有 LLaMA Board、vLLM/SGLang 推理、OpenAI-style API 对齐。[86][90]</p>
+<p>这说明它不是只想服务“能手写训练代码的人”，而是希望：</p>
+<ul>
+<li>训练</li>
+<li>评测</li>
+<li>推理</li>
+<li>API 接入</li>
+<li>GUI 操作
+尽量放进同一个框架世界里。</li>
+</ul>
+<p>对架构师来说，这意味着它比纯训练库更接近平台层；
+对开发者来说，这意味着它降低了从训练到服务化的摩擦。</p>
+<h2 id="7-什么时候-llama-factory-会特别自然">7. 什么时候 LLaMA-Factory 会特别自然</h2>
+<p>下面这些情况，它通常非常自然：</p>
+<ul>
+<li>你要同时支持多模型、多模板；</li>
+<li>训练方法会经常变：SFT、DPO、VLM、agent tuning；</li>
+<li>团队想少拼底层训练脚手架；</li>
+<li>你希望训练完能顺手接到推理/导出/评测；</li>
+<li>团队成员水平不完全一致，需要统一入口和操作面。</li>
+</ul>
+<h2 id="8-什么时候它会显得偏重">8. 什么时候它会显得偏重</h2>
+<p>这些情况下，它可能不是最优第一选择：</p>
+<ul>
+<li>你已经有稳定的 HF + PEFT 栈，只想补一小块能力；</li>
+<li>你当前最痛的是显存速度，而不是训练统一性；</li>
+<li>你只做单一模型、单一方法、单一 recipe；</li>
+<li>你更希望训练系统完全按代码和库自由组织，而不进入工厂式抽象。</li>
+</ul>
+<h2 id="9-动手活动写一张为什么这里需要训练工厂的判断卡">9. 动手活动：写一张“为什么这里需要训练工厂”的判断卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>llamafactory-fit.md</code></p>
+<p><strong>目标</strong>：判断你的项目是需要统一训练工厂，还是只需要在现有栈上补一层库。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>列模型数量、模板数量、训练方法数量；</li>
+<li>列是否需要 CLI / GUI / API / 导出统一入口；</li>
+<li>判断团队更痛的是统一性还是性能；</li>
+<li>判断现有训练栈是否已经稳定；</li>
+<li>写一句结论：为什么选或不选 LLaMA-Factory。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚回答“我们是在缺方法，还是在缺工厂”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：支持模型多就一定更适合我。</strong> 真正关键是统一复杂度，而不是名单长度；</li>
+<li><strong>误区二：工厂化一定比库灵活。</strong> 工厂的价值在统一，不在极限自由；</li>
+<li><strong>误区三：能跑很多训练方法就等于对每种方法都最强。</strong> 它的强项是统一，不一定是每个单点最深；</li>
+<li><strong>误区四：有 Web UI 就是给新手用的。</strong> 对团队协作和降低操作成本同样有价值；</li>
+<li><strong>误区五：训练工厂等于平台。</strong> 它仍然首先是训练框架，不是完整 MLOps 平台。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLaMA-Factory 首先是什么</td>
+<td>一个统一微调工厂，而不是单一 trainer 包装</td>
+</tr>
+<tr>
+<td>它在统一什么</td>
+<td>模型、模板、数据、方法、导出、推理入口</td>
+</tr>
+<tr>
+<td>为什么有吸引力</td>
+<td>让复杂训练链路少拼、少散、少重复造轮子</td>
+</tr>
+<tr>
+<td>最大代价</td>
+<td>你要接受一套统一训练语言，而不是完全自由拼装</td>
+</tr>
+<tr>
+<td>最适合什么</td>
+<td>多模型、多方法、多导出目标的训练系统</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个训练框架最值钱的地方，有时不是“单卡速度最快”，而是“让复杂训练组织起来不至于失控”？LLaMA-Factory 解决的是哪一类比性能更早出现的团队痛点？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为很多团队先崩的不是训练速度，而是训练复杂度：模型越来越多、模板越来越多、训练任务越来越分化、导出目标越来越多，最后每个人都在维护一套自己的 YAML 或脚本。LLaMA-Factory 最先解决的，是“训练组织复杂度”和“团队入口复杂度”，也就是把训练从个人脚本集合收敛成统一生产线。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[79] <a href="https://github.com/hiyouga/LLaMA-Factory">https://github.com/hiyouga/LLaMA-Factory</a> — LLaMA-Factory GitHub</li>
+<li>[86] <a href="https://github.com/hiyouga/LLaMA-Factory/blob/main/README.md">https://github.com/hiyouga/LLaMA-Factory/blob/main/README.md</a> — LLaMA-Factory README</li>
+<li>[90] <a href="https://github.com/hiyouga/LLaMA-Factory/blob/main/docs/zh/getting-started.md">https://github.com/hiyouga/LLaMA-Factory/blob/main/docs/zh/getting-started.md</a> — LLaMA-Factory getting started zh</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/03/01/01/"><span>上一篇</span><strong>03.03.01.01 LLaMA-Factory 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/03/01/03/"><span>下一篇</span><strong>03.03.01.03 Dataset、Template、Recipe 与 Export</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念llama-factory-的主角不是某个-trainer而是统一入口">1. 概念：LLaMA-Factory 的主角不是某个 trainer，而是“统一入口”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么训练会自然长成工厂问题">2. 为什么训练会自然长成“工厂问题”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-readme-里最重要的一句不是支持-100-模型而是统一">3. README 里最重要的一句不是“支持 100+ 模型”，而是“统一”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-它为什么像工厂而不像能力库">4. 它为什么像工厂，而不像能力库</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-它和-axolotlunslothpeft-的本质差异">5. 它和 Axolotl、Unsloth、PEFT 的本质差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-为什么-web-ui-和-openai-style-api-这类功能很能说明它的野心">6. 为什么 Web UI 和 OpenAI-style API 这类功能很能说明它的野心</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-什么时候-llama-factory-会特别自然">7. 什么时候 LLaMA-Factory 会特别自然</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-什么时候它会显得偏重">8. 什么时候它会显得偏重</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动写一张为什么这里需要训练工厂的判断卡">9. 动手活动：写一张“为什么这里需要训练工厂”的判断卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

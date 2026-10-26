@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.05.04 扩展系统 · iopanda</title><meta name="description" content="02.09.05.04 扩展系统 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/05/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.05.04 扩展系统 · iopanda"><meta property="og:description" content="02.09.05.04 扩展系统 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/05/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="05" data-active-article="/ai/02-agents/09/05/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pi Coding Agent"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/05/"><span class="tree-number">05</span><span class="tree-title">Pi Coding Agent</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/05/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">扩展系统</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/05/">Pi Coding Agent</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">扩展系统</span></nav><header class="ai-article-header"><p class="ai-number">02.09.05.04</p><h1>扩展系统</h1><p class="ai-meta"><time datetime="2026-09-03T07:40">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>pi-source</li></ul></header><div class="ai-prose"><h1 id="扩展系统">扩展系统</h1>
+<blockquote>
+<p>02 章看到会话与压缩都收在 agent-session.ts 一个类里;Pi 能把内核压得这么小,秘密在于一切「没内置」的功能都有钩子可挂——官方文档第一行就是「pi can create extensions. Ask it to build one for your use case.」。本章拆开扩展系统的四层载体:TS 扩展、skills、prompt templates、pi packages,从 Extension API 的注册表、36 个生命周期事件与三级上下文权限,读到 examples 里 85 个「示例即契约」,最后沿内置 /reload 的 shutdown→invalidate→重建链路看 Pi 如何修改自己后热载重生。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>画出四层扩展载体的分工(TS 扩展/skills/prompt templates/pi packages),说出每层各自的文件形态与挂载点;</li>
+<li>复述 Extension API 的注册模型:ExtensionFactory、注册表结构(types.ts:1765)、36 个 on() 事件六大类、registerTool/Command/Shortcut/Flag;</li>
+<li>解释 ctx 三级权限的递进(ExtensionContext → ExtensionCommandContext → 动作面),并说明「为什么工具回调拿不到 ctx.reload()」;</li>
+<li>走读 permission-gate/plan-mode/subagent/sandbox 等 examples,说出每个示例挂在哪些钩点上;</li>
+<li>沿 /reload 热载链路(agent-session.ts:2810)复述「旧 runner shutdown→invalidate→重建」,并解释斜杠命令的三合一来源。</li>
+</ol>
+<h2 id="1-概念四层载体--一个注册表">1. 概念:四层载体 + 一个注册表</h2>
+<ul>
+<li>内核保持小、能力外置(对照 02.04 的工具外置路线),外置能力分四层,每层是一种文件约定:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>载体</th>
+<th>挂载点</th>
+<th>主要源码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TS 扩展</td>
+<td><code>.pi/extensions/*.ts</code>(或 <code>~/.pi/agent/extensions/</code>、<code>pi -e</code> 显式路径)</td>
+<td>注册表:工具/命令/快捷键/事件</td>
+<td>extensions/types.ts、loader.ts、runner.ts</td>
+</tr>
+<tr>
+<td>Skills</td>
+<td>目录式 <code>SKILL.md</code> + frontmatter</td>
+<td><code>/skill:name</code> 展开或模型侧 XML 调用</td>
+<td>core/skills.ts</td>
+</tr>
+<tr>
+<td>Prompt templates</td>
+<td><code>*.md</code> + frontmatter + <code>$1</code> 占位符</td>
+<td><code>/template args</code> 文本展开</td>
+<td>core/prompt-templates.ts</td>
+</tr>
+<tr>
+<td>Pi Packages</td>
+<td>npm/git 包,<code>package.json</code> 的 <code>"pi"</code> 字段声明资源</td>
+<td>安装后按 manifest 分发到前三层</td>
+<td>core/pi-manifest.ts、package-manager.ts</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>三层用户可见层正好被一个类型收拢——斜杠命令的三种来源 slash-commands.ts:4:<code>export type SlashCommandSource = "extension" | "prompt" | "skill";</code>(pi packages 只是前三层的分发容器,不新增命令来源)。docs/index.md:3 自述「stay small at the core while being extended through TypeScript extensions, skills, prompt templates, themes, and pi packages」,四层即官方对「小核心」的补全答案。</li>
+</ul>
+<h2 id="2-为什么这样设计让扩展成为头等公民">2. 为什么这样设计:让扩展成为头等公民</h2>
+<ul>
+<li>01 章的内核最小化把权限弹窗、plan mode、子代理全部请出主循环,代价是这些功能必须有人能补——补的方式不是插件框架堆 API,而是<strong>事件面 + 注册表</strong>的窄接口:docs/extensions.md:1「pi can create extensions. Ask it to build one for your use case.」,README.md:15 自称 “our self extensible coding agent”——连「写扩展」这件事都能让 Agent 自己做。</li>
+<li>四层分工的深意是<strong>分层披露、按需加载</strong>:TS 扩展可执行任意代码(带信任门控),skills/templates 只是文本资产(无代码风险、可被模型自行触发),pi packages 负责把带依赖的复杂扩展分发到位。风险与便利随层递减/递增,内核只认「资源加载 → 注册 → 事件分发」一条链路。</li>
+<li>与 02.04 的对照:工具协议(如 MCP)把外部能力接成工具;Pi 更进一步,把「接工具的能力本身」做成事件——permission-gate 这类安全策略在 Pi 里不是内核功能,而是挂在 tool_call 事件上的示例(04 章再展开安全模型)。</li>
+</ul>
+<h2 id="3-作用扩展在一条输入里被看见四次">3. 作用:扩展在一条输入里被看见四次</h2>
+<ul>
+<li>用户在 TUI 输入一行,同一个文本依次经过四种解释(agent-session.ts:1167-1206):① <code>_tryExecuteExtensionCommand</code>(:1168)先试扩展命令——命中即执行,可自行与 LLM 交互;② <code>_extensionRunner.emitInput</code>(:1186)把整行交给 input 事件,扩展可 handled/transform;③ <code>_expandSkillCommand</code>(:1205)把 <code>/skill:name args</code> 展开成 <code>&lt;skill&gt;</code> 内容块;④ <code>expandPromptTemplate</code>(:1206)把 <code>/template args</code> 按模板替换。扩展命令以外的展开失败会回退原文本而非报错——注释原话 :1383「Expands skill commands and prompt templates. Errors on extension commands.」:命令是「动作」,技能与模板只是「文本」。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-extension-api工厂函数与注册表">4.1 Extension API:工厂函数与注册表</h3>
+<ul>
+<li>扩展 = 一个导出工厂的 TS 文件,签名极简 types.ts:1587-1588:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">/** Extension factory function type. Supports both sync and async initialization. */</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> type</span><span style="color:#B392F0"> ExtensionFactory</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">pi</span><span style="color:#F97583">:</span><span style="color:#B392F0"> ExtensionAPI</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#79B8FF"> void</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">void</span><span style="color:#E1E4E8">&gt;;</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>工厂拿到的 <code>pi</code> 上,注册结果落进每扩展一份的注册表 types.ts:1765-1778——一次加载的产物,除 path 元信息外全是 Map:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> Extension</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">	path</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	resolvedPath</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	hidden</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> boolean</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	sourceInfo</span><span style="color:#F97583">:</span><span style="color:#B392F0"> SourceInfo</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	handlers</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">HandlerFn</span><span style="color:#E1E4E8">[]&gt;;          </span><span style="color:#6A737D">// 生命周期事件(36 种)</span></span>
+<span class="line"><span style="color:#FFAB70">	tools</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">RegisteredTool</span><span style="color:#E1E4E8">&gt;;          </span><span style="color:#6A737D">// LLM 可调工具</span></span>
+<span class="line"><span style="color:#FFAB70">	messageRenderers</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">MessageRenderer</span><span style="color:#E1E4E8">&gt;;</span></span>
+<span class="line"><span style="color:#FFAB70">	markdownTransformer</span><span style="color:#F97583">?:</span><span style="color:#B392F0"> MarkdownTransformer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	entryRenderers</span><span style="color:#F97583">?:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">EntryRenderer</span><span style="color:#E1E4E8">&gt;;</span></span>
+<span class="line"><span style="color:#FFAB70">	commands</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">RegisteredCommand</span><span style="color:#E1E4E8">&gt;;    </span><span style="color:#6A737D">// /命令</span></span>
+<span class="line"><span style="color:#FFAB70">	flags</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">ExtensionFlag</span><span style="color:#E1E4E8">&gt;;           </span><span style="color:#6A737D">// CLI flag</span></span>
+<span class="line"><span style="color:#FFAB70">	shortcuts</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">&lt;</span><span style="color:#B392F0">KeyId</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">ExtensionShortcut</span><span style="color:#E1E4E8">&gt;;    </span><span style="color:#6A737D">// 键盘快捷键</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>注册入口集中在 ExtensionAPI(types.ts:1252 起):<code>registerTool</code> :1308、<code>registerCommand</code> :1317、<code>registerShortcut</code> :1320、<code>registerFlag</code> :1329(取值 <code>getFlag</code> :1345);另有消息渲染三类(registerMessageRenderer :1352 / registerMarkdownTransformer :1355 / registerEntryRenderer :1358)与动作 <code>sendMessage</code> :1365、<code>sendUserMessage</code> :1375。而 plan-mode 动态换工具集用的 <code>setActiveTools/refreshTools</code> 在动作面 ExtensionActions :1705-1706,经 runner 初始化后复制进共享 runtime(types.ts:1760 注释「Created by loader with throwing action stubs, completed by runner.initialize()」)。</li>
+<li>事件订阅 <code>on(event, handler)</code> 共 36 个重载(types.ts:1257-1301),按事件对象分六类:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>事件</th>
+<th>数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>resource</td>
+<td>project_trust、resources_discover</td>
+<td>2</td>
+</tr>
+<tr>
+<td>session</td>
+<td>session_start、session_info_changed、session_before_switch/fork/compact/tree、session_compact、session_compact_failed、session_shutdown、session_tree</td>
+<td>10</td>
+</tr>
+<tr>
+<td>agent</td>
+<td>context、before_provider_request、before_provider_headers、after_provider_response、before_agent_start、agent_start/end/settled、ui_prompt_start/end、turn_start/end、message_start/update/end</td>
+<td>15</td>
+</tr>
+<tr>
+<td>model</td>
+<td>model_select、thinking_level_select</td>
+<td>2</td>
+</tr>
+<tr>
+<td>tool</td>
+<td>tool_call(:1298,可 block/改写)、tool_execution_start/update/end、tool_result、user_bash</td>
+<td>6</td>
+</tr>
+<tr>
+<td>input</td>
+<td>input(:1301,可 handled/transform)</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>可返回结果的事件(带第二泛型参数,如 <code>ExtensionHandler&lt;ToolCallEvent, ToolCallEventResult&gt;</code>)是拦截点:返回 <code>{block:true}</code> 即否决,返回 undefined 即放行——这是 4.4 节 permission-gate 的机制基础。</li>
+</ul>
+<h3 id="42-ctx-三级权限工具拿不到会话控制权">4.2 ctx 三级权限:工具拿不到会话控制权</h3>
+<ul>
+<li>事件回调与命令处理器拿到的 ctx 不同(types.ts:309-355)。基础 <code>ExtensionContext</code> :309-349 只读:sessionManager(modelRegistry、cwd、<code>isProjectTrusted()</code>、<code>signal/abort()</code>、<code>shutdown()</code>、<code>compact()</code>、<code>getSystemPrompt()</code>)+ UI 帮助 <code>ui</code>(select/confirm/input/editor/notify)——<strong>工具与普通事件回调只能到这级</strong>。命令处理器才拿到 <code>ExtensionCommandContext</code> :355+,追加 <code>waitForIdle()</code>、<code>newSession()</code>、<code>fork()</code>、<code>switchSession()</code>、<code>reload()</code>,接口注释 :351-354 原话:Includes session control methods only safe in user-initiated commands.</li>
+<li>动作面同样是三级清单:ExtensionActions(pi.* 全局动作):1696 → ExtensionContextActions(ctx.* 事件回调):1717 → ExtensionCommandContextActions(ctx.* 命令):1736,而 <code>reload: () =&gt; Promise&lt;void&gt;</code> 只出现在最后一级 :1755。设计意图一句话:<strong>能重启会话的动作,只允许用户发起的命令执行</strong>,模型与工具永远够不到——4.5 节的 reload-runtime.ts 就是这个边界的活教材。</li>
+</ul>
+<h3 id="43-加载与发现只扫一层失败不拖垮">4.3 加载与发现:只扫一层,失败不拖垮</h3>
+<ul>
+<li>发现规则刻在注释里 loader.ts:711-720:「No recursion beyond one level. Complex packages must use package.json manifest.」——① <code>extensions/*.ts|*.js</code> 直接加载;② 子目录带 <code>index.ts|index.js</code> 加载;③ 子目录带 <code>package.json</code> 的 <code>"pi"</code> 字段则按 manifest 加载(带依赖的复杂扩展走这条)。位置优先级 loader.ts:779-785:项目本地 <code>cwd/.pi/extensions/</code> → 全局 <code>agentDir/extensions/</code> → 显式 <code>-e</code> 配置路径。</li>
+<li>加载器用 jiti 直接 import TS(loader.ts:490-507,moduleCache:false、按运行形态切换 virtualModules/tsconfigPaths/alias),不打包不构建;模块缓存按 <code>{cwd,generation}</code> 作废(isCurrentCacheToken :482-488),保证改代码后热载拿到新工厂。事务式注册:工厂执行期间的注册先记 pending,成功才 <code>commit()</code>、抛错则 <code>discard()</code> 注销(loader.ts:463-479),单扩展失败只上报错误数组,不拖垮其余扩展(runner.ts 把处理器异常聚合成 ExtensionError[] 逐个上报)。</li>
+</ul>
+<h3 id="44-examples85-个示例即契约">4.4 examples:85 个「示例即契约」</h3>
+<ul>
+<li>examples/extensions/ 下 85 个 .ts(9 个自带目录,如 plan-mode/subagent/sandbox/doom-overlay/with-deps),同时是文档与 API 契约的活测试;examples/sdk/ 另有 13 个编号示例展示 <code>createAgentSession()</code> 编程式用法。挑四个看钩点:</li>
+<li><strong>permission-gate.ts(34 行,安全闸门)</strong>——权限管控「用事件 API 自造」的最小示范,挂在 tool_call 事件上:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// examples/extensions/permission-gate.ts:10-34(节选)</span></span>
+<span class="line"><span style="color:#E1E4E8">pi.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"tool_call"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">ctx</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (event.toolName </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> "bash"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> undefined</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> command</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> event.input.command </span><span style="color:#F97583">as</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> isDangerous</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> dangerousPatterns.</span><span style="color:#B392F0">some</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">p</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> p.</span><span style="color:#B392F0">test</span><span style="color:#E1E4E8">(command)); </span><span style="color:#6A737D">// rm -rf|sudo|chmod/chown 777</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (isDangerous) {</span></span>
+<span class="line"><span style="color:#F97583">		if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">ctx.hasUI) {</span></span>
+<span class="line"><span style="color:#F97583">			return</span><span style="color:#E1E4E8"> { block: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">, reason: </span><span style="color:#9ECBFF">"Dangerous command blocked (no UI for confirmation)"</span><span style="color:#E1E4E8"> };</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#F97583">		const</span><span style="color:#79B8FF"> choice</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> ctx.ui.</span><span style="color:#B392F0">select</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`⚠️ Dangerous command:</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">  ${</span><span style="color:#E1E4E8">command</span><span style="color:#9ECBFF">}</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">Allow?`</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"Yes"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"No"</span><span style="color:#E1E4E8">]);</span></span>
+<span class="line"><span style="color:#F97583">		if</span><span style="color:#E1E4E8"> (choice </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> "Yes"</span><span style="color:#E1E4E8">) { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> { block: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">, reason: </span><span style="color:#9ECBFF">"Blocked by user"</span><span style="color:#E1E4E8"> }; }</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#F97583">	return</span><span style="color:#79B8FF"> undefined</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li><strong>plan-mode/index.ts(390 行,只读探索模式)</strong>——三个钩点齐活:<code>registerFlag("plan")</code> :53 支持 <code>pi --plan</code> 启动即只读;<code>/plan</code>、<code>/todos</code> 命令(:141、:146)与 Ctrl+Alt+P 快捷键(:158)切换;切换时 <code>pi.setActiveTools(...)</code> :108 把工具集从 <code>["read","bash","edit","write"]</code> 换成 <code>["read","bash","grep","find","ls","questionnaire"]</code>(:22-24),bash 再经 utils.ts 的 <code>isSafeCommand</code> 白名单只放行只读命令。plan mode 没有内置状态机,完全由扩展自己维护 planModeEnabled 布尔与工具列表。</li>
+<li><strong>subagent/index.ts(1038 行,隔离子代理)</strong>——用 <code>spawn</code> 起独立 <code>pi</code> 进程(args 含 <code>--mode json -p --no-session</code> :300)实现上下文隔离;single/parallel(≤8、并发≤4)/chain 三模式由 <code>mode</code> 参数选择(:164),JSON mode 捕获结构化输出;agents/ 目录用 .md 定义角色(scout/planner/reviewer/worker),对主循环只暴露一个 <code>registerTool</code> :472 的 subagent 工具。</li>
+<li><strong>sandbox/(带 package-lock 的目录扩展)</strong>——覆盖内置 bash 工具,把执行包进 <code>@anthropic-ai/sandbox-runtime</code>(OS 级沙箱);package.json:11-15 展示 pi manifest:<code>"pi": { "extensions": ["./index.ts"] }</code>,依赖精确锁版 <code>"@anthropic-ai/sandbox-runtime": "0.0.26"</code>——第三层分发规则的实物。安全策略的四种答案(拦截/只读/隔离进程/沙箱)全在 examples 里,内核一个都没内置。</li>
+</ul>
+<h3 id="45-skills-与-prompt-templates文本资产渐进披露">4.5 Skills 与 prompt templates:文本资产,渐进披露</h3>
+<ul>
+<li>Skill = 目录式 <code>SKILL.md</code> + 附带文件。frontmatter 字段 skills.ts:67-72:<code>name / description / "disable-model-invocation"</code>,名称限长 64、描述 1024(:11-14);扫描遵守 .gitignore/.ignore/.fdignore(:16)。两种触发:用户 <code>/skill:name args</code>(agent-session.ts:1353-1377 展开成 <code>&lt;skill name location&gt;</code> 块);模型侧直接输出 <code>&lt;skill name="..." location="..."&gt;</code> XML 块(parseSkillBlock :132-141),<code>disable-model-invocation</code> 可禁止模型自动调用。</li>
+<li>渐进披露的要点:<strong>skill 全文不常驻 system prompt</strong>,只在被点名时才把文件内容包进消息——对照 02.02 的上下文预算,技能这种「低频大文本」按需注入,不炸 prompt cache、不占每轮窗口。</li>
+<li>Prompt template = markdown + frontmatter(name/description/argumentHint),内容用 <code>$1、$2…</code> 位置占位符(prompt-templates.ts:58-61),按名称参数化替换后整段进对话,适合「固定句式的工作流开场白」;加载自全局 <code>agentDir/prompts/</code> 与项目 <code>.pi/prompts/</code>(:189-203,非递归扫 .md)。</li>
+</ul>
+<h3 id="46-reload-自举热载修改自己然后重生">4.6 /reload 自举热载:修改自己然后重生</h3>
+<ul>
+<li>内置命令表 slash-commands.ts:19-43 纯声明式 23 条,<code>/reload</code> :41 描述「Reload keybindings, extensions, skills, prompts, themes, and context files」。实现是「整旧建新」五步(agent-session.ts:2810-2835):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#E1E4E8">async </span><span style="color:#B392F0">reload</span><span style="color:#E1E4E8">(options</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> Promise</span><span style="color:#F97583">&lt;void&gt;</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">	const oldRunner </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">._extensionRunner;</span></span>
+<span class="line"><span style="color:#E1E4E8">	const previousFlagValues </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> oldRunner.</span><span style="color:#B392F0">getFlagValues</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">	await </span><span style="color:#B392F0">emitSessionShutdownEvent</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">oldRunner</span><span style="color:#E1E4E8">, { </span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"session_shutdown"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">reason</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"reload"</span><span style="color:#E1E4E8"> }); </span><span style="color:#6A737D">// ① 通知旧扩展</span></span>
+<span class="line"><span style="color:#E1E4E8">	oldRunner.invalidate();                </span><span style="color:#6A737D">// ② 旧 ctx/pi 全部作废(runner.ts:593 起,再调用即抛错)</span></span>
+<span class="line"><span style="color:#E1E4E8">	await this.settingsManager.reload();</span></span>
+<span class="line"><span style="color:#B392F0">	resetApiProviders</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">	await this._resourceLoader.reload();   </span><span style="color:#6A737D">// ③ 重扫扩展/skills/prompts/themes</span></span>
+<span class="line"><span style="color:#E1E4E8">	this._buildRuntime({ </span><span style="color:#B392F0">activeToolNames</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">getActiveToolNames</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#B392F0">		flagValues</span><span style="color:#E1E4E8">: previousFlagValues, </span><span style="color:#B392F0">includeAllExtensionTools</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8"> }); </span><span style="color:#6A737D">// ④ 重建(保留 flag 值)</span></span>
+<span class="line"><span style="color:#E1E4E8">	await this._extensionRunner.emit({ </span><span style="color:#B392F0">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"session_start"</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">reason</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"reload"</span><span style="color:#E1E4E8"> }); </span><span style="color:#6A737D">// ⑤ 向新扩展广播 session_start</span></span>
+<span class="line"><span style="color:#E1E4E8">	await this.extendResourcesFromExtensions(</span><span style="color:#9ECBFF">"reload"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>旧 runner 的 <code>invalidate()</code> 让任何持有旧 ctx 的代码在下次调用时抛「Do not use a captured pi or command ctx after ctx.newSession()…」(runner.ts:593-605)——热载不靠「尽量兼容旧引用」,而是显式作废,逼所有持有者走新 ctx。模块缓存按 generation 作废(loader.ts:482-488)保证改过的 .ts 重新 import。</li>
+<li><strong>AI 自改自身的闭环</strong>:reload-runtime.ts:14-36 演示边界——LLM 可调工具只有 ExtensionContext、<strong>不能</strong>直接 <code>ctx.reload()</code>(:22 注释 Tools get ExtensionContext, so they cannot call ctx.reload() directly),于是工具内 <code>pi.sendUserMessage("/reload-runtime", { deliverAs: "followUp" })</code>(:30)把命令排队,命令处理器里才执行 <code>await ctx.reload()</code>(:17)。模型「想重启运行时」只能请求,决定权在命令通道——与 4.2 节的三级权限互为表里。</li>
+</ul>
+<h2 id="5-动手活动读一个-example-extension解释它的钩点">5. 动手活动:读一个 example extension,解释它的钩点</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:example extension 钩点解剖</p>
+<p><strong>目标</strong>:不靠讲义,自己从 examples 源码还原「扩展如何挂进主循环」;本地仓库在 /tmp/pi(无则 <code>git clone --depth 1 https://github.com/earendil-works/pi</code>)。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>打开 packages/coding-agent/examples/extensions/permission-gate.ts(34 行)通读,标出它的全部钩点:on() 订阅了哪个事件(类型签名对应 types.ts:1298)、返回什么形状表示拦截/放行;</li>
+<li>再读 plan-mode/index.ts 的 :53/:108/:141/:158 四处注册调用,为每处写明它对应 ExtensionAPI 的哪个方法(types.ts:1308-1345 区域内找);</li>
+<li>从 extension factory 签名(types.ts:1587)出发,回答:为什么 permission-gate 的 handler 能拿到 <code>ctx.ui</code>,而它若调用 <code>ctx.reload()</code> 会怎样(对照 types.ts:309-355 与 reload-runtime.ts:22 的注释);</li>
+<li>若时间充裕,在扩展里加一行 <code>console.log</code> 修改 /tmp/pi 自身后跑 <code>pi</code>,再在会话里输入 /reload,沿 agent-session.ts:2810 的日志确认旧 runner 被 shutdown、新 runner 收到 session_start;</li>
+<li>笔记输出:每例一张「钩点 → 注册行号 → 触发时机 → 返回/副作用」小表。</li>
+</ol>
+<p><strong>完成标准</strong>:能报出 3 个以上「examples 文件:行号」与 3 个以上「types.ts 行号」;能说清 tool_call 事件的返回值协议(undefined=放行、{block:true}=否决);能用一句话说出 Pi 把权限策略做成示例而不是内置的取舍。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>现象/坑</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行号与讲义不一致</td>
+<td>2026-09 检出快照,仓库每日在变</td>
+<td>grep/search 重定位,方法比行号可靠</td>
+</tr>
+<tr>
+<td>扩展能 rm -rf 整个家目录</td>
+<td>扩展默认全系统权限(docs/extensions.md:111),无内置权限系统</td>
+<td>只从可信来源安装;要边界用容器/沙箱扩展(04 章)</td>
+</tr>
+<tr>
+<td>在工具回调里调 ctx.reload() 报错</td>
+<td>工具只有 ExtensionContext,无会话控制权(types.ts:351-354)</td>
+<td>学 reload-runtime.ts:30 排队 followUp 命令</td>
+</tr>
+<tr>
+<td>/reload 后旧闭包还在跑且报 stale 错</td>
+<td>invalidate() 显式作废旧 ctx(runner.ts:593)</td>
+<td>热载后一切操作走新 ctx,别捕获旧 pi 对象</td>
+</tr>
+<tr>
+<td>以为 skill 全文常驻 prompt</td>
+<td>渐进披露:按需展开,不炸窗口</td>
+<td>看 agent-session.ts:1366 展开时才拼块</td>
+</tr>
+<tr>
+<td>扩展子目录没被加载</td>
+<td>只扫一层,复杂包须 package.json 的 “pi” 字段(loader.ts:719)</td>
+<td>带依赖的扩展按 sandbox/ 的 manifest 形态组织</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>Pi 的落点</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>四层分工</td>
+<td>TS 扩展(代码)/skills(目录 SKILL.md)/templates(.md+$1)/packages(“pi” manifest)</td>
+<td>slash-commands.ts:4、docs/index.md:3</td>
+</tr>
+<tr>
+<td>注册模型</td>
+<td>ExtensionFactory=(pi)=&gt;…,注册表全是 Map</td>
+<td>types.ts:1587、:1765</td>
+</tr>
+<tr>
+<td>事件面</td>
+<td>36 个 on() 六类,可返回结果的事件即拦截点</td>
+<td>types.ts:1257-1301</td>
+</tr>
+<tr>
+<td>ctx 权限</td>
+<td>ExtensionContext → ExtensionCommandContext → 动作面,reload 只在最后一级</td>
+<td>types.ts:309/355/1696/1755</td>
+</tr>
+<tr>
+<td>加载发现</td>
+<td>只扫一层;jiti 直载;commit/discard 事务;失败隔离</td>
+<td>loader.ts:711、:490、:463</td>
+</tr>
+<tr>
+<td>示例即契约</td>
+<td>85 个 examples 覆盖工具/事件/UI/提供方,安全策略全在示例层</td>
+<td>examples/extensions/</td>
+</tr>
+<tr>
+<td>自举热载</td>
+<td>/reload = shutdown→invalidate→重扫→重建→session_start</td>
+<td>agent-session.ts:2810、slash-commands.ts:41</td>
+</tr>
+<tr>
+<td>斜杠三合一</td>
+<td>extension 命令执行 / skill 与 template 文本展开</td>
+<td>agent-session.ts:1168/1205/1206</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:① 为什么 tool_call 事件的返回值协议要用「返回 undefined 即放行」而不是「默认放行+显式拒绝」——对同时挂多个拦截扩展意味着什么?② permission-gate 只在 <code>ctx.hasUI</code> 为真时弹窗,无 UI 直接 block——print/RPC 模式跑危险命令时,这个默认安全吗?③ 若把 reload 权限放开给工具回调,会出现什么滥用场景,reload-runtime.ts 的排队设计如何堵住它?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>① 事件分发对每个 handler 收集返回值、聚合语义:任一返回 {block:true} 即拦截、全部 undefined 才放行——「undefined 即放行」让不关心的扩展零成本旁观,新拦截器只要返回 block 就生效;若反过来「默认拒绝」,任何旁观扩展的返回值类型都要精确定义,多拦截器叠加时语义会变成「全票通过才放行」,误伤率更高。② 安全但僵硬:非交互模式没有「人」在场,block 是唯一自洽选择(permission-gate.ts:20-23);代价是自动化流水线里 rm -rf 永远被拦,需要流水线自己改用受信环境或白名单工具——这正是「安全策略留给示例」的边界所在。③ 工具回调若能 reload,模型只需构造一次工具调用即可让整个运行时换血:正在执行的其他工具会因 invalidate 抛错、会话状态可能错乱,更糟的是这等于把「重启」交给可能被提示注入的模型输出;排队成 followUp 命令后,执行权回到用户发起的命令通道,模型只能「请求」不能「执行」。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/earendil-works/pi">earendil-works/pi(GitHub 仓库,本章全部源码出处)</a></li>
+<li><a href="https://pi.dev">pi.dev(官网:Extensions/Skills/Prompt templates 文档)</a></li>
+<li><a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/">Mario Zechner:What I learned building an opinionated and minimal coding agent(作者设计哲学一手材料)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/05/03/"><span>上一篇</span><strong>02.09.05.03 会话与压缩</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/05/05/"><span>下一篇</span><strong>02.09.05.05 设计哲学与取舍</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念四层载体--一个注册表">1. 概念:四层载体 + 一个注册表</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这样设计让扩展成为头等公民">2. 为什么这样设计:让扩展成为头等公民</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用扩展在一条输入里被看见四次">3. 作用:扩展在一条输入里被看见四次</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-extension-api工厂函数与注册表">4.1 Extension API:工厂函数与注册表</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-ctx-三级权限工具拿不到会话控制权">4.2 ctx 三级权限:工具拿不到会话控制权</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-加载与发现只扫一层失败不拖垮">4.3 加载与发现:只扫一层,失败不拖垮</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-examples85-个示例即契约">4.4 examples:85 个「示例即契约」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-skills-与-prompt-templates文本资产渐进披露">4.5 Skills 与 prompt templates:文本资产,渐进披露</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#46-reload-自举热载修改自己然后重生">4.6 /reload 自举热载:修改自己然后重生</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动读一个-example-extension解释它的钩点">5. 动手活动:读一个 example extension,解释它的钩点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.03.08 领域适配收官项目 · iopanda</title><meta name="description" content="01.03.08 领域适配收官项目 · 模型 / 微调与对齐，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/03/08/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.03.08 领域适配收官项目 · iopanda"><meta property="og:description" content="01.03.08 领域适配收官项目 · 模型 / 微调与对齐，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/03/08/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="03" data-active-subsection data-active-article="/ai/01-models/03/08/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 微调与对齐"></button><a class="tree-link tree-link--section" href="/ai/01-models/03/"><span class="tree-number">03</span><span class="tree-title">微调与对齐</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/03/08/" aria-current="page"><span class="tree-number">08</span><span class="tree-title">领域适配收官项目</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/03/">微调与对齐</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">领域适配收官项目</span></nav><header class="ai-article-header"><p class="ai-number">01.03.08</p><h1>领域适配收官项目</h1><p class="ai-meta"><time datetime="2026-09-02T22:45">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-fine-tuning</li><li>domain-adaptation</li></ul></header><div class="ai-prose"><blockquote>
+<p>本章是 01.03 的收官:前七章分别产出基线(01)、数据集(02)、训练栈(03)、SFT(04)、LoRA(05)、QLoRA(06)与 DPO(07)的 adapter——但这些工件本身不等于「可以交付的领域模型」。本章把它们整理成一项可审查的交付物:一张训练前冻结的 golden set、一份覆盖全部题目的逐条评测报告、一页模型卡,并给出「是否可用」的结论。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出领域适配的验收标准,区分「训练完成」与「可以交付」;</li>
+<li>解释为什么 golden set 必须在训练开始前冻结并锁死;</li>
+<li>构造 20 条四类别的 golden set,让 base 与各 adapter 在同一条件下评测;</li>
+<li>按 0/1 规则逐条人工评分,不挑样本地给出汇总表;</li>
+<li>写出一页 <code>model-card.md</code>,说明用途边界、证据与回滚方式;</li>
+<li>基于证据给出「是否推荐发布」的结论。</li>
+</ol>
+<h2 id="1-概念领域适配的验收标准">1. 概念:领域适配的验收标准</h2>
+<ul>
+<li><strong>领域适配(Domain Adaptation)</strong> 不是「让模型变强」,而是「让模型在某个领域的任务上,相对于明确基线,表现出可验证的改善」。第 1 章已强调:没有改前成绩就无法证明训练有效——收官章把这条纪律执行到底。</li>
+<li>前七章各自证明「某一步能改善什么」,但都是局部证据:数据设计得好不好、SFT 有没有压低 valid loss、DPO 有没有改变选择偏好。收官章把问题换成整体验收:把这些 adapter 放在<strong>从未参与任何训练</strong>(train、valid、preferences 都没见过)的领域任务上,与 base 逐条对比。</li>
+<li>一套可执行的验收标准至少回答四问:
+<ul>
+<li><strong>改善可测吗</strong>:在 golden set 上,adapter 的依据正确、格式、拒答三项是否比 base 更好;</li>
+<li><strong>证据完整吗</strong>:全部输入输出可复现、可查看,失败例没有被挑掉;</li>
+<li><strong>代价已知吗</strong>:显存、训练时长、数据许可、回滚成本都有记录;</li>
+<li><strong>边界说清了吗</strong>:模型能做什么、不能做什么,使用者从模型卡上一眼可知。</li>
+</ul>
+</li>
+<li>什么<strong>不算</strong>验收通过:「模型说话更像专家」、训练题上的高分、精心挑选的演示——这些都可能只是背住了练习册(记忆),而不是在未知任务上泛化。</li>
+</ul>
+<h2 id="2-概念golden-set-为什么必须在训练前冻结">2. 概念:golden set 为什么必须在训练前冻结</h2>
+<ul>
+<li>把数据分成三类理解:train 是「练习册」,模型反复看过;valid 是「模拟考」,用于早停和选 checkpoint——它已经参与过你的决策;golden set 是「期末题」,只用于最后一次验收。</li>
+<li>为什么必须<strong>先冻结再训练</strong>?因为任何评测题一旦进入「看分数 → 改数据/改参数 → 再看分数」的循环,它就不再是评测,而变成了训练信号的一部分:你会不自觉地记住哪些题错了、把数据补向那个方向。这叫对评测集的过拟合,分数会系统性虚高。</li>
+<li>先冻结还有一层<strong>可审计性</strong>意义:golden.jsonl 的创建时间早于任何训练 run,才能向第三方证明「这些题确实没被看过」。训练结束后再补题,谁也无法保证题目没有在开发讨论中被泄漏。</li>
+<li>因此 golden set 的纪律是:一次写定、与训练数据隔离、文件里只放 <code>id</code>、<code>question</code>、<code>expected_behavior</code>,<strong>不写训练答案</strong>——评分时只看期望行为,不给模型看标准答案。</li>
+</ul>
+<h2 id="3-动手冻结-golden-set">3. 动手:冻结 golden set</h2>
+<p>创建 <code>finetune/eval/golden.jsonl</code>,写 20 条从未进入 train、valid、preferences 的问题,至少四类:</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>数量</th>
+<th>用意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常见领域问答</td>
+<td>10</td>
+<td>覆盖课程资料内的典型问题</td>
+</tr>
+<tr>
+<td>格式要求</td>
+<td>4</td>
+<td>验证是否遵守三点式等输出约定</td>
+</tr>
+<tr>
+<td>资料外问题</td>
+<td>3</td>
+<td>应明确拒答,不编造</td>
+</tr>
+<tr>
+<td>边界或歧义问题</td>
+<td>3</td>
+<td>观察模型在不清晰输入下的表现</td>
+</tr>
+</tbody>
+</table>
+<p>每行包含 <code>id</code>、<code>question</code>、<code>expected_behavior</code>;<strong>不要</strong>在此文件写训练答案:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"unknown-01"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"question"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明天东京天气?"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"expected_behavior"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明确说明没有实时资料,不编造"</span><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="json" aria-hidden="true">json</span></div>
+<p>写完后提交文件并记录时间戳,此后不再修改——一旦发现题目与开发过程有交集,视为污染(见文末思考题)。</p>
+<h2 id="4-动手同一条件下跑基线与-adapter">4. 动手:同一条件下跑基线与 adapter</h2>
+<p>评测的唯一变量必须是模型本身(呼应第 1 章基线纪律):所有模型共用同一 system prompt、<code>do_sample=False</code>、<code>max_new_tokens=160</code>。adapter 依赖基座(第 5 章),若 adapter 尚未合并进基座,先执行 <code>AutoPeftModelForCausalLM.from_pretrained("runs/&lt;chosen&gt;/adapter")</code> 挂载,再传入 pipeline。创建 <code>finetune/src/eval_golden.py</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> json</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> pipeline</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">MODEL</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Qwen/Qwen2.5-0.5B-Instruct"</span><span style="color:#6A737D">  # base;SFT/LoRA、DPO 换成各自 adapter 路径</span></span>
+<span class="line"><span style="color:#79B8FF">SYS</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "你是课程助教。没有依据时说不知道。"</span></span>
+<span class="line"><span style="color:#E1E4E8">pipe </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pipeline(</span><span style="color:#9ECBFF">"text-generation"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">model</span><span style="color:#F97583">=</span><span style="color:#79B8FF">MODEL</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">device_map</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">with</span><span style="color:#79B8FF"> open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"eval/golden.jsonl"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> f:</span></span>
+<span class="line"><span style="color:#E1E4E8">    items </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [json.loads(line) </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> line </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> f]</span></span>
+<span class="line"><span style="color:#E1E4E8">rows </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> it </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> items:</span></span>
+<span class="line"><span style="color:#E1E4E8">    msg </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [{</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">SYS</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">           {</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">: it[</span><span style="color:#9ECBFF">"question"</span><span style="color:#E1E4E8">]}]</span></span>
+<span class="line"><span style="color:#E1E4E8">    ans </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pipe(msg, </span><span style="color:#FFAB70">max_new_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">160</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">do_sample</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">)[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"generated_text"</span><span style="color:#E1E4E8">][</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    rows.append({</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">: it[</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"model"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">MODEL</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">                 "expected_behavior"</span><span style="color:#E1E4E8">: it[</span><span style="color:#9ECBFF">"expected_behavior"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"output"</span><span style="color:#E1E4E8">: ans})</span></span>
+<span class="line"><span style="color:#F97583">with</span><span style="color:#79B8FF"> open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"reports/golden-results.jsonl"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"a"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> f:</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows:</span></span>
+<span class="line"><span style="color:#E1E4E8">        f.write(json.dumps(r, </span><span style="color:#FFAB70">ensure_ascii</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>分别加载 base、最佳 SFT/LoRA(或 QLoRA)和 DPO adapter 各运行一次,把<strong>全部</strong>输出保存到 <code>finetune/reports/golden-results.jsonl</code>(每行带 <code>model</code> 字段区分来源)。</p>
+<h2 id="5-人工评分不挑样本">5. 人工评分:不挑样本</h2>
+<p>为每条结果按 0/1 打分,四项标准同时满足才算 1:</p>
+<ul>
+<li>事实有依据且与课程资料一致;</li>
+<li>遵守输出格式约定;</li>
+<li>资料外问题正确拒答(编造即 0);</li>
+<li>无明显有害或私密信息。</li>
+</ul>
+<p>两人可独立评分,不一致处讨论或取保守值;只有一人评分时,也要在报告中写明评分规则与不确定项。<strong>评分必须覆盖全部 20 条</strong>,禁止只挑「看起来能得分」的输出。汇总表:</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th style="text-align: right">依据正确</th>
+<th style="text-align: right">格式</th>
+<th style="text-align: right">拒答</th>
+<th>已知失败</th>
+<th>是否推荐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base</td>
+<td style="text-align: right">/20</td>
+<td style="text-align: right">/20</td>
+<td style="text-align: right">/3</td>
+<td>原样链接</td>
+<td>否/有条件</td>
+</tr>
+<tr>
+<td>adapter</td>
+<td style="text-align: right">/20</td>
+<td style="text-align: right">/20</td>
+<td style="text-align: right">/3</td>
+<td>原样链接</td>
+<td>否/有条件</td>
+</tr>
+</tbody>
+</table>
+<p>「已知失败」列贴出该模型输出文件的链接,失败例原样保留、不省略——报告的诚实度决定它能否被第三方采信。<strong>判定规则</strong>:若 adapter 只在「与训练题相似」的问题上变好,却在未知问题上更爱编造,不能宣布成功;应回到数据设计(第 2 章)补充拒答样本,或改用 RAG 提供事实依据。</p>
+<h2 id="6-动手提交目录与模型卡">6. 动手:提交目录与模型卡</h2>
+<p>最终目录至少包含(数据卡与许可记录见第 2 章,超参数在各 run 的 config):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>finetune/</span></span>
+<span class="line"><span>  data/                 # 数据卡与许可记录</span></span>
+<span class="line"><span>  configs/              # 实际超参数</span></span>
+<span class="line"><span>  runs/&lt;chosen&gt;/adapter/ # adapter_config 与权重</span></span>
+<span class="line"><span>  eval/golden.jsonl</span></span>
+<span class="line"><span>  reports/baseline.md</span></span>
+<span class="line"><span>  reports/golden-results.jsonl</span></span>
+<span class="line"><span>  reports/model-card.md</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="7-概念模型卡的意义">7. 概念:模型卡的意义</h2>
+<ul>
+<li>模型卡(Model Card)<strong>不是宣传页</strong>,而是交付物的「使用说明书」:它回答使用者最关心的四件事——这个模型<strong>做什么</strong>(训练目的与建议用途)、<strong>不能做什么</strong>(边界与禁止用途)、<strong>证据是什么</strong>(golden 指标与失败例)、<strong>出问题怎么办</strong>(回滚方式)。</li>
+<li>为什么收官必须有它?模型一旦发布,使用者无法从对话里看出它被微调过什么、在哪些题上会错;模型卡把「训练者已知的风险」转交给「使用者合理的预期」,是负责任的发布边界(呼应 NIST AI RMF 的透明与问责)。</li>
+<li>在 <code>reports/model-card.md</code> 写:模型与 adapter ID、训练目的、允许/禁止用途、数据来源与许可、硬件和超参数、golden 指标、失败例、偏见/隐私/幻觉风险、复现命令、回滚方式(删除 adapter 并回到 base)。</li>
+<li>发布纪律:切勿上传训练数据、访问令牌或含个人信息的输出——adapter 权重可以分享,原始数据与密钥不行。</li>
+</ul>
+<h2 id="8-动手活动结业验收">8. 动手活动:结业验收</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:结业验收</p>
+<p><strong>目标</strong>:提交上述目录和一页 <code>model-card.md</code>,给出可审查的「是否可用」结论。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>冻结 golden set 并记录时间戳;</li>
+<li>用同一条件运行基线与选定 adapter,保存全部输出;</li>
+<li>逐条 0/1 评分,填写汇总表与已知失败列;</li>
+<li>在模型卡中写明「可用于什么、不可用于什么、下一步做什么」。</li>
+</ol>
+<p><strong>完成标准</strong>:第三方拿到仓库后,能复现命令、查看全部输出、找到数据来源,并根据证据同意或否决发布——而不是只听口头说明。</p>
+</div>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验收标准</td>
+<td>相对冻结基线,在未参与训练的 golden 任务上有可检查改善,且代价与风险已知</td>
+</tr>
+<tr>
+<td>golden set 为何先冻结</td>
+<td>参与过「看分→改数据/参数」循环的题会泄题,分数虚高且不可审计</td>
+</tr>
+<tr>
+<td>如何跑分</td>
+<td>全模型同一 system prompt 与 <code>do_sample=False</code>,唯一变量是模型本身</td>
+</tr>
+<tr>
+<td>如何评分</td>
+<td>20 条全评、0/1 规则、失败例原样保留,两人独立或写明单人规则</td>
+</tr>
+<tr>
+<td>模型卡的意义</td>
+<td>说明书而非宣传页:做什么、不能做什么、证据是什么、如何回滚</td>
+</tr>
+<tr>
+<td>何时不能宣布成功</td>
+<td>adapter 只提升相似题、未知题更爱编造——回数据设计或选 RAG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:golden set 上「adapter 全部答对」能证明领域适配成功吗?如果训练结束后发现 golden 里有 2 条题曾在开发讨论中被引用,你该怎么办?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>不能:全对可能意味着题目分布与训练太接近,甚至已发生泄漏;验收还要看拒答类、边界类表现以及与基线的差异。发现 golden 与开发过程有过交集,应视为污染:删除或替换这 2 条并重新冻结、重跑全部评测,而不是「反正答对了就留下」——golden 的纯洁性一旦存疑,整份验收就失去公信力。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/hub/model-cards">Hugging Face:模型卡</a></li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/03/07/"><span>上一篇</span><strong>01.03.07 偏好优化与对齐</strong></a><a class="ai-pager-next" href="/ai/01-models/04/01/"><span>下一篇</span><strong>01.04.01 推理基础</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念领域适配的验收标准">1. 概念:领域适配的验收标准</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-概念golden-set-为什么必须在训练前冻结">2. 概念:golden set 为什么必须在训练前冻结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-动手冻结-golden-set">3. 动手:冻结 golden set</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手同一条件下跑基线与-adapter">4. 动手:同一条件下跑基线与 adapter</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-人工评分不挑样本">5. 人工评分:不挑样本</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手提交目录与模型卡">6. 动手:提交目录与模型卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-概念模型卡的意义">7. 概念:模型卡的意义</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动结业验收">8. 动手活动:结业验收</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

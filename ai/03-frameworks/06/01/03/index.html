@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.01.03 workflow state、activity、retry、timer 与 signal · iopanda</title><meta name="description" content="03.06.01.03 workflow state、activity、retry、timer 与 signal · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/01/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.01.03 workflow state、activity、retry、timer 与 signal · iopanda"><meta property="og:description" content="03.06.01.03 workflow state、activity、retry、timer 与 signal · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/01/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection="01" data-active-article="/ai/03-frameworks/06/01/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/06/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Temporal"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/06/01/"><span class="tree-number">01</span><span class="tree-title">Temporal</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/01/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">workflow state、activity、retry、timer 与 signal</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/01/">Temporal</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">workflow state、activity、retry、timer 与 signal</span></nav><header class="ai-article-header"><p class="ai-number">03.06.01.03</p><h1>workflow state、activity、retry、timer 与 signal</h1><p class="ai-meta"><time datetime="2026-09-04T10:12">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>workflow</li><li>orchestration</li><li>temporal</li><li>state</li><li>retry</li></ul></header><div class="ai-prose"><h1 id="workflow-stateactivityretrytimer-与-signal">workflow state、activity、retry、timer 与 signal</h1>
+<blockquote>
+<p>Temporal 的独特性，不在于“也支持重试”，而在于它把 workflow state、activity、retry、timer、signal 这些对象纳入同一套 durable execution 语义。[6][7][8][9] 这意味着在 Temporal 里，重试不是外挂、计时器不是外挂、外部事件也不是外挂，它们都是 workflow system 的一部分。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解为什么 Temporal 会把 workflow history 和 mutable state 作为核心对象；</li>
+<li>说出 activity、retry、timer、signal 分别在解决什么；</li>
+<li>理解 Matching/History 两类服务在执行路径中的角色；</li>
+<li>判断什么时候流程需要这些正式语义；</li>
+<li>为系统写一张 workflow-semantics card。</li>
+</ol>
+<h2 id="1-workflow-state-在做什么">1. workflow state 在做什么</h2>
+<p>workflow lifecycle 和 history service 文档已经很清楚：[6][9]</p>
+<ul>
+<li>用户请求会转成 history events；</li>
+<li>mutable state 是当前状态汇总；</li>
+<li>transfer/timer tasks 负责继续推进执行。</li>
+</ul>
+<p>这说明 workflow 不是“脚本跑到哪”，而是一个可持久化的状态演化系统。</p>
+<h2 id="2-activity-为什么重要">2. activity 为什么重要</h2>
+<p>在 Temporal 里，workflow 不是直接把所有副作用都吞进去，而是通过 activity 去执行外部操作。[6]
+这意味着：</p>
+<ul>
+<li>副作用和流程状态被分层；</li>
+<li>重试和恢复更可控；</li>
+<li>外部调用失败不会让整个流程语义散掉。</li>
+</ul>
+<h2 id="3-retrytimersignal-为什么必须正式化">3. retry、timer、signal 为什么必须正式化</h2>
+<p>retry 文档说明，重试策略和可重试错误是正式原语，不是 if/else 小逻辑。[7]
+workflow lifecycle 里 timer 和 signal 也都进入正式状态推进路径。[6][9]</p>
+<p>这说明 Temporal 不是在“帮你少写代码”，而是在帮你把最容易写错的控制语义收成平台能力。</p>
+<h2 id="4-matching--history-服务说明了什么">4. Matching / History 服务说明了什么</h2>
+<ul>
+<li>History Service 负责事件、mutable state、timer/transfer tasks；[9]</li>
+<li>Matching Service 负责 task queues 与 worker polling。[10]</li>
+</ul>
+<p>这意味着 Temporal 的可靠性来自明确的内部职责分层，而不是单进程内的魔法。</p>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>temporal-workflow-semantics-card.md</code></p>
+<p>列你的流程中哪些步骤是 activity、哪些地方需要 timer、哪些事件来自外部 signal、哪些错误需要 retry。写一句结论：这些语义现在是平台能力，还是散落在应用逻辑里。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mutable state 在做什么</td>
+<td>汇总 workflow 当前可恢复状态</td>
+</tr>
+<tr>
+<td>activity 在做什么</td>
+<td>承接外部副作用操作</td>
+</tr>
+<tr>
+<td>retry/timer/signal 在做什么</td>
+<td>把失败、等待、外部事件变成正式流程语义</td>
+</tr>
+<tr>
+<td>History/Matching 分工是什么</td>
+<td>一个管状态推进，一个管任务投递</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[6] <a href="https://github.com/temporalio/temporal/blob/main/docs/architecture/workflow-lifecycle.md">https://github.com/temporalio/temporal/blob/main/docs/architecture/workflow-lifecycle.md</a> — Temporal workflow lifecycle doc</li>
+<li>[7] <a href="https://github.com/temporalio/temporal/blob/main/docs/architecture/retry.md">https://github.com/temporalio/temporal/blob/main/docs/architecture/retry.md</a> — Temporal retry doc</li>
+<li>[8] <a href="https://github.com/temporalio/temporal/blob/main/docs/architecture/schedules.md">https://github.com/temporalio/temporal/blob/main/docs/architecture/schedules.md</a> — Temporal schedules architecture doc</li>
+<li>[9] <a href="https://github.com/temporalio/temporal/blob/main/docs/architecture/history-service.md">https://github.com/temporalio/temporal/blob/main/docs/architecture/history-service.md</a> — Temporal history service doc</li>
+<li>[10] <a href="https://github.com/temporalio/temporal/blob/main/docs/architecture/matching-service.md">https://github.com/temporalio/temporal/blob/main/docs/architecture/matching-service.md</a> — Temporal matching service doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/01/02/"><span>上一篇</span><strong>03.06.01.02 durable workflow engine 的设计哲学</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/06/01/04/"><span>下一篇</span><strong>03.06.01.04 human-in-the-loop、external events 与长时流程</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-workflow-state-在做什么">1. workflow state 在做什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-activity-为什么重要">2. activity 为什么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-retrytimersignal-为什么必须正式化">3. retry、timer、signal 为什么必须正式化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-matching--history-服务说明了什么">4. Matching / History 服务说明了什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

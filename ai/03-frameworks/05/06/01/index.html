@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.05.06.01 评估框架选型矩阵 概览 · iopanda</title><meta name="description" content="03.05.06.01 评估框架选型矩阵 概览 · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/05/06/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.05.06.01 评估框架选型矩阵 概览 · iopanda"><meta property="og:description" content="03.05.06.01 评估框架选型矩阵 概览 · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/05/06/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="05" data-active-subsection="06" data-active-article="/ai/03-frameworks/05/06/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估与可观测性框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/05/"><span class="tree-number">05</span><span class="tree-title">评估与可观测性框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/05/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估框架选型矩阵"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/05/06/"><span class="tree-number">06</span><span class="tree-title">评估框架选型矩阵</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/05/06/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">评估框架选型矩阵 概览</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/">评估与可观测性框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/06/">评估框架选型矩阵</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">评估框架选型矩阵 概览</span></nav><header class="ai-article-header"><p class="ai-number">03.05.06.01</p><h1>评估框架选型矩阵 概览</h1><p class="ai-meta"><time datetime="2026-09-04T09:20">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>evaluation</li><li>observability</li><li>architecture</li><li>selection</li></ul></header><div class="ai-prose"><h1 id="评估框架选型矩阵-概览">评估框架选型矩阵 概览</h1>
+<blockquote>
+<p>到这里，<a href="/ai/03-frameworks/05/01/01/">Langfuse</a>、<a href="/ai/03-frameworks/05/02/01/">Phoenix</a>、<a href="/ai/03-frameworks/05/03/01/">MLflow</a>、<a href="/ai/03-frameworks/05/04/01/">promptfoo</a>、<a href="/ai/03-frameworks/05/05/01/">DeepEval</a> 五条路线都已经拆开了。现在真正重要的，不再是“它们分别是什么”，而是：<strong>当你的 AI system 开始需要质量证明、问题定位、回归门禁和线上反馈时，到底该选哪一条路线，为什么不是别的那一条。</strong> 这一篇就是把 evaluation framework 从知识点压缩成架构判断。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用系统主矛盾，而不是功能清单，来做 evaluation framework 选型；</li>
+<li>区分平台闭环、开放 diagnosis、通用治理、CI testing、code-first eval 这五条路线；</li>
+<li>判断一个项目为什么适合某框架，也为什么不适合另一些框架；</li>
+<li>为课程助教、RAG、Agent、企业 AI 产品写 evaluation framework 选型卡；</li>
+<li>建立一套可审计、可复盘的 eval/observability decision record。</li>
+</ol>
+<h2 id="1-选型首先看你的质量复杂度住在哪里">1. 选型首先看：你的质量复杂度住在哪里</h2>
+<p>很多团队选 eval 工具的方式是：</p>
+<ul>
+<li>谁文档多；</li>
+<li>谁能出分；</li>
+<li>谁和某家模型兼容；</li>
+<li>谁 UI 看起来更完整。</li>
+</ul>
+<p>这类选法很容易错，因为 evaluation framework 的差异不在“能不能评”，而在它优先承接哪一种质量复杂度。</p>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>它首先解决什么复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/05/01/01/">Langfuse</a></td>
+<td>traces、prompts、datasets、feedback、evals 的产品闭环复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/02/01/">Phoenix</a></td>
+<td>trace-first diagnosis、开放 tracing、experiments 的分析复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/03/01/">MLflow</a></td>
+<td>传统 ML 与 GenAI 共存时的统一治理复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/04/01/">promptfoo</a></td>
+<td>regression、red-team、CI gate、security scanning 的测试复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/05/01/">DeepEval</a></td>
+<td>code-first metrics、test cases、dataset-driven testing 的开发复杂度</td>
+</tr>
+</tbody>
+</table>
+<p>所以第一原则不是“谁最强”，而是：
+<strong>你的质量系统最贵的复杂度到底是什么。</strong></p>
+<h2 id="2-五条路线的第一性差异">2. 五条路线的第一性差异</h2>
+<h3 id="21-langfuse产品化质量闭环路线">2.1 Langfuse：产品化质量闭环路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>traces 看得见，但 prompt、feedback、datasets、eval 不在一起；</li>
+<li>团队需要围绕真实线上产品做持续改进；</li>
+<li>平台要能从坏 trace 回跳到 playground、prompt 和数据集；</li>
+</ul>
+<p>那么你缺的不是单点测试，而是 AI product engineering 闭环。</p>
+<h3 id="22-phoenix开放-diagnosis-workbench-路线">2.2 Phoenix：开放 diagnosis workbench 路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>需要 OTEL/OpenInference traces；</li>
+<li>需要围绕 spans 做 diagnosis；</li>
+<li>想把 traces、evals、experiments 放在开放工作台里；</li>
+<li>不想太早锁死在产品化平台工作流；</li>
+</ul>
+<p>那么你缺的是 observability/eval workbench。</p>
+<h3 id="23-mlflow统一-ai-engineering-治理路线">2.3 MLflow：统一 AI engineering 治理路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>组织里同时有传统 ML 和 GenAI；</li>
+<li>registry、deployment、tracking、tracing、eval 都想统一治理；</li>
+<li>不希望 ML 和 LLM 世界裂成两套平台；</li>
+</ul>
+<p>那么你缺的不是 LLM-native 单点能力，而是统一平台底座。</p>
+<h3 id="24-promptfooai-testing--red-team--ci-路线">2.4 promptfoo：AI testing / red-team / CI 路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>prompts、RAG、Agent 每次改动都需要回归；</li>
+<li>上线前要做安全扫描；</li>
+<li>评估必须能进 CI/CD；</li>
+<li>想用 declarative config 做 matrix testing；</li>
+</ul>
+<p>那么你缺的是 testing harness，而不是 observability platform。</p>
+<h3 id="25-deepevalcode-first-eval-路线">2.5 DeepEval：code-first eval 路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>开发者想像写 pytest/vitest 一样写 eval；</li>
+<li>metrics、test cases、datasets 希望直接进入代码；</li>
+<li>需要 end-to-end、trajectory、component-level eval 共存；</li>
+</ul>
+<p>那么你缺的是 eval authoring language。</p>
+<h2 id="3-五个框架横向矩阵">3. 五个框架横向矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Langfuse</th>
+<th>Phoenix</th>
+<th>MLflow</th>
+<th>promptfoo</th>
+<th>DeepEval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一主语</td>
+<td>产品化 LLM engineering 闭环</td>
+<td>开放 diagnosis workbench</td>
+<td>通用 AI engineering 平台</td>
+<td>AI testing / red-team harness</td>
+<td>code-first eval 语言</td>
+</tr>
+<tr>
+<td>最适合谁</td>
+<td>已产品化的 LLM/Agent/RAG 团队</td>
+<td>需要 trace-first diagnosis 的团队</td>
+<td>传统 ML + GenAI 共存的组织</td>
+<td>需要 CI gate 与 regression 的团队</td>
+<td>喜欢在代码里写 eval 的团队</td>
+</tr>
+<tr>
+<td>最强价值</td>
+<td>traces + prompts + datasets + feedback 一体化</td>
+<td>OTEL/OpenInference + traces/evals/experiments 组合</td>
+<td>experiments + registry + traces + evals 统一治理</td>
+<td>regression + security + CI/CD</td>
+<td>metrics + test cases + runner 直接融入开发流程</td>
+</tr>
+<tr>
+<td>最大优势</td>
+<td>平台闭环强</td>
+<td>开放且适合 troubleshooting</td>
+<td>平台边界最广</td>
+<td>最像上线前测试门禁</td>
+<td>最像开发者原生测试体验</td>
+</tr>
+<tr>
+<td>最大代价</td>
+<td>对轻量场景可能偏重</td>
+<td>产品闭环感不如平台型工具</td>
+<td>对 LLM-only 小团队可能偏重</td>
+<td>不是完整 observability 平台</td>
+<td>不是完整治理/observability 平台</td>
+</tr>
+<tr>
+<td>不适合什么</td>
+<td>只做一次性离线测试</td>
+<td>只想要简单 CI regression</td>
+<td>只有单一 LLM 小工具</td>
+<td>主要问题是线上观测闭环</td>
+<td>主要问题是平台协作与产品观测</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-用场景来选而不是用框架来选">4. 用场景来选，而不是用框架来选</h2>
+<h3 id="41-场景一课程助教已经上线要做线上质量闭环">4.1 场景一：课程助教已经上线，要做线上质量闭环</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>traces、feedback、prompt、datasets、scores 分裂；</li>
+<li>团队要持续迭代产品质量。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/05/01/01/">Langfuse</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 promptfoo：主问题不只是 gate；</li>
+<li>不是 DeepEval：主问题不只是代码测试；</li>
+<li>不是 Phoenix：这里更需要产品化闭环；</li>
+<li>不是 MLflow：如果组织治理还没扩到传统 ML，MLflow 可能偏重。</li>
+</ul>
+<h3 id="42-场景二agent--rag-系统问题很多需要开放-traces-做根因分析">4.2 场景二：Agent / RAG 系统问题很多，需要开放 traces 做根因分析</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>想知道问题到底出在哪个 span；</li>
+<li>想围绕 traces、experiments、datasets 做 diagnosis。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/05/02/01/">Phoenix</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 Langfuse：这里更强调开放 diagnosis 而非平台闭环；</li>
+<li>不是 promptfoo：问题不是单纯 regression gate；</li>
+<li>不是 DeepEval：问题不是单测 authoring；</li>
+<li>不是 MLflow：平台治理不是第一主语。</li>
+</ul>
+<h3 id="43-场景三组织里同时有传统-ml-和-genai要统一-trackingevalregistry">4.3 场景三：组织里同时有传统 ML 和 GenAI，要统一 tracking/eval/registry</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>平台分裂；</li>
+<li>资产分裂；</li>
+<li>审计和治理分裂。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/05/03/01/">MLflow</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 Langfuse：它更偏 LLM-native；</li>
+<li>不是 Phoenix：更偏 diagnosis；</li>
+<li>不是 promptfoo：更偏 testing harness；</li>
+<li>不是 DeepEval：更偏 eval layer，而不是平台底座。</li>
+</ul>
+<h3 id="44-场景四每次改-prompt--model--rag-pipeline-都想自动做回归和红队">4.4 场景四：每次改 prompt / model / RAG pipeline 都想自动做回归和红队</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>缺正式 gate；</li>
+<li>缺 regression；</li>
+<li>缺 security scanning。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/05/04/01/">promptfoo</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 Langfuse：平台闭环不等于测试门禁；</li>
+<li>不是 Phoenix：开放 diagnosis 不等于 CI regression；</li>
+<li>不是 MLflow：太广；</li>
+<li>不是 DeepEval：如果你更希望 declarative config + CLI + red-team，promptfoo 更自然。</li>
+</ul>
+<h3 id="45-场景五开发者要把-llm-质量要求直接写进代码测试">4.5 场景五：开发者要把 LLM 质量要求直接写进代码测试</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>想像 pytest/vitest 一样写 eval；</li>
+<li>想把 metrics、test cases、dataset 写成代码；</li>
+<li>想让 PR/本地回归直接使用这些测试。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/05/05/01/">DeepEval</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 promptfoo：promptfoo 更偏 declarative harness；</li>
+<li>不是 Langfuse：这里不先需要平台闭环；</li>
+<li>不是 Phoenix：这里不先需要 diagnosis workbench；</li>
+<li>不是 MLflow：这里不先需要平台治理。</li>
+</ul>
+<h2 id="5-课程助教这个案例到底怎么选">5. 课程助教这个案例到底怎么选</h2>
+<p>如果把“课程助教 Agent”主线拿来做真实 evaluation 选型，最自然的结论仍然是分阶段的：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>主问题</th>
+<th>更自然的框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一阶段：先把助教质量要求写成可执行测试</td>
+<td>code-first eval</td>
+<td><a href="/ai/03-frameworks/05/05/01/">DeepEval</a></td>
+</tr>
+<tr>
+<td>第二阶段：每次改动都要做回归和安全门禁</td>
+<td>CI regression + red team</td>
+<td><a href="/ai/03-frameworks/05/04/01/">promptfoo</a></td>
+</tr>
+<tr>
+<td>第三阶段：上线后要看 traces、feedback、prompts、datasets 的闭环</td>
+<td>产品化质量闭环</td>
+<td><a href="/ai/03-frameworks/05/01/01/">Langfuse</a></td>
+</tr>
+<tr>
+<td>第四阶段：出现复杂路径问题，需要开放式根因分析</td>
+<td>trace-first diagnosis</td>
+<td><a href="/ai/03-frameworks/05/02/01/">Phoenix</a></td>
+</tr>
+<tr>
+<td>第五阶段：组织里传统 ML 与 GenAI 都要统一治理</td>
+<td>平台统一</td>
+<td><a href="/ai/03-frameworks/05/03/01/">MLflow</a></td>
+</tr>
+</tbody>
+</table>
+<p>这张表最重要的含义是：
+<strong>evaluation framework selection 也是阶段题，而不是一次性终局题。</strong></p>
+<h2 id="6-四类常见错配">6. 四类常见错配</h2>
+<h3 id="错配一明明缺测试门禁却先上大平台">错配一：明明缺测试门禁，却先上大平台</h3>
+<p>结果：</p>
+<ul>
+<li>traces 有了；</li>
+<li>但 PR 改动仍然没有被稳定拦截。</li>
+</ul>
+<h3 id="错配二明明线上问题很多却只做离线评分">错配二：明明线上问题很多，却只做离线评分</h3>
+<p>结果：</p>
+<ul>
+<li>分数看起来有；</li>
+<li>但定位不到真实失败路径。</li>
+</ul>
+<h3 id="错配三明明是组织级治理问题却还在堆单点工具">错配三：明明是组织级治理问题，却还在堆单点工具</h3>
+<p>结果：</p>
+<ul>
+<li>局部都能用；</li>
+<li>但 registry、traces、eval、deployment 永远在不同地方。</li>
+</ul>
+<h3 id="错配四明明开发者就想在代码里写测试却强推纯平台工作流">错配四：明明开发者就想在代码里写测试，却强推纯平台工作流</h3>
+<p>结果：</p>
+<ul>
+<li>adoption 很低；</li>
+<li>eval 依旧离开发者最近的工作流太远。</li>
+</ul>
+<h2 id="7-动手活动写一张-evaluation-framework-selection-card">7. 动手活动：写一张 evaluation-framework-selection-card</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>evaluation-framework-selection-card.md</code></p>
+<p><strong>目标</strong>：为你的项目做一张真正可复盘的 eval/observability 选型卡。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>写清楚当前主矛盾：平台闭环、开放 diagnosis、统一治理、CI gate、code-first eval，哪一个最痛；</li>
+<li>写清楚当前阶段：本地测试、发布前回归、线上观测、组织治理；</li>
+<li>选一个主框架；</li>
+<li>再写两个“不选其他框架”的反向理由；</li>
+<li>写预期交付物：datasets、trace views、eval reports、CI outputs、feedback links；</li>
+<li>写验证标准：怎么证明这次选型真的降低了复杂度，而不是新增复杂度。</li>
+</ol>
+<p><strong>完成标准</strong>：你的结论不只是“我们用了 X”，而是“因为系统主复杂度在 Y，所以 X 最自然，而 A/B/C 不自然”。</p>
+</div>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选 evaluation framework 的第一原则是什么</td>
+<td>看 quality complexity 住在哪里</td>
+</tr>
+<tr>
+<td>五条路线分别是什么</td>
+<td>平台闭环 / 开放 diagnosis / 通用治理 / CI testing / code-first eval</td>
+</tr>
+<tr>
+<td>为什么不要只看谁能出分</td>
+<td>因为不同框架在解决完全不同的问题</td>
+</tr>
+<tr>
+<td>真正好的选型长什么样</td>
+<td>能解释为什么选它，也能解释为什么不选别的</td>
+</tr>
+<tr>
+<td>对课程助教最重要的启发</td>
+<td>eval/observability 选型通常也是阶段题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么 evaluation framework 的错配，往往不是“评不了”，而是“能评，但结果没有进入正确的工作流”？在你的系统里，当前真正最贵的是产品闭环、开放诊断、统一治理、CI 门禁，还是 code-first 测试？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为今天的大多数工具都能让你“做评估”，但它们承接复杂度的层次完全不同。错配时，系统不会立刻报错，而是会在几周后表现为：结果只停留在报表、线上问题无法回流、PR 没有门禁、开发者不用测试框架、或者平台治理持续分裂。真正好的选型，不是找“最全工具”，而是找“最能把当前主复杂度收进正确层次的框架”。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[18] <a href="https://github.com/langfuse/langfuse">https://github.com/langfuse/langfuse</a> — Langfuse GitHub</li>
+<li>[19] <a href="https://github.com/Arize-ai/phoenix">https://github.com/Arize-ai/phoenix</a> — Phoenix GitHub</li>
+<li>[20] <a href="https://github.com/mlflow/mlflow">https://github.com/mlflow/mlflow</a> — MLflow GitHub</li>
+<li>[21] <a href="https://github.com/promptfoo/promptfoo">https://github.com/promptfoo/promptfoo</a> — promptfoo GitHub</li>
+<li>[22] <a href="https://github.com/confident-ai/deepeval">https://github.com/confident-ai/deepeval</a> — DeepEval GitHub</li>
+<li>[31] <a href="https://github.com/mlflow/mlflow/blob/master/README.md">https://github.com/mlflow/mlflow/blob/master/README.md</a> — MLflow README</li>
+<li>[25] <a href="https://github.com/langfuse/langfuse/blob/main/README.md">https://github.com/langfuse/langfuse/blob/main/README.md</a> — Langfuse README</li>
+<li>[10] <a href="https://github.com/promptfoo/promptfoo/blob/main/README.md">https://github.com/promptfoo/promptfoo/blob/main/README.md</a> — promptfoo README</li>
+<li>[10] <a href="https://github.com/confident-ai/deepeval/blob/main/README.md">https://github.com/confident-ai/deepeval/blob/main/README.md</a> — DeepEval README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/05/05/07/"><span>上一篇</span><strong>03.05.05.07 DeepEval 与 Langfuse、Phoenix、MLflow、promptfoo 的深度对比</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/05/07/"><span>下一篇</span><strong>03.05.07 评估与可观测性框架 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-选型首先看你的质量复杂度住在哪里">1. 选型首先看：你的质量复杂度住在哪里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-五条路线的第一性差异">2. 五条路线的第一性差异</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-langfuse产品化质量闭环路线">2.1 Langfuse：产品化质量闭环路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-phoenix开放-diagnosis-workbench-路线">2.2 Phoenix：开放 diagnosis workbench 路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#23-mlflow统一-ai-engineering-治理路线">2.3 MLflow：统一 AI engineering 治理路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#24-promptfooai-testing--red-team--ci-路线">2.4 promptfoo：AI testing / red-team / CI 路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#25-deepevalcode-first-eval-路线">2.5 DeepEval：code-first eval 路线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-五个框架横向矩阵">3. 五个框架横向矩阵</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-用场景来选而不是用框架来选">4. 用场景来选，而不是用框架来选</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-场景一课程助教已经上线要做线上质量闭环">4.1 场景一：课程助教已经上线，要做线上质量闭环</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-场景二agent--rag-系统问题很多需要开放-traces-做根因分析">4.2 场景二：Agent / RAG 系统问题很多，需要开放 traces 做根因分析</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-场景三组织里同时有传统-ml-和-genai要统一-trackingevalregistry">4.3 场景三：组织里同时有传统 ML 和 GenAI，要统一 tracking/eval/registry</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-场景四每次改-prompt--model--rag-pipeline-都想自动做回归和红队">4.4 场景四：每次改 prompt / model / RAG pipeline 都想自动做回归和红队</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-场景五开发者要把-llm-质量要求直接写进代码测试">4.5 场景五：开发者要把 LLM 质量要求直接写进代码测试</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-课程助教这个案例到底怎么选">5. 课程助教这个案例到底怎么选</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-四类常见错配">6. 四类常见错配</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配一明明缺测试门禁却先上大平台">错配一：明明缺测试门禁，却先上大平台</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配二明明线上问题很多却只做离线评分">错配二：明明线上问题很多，却只做离线评分</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配三明明是组织级治理问题却还在堆单点工具">错配三：明明是组织级治理问题，却还在堆单点工具</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配四明明开发者就想在代码里写测试却强推纯平台工作流">错配四：明明开发者就想在代码里写测试，却强推纯平台工作流</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动写一张-evaluation-framework-selection-card">7. 动手活动：写一张 evaluation-framework-selection-card</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.08.02 Agent 应用形态全景 · iopanda</title><meta name="description" content="02.08.02 Agent 应用形态全景 · 智能体 / 应用与案例研究，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/08/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.08.02 Agent 应用形态全景 · iopanda"><meta property="og:description" content="02.08.02 Agent 应用形态全景 · 智能体 / 应用与案例研究，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/08/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="08" data-active-subsection data-active-article="/ai/02-agents/08/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/08"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 应用与案例研究"></button><a class="tree-link tree-link--section" href="/ai/02-agents/08/"><span class="tree-number">08</span><span class="tree-title">应用与案例研究</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/08/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">Agent 应用形态全景</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/08/">应用与案例研究</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Agent 应用形态全景</span></nav><header class="ai-article-header"><p class="ai-number">02.08.02</p><h1>Agent 应用形态全景</h1><p class="ai-meta"><time datetime="2026-09-03T05:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>agent-applications</li></ul></header><div class="ai-prose"><h1 id="agent-应用形态全景">Agent 应用形态全景</h1>
+<blockquote>
+<p>02.07 给课程助教装上了评测显微镜与回归循环:每次改动先在 golden 任务上过一遍,「敢迭代」有了制度保障。可评测回答的是「改得好不好」,还没回答「做成什么样才敢放权」——这正是收官模块 02.08 的问题:把前七个模块的能力组装成真实 Agent 应用。本章先画全景图:真实世界的 Agent 按风险与自主度分三档,按工具与产物分四种形态;看懂这张图,02~04 章的案例深挖与 05 章的结业组装才有坐标系。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用「辅助型/任务型/自主型」三档给任意 Agent 应用定级,并说出各档的人机分工与介入点;</li>
+<li>对比代码、数据分析、知识客服、浏览器四种形态的核心工具与典型产物;</li>
+<li>为一种形态画出「人(确认闸门)+ Agent 循环 + 工具层 + 护栏带」的架构草图;</li>
+<li>用「任务风险×错误代价→自主度」框架为课程助教的子任务选档配护栏;</li>
+<li>说清档位是任务属性而非模型能力标签,并解释「自主≠无人负责」。</li>
+</ol>
+<h2 id="1-概念按风险与自主度分三档">1. 概念:按风险与自主度分三档</h2>
+<ul>
+<li><strong>辅助型(assistive,copilot 式)</strong>:Agent 产出建议与草稿,关键动作经人确认后才执行——人做决定、Agent 提效,对应 02.02 学过的补全、建议、待批准命令等形态。</li>
+<li><strong>任务型(task-level,有限自主)</strong>:人给定任务与边界,Agent 在边界内自主完成常规步骤,只在三类时机请人介入——例外情况、高风险动作、任务收尾合入。</li>
+<li><strong>自主型(autonomous,少人干预)</strong>:人只定目标与停止条件,Agent 自定步骤并执行,干预点收敛到任务开始、任务结束与异常停摆。</li>
+<li>学界把档位差刻画成一条谱系:Microsoft 2025 年的研究按用户角色从 operator(操作者)递进到 observer(观察者)排成五级自主度;产品落地时常收敛成三档口径,本讲义取后者,方便对照真实产品(见引用)。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>人机分工</th>
+<th>人在圈内的介入点</th>
+<th>典型产物</th>
+<th>出错时谁兜底</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>辅助型</td>
+<td>人做决定,Agent 提建议/待批动作</td>
+<td>每个关键动作之前</td>
+<td>建议、草稿、待批准的命令</td>
+<td>人(每步都看过)</td>
+</tr>
+<tr>
+<td>任务型</td>
+<td>Agent 执行常规步骤,人设边界</td>
+<td>例外、高风险动作、收尾合入</td>
+<td>完成的子任务、批注、PR</td>
+<td>人审边界内产物</td>
+</tr>
+<tr>
+<td>自主型</td>
+<td>Agent 自定步骤执行,人定目标</td>
+<td>任务开始/结束、异常停摆</td>
+<td>端到端结果(如批量迁移)</td>
+<td>人与 Agent 按审计分担</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>与 02.01 的定义对齐:三档共享同一副「循环+工具」骨架,差别只在<strong>决策权归谁</strong>、<strong>人在哪几道闸门</strong>。</li>
+</ul>
+<h2 id="2-为什么需要不分级会怎样">2. 为什么需要:不分级会怎样</h2>
+<table>
+<thead>
+<tr>
+<th>做法</th>
+<th>表现</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一律全自动</td>
+<td>删库、群发这类动作也无人把守</td>
+<td>一次高代价事故就能让整个项目下马</td>
+</tr>
+<tr>
+<td>一律人确认</td>
+<td>改格式也要人点头</td>
+<td>人变橡皮图章,确认流于形式,还拖慢所有任务</td>
+</tr>
+<tr>
+<td>名义辅助、实际自动</td>
+<td>界面写「建议」,代码却直接执行</td>
+<td>最危险:人以为自己在圈内,其实早已出圈</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一刀切行不通,是因为两个变量在打架:<strong>错误代价</strong>(金钱、隐私、口碑、是否不可逆)与<strong>人工成本</strong>(每轮确认的时间与注意力)。代价高,人必须在圈内;代价低,人守在圈外只查结果。</li>
+<li>分档就是把这两个变量对准的工程动作;而「名义辅助、实际自动」之所以最危险,是因为它骗过了人这一层唯一的防线——这是 04 章公开事故里反复出现的死法。</li>
+</ul>
+<h2 id="3-作用四种形态与一张共享骨架">3. 作用:四种形态与一张共享骨架</h2>
+<table>
+<thead>
+<tr>
+<th>形态</th>
+<th>擅长什么</th>
+<th>核心工具(呼应 02.04)</th>
+<th>典型产物</th>
+<th>课程助教的对应场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码 Agent</td>
+<td>读写代码、跑测试、按报错迭代</td>
+<td>编辑器 + 代码检索 + 沙箱执行器</td>
+<td>代码改动、PR、批注</td>
+<td>批改学员编程作业(02 章深挖)</td>
+</tr>
+<tr>
+<td>数据分析 Agent</td>
+<td>自然语言→查询/代码→图表</td>
+<td>数据库 + 代码执行 + 出图工具</td>
+<td>报表、图表、结论</td>
+<td>统计课程学习数据(03 章)</td>
+</tr>
+<tr>
+<td>知识/客服 Agent</td>
+<td>依据资料问答、跟进工单</td>
+<td>向量检索 + 记忆 + 工单系统</td>
+<td>带引用的回答、工单摘要</td>
+<td>课程助教主形态,本模块主线底子</td>
+</tr>
+<tr>
+<td>浏览器 Agent</td>
+<td>观察网页并执行操作</td>
+<td>截图/DOM 观察 + 动作空间</td>
+<td>表单提交、页面状态变更</td>
+<td>课程站点上的演示形态(03 章)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>四种形态共享同一副骨架,差异集中在两处:<strong>工具层挂什么</strong>、<strong>护栏带怎么收紧</strong>:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>┌────────────── 人:目标 / 验收 / 确认闸门 ──────────────┐</span></span>
+<span class="line"><span>│  ┌──────────────────────────────────────────────┐  │</span></span>
+<span class="line"><span>│  │  Agent 循环:模型 + 规划 + 记忆 + 工具调用     │  │</span></span>
+<span class="line"><span>│  │       ↓ 一次工具调用                         │  │</span></span>
+<span class="line"><span>│  │  工具层(按形态不同):                         │  │</span></span>
+<span class="line"><span>│  │  检索器 / 代码沙箱 / 数据库 / 浏览器动作 / 工单 │  │</span></span>
+<span class="line"><span>│  └──────────────────────────────────────────────┘  │</span></span>
+<span class="line"><span>│  护栏带:权限最小化 | 预算上限 | 沙箱隔离 | 审计日志  │</span></span>
+<span class="line"><span>└────────────────────────────────────────────────────┘</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>为什么这副骨架成立:模型循环(02.01)、工具接入(02.04)、记忆(02.05)、评测(02.07)在之前模块各自建好,形态差异只是「在工具层与护栏带上换配置」——这正是 05 章组装课程助教时你会亲手验证的事。</li>
+</ul>
+<h2 id="4-详细介绍每形态的护栏配置与选型框架">4. 详细介绍:每形态的护栏配置与选型框架</h2>
+<h3 id="41-四形态的默认档位与关键护栏">4.1 四形态的默认档位与关键护栏</h3>
+<table>
+<thead>
+<tr>
+<th>形态</th>
+<th>默认档位</th>
+<th>关键护栏</th>
+<th>挡住什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码 Agent</td>
+<td>任务型(危险命令回辅助)</td>
+<td>沙箱执行、diff 审阅、只读默认</td>
+<td>改坏文件、执行恶意命令(02 章)</td>
+</tr>
+<tr>
+<td>数据分析 Agent</td>
+<td>任务型</td>
+<td>只读数据库账号、查询超时、图表校验</td>
+<td>SQL 写错、全表扫描烧钱(03 章)</td>
+</tr>
+<tr>
+<td>知识/客服 Agent</td>
+<td>辅助~任务型</td>
+<td>检索白名单、拒答规则、记忆最小化</td>
+<td>编造依据、越权透露他人信息</td>
+</tr>
+<tr>
+<td>浏览器 Agent</td>
+<td>辅助型(每步确认)</td>
+<td>登录态隔离、动作白名单、截图审计</td>
+<td>误提交表单、跨站点操作</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>护栏清单不是四份,而是同一份「权限/预算/沙箱/审计」按形态收紧:能改文件的比能读数据的严,能点击下单的比能回复消息的严。</li>
+</ul>
+<h3 id="42-选型框架任务风险错误代价自主度">4.2 选型框架:任务风险×错误代价→自主度</h3>
+<ul>
+<li>定档只问两个问题:① 做错代价多大(金钱、隐私、口碑、是否不可逆)?② 结果能不能自动验收(有测试、断言、schema 校验吗)?</li>
+<li>决策表如下——它就是 5. 动手活动里 <code>recommended_tier()</code> 的判定逻辑:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>错误代价</th>
+<th>能自动验收?</th>
+<th>建议档位</th>
+<th>课程助教例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低</td>
+<td>能</td>
+<td>自主型</td>
+<td>批量统一代码格式</td>
+</tr>
+<tr>
+<td>低</td>
+<td>不能</td>
+<td>任务型</td>
+<td>生成讲义初稿(人校后发布)</td>
+</tr>
+<tr>
+<td>中</td>
+<td>能</td>
+<td>任务型 + 自动闸门</td>
+<td>批改作业:测试把关,合入前人工确认</td>
+</tr>
+<tr>
+<td>高或不可逆</td>
+<td>不论</td>
+<td>辅助型</td>
+<td>删除学员档案、群发成绩邮件</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>为什么「能自动验收」是放手的底气:自动验收把错误挡在门外,人才能退到「只看结果」;没有它,放手等于盲飞。呼应 02.07:回归评测就是 Agent 世界的自动验收——评测跑不过,什么都不用谈。</li>
+</ul>
+<h2 id="5-动手活动给课程助教的子任务定级配护栏">5. 动手活动:给课程助教的子任务定级配护栏</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:autonomy_selector.py——子任务自主度选型器</p>
+<p><strong>目标</strong>:实现任务的档位判定与护栏配置,让 5 个课程助教子任务自动输出「档位 + 护栏清单」,并与 4.2 决策表逐行对照。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>保存为 <code>autonomy_selector.py</code> 并运行(纯 Python 3,零依赖);</li>
+<li>核对 5 行输出:三档各至少出现一次,「批量统一代码格式」应是唯一自主型;</li>
+<li>把「删除学员档案」的 <code>error_cost</code> 改成 1 再跑,档位不变——解释为什么(不可逆优先于代价);</li>
+<li>回答:为什么「回复课程答疑」是任务型而不是自主型?</li>
+</ol>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># autonomy_selector.py —— 课程助教子任务自主度选型器(纯 Python 3,零依赖)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> TaskProfile</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """任务画像:错误代价、能否自动验收、是否不可逆。"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, name, error_cost, auto_verifiable, irreversible):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.error_cost </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> error_cost          </span><span style="color:#6A737D"># 1=低 2=中 3=高</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.auto_verifiable </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> auto_verifiable  </span><span style="color:#6A737D"># 有测试/断言能自动验收吗</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.irreversible </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> irreversible        </span><span style="color:#6A737D"># 错了能回滚吗</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> recommended_tier</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """定档规则:不可逆或高代价→辅助型;无法自动验收→任务型;低代价且可验收→自主型。"""</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.irreversible </span><span style="color:#F97583">or</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.error_cost </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> "assistive"</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#F97583"> not</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.auto_verifiable:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> "task_limited"</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.error_cost </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> "task_limited"</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> "autonomous"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> guardrails</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """按档位配护栏;任务型里可验收的加自动闸门,不可验收的靠例外转人。"""</span></span>
+<span class="line"><span style="color:#E1E4E8">        tier </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.recommended_tier()</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> tier </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "assistive"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"human_confirm_every_action"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"dry_run_first"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> tier </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "autonomous"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"auto_check_before_finish"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.auto_verifiable:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"auto_check_before_finish"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"human_confirm_before_merge"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"human_confirm_on_exception"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    tier_names </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"assistive"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"辅助型"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"task_limited"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"任务型"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"autonomous"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"自主型"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    tasks </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">        TaskProfile(</span><span style="color:#9ECBFF">"回复课程答疑"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">error_cost</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">auto_verifiable</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">irreversible</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">        TaskProfile(</span><span style="color:#9ECBFF">"生成讲义初稿"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">error_cost</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">auto_verifiable</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">irreversible</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">        TaskProfile(</span><span style="color:#9ECBFF">"批改作业代码"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">error_cost</span><span style="color:#F97583">=</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">auto_verifiable</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">irreversible</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">        TaskProfile(</span><span style="color:#9ECBFF">"删除学员档案"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">error_cost</span><span style="color:#F97583">=</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">auto_verifiable</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">irreversible</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">        TaskProfile(</span><span style="color:#9ECBFF">"批量统一代码格式"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">error_cost</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">auto_verifiable</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">irreversible</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> task </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> tasks:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%-8s</span><span style="color:#9ECBFF"> → </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">,护栏: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (task.name, tier_names[task.recommended_tier()],</span></span>
+<span class="line"><span style="color:#9ECBFF">                                      ", "</span><span style="color:#E1E4E8">.join(task.guardrails())))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    main()</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p><strong>完成标准</strong>:5 行输出与 4.2 决策表一致——回复答疑/讲义初稿/批改作业为任务型,删除档案为辅助型,批量格式为自主型;批改作业比另两个任务型多出「自动闸门 + 合入确认」;把 <code>error_cost</code> 改 1 动摇不了不可逆任务的辅助型结论;能口头讲清「答疑为什么不是自主型」。</p>
+</div>
+<h2 id="6-边界选型陷阱与护栏误区">6. 边界:选型陷阱与护栏误区</h2>
+<table>
+<thead>
+<tr>
+<th>陷阱</th>
+<th>表现</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>橡皮图章审批</td>
+<td>每步都确认,人不再细看</td>
+<td>只在高风险动作设确认点,常规动作走事后审计</td>
+</tr>
+<tr>
+<td>名义辅助、实际自动</td>
+<td>标称「建议」却自动执行</td>
+<td>权限系统里根本没有「自动」通道——只有代码能保证口径一致</td>
+</tr>
+<tr>
+<td>把档位当能力标签</td>
+<td>换更强模型就顺手提档</td>
+<td>档位由任务风险与验收能力决定,与模型强弱无关</td>
+</tr>
+<tr>
+<td>一次定死</td>
+<td>任务内容或工具变了,档位过时</td>
+<td>每次加工具、改流程都重跑一遍选型器</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:<strong>自主型不是「无人负责」</strong>。任何档位都要能回答「出了事谁负责、靠什么审计」——评测与 trace(02.07)提供证据,护栏与人工确认负责拦截,发布评审(06 章)做最后裁决。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三档</td>
+<td>辅助型人确认 / 任务型有限自主 / 自主型少人干预</td>
+</tr>
+<tr>
+<td>四形态</td>
+<td>代码、数据分析、知识客服、浏览器——共享骨架,差在工具与护栏</td>
+</tr>
+<tr>
+<td>架构骨架</td>
+<td>人(确认闸门)+ Agent 循环 + 工具层 + 护栏带(权限/预算/沙箱/审计)</td>
+</tr>
+<tr>
+<td>选型框架</td>
+<td>任务风险×错误代价→自主度;「能自动验收」是放手的底气</td>
+</tr>
+<tr>
+<td>两个认知</td>
+<td>档位是任务属性不是产品标签;自主≠无人负责</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「低代价 + 能自动验收」可以放手到自主型,而「高代价 + 能自动验收」仍要人在圈内?「回复课程答疑」这类无法自动验收的低代价任务,若强行升到自主型,最可能在哪里翻车?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>自动验收只能证明「结果符合预设断言」,挡得住过程失控,挡不住「目标本身错了」的代价——高代价错误的成本(隐私、合规、不可逆副作用)大多落在断言之外,所以可验收是放手的必要条件而非充分条件,高代价必须人在圈内。答疑无法自动验收,若升到自主型,一次「拿不准却自信作答」的幻觉会直达学员:没有测试兜底、没有例外转人,坏答案既发得出也收不回——任务型的「例外转人」闸门正是为这类任务保留的。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2506.12469">arXiv 2506.12469:Levels of Autonomy for AI Agents(自主度分级,Microsoft Research 2025)</a></li>
+<li><a href="https://www.anthropic.com/research/building-effective-agents">Anthropic:Building effective agents(工作流与 Agent 的设计模式)</a></li>
+<li><a href="https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode">VS Code Blog:Introducing GitHub Copilot agent mode(2025-02-24,自主度在真实产品里的形态)</a></li>
+</ul>
+<p>上一篇(纯文本衔接 02.07 末篇):06 回归评测与开发循环——评测与回归让课程助教「改得起、敢迭代」;本章起进入 02.08 Applications and Case Studies,回答「做成什么形态才敢放权」;02.07 全貌见其 README。</p>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/08/01/"><span>上一篇</span><strong>02.08.01 应用与案例研究 概览</strong></a><a class="ai-pager-next" href="/ai/02-agents/08/03/"><span>下一篇</span><strong>02.08.03 代码 Agent 深度案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念按风险与自主度分三档">1. 概念:按风险与自主度分三档</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要不分级会怎样">2. 为什么需要:不分级会怎样</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用四种形态与一张共享骨架">3. 作用:四种形态与一张共享骨架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍每形态的护栏配置与选型框架">4. 详细介绍:每形态的护栏配置与选型框架</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-四形态的默认档位与关键护栏">4.1 四形态的默认档位与关键护栏</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-选型框架任务风险错误代价自主度">4.2 选型框架:任务风险×错误代价→自主度</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动给课程助教的子任务定级配护栏">5. 动手活动:给课程助教的子任务定级配护栏</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界选型陷阱与护栏误区">6. 边界:选型陷阱与护栏误区</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

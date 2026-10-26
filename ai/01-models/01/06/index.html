@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.06 Transformer 架构 · iopanda</title><meta name="description" content="01.01.06 Transformer 架构 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.06 Transformer 架构 · iopanda"><meta property="og:description" content="01.01.06 Transformer 架构 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">Transformer 架构</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Transformer 架构</span></nav><header class="ai-article-header"><p class="ai-number">01.01.06</p><h1>Transformer 架构</h1><p class="ai-meta"><time datetime="2026-09-02T16:20">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>transformers</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章我们认识了注意力机制:它让 token 之间「互相打量、按重要性汇总信息」。本章回答一个更激进的问题:<strong>如果完全不写循环、不写卷积,只用注意力这一种构件,能不能搭出一个完整的、能干活的语言网络?</strong> 2017 年谷歌的论文《Attention Is All You Need》给出了答案——能,这就是 Transformer。它是 GPT、BERT、T5 乃至今天几乎所有大语言模型的共同骨架,值得你花一整章把它拆开看明白。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用自己的话说出 Transformer 是什么,并说清它和 RNN、CNN 的本质区别;</li>
+<li>解释 2017 年之前序列模型(尤其 RNN)的三重困境,以及「纯注意力」为何能同时化解;</li>
+<li>说出 Transformer 的四大核心组件,并解释每个组件「为什么这么设计」;</li>
+<li>描述编码器、解码器各自的职责,解释因果掩码的作用;</li>
+<li>区分 encoder-only、decoder-only、encoder-decoder 三种架构,并说出 GPT 属于哪一种。</li>
+</ol>
+<h2 id="1-概念transformer-是什么">1. 概念:Transformer 是什么</h2>
+<ul>
+<li><strong>Transformer 是一种神经网络架构</strong>:它把一串向量(通常是 token 的嵌入表示)作为输入,通过多层「自注意力 + 前馈网络」的堆叠,输出一串同样长度、但携带了全局上下文的新向量。因为内部信息流动像「变换」一样层层改写表示,故得名 Transformer。</li>
+<li>它由谷歌 8 位研究者于 2017 年 6 月在论文《Attention Is All You Need》中提出(NeurIPS 2017 发表),原文一句话概括:**「完全基于注意力机制、彻底抛弃循环与卷积」**的序列模型。</li>
+<li>用流水线理解:<code>输入 token → 嵌入 + 位置编码 → N 层编码块 → 输出表示</code>。每个编码块内部只做两件事:<strong>多头自注意力</strong>(token 之间交换信息)和<strong>逐位置前馈网络</strong>(每个 token 独立做非线性加工)。</li>
+</ul>
+<h3 id="11-与-rnncnn-的本质区别">1.1 与 RNN、CNN 的本质区别</h3>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>RNN / LSTM(循环)</th>
+<th>CNN(卷积)</th>
+<th>Transformer(注意力)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处理方式</td>
+<td>逐 token 串行,后一步等前一步</td>
+<td>滑动窗口局部卷积</td>
+<td>全序列同时计算</td>
+</tr>
+<tr>
+<td>看多远</td>
+<td>靠隐藏状态逐步传递,远距离衰减</td>
+<td>靠堆层扩大感受野</td>
+<td>一步直达任意两个位置</td>
+</tr>
+<tr>
+<td>并行性</td>
+<td>差(顺序依赖)</td>
+<td>好</td>
+<td>好(全是矩阵乘法)</td>
+</tr>
+<tr>
+<td>结构前提</td>
+<td>认为「相邻才有关系」</td>
+<td>认为「窗口内才有关系」</td>
+<td>不预设关系,由数据学习</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关键点:<strong>RNN 与 CNN 都隐含「位置结构」假设</strong>,而 Transformer 对输入不抱任何位置偏见——关系远近完全由注意力权重学习出来。这也解释了为什么它需要「位置编码」来补偿(见 4.3 节)。</li>
+</ul>
+<h2 id="2-为什么需要它三个绕不开的瓶颈">2. 为什么需要它:三个绕不开的瓶颈</h2>
+<ul>
+<li>2017 年之前,处理序列(翻译、摘要)的主流是 RNN/LSTM。它有三个结构性瓶颈,Transformer 正是为同时解决它们而生:</li>
+</ul>
+<ol>
+<li><strong>串行计算,无法并行</strong>:第 t 个词必须等前 t-1 个词算完,训练长句极慢,且与 GPU/TPU 擅长的并行计算「错配」;</li>
+<li><strong>长距离依赖衰减</strong>:两个相关词隔得越远,信息要穿过越多的循环步,梯度与语义都容易消失——「银行在河……过了桥」里的指代很难学;</li>
+<li><strong>路径过长</strong>:想让相距 n 的词互相影响,RNN 至少要 n 步顺序操作;论文指出这对学习「跨距离的决策」是根本性障碍。</li>
+</ol>
+<ul>
+<li>与此同时,上一章的注意力机制已经证明:它能用一次「查询—键值」打分,直接建模任意两个 token 的关系,且全部是矩阵运算、天然可并行。<strong>既然如此,为什么还要循环结构?</strong> 论文的回答斩钉截铁:不要了——注意力本身就是够用的构件,这就是标题「Attention Is All You Need(注意力就是一切所需)」的含义。</li>
+<li>战绩(论文原文):在 WMT 2014 英德翻译上,Transformer 以 28.4 BLEU 刷新纪录(超过此前所有最优集成模型),而训练只用了 <strong>8 块 P100、3.5 天</strong>——训练成本远低于同类 RNN 模型。质量更高、训练更快、还更贴合现代硬件。</li>
+</ul>
+<h2 id="3-它有什么作用一张通用的万能骨架">3. 它有什么作用:一张通用的「万能骨架」</h2>
+<ul>
+<li><strong>架构红利</strong>:同一套结构不加改动就能做翻译、摘要、问答、代码生成、图像处理……不再需要为每种任务发明新网络。此后 BERT、GPT、T5 全是它的变体;今天的主流大语言模型几乎全部是 Transformer(多数是其中的 decoder-only 一支)。</li>
+<li><strong>规模红利</strong>:注意力与全连接层都是矩阵乘法,能吃满 GPU/TPU;这让「把模型和数据同步放大」成为可能——Transformer 之后才谈得上「大力出奇迹」的 scaling(规模扩展)。</li>
+<li><strong>工程红利</strong>:推理时只需缓存历史键值(KV cache)即可逐个生成 token;注意力可视化还能帮工程师诊断模型在「看哪里」,这是黑箱 RNN 难以提供的可解释性。</li>
+<li><strong>架构裁剪</strong>:Transformer 原装是「编码器 + 解码器」两件套,但工程上可以按任务只留一半——这就演化出三大流派(详见 4.5 节),<strong>生成式大模型(GPT)正是 decoder-only 流派</strong>,这是下一章语言建模的直接铺垫。</li>
+</ul>
+<h2 id="4-详细介绍四个关键设计逐一看">4. 详细介绍:四个关键设计逐一看</h2>
+<blockquote>
+<p>原论文的基准配置(base model):编码器 6 层 + 解码器 6 层;表示维度 <code>d_model = 512</code>;注意力 8 个头,每个头维度 <code>d_k = d_v = 64</code>;前馈网络隐层 2048;dropout 0.1。下面每个组件都对应一个「为什么要这样设计」的答案。</p>
+</blockquote>
+<h3 id="41-缩放点积注意力信息如何流动">4.1 缩放点积注意力:信息如何流动</h3>
+<ul>
+<li>回顾上一章:每个 token 生成 Query(问)、Key(标)、Value(内容)三个向量。先算「问」与所有「标」的点积得到相似度,归一化成权重,再对「内容」加权求和——这就是缩放点积注意力:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Attention(Q, K, V) = softmax( Q · Kᵀ / √d_k ) · V</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li><strong>为什么要除以 √d_k(缩放)?</strong> 向量维度越大,点积数值越大,softmax 越容易进入两端饱和区,梯度趋近于零、学不动。除以维度平方根把数值拉回稳定区间。这一处「小缩放」是让深层网络可训练的关键细节。</li>
+<li><strong>为什么叫自注意力(self-attention)?</strong> 因为 Q、K、V 全部来自同一串输入(编码器里就是上一层输出)——序列在「自己打量自己」,每个词的新表示都融合了全文对它有用的信息。</li>
+</ul>
+<h3 id="42-多头注意力不止一种关系">4.2 多头注意力:不止一种「关系」</h3>
+<ul>
+<li><strong>概念</strong>:不把 d_model 维的注意力算一次,而是拆成 h=8 个并行的子空间,各算各的缩放点积注意力,再把 8 个结果拼接、线性投影回原维度。</li>
+<li><strong>为什么需要</strong>:单次注意力只能学一种「相关」——而句子里的关系五花八门:语法依赖、指代消解、语义相似、局部搭配……多头让不同的头各学一种关系,相当于 8 个专家小组从 8 个角度审阅同一段话,再汇总意见。</li>
+<li><strong>作用</strong>:原论文与后续可视化都观察到,不同头确实分化出不同职能(有的盯指代、有的盯句法)。多头是「注意力从能用到好用」的关键一步,也是并行计算的天然受益者:各头互不依赖,可同时算。</li>
+</ul>
+<h3 id="43-位置编码给无序补上顺序感">4.3 位置编码:给「无序」补上顺序感</h3>
+<ul>
+<li><strong>问题</strong>:注意力是「集合运算」——把一句话的 token 顺序打乱,注意力打分结果不变。但「猫追狗」和「狗追猫」意思完全相反,模型必须知道谁先谁后。</li>
+<li><strong>原始方案</strong>:在输入嵌入上<strong>逐元素相加</strong>一组正弦/余弦编码,不同位置得到不同波形,位置信息随嵌入一起进入网络:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>PE(pos, 2i) = sin(pos / 10000^(2i/d_model))</span></span>
+<span class="line"><span>PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li><strong>为什么用三角函数</strong>:同一频率下相邻位置波形平滑过渡,模型既能分辨绝对位置,也能从波形相位差感知「相对距离」;且该方案不需要额外参数、可外推到训练中没见过的更长序列。</li>
+<li><strong>现代演进</strong>:如今的主流大模型(GPT 系列、Llama)大多改用<strong>旋转位置编码(RoPE)</strong>——把位置信息编码进 Q、K 的旋转角度,天然携带相对位置且对长文本更友好。理解「注意力本身无序、必须额外注入位置」这一点,比记公式更重要。</li>
+</ul>
+<h3 id="44-前馈网络残差连接与层归一化让网络深而不崩">4.4 前馈网络、残差连接与层归一化:让网络深而不崩</h3>
+<ul>
+<li><strong>逐位置前馈网络(FFN)</strong>:注意力本质是「信息的加权搬运」(线性混合),本身不含非线性。每个编码块随后对每个 token 独立过一个两层全连接 + ReLU(现代常用 GELU)的网络,做一次非线性变换——<strong>这一层是模型容量与「思考」的主要来源</strong>,参数占比也最大。</li>
+<li><strong>残差连接(Residual)</strong>:每个子层输出都写成 <code>x + Sublayer(x)</code>——把原始输入旁路加回来。<strong>为什么需要?</strong> 网络深了梯度要穿过很多层,残差给梯度开了一条「高速公路」,让 6 层、几十层乃至上千层都能稳定训练。</li>
+<li><strong>层归一化(LayerNorm)</strong>:对每个 token 的向量做归一化(均值 0、方差 1),稳定各层数值分布。<strong>为什么需要?</strong> 深网络中激活值尺度漂移会放大训练的不稳定性,归一化相当于给每层配了「仪表盘」,让梯度下降步伐均匀。</li>
+<li>小结:编码块 = <code>LayerNorm(残差 + 多头注意力)</code> 与 <code>LayerNorm(残差 + FFN)</code> 的组合,这两件套堆 6 层就是编码器;解码器同构,但注意力被加了「锁」,见下。</li>
+</ul>
+<h3 id="45-编码器解码器与掩码理解与生成的分工">4.5 编码器、解码器与掩码:理解与生成的分工</h3>
+<ul>
+<li><strong>编码器(Encoder)</strong>:双向阅读整句,每个位置都能看全句——产出「对输入的理解」,适合理解类任务。</li>
+<li><strong>解码器(Decoder)</strong>:逐词从左到右生成。内部有两处不同:
+<ol>
+<li><strong>因果掩码(masked self-attention)</strong>:算注意力时把「未来位置」的分数设成 -∞,softmax 后权重为 0——第 t 个词只能看自己和它之前的词,不能偷看答案。这保证了<strong>自回归性质</strong>(每个词只依赖已生成的词);</li>
+<li><strong>交叉注意力(cross-attention)</strong>:Q 来自解码器自己,K、V 来自编码器输出——生成每个词时回头「查阅」输入句,这正是翻译模型「看懂原文再写译文」的机制。</li>
+</ol>
+</li>
+<li><strong>三大流派</strong>:原论文是完整的 encoder-decoder,但工程上按任务裁剪出三种形态:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>流派</th>
+<th>结构</th>
+<th>训练目标</th>
+<th>代表模型</th>
+<th>擅长任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encoder-only</td>
+<td>只留编码器</td>
+<td>掩码语言建模(填空)</td>
+<td>BERT</td>
+<td>理解、分类、抽取</td>
+</tr>
+<tr>
+<td>Decoder-only</td>
+<td>只留解码器</td>
+<td>因果语言建模(续写)</td>
+<td>GPT、Llama</td>
+<td>生成、对话、通用助手</td>
+</tr>
+<tr>
+<td>Encoder-decoder</td>
+<td>两件套齐全</td>
+<td>条件生成</td>
+<td>T5、原始 Transformer</td>
+<td>翻译、转换类任务</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>为什么 decoder-only 反而统治了今天?因为它把「一切任务都改写成续写」——模型只会一个动作:<strong>预测下一个 token</strong>,却因此获得通用能力。这扇门通向下一章的语言建模。</li>
+</ul>
+<h2 id="5-局限注意力不是万能的">5. 局限:注意力不是万能的</h2>
+<ul>
+<li><strong>平方级成本</strong>:每个 token 都要和全部 token 打分,计算与内存随序列长度 <strong>O(n²)</strong> 增长——长上下文是 Transformer 的天然软肋(工程上已有 FlashAttention、稀疏注意力、线性注意力等缓解手段,属 08 章内容)。</li>
+<li><strong>位置靠「注射」</strong>:注意力本身无视顺序,模型对位置的感知完全依赖外部编码的强弱,处理超长文本时位置信号会稀释。</li>
+<li><strong>骨架而非知识</strong>:Transformer 只是信息路由的「骨架」,它本身不含事实与常识——能力来自海量文本上的预训练。骨架 + 数据 + 算力三者齐备,才构成今天的大语言模型。</li>
+</ul>
+<h2 id="6-总结">6. 总结</h2>
+<h3 id="61-本章一览">6.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transformer</td>
+<td>纯注意力、无循环无卷积的序列架构(2017,谷歌)</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>RNN 串行慢、远距离衰减、与硬件错配</td>
+</tr>
+<tr>
+<td>核心组件</td>
+<td>缩放点积注意力、多头、位置编码、FFN + 残差 + LayerNorm</td>
+</tr>
+<tr>
+<td>掩码的意义</td>
+<td>因果掩码挡住未来,保证逐词自回归生成</td>
+</tr>
+<tr>
+<td>三大流派</td>
+<td>encoder-only(BERT)/ decoder-only(GPT)/ encoder-decoder(T5)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-思考题">6.2 思考题</h3>
+<ol>
+<li>为什么说「RNN 无法并行,而 Transformer 可以」?并行性差除了慢,还带来什么连锁后果?</li>
+<li>如果去掉缩放因子 √d_k,模型训练可能出什么问题?请从 softmax 的梯度角度解释。</li>
+<li>把「猫追狗」的 token 顺序打乱后重排,Transformer 的注意力打分不变——这句话对吗?模型靠什么区分顺序?</li>
+<li>解码器生成第 5 个词时,因果掩码保证了什么?如果去掉掩码,训练会变成什么样?</li>
+<li>GPT 是 decoder-only,那它做「翻译」时输入输出如何组织?(提示:想想「一切任务皆续写」)</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>RNN 第 t 步依赖第 t-1 步的隐藏状态,只能串行;Transformer 的注意力是矩阵运算,所有位置同时算。慢之外,顺序结构还限制了可并行训练的设备规模,进而限制了模型能多大——这是「规模扩展」路线的前提障碍。</li>
+<li>维度大时点积数值大,softmax 进入饱和区,对「谁更重要」的分辨变钝且梯度趋零,参数几乎无法更新。√d_k 把分数缩回合适量级。</li>
+<li>对——单看注意力,序列是无序集合。模型靠位置编码(原始正弦波/RoPE)区分顺序,位置信息叠加进嵌入后才参与打分。</li>
+<li>第 5 个词只能参考前 4 个已生成词,训练时也模拟这种「看不到未来」的处境;去掉掩码等于让模型偷看答案,训练与推理行为不一致,生成质量崩坏。</li>
+<li>把任务拼成提示词模板,如「把『猫追狗』翻译成英文:」,模型接着续写「The cat chased the dog」——翻译被统一成条件续写,这正是 decoder-only 通用化的秘密。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1706.03762">Vaswani 等:《Attention Is All You Need》(原论文,arXiv)</a></li>
+<li><a href="https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html">Google AI Blog:Transformer: A Novel Neural Network Architecture for Language Understanding(官方发布,2017)</a></li>
+<li><a href="https://huggingface.co/learn/nlp-course/chapter1/4">Hugging Face NLP Course:How do Transformers work?</a></li>
+<li><a href="https://jalammar.github.io/illustrated-transformer/">Jay Alammar:The Illustrated Transformer(配图详解)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/05/"><span>上一篇</span><strong>01.01.05 注意力机制</strong></a><a class="ai-pager-next" href="/ai/01-models/01/07/"><span>下一篇</span><strong>01.01.07 语言建模</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念transformer-是什么">1. 概念:Transformer 是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-与-rnncnn-的本质区别">1.1 与 RNN、CNN 的本质区别</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要它三个绕不开的瓶颈">2. 为什么需要它:三个绕不开的瓶颈</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它有什么作用一张通用的万能骨架">3. 它有什么作用:一张通用的「万能骨架」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍四个关键设计逐一看">4. 详细介绍:四个关键设计逐一看</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-缩放点积注意力信息如何流动">4.1 缩放点积注意力:信息如何流动</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-多头注意力不止一种关系">4.2 多头注意力:不止一种「关系」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-位置编码给无序补上顺序感">4.3 位置编码:给「无序」补上顺序感</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-前馈网络残差连接与层归一化让网络深而不崩">4.4 前馈网络、残差连接与层归一化:让网络深而不崩</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-编码器解码器与掩码理解与生成的分工">4.5 编码器、解码器与掩码:理解与生成的分工</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-局限注意力不是万能的">5. 局限:注意力不是万能的</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#61-本章一览">6.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#62-思考题">6.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

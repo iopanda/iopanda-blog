@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.06.05 Agent 间通信与协议 · iopanda</title><meta name="description" content="02.06.05 Agent 间通信与协议 · 智能体 / 多 Agent 系统，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/06/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.06.05 Agent 间通信与协议 · iopanda"><meta property="og:description" content="02.06.05 Agent 间通信与协议 · 智能体 / 多 Agent 系统，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/06/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="06" data-active-subsection data-active-article="/ai/02-agents/06/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 多 Agent 系统"></button><a class="tree-link tree-link--section" href="/ai/02-agents/06/"><span class="tree-number">06</span><span class="tree-title">多 Agent 系统</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/06/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">Agent 间通信与协议</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/06/">多 Agent 系统</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Agent 间通信与协议</span></nav><header class="ai-article-header"><p class="ai-number">02.06.05</p><h1>Agent 间通信与协议</h1><p class="ai-meta"><time datetime="2026-09-03T05:15">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>multi-agent</li></ul></header><div class="ai-prose"><h1 id="agent-间通信与协议">Agent 间通信与协议</h1>
+<blockquote>
+<p>前三章把「谁跟谁协作」讲完了:编排者派活、流水线接力、辩论对撞。可无论哪种拓扑,协作都发生在<strong>消息传递</strong>上——编排者怎么把子任务递给 worker?worker 的结果以什么形状返回?对方没回应、回了个乱格式、或两个 Agent 互相等对方,怎么办?本章是 02.06 的第四课,回答多 Agent 系统的血管问题:Agent 之间<strong>传什么</strong>(消息文本、结构化结果、共享状态、工具调用权)、通信设计四要素(schema、超时、失败传播、死锁),以及行业标准分工——<strong>MCP 让 Agent 接工具,A2A 让 Agent 找 Agent</strong>。读完你会给自己的两个 Agent 定义消息 schema,并跑出一条可审计、可排错的协作轨迹。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 Agent 间传递的四种内容(文本/结构化结果/共享状态/工具调用权)及各自适用;</li>
+<li>为一次协作定义消息 schema,用代码在源头拦截缺字段的非法消息;</li>
+<li>解释超时、失败传播、死锁三类通信问题的机理与对策;</li>
+<li>说清 A2A 与 MCP 的分工互补:A2A(Google 2025 发布,已捐 Linux Foundation)互联 Agent,MCP 接入工具;</li>
+<li>运行两 Agent 协作 Demo,打印完整轨迹并演示「失败→同 task_id 重试」与「超时→上报人工」。</li>
+</ol>
+<h2 id="1-概念agent-之间到底传什么">1. 概念:Agent 之间到底传什么</h2>
+<table>
+<thead>
+<tr>
+<th>传什么</th>
+<th>形态</th>
+<th>课程助教例子</th>
+<th>优点</th>
+<th>代价/风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自由文本消息</td>
+<td>自然语言段落</td>
+<td>辩论发言、会话式闲聊</td>
+<td>灵活,无需预定义结构</td>
+<td>下游要解析,易跑题、易被注入(02.02/06 章)</td>
+</tr>
+<tr>
+<td>结构化结果</td>
+<td>schema 化 JSON/dict</td>
+<td>02 章 worker 返回的 <code>{"ok": true, "scores": [85, 90, 78]}</code></td>
+<td>可校验、可版本化,失败源头暴露</td>
+<td>要预先设计 schema 并维护版本</td>
+</tr>
+<tr>
+<td>共享状态</td>
+<td>同一份黑板/存储</td>
+<td>03 章辩论的公共论据板;02 章编排者的 <code>carried</code></td>
+<td>全体可见,不必逐条转发</td>
+<td>可见性难控,并发写会冲突</td>
+</tr>
+<tr>
+<td>工具调用权</td>
+<td>授权对方调自己的工具</td>
+<td>编排者把「查档案」委托给检索员</td>
+<td>能力复用,不必复制实现</td>
+<td>权限边界风险(02.04/06 章)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-为什么需要没有通信设计的多-agent-是一群哑巴">2. 为什么需要:没有通信设计的多 Agent 是一群哑巴</h2>
+<ul>
+<li>02/03 章的拓扑决定「谁跟谁说」,通信设计决定「说了对方懂不懂、收没收到、坏了怎么办」。缺任何一环协作都会断:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>缺什么</th>
+<th>表现</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>消息 schema</td>
+<td>下游靠猜:把散文当结果解析</td>
+<td>worker 返回一段人话,编排者还要再调一次模型去理解</td>
+</tr>
+<tr>
+<td>超时</td>
+<td>一个 Agent 卡死,全队无限挂起</td>
+<td>检索工具没响应,编排者等一辈子</td>
+</tr>
+<tr>
+<td>失败传播</td>
+<td>错误被「美化」成成功继续流</td>
+<td>查询失败,worker 编个数字交差——比直接报错更糟</td>
+</tr>
+<tr>
+<td>死锁规避</td>
+<td>A 等 B、B 等 A,互相等待永不返回</td>
+<td>两个 Agent 同步互要对方结果</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>跨团队现实:02/03 章的 Agent 都在一个进程里,函数随手调用;生产环境的 Agent 由不同团队、不同框架开发、部署在不同服务上,没有<strong>共同协议</strong>就没有互操作——这正是 A2A(2025-04 Google 发布,2025-06 捐赠 Linux Foundation)出现的背景。一句话:<strong>拓扑决定对不对口,通信协议决定通不通</strong>;先定 schema 再谈传输,别让消息在「都懂但都没定义」的默契里裸奔。</li>
+</ul>
+<h2 id="3-作用通信层的位置与-a2amcp-分工">3. 作用:通信层的位置与 A2A/MCP 分工</h2>
+<ul>
+<li>MCP 不在 Agent 之间传话,它解决「单个 Agent 用什么统一方式调用工具」。两者放一起看,分工立即清晰:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>MCP(Model Context Protocol)</th>
+<th>A2A(Agent2Agent Protocol)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解决什么</td>
+<td>Agent ↔ 工具/数据</td>
+<td>Agent ↔ Agent(跨框架互联)</td>
+</tr>
+<tr>
+<td>角色模型</td>
+<td>host(客户端)连 server(工具端)</td>
+<td>client agent 委托 remote agent</td>
+</tr>
+<tr>
+<td>发现机制</td>
+<td>server 声明工具列表</td>
+<td>Agent Card:暴露于 <code>/.well-known/agent.json</code></td>
+</tr>
+<tr>
+<td>消息格式</td>
+<td>JSON-RPC 2.0(initialize/tools/call)</td>
+<td>JSON-RPC 2.0 over HTTP + SSE 流式</td>
+</tr>
+<tr>
+<td>任务模型</td>
+<td>一次工具调用即返回</td>
+<td>任务生命周期:submitted→working→completed/failed</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>Anthropic 2024 年开源</td>
+<td>Google 2025-04 发布,2025-06 捐 Linux Foundation</td>
+</tr>
+<tr>
+<td>关系</td>
+<td>A2A 里的 Agent 内部仍用 MCP 接自己的工具</td>
+<td>正交互补:接工具用 MCP,找 Agent 用 A2A</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A2A 的三个标准动作:<strong>发现</strong>(读对方 Agent Card)→ <strong>委托</strong>(发 task)→ <strong>跟踪</strong>(轮询或 SSE 等任务到终态)。Agent Card 就是 Agent 的「名片 + 说明书」:没有它,两个 Agent 连「你会干什么、怎么找你」都无从谈起。</li>
+</ul>
+<h2 id="4-详细介绍通信设计四要素">4. 详细介绍:通信设计四要素</h2>
+<h3 id="41-消息-schema先定形状再开口">4.1 消息 schema:先定形状再开口</h3>
+<ul>
+<li>一条消息至少携带:msg_id(全局唯一,去重与追踪)、type(request/response/event)、sender、receiver、task_id(关联到哪个任务)、payload(业务载荷);加 timestamp 便于审计(02.07):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"msg_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"m-7f3a9c"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"request"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"sender"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"planner"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"receiver"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"grader"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"task_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"t-102"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"payload"</span><span style="color:#E1E4E8">: {</span><span style="color:#79B8FF">"answer"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"..."</span><span style="color:#E1E4E8">}}</span></span></code></pre><span class="code-lang" data-lang="json" aria-hidden="true">json</span></div>
+<ul>
+<li>与 02 章 <code>require()</code> 一脉相承:缺字段在源头抛错,坏消息不进信道。schema 要<strong>版本化</strong>:改字段带版本号,旧方至少「忽略未知字段」而非崩掉。实现工具随意:JSON Schema、pydantic、proto 都行,本章用字段表最直观。</li>
+</ul>
+<h3 id="42-超时与重试">4.2 超时与重试</h3>
+<ul>
+<li>每次请求都带 deadline——「等多久算失败」是协议的一部分。超时后怎么动取决于任务<strong>是否幂等</strong>:纯查询可放心重试;有副作用的重试前必须先确认上次未生效,否则会重复扣款式 bug。重试要退避(0.5s→1s→2s)且封顶(如 3 次),<strong>重试沿用同一 task_id</strong> 供接收方去重——正是 Demo 场景 2 演示的。</li>
+</ul>
+<h3 id="43-失败传播">4.3 失败传播</h3>
+<ul>
+<li>错误必须<strong>向上传、带原因</strong>,禁止就地美化。失败响应至少带:status=error、code(机器可判)、message(人可读)、retryable(能否重试)、from_task(溯源链);由编排者(02 章)决定重试 / 换策略 / 整体失败并上报。最危险的不是失败,是<strong>假成功</strong>:worker 没查到数据却编个数字交差,错误绕过所有闸门直达学员。Demo 里你会看到失败如何沿轨迹传播、重试如何带着同一个 task_id 回来。</li>
+</ul>
+<h3 id="44-死锁与活锁">4.4 死锁与活锁</h3>
+<ul>
+<li><strong>死锁</strong>:同步调用成环——A 等 B 的结果,B 在等 A 的结果,谁都等不到。对策三条:拓扑<strong>禁环</strong>(消息总经编排者中转,保持 02 章树状)、<strong>同步改异步</strong>(发出请求即返回,结果到达再回调)、<strong>全局超时兜底</strong>(任何等待都有上限,超时必有人退出)。</li>
+<li><strong>活锁</strong>:双方都在重试却永远错过(同时退避又同时重试)——退避加随机抖动(jitter)可破。共享状态并发写用「版本号 + 最后写入胜出」,防止双 Agent 同时改一份学员档案。</li>
+</ul>
+<h2 id="5-动手活动两-agent-消息-schema-与协作轨迹">5. 动手活动:两 Agent 消息 schema 与协作轨迹</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:agent_channel.py——schema、超时、失败重试一次看全</p>
+<p><strong>目标</strong>:运行 <code>agent_channel.py</code>,让「规划师(请求方)」与「批改员(应答方)」经带 schema 校验的信道完成一次批改,打印完整轨迹;再把批改员改成「首次必失败」与「慢响应」,观察同 task_id 重试与超时上报。
+<strong>步骤</strong>:</p>
+<ol>
+<li>保存并运行 <code>agent_channel.py</code>(纯 Python 3 标准库,离线可跑;Agent 内部用规则函数模拟模型调用,真实场景换成 01.04 的 LLM 循环);</li>
+<li>对照输出,把每条消息(msg_id/task_id/status)画成时序图,标注收发双方;</li>
+<li>把场景 3 的 <code>latency=0.5</code> 改回 <code>0.01</code>,对比超时消失;把 <code>timeout=0.2</code> 改小,观察更敏感的超时;</li>
+<li>删掉请求 payload 的一个字段再跑,观察 Channel 在源头抛 ValueError 拦截;</li>
+<li>在 <code>reports/channel-notes.md</code> 记录:批改员若发布成 A2A 服务,Agent Card 至少要声明哪几项;若走 MCP,它应暴露成什么工具。
+<strong>完成标准</strong>:正常场景看到一对 request/completed 入轨;失败场景看到 error 响应 + 同 task_id 重试后 completed;超时场景看到 pending-human 决策与迟到响应留痕;非法消息被 schema 拦截。</li>
+</ol>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># agent_channel.py —— 04 章动手:两 Agent 消息 schema 与协作轨迹(纯 Python 3 标准库)</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> queue</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> threading</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> time</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> uuid</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 消息 schema:「必须携带」字段,缺一个 = 非法消息;result 是可选载荷(error 响应没有它)</span></span>
+<span class="line"><span style="color:#79B8FF">SCHEMA</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">    "request"</span><span style="color:#E1E4E8">:  (</span><span style="color:#9ECBFF">"msg_id"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"receiver"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"payload"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">    "response"</span><span style="color:#E1E4E8">: (</span><span style="color:#9ECBFF">"msg_id"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"receiver"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"status"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> new_id</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> uuid.uuid4().hex[:</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> validate</span><span style="color:#E1E4E8">(msg, kind):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """返回缺失字段列表,空 = 合法(呼应 02 章 require())"""</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> [f </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> f </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> SCHEMA</span><span style="color:#E1E4E8">[kind] </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> f </span><span style="color:#F97583">not</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> msg]</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Channel</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """消息信道:中转、校验并归档一切消息——轨迹(trace)的唯一真相源"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.trace </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []        </span><span style="color:#6A737D"># 完整协作轨迹(02.07 可观测性雏形)</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.boxes </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {}        </span><span style="color:#6A737D"># receiver -&gt; 消息队列</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.lock </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> threading.Lock()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> post</span><span style="color:#E1E4E8">(self, msg, kind):</span></span>
+<span class="line"><span style="color:#E1E4E8">        missing </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> validate(msg, kind)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> missing:</span></span>
+<span class="line"><span style="color:#F97583">            raise</span><span style="color:#79B8FF"> ValueError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[schema 拦截] </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF"> 缺字段: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (kind, missing))</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.trace.append(msg)</span></span>
+<span class="line"><span style="color:#F97583">        with</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.lock:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">] </span><span style="color:#79B8FF">%-8s</span><span style="color:#9ECBFF"> -&gt; </span><span style="color:#79B8FF">%-7s</span><span style="color:#9ECBFF"> task=</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF"> status=</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">                kind, msg[</span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">], msg[</span><span style="color:#9ECBFF">"receiver"</span><span style="color:#E1E4E8">], msg[</span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">                msg.get(</span><span style="color:#9ECBFF">"status"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"send"</span><span style="color:#E1E4E8">)))</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.boxes.setdefault(msg[</span><span style="color:#9ECBFF">"receiver"</span><span style="color:#E1E4E8">], queue.Queue()).put(msg)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> receive</span><span style="color:#E1E4E8">(self, name, timeout):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """收信:超时返回 None,由调用方决定 重试/降级/上报人工"""</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.boxes.setdefault(name, queue.Queue()).get(</span><span style="color:#FFAB70">timeout</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">timeout)</span></span>
+<span class="line"><span style="color:#F97583">        except</span><span style="color:#E1E4E8"> queue.Empty:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> GraderAgent</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """应答方(批改员):批改第三章主观题;latency 模拟耗时,fail_times 模拟前 N 次必失败"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, name</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"grader"</span><span style="color:#E1E4E8">, latency</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.01</span><span style="color:#E1E4E8">, fail_times</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.name, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.latency, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.fail_times </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name, latency, fail_times</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> grade</span><span style="color:#E1E4E8">(self, payload):</span></span>
+<span class="line"><span style="color:#E1E4E8">        text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> payload.get(</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#9ECBFF"> "索引"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> text </span><span style="color:#F97583">and</span><span style="color:#9ECBFF"> "写操作"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> text:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"score"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"comment"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"要点完整,例证恰当"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"score"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"comment"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"缺索引代价(写操作)的讨论"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(self, request):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """构造信封字段齐全的完整响应;在独立线程中执行,模拟远端服务"""</span></span>
+<span class="line"><span style="color:#E1E4E8">        time.sleep(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.latency)</span></span>
+<span class="line"><span style="color:#E1E4E8">        resp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"msg_id"</span><span style="color:#E1E4E8">: new_id(), </span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"response"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name,</span></span>
+<span class="line"><span style="color:#9ECBFF">                "receiver"</span><span style="color:#E1E4E8">: request[</span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">: request[</span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">]}</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.fail_times </span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">            self</span><span style="color:#E1E4E8">.fail_times </span><span style="color:#F97583">-=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">            resp.update({</span><span style="color:#9ECBFF">"status"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"code"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"E_SERVICE_BUSY"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">                         "message"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"批改服务瞬时不可用"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"retryable"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            resp.update({</span><span style="color:#9ECBFF">"status"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"completed"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"result"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.grade(request[</span><span style="color:#9ECBFF">"payload"</span><span style="color:#E1E4E8">])})</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> resp</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PlannerAgent</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """请求方(规划师):发出批改请求,处理 超时上报 / 失败同 task_id 重试"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, name</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"planner"</span><span style="color:#E1E4E8">, timeout</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.2</span><span style="color:#E1E4E8">, max_retry</span><span style="color:#F97583">=</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.name, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.timeout, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.max_retry </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name, timeout, max_retry</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> ask</span><span style="color:#E1E4E8">(self, channel, responder, payload):</span></span>
+<span class="line"><span style="color:#E1E4E8">        task_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> new_id()     </span><span style="color:#6A737D"># 一个任务一个 ID:重试沿用,接收方据此去重</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> attempt </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> range</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.max_retry </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">            request </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"msg_id"</span><span style="color:#E1E4E8">: new_id(), </span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"request"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name,</span></span>
+<span class="line"><span style="color:#9ECBFF">                       "receiver"</span><span style="color:#E1E4E8">: responder.name, </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">: task_id,</span></span>
+<span class="line"><span style="color:#9ECBFF">                       "payload"</span><span style="color:#E1E4E8">: payload}</span></span>
+<span class="line"><span style="color:#E1E4E8">            channel.post(request, </span><span style="color:#9ECBFF">"request"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            threading.Thread(</span></span>
+<span class="line"><span style="color:#FFAB70">                target</span><span style="color:#F97583">=lambda</span><span style="color:#E1E4E8">: channel.post(responder.handle(request), </span><span style="color:#9ECBFF">"response"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#FFAB70">                daemon</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">).start()</span></span>
+<span class="line"><span style="color:#E1E4E8">            resp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> channel.receive(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.timeout)</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> resp </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">                print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"    -&gt; </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">: 等 </span><span style="color:#79B8FF">%.2f</span><span style="color:#9ECBFF">s 超时,上报人工(task=</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">)"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.timeout, task_id))</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"final"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"pending-human"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">: task_id}</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> resp[</span><span style="color:#9ECBFF">"status"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "error"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> resp.get(</span><span style="color:#9ECBFF">"retryable"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">and</span><span style="color:#E1E4E8"> attempt </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.max_retry:</span></span>
+<span class="line"><span style="color:#79B8FF">                    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"    -&gt; </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">: 失败(</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">),同 task_id 重试第 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF"> 次"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name, resp[</span><span style="color:#9ECBFF">"code"</span><span style="color:#E1E4E8">], attempt </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#F97583">                    continue</span></span>
+<span class="line"><span style="color:#79B8FF">                print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"    -&gt; </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">: 不可重试,终止上报: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name, resp[</span><span style="color:#9ECBFF">"message"</span><span style="color:#E1E4E8">]))</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"final"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"failed"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">: task_id}</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"    -&gt; </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">: 完成,评分=</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name, resp[</span><span style="color:#9ECBFF">"result"</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"score"</span><span style="color:#E1E4E8">]))</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"final"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"completed"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"result"</span><span style="color:#E1E4E8">: resp[</span><span style="color:#9ECBFF">"result"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">: task_id}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    bus, planner </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Channel(), PlannerAgent(</span><span style="color:#FFAB70">timeout</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.2</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    payload </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"索引相当于目录,能少读数据块;但插入、更新要维护索引,写操作时反而慢"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">               "learner"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"xiaoming"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> demo</span><span style="color:#E1E4E8">(title, grader):</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"== </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF"> =="</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> title)</span></span>
+<span class="line"><span style="color:#E1E4E8">        out </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> planner.ask(bus, grader, payload)</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"决策: </span><span style="color:#79B8FF">%s\n</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> out[</span><span style="color:#9ECBFF">"final"</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    demo(</span><span style="color:#9ECBFF">"场景 1:正常协作(轨迹见上)"</span><span style="color:#E1E4E8">, GraderAgent(</span><span style="color:#FFAB70">latency</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.01</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    demo(</span><span style="color:#9ECBFF">"场景 2:首次失败 -&gt; 同 task_id 重试成功"</span><span style="color:#E1E4E8">, GraderAgent(</span><span style="color:#FFAB70">latency</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.01</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">fail_times</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    demo(</span><span style="color:#9ECBFF">"场景 3:响应太慢 -&gt; 超时上报人工"</span><span style="color:#E1E4E8">, GraderAgent(</span><span style="color:#FFAB70">latency</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    time.sleep(</span><span style="color:#79B8FF">0.7</span><span style="color:#E1E4E8">)  </span><span style="color:#6A737D"># 等迟到的响应打印完,展示超时后到达的消息仍入轨</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"== 场景 4:schema 拦截非法消息 =="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    bad </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"msg_id"</span><span style="color:#E1E4E8">: new_id(), </span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"request"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"planner"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">           "receiver"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"grader"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"task_id"</span><span style="color:#E1E4E8">: new_id()}   </span><span style="color:#6A737D"># 故意缺 payload</span></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        bus.post(bad, </span><span style="color:#9ECBFF">"request"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    except</span><span style="color:#79B8FF"> ValueError</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> err:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"被拦截: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> err)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">本次会话共 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF"> 条消息入轨(非法消息 0 条)"</span><span style="color:#F97583"> %</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(bus.trace))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<h2 id="6-边界与排错">6. 边界与排错</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下游拿到消息却解析失败</td>
+<td>没定 schema 或版本不一致</td>
+<td>统一 schema + 版本号;非法消息源头拦截(本节 Channel)</td>
+</tr>
+<tr>
+<td>一个 Agent 卡住,全队不动</td>
+<td>无超时或超时太长</td>
+<td>每个请求带 deadline;按幂等性决定重试或上报</td>
+</tr>
+<tr>
+<td>重试后任务重复执行</td>
+<td>重试没用同一 task_id / 接收方没去重</td>
+<td>重试沿用 task_id;接收方按任务 ID 幂等去重</td>
+</tr>
+<tr>
+<td>两个 Agent 互相等死</td>
+<td>同步调用成环(死锁)</td>
+<td>拓扑禁环;同步改异步;全局超时兜底</td>
+</tr>
+<tr>
+<td>worker 失败,下游却拿到「成功」</td>
+<td>失败被就地美化(假成功)</td>
+<td>error 响应带 code/message/retryable,错误向上传</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:本章协议是「你进程内的约定」,够课程助教用;一旦 Agent 跨团队、跨服务部署,就把约定升级成 A2A 的 Agent Card + 任务生命周期、工具接入统一到 MCP——<strong>先私有协议跑通,再谈标准协议互操作</strong>,别为一天的 Demo 引入整套 A2A 栈。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传什么</td>
+<td>文本(松)/结构化结果(可校验)/共享状态(黑板)/工具调用权(最强也最险)</td>
+</tr>
+<tr>
+<td>schema</td>
+<td>先定形状再开口;缺字段源头拦截;版本化演进</td>
+</tr>
+<tr>
+<td>超时与重试</td>
+<td>deadline 是协议一部分;幂等才重试,重试沿用 task_id</td>
+</tr>
+<tr>
+<td>失败传播</td>
+<td>错误向上传、带原因,禁止假成功</td>
+</tr>
+<tr>
+<td>死锁</td>
+<td>禁环 + 异步 + 全局超时;活锁靠退避加抖动</td>
+</tr>
+<tr>
+<td>行业协议</td>
+<td>MCP 接工具(Agent↔工具),A2A 互联(Agent↔Agent),正交互补</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「重试」必须配合「幂等」,否则比不重试更危险?批改员评分 schema 若从「0~10 整数」改成「A/B/C 等级」,已上线的规划师该如何平滑过渡,而不是一夜之间全部解析失败?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>不幂等的操作(已发通知、已扣课时)重试会执行两次,重复副作用比一次失败更糟;所以重试前要么确认上次未生效,要么接收方按 task_id 去重——「同一任务只生效一次」就是幂等的代码表达。schema 升级要兼容过渡:新字段可选、旧字段保留,接收方按版本号分支解析(未知字段忽略),先让新老消息共存,待旧格式占比归零再下线旧版——与 02.05 给档案表加列不删旧列同理:演进不革命。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://a2a-protocol.org/latest/">A2A Protocol 官方规范(Agent2Agent,Linux Foundation 治理)</a></li>
+<li><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Google Developers Blog:Announcing the Agent2Agent Protocol(2025-04)</a></li>
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol(MCP)官方文档</a></li>
+<li><a href="https://github.com/a2aproject/A2A">GitHub:a2aproject/A2A(协议实现与 SDK)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/06/04/"><span>上一篇</span><strong>02.06.04 协作模式流水线与辩论</strong></a><a class="ai-pager-next" href="/ai/02-agents/06/06/"><span>下一篇</span><strong>02.06.06 多 Agent 框架实践</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念agent-之间到底传什么">1. 概念:Agent 之间到底传什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要没有通信设计的多-agent-是一群哑巴">2. 为什么需要:没有通信设计的多 Agent 是一群哑巴</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用通信层的位置与-a2amcp-分工">3. 作用:通信层的位置与 A2A/MCP 分工</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍通信设计四要素">4. 详细介绍:通信设计四要素</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-消息-schema先定形状再开口">4.1 消息 schema:先定形状再开口</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-超时与重试">4.2 超时与重试</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-失败传播">4.3 失败传播</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-死锁与活锁">4.4 死锁与活锁</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动两-agent-消息-schema-与协作轨迹">5. 动手活动:两 Agent 消息 schema 与协作轨迹</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错">6. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

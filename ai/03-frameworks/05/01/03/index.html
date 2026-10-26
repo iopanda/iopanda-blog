@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.05.01.03 traces、scores、datasets 与 feedback loops · iopanda</title><meta name="description" content="03.05.01.03 traces、scores、datasets 与 feedback loops · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/05/01/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.05.01.03 traces、scores、datasets 与 feedback loops · iopanda"><meta property="og:description" content="03.05.01.03 traces、scores、datasets 与 feedback loops · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/05/01/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="05" data-active-subsection="01" data-active-article="/ai/03-frameworks/05/01/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估与可观测性框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/05/"><span class="tree-number">05</span><span class="tree-title">评估与可观测性框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/05/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Langfuse"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/05/01/"><span class="tree-number">01</span><span class="tree-title">Langfuse</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/05/01/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">traces、scores、datasets 与 feedback loops</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/">评估与可观测性框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/01/">Langfuse</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">traces、scores、datasets 与 feedback loops</span></nav><header class="ai-article-header"><p class="ai-number">03.05.01.03</p><h1>traces、scores、datasets 与 feedback loops</h1><p class="ai-meta"><time datetime="2026-09-04T06:52">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>evaluation</li><li>observability</li><li>langfuse</li><li>traces</li><li>datasets</li><li>feedback</li></ul></header><div class="ai-prose"><h1 id="tracesscoresdatasets-与-feedback-loops">traces、scores、datasets 与 feedback loops</h1>
+<blockquote>
+<p>Langfuse README 里最关键的一组能力，其实不是单个功能，而是一条闭环：trace 进来，score 生成，dataset 形成，feedback 回流，再支撑下一轮 evaluation 和 prompt/model 调整。[25] score analytics、dataset actions、trace graph view 这些实现侧说明，它不是把这些对象随便摆在 UI 里，而是在认真把它们建成平台内的一组正式实体。[27][28][29]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解为什么 trace、score、dataset、feedback 应该一起看；</li>
+<li>说出 Langfuse 怎样把“坏结果”变成可复用 eval 资产；</li>
+<li>理解 trace graph、score analytics、dataset mutation 分别意味着什么；</li>
+<li>判断什么时候系统需要 feedback loop，而不是一次性打分；</li>
+<li>为系统写一张 quality-loop card。</li>
+</ol>
+<h2 id="1-trace-在这里不是日志而是质量证据入口">1. trace 在这里不是日志，而是质量证据入口</h2>
+<p>Langfuse 把 traces 放在最中心，并且明确追踪 retrieval、embedding、agent actions 等应用逻辑。[25]
+这意味着 trace 的作用不只是排错，而是：</p>
+<ul>
+<li>回看系统具体行为；</li>
+<li>找出失败样本；</li>
+<li>把失败样本变成 dataset / eval 输入。</li>
+</ul>
+<h2 id="2-score-为什么重要">2. score 为什么重要</h2>
+<p>score analytics 架构说明，Langfuse 在认真对 score 做统计、比较、时间序列和可视化。[27]
+这说明 score 不是一列附属字段，而是平台里真正的质量信号对象。</p>
+<h2 id="3-dataset-为什么重要">3. dataset 为什么重要</h2>
+<p>datasets 文档虽然很短，但规则很明确：必须通过专门 mutation 函数，名称校验和 upsert 语义被正式管理。[28]
+这说明 dataset 在 Langfuse 里不是临时样本袋，而是正式测试资产。</p>
+<h2 id="4-feedback-loop-的真正意义">4. feedback loop 的真正意义</h2>
+<p>当线上出现坏结果时，理想路径应该是：</p>
+<ul>
+<li>从 trace 找到问题；</li>
+<li>关联 score / 人工反馈；</li>
+<li>沉淀为 dataset item；</li>
+<li>进入后续 eval / regression。</li>
+</ul>
+<p>这就是 Langfuse 平台路线最值钱的地方：把反馈变成结构化改进资产，而不是散落评论。</p>
+<h2 id="5-trace-graph-为什么值得单拿出来看">5. trace graph 为什么值得单拿出来看</h2>
+<p>trace graph 文档说明它是只读 agent graph renderer，能把 observation、step、hierarchy、happened-before 关系可视化。[29]
+这说明 Langfuse 不满足于“看一串 spans”，而是在努力让复杂 agent traces 可理解。</p>
+<h2 id="6-动手活动">6. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>langfuse-quality-loop-card.md</code></p>
+<p>为你的系统写一条质量闭环：trace → score → feedback → dataset → eval。写一句结论：现在你的失败案例有没有真正回流成可复用资产。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trace 在做什么</td>
+<td>成为质量问题的证据入口</td>
+</tr>
+<tr>
+<td>score 在做什么</td>
+<td>把质量变成可比较信号</td>
+</tr>
+<tr>
+<td>dataset 在做什么</td>
+<td>把问题样本沉淀成可复用测试资产</td>
+</tr>
+<tr>
+<td>feedback loop 在做什么</td>
+<td>把线上坏结果转成持续改进闭环</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[25] <a href="https://github.com/langfuse/langfuse/blob/main/README.md">https://github.com/langfuse/langfuse/blob/main/README.md</a> — Langfuse README</li>
+<li>[27] <a href="https://github.com/langfuse/langfuse/blob/main/web/src/features/score-analytics/README.md">https://github.com/langfuse/langfuse/blob/main/web/src/features/score-analytics/README.md</a> — Langfuse score analytics README</li>
+<li>[28] <a href="https://github.com/langfuse/langfuse/blob/main/web/src/features/datasets/server/actions/README.md">https://github.com/langfuse/langfuse/blob/main/web/src/features/datasets/server/actions/README.md</a> — Langfuse datasets README</li>
+<li>[29] <a href="https://github.com/langfuse/langfuse/blob/main/web/src/features/trace-graph-view/README.md">https://github.com/langfuse/langfuse/blob/main/web/src/features/trace-graph-view/README.md</a> — Langfuse trace graph README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/05/01/02/"><span>上一篇</span><strong>03.05.01.02 AI engineering observability 的设计哲学</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/05/01/04/"><span>下一篇</span><strong>03.05.01.04 prompt management、experiments 与 product analytics</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-trace-在这里不是日志而是质量证据入口">1. trace 在这里不是日志，而是质量证据入口</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-score-为什么重要">2. score 为什么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-dataset-为什么重要">3. dataset 为什么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-feedback-loop-的真正意义">4. feedback loop 的真正意义</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-trace-graph-为什么值得单拿出来看">5. trace graph 为什么值得单拿出来看</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动">6. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

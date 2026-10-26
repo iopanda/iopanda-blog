@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.03.05 LoRA 低秩适配 · iopanda</title><meta name="description" content="01.03.05 LoRA 低秩适配 · 模型 / 微调与对齐，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/03/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.03.05 LoRA 低秩适配 · iopanda"><meta property="og:description" content="01.03.05 LoRA 低秩适配 · 模型 / 微调与对齐，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/03/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="03" data-active-subsection data-active-article="/ai/01-models/03/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 微调与对齐"></button><a class="tree-link tree-link--section" href="/ai/01-models/03/"><span class="tree-number">03</span><span class="tree-title">微调与对齐</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/03/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">LoRA 低秩适配</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/03/">微调与对齐</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">LoRA 低秩适配</span></nav><header class="ai-article-header"><p class="ai-number">01.03.05</p><h1>LoRA 低秩适配</h1><p class="ai-meta"><time datetime="2026-09-02T22:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-fine-tuning</li><li>lora</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章你用 LoRA 跑通了第一个 SFT,但那份配置是照抄的。本章不再只是再跑一次训练,而是弄清<strong>为什么不全量微调</strong>、<strong>低秩近似为什么可行</strong>,再有依据地选择注入层与 rank,并验证 adapter 可单独加载。读完你就能解释「r=8、alpha=16」里每个数字在控制什么,而不是把配置名当成咒语。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>从显存、存储、多版本三个角度说出为什么不全量微调;</li>
+<li>用低秩近似的直觉解释「为什么 ΔW 可以写成两个小矩阵的乘积」;</li>
+<li>解释 r、alpha、dropout、target_modules 各自在控制什么;</li>
+<li>在模型结构中核对候选层,有依据地选择 <code>target_modules</code>;</li>
+<li>统计并解释可训练参数比例;</li>
+<li>保存/加载 LoRA adapter,并解释为什么 adapter 依赖基座模型。</li>
+</ol>
+<h2 id="1-概念为什么不全量微调">1. 概念:为什么不全量微调</h2>
+<p>第 4 章证明了「用示例改变参数」有效,但参数怎么改还有讲究。上一章冻结基座、只训练 adapter 不是偷懒——全量微调(Full Fine-tuning)在消费级设备上常常做不到,即便做得到也不划算:</p>
+<ul>
+<li><strong>显存</strong>:一个 0.5B 模型约有五亿个参数。全量微调时,每个参数除了权重本身,还要保存梯度和优化器状态(Adam 对每个参数维护两个动量),训练态占用常达权重的数倍;0.5B 都吃力,更大的模型更不用提。冻结基座后,显存里只有权重加一小块 adapter,差距可达一个数量级。</li>
+<li><strong>存储</strong>:全量微调一次产出一份完整权重副本,动辄十几 GB;LoRA adapter 通常只有几十 MB,一个目录能放下十几个版本。</li>
+<li><strong>多版本</strong>:为「数据库助教」「Python 助教」「写作助手」各存一份完整模型不现实;共享一个冻结基座、各挂一个小 adapter,切换只需换加载路径。</li>
+<li><strong>风险</strong>:改动全部参数也更容易把训练样本背下来(过拟合),甚至冲掉已有能力(灾难性遗忘)。</li>
+</ul>
+<h3 id="11-全参数-vs-高效参数peft对照">1.1 全参数 vs 高效参数(PEFT)对照</h3>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>全参数微调(Full FT)</th>
+<th>高效参数微调(PEFT,如 LoRA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新范围</td>
+<td>全部模型权重</td>
+<td>只更新少量新增低秩矩阵(adapter)</td>
+</tr>
+<tr>
+<td>显存/存储</td>
+<td>梯度与优化器状态庞大,每份副本一套完整权重</td>
+<td>基座冻结,只需保存几十 MB 的 adapter</td>
+</tr>
+<tr>
+<td>多版本并存</td>
+<td>每领域一份完整副本,成本高</td>
+<td>同一基座挂多个 adapter,切换即换版本</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>数据量大、算力足、需要大幅改变行为</td>
+<td>消费级设备、快速实验、多版本并存</td>
+</tr>
+<tr>
+<td>主要风险</td>
+<td>易过拟合、易灾难性遗忘</td>
+<td>容量小,复杂行为可能学不动</td>
+</tr>
+</tbody>
+</table>
+<p>注意:这不是「免费的午餐」——LoRA 把可训练参数量压到极小,代价是表达能力受限。它适合在已有能力之上微调输出倾向,不适合从零教会基座完全没有的能力。</p>
+<h2 id="2-概念低秩近似的直觉">2. 概念:低秩近似的直觉</h2>
+<p>LoRA 为什么敢只学两个小矩阵?关键在于它对微调过程的一个观察:</p>
+<ul>
+<li>微调不是重学语言,而是在预训练得到的权重上做<strong>小幅修正</strong>。LoRA 论文(Hu et al., 2021)指出:全量微调学到的增量 ΔW 往往「内在秩(intrinsic rank)」很低——它虽是一个大矩阵,但有效的独立变化方向很少。</li>
+<li>数学上,若增量 ΔW 的秩不超过 r,它就能写成两个瘦矩阵的乘积:<code>ΔW = B×A</code>,其中 B 是 d×r、A 是 r×d——参数量从 d×d 降到 2×d×r。r 远小于 d 时,节省是平方级的。</li>
+<li>直觉类比:<strong>修订页</strong>。全量微调等于重印整本书;LoRA 等于在书边贴小纸条,只记录「这几处要这么改」。纸条必须贴在某一版书上,换了版(换了基座)纸条就对不上——这正是 adapter 依赖基座的根源。</li>
+</ul>
+<p>前向计算变为 <code>h = Wx + (alpha/r)·BAx</code>:原路径 <code>Wx</code> 原封不动,新增路径 <code>BAx</code> 提供一个小的修正项。初始化时 B 置零,增量从零开始学,插入 adapter 不会让模型行为跳变。</p>
+<h3 id="21-为什么-adapter-依赖基座">2.1 为什么 adapter 依赖基座</h3>
+<ul>
+<li>adapter 存的是 ΔW 的分解,不是完整权重;<code>model = W + adapter</code> 才是可用模型,因此<strong>单独的 adapter 文件不是完整模型</strong>,必须与同一基座(相同架构、相同分词器)配对。</li>
+<li>换基座或换分词器,输出都可能异常;报告里必须同时记录基座模型 ID 与 adapter 路径——只给 adapter 链接、不给基座,别人无法复现你的结果。</li>
+</ul>
+<h2 id="3-概念ralphadropouttarget_modules-在控制什么">3. 概念:r、alpha、dropout、target_modules 在控制什么</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>控制什么</th>
+<th>直觉</th>
+<th>本章取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>低秩分解的中间维度,即 ΔW 的秩上限</td>
+<td>修订容量:r 大可表达的变化更多,也更耗显存;r 小更省但可能学不动</td>
+<td>4 与 16 对比</td>
+</tr>
+<tr>
+<td><code>lora_alpha</code></td>
+<td>修正项的缩放系数,实际生效的是 <code>alpha / r</code></td>
+<td>把 B×A 的数值放大/缩小;与 r 同倍调整可只改容量、不改步长</td>
+<td>8 与 32</td>
+</tr>
+<tr>
+<td><code>lora_dropout</code></td>
+<td>训练时把进入 adapter 的激活随机置零的比例</td>
+<td>防 adapter 过拟合的正则;推理时关闭,不影响输出</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td><code>target_modules</code></td>
+<td>把 LoRA 注入哪些层(如注意力里的 <code>q_proj</code>、<code>v_proj</code>)</td>
+<td>决定「修订哪些章节」;不同架构层名不同,必须核对</td>
+<td><code>["q_proj","v_proj"]</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>r 与 alpha 的关系</strong>:真正乘到增量上的因子是 <code>alpha / r</code>,不是 alpha 本身。r=4/alpha=8 与 r=16/alpha=32 的缩放因子都是 2——保持这个比值不变,r 就成了唯一变量,这正是第 5 节「只改变一个变量」能成立的原因。</li>
+<li><strong>dropout 只在训练时生效</strong>:它随机丢弃部分进入 adapter 的激活,防止 adapter 把训练样本背下来;推理时自动关闭,配合 <code>do_sample=False</code>,同一份配置的输出是确定的。</li>
+<li><strong>target_modules 决定可训练参数有多少</strong>:注入层越多、r 越大,可训练参数越多。上一章 <code>train_sft.py</code> 里的 <code>q_proj</code>、<code>v_proj</code> 不是拍脑袋——注意力投影是行为修正最敏感的位置之一;但不同架构命名不同(如 GPT-NeoX 的合并层 <code>query_key_value</code>),盲抄会报「找不到模块」或注入到错误位置。</li>
+</ul>
+<h2 id="4-动手核对模型里真实存在的层">4. 动手:核对模型里真实存在的层</h2>
+<p>先在模型结构中核对候选层,而非凭名称猜测:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> "from transformers import AutoModelForCausalLM as A; m=A.from_pretrained('Qwen/Qwen2.5-0.5B-Instruct'); print([n for n,_ in m.named_modules() if n.endswith('q_proj') or n.endswith('v_proj')][:8])"</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>把输出与 LoraConfig 的 <code>target_modules</code> 对照:名字对不上就改配置,而不是改模型。核对通过后,复制上一章 <code>train_sft.py</code> 为 <code>train_lora_compare.py</code>。</p>
+<h2 id="5-动手做一个只改变一个变量的比较">5. 动手:做一个只改变一个变量的比较</h2>
+<p>保持数据、seed、步数、学习率和评测问题不变,只运行以下两套配置:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">small </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoraConfig(</span><span style="color:#FFAB70">r</span><span style="color:#F97583">=</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_alpha</span><span style="color:#F97583">=</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_dropout</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.05</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    target_modules</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"q_proj"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"v_proj"</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">task_type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"CAUSAL_LM"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">large </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoraConfig(</span><span style="color:#FFAB70">r</span><span style="color:#F97583">=</span><span style="color:#79B8FF">16</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_alpha</span><span style="color:#F97583">=</span><span style="color:#79B8FF">32</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">lora_dropout</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.05</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    target_modules</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"q_proj"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"v_proj"</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">task_type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"CAUSAL_LM"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>创建 adapter 后立刻打印比例:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">trainable </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> sum</span><span style="color:#E1E4E8">(p.numel() </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> p </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> trainer.model.parameters() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> p.requires_grad)</span></span>
+<span class="line"><span style="color:#E1E4E8">total </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> sum</span><span style="color:#E1E4E8">(p.numel() </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> p </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> trainer.model.parameters())</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"trainable=</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">trainable</span><span style="color:#F97583">:,</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">total</span><span style="color:#F97583">:,</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> (</span><span style="color:#79B8FF">{100</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">trainable</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">total</span><span style="color:#F97583">:.3f</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">%)"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>预期:可训练参数只占极小比例(通常远低于 1%),且 r=16 的比例约为 r=4 的 4 倍——这串数字就是「LoRA 省了什么」的直接证据。用 <code>r=4</code> 输出到 <code>runs/lora-r4</code>,用 <code>r=16</code> 输出到 <code>runs/lora-r16</code>,绝不可共用 output 目录。训练后以相同的 valid loss 和固定 10 问比较,选择规则在训练前写进报告。</p>
+<h2 id="6-动手独立加载验收">6. 动手:独立加载验收</h2>
+<p>创建 <code>finetune/src/load_adapter.py</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> peft </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> PeftModel</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AutoModelForCausalLM, AutoTokenizer</span></span>
+<span class="line"><span style="color:#E1E4E8">base </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoModelForCausalLM.from_pretrained(</span><span style="color:#9ECBFF">"Qwen/Qwen2.5-0.5B-Instruct"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> PeftModel.from_pretrained(base, </span><span style="color:#9ECBFF">"finetune/runs/lora-r4/best-adapter"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">tokenizer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoTokenizer.from_pretrained(</span><span style="color:#9ECBFF">"finetune/runs/lora-r4/best-adapter"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(model.peft_config, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(tokenizer))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行 <code>python -m finetune.src.load_adapter</code>,无报错才证明保存路径完整。这段代码同时演示了 2.1 节的结论:先加载基座,再把 adapter 叠上去。<code>adapter_config.json</code> 缺失通常表示保存了 trainer checkpoint 而非最终 adapter;回到上一章调用 <code>save_model</code>。</p>
+<h2 id="7-动手活动选择-lora-配置">7. 动手活动:选择 LoRA 配置</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:选择 LoRA 配置</p>
+<p><strong>目标</strong>:<code>reports/lora-comparison.md</code>。<strong>步骤</strong>:运行两组 r;记录参数比例、显存/运行时、valid loss 与 10 问结果;标注失败案例。<strong>完成标准</strong>:结论明确说明选哪组和依据,不能因 r 大就默认胜出。</p>
+</div>
+<h2 id="8-常见错误与结论">8. 常见错误与结论</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>adapter_config.json</code> 缺失</td>
+<td>回到上一章调用 <code>save_model</code> 重新保存</td>
+<td>存的是 trainer checkpoint,不是最终 adapter</td>
+</tr>
+<tr>
+<td>可训练参数比例异常(过高或为零)</td>
+<td>核对 <code>target_modules</code> 名称与模型实际层名</td>
+<td>注入层配置与架构不匹配</td>
+</tr>
+<tr>
+<td>显存不足</td>
+<td>转第 6 章 QLoRA,用低比特加载基座</td>
+<td>adapter 省的是可训练参数,基座权重仍占显存</td>
+</tr>
+</tbody>
+</table>
+<p>一句话结论:<strong>r 决定容量、alpha/r 决定步长、dropout 防过拟合、target_modules 决定改哪里</strong>;r 更大不代表更好,是否胜出要由同一基线上的 valid loss 与固定问题说了算。</p>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>为什么不全量微调</td>
+<td>显存(梯度与优化器状态)、存储(完整副本)、多版本(每领域一份)三重成本</td>
+</tr>
+<tr>
+<td>低秩近似为什么可行</td>
+<td>微调增量 ΔW 内在秩低,可写成 B×A 两个小矩阵,参数量从 d² 降到 2dr</td>
+</tr>
+<tr>
+<td>r 在控制什么</td>
+<td>修订容量(ΔW 的秩上限),r 大表达力强但更耗显存</td>
+</tr>
+<tr>
+<td>alpha 在控制什么</td>
+<td>经 alpha/r 缩放修正项;与 r 同倍调可保持步长不变</td>
+</tr>
+<tr>
+<td>dropout 在控制什么</td>
+<td>训练时对 adapter 输入的正则,推理时关闭</td>
+</tr>
+<tr>
+<td>target_modules 在控制什么</td>
+<td>注入哪些层;必须与架构实际层名核对</td>
+</tr>
+<tr>
+<td>为什么 adapter 依赖基座</td>
+<td>adapter 只是 ΔW 的分解,叠回同一基座才是完整模型</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么说「r 越大越好」是错的?换一个不同架构的基座,<code>target_modules=["q_proj","v_proj"]</code> 还能直接用吗?为什么单独发一个 adapter 文件给同事往往无法复现?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>r 只决定容量上限,是否更好要看同一基线下的 valid loss 与固定问题;r 翻倍参数只多几个 MB,但显存与过拟合风险同步上升。不同架构的层名不同(如合并的 <code>query_key_value</code>),必须先核对再改配置。adapter 必须与同一基座配对,同事没有基座 ID 与相同分词器,就无法加载出可用模型。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/peft/main/en/task_guides/lora_based_methods">PEFT:LoRA 方法</a></li>
+<li><a href="https://arxiv.org/abs/2106.09685">LoRA 原始论文</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/03/04/"><span>上一篇</span><strong>01.03.04 监督微调 SFT</strong></a><a class="ai-pager-next" href="/ai/01-models/03/06/"><span>下一篇</span><strong>01.03.06 QLoRA 量化微调</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念为什么不全量微调">1. 概念:为什么不全量微调</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-全参数-vs-高效参数peft对照">1.1 全参数 vs 高效参数(PEFT)对照</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-概念低秩近似的直觉">2. 概念:低秩近似的直觉</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-为什么-adapter-依赖基座">2.1 为什么 adapter 依赖基座</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-概念ralphadropouttarget_modules-在控制什么">3. 概念:r、alpha、dropout、target_modules 在控制什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手核对模型里真实存在的层">4. 动手:核对模型里真实存在的层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手做一个只改变一个变量的比较">5. 动手:做一个只改变一个变量的比较</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手独立加载验收">6. 动手:独立加载验收</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动选择-lora-配置">7. 动手活动:选择 LoRA 配置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-常见错误与结论">8. 常见错误与结论</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.02.03 数据清洗与去重 · iopanda</title><meta name="description" content="01.02.03 数据清洗与去重 · 模型 / 预训练与训练，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/02/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.02.03 数据清洗与去重 · iopanda"><meta property="og:description" content="01.02.03 数据清洗与去重 · 模型 / 预训练与训练，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/02/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="02" data-active-subsection data-active-article="/ai/01-models/02/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 预训练与训练"></button><a class="tree-link tree-link--section" href="/ai/01-models/02/"><span class="tree-number">02</span><span class="tree-title">预训练与训练</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/02/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">数据清洗与去重</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/02/">预训练与训练</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">数据清洗与去重</span></nav><header class="ai-article-header"><p class="ai-number">01.02.03</p><h1>数据清洗与去重</h1><p class="ai-meta"><time datetime="2026-09-02T20:15">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-pretraining</li><li>data-cleaning</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章确认了「文本从哪里来、能否使用」,本章回答更麻烦的问题:下载好的原始文本<strong>能不能直接喂给模型</strong>。先建立三个概念再动手——<strong>清洗到底在删什么、为什么原始文件一个字都不能改、精确去重能挡住什么又挡不住什么</strong>。读完你会得到一份带统计审计报告的 <code>data/processed/</code> 语料,交给下一章做切分。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>区分原始数据、清洗数据与训练数据,说清清洗的目标与边界;</li>
+<li>解释「清洗不是把文本变漂亮」,以及为什么必须保留原始文件;</li>
+<li>实现编码统一、空白规范化、异常过滤与精确去重;</li>
+<li>用随机样本、长度分布和重复率验证清洗效果,而不是凭直觉下结论;</li>
+<li>为每次清洗保留可复现的规则版本与统计日志。</li>
+</ol>
+<h2 id="1-清洗目标为什么不是把文本变漂亮">1. 清洗目标:为什么不是「把文本变漂亮」</h2>
+<ul>
+<li><strong>概念</strong>:数据清洗(Data Cleaning)是对原始文本做删除与规范化的处理,目标是移除<strong>会破坏训练或违反约束</strong>的内容,同时尽可能保留语言建模所需的信号。清洗后得到<strong>清洗数据(processed)</strong>;它还要经过切分(第 04 章)与打包,才成为模型真正读到的<strong>训练数据(train)</strong>——三个阶段在报告里不能混用。</li>
+<li><strong>为什么需要</strong>:语言模型的全部知识来自文本中的统计规律。原始语料若混入乱码、HTML 残留、模板导航页,模型会把 <code>&lt;div&gt;</code>、页脚版权这类噪音也当成语言规律来学;同一文本被反复收录,又会让模型花大量步数去「背课文」。清洗删掉的是<strong>让模型学错或白学的内容</strong>,而不是「看起来不好看」的内容——这正是它与「变漂亮」的本质区别。</li>
+<li><strong>为什么不这样做会出问题</strong>:跳过清洗直接训练,损失不会立刻显现,而是表现为重复内容诱发逐字背诵、验证分数虚高、下游任务泛化变差。研究者在 C4 语料中发现,一个仅 61 词的英文句子竟被重复收录超过 6 万次,未去重模型超过 1% 的无提示输出是训练数据的逐字复制。训练一旦完成,污染就永久写进权重,事后无法区分模型学到的是语言还是垃圾。</li>
+<li><strong>取舍</strong>:清洗必然有损失,好规则的目标是<strong>可解释地删除</strong>,而不是删得越多越好。每一条规则都应能回答:删什么、为什么删、误伤了多少。</li>
+</ul>
+<p>需要处理的问题大致分为五类:</p>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>例子</th>
+<th>不处理的后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编码与空白混乱</td>
+<td>BOM、<code>\r\n</code>、不可见控制字符</td>
+<td>产生伪段落边界与「半个字符」,干扰 token 切分</td>
+</tr>
+<tr>
+<td>非语言残留</td>
+<td>HTML 标签、导航文案、乱码</td>
+<td>模型学到网页模板,而不是语言</td>
+</tr>
+<tr>
+<td>异常长度</td>
+<td>空白行、半个句子、整本书</td>
+<td>长度分布失衡,训练不稳定、样本语义不完整</td>
+</tr>
+<tr>
+<td>重复内容</td>
+<td>同一文本被多个来源反复收录</td>
+<td>浪费训练步数,诱发逐字背诵(见第 3 节)</td>
+</tr>
+<tr>
+<td>隐私与机密</td>
+<td>身份证号、密钥、内部文档</td>
+<td>模型可能原样输出,带来合规与安全风险(01.07 详讲)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-不可变流水线原始文件为什么一个字都不能改">2. 不可变流水线:原始文件为什么一个字都不能改</h2>
+<ul>
+<li><strong>概念</strong>:不可变流水线(Immutable Pipeline)是一组工程纪律:<strong>原始文件只读,永不手工修改</strong>;清洗脚本是「读入原件 → 变换 → 写出新文件」的纯函数;每次运行都产生独立的统计报告。</li>
+<li><strong>为什么需要</strong>:清洗本质是「删掉什么」的判断,事后几乎一定会被追问:当时删了什么、为什么删、阈值是多少。若直接在原始文件上手工修改且不记录,规则就丢失了,任何结果都无法复现、无法追溯。更隐蔽的风险是误伤不可逆:手工改动后原始证据消失,你再也无法重跑更宽松的规则来对比。</li>
+<li><strong>作用与分工</strong>:<code>raw/</code> 保存原件(证据),脚本从 <code>raw/</code> 读取并写入 <code>processed/</code>(产物),报告记录每次运行(审计)。想调整阈值?改脚本重跑,而不是改文件。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>读取 UTF-8 文本 → 规范换行与空白 → 删除空行/异常控制字符</span></span>
+<span class="line"><span>→ 按规则过滤长度 → 精确去重 → 输出处理后文本与统计</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="3-去重精确去重能挡住什么挡不住什么">3. 去重:精确去重能挡住什么、挡不住什么</h2>
+<ul>
+<li><strong>概念</strong>:精确去重(Exact Deduplication)对标准化后的文本计算 SHA-256 摘要,凡摘要已出现过的样本一律丢弃。它的判定标准是「逐字节相同」,与「意思相近」无关。</li>
+<li><strong>为什么需要</strong>:网络语料是「一份内容被转载千次」的重灾区,重复文本会诱发逐字背诵。GPT-3 团队在清洗 Common Crawl 时就做了文档级模糊去重,平均删除约 10% 的数据,目的正是防止冗余、并保护留出验证集衡量过拟合的真实性。去重研究进一步表明:去重后的模型输出背诵文本的频率可降低约<strong>十倍</strong>,且用更少的训练步数即可达到同等或更好效果。</li>
+<li><strong>作用</strong>:对 Mini GPT 这类规模的教学语料,精确去重成本低、结果完全确定,能干净地消灭「同一段文字出现两次」这种最常见的重复。</li>
+<li><strong>局限</strong>:SHA-256 对<strong>单个字符</strong>的变化都会产生完全不同的摘要,因此它无法识别「只改了标点」「删了几句」「换一种说法」的近重复(near-duplicate)段落。近重复检测需要 n-gram、MinHash 或语义相似度等额外方法,并配合人工核查。本教程先实现精确去重,但报告里必须写明这一局限。</li>
+<li><strong>为什么必须在切分前去重</strong>:去重必须横跨 train 与 valid/test 的边界——同一文档若同时进入训练集与验证集,模型是在「记题」而不是「学会」,验证分数会被虚高。下一章(04)才做切分,所以本章先把重复清干净,这是顺序上的硬约束。</li>
+</ul>
+<h2 id="4-动手最小清洗流程">4. 动手:最小清洗流程</h2>
+<p>本教程把 Gutenberg 文本按空行拆成段落,并把每段压成一行;因此下一章可以把「一行」看作一个完整样本。<strong>不要照抄规则后就认为它适合所有语料</strong>:长度阈值、要删除的控制字符和文档边界,必须由你对数据的抽样检查决定。</p>
+<p>在 <code>src/clean_data.py</code> 创建下列<strong>完整文件</strong>。务必检查编辑器没有把反斜杠或缩进改掉:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> collections </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Counter</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> hashlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> sha256</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> re</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">RAW_PATH</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"data/raw/alice.txt"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">OUTPUT_PATH</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"data/processed/documents.txt"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> normalise</span><span style="color:#E1E4E8">(text: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">) -&gt; </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> text.replace(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\ufeff</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">).replace(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\r\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">).replace(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\r</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> re.sub(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">[</span><span style="color:#85E89D;font-weight:bold">\x00</span><span style="color:#79B8FF">-</span><span style="color:#85E89D;font-weight:bold">\x08\x0b\x0c\x0e</span><span style="color:#79B8FF">-</span><span style="color:#85E89D;font-weight:bold">\x1f</span><span style="color:#79B8FF">]</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, text)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> re.sub(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\s</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">" "</span><span style="color:#E1E4E8">, text).strip()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">raw_text </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> RAW_PATH</span><span style="color:#E1E4E8">.read_text(</span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">start </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> raw_text.find(</span><span style="color:#9ECBFF">"*** START OF THE PROJECT GUTENBERG"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">end </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> raw_text.find(</span><span style="color:#9ECBFF">"*** END OF THE PROJECT GUTENBERG"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> start </span><span style="color:#F97583">==</span><span style="color:#F97583"> -</span><span style="color:#79B8FF">1</span><span style="color:#F97583"> or</span><span style="color:#E1E4E8"> end </span><span style="color:#F97583">==</span><span style="color:#F97583"> -</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    raise</span><span style="color:#79B8FF"> ValueError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"没有找到 Gutenberg 边界；先检查 data/raw/alice.txt 是否下载正确"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">body </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> raw_text[start:end]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">seen: set[</span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> set</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">kept: list[</span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"><span style="color:#E1E4E8">counts: Counter[</span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Counter()</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> raw </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> re.split(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#85E89D;font-weight:bold">\n</span><span style="color:#79B8FF">\s</span><span style="color:#F97583">*</span><span style="color:#85E89D;font-weight:bold">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, body):</span></span>
+<span class="line"><span style="color:#E1E4E8">    counts[</span><span style="color:#9ECBFF">"input_paragraphs"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">    text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> normalise(raw)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">20</span><span style="color:#F97583"> &lt;=</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(text) </span><span style="color:#F97583">&lt;=</span><span style="color:#79B8FF"> 2_000</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">        counts[</span><span style="color:#9ECBFF">"length_filtered"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">        continue</span></span>
+<span class="line"><span style="color:#E1E4E8">    fingerprint </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sha256(text.encode(</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)).hexdigest()</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> fingerprint </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> seen:</span></span>
+<span class="line"><span style="color:#E1E4E8">        counts[</span><span style="color:#9ECBFF">"exact_duplicates"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">        continue</span></span>
+<span class="line"><span style="color:#E1E4E8">    seen.add(fingerprint)</span></span>
+<span class="line"><span style="color:#E1E4E8">    kept.append(text)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">OUTPUT_PATH</span><span style="color:#E1E4E8">.parent.mkdir(</span><span style="color:#FFAB70">parents</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">exist_ok</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">OUTPUT_PATH</span><span style="color:#E1E4E8">.write_text(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">.join(kept) </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">dict</span><span style="color:#E1E4E8">(counts), {</span><span style="color:#9ECBFF">"kept"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(kept), </span><span style="color:#9ECBFF">"output"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">OUTPUT_PATH</span><span style="color:#E1E4E8">)})</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>执行并检查输出:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#9ECBFF"> src/clean_data.py</span></span>
+<span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> "from pathlib import Path; rows=Path('data/processed/documents.txt').read_text(encoding='utf-8').splitlines(); print('paragraphs=', len(rows)); print(rows[:3])"</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>预期看到 <code>kept</code> 大于 100,且前三条是正常英文段落。若 <code>kept=0</code>,先查看原文件的开头和 <code>START</code> 标记,不要放宽长度阈值来掩盖下载错误。若你换用自己的多行文档,不能将每一行错误地当作独立样本;应先识别真实的文档分隔符,再将「一个文档」的完整文本传给清洗函数。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:清洗并审计语料</p>
+<p><strong>目标</strong>:产生 <code>data/processed/train.txt</code> 和 <code>reports/data-cleaning.md</code>。</p>
+<p><strong>步骤</strong>:编写 <code>src/clean_data.py</code>,固定 UTF-8 读取、换行标准化、空白行过滤、最小/最大长度过滤和精确去重;输出原始字符数、保留字符数、删除样本数、重复率;随机抽取 20 条清洗前后样本对照。</p>
+<p><strong>完成标准</strong>:脚本可重复运行且输出相同结果;报告能说明删除了什么、删除多少、为什么删除。</p>
+</div>
+<h2 id="5-常见错误">5. 常见错误</h2>
+<ul>
+<li>在训练和测试之间去重之前先切分,导致相似文本泄漏;</li>
+<li>过度清洗,删除标点、大小写或格式后损失语言信号;</li>
+<li>只看统计数字,不进行人工抽样;</li>
+<li>将含个人信息或机密信息的文本「匿名化后默认安全」。</li>
+</ul>
+<h2 id="6-用报告证明清洗没有毁掉数据">6. 用报告证明清洗没有毁掉数据</h2>
+<p>每次清洗都保留输入输出计数、规则版本和随机样本。至少审查三类样本:被保留的普通文本、被长度规则删掉的文本、被判为重复的文本。报告中的「随机」应记录 seed,且抽样结果不要被人工替换成漂亮案例。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算方式</th>
+<th>异常信号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>保留率</td>
+<td>保留文档数 / 输入文档数</td>
+<td>过低时检查规则是否误伤</td>
+</tr>
+<tr>
+<td>精确重复率</td>
+<td>重复文档数 / 输入文档数</td>
+<td>过高时追查数据源拼接</td>
+</tr>
+<tr>
+<td>长度分位数</td>
+<td>文档字符数的 P50/P95</td>
+<td>突然变化表示解析可能有误</td>
+</tr>
+<tr>
+<td>字符抽样</td>
+<td>decode 后人工阅读</td>
+<td>乱码、HTML、隐私数据残留</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-总结">7. 总结</h2>
+<p>高质量数据管道应具备五项特征:</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原始数据保留</td>
+<td><code>raw/</code> 只读,永不手工修改</td>
+</tr>
+<tr>
+<td>规则脚本化</td>
+<td>每个清洗步骤都有可重复运行的代码</td>
+</tr>
+<tr>
+<td>版本可追溯</td>
+<td>规则版本与语料版本一一对应</td>
+</tr>
+<tr>
+<td>统计可解释</td>
+<td>删了什么、删了多少、为什么删都有记录</td>
+</tr>
+<tr>
+<td>人工抽样</td>
+<td>抽样人工阅读,不只相信数字</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么应在数据切分前做跨文档去重?为何 SHA-256 相同只能证明「精确重复」而不能找出改写文本?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>同一文档若同时进入 train 与 valid/test,验证分数会虚高,模型在「记题」而非「学会」,评测因此失真。SHA-256 对一个字符的变化都会产生完全不同的值,因此摘要相同只能证明文本逐字节相同;改写文本的检测需要 n-gram、MinHash 或语义相似度等近重复方法,并配合人工核查。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2107.06499">Deduplicating Training Data Makes Language Models Better(Lee 等,ACL 2022)</a>——C4 重复句与逐字背诵的量化证据</li>
+<li><a href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners(Brown 等,2020)</a>——GPT-3 的 Common Crawl 质量过滤与模糊去重实践</li>
+<li><a href="https://huggingface.co/docs/datasets/process">Hugging Face Datasets:加载与处理数据集</a></li>
+<li><a href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final">NIST:SHA-2 标准 FIPS 180-4</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/02/02/"><span>上一篇</span><strong>01.02.02 数据来源与许可</strong></a><a class="ai-pager-next" href="/ai/01-models/02/04/"><span>下一篇</span><strong>01.02.04 数据切分与混合</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-清洗目标为什么不是把文本变漂亮">1. 清洗目标:为什么不是「把文本变漂亮」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-不可变流水线原始文件为什么一个字都不能改">2. 不可变流水线:原始文件为什么一个字都不能改</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-去重精确去重能挡住什么挡不住什么">3. 去重:精确去重能挡住什么、挡不住什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手最小清洗流程">4. 动手:最小清洗流程</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-常见错误">5. 常见错误</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-用报告证明清洗没有毁掉数据">6. 用报告证明清洗没有毁掉数据</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

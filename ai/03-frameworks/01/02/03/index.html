@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.02.03 维护模式、迁移与遗留系统治理 · iopanda</title><meta name="description" content="03.01.02.03 维护模式、迁移与遗留系统治理 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/02/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.02.03 维护模式、迁移与遗留系统治理 · iopanda"><meta property="og:description" content="03.01.02.03 维护模式、迁移与遗留系统治理 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/02/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="02" data-active-article="/ai/03-frameworks/01/02/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 AutoGen"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/02/"><span class="tree-number">02</span><span class="tree-title">AutoGen</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/02/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">维护模式、迁移与遗留系统治理</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/02/">AutoGen</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">维护模式、迁移与遗留系统治理</span></nav><header class="ai-article-header"><p class="ai-number">03.01.02.03</p><h1>维护模式、迁移与遗留系统治理</h1><p class="ai-meta"><time datetime="2026-09-03T14:37">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>autogen</li><li>migration</li></ul></header><div class="ai-prose"><h1 id="维护模式迁移与遗留系统治理">维护模式、迁移与遗留系统治理</h1>
+<blockquote>
+<p><a href="/ai/03-frameworks/01/02/02/">上一章</a>讲的是 AutoGen 为什么在多 Agent 协作史上重要；这一章讲更现实也更工程的问题：<strong>重要，不等于今天还应该默认新项目就选它。</strong> 2026 年的官方 README 已经明确写出 caution：AutoGen 进入 maintenance mode，新用户应从 Microsoft Agent Framework 开始；旧用户则应参考迁移指南。[1][4] 对开发者和架构师来说，这不是一句新闻，而是选型与治理上的硬信号：框架的历史价值、生态影响力和“今天适不适合作为新项目主干”必须分开判断。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释 maintenance mode 对技术选型意味着什么；</li>
+<li>区分“教学/研究价值高”与“绿地项目优先级高”这两件事；</li>
+<li>为一个存量 AutoGen 系统做保留、局部替换或迁移判断；</li>
+<li>说明从 AutoGen 迁出时，真正要迁移的不是 API，而是协作语义与控制流；</li>
+<li>用一张体检卡评估遗留多 Agent 系统的治理风险。</li>
+</ol>
+<h2 id="1-maintenance-mode-到底意味着什么">1. maintenance mode 到底意味着什么</h2>
+<p>官方 README 的措辞很明确：</p>
+<ul>
+<li>AutoGen 不再接收新特性与增强；</li>
+<li>社区继续维护；</li>
+<li>新用户应转向 Microsoft Agent Framework；</li>
+<li>现有用户可参考迁移指南。[1][4]</li>
+</ul>
+<p>这对架构师的含义不是“它明天就不能用”，而是：</p>
+<ol>
+<li><strong>长期演进能力变弱</strong>：未来新模式、新协议、新接口的原生支持大概率会放慢；</li>
+<li><strong>生态中心迁移</strong>：教程、插件、公司投入、讨论焦点会逐渐流向继任者；</li>
+<li><strong>维护责任回到自己</strong>：如果你的系统高度绑定框架内部行为，长期成本将越来越多由你自己承担。</li>
+</ol>
+<p>所以 maintenance mode 不是情绪标签，而是<strong>未来维护成本与生态风险的信号</strong>。</p>
+<h2 id="2-为什么它仍然值得学但不该被神化">2. 为什么它仍然值得学，但不该被神化</h2>
+<p>AutoGen 仍然值得认真学，原因至少有三条：</p>
+<ol>
+<li>它定义了多 Agent 协作的一代范式；</li>
+<li>市面上已经存在大量存量项目、样例与思维模式；</li>
+<li>你很可能不是只做绿地项目，还会接手旧系统、评估旧设计。</li>
+</ol>
+<p>但不该被神化，也有三条原因：</p>
+<ol>
+<li>官方维护状态已经改变；</li>
+<li>很多团队现在更需要的是显式状态恢复、统一原语、类型契约，而不只是“多角色会话”；</li>
+<li>后继框架往往在吸收它的经验后，对治理和工程边界给出更明确答案。</li>
+</ol>
+<p>一句话：<strong>学 AutoGen，是为了理解一个时代的问题意识；选 AutoGen，则要服从 2026 年的现实约束。</strong></p>
+<h2 id="3-旧系统真正依赖的往往不是-api而是隐式协作协议">3. 旧系统真正依赖的，往往不是 API，而是“隐式协作协议”</h2>
+<p>迁移 AutoGen 时，最容易犯的错误是把问题理解成“把类名替换一下”。实际上真正难迁的是这些东西：</p>
+<ul>
+<li>角色之间的职责约定；</li>
+<li>谁先说、谁后说；</li>
+<li>谁可以结束任务；</li>
+<li>某类消息意味着继续，还是意味着转人工；</li>
+<li>哪些协作规则只存在于 prompt 或会话习惯里。</li>
+</ul>
+<p>这些内容常常没有写成显式流程图，却真实决定了系统行为。</p>
+<p>所以一个 AutoGen 系统的迁移，本质上是在做<strong>隐式协作协议显式化</strong>。如果你做不到这一点，换任何新框架都只是在搬运旧混乱。</p>
+<h2 id="4-保留--局部替换--全量迁移怎么判断">4. 保留 / 局部替换 / 全量迁移：怎么判断</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>更合理的选择</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统稳定、需求冻结、团队熟悉现状</td>
+<td>保留</td>
+<td>迁移风险可能大于收益</td>
+</tr>
+<tr>
+<td>系统仍在发展、需要新能力和长期支持</td>
+<td>局部替换或迁移</td>
+<td>maintenance mode 会持续累积机会成本</td>
+</tr>
+<tr>
+<td>控制流、恢复、人审越来越复杂</td>
+<td>倾向迁往显式编排框架</td>
+<td>主矛盾已从协作转向治理</td>
+</tr>
+<tr>
+<td>团队想保留多角色业务语义</td>
+<td>可迁往 <a href="/ai/03-frameworks/01/03/01/">CrewAI</a> 一类</td>
+<td>保留协作直觉，但提升流程语义</td>
+</tr>
+<tr>
+<td>团队想统一现代运行时原语</td>
+<td>可迁往 <a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a></td>
+<td>以 tools / handoffs / guardrails / sessions 重建边界</td>
+</tr>
+<tr>
+<td>团队想把系统拉回显式状态与恢复</td>
+<td>可迁往 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a></td>
+<td>从会话式协作转向状态图治理</td>
+</tr>
+</tbody>
+</table>
+<p>这张表背后的核心不是“迁到谁”，而是“系统今天主要卡在哪里”。</p>
+<h2 id="5-autogen-遗留系统的五个高风险区">5. AutoGen 遗留系统的五个高风险区</h2>
+<h3 id="51-角色过多职责不清">5.1 角色过多，职责不清</h3>
+<p>如果你发现：</p>
+<ul>
+<li>研究员也在调用高风险工具；</li>
+<li>审稿代理也能直接产出最终动作；</li>
+<li>用户代理和系统代理边界不清；</li>
+</ul>
+<p>那么问题不在 AutoGen 本身，而在协作建模失控。</p>
+<h3 id="52-会话即控制流">5.2 会话即控制流</h3>
+<p>如果真正决定流程的是“看起来谁先回复了什么”，而不是显式规则，那么你已经把控制流埋进对话了。这类系统最难测，也最难回放。</p>
+<h3 id="53-成本不透明">5.3 成本不透明</h3>
+<p>多 Agent 协作最容易造成 token 成本膨胀：</p>
+<ul>
+<li>多个角色各带自己的系统提示；</li>
+<li>相同上下文被多次复制；</li>
+<li>反复互评拖长回合数。</li>
+</ul>
+<h3 id="54-恢复困难">5.4 恢复困难</h3>
+<p>一旦任务中断，很难回答：</p>
+<ul>
+<li>哪个角色已经完成；</li>
+<li>哪些结论可信；</li>
+<li>哪些副作用已经发生；</li>
+<li>是否可以从半程继续。</li>
+</ul>
+<h3 id="55-治理边界缺失">5.5 治理边界缺失</h3>
+<p>高风险动作、人审、权限、审计如果只是“约定如此”，而不是代码与流程语义的一部分，系统就会随着复杂度上升而失控。</p>
+<h2 id="6-一个更现实的迁移观迁的是系统复杂度管理方式">6. 一个更现实的迁移观：迁的是“系统复杂度管理方式”</h2>
+<p>迁移方向不应按流行度选，而应按复杂度类型选：</p>
+<ul>
+<li>若你痛的是<strong>状态与恢复</strong>，迁向图/编排框架更自然；</li>
+<li>若你痛的是<strong>角色和业务流程表达</strong>，迁向 CrewAI 一类更自然；</li>
+<li>若你痛的是<strong>运行时原语拼装成本</strong>，迁向 OpenAI Agents SDK 更自然；</li>
+<li>若你痛的是<strong>类型契约、依赖与测试</strong>，迁向 PydanticAI 更自然。</li>
+</ul>
+<p>这和 <a href="/ai/03-frameworks/01/07/">06 Agent Framework 选型矩阵</a> 的方法是一致的：别问“从 AutoGen 迁到谁最流行”，而要问“我的系统最先死在哪”。</p>
+<h2 id="7-动手活动给一个-autogen-系统写迁移体检卡">7. 动手活动：给一个 AutoGen 系统写迁移体检卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>autogen-migration-assessment.md</code></p>
+<p><strong>目标</strong>：不是立刻重构，而是先让团队对现状达成同一认知。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>列出系统中所有角色及其工具权限；</li>
+<li>画出真实消息流，而不是理想中的消息流；</li>
+<li>找出三个“只存在于 prompt/习惯里”的隐式规则；</li>
+<li>记录一次中断后恢复流程，写出它为什么难；</li>
+<li>给出结论：
+<ul>
+<li>保留</li>
+<li>局部替换</li>
+<li>分阶段迁移</li>
+<li>全量迁移</li>
+</ul>
+</li>
+</ol>
+<p><strong>完成标准</strong>：团队能清楚回答“我们现在在维护什么复杂度，它是否仍适合留在 AutoGen 上”。</p>
+</div>
+<h2 id="8-边界与排错">8. 边界与排错</h2>
+<ul>
+<li><strong>误区一：maintenance mode = 立刻重写。</strong> 不对，稳定存量系统仍可能继续运行；</li>
+<li><strong>误区二：历史贡献大 = 今天还应默认新项目首选。</strong> 这两件事必须分开；</li>
+<li><strong>误区三：迁移就是替换 API。</strong> 真正难的是把隐式协作契约显式化；</li>
+<li><strong>误区四：不迁就等于稳。</strong> 若需求和复杂度持续增长，拖延迁移只是把债滚大；</li>
+<li><strong>误区五：迁移方向只看热度。</strong> 应看你系统的首要矛盾是什么。</li>
+</ul>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>maintenance mode 意味着什么</td>
+<td>长期演进能力与生态中心转移，不是立刻失效</td>
+</tr>
+<tr>
+<td>为什么还要学 AutoGen</td>
+<td>它定义了多 Agent 协作范式，且有大量存量系统</td>
+</tr>
+<tr>
+<td>迁移真正难在哪</td>
+<td>难在隐式协作协议，而不是类名替换</td>
+</tr>
+<tr>
+<td>何时保留</td>
+<td>系统稳定、需求冻结、团队已掌握</td>
+</tr>
+<tr>
+<td>何时迁移</td>
+<td>主矛盾开始变成治理、恢复、长期支持或新能力接入</td>
+</tr>
+<tr>
+<td>迁向谁</td>
+<td>取决于系统最先死在状态、协作、运行时原语，还是工程契约</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果一个 AutoGen 系统现在“还能跑”，但团队已经越来越说不清谁有权限、为什么某个任务会在第 5 轮结束、失败后怎么恢复，这种情况下“不动它”真的是保守策略吗？为什么“暂时还能跑”不等于“技术风险可接受”？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>这类系统的风险并不主要体现在“今天有没有报错”，而体现在复杂度已经超出团队的解释能力：权限边界不清、停止条件隐式、恢复路径模糊，意味着一旦需求变化、团队成员流动或事故发生，排查和修改成本会急剧上升。因此“不动它”未必是保守，可能只是把系统性风险延后。真正保守的策略是先把隐式规则显式化，再决定保留还是迁移。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://microsoft.github.io/autogen/stable">https://microsoft.github.io/autogen/stable</a> — AutoGen stable docs</li>
+<li>[4] <a href="https://github.com/microsoft/autogen">https://github.com/microsoft/autogen</a> — AutoGen GitHub</li>
+<li>[5] <a href="https://github.com/microsoft/agent-framework">https://github.com/microsoft/agent-framework</a> — Microsoft Agent Framework GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/02/02/"><span>上一篇</span><strong>03.01.02.02 多 Agent 会话与事件驱动</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/02/04/"><span>下一篇</span><strong>03.01.02.04 AgentChat、RoutedAgent 与消息协议</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-maintenance-mode-到底意味着什么">1. maintenance mode 到底意味着什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么它仍然值得学但不该被神化">2. 为什么它仍然值得学，但不该被神化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-旧系统真正依赖的往往不是-api而是隐式协作协议">3. 旧系统真正依赖的，往往不是 API，而是“隐式协作协议”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-保留--局部替换--全量迁移怎么判断">4. 保留 / 局部替换 / 全量迁移：怎么判断</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-autogen-遗留系统的五个高风险区">5. AutoGen 遗留系统的五个高风险区</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-角色过多职责不清">5.1 角色过多，职责不清</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-会话即控制流">5.2 会话即控制流</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#53-成本不透明">5.3 成本不透明</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#54-恢复困难">5.4 恢复困难</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#55-治理边界缺失">5.5 治理边界缺失</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-一个更现实的迁移观迁的是系统复杂度管理方式">6. 一个更现实的迁移观：迁的是“系统复杂度管理方式”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动给一个-autogen-系统写迁移体检卡">7. 动手活动：给一个 AutoGen 系统写迁移体检卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-边界与排错">8. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

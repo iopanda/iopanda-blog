@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.04.07 部署与运维 · iopanda</title><meta name="description" content="01.04.07 部署与运维 · 模型 / 推理与部署，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/04/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.04.07 部署与运维 · iopanda"><meta property="og:description" content="01.04.07 部署与运维 · 模型 / 推理与部署，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/04/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="04" data-active-subsection data-active-article="/ai/01-models/04/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与部署"></button><a class="tree-link tree-link--section" href="/ai/01-models/04/"><span class="tree-number">04</span><span class="tree-title">推理与部署</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/04/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">部署与运维</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/04/">推理与部署</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">部署与运维</span></nav><header class="ai-article-header"><p class="ai-number">01.04.07</p><h1>部署与运维</h1><p class="ai-meta"><time datetime="2026-09-02T23:45">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-deployment</li><li>operations</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章测清了服务「能扛多少」,本章解决「如何交付、如何运维」:把本地 FastAPI 服务做成可重复启动的容器,并建立版本、健康、日志、指标、告警与回滚的最小闭环。你会先理解为什么容器是可复现交付的答案、镜像与容器与 Dockerfile 各是什么,再亲手构建镜像、做一次发布演练,最后认清演示与生产的差距——认证、TLS、密钥与权限不会因为用了 Docker 而自动存在。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>解释「在我的电脑能运行」为什么不可交付,容器如何实现可复现;</li>
+<li>区分 Dockerfile、镜像与容器,描述从配方到运行实例的构建链路;</li>
+<li>说明健康检查回答什么、不回答什么;</li>
+<li>写出并构建 API 容器镜像,理解容器内 <code>127.0.0.1</code> 与端口映射的含义;</li>
+<li>建立版本、日志脱敏、指标、告警与回滚的最小运维清单,并演练一次发布与回滚;</li>
+<li>列出演示部署与生产部署的差距:认证、TLS、密钥与权限。</li>
+</ol>
+<h2 id="1-为什么需要容器从能跑到可复现交付">1. 为什么需要容器:从「能跑」到「可复现交付」</h2>
+<ul>
+<li>上一章结束时,服务在本机 <code>127.0.0.1:8080</code> 上表现良好。但它依赖的远不止 <code>api.py</code> 一个文件:Python 版本、每个 pip 依赖及其版本、环境变量、启动顺序、GPU 驱动……换一台机器,这些条件几乎不可能原样存在。</li>
+<li>「在我的电脑能运行」是交付的起点而不是终点:把代码交给另一台机器,常常死于「缺依赖」「版本不对」「启动方式不同」这类环境差异,而不是代码本身的逻辑。这类问题尤其难排查,因为报错往往只出现在你没装的那个依赖里。</li>
+<li><strong>容器把「代码 + 运行环境」一起打包</strong>:基础系统、语言运行时、依赖库、配置文件与启动命令被做成一个不可变的镜像;任何装了容器引擎的机器,用同一条命令启动的都是同一份环境。「交付」于是从「拷贝代码 + 口述安装步骤」变成「交付一个镜像」。</li>
+<li>这与 01 章的「性能基线」、03 章的「可复现量化实验」是同一纪律的延续:凡是影响结果的东西都应当被固定、被记录。可复现不只是工程便利,也是故障排查的前提——出问题时你能确切知道线上跑的是什么,而不是「大概是我当时装的某个版本」。</li>
+</ul>
+<h2 id="2-概念配方镜像与运行实例">2. 概念:配方、镜像与运行实例</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>是什么</th>
+<th>类比</th>
+<th>关键性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dockerfile</strong></td>
+<td>制作镜像的配方:逐行声明基础镜像、拷贝文件、安装依赖与启动命令</td>
+<td>菜谱</td>
+<td>可读、可审核、可版本化</td>
+</tr>
+<tr>
+<td><strong>镜像(image)</strong></td>
+<td>按配方构建出的打包结果,含完整文件系统快照与元数据</td>
+<td>做好的菜</td>
+<td>不可变,有唯一 ID 与 tag</td>
+</tr>
+<tr>
+<td><strong>容器(container)</strong></td>
+<td>镜像启动后的运行实例,有独立进程与网络视图</td>
+<td>端上桌的那份菜</td>
+<td>可启停、可删除、彼此隔离</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>三者构成单向链路:改 Dockerfile → <code>docker build</code> 得到新镜像 → <code>docker run</code> 启动容器。同一个镜像可启动多个互不影响的容器;容器内的写入不会「写回」镜像。</li>
+<li><strong>镜像不可变正是它的价值</strong>:构建完成后内容不再改变,交付的是「确定的那个镜像」,而不是「大概能装的依赖清单」;回滚回到的也是「上一个确定的镜像」,而不是「重装一遍碰运气」。</li>
+<li>容器不是虚拟机:它共享宿主内核、只做进程与文件系统层面的隔离,因此更轻、启动更快;但隔离不等于安全边界,共享内核仍有被突破的风险(呼应第 7 节「容器不替你保护密钥」)。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70"> A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">Dockerfile</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">docker build: image</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">docker run: container</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> C </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">/health</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> D </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">日志</span><span style="color:#E1E4E8">、</span><span style="color:#9ECBFF">指标</span><span style="color:#E1E4E8">、</span><span style="color:#9ECBFF">告警</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> E </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> F</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">失败时回滚旧 image</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<h2 id="3-动手制作-api-容器">3. 动手:制作 API 容器</h2>
+<p>前置:按 04、05 章启动的 vLLM 与 FastAPI 服务仍在 <code>minigpt-course</code> 项目根目录(激活 <code>.venv</code>);本机需安装 Docker(如 Docker Desktop)并确认 <code>docker version</code> 可用。在项目根目录创建 <code>finetune/Dockerfile</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="dockerfile"><code><span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> python:3.11-slim</span></span>
+<span class="line"><span style="color:#F97583">WORKDIR</span><span style="color:#E1E4E8"> /app</span></span>
+<span class="line"><span style="color:#F97583">COPY</span><span style="color:#E1E4E8"> finetune/src/api.py /app/finetune/src/api.py</span></span>
+<span class="line"><span style="color:#F97583">RUN</span><span style="color:#E1E4E8"> pip install --no-cache-dir fastapi </span><span style="color:#9ECBFF">"uvicorn[standard]"</span><span style="color:#E1E4E8"> httpx</span></span>
+<span class="line"><span style="color:#F97583">EXPOSE</span><span style="color:#E1E4E8"> 8080</span></span>
+<span class="line"><span style="color:#F97583">CMD</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"uvicorn"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"finetune.src.api:app"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"--host"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"0.0.0.0"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"--port"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"8080"</span><span style="color:#E1E4E8">]</span></span></code></pre><span class="code-lang" data-lang="dockerfile" aria-hidden="true">dockerfile</span></div>
+<p>逐行读这份配方:<code>FROM</code> 固定了基础镜像(Python 3.11 slim,版本锁定才有可复现);<code>COPY</code> 只打包业务 <code>api.py</code>——模型权重留在受控 GPU 环境,不进镜像;<code>RUN</code> 装运行时依赖;<code>EXPOSE 8080</code> 只是文档声明,并不自动开放端口;<code>CMD</code> 是容器启动时执行的命令,监听 <code>0.0.0.0:8080</code> 是因为容器内没有「宿主的 127.0.0.1」,进程必须监听容器自己的全部接口,由端口映射决定谁能访问。</p>
+<p>构建并试运行:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> build</span><span style="color:#79B8FF"> -f</span><span style="color:#9ECBFF"> finetune/Dockerfile</span><span style="color:#79B8FF"> -t</span><span style="color:#9ECBFF"> course-api:0.1</span><span style="color:#9ECBFF"> .</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> --rm</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> 127.0.0.1:8080:8080</span><span style="color:#9ECBFF"> course-api:0.1</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p><code>-p 127.0.0.1:8080:8080</code> 把「宿主的 127.0.0.1:8080」映射到「容器的 8080」——只有本机能访问,这正是演示想要的边界。由于 <code>api.py</code> 里的 <code>127.0.0.1</code> 在容器内指向容器自身,先不要假设它能连到宿主上的 vLLM;把模型服务接入前,必须显式设计内部网络地址、认证与网络策略。预期此时 <code>/health</code> 返回 <strong>503</strong>(模型未作为同一网络依赖接入),这不是健康检查通过,详见下一节。</p>
+<h2 id="4-健康检查回答什么不回答什么">4. 健康检查:回答什么,不回答什么</h2>
+<ul>
+<li><strong>健康检查回答什么</strong>:容器内的进程与它声明的依赖是否「活着、能响应」。<code>/health</code> 返回 200,意味着进程在监听、它所依赖的部分按声明在工作——这是编排器决定「重启容器、摘除流量」的依据。</li>
+<li><strong>健康检查不回答什么</strong>:回答是否正确、模型权重是否就绪、是否过载、是否安全。200 只证明「管道通」,不证明「水干净」——健康检查通过而回答质量劣化(见 06 章的尾部延迟)完全可能,所以它不能替代指标与告警。</li>
+<li>演示里 <code>/health</code> 只探 API 自身,而上一章的容量结论来自 <code>/ask</code> 压测;若健康检查永远只探 <code>/health</code>,它会比真实体验乐观。生产健康检查因此常探真实推理路径(合成提示 + 校验返回),并区分两种语义:<strong>liveness</strong>(进程死了就重启)与 <strong>readiness</strong>(依赖未就绪就别把流量分给它)。</li>
+<li>本章的 503 恰恰是健康检查在如实工作:它把「模型依赖未就绪」翻译成了可观测的状态码——健康检查在说真话,而不是在说谎。</li>
+</ul>
+<h2 id="5-版本与回滚让回到上个好版本成为一条命令">5. 版本与回滚:让「回到上个好版本」成为一条命令</h2>
+<ul>
+<li>镜像 tag(<code>course-api:0.1</code>)是给人看的名字,可以移动;镜像 ID 与 digest 才是内容的指纹。记录必须同时保存 tag 与 digest,否则「0.1 指向什么」可能事后被改变,回滚就失去了目标。</li>
+<li>一次发布 = 镜像 tag + 模型 ID + adapter hash(如有)。只记镜像不记模型,回滚后 API 与模型版本错配,故障依旧;这正是第 3 节「模型不进镜像」的另一面——它必须被单独记录。</li>
+<li><strong>回滚是镜像不可变性的红利</strong>:新版本出问题,不必逆向修复,只需停掉新容器、用上个已验证的 tag 重新启动——旧代码与数据原样可用。演示规模下回滚是两条命令;生产规模下它演化为蓝绿发布、金丝雀发布与自动回滚。</li>
+<li>何时回滚由证据决定:健康检查持续失败、错误率或 P95 突破告警阈值。这要求第 6 节的记录先于故障存在,否则你无法判断「哪个版本是好的」。</li>
+</ul>
+<h2 id="6-最小运维清单日志指标告警">6. 最小运维清单:日志、指标、告警</h2>
+<table>
+<thead>
+<tr>
+<th>事项</th>
+<th>要记录/执行</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>版本</td>
+<td>image tag、模型 ID、adapter hash</td>
+<td>找回运行的确切版本</td>
+</tr>
+<tr>
+<td>健康</td>
+<td><code>/health</code> 状态、模型依赖状态</td>
+<td>区分 API 与模型故障</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>请求数、P95、503、GPU 显存</td>
+<td>发现容量退化</td>
+</tr>
+<tr>
+<td>日志</td>
+<td>请求 ID、耗时、错误码</td>
+<td>排查问题,不记录原始敏感文本</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>停止新容器、启动上个已验证 tag</td>
+<td>有问题时快速恢复</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>日志脱敏</strong>:日志的价值在可排查,但请求里可能含用户提问等敏感内容。记录「请求 ID、耗时、错误码、输出 token 数」这类元数据足以定位绝大多数问题;把请求原文写进日志,等于把用户数据复制到每一台机器。演示项目默认只记元数据、不记原文;确需记录时先脱敏再落盘。</li>
+<li><strong>指标与告警分工</strong>:指标回答「现在怎么样」(请求数、P95、503 数、显存),告警回答「什么时候该叫人」。把 06 章的容量上限转成阈值,例如「P95 超过 2 s 持续 1 分钟」或「503 率超过 1%」触发告警;没有阈值的指标只是事后考古,而均值不适合做告警信号(见 06 章),要盯分位数。</li>
+<li>清单是「最小」的:每条都对应一种具体故障——版本对不上、依赖没就绪、容量退化、无法排查、无法恢复。新增记录项前问一句「它对应哪次故障」,避免日志变成无人阅读的存储开销。</li>
+</ul>
+<h2 id="7-生产与演示的差距认证tls密钥与权限">7. 生产与演示的差距:认证、TLS、密钥与权限</h2>
+<ul>
+<li>本章的容器是本地演示:监听 <code>127.0.0.1</code>、无认证、无限流。它<strong>不授权直接部署公网</strong>——原样暴露公网,等于把 06 章压测过的无防护 API 直接交给任何人(呼应 05 章「无认证无限流的服务不暴露公网」的边界)。</li>
+<li>逐项列出差距:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>演示(本章)</th>
+<th>生产必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>认证</td>
+<td>无,任何本机进程可调用</td>
+<td>身份认证与授权(API key / OIDC)</td>
+</tr>
+<tr>
+<td>传输</td>
+<td>明文 HTTP</td>
+<td>TLS/HTTPS 与证书轮换</td>
+</tr>
+<tr>
+<td>密钥</td>
+<td>硬编码或空</td>
+<td>由密钥管理在运行时注入,不进镜像</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>容器内默认用户运行</td>
+<td>最小权限:非 root、只读文件系统、网络策略</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>无状态演示</td>
+<td>备份、加密与数据留存策略</td>
+</tr>
+<tr>
+<td>审查</td>
+<td>个人提交</td>
+<td>镜像签名、供应链扫描、组织安全审查</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>密钥不进镜像</strong>:镜像是要分发、留存、回滚的——任何写进镜像的秘密都会随之扩散到所有副本与历史版本;密钥应由运行环境在启动时注入,镜像保持「无秘密」。</li>
+<li><strong>容器不替你负责</strong>:它不保护密钥、不限制权限、不处理模型许可证(见 01.02 的数据许可纪律);这些是部署者的责任,容器化不会改变许可条款。</li>
+<li>从演示到生产是一条有检查点的路:先加认证与 TLS,再迁密钥管理,再最小化权限——每步可单独验证。跳过这些直接暴露公网,是本章反复警告的边界。</li>
+</ul>
+<h2 id="8-动手活动发布演练">8. 动手活动:发布演练</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:发布演练</p>
+<p><strong>目标</strong>:完成 <code>reports/operations.md</code>、Dockerfile 和一份回滚演练记录。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>构建 <code>course-api:0.1</code>,保存 build 输出和 image ID;</li>
+<li>写出健康检查、指标、日志字段;</li>
+<li>模拟新版本 health 失败,执行回滚命令并记录结果。</li>
+</ol>
+<p><strong>完成标准</strong>:另一位同学能按文档构建镜像、知道模型依赖未就绪时为何 503,并能在不删除数据的情况下回到上一个 tag。</p>
+</div>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>为什么需要容器</td>
+<td>代码 + 环境一起打包,同一条命令启动同一份环境,交付从「口述步骤」变成「交付镜像」</td>
+</tr>
+<tr>
+<td>Dockerfile / 镜像 / 容器</td>
+<td>配方、不可变打包结果、运行实例;改配方 → 构建 → 启动的单向链路</td>
+</tr>
+<tr>
+<td>健康检查</td>
+<td>只回答「依赖能否响应」,不回答正确性、过载与安全;503 可能是它正在说真话</td>
+</tr>
+<tr>
+<td>版本与回滚</td>
+<td>镜像不可变,停新容器、启旧 tag 即恢复;版本 = 镜像 tag + 模型 ID + adapter hash</td>
+</tr>
+<tr>
+<td>运维清单</td>
+<td>日志脱敏记元数据、指标看现状、告警叫醒人;每条对应一种故障</td>
+</tr>
+<tr>
+<td>演示 vs 生产</td>
+<td>认证、TLS、密钥、权限、审查缺一不可,Dockerfile 省略不了</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 <code>/health</code> 返回 200 不能证明「回答正确」?为什么密钥不能写进 Dockerfile?为什么「用 Docker 部署」不等于「可以暴露公网」?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>健康检查只验证进程与依赖能否响应,不验证输出质量与安全——回答劣化、过载、越权都可能在 200 之下发生,所以生产健康检查要探真实推理路径,并配合指标与告警。镜像是要构建、分发、留存、回滚的,写进镜像的密钥会随之扩散到所有副本与历史版本,密钥必须在运行时由环境注入。演示容器无认证、无限流、明文 HTTP,还缺 TLS、密钥管理与最小权限;这些是部署者的责任,容器不会自动提供,原样暴露公网等于把无防护 API 交给任何人。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/">Docker:容器基础概念</a></li>
+<li><a href="https://docs.docker.com/reference/dockerfile/">Docker:Dockerfile 参考</a></li>
+<li><a href="https://fastapi.tiangolo.com/deployment/">FastAPI:部署概念</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/04/06/"><span>上一篇</span><strong>01.04.06 压测与容量规划</strong></a><a class="ai-pager-next" href="/ai/01-models/05/01/"><span>下一篇</span><strong>01.05.01 多模态基础</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么需要容器从能跑到可复现交付">1. 为什么需要容器:从「能跑」到「可复现交付」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-概念配方镜像与运行实例">2. 概念:配方、镜像与运行实例</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-动手制作-api-容器">3. 动手:制作 API 容器</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-健康检查回答什么不回答什么">4. 健康检查:回答什么,不回答什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-版本与回滚让回到上个好版本成为一条命令">5. 版本与回滚:让「回到上个好版本」成为一条命令</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-最小运维清单日志指标告警">6. 最小运维清单:日志、指标、告警</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-生产与演示的差距认证tls密钥与权限">7. 生产与演示的差距:认证、TLS、密钥与权限</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动发布演练">8. 动手活动:发布演练</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

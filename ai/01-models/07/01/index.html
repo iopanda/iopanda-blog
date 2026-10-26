@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.07.01 数据治理与隐私 · iopanda</title><meta name="description" content="01.07.01 数据治理与隐私 · 模型 / 安全与治理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/07/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.07.01 数据治理与隐私 · iopanda"><meta property="og:description" content="01.07.01 数据治理与隐私 · 模型 / 安全与治理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/07/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="07" data-active-subsection data-active-article="/ai/01-models/07/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/07"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 安全与治理"></button><a class="tree-link tree-link--section" href="/ai/01-models/07/"><span class="tree-number">07</span><span class="tree-title">安全与治理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/07/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">数据治理与隐私</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/07/">安全与治理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">数据治理与隐私</span></nav><header class="ai-article-header"><p class="ai-number">01.07.01</p><h1>数据治理与隐私</h1><p class="ai-meta"><time datetime="2026-09-03T01:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>data-governance</li><li>privacy</li></ul></header><div class="ai-prose"><h1 id="数据治理与隐私">数据治理与隐私</h1>
+<blockquote>
+<p>01.06 的评测证明了课程助教「能力达标」:概念问答准确率过线、裁判均分 4.2/5,安全评测(06 章)把「会不会出事」翻成了攻击样本上的双比率,评测报告(07 章)给出了「能上线」的结论。但「能用的系统」不等于「可以安全交付的系统」:助教手里握着微调数据、评测黄金集、学生提问与访问日志,这些数据里可能藏着姓名、学号、邮箱等个人信息——法律(GDPR/PIPL 的思路)在管,工程上更要有人管。本章是 01.07 治理收尾单元的第一课:给 01.04 的 API 服务与 01.06 评测过的课程助教建立数据治理与隐私规则——说清每条数据从哪里来、往哪里去、存多久、谁能碰、泄露了怎么办,动手产出治理文档 data-governance.md 与可运行的日志脱敏脚本,把上一单元「测出问题」推进到「管住风险」。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出数据治理与隐私的定义,区分二者管的问题(规则体系 vs 个人信息边界);</li>
+<li>解释为什么「评测通过」不等于「可以上线」,训练数据、用户输入、日志都可能埋着 PII;</li>
+<li>说出 GDPR 与 PIPL 的核心思路(目的限制、最小必要、保留期限、删除权、泄露通知与处罚),并对照到自己的工程;</li>
+<li>列出治理规则六要素,为任意一条数据流写出来源、用途、保留期、访问范围、删除流程;</li>
+<li>识别数据泄露、授权风险、重新识别(de-anonymization)三类风险及典型场景;</li>
+<li>为课程助教服务写出 data-governance.md,并用正则实现日志 PII 脱敏。</li>
+</ol>
+<h2 id="1-概念数据治理是规则体系隐私是个人信息的边界">1. 概念:数据治理是规则体系,隐私是个人信息的边界</h2>
+<ul>
+<li><strong>数据治理(data governance)</strong> = 对数据的<strong>来源、用途、保留、访问、删除</strong>建立一套规则与责任人,回答「这是谁的数据、允许用来干什么、存多久、谁能碰、怎么删」。它不针对某一类数据,而是把系统里所有数据流都管起来。</li>
+<li><strong>隐私(privacy)</strong> 管的是其中一类特殊数据——<strong>个人信息(PII,Personally Identifiable Information)</strong>:能直接或间接识别到某个人的信息,如姓名、学号、手机号、邮箱、IP 地址、人脸截图。隐私问题 = 个人信息「能不能收集、能收集多少、能用来干什么」的边界。</li>
+<li>二者关系:<strong>数据治理是框架,隐私是框架里约束最严的一条</strong>。个人信息一旦泄露,伤害落到具体的人身上,还会触发法律后果;而治理文档里其他数据流(如纯课程文本)则只需防泄密、不必上隐私流程。</li>
+<li>术语对照:PIPL 称之为「个人信息」,GDPR 称之为「个人数据(personal data)」,安全界常用「PII」,工程文档里指同一类东西。<strong>匿名化</strong>(彻底无法关联回个人)后的信息不再是个人信息,但<strong>假名化</strong>(把学号换成随机 ID)仍受规制——别把假名化当匿名化用。</li>
+<li>本课程不替代法务意见:GDPR/PIPL 只取「思路」,落进代码与文档的是工程实践;真正对外服务前请咨询专业法务。</li>
+</ul>
+<h2 id="2-为什么需要评测管能不能用治理管能不能交付">2. 为什么需要:评测管「能不能用」,治理管「能不能交付」</h2>
+<ul>
+<li>评测回答「能力是否达标」;但一个达标模型装进 API 后每天接收真实提问、产生日志与缓存,数据开始流动。<strong>能力合格 ≠ 数据合规</strong>:01.06/06 测出过「泄露考试范围」类回答,那只是测试样本;真实服务里同样的漏洞吐出的可能是学生的真实个人信息。</li>
+<li>个人信息藏在每一层:训练数据里人工编写的示例可能带真实姓名;用户输入里学生一句「帮我查我上次的成绩」就带上学号;日志里每一条请求都记着 IP 与时间;甚至模型权重里也记着训练语料(见第 3 节)。</li>
+<li>法律底线(思路):GDPR 要求处理个人数据有合法基础、遵循目的限制与数据最小化,发生泄露须 72 小时内通知监管机构(Art. 33),情节严重的最高罚 2000 万欧元或全球年营业额 4%(取高,Art. 83);PIPL 要求处理遵循合法、正当、必要与最小范围,处理敏感个人信息(生物识别、医疗健康、金融账户、行踪轨迹等)须特定目的 + 充分必要 + 单独同意,情节严重的最高罚 5000 万元或上一年度营业额 5%(取高)。违反这些不只是罚款风险,更是用户信任与产品存续问题。</li>
+<li>呼应前文:01.02/02 管「数据从哪来、许可允许怎么用」,本章管「数据到了我们手里怎么保护与处置」;01.03/08 的 model card 需要「训练数据与隐私处理」一栏,本章的治理文档正是它的素材来源——治理先行,文档(02 章)才有内容可写。</li>
+</ul>
+<h2 id="3-治理的对象四条数据流--一种会自己泄露的特例">3. 治理的对象:四条数据流 + 一种「会自己泄露」的特例</h2>
+<p>课程助教系统里,数据主要沿四条管道流动,每条都要单独登记:</p>
+<table>
+<thead>
+<tr>
+<th>数据流</th>
+<th>典型内容</th>
+<th>PII 风险</th>
+<th>来源章节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练/微调数据</td>
+<td>SFT 指令集、偏好对</td>
+<td>中:示例可能含姓名等</td>
+<td>01.03/02、/07</td>
+</tr>
+<tr>
+<td>评测数据与黄金集</td>
+<td>人工参考答案、攻击样本</td>
+<td>低~中:含人工编写的边界题</td>
+<td>01.06/02、/06</td>
+</tr>
+<tr>
+<td>用户输入与检索内容</td>
+<td>学生提问、RAG 命中的课件截图</td>
+<td>高:学号、成绩、作业截图</td>
+<td>01.04 API、01.05 多模态</td>
+</tr>
+<tr>
+<td>日志与遥测</td>
+<td>IP、时间戳、请求与响应内容</td>
+<td>中~高</td>
+<td>01.04 部署</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>还有一条特殊管道:<strong>模型记忆</strong>。模型训练时可能把高频出现的个人信息(邮箱、电话、一段私人文本)直接记进权重,生成时原样吐出来——研究者曾在 GPT-2 上成功「提取」出训练语料原文。它不在服务器日志里,删日志删不掉,<strong>只能靠源头治理</strong>(见第 6 节)。</li>
+<li>治理清单必须覆盖四条管道 + 模型记忆。漏掉任何一条,风险就从漏掉的地方流出去——很多泄露事故的根因不是「没设防」,而是「没登记这条数据流」。</li>
+</ul>
+<h2 id="4-规则六要素一份-data-governancemd-的骨架">4. 规则六要素:一份 data-governance.md 的骨架</h2>
+<p>给每条数据流登记六个要素,是治理文档的最小完备骨架:</p>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>要回答的问题</th>
+<th>课程助教上的示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>来源登记</td>
+<td>数据从哪来、由谁提供、依据是什么</td>
+<td>「SFT 集:01.03 人工整理,基于课程资料与授权」</td>
+</tr>
+<tr>
+<td>用途限定</td>
+<td>只允许用来做什么</td>
+<td>「仅用于微调与评测,禁止用于其他产品」</td>
+</tr>
+<tr>
+<td>保留期</td>
+<td>存多久、何时自动删除</td>
+<td>「用户输入 30 天;访问日志 90 天滚动轮转」</td>
+</tr>
+<tr>
+<td>访问控制</td>
+<td>谁能读、谁能写、默认拒绝</td>
+<td>「训练集:训练组 3 人;生产日志:仅运维组」</td>
+</tr>
+<tr>
+<td>删除流程</td>
+<td>谁发起、走什么流程、多久完成</td>
+<td>「用户请求删除 → 数据负责人 72 小时内处理并回执」</td>
+</tr>
+<tr>
+<td>泄露响应</td>
+<td>发现泄露先做什么、通知谁</td>
+<td>「先止血(吊销密钥/下线),24 小时内内部上报」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>六要素的次序就是写文档的次序:先登记来源,再写用途与期限,最后补访问、删除与响应——后面的规则都依附于「这条数据是什么、用来干什么」。</li>
+<li>访问控制要落实「默认拒绝、按需授权、操作留痕」:给 CI 账号开生产库权限、让实习生直读含 PII 的训练集,是比外部攻击更常见的泄露路径。</li>
+<li>保留期不是摆设:训练集可以随项目长期保存(它服务于可复现的模型迭代),但用户输入与日志必须有明确时限与自动清理任务——「永久保留用户对话」在 GDPR/PIPL 思路上都站不住。</li>
+</ul>
+<h2 id="5-风险识别三类典型风险">5. 风险识别:三类典型风险</h2>
+<ul>
+<li><strong>数据泄露(breach)</strong>:不该出去的数据出去了——01.06/06 发现的「泄露考试范围」类回答、日志被拖库、API 密钥泄漏后被爬取对话历史。缓解:最小化采集、传输与存储加密、日志先脱敏再入库、备好泄露响应预案。</li>
+<li><strong>授权风险(authorization)</strong>:能碰到数据的人/程序比需要的多——CI 账号直连生产库、实习生可读含 PII 的训练集、模型工具权限过大(03 章还会展开)。缓解:最小权限 + 定期复核 + 敏感操作进审计日志。</li>
+<li><strong>重新识别(de-anonymization)</strong>:自以为匿名的数据被交叉比对还原出个人——Netflix 公开「匿名」评分数据被 IMDb 交叉比对认出具体用户;仅凭「邮编 + 生日 + 性别」也能高概率锁定个人。缓解:对「匿名」保持怀疑,该按 PII 处理就按 PII 处理。</li>
+</ul>
+<h2 id="6-动手活动写-data-governancemd-并给日志脱敏">6. 动手活动:写 data-governance.md 并给日志脱敏</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:为课程助教服务建立治理文档与脱敏脚本</p>
+<p><strong>目标</strong>:在 01.04 的 API 项目(或 01.03 的 finetune 项目)里新建 <code>data-governance.md</code> 与 <code>redact.py</code>,把六要素与三类风险落成可执行产物。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li><strong>列数据流</strong>:按第 3 节表格列出你系统里真实的四条管道(训练集、评测集、用户输入、日志);</li>
+<li><strong>逐项标风险</strong>:每条数据流标 PII 风险(高/中/低)、典型 PII 字段、保留期、默认访问范围;</li>
+<li><strong>补删除与响应</strong>:为「学生要求删除自己的提问记录」写一条删除流程;为「发现日志泄露」写三步响应(止血 → 排查 → 上报);</li>
+<li><strong>写脱敏脚本</strong>:用下方骨架实现 <code>redact(text)</code>,坚持「先脱敏、再入库」;</li>
+<li><strong>自测</strong>:把一条真实格式的假日志丢进去,确认邮箱、手机号、身份证、IP 都被遮住而普通文本原样保留。</li>
+</ol>
+</div>
+<p>日志脱敏脚本骨架(手机号保留前 3 后 4,身份证保留前 6 后 4,可直接运行):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> re</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">RULES</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">    (re.compile(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">[\w.+-]</span><span style="color:#F97583">+</span><span style="color:#DBEDFF">@</span><span style="color:#79B8FF">[\w-]</span><span style="color:#F97583">+</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#79B8FF">[\w.]</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">"&lt;EMAIL&gt;"</span><span style="color:#E1E4E8">),          </span><span style="color:#6A737D"># 邮箱</span></span>
+<span class="line"><span style="color:#E1E4E8">    (re.compile(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">(</span><span style="color:#DBEDFF">1</span><span style="color:#79B8FF">[3-9]\d)\d</span><span style="color:#F97583">{4}</span><span style="color:#79B8FF">(\d</span><span style="color:#F97583">{4}</span><span style="color:#79B8FF">)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">), </span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#85E89D">\1</span><span style="color:#F97583">****</span><span style="color:#85E89D">\2</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">),          </span><span style="color:#6A737D"># 手机号</span></span>
+<span class="line"><span style="color:#E1E4E8">    (re.compile(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">(\d</span><span style="color:#F97583">{6}</span><span style="color:#79B8FF">)\d</span><span style="color:#F97583">{8}</span><span style="color:#79B8FF">(\d</span><span style="color:#F97583">{3}</span><span style="color:#79B8FF">[\dXx])</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">), </span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#85E89D">\1</span><span style="color:#F97583">********</span><span style="color:#85E89D">\2</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">),   </span><span style="color:#6A737D"># 身份证号</span></span>
+<span class="line"><span style="color:#E1E4E8">    (re.compile(</span><span style="color:#F97583">r</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">(?:\d</span><span style="color:#F97583">{1,3}</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#79B8FF">)</span><span style="color:#F97583">{3}</span><span style="color:#79B8FF">\d</span><span style="color:#F97583">{1,3}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">"&lt;IP&gt;"</span><span style="color:#E1E4E8">),              </span><span style="color:#6A737D"># IP 地址</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> redact</span><span style="color:#E1E4E8">(text: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">) -&gt; </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> pattern, repl </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pattern.sub(repl, text)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> text</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    log </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "2026-09-02 10:00 张三 13812348000 申请删除记录 ID:110101199001011234"</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(redact(log))</span></span>
+<span class="line"><span style="color:#6A737D">    # 输出:2026-09-02 10:00 张三 138****8000 申请删除记录 ID:110101********1234</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p><strong>完成标准</strong>:第三方读 <code>data-governance.md</code>,能说出每条数据「存多久、谁能碰、怎么删」;把含 PII 的日志喂给 <code>redact.py</code>,输出里找不到完整的手机号与身份证号。把两份文件提交 git,治理规则从此可评审、可追溯。</p>
+<h2 id="7-边界与排错">7. 边界与排错</h2>
+<ul>
+<li><strong>只写不执行</strong>:治理文档写二十页,但没有保留期定时任务、没人复核权限,等于没有治理;每条规则都要落进一个脚本、一个定时任务或一个具名负责人。</li>
+<li><strong>脱敏漏字段</strong>:正则只覆盖你想到的格式——昵称、住址、图片里的车牌与面孔都遮不住;对开放文本加关键词黑名单与敏感词扫描,并定期人工抽样复核脱敏效果。</li>
+<li><strong>把「脱敏」当「匿名化」</strong>:日志脱敏只是降低风险,<strong>不是</strong>匿名化;真要公开数据集,必须做去标识化评估(第 5 节的重识别风险),别拿 <code>&lt;EMAIL&gt;</code> 替换当免责牌。</li>
+<li><strong>保留期写「永久」</strong>:「永久保留用户对话」既不合规思路又放大泄露杀伤力;训练集之外的每条数据都要能说出删除时间点。</li>
+<li><strong>只防外部不防内部</strong>:相当比例的泄露来自内部误操作与权限过大;访问控制不是可选项,至少做到默认拒绝、按需授权、操作留痕,并定期(如每季度)复核一次授权清单。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据治理是什么</td>
+<td>对数据来源、用途、保留、访问、删除的规则体系与责任人</td>
+</tr>
+<tr>
+<td>隐私是什么</td>
+<td>个人信息(PII)收集与处理的边界,是治理中约束最严的部分</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>能力达标 ≠ 可交付;训练数据、用户输入、日志都可能含 PII</td>
+</tr>
+<tr>
+<td>管哪些对象</td>
+<td>四条数据流(训练、评测、用户输入、日志)+ 会「自己泄露」的模型记忆</td>
+</tr>
+<tr>
+<td>六要素</td>
+<td>来源登记、用途限定、保留期、访问控制、删除流程、泄露响应</td>
+</tr>
+<tr>
+<td>三类风险</td>
+<td>数据泄露、授权风险、重新识别(de-anonymization)</td>
+</tr>
+<tr>
+<td>动手产物</td>
+<td>data-governance.md + redact.py(邮箱/手机号/身份证/IP 正则脱敏)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:某学生要求删除他三个月前的提问记录,而这些对话已被拿去构造新的 SFT 数据并训练进了模型——「删除」能做到什么程度?请分别说出「日志层、数据集层、模型权重层」三种情况下删除的可行策略,并说明哪一层最该在源头避免。</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>「删除」的粒度取决于数据在哪一层:访问日志与对话库可以直接删(设计时就应让删除流程可执行、可回执);已被选入 SFT 数据集的对话,应从数据集中剔除并记录剔除批次(01.03 的数据管线要支持按单条记录追溯);一旦进了模型权重,任何数据库删除都无法抹掉——只能靠源头缓解:训练前过滤 PII、去重以降低记忆概率,必要时用差分隐私训练,并在模型卡(02 章)里如实声明「无法保证删除已记忆内容」。由此得到治理的黄金法则:<strong>越早越容易删,能不入库就不入库</strong>——这正是「数据最小化」在工程上的真正含义,也是本章各条规则共同的底层逻辑。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">中华人民共和国个人信息保护法(全文,国家网信办)</a></li>
+<li><a href="https://gdpr-info.eu/">GDPR 官方文本(EU 2016/679,gdpr-info.eu)</a></li>
+<li><a href="https://csrc.nist.gov/publications/detail/sp/800-122/final">NIST SP 800-122:Guide to Protecting the Confidentiality of Personally Identifiable Information</a></li>
+<li><a href="https://arxiv.org/abs/2011.09532">Carlini et al., 2020. Extracting Training Data from Large Language Models</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/06/07/"><span>上一篇</span><strong>01.06.07 评测报告</strong></a><a class="ai-pager-next" href="/ai/01-models/07/02/"><span>下一篇</span><strong>01.07.02 模型卡与文档</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念数据治理是规则体系隐私是个人信息的边界">1. 概念:数据治理是规则体系,隐私是个人信息的边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要评测管能不能用治理管能不能交付">2. 为什么需要:评测管「能不能用」,治理管「能不能交付」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-治理的对象四条数据流--一种会自己泄露的特例">3. 治理的对象:四条数据流 + 一种「会自己泄露」的特例</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-规则六要素一份-data-governancemd-的骨架">4. 规则六要素:一份 data-governance.md 的骨架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-风险识别三类典型风险">5. 风险识别:三类典型风险</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动写-data-governancemd-并给日志脱敏">6. 动手活动:写 data-governance.md 并给日志脱敏</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-边界与排错">7. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

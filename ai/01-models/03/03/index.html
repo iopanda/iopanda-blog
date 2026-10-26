@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.03.03 Hugging Face 训练栈 · iopanda</title><meta name="description" content="01.03.03 Hugging Face 训练栈 · 模型 / 微调与对齐，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/03/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.03.03 Hugging Face 训练栈 · iopanda"><meta property="og:description" content="01.03.03 Hugging Face 训练栈 · 模型 / 微调与对齐，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/03/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="03" data-active-subsection data-active-article="/ai/01-models/03/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 微调与对齐"></button><a class="tree-link tree-link--section" href="/ai/01-models/03/"><span class="tree-number">03</span><span class="tree-title">微调与对齐</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/03/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">Hugging Face 训练栈</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/03/">微调与对齐</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Hugging Face 训练栈</span></nav><header class="ai-article-header"><p class="ai-number">01.03.03</p><h1>Hugging Face 训练栈</h1><p class="ai-meta"><time datetime="2026-09-02T21:02">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-fine-tuning</li><li>hugging-face</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章交付了人能读的 JSONL 对话数据,本章把 Hugging Face 训练栈(Datasets、Tokenizers、Transformers、Trainer)逐层接通,证明「JSONL → chat template 文本 → token id → 模型」这条管线是通的。本章不训练模型,但这个检查能避免后续花数小时训练错误格式。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 Datasets、Tokenizers、Transformers、PEFT、TRL 各自解决什么问题;</li>
+<li>解释为什么用 Trainer 而不是手写训练循环;</li>
+<li>用 <code>AutoTokenizer</code> 和 <code>AutoModelForCausalLM</code> 加载同一个模型;</li>
+<li>将 JSONL chat 数据渲染成模型实际看到的文本,并说明 chat template 的作用;</li>
+<li>检查 pad token、token 长度和角色结构是否合理;</li>
+<li>输出一份可复现的训练环境检查报告。</li>
+</ol>
+<h2 id="0-本章为什么存在">0. 本章为什么存在</h2>
+<p>上一章产出的是人能读的 JSON;模型只能处理特定 tokenizer 产生的数字。Hugging Face 训练栈负责连接两者,并按照该模型<strong>原本的对话格式</strong>组织数据。若此处接错,后面的 loss、checkpoint 都会是「错误输入上的正确计算」——loss 照样下降,模型却什么都没学会。本章先不训练,专门用可见的文本和 token 数证明这条管线是通的。</p>
+<h2 id="1-先理解一条中文问答如何变成训练数字">1. 先理解:一条中文问答如何变成训练数字</h2>
+<p>计算机不能直接计算汉字或角色名。tokenizer 先按模型训练时相同的规则把对话模板转换为 token id;模型把每个 id 查成向量,经过多层 Transformer 后给词表中每个候选 token 一个分数;训练器据此计算「正确答案 token 的分数够不够高」,再更新参数。任何一环错位,loss 即使下降也没有意义。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70"> A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">JSONL messages</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">chat template 文本</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">tokenizer: 整数 id</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> C </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">causal LM: logits</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70"> D </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">训练器: loss/梯度</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<h3 id="11-chat-template-的作用模型的对话排版协议">1.1 chat template 的作用:模型的「对话排版协议」</h3>
+<p>chat template 是不同模型约定的对话排版方式——如何标记 user/assistant 的边界、system prompt 放哪里、用哪个特殊 token 收尾。它<strong>不是美观问题</strong>:Qwen 是用自家模板训练过的,若换成随手拼接的 <code>问:…答:…</code>,输入分布会偏离模型已学会的格式,模型学得慢,还容易学错对话边界。</p>
+<ul>
+<li>模板属于模型,不属于你:模板作为 Jinja2 代码随 tokenizer 发布(存于 <code>tokenizer_config.json</code>),<code>apply_chat_template()</code> 保证任何调用方都用同一份排版;</li>
+<li>训练与推理的差别在一个参数:<code>add_generation_prompt=False</code> 用于训练——样本已含完整 assistant 回答,模板渲染到底;推理时才用 <code>True</code>——在用户消息后打开 assistant 作答位置,由模型自己开口。两处不一致,等于「学一套、考另一套」。</li>
+</ul>
+<h2 id="2-hugging-face-生态五个库各解决什么问题">2. Hugging Face 生态:五个库各解决什么问题</h2>
+<p>微调不是「一个库」的事。Hugging Face 把训练栈拆成分层组件,每个库解决一个具体问题;用它们不只是省代码,而是复用经过大量项目验证的实现。</p>
+<table>
+<thead>
+<tr>
+<th>库</th>
+<th>解决什么问题</th>
+<th>关键产物</th>
+<th>不用它会怎样</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datasets</td>
+<td>统一加载与变换大数据</td>
+<td>内存映射缓存、<code>.map()</code>、切分</td>
+<td>自写解析与缓存,易踩内存坑</td>
+</tr>
+<tr>
+<td>Tokenizers</td>
+<td>文本 → id 的速度与一致性</td>
+<td>Rust 快速分词器</td>
+<td>分词慢;词表不配套则 id 错位</td>
+</tr>
+<tr>
+<td>Transformers</td>
+<td>模型/tokenizer 加载与训练</td>
+<td><code>AutoModel*</code>、Trainer</td>
+<td>手写架构加载与训练循环</td>
+</tr>
+<tr>
+<td>PEFT</td>
+<td>参数高效微调</td>
+<td>LoRA 等 adapter</td>
+<td>全参微调,显存/存储成本高</td>
+</tr>
+<tr>
+<td>TRL</td>
+<td>对齐阶段的标准流程</td>
+<td>SFTTrainer、DPO</td>
+<td>自己拼对齐训练,易出错</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>本章用到:Datasets、Tokenizer(经 <code>AutoTokenizer</code>)与 Transformers + Trainer;</li>
+<li>后续用到:PEFT(第 5、6 章)、TRL(第 4、7 章)——现在先记住分工。</li>
+<li><strong>不要把上一阶段自己训练的 <code>tokenizer.json</code> 用在 Qwen 上</strong>:开源模型的 embedding 权重已经和它自己的 tokenizer 绑定,替换会使 id 含义错位,模型输出立刻变成乱码。</li>
+</ul>
+<h2 id="3-全参数微调-vs-高效参数微调peft对照">3. 全参数微调 vs 高效参数微调(PEFT)对照</h2>
+<p>训练栈里的 Trainer 解决「怎么训」,而「训哪些参数」是更早的决策,直接决定显存与存储预算:</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>全参数微调</th>
+<th>PEFT(以 LoRA 为例)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新对象</td>
+<td>全部权重</td>
+<td>冻结基座,只训小 adapter</td>
+</tr>
+<tr>
+<td>显存需求</td>
+<td>需存全部梯度与优化器状态</td>
+<td>只存 adapter 状态,可更低</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>每个任务一份完整权重</td>
+<td>一个基座 + 几 MB adapter</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>数据充足、要学全新能力</td>
+<td>行为/格式适配、显存有限</td>
+</tr>
+<tr>
+<td>风险</td>
+<td>过拟合、灾难性遗忘</td>
+<td>秩不足时容量有限</td>
+</tr>
+</tbody>
+</table>
+<p>第 4 章先在全参数下看清 loss 行为,第 5、6 章再用 PEFT 在有限显存上完成真正微调——本章只需带着这张对照表理解各库的分工。</p>
+<h2 id="4-为什么用-trainer而不是手写训练循环">4. 为什么用 Trainer,而不是手写训练循环</h2>
+<p>「训练 = for 循环里前向 + 反向 + step」听起来简单,真正要写对的细节很多:设备与混合精度、梯度清零与累积、scheduler 步进顺序、<code>model.train()/eval()</code> 切换、检查点保存与恢复、日志与评测循环、多卡并行。每一处都是静默出错的温床:</p>
+<table>
+<thead>
+<tr>
+<th>手写循环常见错误</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>忘了 <code>optimizer.zero_grad()</code></td>
+<td>梯度跨 batch 累加,loss 异常波动</td>
+</tr>
+<tr>
+<td>忘记切换 <code>train()/eval()</code></td>
+<td>dropout 行为错乱,评测失真</td>
+</tr>
+<tr>
+<td>labels 与 input 错位</td>
+<td>模型学「预测自己」而非下一个 token</td>
+</tr>
+<tr>
+<td>精度/设备处理不当</td>
+<td>显存爆炸,或慢到无法训练</td>
+</tr>
+<tr>
+<td>自造检查点逻辑</td>
+<td>中断无法续训,实验不可复现</td>
+</tr>
+</tbody>
+</table>
+<p>Trainer 把这些打包成「配置驱动」组件:声明 <code>TrainingArguments</code>,传入 model、tokenizer、dataset,循环与配套工程由库内统一实现,并天然兼容 Datasets 的数据列、加速器与 Hub 上传。<strong>这不等于可以不懂</strong>:你仍需理解 loss、epoch、batch 这些概念(下一章),否则报错时连定位都无从下手。</p>
+<h2 id="5-四个组件各自负责什么">5. 四个组件各自负责什么</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>输入</th>
+<th>输出</th>
+<th>本章必须检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataset</td>
+<td>JSONL 样本</td>
+<td><code>messages</code></td>
+<td>最后一轮必须是 assistant</td>
+</tr>
+<tr>
+<td>Tokenizer</td>
+<td>chat 文本</td>
+<td>token id</td>
+<td>使用基座模型自带 tokenizer</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>token id</td>
+<td>下一个 token logits</td>
+<td>与 tokenizer 同一 <code>model_id</code></td>
+</tr>
+<tr>
+<td>Trainer</td>
+<td>batch 与 labels</td>
+<td>参数更新</td>
+<td>下一章才启用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-动手创建完整的-smoke-test-脚本">6. 动手:创建完整的 smoke-test 脚本</h2>
+<p>创建 <code>finetune/src/inspect_stack.py</code>,复制如下内容:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> datasets </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> load_dataset</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AutoModelForCausalLM, AutoTokenizer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">MODEL_ID</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Qwen/Qwen2.5-0.5B-Instruct"</span></span>
+<span class="line"><span style="color:#E1E4E8">data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> load_dataset(</span><span style="color:#9ECBFF">"json"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">data_files</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#9ECBFF">    "train"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"finetune/data/train.jsonl"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "validation"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"finetune/data/valid.jsonl"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#E1E4E8">tokenizer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoTokenizer.from_pretrained(</span><span style="color:#79B8FF">MODEL_ID</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> tokenizer.pad_token </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    tokenizer.pad_token </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer.eos_token</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">(example):</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"text"</span><span style="color:#E1E4E8">: tokenizer.apply_chat_template(</span></span>
+<span class="line"><span style="color:#E1E4E8">        example[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">tokenize</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">add_generation_prompt</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span></span>
+<span class="line"><span style="color:#E1E4E8">    )}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rendered </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> data.map(render)</span></span>
+<span class="line"><span style="color:#E1E4E8">sample </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> rendered[</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">][</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"text"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer(sample, </span><span style="color:#FFAB70">truncation</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">max_length</span><span style="color:#F97583">=</span><span style="color:#79B8FF">512</span><span style="color:#E1E4E8">)[</span><span style="color:#9ECBFF">"input_ids"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"train/valid:"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(rendered[</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">]), </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(rendered[</span><span style="color:#9ECBFF">"validation"</span><span style="color:#E1E4E8">]))</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"pad/eos:"</span><span style="color:#E1E4E8">, tokenizer.pad_token_id, tokenizer.eos_token_id)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"token count:"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(ids))</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"rendered sample:</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, sample)</span></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoModelForCausalLM.from_pretrained(</span><span style="color:#79B8FF">MODEL_ID</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"model vocab:"</span><span style="color:#E1E4E8">, model.config.vocab_size, </span><span style="color:#9ECBFF">"tokenizer vocab:"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(tokenizer))</span></span>
+<span class="line"><span style="color:#E1E4E8">Path(</span><span style="color:#9ECBFF">"finetune/reports/stack-check.txt"</span><span style="color:#E1E4E8">).write_text(sample, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>在项目根目录运行:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> finetune.src.inspect_stack</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>预期:输出 train/valid 数量、非空 token 数、相同的模型/词表大小,并生成 <code>stack-check.txt</code>。打开该文件,肉眼确认 system、user、assistant 三个角色和回答文字都存在。若只看到用户问题,说明 JSONL 的 assistant 消息格式有误,必须回到上一章修数据。</p>
+<h2 id="7-长度与模板的两个陷阱">7. 长度与模板的两个陷阱</h2>
+<p><code>max_length=512</code> 是这次小练习的上限。报告每条样本的 token 长度;被截断时,长答案尾部可能被丢弃。不要默默把上限调得很大,先确认显存能承担 <code>batch_size × length</code>。</p>
+<p><code>add_generation_prompt=False</code> 用于训练,因为样本已经有 assistant 答案;推理时才用 <code>True</code>,让模板在用户消息后打开 assistant 回答位置。训练与推理模板不同,会让模型学到错误的对话边界。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:训练前接线验收</p>
+<p><strong>目标</strong>:提交 <code>finetune/reports/stack-check.txt</code> 和 <code>stack-check.md</code>。</p>
+<p><strong>步骤</strong>:运行脚本;随机检查 train 的 3 条和 valid 的 2 条渲染文本;记录最长 token 数、pad/eos id、模型 ID 和 <code>transformers</code> 版本。</p>
+<p><strong>完成标准</strong>:每条均有完整 assistant 答案;没有 <code>&lt;unk&gt;</code>、空文本或把验证数据加载为训练数据;学生能解释为什么 tokenizer 必须随模型加载。</p>
+</div>
+<h2 id="8-总结与排错">8. 总结与排错</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>原因与处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KeyError: chat_template</code></td>
+<td>tokenizer 未提供模板或版本不支持;不要自己猜格式,应按模型卡或明确模板补好后抽查</td>
+</tr>
+<tr>
+<td><code>CUDA out of memory</code></td>
+<td>本章可先用 CPU 检查格式;格式正确后才考虑下一章的 GPU 训练</td>
+</tr>
+<tr>
+<td>渲染文本只见 user、不见 assistant</td>
+<td>JSONL 结构有误,回到第 2 章修数据</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么训练时用 <code>add_generation_prompt=False</code>、推理时用 <code>True</code>?若把上一阶段自训分词器用在 Qwen 上,loss 会怎样表现?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>训练样本已含完整回答,模板需渲染到底;推理时回答要由模型生成,模板只开到 assistant 作答位置。词表不匹配会让同一 id 对应不同 token,embedding 与输出层全部错位——loss 看似在下降,生成的却是乱码。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/main/en/chat_templating">Hugging Face:聊天模板</a></li>
+<li><a href="https://huggingface.co/docs/transformers/main/en/models">Hugging Face:加载模型</a></li>
+<li><a href="https://huggingface.co/docs/datasets/loading#json">Hugging Face:Datasets JSON 加载</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/03/02/"><span>上一篇</span><strong>01.03.02 指令数据集设计</strong></a><a class="ai-pager-next" href="/ai/01-models/03/04/"><span>下一篇</span><strong>01.03.04 监督微调 SFT</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#0-本章为什么存在">0. 本章为什么存在</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#1-先理解一条中文问答如何变成训练数字">1. 先理解:一条中文问答如何变成训练数字</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-chat-template-的作用模型的对话排版协议">1.1 chat template 的作用:模型的「对话排版协议」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-hugging-face-生态五个库各解决什么问题">2. Hugging Face 生态:五个库各解决什么问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-全参数微调-vs-高效参数微调peft对照">3. 全参数微调 vs 高效参数微调(PEFT)对照</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-为什么用-trainer而不是手写训练循环">4. 为什么用 Trainer,而不是手写训练循环</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-四个组件各自负责什么">5. 四个组件各自负责什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手创建完整的-smoke-test-脚本">6. 动手:创建完整的 smoke-test 脚本</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-长度与模板的两个陷阱">7. 长度与模板的两个陷阱</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结与排错">8. 总结与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

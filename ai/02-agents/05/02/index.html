@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.05.02 记忆的分类与需求 · iopanda</title><meta name="description" content="02.05.02 记忆的分类与需求 · 智能体 / 记忆与检索，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/05/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.05.02 记忆的分类与需求 · iopanda"><meta property="og:description" content="02.05.02 记忆的分类与需求 · 智能体 / 记忆与检索，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/05/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="05" data-active-subsection data-active-article="/ai/02-agents/05/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 记忆与检索"></button><a class="tree-link tree-link--section" href="/ai/02-agents/05/"><span class="tree-number">05</span><span class="tree-title">记忆与检索</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/05/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">记忆的分类与需求</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/05/">记忆与检索</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">记忆的分类与需求</span></nav><header class="ai-article-header"><p class="ai-number">02.05.02</p><h1>记忆的分类与需求</h1><p class="ai-meta"><time datetime="2026-09-03T04:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>memory-retrieval</li></ul></header><div class="ai-prose"><h1 id="记忆的分类与需求">记忆的分类与需求</h1>
+<blockquote>
+<p>02.04 走完一圈:课程助教有了会规划的大脑(02.03),也有了能调用的手(02.04),末篇 06 章还给手划了权限边界。可它仍有一个致命缺陷——<strong>每答完一题就彻底失忆</strong>:学员上周说「我是零基础」,这周它照样术语轰炸;刚才承诺「明天给你出三道练习题」,下一轮就忘得干干净净。模型本身无状态,想让 Agent「记得」,只能靠应用把状态写到模型之外。本章是 02.05 Memory and Retrieval 的第一课,回答三个问题:Agent 的记忆分哪几类、为什么 LLM 天生没有持久记忆、动手前要过哪三问。读完你会为课程助教画出一张「记忆需求表」,并给本模块后续每一章(会话记忆、外部存储、向量检索)找到它的位置。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 Agent 记忆的四种形态(工作/情景/语义/程序记忆)及各自的载体与课程助教示例;</li>
+<li>解释「模型权重是慢知识、上下文是快记忆、都不持久」,以及外部记忆为什么必需;</li>
+<li>用「记什么、存多久、怎么取」三问拆解任意一条记忆需求;</li>
+<li>用「便签、笔记本、图书馆」隐喻说明记忆分层的依据——取回成本;</li>
+<li>判断哪些任务根本不需要外部记忆,哪些必须分层设计。</li>
+</ol>
+<h2 id="1-概念agent-记忆的四种形态">1. 概念:Agent 记忆的四种形态</h2>
+<ul>
+<li>认知科学早就给记忆分了类(情景/语义之分出自 Tulving,程序记忆出自 Squire),工程社区把它借来设计 Agent 记忆——Anthropic 的上下文工程指南、CoALA 框架都用这套词表。先泼盆冷水:<strong>这是设计词表,不是模型的解剖结构</strong>——模型没有海马体,分类的价值是逼你回答「这条信息属于哪类、该怎么存、怎么取」。</li>
+<li>四种形态与课程助教的对应:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>形态</th>
+<th>通俗理解</th>
+<th>计算机里的载体</th>
+<th>课程助教例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工作记忆(working memory)</td>
+<td>正在手头处理的</td>
+<td>上下文窗口(每轮重装)</td>
+<td>本轮问题、刚返回的检索片段</td>
+</tr>
+<tr>
+<td>情景记忆(episodic)</td>
+<td>本会话发生的事,带时间线</td>
+<td>会话历史(消息列表)</td>
+<td>「学员刚问过 CASCADE」「我承诺了出题」</td>
+</tr>
+<tr>
+<td>语义记忆(semantic)</td>
+<td>跨会话的事实知识</td>
+<td>外部存储:SQLite/JSON/向量库</td>
+<td>「学员零基础、学到第 3 章、偏好文字讲解」</td>
+</tr>
+<tr>
+<td>程序记忆(procedural)</td>
+<td>怎么做事的技能</td>
+<td>system prompt + 工具定义 + 代码</td>
+<td>出题三步流程、算分规则、查课程工具用法</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>最容易被忽略的是<strong>程序记忆</strong>:它几乎不「像记忆」——人骑车不用回忆操作步骤,课程助教调用工具也不用每次把工具说明「回忆」一遍,技能常驻在 system prompt 与代码里(呼应 02.01 的 Agent 五要素:记忆远不止「聊天记录」一种形态)。</li>
+</ul>
+<h2 id="2-为什么需要权重是慢知识上下文是快记忆">2. 为什么需要:权重是慢知识,上下文是快记忆</h2>
+<ul>
+<li>LLM 只有两种「自带」的记忆,而它们都不适合当 Agent 的持久记忆:
+<ul>
+<li><strong>模型权重 = 慢知识</strong>:训练时固化在参数里,记录语言规律与训练语料里的事实;要更新得重新训练或微调(呼应 01.03),成本以万元和数周计——你不可能因为学员说了句「我是零基础」就去微调一次模型。</li>
+<li><strong>上下文 = 快记忆</strong>:每轮调用前装进窗口,模型立即「看到」;但每次 API 调用彼此独立、无状态(呼应 02.01),调用结束窗口即清空。多轮对话里模型「记得」不是它记住了,而是应用把历史又原样发了一遍(呼应 02.02 的 02 章:窗口 ≠ 记忆)。</li>
+</ul>
+</li>
+<li>三种载体摆在一起看:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>载体</th>
+<th>读写速度</th>
+<th>能存多久</th>
+<th>更新成本</th>
+<th>谁在管</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型权重</td>
+<td>慢</td>
+<td>训练截止时点,几乎永久</td>
+<td>重训/微调,极高</td>
+<td>模型厂商</td>
+</tr>
+<tr>
+<td>上下文窗口</td>
+<td>快</td>
+<td>单次调用,结束即清</td>
+<td>每轮重发即可</td>
+<td>应用代码</td>
+</tr>
+<tr>
+<td>外部存储(要建的)</td>
+<td>中</td>
+<td>跨会话,想留多久留多久</td>
+<td>一次写入、随时读取</td>
+<td>你自己的记忆模块</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>结论:Agent 的「记得」只能由应用实现——<strong>把值得留的状态写到模型之外(数据库/文件/向量库),需要时再读回上下文</strong>。这就是本模块要建的记忆系统;本章先定「存什么」,02~05 章解决「怎么存、怎么取」。</li>
+</ul>
+<h2 id="3-作用记忆设计三问记什么存多久怎么取">3. 作用:记忆设计三问——记什么、存多久、怎么取</h2>
+<ul>
+<li>任何一条记忆需求,动手之前先过三问:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>问</th>
+<th>展开</th>
+<th>决定什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 记什么</td>
+<td>什么信息会影响后续行为?进度、背景、偏好、承诺、查过的资料</td>
+<td>信息价值:值不值得占存储</td>
+</tr>
+<tr>
+<td>② 存多久</td>
+<td>本会话内有效,还是跨会话都要?</td>
+<td>存储介质与清理策略(短期/长期)</td>
+</tr>
+<tr>
+<td>③ 怎么取</td>
+<td>全量回填、按 ID 精确查,还是按语义检索?</td>
+<td>存成原文、结构化条目还是向量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>三问的答案把需求分流到本模块的后续章节:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>一条记忆需求</span></span>
+<span class="line"><span>   ├─ ②答「会话内」   → 情景记忆:02 章 会话记忆与会话压缩</span></span>
+<span class="line"><span>   ├─ ②答「跨会话」   → 语义记忆(事实):03 章 长期记忆外部存储</span></span>
+<span class="line"><span>   ├─ ③答「语义检索」 → 语义记忆(资料):04/05 章 向量检索与 RAG</span></span>
+<span class="line"><span>   └─ ①答「是技能」   → 程序记忆:写进 system prompt 与代码,不进数据库</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>作用小结:三问把「感觉该记住点什么」的模糊冲动,翻译成「存哪一层、用什么技术、归哪一章实现」的工程决策;01 章的产物是一张分类清楚的需求表,而不是一段代码。</li>
+</ul>
+<h2 id="4-详细介绍便签笔记本与图书馆">4. 详细介绍:便签、笔记本与图书馆</h2>
+<ul>
+<li>另一个流传更广的隐喻按「容量与取回成本」把记忆分成三层:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>隐喻</th>
+<th>对应形态</th>
+<th>特性</th>
+<th>课程助教落点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>便签</td>
+<td>工作 + 情景记忆</td>
+<td>随手写随手撕:快、容量小、易失</td>
+<td>本轮问答与最近几轮对话</td>
+</tr>
+<tr>
+<td>笔记本</td>
+<td>语义记忆(个人事实)</td>
+<td>持久、结构化、按条目翻找</td>
+<td>学员档案:水平、进度、偏好</td>
+</tr>
+<tr>
+<td>图书馆</td>
+<td>语义记忆(资料)</td>
+<td>海量、不查就没有、检索有成本</td>
+<td>课程讲义与资料全文</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>三层的关键差异是<strong>取回成本</strong>:便签内容每轮全量摊开(便宜但容量小);笔记本按学员 ID 精确取几条(便宜且够用);图书馆藏书再多也得先检索才能用,检索本身要花 token 与时间(04 章)。一句话:<strong>记忆分层 = 按取回成本分配信息</strong>。</li>
+<li>程序记忆不在三层里:技能写进代码与 system prompt,「永远带着,无需取回」。</li>
+<li>用三问给课程助教填一张需求表,它就是本模块的路线图:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>记什么</th>
+<th>存多久</th>
+<th>怎么取</th>
+<th>形态与实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跟上本会话话题</td>
+<td>问答原文</td>
+<td>会话内</td>
+<td>全量回填</td>
+<td>情景/02 章</td>
+</tr>
+<tr>
+<td>记住学员背景</td>
+<td>「零基础」等事实</td>
+<td>跨会话</td>
+<td>按学员 ID</td>
+<td>语义/03 章</td>
+</tr>
+<tr>
+<td>记住辅导进度</td>
+<td>学到第几章</td>
+<td>跨会话</td>
+<td>按学员 ID</td>
+<td>语义/03 章</td>
+</tr>
+<tr>
+<td>引用课程原文</td>
+<td>讲义片段</td>
+<td>长期海量</td>
+<td>语义检索 top-k</td>
+<td>语义/04~05 章</td>
+</tr>
+<tr>
+<td>出题与算分</td>
+<td>流程与规则</td>
+<td>常驻</td>
+<td>不需要取</td>
+<td>程序/system + 代码</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>判断「要不要记忆」的三步测试:任务只答一次、不依赖前文 → 不需要;多轮依赖前文 → 至少便签级(02 章);跨会话跟踪学员 → 笔记本级(03 章);回答要引用海量资料 → 图书馆级(04/05 章)。注意需求会变化:学员从零基础学到进阶,「零基础」这条取值必须更新——<strong>怎么更新、怎么删除,也是记忆设计的一部分</strong>(06 章展开)。</li>
+</ul>
+<h2 id="5-动手活动为课程助教写记忆需求清单">5. 动手活动:为课程助教写记忆需求清单</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:memory_planner.py——三问自查 + 自动分层</p>
+<p><strong>目标</strong>:产出 <code>memory-requirements.md</code>(≥5 条真实记忆需求,每条过三问、标形态与实现章),并用脚本自查三问是否齐全、分层是否合理。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>回放一次你与课程助教的真实(或模拟)对话,列出 5 条它「应该记住却没记住」的信息;</li>
+<li>对每条回答三问并填入需求表(记什么/存多久/怎么取);</li>
+<li>运行脚本核对:三问齐全、分层建议与你的判断一致;</li>
+<li>把表整理进 <code>memory-requirements.md</code>,作为 02~05 章动手活动的需求来源。</li>
+</ol>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># memory_planner.py —— 记忆需求三问自查与自动分层(纯 Python 3,无第三方依赖)</span></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> layer_of</span><span style="color:#E1E4E8">(duration):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """按『存多久』给出分层:会话内 = 便签级,跨会话 = 笔记本级。"""</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> duration </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "session"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> "便签级(情景记忆,02 章会话记忆与会话压缩)"</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> "笔记本级(语义记忆,03 章长期记忆外部存储)"</span></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> check_three_questions</span><span style="color:#E1E4E8">(item):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """三问完整性检查:返回缺失字段的显示名列表,空列表即齐全。"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    fields </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"what"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"记什么"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"duration"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"存多久"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"how"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"怎么取"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> [fields[key] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> key </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> fields </span><span style="color:#F97583">if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> item.get(key)]</span></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    needs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"学员零基础背景"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"what"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"学习起点"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"duration"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"cross_session"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"how"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"按学员 ID 查询"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"本会话问答原文"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"what"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"对话内容"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"duration"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"session"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"how"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"全量回填"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"上次辅导进度"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"what"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"章节位置"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"duration"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"cross_session"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"how"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"按学员 ID 查询"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"推荐过的资料"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"what"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"资料编号"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"duration"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"how"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> item </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> needs:</span></span>
+<span class="line"><span style="color:#E1E4E8">        missing </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> check_three_questions(item)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> missing:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"「</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">」三问不齐,缺:</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (item[</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"、"</span><span style="color:#E1E4E8">.join(missing)))</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"「</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">」三问齐全,建议 → </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (item[</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">], layer_of(item[</span><span style="color:#9ECBFF">"duration"</span><span style="color:#E1E4E8">])))</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    main()</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p><strong>完成标准</strong>:5 条需求全部三问可答;脚本零缺项(先把「推荐过的资料」补上存多久/怎么取再跑);能指着表格说出每条需求对应 02/03/04 章中的哪一章,并指出至少一条「其实不需要记忆」的需求。</p>
+</div>
+<h2 id="6-边界什么时候不需要记忆">6. 边界:什么时候不需要记忆</h2>
+<ul>
+<li><strong>不需要记忆的三种情况</strong>:① 一次性问答(查个函数签名,答完即止);② 外部状态即真相(课程表系统里现查,别缓存成记忆——呼应 02.04:能现取的数据不要重复存);③ 纯近因信息(「上一句说了什么」由窗口自己管,存下来反而制造过期副本)。</li>
+<li><strong>记忆不是越多越好</strong>:每轮回填都花 token,塞满窗口还稀释注意力(呼应 02.02 的 02 章:利用率与中段稀释);图书馆内容尤其要按需检索,不许整本搬进窗口。</li>
+<li><strong>分类不是摆设</strong>:只写「情景记忆」四个字解决不了任何问题;分类必须落到「三问有答案、载体已选定、读取时机已定」才算数(03 章讲读写时机)。</li>
+<li><strong>程序记忆别硬塞数据库</strong>:技能与规则属于代码与 system prompt;存进语义库再检索回来,既慢又可能被检索噪声带偏。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>四种形态</td>
+<td>工作=窗口内、情景=本会话发生的事、语义=跨会话事实、程序=技能</td>
+</tr>
+<tr>
+<td>为什么需要外部记忆</td>
+<td>权重是慢知识(改不动),上下文是快记忆(留不住)</td>
+</tr>
+<tr>
+<td>三问</td>
+<td>记什么(价值)、存多久(介质)、怎么取(格式)</td>
+</tr>
+<tr>
+<td>三层隐喻</td>
+<td>便签(会话)、笔记本(档案)、图书馆(资料)——按取回成本分层</td>
+</tr>
+<tr>
+<td>何时不需要</td>
+<td>一次性任务、外部现取、近因信息——别为记忆而记忆</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:学员第 1 轮说「我是零基础」,第 30 轮才问「那 ORM 呢」——这条信息该进便签、笔记本还是图书馆?如果按「记忆越多越好」把它每轮全量回填,会发生什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>该进笔记本(语义记忆/跨会话):「零基础」是稳定的个人事实,不是本会话的临时事件;取回方式是按学员 ID 精确读取,而不是靠语义检索。若每轮全量回填,30 轮后它会和新增的问答、工具结果抢窗口空间,推高 token 成本并稀释注意力(02.02 的 02 章);而它真正被用到只有提问那一刻——平时存着、需要时取,正是 03 章「读写时机」要解决的问题。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic:Effective context engineering for AI agents(工作/情景/语义/程序记忆四形态)</a></li>
+<li><a href="https://docs.langchain.com/oss/python/concepts/memory">LangChain:Memory overview(短期记忆与长期记忆概念)</a></li>
+<li><a href="https://arxiv.org/abs/2309.02427">CoALA:Cognitive Architectures for Language Agents(arXiv:2309.02427,Agent 记忆分类框架)</a></li>
+</ul>
+<p>上一篇(纯文本衔接 02.04 末篇):06 权限边界与工具安全——那章回答「工具能碰什么」,本章起进入 02.05 Memory and Retrieval,回答「碰过之后怎么记得住」;02.04 全貌见其 README。</p>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/05/01/"><span>上一篇</span><strong>02.05.01 记忆与检索 概览</strong></a><a class="ai-pager-next" href="/ai/02-agents/05/03/"><span>下一篇</span><strong>02.05.03 会话记忆与会话压缩</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念agent-记忆的四种形态">1. 概念:Agent 记忆的四种形态</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要权重是慢知识上下文是快记忆">2. 为什么需要:权重是慢知识,上下文是快记忆</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用记忆设计三问记什么存多久怎么取">3. 作用:记忆设计三问——记什么、存多久、怎么取</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍便签笔记本与图书馆">4. 详细介绍:便签、笔记本与图书馆</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动为课程助教写记忆需求清单">5. 动手活动:为课程助教写记忆需求清单</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界什么时候不需要记忆">6. 边界:什么时候不需要记忆</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

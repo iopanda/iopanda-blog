@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.03.02.05 与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比 · iopanda</title><meta name="description" content="04.03.02.05 与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比 · 工具链 / 应用平台与工作流，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/03/02/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.03.02.05 与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比 · iopanda"><meta property="og:description" content="04.03.02.05 与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比 · 工具链 / 应用平台与工作流，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/03/02/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="03" data-active-subsection="02" data-active-article="/ai/04-tooling/03/02/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 应用平台与工作流"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/03/"><span class="tree-number">03</span><span class="tree-title">应用平台与工作流</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/03/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 n8n"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/03/02/"><span class="tree-number">02</span><span class="tree-title">n8n</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/03/02/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/03/">应用平台与工作流</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/03/02/">n8n</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比</span></nav><header class="ai-article-header"><p class="ai-number">04.03.02.05</p><h1>与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比</h1><p class="ai-meta"><time datetime="2026-09-03T21:14">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>application-platforms-and-workflows</li><li>n8n</li><li>competitive-analysis</li></ul></header><div class="ai-prose"><h1 id="与-difylangflowopen-webuianythingllm-的竞品对比">与 Dify、Langflow、Open WebUI、AnythingLLM 的竞品对比</h1>
+<blockquote>
+<p>n8n 的竞品分析，关键不是“都能搭 AI 应用”，而是“谁把哪一层当主角”。n8n 把自动化工作流当主角；Dify 把业务 AI 应用平台当主角；Langflow 把开发者可视化实验当主角；Open WebUI 把聊天前台当主角；AnythingLLM 把 knowledge workspace 当主角。[1][2][3]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>把 n8n 放进更准确的竞品坐标系；</li>
+<li>理解它与 Dify、Langflow、Open WebUI、AnythingLLM 的第一性差异；</li>
+<li>根据团队主要矛盾判断哪条路线更顺；</li>
+<li>避免把“都支持 LLM”误解成“产品完全同类”；</li>
+<li>做出更可信的选型建议。</li>
+</ol>
+<h2 id="1-总览对比">1. 总览对比</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>n8n</th>
+<th>Dify</th>
+<th>Langflow</th>
+<th>Open WebUI</th>
+<th>AnythingLLM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一主角</td>
+<td>自动化工作流平台</td>
+<td>AI 应用平台</td>
+<td>可视化 flow 实验</td>
+<td>聊天前台</td>
+<td>本地知识工作台</td>
+</tr>
+<tr>
+<td>核心问题</td>
+<td>怎样把 AI 嵌进现有流程与系统</td>
+<td>怎样交付完整业务 AI 应用</td>
+<td>怎样快速编排与试验 agent/flow</td>
+<td>怎样统一访问模型与聊天</td>
+<td>怎样把知识问答和本地工作台做起来</td>
+</tr>
+<tr>
+<td>最适合谁</td>
+<td>有大量系统集成需求的技术团队</td>
+<td>平台型业务交付团队</td>
+<td>开发者实验团队</td>
+<td>先做团队 AI 门户的组织</td>
+<td>本地化/知识型工作台团队</td>
+</tr>
+<tr>
+<td>强项</td>
+<td>integrations、templates、code + canvas、automation</td>
+<td>workflow + knowledge + deploy + collaboration</td>
+<td>上手快、实验直观</td>
+<td>自托管聊天前台</td>
+<td>local-first knowledge experience</td>
+</tr>
+<tr>
+<td>主要短板</td>
+<td>AI 不是第一原生对象</td>
+<td>平台更重</td>
+<td>更偏实验而非大平台</td>
+<td>不等于完整业务平台</td>
+<td>不擅长复杂业务自动化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-n8n-vs-dify">2. n8n vs Dify</h2>
+<p>这是“自动化优先”和“AI 应用平台优先”的对比。</p>
+<ul>
+<li>n8n 更适合把 AI 放入现有业务系统和流程；</li>
+<li>Dify 更适合从头构建一个面向业务的 AI 应用平台。</li>
+</ul>
+<p>如果你最在意 integrations、审批、业务自动化链路，n8n 更顺；如果你最在意 knowledge + workflow + app delivery，Dify 更自然。</p>
+<h2 id="3-n8n-vs-langflow">3. n8n vs Langflow</h2>
+<p>Langflow 更偏开发者可视化实验和原型流程；n8n 更偏生产自动化。</p>
+<p>所以：</p>
+<ul>
+<li>试原型、跑 flow、比模型：Langflow 很方便；</li>
+<li>把 AI 和 CRM、工单、ERP、通知系统串起来：n8n 更有现实优势。</li>
+</ul>
+<h2 id="4-n8n-vs-open-webui">4. n8n vs Open WebUI</h2>
+<p>Open WebUI 首先是聊天与模型访问前台；n8n 首先是工作流系统。</p>
+<p>因此：</p>
+<ul>
+<li>想先给团队一个 AI 门户：Open WebUI 更直接；</li>
+<li>想让 AI 驱动跨系统自动化：n8n 更适合。</li>
+</ul>
+<h2 id="5-n8n-vs-anythingllm">5. n8n vs AnythingLLM</h2>
+<p>AnythingLLM 更偏 knowledge workspace 和 local-first 场景；n8n 更偏跨系统自动化与执行流程。</p>
+<p>如果核心目标是“围绕知识库做工作台”，AnythingLLM 更轻；如果核心目标是“让 AI 真正在业务流程里执行动作”，n8n 更强。</p>
+<h2 id="6-n8n-的真正竞争优势">6. n8n 的真正竞争优势</h2>
+<p>n8n 最强的地方，不是某个单点 AI 功能，而是：</p>
+<ol>
+<li>它的自动化基础极成熟；</li>
+<li>它的系统集成能力非常强；</li>
+<li>它允许在可视化流程中混合代码；</li>
+<li>它让 AI 进入真实业务流程，而不仅停在前台交互。</li>
+</ol>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>和 Dify 的差别</td>
+<td>一个偏自动化平台，一个偏 AI 应用平台</td>
+</tr>
+<tr>
+<td>和 Langflow 的差别</td>
+<td>一个偏生产自动化，一个偏可视化实验</td>
+</tr>
+<tr>
+<td>和 Open WebUI 的差别</td>
+<td>一个是工作流系统，一个是聊天前台</td>
+</tr>
+<tr>
+<td>和 AnythingLLM 的差别</td>
+<td>一个是自动化执行层，一个是知识工作台</td>
+</tr>
+<tr>
+<td>n8n 的优势</td>
+<td>integrations + automation + code/control</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么对很多企业来说，n8n 的真正优势不是“能做 AI agent”，而是“能把 AI agent 接进现有系统”？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为企业价值大多沉淀在现有系统与流程里。AI 若不能接 CRM、工单、审批、数据库、消息系统，就很难成为真正的业务能力。n8n 的价值恰恰在于把 agent 放进已有业务骨架中。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://raw.githubusercontent.com/n8n-io/n8n/master/README.md">https://raw.githubusercontent.com/n8n-io/n8n/master/README.md</a> — n8n README</li>
+<li>[2] <a href="https://n8n.io">https://n8n.io</a> — n8n homepage</li>
+<li>[3] <a href="https://api.github.com/repos/n8n-io/n8n">https://api.github.com/repos/n8n-io/n8n</a> — n8n GitHub API</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/03/02/04/"><span>上一篇</span><strong>04.03.02.04 质量、社区、价格与许可边界</strong></a><a class="ai-pager-next" href="/ai/04-tooling/03/02/06/"><span>下一篇</span><strong>04.03.02.06 真实组织案例：Vodafone、Trendyol、Stepstone、Huel、Seguros Bolívar、Fullscript</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-总览对比">1. 总览对比</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-n8n-vs-dify">2. n8n vs Dify</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-n8n-vs-langflow">3. n8n vs Langflow</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-n8n-vs-open-webui">4. n8n vs Open WebUI</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-n8n-vs-anythingllm">5. n8n vs AnythingLLM</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-n8n-的真正竞争优势">6. n8n 的真正竞争优势</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

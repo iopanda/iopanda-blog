@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.03 神经网络 · iopanda</title><meta name="description" content="01.01.03 神经网络 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.03 神经网络 · iopanda"><meta property="og:description" content="01.01.03 神经网络 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">神经网络</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">神经网络</span></nav><header class="ai-article-header"><p class="ai-number">01.01.03</p><h1>神经网络</h1><p class="ai-meta"><time datetime="2026-09-02T15:30">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-models</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章我们学了「模型从数据里学规律」的通用框架;这一章回答:<strong>它用什么结构来学?</strong> 答案是神经网络——当今几乎所有 AI 模型(从图像识别到大语言模型)的共同骨架。本章围绕四个问题展开:它是什么、为什么非它不可、它有什么用、它内部到底怎么运转。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说清单个神经元的计算过程(加权和 + 激活),并解释为什么必须引入非线性;</li>
+<li>对比 ReLU、GELU、sigmoid 三种激活函数的优劣,并说出 Transformer 系列用哪个;</li>
+<li>复述前向传播、反向传播与优化器更新的完整四步,解释为什么反向传播「快」;</li>
+<li>解释「分层特征」的含义:为什么浅层像词形、深层像语义;</li>
+<li>说明分类任务为何用交叉熵、回归任务为何用均方误差,并列出神经网络的主要局限。</li>
+</ol>
+<h2 id="1-概念神经网络是什么">1. 概念:神经网络是什么</h2>
+<ul>
+<li><strong>神经网络</strong>是一种受大脑神经元启发的计算模型:把大量简单计算单元(神经元)分层连接、层层堆叠,整体构成一个可微的数学函数 <code>y = f(x; θ)</code>。</li>
+<li>它的源头可以追溯到 1943 年 McCulloch 与 Pitts 提出的「形式神经元」,1958 年 Rosenblatt 造出感知机(Perceptron),但真正让「多层+可训练」成为现实的,是 1986 年 Rumelhart、Hinton 与 Williams 推广的反向传播算法。</li>
+<li><strong>它不是什么</strong>:它并不是大脑的仿真——今天的神经网络只是「受启发」的结构,细节(如反向传播)在大脑里并不存在。</li>
+</ul>
+<h3 id="11-单个神经元加权和--激活">1.1 单个神经元:加权和 + 激活</h3>
+<p>一个神经元做两步计算:</p>
+<ol>
+<li><strong>加权和</strong>:把每个输入 <code>xᵢ</code> 乘上对应权重 <code>wᵢ</code>,求和并加上偏置 <code>b</code>,得到 <code>z = w₁x₁ + w₂x₂ + … + wₙxₙ + b</code>;</li>
+<li><strong>激活</strong>:把 <code>z</code> 送入一个非线性函数 <code>σ</code>,得到输出 <code>a = σ(z)</code>。</li>
+</ol>
+<p>生活化类比:神经元像一个「评审委员会成员」——每个输入(委员意见)按权重(信任程度)打分,加总后经过一道「通过/否决」的闸门才表态。权重 <code>w</code> 和偏置 <code>b</code> 就是训练时要调整的参数;「激活函数」就是这个闸门。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>输入层          隐藏层(神经元们)          输出层</span></span>
+<span class="line"><span>x₁ ──w──┐</span></span>
+<span class="line"><span>x₂ ──w──┼──► z = Σwᵢxᵢ + b ──► a = σ(z) ──► … ──► 预测 ŷ</span></span>
+<span class="line"><span>x₃ ──w──┘</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h3 id="12-为什么必须引入非线性激活函数的真正意义">1.2 为什么必须引入非线性:激活函数的真正意义</h3>
+<ul>
+<li><strong>概念</strong>:如果去掉激活函数,多层网络每一层都只是线性变换 <code>Wx + b</code>,而「线性变换的复合仍然是线性变换」——堆再多层也等价于一层。这样的网络表达能力与单层感知机无异。</li>
+<li><strong>为什么需要</strong>:现实任务几乎都是非线性可分的。1969 年 Minsky 与 Papert 在《Perceptrons》中指出,单层感知机连最简单的「异或(XOR)」都学不会——这个问题直接导致了第一次 AI 寒冬。</li>
+<li><strong>作用</strong>:非线性激活让网络能拟合弯曲的决策边界,是「深」真正带来「强」的前提。</li>
+<li><strong>详细介绍</strong>:理论上能强到什么程度?1989 年 Hornik、Stinchcombe 与 White 证明<strong>通用近似定理</strong>:只要隐藏单元足够多,单隐藏层的前馈网络就能以任意精度逼近任何连续函数。但注意两点:一是「足够多」可能意味着指数级的神经元;二是定理只保证「存在」,不保证「学得到」。深度网络的价值正在于:多层结构可以用少得多的参数高效表示复杂函数。</li>
+</ul>
+<h2 id="2-为什么需要它线性模型与人工特征的天花板">2. 为什么需要它:线性模型与人工特征的天花板</h2>
+<ul>
+<li>回顾上一章:传统机器学习把「特征工程」留给人类——把图片转成 SIFT 特征、把文本转成词袋,再喂给线性模型。这有三重困境:
+<ol>
+<li><strong>特征要人设计</strong>:写特征的人决定了模型上限;</li>
+<li><strong>线性模型太直</strong>:多数任务(如图像、语音、语言)的规律是高度非线性的;</li>
+<li><strong>无法端到端优化</strong>:特征提取与分类器分开训练,误差无法逐层传导修正。</li>
+</ol>
+</li>
+<li>神经网络一次性解决这三个问题:<strong>输入原始数据,中间层自动学特征,输出端直接给预测</strong>,整条链路用一个损失函数端到端地训练。</li>
+<li>一句话:线性模型 + 人工特征 ≈「人先想好看什么,机器再学怎么判断」;神经网络 ≈「机器连『看什么』也一起学」——后者正是后者能处理图像、语音、自然语言这类高维原始数据的原因。</li>
+</ul>
+<h2 id="3-它有什么作用一切现代-ai-的地基">3. 它有什么作用:一切现代 AI 的地基</h2>
+<ul>
+<li><strong>工程价值</strong>:今天你接触到的模型几乎全是神经网络——图像识别(ResNet)、语音(Whisper)、机器翻译与对话(GPT、Llama、Gemini)莫不如此。它们共享同一套「神经元堆叠 + 梯度训练」的底座,区别只在层怎么连(卷积、循环、注意力,见 06~08 章)。</li>
+<li><strong>对大语言模型的意义</strong>:LLM 的「智能」没有额外魔法,就是极大规模的神经网络在文本上训练出来的统计规律;它内部的 Transformer 层(第 06 章)本质仍是「带注意力机制的神经网络层」。</li>
+<li><strong>降低使用门槛</strong>:因为特征自动学,神经网络把 AI 从「专家调特征」的实验室带进了「给数据就能训」的工程时代——这也是预训练基础模型(01 章)能成立的前提。</li>
+</ul>
+<h2 id="4-详细介绍神经网络如何工作">4. 详细介绍:神经网络如何工作</h2>
+<h3 id="41-激活函数三兄弟对比">4.1 激活函数三兄弟对比</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>公式</th>
+<th>优点</th>
+<th>缺点</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sigmoid</strong></td>
+<td>σ(x) = 1/(1+e⁻ˣ)</td>
+<td>输出压缩到 (0,1),可解释为概率</td>
+<td>两端饱和区梯度趋近 0(梯度消失);输出非零中心;指数运算慢</td>
+<td>二分类输出层、门控机制</td>
+</tr>
+<tr>
+<td><strong>ReLU</strong></td>
+<td>max(0, x)</td>
+<td>计算极快;正区间梯度恒为 1,有效缓解梯度消失;实践效果好</td>
+<td>负区间输出恒 0,神经元可能「死掉」;x=0 处不可导</td>
+<td>卷积网络默认选择;<strong>原版 Transformer(2017)前馈层即用 ReLU</strong></td>
+</tr>
+<tr>
+<td><strong>GELU</strong></td>
+<td>x·Φ(x)</td>
+<td>平滑版 ReLU:按输入值大小「加权」而非按符号「开关」;梯度更平稳,训练更稳</td>
+<td>计算稍贵(常用近似式 0.5x(1+tanh[√(2/π)(x+0.044715x³)]))</td>
+<td><strong>BERT 与 GPT 系列默认激活</strong>,现为最强 Transformer 的主流选择</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>为什么 Transformer 选了 GELU/ReLU 而不用 sigmoid?</strong> 深层网络中 sigmoid 的饱和区会让梯度在反向传播时逐层衰减、几乎传不回去(梯度消失);ReLU/GELU 在正区间保持梯度畅通,几十上百层也能有效训练。</li>
+</ul>
+<h3 id="42-前向传播数据流过一次网络">4.2 前向传播:数据流过一次网络</h3>
+<ul>
+<li><strong>概念</strong>:输入 <code>x</code> 从输入层进入,逐层做「加权和 + 激活」,直到输出层产生预测 <code>ŷ</code>,这一过程叫<strong>前向传播(Forward Propagation)</strong>。</li>
+<li>输出层按任务选择:回归任务直接输出数值;二分类输出 sigmoid 压缩到 0~1;多分类接 softmax 得到「各类别概率」。</li>
+<li><strong>作用</strong>:前向传播既是一次推理(训练好之后用它预测),也是训练的第一步(先算预测,才能算错多少)。</li>
+</ul>
+<h3 id="43-反向传播--优化器更新训练的核心四步">4.3 反向传播 + 优化器更新:训练的核心四步</h3>
+<p>训练一轮的标准循环只有四步:</p>
+<ol>
+<li><strong>前向传播</strong>:输入一批样本,算出预测 <code>ŷ</code> 与损失 <code>L</code>(错得越离谱,L 越大);</li>
+<li><strong>反向传播</strong>:从输出层往回,用<strong>链式法则</strong>逐层计算损失对每个参数 <code>w</code>、<code>b</code> 的偏导数 <code>∂L/∂w</code>(即「每个参数该为错误负多少责」);</li>
+<li><strong>优化器更新</strong>:沿负梯度方向迈一小步,如 SGD:<code>w ← w − η·(∂L/∂w)</code>,<code>η</code> 是学习率(见 02 章);</li>
+<li><strong>重复</strong>:遍历整个训练集多轮(epoch),直到损失收敛。</li>
+</ol>
+<ul>
+<li><strong>为什么需要反向传播?</strong> 一个直觉:直接求梯度可以,但笨办法代价太高。若用数值微分逐个参数扰动,参数量为 N 就要跑 N 次前向;反向传播借链式法则「一次前向 + 一次反向」就把所有参数的梯度算完——GPU 上训练千亿参数模型(如 LLM)全靠这个效率。反向传播本质是<strong>高效地给每个参数分配错误责任</strong>,这也是它被称作「信用分配(credit assignment)」的原因。</li>
+</ul>
+<h3 id="44-损失函数怎么选分类交叉熵回归-mse">4.4 损失函数怎么选:分类交叉熵、回归 MSE</h3>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>损失</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类(输出概率)</td>
+<td><strong>交叉熵(Cross-Entropy)</strong></td>
+<td>它衡量「预测分布与真实分布的距离」,与 softmax 概率输出天然配套;梯度大小正比于「预测错多少」,不会因概率接近 0/1 而饱和停滞,训练快</td>
+</tr>
+<tr>
+<td>回归(输出数值)</td>
+<td><strong>均方误差(MSE)</strong></td>
+<td>连续数值任务关心「误差的大小」,MSE 平方放大离群错误、处处可导、梯度平滑,且在误差服从高斯分布时它正是最大似然估计的等价形式</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>反例警示:分类任务若用 MSE,softmax 输出接近 0 或 1 时梯度趋近 0,模型「错了却学不动」——<strong>损失函数要和输出层的数学性质匹配</strong>,不能随手换。</li>
+</ul>
+<h3 id="45-表示学习浅层词形深层语义">4.5 表示学习:浅层词形,深层语义</h3>
+<ul>
+<li><strong>概念</strong>:神经网络各层学到的不是随机中间量,而是<strong>从具体到抽象的特征层次</strong>——每一层在前一层输出的基础上组合出更高级的表示(representation)。</li>
+<li><strong>为什么会有层次</strong>:反向传播迫使每一层找到「对下一层最有用的压缩表达」,而自然数据(图像、语言)本身就有层级结构,网络便自发学会逐级抽象。</li>
+<li><strong>作用</strong>:这就是「表示学习(Representation Learning)」——特征是模型自己学出来的,无需人工设计。</li>
+<li><strong>详细介绍</strong>:以处理文本的网络为例,层次大致是:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>第 1~2 层:词形与局部模式(字母组合、常用词、词缀)</span></span>
+<span class="line"><span>第 3~4 层:词性与句法角色(名词/动词、「主语-谓语」关系)</span></span>
+<span class="line"><span>深层:语义与抽象(同义改写、情感、跨句指代、主题)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>对图像同理:浅层检测边缘→中层识别纹理与部件(眼睛、轮子)→深层组合出完整物体。理解这一点,是理解大模型「为什么越深越聪明」、也理解它「为什么浅层错误往往低级的」的钥匙。</li>
+</ul>
+<h3 id="46-局限分布外失败不可迷信">4.6 局限:分布外失败,不可迷信</h3>
+<ul>
+<li>神经网络学的是<strong>训练数据分布内的统计规律</strong>,遇到分布外(Out-of-Distribution,OOD)输入——训练时没见过的那类样本——它没有「我不知道」开关,仍会自信地输出一个答案。</li>
+<li>具体风险:对训练数据中的偏差(见 02 章)过度敏感;对抗样本(给图片加人眼不可见的噪声)能让它完全认错;生成类模型则会一本正经地编造(幻觉)。</li>
+<li><strong>工程启示</strong>:不能把神经网络当「真理机器」。上线前必须有分布外评测、输出校验与人工兜底;领域敏感场景优先用检索增强(RAG)补充事实依据。</li>
+</ul>
+<h2 id="5-总结">5. 总结</h2>
+<h3 id="51-本章一览">5.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>神经元</td>
+<td>加权和 + 非线性激活的最小计算单元</td>
+</tr>
+<tr>
+<td>为什么需要非线性</td>
+<td>线性叠线性还是线性,学不会 XOR 这类问题</td>
+</tr>
+<tr>
+<td>为什么需要神经网络</td>
+<td>自动学特征 + 端到端训练,突破人工特征天花板</td>
+</tr>
+<tr>
+<td>激活函数</td>
+<td>sigmoid 饱和易梯度消失;ReLU 快而稳;GELU 是 Transformer 主流</td>
+</tr>
+<tr>
+<td>训练四步</td>
+<td>前向算损失 → 反向求梯度 → 优化器更新 → 重复</td>
+</tr>
+<tr>
+<td>反向传播</td>
+<td>用链式法则一次算完所有参数梯度,是训练大模型的前提</td>
+</tr>
+<tr>
+<td>损失函数</td>
+<td>分类用交叉熵、回归用 MSE,须与输出层匹配</td>
+</tr>
+<tr>
+<td>表示学习</td>
+<td>浅层学词形/边缘,深层学语义/物体</td>
+</tr>
+<tr>
+<td>局限</td>
+<td>分布外会自信地错,须评测与兜底</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-思考题">5.2 思考题</h3>
+<ol>
+<li>如果把所有激活函数都换成恒等函数(σ(x)=x),100 层的网络等价于几层?为什么?</li>
+<li>ReLU 的「神经元死亡」是怎么发生的?GELU 为什么能缓解这个问题?</li>
+<li>为什么说反向传播是「信用分配」?不用反向传播、改用数值微分训练 10 亿参数模型,慢在哪?</li>
+<li>「分类问题能不能用 MSE 当损失?」从梯度角度分析为什么不行。</li>
+<li>神经网络为什么会在没见过的输入上「自信地错」?工程上你能列出哪些缓解手段?</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>等价于一层:线性变换复合仍是线性变换,多层堆叠被吸收进单个矩阵乘法,表达能力不随层数增加。</li>
+<li>当某神经元的加权和长期为负,ReLU 输出恒 0,反向传播梯度恒 0,权重再也无法更新,即「死亡」;GELU 负区间仍有非零(虽小)的输出与梯度,信息不会完全断流。</li>
+<li>每个参数的「错误责任」通过链式法则从损失逐层回传,一次反向就能给全部参数分好责任;数值微分要对每个参数单独扰动前向一次,10 亿参数就要 10 亿次前向,成本相差 10 亿倍。</li>
+<li>softmax 输出趋近 0/1 时,MSE 的梯度趋近 0,模型错得最狠时反而学得最慢;交叉熵的梯度与「预测偏差」成正比,始终提供有效学习信号。</li>
+<li>它只学会训练分布内的统计规律,输出层天然给出「某种答案」而没有「拒绝」选项;缓解手段:分布外评测、置信度阈值与拒答、检索增强提供事实、人工复核兜底。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/0893608089900208">Hornik, Stinchcombe &amp; White:Multilayer feedforward networks are universal approximators(1989)</a></li>
+<li><a href="https://arxiv.org/abs/1606.08415">Hendrycks &amp; Gimpel:Gaussian Error Linear Units(GELU),arXiv:1606.08415</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Universal_approximation_theorem">Wikipedia:Universal approximation theorem</a></li>
+<li><a href="https://www.3blue1brown.com/topics/neural-networks">3Blue1Brown:Neural networks 系列视频(前向/反向传播的可视化直觉)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/02/"><span>上一篇</span><strong>01.01.02 机器学习基础</strong></a><a class="ai-pager-next" href="/ai/01-models/01/04/"><span>下一篇</span><strong>01.01.04 Token 与 Embedding</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念神经网络是什么">1. 概念:神经网络是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-单个神经元加权和--激活">1.1 单个神经元:加权和 + 激活</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#12-为什么必须引入非线性激活函数的真正意义">1.2 为什么必须引入非线性:激活函数的真正意义</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要它线性模型与人工特征的天花板">2. 为什么需要它:线性模型与人工特征的天花板</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它有什么作用一切现代-ai-的地基">3. 它有什么作用:一切现代 AI 的地基</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍神经网络如何工作">4. 详细介绍:神经网络如何工作</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-激活函数三兄弟对比">4.1 激活函数三兄弟对比</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-前向传播数据流过一次网络">4.2 前向传播:数据流过一次网络</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-反向传播--优化器更新训练的核心四步">4.3 反向传播 + 优化器更新:训练的核心四步</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-损失函数怎么选分类交叉熵回归-mse">4.4 损失函数怎么选:分类交叉熵、回归 MSE</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-表示学习浅层词形深层语义">4.5 表示学习:浅层词形,深层语义</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#46-局限分布外失败不可迷信">4.6 局限:分布外失败,不可迷信</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-本章一览">5.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-思考题">5.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.03.06 应用平台与工作流 概览 · iopanda</title><meta name="description" content="04.03.06 应用平台与工作流 概览 · 工具链 / 应用平台与工作流，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/03/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.03.06 应用平台与工作流 概览 · iopanda"><meta property="og:description" content="04.03.06 应用平台与工作流 概览 · 工具链 / 应用平台与工作流，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/03/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="03" data-active-subsection data-active-article="/ai/04-tooling/03/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 应用平台与工作流"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/03/"><span class="tree-number">03</span><span class="tree-title">应用平台与工作流</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/03/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">应用平台与工作流 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/03/">应用平台与工作流</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">应用平台与工作流 概览</span></nav><header class="ai-article-header"><p class="ai-number">04.03.06</p><h1>应用平台与工作流 概览</h1><p class="ai-meta"><time datetime="2026-09-03T18:29">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>app-platform-workflows</li></ul></header><div class="ai-prose"><h1 id="应用平台与工作流-概览">应用平台与工作流 概览</h1>
+<blockquote>
+<p>前两章分别解决了模型入口与质量证据；这一章再向上走一层：<strong>如果团队并不想从 Python 代码开始组装全部 Agent/RAG 系统，而是更希望用可视化平台、低代码工作流、协作控制台、自托管应用外壳快速落地，那么有哪些开源平台值得认识？</strong> <code>04.03</code> 关心的不是某个工具能不能拖出一条流程图，而是这些平台各自把“应用搭建”理解成什么问题。</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分平台、工作流编排器、聊天工作台、团队应用壳之间的边界；</li>
+<li>比较 Dify、n8n、Langflow、Open WebUI、AnythingLLM 的设计中心；</li>
+<li>解释为什么有的平台先讲 workflow，有的平台先讲 workspace，有的平台先讲 UI/serving；</li>
+<li>为课程助教或企业知识助手选择“先平台后代码”还是“先代码后平台”的路线；</li>
+<li>避免把演示友好误当成生产友好。</li>
+</ol>
+<h2 id="1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</h2>
+<ul>
+<li>不是所有团队都该从 SDK 起步；很多团队真正需要的是协作界面、权限、发布、数据接入与工作流可视化；</li>
+<li>平台工具能显著缩短原型时间，但也会引入平台约束、抽象锁定与迁移成本；</li>
+<li>真正的学习重点不是“哪个界面更漂亮”，而是它把应用的哪个层做成了一等公民；</li>
+<li>这一组工具最适合用来训练产品/架构判断：什么时候该快，什么时候该深。</li>
+</ul>
+<h2 id="2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/04-tooling/03/01/01/">Dify</a></td>
+<td>从应用发布与团队协作视角出发的 LLM / Agent 平台</td>
+<td>app studio、workflow、知识库、发布</td>
+<td>想快速自托管业务应用与团队协作的平台型团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/03/02/01/">n8n</a></td>
+<td>通用自动化工作流平台延展出 AI 能力</td>
+<td>workflow automation、integrations、AI nodes</td>
+<td>已有大量 SaaS / API 集成需求的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/03/03/01/">Langflow</a></td>
+<td>偏面向开发者的可视化 AI agent / workflow 工具</td>
+<td>visual flow、component graph、快速实验</td>
+<td>想用可视化方式理解和组装组件流的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/03/04/01/">Open WebUI</a></td>
+<td>以统一聊天工作台与模型访问前台为中心的开源界面</td>
+<td>multi-model UI、workspace、local + API access</td>
+<td>需要先把模型能力开放给团队使用的组织</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/03/05/01/">AnythingLLM</a></td>
+<td>local-first 的知识与 agent 工作台</td>
+<td>workspace、document ingestion、local agent experience</td>
+<td>强调私有化、桌面化与快速知识问答的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-这一模块建议怎么读">3. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/04-tooling/03/01/01/">01 Dify</a>：理解“从应用发布往下看”的平台视角；</li>
+<li>再看 <a href="/ai/04-tooling/03/02/01/">02 n8n</a>：理解传统自动化工作流如何吸收 AI 能力；</li>
+<li>然后看 <a href="/ai/04-tooling/03/03/01/">03 Langflow</a>：理解可视化 component flow 的教学与实验价值；</li>
+<li>最后看 <a href="/ai/04-tooling/03/04/01/">04 Open WebUI</a> 与 <a href="/ai/04-tooling/03/05/01/">05 AnythingLLM</a>：理解 workspace / chat shell / local-first 这条路。</li>
+</ol>
+<h2 id="4-我建议本模块的内容结构">4. 我建议本模块的内容结构</h2>
+<p>这一模块可以复用你已经稳定下来的写法：</p>
+<ol>
+<li>本组总览 README；</li>
+<li>每个产品一个文件夹与 <code>README.md</code>；</li>
+<li>每个产品至少拆成 4~6 篇：
+<ul>
+<li>它为什么存在 / 解决什么首要复杂度；</li>
+<li>核心抽象、架构与部署形态；</li>
+<li>与同类产品相比的设计中心；</li>
+<li>在课程助教或企业内部知识系统中的落点；</li>
+<li>适用边界、排错与迁移成本；</li>
+</ul>
+</li>
+<li>最终再补一篇本组的选型矩阵：回答“为什么选 A，不选 B”。</li>
+</ol>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>platform-vs-code-decision.md</td>
+<td>比较“平台优先”与“代码优先”两条落地路线</td>
+<td>能解释速度、灵活性、治理、迁移四类取舍</td>
+</tr>
+<tr>
+<td>course-assistant-platform-map.md</td>
+<td>画出课程助教在平台中的构成</td>
+<td>说明知识库、工作流、模型入口、权限、发布分别落在哪层</td>
+</tr>
+<tr>
+<td>workflow-boundary-checklist.md</td>
+<td>判断哪些流程适合可视化编排，哪些要回到代码</td>
+<td>能避免过度平台化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/04-tooling/03/01/01/">01 Dify</a></li>
+<li><a href="/ai/04-tooling/03/02/01/">02 n8n</a></li>
+<li><a href="/ai/04-tooling/03/03/01/">03 Langflow</a></li>
+<li><a href="/ai/04-tooling/03/04/01/">04 Open WebUI</a></li>
+<li><a href="/ai/04-tooling/03/05/01/">05 AnythingLLM</a></li>
+</ol>
+<h2 id="7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</h2>
+<ul>
+<li>不要先记安装命令，先问它把哪类复杂度当作一等公民；</li>
+<li>不要只看 happy path，重点看治理、排错、迁移、协作与上线证据；</li>
+<li>不要问“谁最强”，要问“谁最匹配当前系统的首要矛盾”；</li>
+<li>不要把开源工具当成银弹，工具只是把某类工程纪律做成现成组件。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>用平台和工作流快速承载 AI 应用</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>很多团队的首要需求不是“会写 SDK”，而是“先交付业务应用”</td>
+</tr>
+<tr>
+<td>代表产品</td>
+<td>Dify / n8n / Langflow / Open WebUI / AnythingLLM</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>看平台把哪一层做成第一语言</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[121] <a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a> — Dify GitHub</li>
+<li>[122] <a href="https://github.com/n8n-io/n8n">https://github.com/n8n-io/n8n</a> — n8n GitHub</li>
+<li>[123] <a href="https://github.com/langflow-ai/langflow">https://github.com/langflow-ai/langflow</a> — Langflow GitHub</li>
+<li>[124] <a href="https://github.com/open-webui/open-webui">https://github.com/open-webui/open-webui</a> — Open WebUI GitHub</li>
+<li>[125] <a href="https://github.com/Mintplex-Labs/anything-llm">https://github.com/Mintplex-Labs/anything-llm</a> — AnythingLLM GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/03/05/06/"><span>上一篇</span><strong>04.03.05.06 公开组织案例有限：采用信号与第三方实践</strong></a><a class="ai-pager-next" href="/ai/04-tooling/04/01/01/"><span>下一篇</span><strong>04.04.01.01 Langfuse 提示管理 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-这一模块建议怎么读">3. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-我建议本模块的内容结构">4. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

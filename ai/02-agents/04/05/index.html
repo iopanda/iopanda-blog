@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.04.05 沙箱划得住什么 · iopanda</title><meta name="description" content="02.04.05 沙箱划得住什么 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/04/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.04.05 沙箱划得住什么 · iopanda"><meta property="og:description" content="02.04.05 沙箱划得住什么 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/04/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="04" data-active-subsection data-active-article="/ai/02-agents/04/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具调用与协议"></button><a class="tree-link tree-link--section" href="/ai/02-agents/04/"><span class="tree-number">04</span><span class="tree-title">工具调用与协议</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/04/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">沙箱划得住什么</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/04/">工具调用与协议</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">沙箱划得住什么</span></nav><header class="ai-article-header"><p class="ai-number">02.04.05</p><h1>沙箱划得住什么</h1><p class="ai-meta"><time datetime="2026-09-07T10:20">2026-09-07</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>sandbox</li><li>code-execution</li></ul></header><div class="ai-prose"><h1 id="沙箱划得住什么">沙箱划得住什么</h1>
+<p>一个数据分析 Agent 被要求“把上学期各章的平均分导出来，画个趋势”。</p>
+<p>它写了一段 pandas 代码。第一次运行报错：文件路径不对。于是它加了调试代码，打印当前目录和上一级目录的列表。看到了 <code>config/</code>，又读了一个看起来像配置的 yaml，因为“可能是数据源声明”。</p>
+<p>最后报告里出现了数据库连接串——它在整理“数据来源说明”时，把读到的那段原文贴了进去。</p>
+<p>整个过程中没有任何攻击者。模型只是在调试，只是“顺手多读了一点”，只是把中间结果当成材料写进了交付物。<strong>代码执行工具的危险，主要来自这种无恶意的过度探索。</strong></p>
+<h2 id="这个工具与其他工具的根本差别">这个工具与其他工具的根本差别</h2>
+<p>普通工具的行为是你写定的：<code>get_chapter_stats</code> 做什么，代码里有确定答案。</p>
+<p>代码执行工具的行为由模型现场生成。你无法事先枚举它能做什么，因为它是图灵完备的——今天它读 CSV，明天它启动一个子进程，后天它发起一次 HTTP 请求。这是形态上的差别，靠配置补不回来。</p>
+<p>所以防护思路也要换。前三类工具靠“限制能做什么”，这一类只能靠“限制能做到哪一步之后没有后果”。</p>
+<h2 id="五道控制">五道控制</h2>
+<p><strong>文件系统。</strong> 只读挂载必要数据，一个可写的临时目录，宿主机路径一律不出现。上面那个事故的根因就在这里：<code>..</code> 可达，配置就在 <code>..</code> 里。</p>
+<p><strong>网络。</strong> 默认关闭。需要联网查资料时，走域名白名单，并且把请求记录下来。默认开启的网络，等于给注入攻击一条出口。</p>
+<p><strong>资源。</strong> CPU、内存、进程数、运行时长四项都设上限。默认值可以这样起步：1 核、512MB、30 秒、128 个进程。跑不动时宁可让模型换写法，也不要放开限制。</p>
+<p><strong>身份。</strong> 非 root 运行，容器内不注入任何密钥。这条最容易被忽略，也最致命：密钥一旦在环境变量里，模型一句 <code>os.environ</code> 就能读到，然后写进回答。</p>
+<p><strong>输出。</strong> 标准输出截断、堆栈信息过滤、文件路径替换成占位符。堆栈里带主机名和绝对路径，进上下文就收不回来。</p>
+<table>
+<thead>
+<tr>
+<th>控制</th>
+<th>默认</th>
+<th>放开条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件系统</td>
+<td>只读 + 单个临时目录</td>
+<td>按需挂载具体目录</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>关闭</td>
+<td>域名白名单 + 日志</td>
+</tr>
+<tr>
+<td>资源</td>
+<td>1 核 / 512MB / 30s</td>
+<td>按任务类型分档</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>非 root、无密钥</td>
+<td>永不放开</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>截断 + 脱敏</td>
+<td>永不放开</td>
+</tr>
+</tbody>
+</table>
+<h2 id="隔离级别">隔离级别</h2>
+<p>四种做法，防护强度依次上升。</p>
+<p><strong>子进程。</strong> 在应用进程里 <code>exec</code> 一段代码。隔离几乎为零，能读到进程的全部环境变量和文件系统。只适合单用户本地脚本。</p>
+<p><strong>容器。</strong> 独立文件系统、独立网络命名空间、cgroup 限制。这是多数产品的选择，够用，但要接受共享内核。</p>
+<p><strong>gVisor 之类的用户态内核。</strong> 拦截系统调用，容器逃逸的难度显著上升。代价是兼容性与性能。</p>
+<p><strong>微虚拟机（Firecracker 一类）。</strong> 硬件虚拟化边界，启动时间在百毫秒级。托管平台跑不可信代码基本都用这一层。</p>
+<p>选择依据是一个问题：<strong>这段代码是谁写的？</strong> 如果是你的模板加模型填参数，容器够用；如果是模型从零写、还要执行多次，微虚拟机更合适。</p>
+<p>有一个前提要接受：<strong>容器逃逸与内核漏洞是现实存在的。</strong> 所以真正的设计原则是“假设沙箱会被突破”——沙箱里不放密钥、不挂宿主目录、不发网络，突破了也拿不到东西。</p>
+<h2 id="沙箱之外的三条">沙箱之外的三条</h2>
+<p><strong>输入也要限制。</strong> 沙箱保护的是机器，不保护你交给它的数据。把整份学生名单交给一个“做个统计”的任务，即使代码跑在微虚拟机里，结果文件里依然全是个人信息。</p>
+<p><strong>结果要人看一遍。</strong> 尤其是第一次上线新工具时。上面那份报告里出现连接串，任何一个人扫一眼都能发现，而自动化检查不会。</p>
+<p><strong>同类任务要能复现。</strong> 模型每次写的代码不同，同一次任务两次运行可能给出不同结果。把生成的代码存下来，附在结果旁边，是唯一能让结果可复核的办法。</p>
+<h2 id="它挡不住的部分">它挡不住的部分</h2>
+<p><strong>结果错误。</strong> 沙箱保证代码跑不出边界，不保证跑出正确结果。模型写的聚合逻辑错了一行，沙箱照样让它跑完。</p>
+<p><strong>合法出口的数据外泄。</strong> 允许联网时，白名单内的域名依然可以被用来传数据——把内容拼进 URL 参数就行。真正的限制是“不要把敏感数据交给可联网的执行器”。</p>
+<p><strong>多租户串扰。</strong> 共享的临时目录、共享的包缓存，都可能成为跨用户的信息通道。每个执行实例一个独立目录，是最低要求。</p>
+<h2 id="下一步把工具变成可插拔的">下一步：把工具变成可插拔的</h2>
+<p>到这里，工具是你自己写的、自己验的。现实里越来越多的工具来自第三方——别人写好的 server，你只需要接上。</p>
+<p>下一节讲 MCP，它把接入成本降到了很低，也把“这个工具是谁写的”变成了一个必须回答的问题。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>gVisor. <em>What is gVisor?</em> <a href="https://gvisor.dev/docs/">https://gvisor.dev/docs/</a></li>
+<li>Firecracker. <em>Secure microVMs.</em> <a href="https://firecracker-microvm.github.io/">https://firecracker-microvm.github.io/</a></li>
+<li>OWASP. <em>LLM05: Improper Output Handling.</em> <a href="https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/">https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/04/04/"><span>上一篇</span><strong>02.04.04 只读与写入之间那道线</strong></a><a class="ai-pager-next" href="/ai/02-agents/04/06/"><span>下一篇</span><strong>02.04.06 工具变成了可插拔的</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#这个工具与其他工具的根本差别">这个工具与其他工具的根本差别</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#五道控制">五道控制</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#隔离级别">隔离级别</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#沙箱之外的三条">沙箱之外的三条</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它挡不住的部分">它挡不住的部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#下一步把工具变成可插拔的">下一步：把工具变成可插拔的</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

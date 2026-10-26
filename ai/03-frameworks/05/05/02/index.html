@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.05.05.02 code-first LLM eval 的设计哲学 · iopanda</title><meta name="description" content="03.05.05.02 code-first LLM eval 的设计哲学 · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/05/05/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.05.05.02 code-first LLM eval 的设计哲学 · iopanda"><meta property="og:description" content="03.05.05.02 code-first LLM eval 的设计哲学 · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/05/05/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="05" data-active-subsection="05" data-active-article="/ai/03-frameworks/05/05/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估与可观测性框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/05/"><span class="tree-number">05</span><span class="tree-title">评估与可观测性框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/05/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 DeepEval"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/05/05/"><span class="tree-number">05</span><span class="tree-title">DeepEval</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/05/05/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">code-first LLM eval 的设计哲学</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/">评估与可观测性框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/05/">DeepEval</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">code-first LLM eval 的设计哲学</span></nav><header class="ai-article-header"><p class="ai-number">03.05.05.02</p><h1>code-first LLM eval 的设计哲学</h1><p class="ai-meta"><time datetime="2026-09-04T08:55">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>evaluation</li><li>observability</li><li>deepeval</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="code-first-llm-eval-的设计哲学">code-first LLM eval 的设计哲学</h1>
+<blockquote>
+<p>DeepEval README 对自己的定位非常直接：The LLM Evaluation Framework，而且它明确说自己 similar to Pytest but specialized for unit testing LLM apps。[10] 这句话的关键不在“支持很多 metrics”，而在 <strong>Pytest-like</strong>。也就是说，DeepEval 的第一性问题不是“如何做平台化 tracing”，也不是“如何做 declarative CI harness”，而是：<strong>怎样像写单元测试一样，直接在代码里把 LLM 应用的质量判断表达出来。</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释为什么 DeepEval 首先像 code-first eval framework；</li>
+<li>理解它和 promptfoo、Langfuse、Phoenix、MLflow 的根本差异；</li>
+<li>说出 pytest/Vitest 式工作流为什么会成为 LLM eval 的独立路线；</li>
+<li>判断什么时候团队最自然进入 DeepEval 路线；</li>
+<li>为一个 Python/TypeScript LLM 项目写框架判断卡。</li>
+</ol>
+<h2 id="1-概念deepeval-解决的是把质量判断写进测试代码">1. 概念：DeepEval 解决的是“把质量判断写进测试代码”</h2>
+<p>很多团队在做 LLM eval 时，最终会遇到一个问题：</p>
+<ul>
+<li>平台很好看；</li>
+<li>报表很多；</li>
+<li>但开发者在本地、在 PR、在测试目录里，还是没有一种自然方式把 AI 质量要求写成测试。</li>
+</ul>
+<p>DeepEval 正是在解决这件事。[10][12]</p>
+<ul>
+<li>Python 里是 <code>assert_test(...)</code></li>
+<li>TypeScript 里是 <code>expect(testCase).toPass([...])</code></li>
+</ul>
+<p>这说明它的主语不是平台页面，而是测试代码本身。</p>
+<h2 id="2-为什么这条路线独立成立">2. 为什么这条路线独立成立</h2>
+<p>当团队已经习惯：</p>
+<ul>
+<li>pytest</li>
+<li>vitest</li>
+<li>单元测试</li>
+<li>集成测试</li>
+<li>CI</li>
+</ul>
+<p>那么最自然的问题就是：
+“为什么 LLM eval 不能也像测试一样被编写、被运行、被 fail？”</p>
+<p>DeepEval 的价值，就在于把这层心智迁移到 LLM 质量验证里。</p>
+<h2 id="3-为什么它不是只会跑几个-judge-metrics">3. 为什么它不是只会“跑几个 judge metrics”</h2>
+<p>README 里列出的能力说明它不只是几种分数：[10]</p>
+<ul>
+<li>end-to-end black-box eval</li>
+<li>complete agent trajectories</li>
+<li>individual agent steps</li>
+<li>大量现成 metrics</li>
+<li>synthetic datasets</li>
+<li>CI/CD integration</li>
+<li>benchmarks</li>
+<li>prompt optimization</li>
+</ul>
+<p>这说明它不只是 metric 包，而是在搭一个 code-first eval ecosystem。</p>
+<h2 id="4-与其他路线的差异">4. 与其他路线的差异</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>第一性问题</th>
+<th>DeepEval 相比的定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/05/04/01/">promptfoo</a></td>
+<td>如何做 declarative regression / red-team / CI harness</td>
+<td>DeepEval 更偏 code-first test authoring</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/01/01/">Langfuse</a></td>
+<td>如何做 LLM-native 平台闭环</td>
+<td>DeepEval 更偏本地/代码测试语义</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/02/01/">Phoenix</a></td>
+<td>如何开放地做 traces / diagnosis / experiments</td>
+<td>DeepEval 更偏测试用例与 metric authoring</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/05/03/01/">MLflow</a></td>
+<td>如何统一 AI engineering 平台</td>
+<td>DeepEval 更偏代码评估层</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-什么时候最自然进入-deepeval">5. 什么时候最自然进入 DeepEval</h2>
+<ul>
+<li>开发者希望像写测试一样写 LLM eval；</li>
+<li>团队已有 pytest/vitest/CI 习惯；</li>
+<li>需要 end-to-end、trajectory、component-level eval 共存；</li>
+<li>想在代码里直接组合 metric、dataset、assertion；</li>
+<li>平台闭环还不是第一主语。</li>
+</ul>
+<h2 id="6-动手活动">6. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>deepeval-fit.md</code></p>
+<p>列你的团队是否已经在用 pytest/vitest、是否希望本地写 eval tests、是否需要 component-level metrics。写一句结论：你缺的是平台观测面，还是 code-first eval 语言。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeepEval 首先是什么</td>
+<td>code-first LLM evaluation framework</td>
+</tr>
+<tr>
+<td>它在解决什么</td>
+<td>把 LLM 质量判断写进测试代码</td>
+</tr>
+<tr>
+<td>为什么值钱</td>
+<td>让 AI eval 像单元测试一样成为开发工作流的一部分</td>
+</tr>
+<tr>
+<td>最适合什么</td>
+<td>以代码为中心组织质量验证的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[10] <a href="https://github.com/confident-ai/deepeval/blob/main/README.md">https://github.com/confident-ai/deepeval/blob/main/README.md</a> — DeepEval README</li>
+<li>[12] <a href="https://github.com/confident-ai/deepeval/blob/main/typescript/README.md">https://github.com/confident-ai/deepeval/blob/main/typescript/README.md</a> — DeepEval TypeScript README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/05/05/01/"><span>上一篇</span><strong>03.05.05.01 DeepEval 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/05/05/03/"><span>下一篇</span><strong>03.05.05.03 metrics、test cases 与 dataset-driven testing</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念deepeval-解决的是把质量判断写进测试代码">1. 概念：DeepEval 解决的是“把质量判断写进测试代码”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这条路线独立成立">2. 为什么这条路线独立成立</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么它不是只会跑几个-judge-metrics">3. 为什么它不是只会“跑几个 judge metrics”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-与其他路线的差异">4. 与其他路线的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-什么时候最自然进入-deepeval">5. 什么时候最自然进入 DeepEval</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动">6. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

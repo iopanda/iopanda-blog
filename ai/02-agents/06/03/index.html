@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.06.03 协作模式编排者与工作者 · iopanda</title><meta name="description" content="02.06.03 协作模式编排者与工作者 · 智能体 / 多 Agent 系统，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/06/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.06.03 协作模式编排者与工作者 · iopanda"><meta property="og:description" content="02.06.03 协作模式编排者与工作者 · 智能体 / 多 Agent 系统，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/06/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="06" data-active-subsection data-active-article="/ai/02-agents/06/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 多 Agent 系统"></button><a class="tree-link tree-link--section" href="/ai/02-agents/06/"><span class="tree-number">06</span><span class="tree-title">多 Agent 系统</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/06/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">协作模式编排者与工作者</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/06/">多 Agent 系统</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">协作模式编排者与工作者</span></nav><header class="ai-article-header"><p class="ai-number">02.06.03</p><h1>协作模式编排者与工作者</h1><p class="ai-meta"><time datetime="2026-09-03T05:05">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>multi-agent</li></ul></header><div class="ai-prose"><h1 id="协作模式编排者与工作者">协作模式编排者与工作者</h1>
+<blockquote>
+<p>01 章讲了「为什么需要多 Agent」:角色冲突、上下文有限、长流程失控——结论是拆。可「拆」有很多种拆法:谁负责拆?拆完谁先干?干完怎么合?让几个 Agent 自由聊天是一种答案,但实践中聊着聊着就跑题、没人对结果负责。本章介绍最流行、也最适合课程助教起步的一种协作模式:<strong>编排者-工作者(orchestrator-workers)</strong>——一个编排者( orchestrator)拆任务、派活、校验、汇总,一群各司其职的 worker 只负责把自己那一亩三分地干好。Anthropic 的工程实践把它列为最常用的 workflow 模式之一;读完本章,你会亲手把课程助教拆成「检索员 + 计算员 + 回答员」三个 worker,并理解这套模式为什么清晰、可控、可观测。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说清编排者-工作者模式的角色划分与一次完整协作的四个阶段;</li>
+<li>解释它为什么比「自由讨论式多 Agent」更流行(清晰/可控/可观测);</li>
+<li>应用三条设计要点:worker 单一职责、结果 schema 明确、编排者决定下一步;</li>
+<li>实现并运行一个「检索员 + 计算员 + 回答员」三 worker 的课程助教 Demo;</li>
+<li>说出编排者模式的主要失败点(拆错任务、schema 不合法、编排者成为瓶颈)。</li>
+</ol>
+<h2 id="1-概念编排者-工作者模式">1. 概念:编排者-工作者模式</h2>
+<ul>
+<li><strong>编排者-工作者(orchestrator-workers)</strong>:一个中央 Agent(编排者)接收任务后,<strong>动态地把任务拆成子任务、分配给专门的 worker Agent,最后收集并汇总各 worker 的结果</strong>。与 01 章 MetaGPT 的固定流水线不同,这里的「拆成几块、派给谁」是<strong>针对当前输入现场决定</strong>的,不是预先写死的管道。</li>
+<li>两个角色,责任边界非常清晰:
+<ul>
+<li><strong>编排者(orchestrator)</strong>:负责思考——理解任务、决定拆法、判断 worker 结果是否够好、要不要追加一轮、何时收尾。它<strong>不亲自干苦力活</strong>。</li>
+<li><strong>工作者(worker)</strong>:负责执行——每个 worker 只擅长一件事(检索、计算、翻译……),拿到明确的子任务,干完返回结构化结果,不互相商量。</li>
+</ul>
+</li>
+<li>把 01 章的软件团队套进来:MetaGPT 的「产品经理 + 架构师 + 项目经理」大体承担编排职责(拆解与设计),「工程师 + QA」是 worker;而本章的编排者是<strong>运行时动态决策</strong>的那一个角色。</li>
+<li>课程助教示例:学员问「我第三章练习平均分在班里什么水平?」——编排者把它拆成三步:检索员查成绩档案 → 计算员算平均分与差距 → 回答员把数字组织成学员能懂的话。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  学员提问</span></span>
+<span class="line"><span>     │</span></span>
+<span class="line"><span>     ▼</span></span>
+<span class="line"><span>┌──────────────────┐</span></span>
+<span class="line"><span>│   Orchestrator   │  拆任务/派活/校验/汇总(只思考,不干活)</span></span>
+<span class="line"><span>└──────────────────┘</span></span>
+<span class="line"><span>   拆│        拆│         拆│</span></span>
+<span class="line"><span>     ▼         ▼          ▼</span></span>
+<span class="line"><span>┌─────────┐ ┌─────────┐ ┌─────────┐</span></span>
+<span class="line"><span>│Worker1  │ │Worker2  │ │Worker3  │  每个 worker:单一职责,</span></span>
+<span class="line"><span>│ 检索员   │ │ 计算员   │ │ 回答员   │  返回结构化结果,互不通信</span></span>
+<span class="line"><span>└─────────┘ └─────────┘ └─────────┘</span></span>
+<span class="line"><span>    └─────────┬───────────┘</span></span>
+<span class="line"><span>              ▼ 结果汇总</span></span>
+<span class="line"><span>    Orchestrator 校验 schema、合成最终答案</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="2-为什么流行清晰可控可观测">2. 为什么流行:清晰、可控、可观测</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>自由讨论式多 Agent(聊天广场)</th>
+<th>编排者-工作者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>谁决定下一步</td>
+<td>没有,靠 Agent 自发接话</td>
+<td>编排者一人决策,路径唯一</td>
+</tr>
+<tr>
+<td>消息量</td>
+<td>随角色数近似平方增长,闲聊多</td>
+<td>树状:编排者↔worker,无横向闲聊</td>
+</tr>
+<tr>
+<td>可控性</td>
+<td>无法预判谁会接话、聊几轮</td>
+<td>可加超时、重试、人工闸门</td>
+</tr>
+<tr>
+<td>可观测性</td>
+<td>轨迹是一锅粥</td>
+<td>每步「派给谁/返回什么」都可打印审计</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>不可控,可能聊到地老天荒</td>
+<td>子任务数封顶,近似可预算</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>清晰</strong>:职责树状展开,「谁负责什么」写进代码与角色卡,新人读代码就能复述整个流程。</li>
+<li><strong>可控</strong>:编排者是唯一的决策点——想限制 worker 数量、想让某步必须人工确认、想对某个 worker 的结果重试,都只改一处。</li>
+<li><strong>可观测</strong>:一次协作 = 一串「派活→返回」记录(本章 Demo 会打印给你看)。这正是 02.07 可观测性的雏形:每步的输入输出都在,出问题能定位到具体 worker。</li>
+</ul>
+<h2 id="3-作用编排者在协作模式谱系中的位置">3. 作用:编排者在协作模式谱系中的位置</h2>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>结构</th>
+<th>强项</th>
+<th>弱项</th>
+<th>本章/后续</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编排者-工作者</td>
+<td>中央拆解,树状派活</td>
+<td>灵活、可控、可观测</td>
+<td>编排者贵;拆错全队白跑</td>
+<td>本章</td>
+</tr>
+<tr>
+<td>流水线</td>
+<td>A→B→C 固定接力</td>
+<td>快、便宜、稳定</td>
+<td>僵,改流程要改代码</td>
+<td>03 章</td>
+</tr>
+<tr>
+<td>辩论</td>
+<td>多 Agent 各执一词再裁决</td>
+<td>质量高,暴露盲点</td>
+<td>慢、贵,可能互相附和</td>
+<td>03 章</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>选型直觉:子任务<strong>无法预先枚举</strong>(每次任务形状不同)时选编排者;子任务形状固定时流水线更便宜;答案<strong>质量攸关且存在对错之争</strong>时考虑辩论。</li>
+<li>编排者-工作者非常适合课程助教这种「宽而不深」的任务面:答疑、批改、统计、出题,每次来什么问题不一样,但都能拆成「查 → 算 → 组织」之类的固定技能组合。</li>
+</ul>
+<h2 id="4-详细介绍三条设计要点">4. 详细介绍:三条设计要点</h2>
+<h3 id="41-worker-单一职责">4.1 worker 单一职责</h3>
+<ul>
+<li>一个 worker 只做一件事:检索员<strong>只查不算</strong>,计算员<strong>只算不查</strong>,回答员<strong>只组织语言</strong>。判断标准:给 worker 写 system prompt 时,能不能用一句话说完它的职责且不含「以及」?</li>
+<li>好处:prompt 短而聚焦(02.02 的经验在这里复用);工具集最小(检索员只需要查档案的工具,不给它发计算器);<strong>出错时嫌疑犯只有一个人</strong>。</li>
+</ul>
+<h3 id="42-结果-schema-明确">4.2 结果 schema 明确</h3>
+<ul>
+<li>worker 之间不靠「人话段落」交接,而靠<strong>结构化结果</strong>(如 <code>{"ok": true, "scores": [85, 90, 78]}</code>):编排者用代码校验字段,缺了立刻报错,而不是让下游模型去猜。</li>
+<li>这是 04 章通信协议的地基:先定「传什么形状的数据」,再谈「怎么传」。Demo 里的 <code>require()</code> 就是最小版 schema 校验——失败在源头暴露,不让错误级联到下游。</li>
+</ul>
+<h3 id="43-编排者决定下一步">4.3 编排者决定下一步</h3>
+<ul>
+<li>编排者不只是「把任务列表跑一遍」:它要决定——拆几个子任务、派给谁、worker 失败了是重试还是换人、结果不够好要不要追加一轮、何时收尾汇总。Demo 里这些决策写在代码中(便于离线跑),真实系统里是编排者的一次次 LLM 调用。</li>
+<li><strong>编排者的 prompt 是全系统杠杆最高的组件</strong>:拆解方向错了,所有 worker 都在错误的路线上白干;小改动可能引起全队行为的大变化。所以编排者的角色卡值得单独反复打磨与评测(02.07 会讲怎么测)。</li>
+</ul>
+<h2 id="5-动手活动课程助教检索员计算员回答员demo">5. 动手活动:课程助教「检索员+计算员+回答员」Demo</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:三 worker 编排 Demo(查 + 算 + 答)</p>
+<p><strong>目标</strong>:运行 <code>orchestrator_workers.py</code>,让三个 worker 协作回答「我第三章三次练习多少分、平均分什么水平」,并观察编排轨迹。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>新建 <code>orchestrator_workers.py</code>,粘贴下面代码(worker 内部用规则实现,离线可跑;真实场景把每个 <code>run()</code> 换成一次带专属 system prompt 的模型调用);</li>
+<li>运行 <code>python3 orchestrator_workers.py</code>,对照输出逐行说出「现在是谁在干活」;</li>
+<li>把 <code>plan()</code> 里的小红分支改掉,让问题「小红平均分多少」也查小明——观察编排者拆错任务时全队如何白跑;</li>
+<li>删掉 <code>Answerer.run()</code> 返回里的 <code>"answer"</code> 字段再跑,观察 <code>require()</code> 如何拦住缺字段的结果;</li>
+<li>在 <code>reports/orchestrator-notes.md</code> 里记录:为什么计算员不该自己查档案、回答员不该自己算数。</li>
+</ol>
+<p><strong>完成标准</strong>:一次运行能看到完整的「提问 → 三次派活 → 三次返回 → 汇总交付」轨迹;未知学员的错误在源头被捕获并打印;能说出若换成真实 LLM worker,代码里只需替换哪一处。</p>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># orchestrator_workers.py:课程助教「编排者-工作者」Demo</span></span>
+<span class="line"><span style="color:#6A737D"># 检索员 + 计算员 + 回答员 三 worker 协作完成「查 + 算 + 答」(离线可跑)</span></span>
+<span class="line"><span style="color:#6A737D"># 真实场景:每个 worker 的 run() 内部换成一次带专属 system prompt 的模型调用</span></span>
+<span class="line"><span style="color:#6A737D"># (01.04 的服务),编排者的 plan() 换成一次 LLM 拆解调用。</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">CLASS_AVG</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 86.0</span><span style="color:#6A737D">                     # 第三章班级平均分(教学统计)</span></span>
+<span class="line"><span style="color:#79B8FF">DISPLAY</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"xiaoming"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"小明"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"xiaohong"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"小红"</span><span style="color:#E1E4E8">}   </span><span style="color:#6A737D"># 学员档案的显示名</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Retriever</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """检索员:单一职责——只查不算。成绩来自 02.05 的长期档案(dict 模拟)"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "retriever"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.grades </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {              </span><span style="color:#6A737D"># {学员: 第三章三次练习成绩}</span></span>
+<span class="line"><span style="color:#9ECBFF">            "xiaoming"</span><span style="color:#E1E4E8">: [</span><span style="color:#79B8FF">85</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">90</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">78</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#9ECBFF">            "xiaohong"</span><span style="color:#E1E4E8">: [</span><span style="color:#79B8FF">92</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">88</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">95</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> run</span><span style="color:#E1E4E8">(self, payload):</span></span>
+<span class="line"><span style="color:#E1E4E8">        learner </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> payload[</span><span style="color:#9ECBFF">"learner_id"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">        scores </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.grades.get(learner)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> scores </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"ok"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"档案查无此学员: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> learner}</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"ok"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"scores"</span><span style="color:#E1E4E8">: scores, </span><span style="color:#9ECBFF">"learner_id"</span><span style="color:#E1E4E8">: learner}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Calculator</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """计算员:单一职责——只算不查"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "calculator"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> run</span><span style="color:#E1E4E8">(self, payload):</span></span>
+<span class="line"><span style="color:#E1E4E8">        scores </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> payload[</span><span style="color:#9ECBFF">"scores"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">        avg </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> sum</span><span style="color:#E1E4E8">(scores) </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(scores)</span></span>
+<span class="line"><span style="color:#E1E4E8">        gap </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> avg </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> CLASS_AVG</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"ok"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"avg"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">round</span><span style="color:#E1E4E8">(avg, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">"gap"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">round</span><span style="color:#E1E4E8">(gap, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Answerer</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """回答员:单一职责——只组织语言。真实场景此处调用 LLM 生成个性化评语"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "answerer"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> run</span><span style="color:#E1E4E8">(self, payload):</span></span>
+<span class="line"><span style="color:#E1E4E8">        name </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> DISPLAY</span><span style="color:#E1E4E8">[payload[</span><span style="color:#9ECBFF">"learner_id"</span><span style="color:#E1E4E8">]]</span></span>
+<span class="line"><span style="color:#E1E4E8">        avg, gap </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> payload[</span><span style="color:#9ECBFF">"avg"</span><span style="color:#E1E4E8">], payload[</span><span style="color:#9ECBFF">"gap"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">        trend </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "高于"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> gap </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> else</span><span style="color:#9ECBFF"> "低于"</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"ok"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">                "answer"</span><span style="color:#E1E4E8">: (</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">,你第三章三次练习的平均分是 </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF"> 分,"</span></span>
+<span class="line"><span style="color:#9ECBFF">                           "</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">班级平均分(</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF"> 分)。"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (name, avg, trend, </span><span style="color:#79B8FF">CLASS_AVG</span><span style="color:#E1E4E8">))}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(result, keys):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """结果 schema 校验:ok=False 或缺字段立即抛错,失败在源头暴露、不级联"""</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> result.get(</span><span style="color:#9ECBFF">"ok"</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">        raise</span><span style="color:#79B8FF"> RuntimeError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"worker 失败: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> result.get(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"未知原因"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    missing </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [k </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> keys </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">not</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> result]</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> missing:</span></span>
+<span class="line"><span style="color:#F97583">        raise</span><span style="color:#79B8FF"> RuntimeError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"worker 返回缺字段: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> missing)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> result</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Orchestrator</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """编排者:拆任务 -&gt; 按序派活 -&gt; 校验 schema -&gt; 汇总交付"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">    REQUIRED</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"retriever"</span><span style="color:#E1E4E8">: (</span><span style="color:#9ECBFF">"scores"</span><span style="color:#E1E4E8">,),</span></span>
+<span class="line"><span style="color:#9ECBFF">                "calculator"</span><span style="color:#E1E4E8">: (</span><span style="color:#9ECBFF">"avg"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"gap"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">                "answerer"</span><span style="color:#E1E4E8">: (</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">,)}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.workers </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"retriever"</span><span style="color:#E1E4E8">: Retriever(),</span></span>
+<span class="line"><span style="color:#9ECBFF">                        "calculator"</span><span style="color:#E1E4E8">: Calculator(),</span></span>
+<span class="line"><span style="color:#9ECBFF">                        "answerer"</span><span style="color:#E1E4E8">: Answerer()}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> plan</span><span style="color:#E1E4E8">(self, question):</span></span>
+<span class="line"><span style="color:#6A737D">        # 真实场景:这里是编排者的一次 LLM 调用,它现场决定拆几块、派给谁;</span></span>
+<span class="line"><span style="color:#6A737D">        # Demo 用规则固定三步,便于离线运行、逐行观察轨迹。</span></span>
+<span class="line"><span style="color:#E1E4E8">        learner </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "xiaoming"</span><span style="color:#F97583"> if</span><span style="color:#9ECBFF"> "我"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> question </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "xiaohong"</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> [(</span><span style="color:#9ECBFF">"retriever"</span><span style="color:#E1E4E8">, {</span><span style="color:#9ECBFF">"learner_id"</span><span style="color:#E1E4E8">: learner}),</span></span>
+<span class="line"><span style="color:#E1E4E8">                (</span><span style="color:#9ECBFF">"calculator"</span><span style="color:#E1E4E8">, {}),</span></span>
+<span class="line"><span style="color:#E1E4E8">                (</span><span style="color:#9ECBFF">"answerer"</span><span style="color:#E1E4E8">, {})]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> run</span><span style="color:#E1E4E8">(self, question):</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"== 学员提问 ==</span><span style="color:#79B8FF">\n%s\n</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> question)</span></span>
+<span class="line"><span style="color:#E1E4E8">        carried </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {}</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> name, payload </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.plan(question):</span></span>
+<span class="line"><span style="color:#E1E4E8">            payload.update(carried)          </span><span style="color:#6A737D"># 上游结果作为本步输入,链式传递</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"-- 编排者派活给 [</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">] --"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> name)</span></span>
+<span class="line"><span style="color:#E1E4E8">            out </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> require(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.workers[name].run(payload), </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">REQUIRED</span><span style="color:#E1E4E8">[name])</span></span>
+<span class="line"><span style="color:#E1E4E8">            carried.update(out)              </span><span style="color:#6A737D"># 收集本步结果,供下游使用</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"   返回: </span><span style="color:#79B8FF">%s\n</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> out)</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"== 编排者汇总,交付学员 =="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> carried[</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    team </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Orchestrator()</span></span>
+<span class="line"><span style="color:#E1E4E8">    answer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> team.run(</span><span style="color:#9ECBFF">"老师,我第三章的三次练习各多少分?平均分在班里是什么水平?"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(answer)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">--- 排错演示:未知学员,失败在源头暴露,不级联 ---"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        require(Retriever().run({</span><span style="color:#9ECBFF">"learner_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"nobody"</span><span style="color:#E1E4E8">}), (</span><span style="color:#9ECBFF">"scores"</span><span style="color:#E1E4E8">,))</span></span>
+<span class="line"><span style="color:#F97583">    except</span><span style="color:#79B8FF"> RuntimeError</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> err:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"捕获到源头失败: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> err)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<h2 id="6-边界与排错">6. 边界与排错</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全队结果对,答案错</td>
+<td>编排者拆错任务(把小红的问题拆给查小明)</td>
+<td>编排者角色卡多写「确认主语与意图」;加一步人工抽查(06 章护栏)</td>
+</tr>
+<tr>
+<td><code>worker 返回缺字段</code></td>
+<td>worker 没按 schema 输出</td>
+<td>看 <code>require()</code> 报的字段名,回改对应 worker 的 prompt 或代码</td>
+</tr>
+<tr>
+<td>计算员把档案查错</td>
+<td>worker 越界干了别人的活</td>
+<td>单一职责审查:计算员不该有检索工具(工具最小化)</td>
+</tr>
+<tr>
+<td>一个问题要 3 秒变 30 秒</td>
+<td>编排者 + 3 worker = 至少 4 次模型调用</td>
+<td>短问答直接单 Agent 答(01 章初判标准);长任务才拆</td>
+</tr>
+<tr>
+<td>编排者成了唯一瓶颈</td>
+<td>所有决策都过它,慢且贵</td>
+<td>子任务形状固定就降级成流水线(03 章);编排者用强模型、worker 用便宜模型</td>
+</tr>
+<tr>
+<td>worker 卡住不返回</td>
+<td>没有超时机制</td>
+<td>给每次派活加超时与重试上限(04 章通信设计展开)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:编排者-工作者<strong>不是银弹</strong>——它擅长「技能组合型」任务(查+算+答),不擅长需要反复对撞观点的任务(那是 03 章辩论的活),也不擅长形状完全固定的批量任务(流水线更便宜)。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编排者-工作者</td>
+<td>中央 Agent 现场拆任务、派 worker、校验并汇总</td>
+</tr>
+<tr>
+<td>角色划分</td>
+<td>编排者只思考不干活;worker 只干活不商量</td>
+</tr>
+<tr>
+<td>为什么流行</td>
+<td>清晰(树状职责)、可控(单一决策点)、可观测(每步可打印)</td>
+</tr>
+<tr>
+<td>设计要点</td>
+<td>worker 单一职责、结果 schema 明确、编排者决定下一步</td>
+</tr>
+<tr>
+<td>失败点</td>
+<td>拆错任务全队白跑、schema 不合法、编排者成瓶颈</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 worker 之间「不互相通信」反而被当成优点?如果学员问的是「我这次 78 分,下次要考多少才能把平均分拉到 85?」,需要新增一个什么 worker,编排者的拆解会变成几步?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>worker 横向通信意味着消息量与耦合随角色数平方增长,错误会在闲聊中滚雪球,轨迹也无法审计;让所有信息都经编排者中转,协作图保持树状——每个 worker 只需要「拿到输入、产出 schema 结果」,这正是可控与可观测的来源。新问题需要「规划员」worker(或让编排者直接算):拆解变成 检索(查历史成绩)→ 规划/计算(解出目标分数)→ 回答(组织成建议话术)三步,甚至可以让计算员先算出差值,再交给回答员补一句「下次至少考 X 分」——新 worker 的职责声明必须能一句话说完,否则就该继续拆。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic:Building Effective Agents(orchestrator-workers workflow)</a></li>
+<li><a href="https://platform.claude.com/cookbook/patterns-agents-orchestrator-workers">Anthropic:Orchestrator Workers 官方 Cookbook 示例</a></li>
+<li><a href="https://arxiv.org/abs/2308.00352">MetaGPT 论文(arXiv:2308.00352):角色分工与 SOP</a></li>
+<li><a href="https://arxiv.org/abs/2308.08155">AutoGen 论文(arXiv:2308.08155):多 Agent 会话式协作</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/06/02/"><span>上一篇</span><strong>02.06.02 为什么需要多 Agent</strong></a><a class="ai-pager-next" href="/ai/02-agents/06/04/"><span>下一篇</span><strong>02.06.04 协作模式流水线与辩论</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念编排者-工作者模式">1. 概念:编排者-工作者模式</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么流行清晰可控可观测">2. 为什么流行:清晰、可控、可观测</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用编排者在协作模式谱系中的位置">3. 作用:编排者在协作模式谱系中的位置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍三条设计要点">4. 详细介绍:三条设计要点</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-worker-单一职责">4.1 worker 单一职责</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-结果-schema-明确">4.2 结果 schema 明确</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-编排者决定下一步">4.3 编排者决定下一步</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动课程助教检索员计算员回答员demo">5. 动手活动:课程助教「检索员+计算员+回答员」Demo</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错">6. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

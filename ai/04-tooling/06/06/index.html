@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.06.06 数据整理与标注 概览 · iopanda</title><meta name="description" content="04.06.06 数据整理与标注 概览 · 工具链 / 数据整理与标注，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/06/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.06.06 数据整理与标注 概览 · iopanda"><meta property="og:description" content="04.06.06 数据整理与标注 概览 · 工具链 / 数据整理与标注，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/06/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="06" data-active-subsection data-active-article="/ai/04-tooling/06/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 数据整理与标注"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/06/"><span class="tree-number">06</span><span class="tree-title">数据整理与标注</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/06/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">数据整理与标注 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/06/">数据整理与标注</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">数据整理与标注 概览</span></nav><header class="ai-article-header"><p class="ai-number">04.06.06</p><h1>数据整理与标注 概览</h1><p class="ai-meta"><time datetime="2026-09-03T18:29">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>data-curation-annotation</li></ul></header><div class="ai-prose"><h1 id="数据整理与标注-概览">数据整理与标注 概览</h1>
+<blockquote>
+<p><code>01 Models</code> 讲过训练数据、指令数据、偏好数据与评测集的重要性，但真正做数据工作时，你需要的不是一个抽象名词，而是一整套标注、筛选、清洗、抽检、协作与可视化工具。<code>04.06</code> 要解决的问题是：<strong>原始文档、用户反馈、任务轨迹、图片样本、错误样本，怎样被整理成可以训练、评测、复盘的数据资产？</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分 annotation、curation、feedback collection、data quality inspection 几类工作；</li>
+<li>比较 Label Studio、Argilla、Doccano、Cleanlab、FiftyOne 的角色差异；</li>
+<li>理解“会标注”和“会治理数据资产”不是一回事；</li>
+<li>为课程助教的黄金任务集、偏好对、失败样本库设计数据工作流；</li>
+<li>知道什么时候该强调人工标注，什么时候该先做自动清洗与样本发现。</li>
+</ol>
+<h2 id="1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</h2>
+<ul>
+<li>模型质量、RAG 质量、Agent 质量，最后都要回到数据质量；</li>
+<li>很多团队把标注工具当成“拉人打标签”，却没有把采样、审校、版本、反馈闭环设计进去；</li>
+<li>这组工具覆盖的不是同一层：有的偏标注台，有的偏反馈工作台，有的偏数据质量诊断，有的偏可视化浏览；</li>
+<li>学习重点是认识数据工地的分工，而不是把所有数据问题都甩给一个平台。</li>
+</ul>
+<h2 id="2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/04-tooling/06/01/01/">Label Studio</a></td>
+<td>通用、多模态的数据标注与任务配置平台</td>
+<td>annotation tasks、UI config、multi-type labeling</td>
+<td>需要灵活标注流程的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/06/02/01/">Argilla</a></td>
+<td>面向 NLP/LLM 反馈收集与数据集协作的工作台</td>
+<td>feedback datasets、human review、curation loops</td>
+<td>要做指令数据、偏好数据、RAG 反馈的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/06/03/01/">Doccano</a></td>
+<td>轻量文本标注平台</td>
+<td>text annotation、sequence/classification simplicity</td>
+<td>先把文本标注流程跑起来的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/06/04/01/">Cleanlab</a></td>
+<td>以数据质量诊断和脏标签发现为核心的工具</td>
+<td>label issues、data-centric AI、quality inspection</td>
+<td>已经有数据但怀疑数据有问题的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/06/05/01/">FiftyOne</a></td>
+<td>以样本浏览、可视化与数据集精炼为核心</td>
+<td>dataset visualization、slicing、error analysis</td>
+<td>多模态或需要强可视化探索的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-这一模块建议怎么读">3. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/04-tooling/06/01/01/">01 Label Studio</a> 与 <a href="/ai/04-tooling/06/03/01/">03 Doccano</a>：先建立“标注台”概念；</li>
+<li>再看 <a href="/ai/04-tooling/06/02/01/">02 Argilla</a>：理解反馈数据与人审闭环如何组织；</li>
+<li>然后看 <a href="/ai/04-tooling/06/04/01/">04 Cleanlab</a>：理解数据质量诊断不是人工盲审的替代，而是放大器；</li>
+<li>最后看 <a href="/ai/04-tooling/06/05/01/">05 FiftyOne</a>：理解可视化浏览如何帮助找样本问题。</li>
+</ol>
+<h2 id="4-我建议本模块的内容结构">4. 我建议本模块的内容结构</h2>
+<p>这一模块可以复用你已经稳定下来的写法：</p>
+<ol>
+<li>本组总览 README；</li>
+<li>每个产品一个文件夹与 <code>README.md</code>；</li>
+<li>每个产品至少拆成 4~6 篇：
+<ul>
+<li>它为什么存在 / 解决什么首要复杂度；</li>
+<li>核心抽象、架构与部署形态；</li>
+<li>与同类产品相比的设计中心；</li>
+<li>在课程助教或企业内部知识系统中的落点；</li>
+<li>适用边界、排错与迁移成本；</li>
+</ul>
+</li>
+<li>最终再补一篇本组的选型矩阵：回答“为什么选 A，不选 B”。</li>
+</ol>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dataset-workbench-design.md</td>
+<td>定义课程助教的数据工地：采样、标注、审校、入库、回流</td>
+<td>能说明样本怎样从原始数据变成训练/评测资产</td>
+</tr>
+<tr>
+<td>annotation-guideline.md</td>
+<td>写一份标注说明与质检规则</td>
+<td>不同标注员能得到可比结果</td>
+</tr>
+<tr>
+<td>data-quality-audit-plan.md</td>
+<td>定义脏标签、难样本、漂移样本的发现流程</td>
+<td>避免数据问题长期潜伏</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/04-tooling/06/01/01/">01 Label Studio</a></li>
+<li><a href="/ai/04-tooling/06/02/01/">02 Argilla</a></li>
+<li><a href="/ai/04-tooling/06/03/01/">03 Doccano</a></li>
+<li><a href="/ai/04-tooling/06/04/01/">04 Cleanlab</a></li>
+<li><a href="/ai/04-tooling/06/05/01/">05 FiftyOne</a></li>
+</ol>
+<h2 id="7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</h2>
+<ul>
+<li>不要先记安装命令，先问它把哪类复杂度当作一等公民；</li>
+<li>不要只看 happy path，重点看治理、排错、迁移、协作与上线证据；</li>
+<li>不要问“谁最强”，要问“谁最匹配当前系统的首要矛盾”；</li>
+<li>不要把开源工具当成银弹，工具只是把某类工程纪律做成现成组件。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>从标注到精选再到数据质量治理的工具链</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>没有高质量数据工地，训练、RAG、评测都会虚</td>
+</tr>
+<tr>
+<td>代表产品</td>
+<td>Label Studio / Argilla / Doccano / Cleanlab / FiftyOne</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>区分标注、反馈、质检、可视化四类工作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[151] <a href="https://github.com/HumanSignal/label-studio">https://github.com/HumanSignal/label-studio</a> — Label Studio GitHub</li>
+<li>[152] <a href="https://github.com/argilla-io/argilla">https://github.com/argilla-io/argilla</a> — Argilla GitHub</li>
+<li>[153] <a href="https://github.com/doccano/doccano">https://github.com/doccano/doccano</a> — Doccano GitHub</li>
+<li>[154] <a href="https://github.com/cleanlab/cleanlab">https://github.com/cleanlab/cleanlab</a> — Cleanlab GitHub</li>
+<li>[155] <a href="https://github.com/voxel51/fiftyone">https://github.com/voxel51/fiftyone</a> — FiftyOne GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/06/05/01/"><span>上一篇</span><strong>04.06.05.01 FiftyOne 概览</strong></a><a class="ai-pager-next" href="/ai/04-tooling/07/01/01/"><span>下一篇</span><strong>04.07.01.01 Ollama 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-这一模块建议怎么读">3. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-我建议本模块的内容结构">4. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

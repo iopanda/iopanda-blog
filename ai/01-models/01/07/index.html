@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.07 语言建模 · iopanda</title><meta name="description" content="01.01.07 语言建模 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.07 语言建模 · iopanda"><meta property="og:description" content="01.01.07 语言建模 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">语言建模</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">语言建模</span></nav><header class="ai-article-header"><p class="ai-number">01.01.07</p><h1>语言建模</h1><p class="ai-meta"><time datetime="2026-09-02T17:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>language-modeling</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章认识了 Transformer 的骨架——注意力让每个 token 都能参考全部上下文。但骨架本身不会说话:让模型「开口」的,正是本章的<strong>语言建模(language modeling)<strong>目标。你会看到一个反直觉的事实:</strong>「预测下一个词」这一件事,同时训练出了语法、知识、翻译、写代码与基础推理</strong>。理解了它,你就拿到了解读几乎所有大模型产品的钥匙。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用一句话定义语言建模,并写出它的概率分解公式;</li>
+<li>解释为什么「预测下一个 token」是一个标签免费的自监督任务;</li>
+<li>说明语言建模「给文本打分」与「生成文本」的双重用途;</li>
+<li>对比 n-gram、早期神经语言模型与现代大语言模型的核心差异;</li>
+<li>解释困惑度、temperature、top-k / top-p 的含义与用途。</li>
+</ol>
+<h2 id="1-概念语言建模是什么">1. 概念:语言建模是什么</h2>
+<ul>
+<li><strong>语言建模(Language Modeling)</strong> 是对<strong>一串 token(词或子词)出现的概率</strong>进行建模。给定词表 $V$ 和序列 $w_1 w_2 \dots w_T$,模型要能算出:
+$$P(w_1 w_2 \dots w_T) = \prod_{t=1}^{T} P(w_t \mid w_1 \dots w_{t-1})$$
+这个等式叫<strong>链式法则</strong>:整句话的概率 = 每个词在「前面所有词之后」的条件概率的乘积。</li>
+<li>所以语言建模的日常形态只有一句话:<strong>给定前文,预测下一个 token 的概率分布</strong>。今天的 GPT、Llama、Claude 在预训练阶段做的全部事情,就是反复做这件事。</li>
+<li><strong>为什么这样定义</strong>:自然语言有内在不确定性——「我今天吃了___」后面可以接苹果、午饭、火锅、闭门羹……不存在唯一正确答案。因此模型输出的不是一个词,而是<strong>词表上每个 token 的概率分布</strong>。</li>
+</ul>
+<h3 id="11-一个类比输入法联想与接龙">1.1 一个类比:输入法联想与接龙</h3>
+<ul>
+<li>手机输入法把 <code>ni hao</code> 重排成「你好」而不是「你嚎」,靠的正是语言模型:在拼音相同的大量候选里,选出「按中文习惯概率最高」的那个词序列。<strong>聊天机器人的「续写」与输入法的「联想」是同一个任务</strong>,只是规模差了几万倍。</li>
+<li>语言模型同时给了你两样东西:一是<strong>概率</strong>(判断哪句话更自然、更像人话),二是<strong>分布</strong>(从这个分布里采样,就能源源不断地产出新文本)。</li>
+</ul>
+<h2 id="2-为什么需要它从看懂到会说">2. 为什么需要它:从「看懂」到「会说」</h2>
+<ul>
+<li>在语言建模成为主流之前,机器只能做「看懂」类任务:分个类、打个标签、判断个正负面。但**「生成一句从来没人写过的话」**是开放问题,没有标准答案,监督学习那套「给 (x, y) 样本」的框架接不住——谁来给无穷多种回答逐一标答案?</li>
+<li>语言建模的巧妙之处,是把「生成」这个开放问题<strong>收编成一个处处有答案的预测问题</strong>:互联网上每一段文本,天然就是「前文 → 下一个词」的免费训练样本。这就是<strong>自监督</strong>:标签从数据自己身上长出来,不需要人工标注。</li>
+<li>历史上它最初也不是为了「聊天」:1980 年代 IBM 的 Jelinek 团队在<strong>语音识别</strong>中发现,声学模型给出多个候选读音后,需要一个「哪句话更像真英语」的先验概率 $P(\text{文本})$ 来挑出正确句子,于是引入了统计语言模型(n-gram)与困惑度。</li>
+<li><strong>为什么偏偏是「预测下一个词」这么简单的任务?</strong> 三个原因:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标签免费</td>
+<td>全网文本都是自监督语料,规模可以无限大</td>
+</tr>
+<tr>
+<td>任务够难</td>
+<td>要预测对,模型必须学会语法、事实、逻辑、风格、世界知识</td>
+</tr>
+<tr>
+<td>目标统一</td>
+<td>「给文本打分」= 理解,「从分布采样」= 生成,一鱼两吃</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一句话:<strong>语言建模让「理解」与「生成」第一次共用同一个训练目标</strong>,这也是它能一路 scale 成今天大模型的原因。</li>
+</ul>
+<h2 id="3-它有什么作用一切生成式-ai-的地基">3. 它有什么作用:一切生成式 AI 的地基</h2>
+<ul>
+<li><strong>文本生成</strong>:聊天、续写、摘要、翻译、写代码、Agent 的思考链——无论产品外壳多复杂,底层循环都是同一个:<strong>根据已有 token 预测下一个,采样,拼回去,再来一次</strong>。</li>
+<li><strong>给候选打分</strong>:语音识别(把 <code>wuhan</code> 候选句按语言概率重排)、机器翻译的候选重排序、拼写纠错,都依赖「$P(\text{句子})$ 越大越通顺」这一信号。</li>
+<li><strong>预训练表示</strong>:自回归(GPT 式)与双向(BERT 式)语言模型的隐藏层,都沉淀了通用的语言表示,可以微调后做分类、检索、抽取等下游任务;向量检索、RAG 用的文本嵌入也常由语言模型产生。</li>
+<li><strong>工程价值</strong>:一个预训练好的语言模型 = 开箱即用的「语言先验」,产品团队无需自己训练,用提示词、检索、微调即可适配具体业务(呼应 01 章「基础模型」的分层图)。规模与数据量的增长带来能力跃迁(scaling law),是 09、10 章的主题。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-三代模型n-gram--神经语言模型--大语言模型">4.1 三代模型:n-gram → 神经语言模型 → 大语言模型</h3>
+<ul>
+<li><strong>第一代 · n-gram(1980s)</strong>:用<strong>马尔可夫假设</strong>偷懒——下一个词只依赖最近 n−1 个词,然后直接查语料里的频数表:
+$$P(w_t \mid w_{t-n+1} \dots w_{t-1}) \approx \frac{\text{count}(w_{t-n+1} \dots w_t)}{\text{count}(w_{t-n+1} \dots w_{t-1})}$$
+问题随之而来:<strong>组合爆炸与数据稀疏</strong>——语料里 5-gram 大多一次都没出现过,频率为 0 就得「判死刑」,于是需要加一平滑、回退等技巧;且 n 一大参数量指数膨胀,上下文却依然很短。</li>
+<li><strong>第二代 · 神经语言模型(2003 起)</strong>:Bengio 等人的开创性工作**「A Neural Probabilistic Language Model」**用嵌入(embedding)+ 神经网络取代频数表:相似的上下文被映射到相近的向量,「没见过的词组」也能靠相似性给出合理概率,一举缓解稀疏问题,还顺带学出了有语义的词向量。</li>
+<li><strong>第三代 · 大语言模型(2018 起)</strong>:序列建模交给 Transformer(上一章),GPT 证明<strong>只要模型够大、数据够多,「预测下一个词」就能涌现出翻译、问答、写代码等能力</strong>;此后模型参数从亿级涨到万亿级,预训练语料从几十 GB 涨到十几万亿 token。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>代际</th>
+<th>上下文建模</th>
+<th>优点</th>
+<th>致命局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n-gram</td>
+<td>只看最近 n−1 个词</td>
+<td>简单、快、可解释</td>
+<td>稀疏、上下文极短</td>
+</tr>
+<tr>
+<td>神经 LM(Bengio/RNN/LSTM)</td>
+<td>分布式表示,上下文变长</td>
+<td>泛化好、词有语义</td>
+<td>串行难并行、长程遗忘</td>
+</tr>
+<tr>
+<td>Transformer LLM</td>
+<td>注意力看全上下文</td>
+<td>并行、长程、可规模化</td>
+<td>算力与数据成本巨大</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-训练与评估损失困惑度采样">4.2 训练与评估:损失、困惑度、采样</h3>
+<ul>
+<li><strong>训练目标(交叉熵损失)</strong>:对序列每个位置,模型输出词表上的一个概率分布,真实的下一个 token 作为「标准答案」。<strong>交叉熵 = 负对数似然</strong>,模型给正确 token 的概率越高,loss 越低。反向传播逐层更新参数——和 02、03 章学的框架完全一致,只是数据换成了「前文 → 下一个词」对。</li>
+<li><strong>Teacher forcing(强制教学)</strong>:训练时把<strong>真实历史</strong>喂给模型预测下一步,而不是喂它自己上一步的生成结果——否则一步错、步步错,误差在序列上滚雪球,训练根本稳不住。</li>
+<li><strong>困惑度(Perplexity)</strong>:$\text{PPL} = \exp(\text{平均交叉熵})$,直观理解是<strong>模型平均每次要在几个候选里「猜」</strong>。PPL 越低越好:一个 PPL 为 20 的模型,平均相当于在 20 个等概率词里做选择。注意:<strong>困惑度低 ≠ 下游任务表现好</strong>,它只衡量「像不像训练语料的话」,评测最终还要看具体任务指标。</li>
+<li><strong>生成时的采样参数</strong>:<strong>temperature</strong> 控制分布软硬(t 大 → 更随机发散,t 小 → 更确定保守);<strong>top-k</strong> 只从概率最高的 k 个词里选;<strong>top-p(nucleus)</strong> 动态截取累计概率到 p 的最小候选集。贪心解码(总选概率最高)最容易<strong>复读</strong>,采样过猛则容易<strong>跑题</strong>,实际产品要在这两头之间调平衡。</li>
+</ul>
+<h3 id="43-单向-vs-双向gpt-与-bert">4.3 单向 vs 双向:GPT 与 BERT</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>因果语言建模(GPT)</th>
+<th>掩码语言建模(BERT)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务</td>
+<td>只看左侧,预测下一个词</td>
+<td>遮住中间词,看两侧猜它</td>
+</tr>
+<tr>
+<td>方向性</td>
+<td>单向(自回归)</td>
+<td>双向</td>
+</tr>
+<tr>
+<td>擅长</td>
+<td><strong>生成</strong>(必须不偷看未来)</td>
+<td><strong>理解</strong>(分类、检索、抽取)</td>
+</tr>
+<tr>
+<td>代表</td>
+<td>GPT 系列、Llama、Claude</td>
+<td>BERT、RoBERTa</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>生成任务<strong>必须</strong>因果:如果模型生成第 5 个词时能偷看第 6 个词,循环就不成立了。这也是为什么主流对话大模型几乎都是 decoder-only 的自回归架构;BERT 式的双向预训练则更多用作「表示引擎」。</li>
+<li>两者广义上都算「语言建模」的变体——<strong>共同思想都是:用文本自带的上下文关系做预测,把预测压力逼成语言能力</strong>。</li>
+</ul>
+<h3 id="44-为什么只会预测却什么都会--它的边界">4.4 为什么「只会预测」却什么都会 &amp; 它的边界</h3>
+<ul>
+<li>预测下一个词看似肤浅,实则<strong>极难</strong>:要预测对「他推开门,___」,模型得知道门会吱呀响、人会说「我回来了」、甚至情节接下来要发生什么——<strong>语法、事实、推理、风格全被压缩进了权重</strong>。Karpathy 在《Intro to Large Language Models》里点破:训练压缩了互联网文本,而<strong>压缩即智能</strong>——能力不是额外加的,是「把世界规律压缩进参数」的副产品。</li>
+<li>但请记住它的结构性边界:<strong>训练目标是「像人话」,不是「为真」</strong>。模型对「事实正确」没有内置校验,所以会一本正经地编造(幻觉)、在长文本里复读、对没见过的问题硬答。工程上要用 RAG 补事实、工具调用补实时数据、评测与人工兜底——这些是 01 后续系列的主题。</li>
+</ul>
+<h2 id="5-总结">5. 总结</h2>
+<h3 id="51-本章一览">5.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>语言建模</td>
+<td>用链式法则把句子概率拆成「逐词条件概率」并建模</td>
+</tr>
+<tr>
+<td>训练目标</td>
+<td>预测下一个 token(自监督,标签来自文本本身)</td>
+</tr>
+<tr>
+<td>双重作用</td>
+<td>给文本打分(理解)+ 从分布采样(生成)</td>
+</tr>
+<tr>
+<td>三代演进</td>
+<td>n-gram(查频数)→ 神经 LM(学表示)→ Transformer LLM(规模化)</td>
+</tr>
+<tr>
+<td>关键指标/参数</td>
+<td>困惑度(越低越好)、temperature、top-k、top-p</td>
+</tr>
+<tr>
+<td>边界</td>
+<td>目标是「像人话」而非「为真」,幻觉需系统手段兜底</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-思考题">5.2 思考题</h3>
+<ol>
+<li>为什么语言建模不需要人工标注数据?「标签」到底藏在哪?</li>
+<li>为什么生成式模型必须是单向(因果)的,而 BERT 可以看两侧?</li>
+<li>把 temperature 调到 0 与调到很高,生成结果分别会怎样?产品上各自适用什么场景?</li>
+<li>困惑度从 100 降到 20,意味着模型的什么能力变强了?它能直接代表「回答更准确」吗?</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>互联网文本本身就是「前文 → 下一个词」的天然样本:把任意文本切成前缀和下一个 token,就得到一条训练数据,不需要人标注——这就是自监督。</li>
+<li>生成是逐词展开的,第 t 个词若能看到第 t+1 个词(未来),生成循环就失去意义;BERT 只做「猜被遮住的词」,不需要按顺序产出文本,所以可以充分利用两侧上下文,更适合理解任务。</li>
+<li>temperature→0 近似贪心,输出确定、保守、易复读,适合代码、结构化输出;调高则发散、有创造力,但易跑题甚至胡言乱语;产品常在「事实性任务用低温、创意任务用高温」之间权衡,并配合 top-p。</li>
+<li>PPL 从 100 到 20 表示模型对「下一个词」的平均候选数从 100 降到 20,说明它更懂语言规律;但它只衡量「像不像训练语料的话」,不直接代表事实准确或任务表现,下游能力要单独评测。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Language_model">Wikipedia:Language model</a></li>
+<li><a href="https://web.stanford.edu/~jurafsky/slp3/3.pdf">Jurafsky &amp; Martin:Speech and Language Processing,第 3 章 N-gram Language Models</a></li>
+<li><a href="https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf">Bengio et al.:A Neural Probabilistic Language Model(JMLR 2003)</a></li>
+<li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Andrej Karpathy:Intro to Large Language Models(视频)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/06/"><span>上一篇</span><strong>01.01.06 Transformer 架构</strong></a><a class="ai-pager-next" href="/ai/01-models/01/08/"><span>下一篇</span><strong>01.01.08 模型架构</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念语言建模是什么">1. 概念:语言建模是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-一个类比输入法联想与接龙">1.1 一个类比:输入法联想与接龙</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要它从看懂到会说">2. 为什么需要它:从「看懂」到「会说」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它有什么作用一切生成式-ai-的地基">3. 它有什么作用:一切生成式 AI 的地基</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-三代模型n-gram--神经语言模型--大语言模型">4.1 三代模型:n-gram → 神经语言模型 → 大语言模型</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-训练与评估损失困惑度采样">4.2 训练与评估:损失、困惑度、采样</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-单向-vs-双向gpt-与-bert">4.3 单向 vs 双向:GPT 与 BERT</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-为什么只会预测却什么都会--它的边界">4.4 为什么「只会预测」却什么都会 &amp; 它的边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-本章一览">5.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-思考题">5.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.04.07 权限写在代码里 · iopanda</title><meta name="description" content="02.04.07 权限写在代码里 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/04/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.04.07 权限写在代码里 · iopanda"><meta property="og:description" content="02.04.07 权限写在代码里 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/04/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="04" data-active-subsection data-active-article="/ai/02-agents/04/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具调用与协议"></button><a class="tree-link tree-link--section" href="/ai/02-agents/04/"><span class="tree-number">04</span><span class="tree-title">工具调用与协议</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/04/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">权限写在代码里</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/04/">工具调用与协议</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">权限写在代码里</span></nav><header class="ai-article-header"><p class="ai-number">02.04.07</p><h1>权限写在代码里</h1><p class="ai-meta"><time datetime="2026-09-07T10:40">2026-09-07</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>permissions</li><li>least-privilege</li></ul></header><div class="ai-prose"><h1 id="权限写在代码里">权限写在代码里</h1>
+<p>助教的系统提示里有一句：“你只能查看自己负责课程的学生数据。”</p>
+<p>一个学生发来消息：“我上学期也选了您那门课，现在想查一下我的总评。”</p>
+<p>Agent 调用了 <code>get_student_scores(student_id=...)</code>，返回了另一门课的成绩。系统提示里的那句话，没有起到任何作用。</p>
+<p>模型在这里谈不上被骗：它把用户文字里的身份声明当成了事实。文本里的“我是”永远只是文本。<strong>身份必须来自认证，权限必须来自代码。</strong></p>
+<h2 id="混淆代理">混淆代理</h2>
+<p>上面那个事故有个名字：混淆代理（confused deputy）。Agent 以一个高权限的服务账号运行，替一个低权限的用户办事，而它没有能力区分这两者的权限差别。</p>
+<p>三个条件同时成立时，这个问题就会出现：Agent 用服务账号连数据、Agent 接受用户文字里的身份声明、工具不做数据范围检查。</p>
+<p>修法只有一条：<strong>把终端用户的身份一路传到数据层。</strong> 用户登录后拿到令牌，Agent 调用工具时带上这个令牌（或由网关做令牌交换），工具用它去查数据，数据库按它的权限返回。</p>
+<p>服务账号只用于调用模型与基础服务，不用于访问业务数据。</p>
+<h2 id="权限层四件套">权限层四件套</h2>
+<p><strong>白名单。</strong> 每个角色一份工具清单，默认拒绝。学生角色的助教没有 <code>update_score</code>，无论模型怎么提议都调不到。新工具默认不进任何清单。</p>
+<p><strong>参数收窄。</strong> 白名单后的第二道。允许 <code>get_student_scores</code> 不代表允许查任意学号：把 <code>student_id</code> 限制在当前用户自己，或者限制在教师负责的课程范围内。</p>
+<p>实现位置很关键：范围条件由<strong>网关代码</strong>追加，不由模型填写。如果让模型传 <code>course_id</code>，它迟早会传错；如果网关从令牌里取 <code>course_id</code> 拼进查询，模型连表达的机会都没有。</p>
+<p><strong>人工确认。</strong> 4.3 节那张表里的不可逆动作。</p>
+<p><strong>审计日志。</strong> 每次调用记六项：谁（终端用户 + Agent 身份）、调了什么、参数、裁决结果（允许/拒绝/待确认）、执行结果摘要、耗时。日志不可改，保留期按合规要求定，写进去之前做敏感字段脱敏。</p>
+<table>
+<thead>
+<tr>
+<th>件</th>
+<th>挡的问题</th>
+<th>实现位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>白名单</td>
+<td>越权调用工具</td>
+<td>网关</td>
+</tr>
+<tr>
+<td>参数收窄</td>
+<td>越权访问数据</td>
+<td>网关 + 数据层</td>
+</tr>
+<tr>
+<td>人工确认</td>
+<td>不可逆操作</td>
+<td>网关</td>
+</tr>
+<tr>
+<td>审计日志</td>
+<td>事后追责</td>
+<td>网关</td>
+</tr>
+</tbody>
+</table>
+<h2 id="一个闸门不散落">一个闸门，不散落</h2>
+<p>权限判断只应有一处。散落在各工具里的 <code>if role == "teacher"</code> 会在半年后变得互相矛盾——某个新人加工具时忘写，或者把阈值抄错。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> guarded_call</span><span style="color:#E1E4E8">(principal, name, args):</span></span>
+<span class="line"><span style="color:#E1E4E8">    tool </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> REGISTRY</span><span style="color:#E1E4E8">.get(name)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> tool </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#F97583"> or</span><span style="color:#E1E4E8"> name </span><span style="color:#F97583">not</span><span style="color:#F97583"> in</span><span style="color:#79B8FF"> ALLOWED</span><span style="color:#E1E4E8">[principal.role]:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> deny(</span><span style="color:#9ECBFF">"工具不可用"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    args </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scope_args(principal, name, args)   </span><span style="color:#6A737D"># 参数收窄在这里</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> tool.irreversible </span><span style="color:#F97583">and</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> principal.confirmed:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> pending(tool.preview(principal, args))</span></span>
+<span class="line"><span style="color:#E1E4E8">    log(principal, name, args)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> tool.run(principal, args)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>这段代码的结构比内容重要：<strong>所有调用都经过它，没有任何旁路。</strong> 工具的 <code>run</code> 只接受已经收窄过的参数，并且用它自己的、限定范围的数据库连接。</p>
+<h2 id="用测试固定权限">用测试固定权限</h2>
+<p>权限矩阵是这套设计里唯一能被自动验证的部分。写一张表，逐格断言。</p>
+<p>课程助教系统至少有这些组合：</p>
+<ul>
+<li>学生查自己的成绩 → 允许</li>
+<li>学生查同班同学的成绩 → 拒绝</li>
+<li>助教查负责课程的成绩 → 允许</li>
+<li>助教查非负责课程的成绩 → 拒绝</li>
+<li>教师改自己课程的成绩 → 允许（需确认）</li>
+<li>任何角色删除题库 → 拒绝</li>
+</ul>
+<p>这六条写进测试，每次改动都跑。它挡不住聪明的攻击，但能挡住九成的回归——权限系统最常见的失效方式在重构：某次改动之后，检查悄悄没了。</p>
+<h2 id="提示词里那句你不能">提示词里那句“你不能”</h2>
+<p>系统提示里的权限声明仍然值得写，但要清楚它的作用：让模型<strong>不去尝试</strong>。它不是边界。</p>
+<p>一个好的写法是说明原因，而不是重复禁令：</p>
+<blockquote>
+<p>学生数据按课程隔离。你只能拿到当前用户有权访问的记录；如果请求超出范围，工具会返回“无权限访问”，此时应向用户说明，不要用其他工具绕行。</p>
+</blockquote>
+<p>最后半句针对的是真实行为：模型被拒绝后，会尝试别的路径。它在多步任务里把一次越权拆成几次合规调用，这在 4.3 节末尾提过。闸门要能看到任务上下文，而不只是单次调用。</p>
+<h2 id="它挡不住的部分">它挡不住的部分</h2>
+<p><strong>范围内的滥用。</strong> 权限做对了，一个有权查看全班成绩的老师依然可以要求导出。这是业务规则问题，需要另一层限制（导出需审批、批量操作限额）。</p>
+<p><strong>工具权限与数据权限不一致。</strong> 工具允许，数据层没拦，等于没拦。两层都要有，且以后者为准。</p>
+<p><strong>审计日志自身。</strong> 日志里有学号、有查询内容，它本身就是敏感数据。访问控制、保留期、脱敏，一样不能少。</p>
+<p><strong>人员的疏忽。</strong> 一个临时排查用的高权限角色，事后没人收回。这类问题靠定期复核，不靠技术。</p>
+<h2 id="这一章之后">这一章之后</h2>
+<p>工具让 Agent 能改变世界，也让每一次错误都变得具体：删掉一条记录、覆盖一个分数、发出去一封邮件。</p>
+<p>下一节处理另一半问题——它记住什么。长期记忆是 Agent 从“每次重新开始”变成“越用越顺手”的关键，也是隐私与污染最容易出问题的地方。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>OWASP. <em>LLM06: Excessive Agency.</em> <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">https://genai.owasp.org/llmrisk/llm062025-excessive-agency/</a></li>
+<li>NIST. <em>Zero Trust Architecture (SP 800-207).</em> <a href="https://csrc.nist.gov/pubs/sp/800/207/final">https://csrc.nist.gov/pubs/sp/800/207/final</a></li>
+<li>Saltzer, J. &amp; Schroeder, M. (1975). <em>The Protection of Information in Computer Systems.</em>（最小权限原则的原始表述）</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/04/06/"><span>上一篇</span><strong>02.04.06 工具变成了可插拔的</strong></a><a class="ai-pager-next" href="/ai/02-agents/05/01/"><span>下一篇</span><strong>02.05.01 记忆与检索 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#混淆代理">混淆代理</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#权限层四件套">权限层四件套</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#一个闸门不散落">一个闸门，不散落</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#用测试固定权限">用测试固定权限</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#提示词里那句你不能">提示词里那句“你不能”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它挡不住的部分">它挡不住的部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#这一章之后">这一章之后</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

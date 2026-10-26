@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.02.06 课程助教 Agent 的 AutoGen 架构案例 · iopanda</title><meta name="description" content="03.01.02.06 课程助教 Agent 的 AutoGen 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/02/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.02.06 课程助教 Agent 的 AutoGen 架构案例 · iopanda"><meta property="og:description" content="03.01.02.06 课程助教 Agent 的 AutoGen 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/02/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="02" data-active-article="/ai/03-frameworks/01/02/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 AutoGen"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/02/"><span class="tree-number">02</span><span class="tree-title">AutoGen</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/02/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教 Agent 的 AutoGen 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/02/">AutoGen</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 AutoGen 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.01.02.06</p><h1>课程助教 Agent 的 AutoGen 架构案例</h1><p class="ai-meta"><time datetime="2026-09-03T19:18">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>autogen</li><li>case-study</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-autogen-架构案例">课程助教 Agent 的 AutoGen 架构案例</h1>
+<blockquote>
+<p>现在可以把 AutoGen 的几层世界观重新装回一个真实系统了：<a href="/ai/03-frameworks/01/02/02/">多 Agent 会话</a> 给了协作直觉，<a href="/ai/03-frameworks/01/02/04/">AgentChat 与消息协议</a> 说明它不是纯聊天，<a href="/ai/03-frameworks/01/02/05/">worker/service runtime</a> 又说明它有更大的系统想象。那如果把这些放回你的课程助教主线，会发生什么？答案是：<strong>课程助教在 AutoGen 里最自然的样子，不是一个状态图，也不是一个 typed service，而是一组围绕消息协作的角色系统。</strong> 这一章就专门讲这种架构该怎么拆，以及它为什么既自然又危险。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用 AutoGen 的语言为课程助教设计角色、消息、topic 和 runtime 拓扑；</li>
+<li>判断哪些地方 AutoGen 的协作模型很自然，哪些地方会开始吃力；</li>
+<li>解释为什么课程助教在这里更像“协作系统”，而不是单体服务或显式状态机；</li>
+<li>识别这类架构在权限、停止条件、恢复和审计上的风险点；</li>
+<li>画出一版可供实现和复盘的 AutoGen 架构草图。</li>
+</ol>
+<h2 id="1-问题定义课程助教在-autogen-里首先是角色协作系统">1. 问题定义：课程助教在 AutoGen 里首先是“角色协作系统”</h2>
+<p>如果从 AutoGen 出发，课程助教最自然的第一反应不是：</p>
+<ul>
+<li>定 state schema；</li>
+<li>定 output schema；
+而是：</li>
+<li>哪些角色要参与；</li>
+<li>谁接学生问题；</li>
+<li>谁去找资料；</li>
+<li>谁写草稿；</li>
+<li>谁审查风险；</li>
+<li>哪些消息在他们之间流动。</li>
+</ul>
+<p>这说明课程助教在 AutoGen 里首先像：
+<strong>一组围绕学生问题协作的角色网络。</strong></p>
+<h2 id="2-建议角色够用就好不要为了多-agent-而多-agent">2. 建议角色：够用就好，不要为了多 Agent 而多 Agent</h2>
+<p>一个相对合理的起点可以是：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>职责</th>
+<th>不该做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UserProxy / Triage</td>
+<td>接学生请求、发布初始消息、协调结束</td>
+<td>不直接产出所有专业内容</td>
+</tr>
+<tr>
+<td>Research Agent</td>
+<td>检索课程讲义、FAQ、规则片段</td>
+<td>不决定最终高风险输出</td>
+</tr>
+<tr>
+<td>Writer Agent</td>
+<td>基于资料生成草稿</td>
+<td>不直接做权限判断</td>
+</tr>
+<tr>
+<td>Review Agent</td>
+<td>检查隐私、成绩、越权、规则边界</td>
+<td>不负责大规模资料探索</td>
+</tr>
+</tbody>
+</table>
+<p>这套拆法很符合 AutoGen 的协作直觉：</p>
+<ul>
+<li>一个角色找；</li>
+<li>一个角色写；</li>
+<li>一个角色审；</li>
+<li>一个用户/协调角色起头并收尾。</li>
+</ul>
+<p>但也要克制：角色一多，消息网络会迅速失控。</p>
+<h2 id="3-关键不是角色名而是消息协议">3. 关键不是角色名，而是消息协议</h2>
+<p>课程助教在 AutoGen 里真正的架构关键，不是“你起了什么角色名”，而是：</p>
+<ul>
+<li>哪类消息存在；</li>
+<li>谁订阅哪类消息；</li>
+<li>哪条消息意味着继续；</li>
+<li>哪条消息意味着转人工；</li>
+<li>哪条消息意味着结束。</li>
+</ul>
+<p>比如至少可以有：</p>
+<table>
+<thead>
+<tr>
+<th>消息类型</th>
+<th>含义</th>
+<th>典型发布者</th>
+<th>典型接收者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StudentQuestion</code></td>
+<td>学生提出问题</td>
+<td>UserProxy</td>
+<td>Research / Triage</td>
+</tr>
+<tr>
+<td><code>RetrievedContext</code></td>
+<td>检索结果</td>
+<td>Research</td>
+<td>Writer</td>
+</tr>
+<tr>
+<td><code>DraftAnswer</code></td>
+<td>草稿回答</td>
+<td>Writer</td>
+<td>Review</td>
+</tr>
+<tr>
+<td><code>RiskFlag</code></td>
+<td>命中隐私/越权/敏感边界</td>
+<td>Review</td>
+<td>UserProxy / Human reviewer</td>
+</tr>
+<tr>
+<td><code>ApprovedAnswer</code></td>
+<td>人工或规则放行的结果</td>
+<td>Review / Human</td>
+<td>UserProxy</td>
+</tr>
+<tr>
+<td><code>StopMessage</code></td>
+<td>本回合结束</td>
+<td>UserProxy / Coordinator</td>
+<td>全体或终止逻辑</td>
+</tr>
+</tbody>
+</table>
+<p>这一层如果不显式，后续的治理几乎无从谈起。</p>
+<h2 id="4-topic-怎么想课程助教为什么不只是一个对话窗口">4. topic 怎么想：课程助教为什么不只是一个对话窗口</h2>
+<p>如果进一步用 topic 思维去组织：</p>
+<ul>
+<li>普通课程问答 topic</li>
+<li>成绩与隐私请求 topic</li>
+<li>审批/人工复核 topic</li>
+</ul>
+<p>会更容易把高风险问题与普通问题分开。</p>
+<p>这样做的好处是：</p>
+<ul>
+<li>不同协作链可以有不同参与者；</li>
+<li>高风险消息不会和普通问答混在一条流里；</li>
+<li>后面若接入外部审批系统，也更容易桥接。</li>
+</ul>
+<p>这再次说明：课程助教在 AutoGen 里不像“一个聊天框”，更像“一个分 topic 的消息协作系统”。</p>
+<h2 id="5-这个架构自然的地方在哪里">5. 这个架构自然的地方在哪里</h2>
+<p>AutoGen 对课程助教自然的地方至少有三点：</p>
+<ol>
+<li><strong>角色分工非常直观</strong>：研究、写作、审查本来就是自然协作流程；</li>
+<li><strong>消息流很容易做演示和观察</strong>：谁先找资料、谁再写、谁最后审很清楚；</li>
+<li><strong>适合教学和实验</strong>：特别适合展示“多 Agent 协作能带来什么”。</li>
+</ol>
+<p>这也是为什么课程助教这种案例在 AutoGen 里很容易讲得生动。</p>
+<h2 id="6-这个架构危险的地方又在哪里">6. 这个架构危险的地方又在哪里</h2>
+<p>同样重要的是，这个案例在 AutoGen 下也会暴露很多问题：</p>
+<h3 id="61-控制流容易埋进会话">6.1 控制流容易埋进会话</h3>
+<p>比如：</p>
+<ul>
+<li>什么时候继续检索；</li>
+<li>什么时候直接输出；</li>
+<li>什么时候转人工；
+如果这些逻辑只存在于角色提示词里，系统一复杂就会失控。</li>
+</ul>
+<h3 id="62-权限边界容易模糊">6.2 权限边界容易模糊</h3>
+<p>Research / Writer / Review 哪个可以调成绩查询？
+如果角色和工具权限不严格绑定，越权会非常隐蔽。</p>
+<h3 id="63-停止条件不清">6.3 停止条件不清</h3>
+<p>AutoGen 很容易写出“大家聊得挺热闹，但到底谁说了算”不清楚的系统。对课程助教这种要面向真实用户的系统，这会很危险。</p>
+<h3 id="64-恢复和审计难">6.4 恢复和审计难</h3>
+<p>如果一次高风险请求聊到第 6 轮才需要人工接管，你就会立刻发现：</p>
+<ul>
+<li>哪一轮的结论可信？</li>
+<li>哪个角色最后触发了风险标记？</li>
+<li>人工应接管哪段上下文？</li>
+</ul>
+<p>这些都是 AutoGen 在真实治理里更吃力的地方。</p>
+<h2 id="7-如果硬要做课程助教哪些纪律必须补上">7. 如果硬要做课程助教，哪些纪律必须补上</h2>
+<ol>
+<li><strong>角色权限显式绑定</strong>
+<ul>
+<li>成绩查询只允许特定角色调用；</li>
+</ul>
+</li>
+<li><strong>消息类型显式化</strong>
+<ul>
+<li>不要什么都靠自然语言传达；</li>
+</ul>
+</li>
+<li><strong>停止条件写死</strong>
+<ul>
+<li>谁能发终止消息、什么情况结束；</li>
+</ul>
+</li>
+<li><strong>高风险请求转人工</strong>
+<ul>
+<li>不要让“审查角色自己决定放不放行”成为唯一边界；</li>
+</ul>
+</li>
+<li><strong>把会话记录转成可复盘工件</strong>
+<ul>
+<li>否则只剩长聊天记录，难以治理。</li>
+</ul>
+</li>
+</ol>
+<h2 id="8-和-langgraph--crewai--pydanticai-做同一案例时的差异">8. 和 LangGraph / CrewAI / PydanticAI 做同一案例时的差异</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>第一张图最像什么</th>
+<th>AutoGen 的不同</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LangGraph</td>
+<td>状态与边图</td>
+<td>AutoGen 更像角色消息网络</td>
+</tr>
+<tr>
+<td>CrewAI</td>
+<td>角色+任务+流程图</td>
+<td>AutoGen 更像会话和协议驱动的协作系统</td>
+</tr>
+<tr>
+<td>OpenAI Agents SDK</td>
+<td>triage/specialist/runtime 原语图</td>
+<td>AutoGen 更偏多角色对话范式</td>
+</tr>
+<tr>
+<td>PydanticAI</td>
+<td>typed service / deps / output 图</td>
+<td>AutoGen 更偏协作过程，而非接口边界</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：课程助教在 AutoGen 里最像一场被协议约束的多角色协作，而不是一个服务或状态机。</p>
+<h2 id="9-动手活动写课程助教的-autogen-架构说明">9. 动手活动：写课程助教的 AutoGen 架构说明</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>course-ta-autogen-architecture.md</code></p>
+<p><strong>目标</strong>：为课程助教写一份以角色、消息和 topic 为中心的架构说明。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>列角色与职责；</li>
+<li>列消息类型与订阅关系；</li>
+<li>列高风险路径如何转人工；</li>
+<li>写停止条件与审计要求；</li>
+<li>写一段“为什么这里用 AutoGen 会自然，又为什么风险高”的结论。</li>
+</ol>
+<p><strong>完成标准</strong>：另一个工程师看完后，能既看到协作直觉，也看到治理难点。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：课程助教适合多角色，所以 AutoGen 就最优。</strong> 角色自然不等于治理容易；</li>
+<li><strong>误区二：消息用自然语言就够了。</strong> 高风险系统应尽量显式化语义；</li>
+<li><strong>误区三：Review Agent 就等于护栏。</strong> 它只是协作角色，不是全部安全边界；</li>
+<li><strong>误区四：有 UserProxy 就代表 ownership 清楚。</strong> 停止条件和权限仍需显式设计；</li>
+<li><strong>误区五：会话记录可追溯。</strong> 原始聊天历史往往并不等于可审计结构化记录。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教在 AutoGen 里像什么</td>
+<td>一个以角色和消息为中心的协作系统</td>
+</tr>
+<tr>
+<td>真正的架构关键是什么</td>
+<td>消息类型、topic、订阅关系、停止条件</td>
+</tr>
+<tr>
+<td>自然之处</td>
+<td>研究/写作/审查分工很直观</td>
+</tr>
+<tr>
+<td>危险之处</td>
+<td>控制流、权限、恢复与审计容易埋进会话</td>
+</tr>
+<tr>
+<td>适合它做什么</td>
+<td>教学、实验、展示协作范式</td>
+</tr>
+<tr>
+<td>最需要补什么</td>
+<td>协议显式化与治理边界</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么课程助教这种看似“天然适合多角色协作”的系统，一旦真的涉及成绩、隐私、人工审批和上线治理，就会暴露 AutoGen 的许多弱点？这说明框架的“直观性”与“可治理性”之间是什么关系？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为多角色协作的直观性主要解决“怎么把任务分给几个人做”，但成绩、隐私、审批和上线治理要求解决的是“谁有权做、何时停、如何恢复、如何追责”。这些问题如果继续藏在会话中，就会把系统推入治理困难。也就是说，直观性很适合入门和演示，但并不自动等于可治理性；框架越强调协作直觉，越需要额外补上显式边界。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[7] <a href="https://microsoft.github.io/autogen/stable">https://microsoft.github.io/autogen/stable</a> — AutoGen stable docs</li>
+<li>[8] <a href="https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/01%20-%20Programming%20Model.md">https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/01%20-%20Programming%20Model.md</a> — AutoGen programming model</li>
+<li>[37] <a href="https://github.com/microsoft/autogen/blob/main/python/packages/autogen-core/src/autogen_core/_routed_agent.py">https://github.com/microsoft/autogen/blob/main/python/packages/autogen-core/src/autogen_core/_routed_agent.py</a> — AutoGen routed agent source</li>
+<li>[38] <a href="https://github.com/microsoft/autogen/tree/main/python/packages/autogen-agentchat/src/autogen_agentchat">https://github.com/microsoft/autogen/tree/main/python/packages/autogen-agentchat/src/autogen_agentchat</a> — AutoGen AgentChat source tree</li>
+<li>[40] <a href="https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md">https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md</a> — AutoGen services design</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/02/05/"><span>上一篇</span><strong>03.01.02.05 Agent Worker、Services 与分布式运行时</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/02/07/"><span>下一篇</span><strong>03.01.02.07 AutoGen 与 LangGraph、CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-问题定义课程助教在-autogen-里首先是角色协作系统">1. 问题定义：课程助教在 AutoGen 里首先是“角色协作系统”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-建议角色够用就好不要为了多-agent-而多-agent">2. 建议角色：够用就好，不要为了多 Agent 而多 Agent</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-关键不是角色名而是消息协议">3. 关键不是角色名，而是消息协议</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-topic-怎么想课程助教为什么不只是一个对话窗口">4. topic 怎么想：课程助教为什么不只是一个对话窗口</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-这个架构自然的地方在哪里">5. 这个架构自然的地方在哪里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-这个架构危险的地方又在哪里">6. 这个架构危险的地方又在哪里</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#61-控制流容易埋进会话">6.1 控制流容易埋进会话</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#62-权限边界容易模糊">6.2 权限边界容易模糊</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#63-停止条件不清">6.3 停止条件不清</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#64-恢复和审计难">6.4 恢复和审计难</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-如果硬要做课程助教哪些纪律必须补上">7. 如果硬要做课程助教，哪些纪律必须补上</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-和-langgraph--crewai--pydanticai-做同一案例时的差异">8. 和 LangGraph / CrewAI / PydanticAI 做同一案例时的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动写课程助教的-autogen-架构说明">9. 动手活动：写课程助教的 AutoGen 架构说明</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

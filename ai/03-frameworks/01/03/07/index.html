@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.03.07 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比 · iopanda</title><meta name="description" content="03.01.03.07 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/03/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.03.07 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比 · iopanda"><meta property="og:description" content="03.01.03.07 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/03/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="03" data-active-article="/ai/03-frameworks/01/03/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 CrewAI"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/03/"><span class="tree-number">03</span><span class="tree-title">CrewAI</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/03/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/03/">CrewAI</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比</span></nav><header class="ai-article-header"><p class="ai-number">03.01.03.07</p><h1>CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比</h1><p class="ai-meta"><time datetime="2026-09-03T16:55">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>crewai</li><li>comparison</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="crewai-与-langgraphopenai-agents-sdkpydanticai-的深度对比">CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比</h1>
+<blockquote>
+<p>到这里，CrewAI 本身已经讲得不算浅了：<a href="/ai/03-frameworks/01/03/02/">角色与任务</a>、<a href="/ai/03-frameworks/01/03/03/">Flow</a>、<a href="/ai/03-frameworks/01/03/04/">厚角色执行边界</a>、<a href="/ai/03-frameworks/01/03/05/">人审与恢复</a>、<a href="/ai/03-frameworks/01/03/06/">课程助教案例</a>。这一篇不再重复“它是什么”，而是专门回答：<strong>CrewAI 不是谁的平替，它到底在框架谱系里站在哪里？</strong> 也就是说：当你同时面对 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>、<a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a>、<a href="/ai/03-frameworks/01/05/01/">PydanticAI</a> 时，CrewAI 的真正独特性在什么地方？这篇就是从“业务组织语言”这个视角来做反向比较。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>站在 CrewAI 的视角，清楚解释它与 LangGraph、OpenAI Agents SDK、PydanticAI 的第一性差异；</li>
+<li>理解为什么“都能做 Agent”不等于“默认表达语言相同”；</li>
+<li>用业务角色复杂度、流程复杂度、运行时原语复杂度、工程契约复杂度四个坐标做判断；</li>
+<li>判断什么时候 CrewAI 是自然主骨架，什么时候它会显得偏重或偏绕；</li>
+<li>写出一段“为什么这里选 CrewAI 而不是别的”的架构说明。</li>
+</ol>
+<h2 id="1-比较前提crewai-首先不是运行时内核而是业务组织框架">1. 比较前提：CrewAI 首先不是运行时内核，而是业务组织框架</h2>
+<p>要理解 CrewAI，首先要接受一个前提：</p>
+<ul>
+<li>它当然也有运行时、持久化、反馈、执行器；</li>
+<li>但它最先吸引人的，不是这些；</li>
+<li>而是它让开发者和架构师可以用“角色、任务、团队、流程”去讨论系统。</li>
+</ul>
+<p>这点非常关键。因为默认表达语言会直接决定：</p>
+<ul>
+<li>团队怎么沟通；</li>
+<li>架构图怎么画；</li>
+<li>需求怎么拆；</li>
+<li>故障怎么复盘。</li>
+</ul>
+<p>CrewAI 的根本独特性就在这里：<strong>它把 Agent 系统翻译成组织协作语言。</strong></p>
+<h2 id="2-crewai-vs-langgraph业务组织语言-vs-状态机语言">2. CrewAI vs LangGraph：业务组织语言 vs 状态机语言</h2>
+<h3 id="21-langgraph-的强项">2.1 LangGraph 的强项</h3>
+<p>LangGraph 强在：</p>
+<ul>
+<li>state</li>
+<li>node</li>
+<li>edge</li>
+<li>checkpoint</li>
+<li>interrupt</li>
+<li>subgraph</li>
+</ul>
+<p>它更像运行时系统内核。</p>
+<h3 id="22-crewai-的不同">2.2 CrewAI 的不同</h3>
+<p>CrewAI 更先问：</p>
+<ul>
+<li>谁是研究员；</li>
+<li>谁是撰写员；</li>
+<li>谁是审查员；</li>
+<li>任务怎么在他们之间流动；</li>
+<li>系统流程怎么在业务语言里被描述。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>CrewAI</th>
+<th>LangGraph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认表达语言</td>
+<td>角色、任务、团队、流程</td>
+<td>状态、节点、边、恢复</td>
+</tr>
+<tr>
+<td>更像什么</td>
+<td>业务自动化框架</td>
+<td>运行时图引擎</td>
+</tr>
+<tr>
+<td>第一张图通常画什么</td>
+<td>角色与审批链</td>
+<td>状态与分支图</td>
+</tr>
+<tr>
+<td>最强主矛盾</td>
+<td>业务协作与流程语言</td>
+<td>控制流与恢复语义</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：CrewAI 更像“组织怎么工作”，LangGraph 更像“系统怎么转”。</p>
+<h2 id="3-crewai-vs-openai-agents-sdk业务组织语言-vs-现代运行时原语语言">3. CrewAI vs OpenAI Agents SDK：业务组织语言 vs 现代运行时原语语言</h2>
+<p>OpenAI Agents SDK 的强项是把：</p>
+<ul>
+<li>tools</li>
+<li>handoffs</li>
+<li>guardrails</li>
+<li>sessions</li>
+<li>tracing</li>
+<li>sandbox</li>
+<li>realtime / voice
+打成一套统一 runtime 语义。</li>
+</ul>
+<p>而 CrewAI 的强项不在于“原语更齐”，而在于“业务表达更自然”：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>CrewAI</th>
+<th>OpenAI Agents SDK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首先关心什么</td>
+<td>团队如何完成任务</td>
+<td>现代 Agent runtime 要有哪些原语</td>
+</tr>
+<tr>
+<td>协作怎么理解</td>
+<td>roles + tasks + crews</td>
+<td>handoff / agent-as-tool</td>
+</tr>
+<tr>
+<td>流程怎么理解</td>
+<td>flows + business automation</td>
+<td>runtime orchestration primitives</td>
+</tr>
+<tr>
+<td>最适合谁</td>
+<td>业务自动化团队</td>
+<td>产品与开发者工具团队</td>
+</tr>
+</tbody>
+</table>
+<p>所以如果团队最先痛的是“怎么把业务角色和流程说清楚”，CrewAI 很自然；如果最先痛的是“我不想自己拼 tools/sessions/guardrails/sandbox”，OpenAI Agents SDK 更自然。</p>
+<h2 id="4-crewai-vs-pydanticai组织职责语言-vs-类型契约语言">4. CrewAI vs PydanticAI：组织职责语言 vs 类型契约语言</h2>
+<p>PydanticAI 最强的直觉是：</p>
+<ul>
+<li>output_type</li>
+<li>deps_type</li>
+<li>capabilities</li>
+<li>usage limits</li>
+<li>graph/durable execution 的渐进升级</li>
+</ul>
+<p>它更像把 Agent 变成 typed Python component。</p>
+<p>CrewAI 则是把 Agent 变成 organization-inspired business role。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>CrewAI</th>
+<th>PydanticAI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一性问题</td>
+<td>角色和流程怎么组织</td>
+<td>输出、依赖、能力怎么写得稳</td>
+</tr>
+<tr>
+<td>团队最先讨论什么</td>
+<td>研究员/审查员/流程门</td>
+<td>schema/deps/capabilities</td>
+</tr>
+<tr>
+<td>更像什么</td>
+<td>业务框架</td>
+<td>工程框架</td>
+</tr>
+<tr>
+<td>复杂度最先落在哪</td>
+<td>业务职责和流程拆分</td>
+<td>契约与维护性</td>
+</tr>
+</tbody>
+</table>
+<p>所以：</p>
+<ul>
+<li>CrewAI 更像帮业务团队看清组织结构；</li>
+<li>PydanticAI 更像帮后端团队稳住系统契约。</li>
+</ul>
+<h2 id="5-为什么-crewai-常常更适合流程已经存在的组织">5. 为什么 CrewAI 常常更适合“流程已经存在”的组织</h2>
+<p>如果一个团队已经有比较明确的业务分工，比如：</p>
+<ul>
+<li>谁负责收集资料；</li>
+<li>谁负责生成内容；</li>
+<li>谁负责审查风险；</li>
+<li>谁负责审批与外发；</li>
+</ul>
+<p>那么 CrewAI 往往很贴手。因为它不是逼团队先学状态机，而是直接允许他们把真实组织结构映射到 Agent 系统里。</p>
+<p>这就是它非常适合：</p>
+<ul>
+<li>销售/运营自动化</li>
+<li>内容生产流程</li>
+<li>法务/合规审查流程</li>
+<li>企业知识处理链
+这类场景的原因。</li>
+</ul>
+<h2 id="6-什么时候-crewai-会显得偏重或绕">6. 什么时候 CrewAI 会显得偏重或绕</h2>
+<p>反过来也要诚实：在这些场景里，CrewAI 容易显得不够直截了当：</p>
+<ol>
+<li>主矛盾不在角色，而在复杂状态恢复；</li>
+<li>系统更像一个长流程运行时，而不像团队协作；</li>
+<li>需求只是单 Agent + 几个工具；</li>
+<li>团队更习惯 typed backend 或 runtime primitives，而不是业务角色抽象；</li>
+<li>角色其实并没有真实专长差异，只是为了“多 Agent”而多 Agent。</li>
+</ol>
+<p>这时：</p>
+<ul>
+<li>LangGraph 可能更直接；</li>
+<li>OpenAI Agents SDK 可能更轻快；</li>
+<li>PydanticAI 可能更稳。</li>
+</ul>
+<h2 id="7-为什么说-crewai-更像组织图而不是调用图">7. 为什么说 CrewAI 更像“组织图”，而不是“调用图”</h2>
+<p>这是我对 CrewAI 最核心的判断：</p>
+<ul>
+<li>LangGraph 更像调用图/状态图；</li>
+<li>OpenAI Agents SDK 更像 runtime 原语图；</li>
+<li>PydanticAI 更像工程组件图；</li>
+<li>CrewAI 更像组织图。</li>
+</ul>
+<p>组织图的优点是：</p>
+<ul>
+<li>好沟通；</li>
+<li>好做职责映射；</li>
+<li>好做业务解释。</li>
+</ul>
+<p>组织图的代价是：</p>
+<ul>
+<li>容易忽视底层状态语义；</li>
+<li>容易把流程复杂度藏回角色会话；</li>
+<li>如果业务分工本来就不清晰，角色抽象会越来越虚。</li>
+</ul>
+<h2 id="8-从-crewai-视角看为什么不用别的">8. 从 CrewAI 视角看“为什么不用别的”</h2>
+<h3 id="不选-langgraph-的理由">不选 LangGraph 的理由</h3>
+<ul>
+<li>你团队首先痛的不是状态机，而是业务协作表达；</li>
+<li>希望系统图能让业务方也看懂。</li>
+</ul>
+<h3 id="不选-openai-agents-sdk-的理由">不选 OpenAI Agents SDK 的理由</h3>
+<ul>
+<li>你团队首先痛的不是原语拼装，而是组织职责和流程分工；</li>
+<li>你需要的不只是 runtime，而是更接近组织语言的系统表达。</li>
+</ul>
+<h3 id="不选-pydanticai-的理由">不选 PydanticAI 的理由</h3>
+<ul>
+<li>你团队首先痛的不是 schema / deps / capability 契约；</li>
+<li>而是业务角色和审批流程难以表达清楚。</li>
+</ul>
+<p>这些都不是说别的框架弱，而是说：<strong>CrewAI 最先击中的，是组织和流程表达复杂度。</strong></p>
+<h2 id="9-动手活动写一段为什么我们选-crewai的架构说明">9. 动手活动：写一段“为什么我们选 CrewAI”的架构说明</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>why-crewai.md</code></p>
+<p><strong>目标</strong>：为一个业务自动化项目写一段可复核的选型说明。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>用一句话写出项目主矛盾；</li>
+<li>说明为什么角色、任务、审批流是核心表达；</li>
+<li>对比 LangGraph、OpenAI Agents SDK、PydanticAI：它们更先解决什么；</li>
+<li>说明为什么这些不是你项目的第一优先级；</li>
+<li>补一段未来演化：何时可能引入更强状态机或更强 typed 契约。</li>
+</ol>
+<p><strong>完成标准</strong>：看完后别人会觉得你是在按系统复杂度选型，而不是按个人喜好投票。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：CrewAI 只是 LangGraph 的业务版皮肤。</strong> 它们的第一表达语言不同；</li>
+<li><strong>误区二：角色语义自然，就代表底层复杂度自动消失。</strong> 不会；</li>
+<li><strong>误区三：能沟通给业务方听懂，就说明系统一定更稳。</strong> 可沟通性和恢复语义不是同一回事；</li>
+<li><strong>误区四：组织图画得漂亮，就不需要强运行时。</strong> 复杂系统终究还要面对状态和恢复；</li>
+<li><strong>误区五：不选别的框架就不借鉴别的思想。</strong> 实际上 typed output、runtime guardrails、显式状态思维都值得引入。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CrewAI 最像什么</td>
+<td>一个用组织与流程语言表达 Agent 系统的业务框架</td>
+</tr>
+<tr>
+<td>它和 LangGraph 的核心差异</td>
+<td>一个像组织图，一个像状态机图</td>
+</tr>
+<tr>
+<td>它和 OpenAI Agents SDK 的核心差异</td>
+<td>一个先稳业务表达，一个先稳 runtime 原语</td>
+</tr>
+<tr>
+<td>它和 PydanticAI 的核心差异</td>
+<td>一个先稳职责流程，一个先稳工程契约</td>
+</tr>
+<tr>
+<td>什么时候选它</td>
+<td>当团队最先痛在业务角色与流程表达上</td>
+</tr>
+<tr>
+<td>什么时候谨慎</td>
+<td>当主矛盾其实在状态恢复、typed contract 或轻量快速原型</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果一个团队非常强调“业务方也要看懂架构图”，这是否天然意味着 CrewAI 比 LangGraph 更好？为什么“更容易给业务讲清楚”有时是巨大优势，有时又可能掩盖底层状态与恢复复杂度？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>不天然意味着更好。业务方能看懂是巨大优势，因为它能降低沟通和职责对齐成本；但如果团队因此忽略了状态迁移、恢复点、持久化和故障语义，那么“图讲清楚了”不等于“系统做清楚了”。真正成熟的做法是：用业务友好的表达组织系统，同时在实现层对状态、恢复和审计保持严格设计。CrewAI 适合把前者做好，但后者仍不能偷懒。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[11] <a href="https://docs.crewai.com">https://docs.crewai.com</a> — CrewAI docs</li>
+<li>[12] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx</a> — CrewAI agents concepts</li>
+<li>[13] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx</a> — CrewAI crews concepts</li>
+<li>[14] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx</a> — CrewAI flows concepts</li>
+<li>[30] <a href="https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/agent/core.py">https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/agent/core.py</a> — CrewAI agent core source</li>
+<li>[31] <a href="https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/flow.py">https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/flow.py</a> — CrewAI flow source</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/03/06/"><span>上一篇</span><strong>03.01.03.06 课程助教 Agent 的 CrewAI 架构案例</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/04/01/"><span>下一篇</span><strong>03.01.04.01 OpenAI Agents SDK 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-比较前提crewai-首先不是运行时内核而是业务组织框架">1. 比较前提：CrewAI 首先不是运行时内核，而是业务组织框架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-crewai-vs-langgraph业务组织语言-vs-状态机语言">2. CrewAI vs LangGraph：业务组织语言 vs 状态机语言</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-langgraph-的强项">2.1 LangGraph 的强项</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-crewai-的不同">2.2 CrewAI 的不同</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-crewai-vs-openai-agents-sdk业务组织语言-vs-现代运行时原语语言">3. CrewAI vs OpenAI Agents SDK：业务组织语言 vs 现代运行时原语语言</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-crewai-vs-pydanticai组织职责语言-vs-类型契约语言">4. CrewAI vs PydanticAI：组织职责语言 vs 类型契约语言</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-为什么-crewai-常常更适合流程已经存在的组织">5. 为什么 CrewAI 常常更适合“流程已经存在”的组织</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-什么时候-crewai-会显得偏重或绕">6. 什么时候 CrewAI 会显得偏重或绕</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-为什么说-crewai-更像组织图而不是调用图">7. 为什么说 CrewAI 更像“组织图”，而不是“调用图”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-从-crewai-视角看为什么不用别的">8. 从 CrewAI 视角看“为什么不用别的”</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-langgraph-的理由">不选 LangGraph 的理由</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-openai-agents-sdk-的理由">不选 OpenAI Agents SDK 的理由</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-pydanticai-的理由">不选 PydanticAI 的理由</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动写一段为什么我们选-crewai的架构说明">9. 动手活动：写一段“为什么我们选 CrewAI”的架构说明</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

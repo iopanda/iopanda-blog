@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.05.05 设计哲学与取舍 · iopanda</title><meta name="description" content="02.09.05.05 设计哲学与取舍 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/05/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.05.05 设计哲学与取舍 · iopanda"><meta property="og:description" content="02.09.05.05 设计哲学与取舍 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/05/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="05" data-active-article="/ai/02-agents/09/05/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pi Coding Agent"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/05/"><span class="tree-number">05</span><span class="tree-title">Pi Coding Agent</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/05/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">设计哲学与取舍</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/05/">Pi Coding Agent</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">设计哲学与取舍</span></nav><header class="ai-article-header"><p class="ai-number">02.09.05.05</p><h1>设计哲学与取舍</h1><p class="ai-meta"><time datetime="2026-09-03T07:45">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>pi-source</li></ul></header><div class="ai-prose"><h1 id="设计哲学与取舍">设计哲学与取舍</h1>
+<blockquote>
+<p>03 章看到扩展系统是内核「不建功能」的出口;本章对账这份哲学本身:作者把 Claude Code 形容为「80% 功能用不上的飞船」,于是 Pi 维护一份「不需要就不建」清单——不内置 MCP、子代理、plan mode、权限弹窗、后台 bash。但「不建」不是摆烂:信任模型(无内置权限=进程全权)、供应链硬化(精确锁版+install-scripts 白名单)与 AGENTS.md 开发纪律一起,构成了这份哲学在安全侧的完整代价。本章全部论断都有源码或作者博客(2025-11-30)出处,方便你逐条核证。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>逐条复述「不需要就不建」清单(六项),并为每项说出官方替代路径与出处;</li>
+<li>解释「无内置权限系统 = 进程全权」的信任模型,说明 project_trust 事件与默认四工具在其中的作用;</li>
+<li>说出供应链硬化的五件套(精确锁版/overrides、shrinkwrap、install-scripts 白名单、–ignore-scripts、npm audit CI)各自的代码位置;</li>
+<li>复述 AGENTS.md 的两条开发哲学(不保向后兼容、erasable TypeScript)与「示例即契约」的含义;</li>
+<li>完成一张「Pi 的答案 vs 其他 Agent 的答案 vs 我的判断」取舍对照表,并就至少两项给出自己的立场。</li>
+</ol>
+<h2 id="1-概念一份带替代路径的不内置清单">1. 概念:一份带替代路径的「不内置清单」</h2>
+<ul>
+<li>Pi 的自我定位极短:docs/index.md:3「Pi is a minimal terminal coding harness. It is designed to stay small at the core」——「小」不是目标本身,而是手段;手段的产物是一份明确的否定清单。作者在博客里逐条声明「pi does not and will not support…」,说明这些<strong>不是还没做,而是决定不做</strong>。</li>
+<li>默认给模型的工具面小到只有四个——agent-session.ts:2800-2802:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> defaultActiveToolNames</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">._baseToolsOverride</span></span>
+<span class="line"><span style="color:#F97583">    ?</span><span style="color:#E1E4E8"> Object.</span><span style="color:#B392F0">keys</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">._baseToolsOverride)</span></span>
+<span class="line"><span style="color:#F97583">    :</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"read"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"bash"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"edit"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"write"</span><span style="color:#E1E4E8">];</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>不内置的功能与官方替代路径构成一张对照表(博客出处见引用;仓库出处已核证):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>不内置项</th>
+<th>替代路径</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP</td>
+<td>带 README 的 CLI 工具,按需渐进披露</td>
+<td>博客 No MCP support</td>
+</tr>
+<tr>
+<td>子代理</td>
+<td>让 Pi 用 bash 自举 <code>pi --print</code>,或 tmux 会话</td>
+<td>博客 No sub-agents</td>
+</tr>
+<tr>
+<td>plan mode</td>
+<td>写 PLAN.md 文件 + <code>pi --tools read,grep,find,ls</code></td>
+<td>博客 No plan mode</td>
+</tr>
+<tr>
+<td>权限弹窗</td>
+<td>容器化(三种官方模式)+ permission-gate 扩展示例</td>
+<td>README.md:42-46</td>
+</tr>
+<tr>
+<td>后台 bash</td>
+<td>tmux</td>
+<td>博客 No background bash</td>
+</tr>
+<tr>
+<td>内置 to-do</td>
+<td>TODO.md 文件,或 examples 的 todo.ts 扩展</td>
+<td>博客 No built-in to-dos、docs/extensions.md:2948</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>六项可按被否定的成本归类:to-do/plan/后台进程是<strong>状态与进程管理</strong>——作者观点是这些活该由文件系统、终端与 OS 干,LLM harness 只负责「调用」,不负责「保管状态」(02 章讲过的会话压缩已是内核唯一破例);MCP 是<strong>工具集成税</strong>(协议复杂度 + 每会话 token 开销);子代理与 plan mode 的隐藏成本则是<strong>可观测性缺失</strong>(作者反复用「zero visibility」批评黑盒)。</li>
+</ul>
+<h2 id="2-为什么一个simple-boy的反飞船宣言">2. 为什么:一个「simple boy」的反飞船宣言</h2>
+<ul>
+<li>一手材料在作者博客(2025-11-30「What I learned building an opinionated and minimal coding agent」):他自述长期用 Claude Code,直到「Claude Code has turned into a spaceship with 80% of functionality I have no use for」——而且系统提示与工具定义随每次发布变动,直接破坏他的工作流。Pi 是他的反例:系统提示加全部工具定义合计「below 1000 tokens」。</li>
+<li>两条理由主线贯穿全文。其一是<strong>复杂度是负债</strong>:每个内置功能都要维护、测试、写文档,80% 用户用不上等于纯负债;砍掉它,内核才能保持「一个人能通读」(01 章的 monorepo 十包格局正是这样活下来的)。其二是<strong>可观测性优先</strong>:作者反复用「zero visibility」批评黑盒子——plan mode 里编排实例派出的子代理不可见、后台 bash 的进程状态不可查;而 TODO.md、PLAN.md、tmux 会话全都在磁盘与终端里,「I get full observability of everything」。</li>
+<li>与 02.01 骨架的呼应:能跑通 ReAct 的最小集合就是四工具(read/bash/edit/write 覆盖观察与行动),多出来的都是「增强」而非「必需」——所以 Pi 把增强全部赶到 03 章的扩展系统里,由用户按需拼装。</li>
+</ul>
+<h2 id="3-作用清单画在默认四工具这条线上">3. 作用:清单画在「默认四工具」这条线上</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>                    用户 / 容器边界(README.md:42-46 三种官方模式)</span></span>
+<span class="line"><span>   ┌────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>   │  Pi 进程(以启动用户全权运行,README.md:40)                     │</span></span>
+<span class="line"><span>   │   默认四工具 read/bash/edit/write(agent-session.ts:2800)     │</span></span>
+<span class="line"><span>   │   └─ 扩展系统:一切不内置功能的挂载点(03 章)                  │</span></span>
+<span class="line"><span>   │       权限弹窗→permission-gate 示例    plan→plan-mode 示例   │</span></span>
+<span class="line"><span>   │       子代理→bash 自举                 后台任务→tmux 会话     │</span></span>
+<span class="line"><span>   └────────────────────────────────────────────────────────────┘</span></span>
+<span class="line"><span>   TODO.md / PLAN.md(磁盘上的外部状态,跨会话可见、可版本化)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>读图方式:内核只做「能力面」(默认四工具 + 事件),<strong>不做「判断面」</strong>(要不要批准、要不要规划、要不要后台)——判断留给用户、文件协议与容器;扩展系统是两者之间的插座。这样「不内置」就有了统一的作用位置:一切被否定的功能都改道到 03 章那四层载体上重生。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-清单逐条评省了什么把成本转嫁给了谁">4.1 清单逐条评:省了什么,把成本转嫁给了谁</h3>
+<table>
+<thead>
+<tr>
+<th>不内置项</th>
+<th>作者的理由(博客原文要点)</th>
+<th>替代路径与出处</th>
+<th>省下的复杂度 → 转嫁给</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP</td>
+<td>「MCP servers are overkill…significant context overhead」;Playwright MCP 21 个工具 13.7k tokens、Chrome DevTools MCP 26 个工具 18k tokens,会话没开始就烧掉 7~9% 上下文</td>
+<td>带 README 的 CLI 工具 + bash 调用,用时才读 README(渐进披露);非要 MCP 可用 mcporter 包成 CLI</td>
+<td>省:协议客户端、server 生命周期管理 → 转嫁:用户自己写/找 CLI 工具</td>
+</tr>
+<tr>
+<td>子代理</td>
+<td>编排实例派出的子代理是「a black box within a black box」,上下文交接不可控、出错难调试</td>
+<td>bash 自举:让 Pi 用 <code>pi --print</code> 派自己,tmux 里跑则全程可见可交互</td>
+<td>省:子代理调度、上下文转移协议 → 转嫁:用户自己规划「先建上下文工件,再开新会话」(02 章会话树正好支撑)</td>
+</tr>
+<tr>
+<td>plan mode</td>
+<td>规划需要可观测性:「I need observability for planning and I don’t get that with Claude Code’s plan mode」</td>
+<td>PLAN.md 文件(跨会话、可版本化、可人机协作编辑);只读探索用 <code>pi --tools read,grep,find,ls</code>;想要开关式 plan 也有 plan-mode/index.ts:22-24 扩展示例</td>
+<td>省:只读模式、工具集切换的 UI 状态机 → 转嫁:文件纪律(自己维护 PLAN.md 不过期)</td>
+</tr>
+<tr>
+<td>权限弹窗</td>
+<td>「pi runs in full YOLO mode…No permission prompts」;「security theater」——能读写文件又能跑代码的 Agent 拦不住数据外泄</td>
+<td>容器:Gondolin 扩展(微 VM 路由工具)/Plain Docker/OpenShell(README.md:42-46);要「人确认」体验装 permission-gate.ts:10-34 示例</td>
+<td>省:审批 UI、命令预检(作者点名 Claude Code 的 Haiku 预检)、审计状态机 → 转嫁:边界责任全部移交给用户选的外部容器</td>
+</tr>
+<tr>
+<td>后台 bash</td>
+<td>进程管理要「process tracking、output buffering、cleanup on exit」;Claude Code 后台 bash 可观测性差,压缩后 Agent 会忘掉后台进程</td>
+<td>tmux:dev server、REPL、调试会话都挂 tmux,<code>tmux ls</code> 可查,人还能跳进去共调</td>
+<td>省:进程表、输出缓冲、退出清理 → 转嫁:用户/模型学会 tmux 这一外部技能</td>
+</tr>
+<tr>
+<td>内置 to-do</td>
+<td>「to-do lists generally confuse models more than they help」——多一份要模型自己跟踪的状态,多一处出错机会</td>
+<td>TODO.md 复选框文件,或 todo.ts 状态化工具扩展(docs/extensions.md:2948「Stateful tool with persistence」)</td>
+<td>省:状态同步、完成度推理 → 转嫁:状态以文件形式显式存在,模型每次现读</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-信任与安全模型进程全权--事件而不是权限系统">4.2 信任与安全模型:进程全权 + 事件,而不是权限系统</h3>
+<ul>
+<li>起点是一句直白的免责:README.md:40「Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access. By default, it runs with the permissions of the user and process that launched it.」——<strong>无内置权限 = 进程全权</strong>,这句话把 02.04/06 的最小权限四件套(白名单/参数范围/人确认/审计)整体请出了内核。</li>
+<li>信任边界书面化在 SECURITY.md:11-17:本地用户账户与 Pi 同信任域,「If an attacker can modify files under the user’s home directory…they can generally influence Pi」——这类前置写权限不算漏洞;SECURITY.md:56 把 prompt injection 明确列入 Out Of Scope,理由是 AGENTS.md、注释、网页内容都能注入,「this cannot be protected against」。</li>
+<li>内核里仅存的护栏是<strong>事件而非策略</strong>:① 项目信任决策点 project_trust——project-trust.ts:57 发射 <code>{ type: "project_trust", cwd }</code> 事件,先于项目资源加载,只有 user/global/CLI 扩展参与裁决(docs/extensions.md:280、:355),项目本地 <code>.pi/extensions</code> 在被信任前不加载(:113);② docs/security.md:7 强调信任「is not a sandbox」,只控制<strong>项目资源</strong>加载,不限制模型后续调工具;③ 默认四工具面(agent-session.ts:2800-2802)是唯一的内置最小权限。</li>
+<li>对照 01.07/03 的注入链:注入 × 工具权限 = 越权,传统答案是代码闸门(02.04/06);Pi 的答案是承认「read data + execute code + network access」三件套无法在 harness 内同时约束(博客原话),于是把边界<strong>外移</strong>到容器、把「人确认」<strong>下沉</strong>为扩展示例(permission-gate)。代价很真实:没有默认护栏,新手在一个不可信仓库里跑 Pi 可能直接踩雷——所以信任决策(docs/security.md:18 默认 <code>"ask"</code>)与容器文档成了安全教育的全部载体。</li>
+</ul>
+<h3 id="43-供应链硬化功能上-yolo依赖上保守">4.3 供应链硬化:功能上 YOLO,依赖上保守</h3>
+<ul>
+<li><strong>直接依赖精确锁版 + overrides</strong>:coding-agent/package.json:46-67 几乎全部钉死小版本(<code>"undici": "8.9.0"</code>、<code>"chalk": "5.6.2"</code>),:68-74 再用 overrides 强制 <code>protobufjs 7.6.5</code>、<code>rimraf 6.1.2</code>;AGENTS.md:44「Direct external deps stay pinned to exact versions. Treat npm dep and lockfile changes as reviewed code.」——锁文件变更被视为代码评审对象。</li>
+<li><strong>shrinkwrap + install-scripts 白名单</strong>:发布物带 <code>packages/coding-agent/npm-shrinkwrap.json</code>(package.json:33 files 字段);专用生成脚本 scripts/generate-coding-agent-shrinkwrap.mjs:13-16 维护一份显式白名单,每个带安装脚本的包必须登记并写明理由:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> allowedInstallScriptPackages</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">([</span></span>
+<span class="line"><span style="color:#E1E4E8">    [</span><span style="color:#9ECBFF">"@google/genai@1.52.0"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"preinstall is a no-op in the published package"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">    [</span><span style="color:#9ECBFF">"protobufjs@7.6.5"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"postinstall only warns about protobufjs version scheme mismatches"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">]);</span></span></code></pre><span class="code-lang" data-lang="javascript" aria-hidden="true">javascript</span></div>
+<ul>
+<li>校验逻辑双向收紧:任何带 install scripts 的包不在白名单即报错(:241-254「Review it and add it to allowedInstallScriptPackages if intentional」);白名单里已不存在的包也会报错要求移除(:257-261)。安装脚本是供应链投毒的头号入口,这份白名单等于把「每个脚本都被人审过」写进了构建。</li>
+<li><strong>全局 –ignore-scripts</strong>:README.md:55「npm install –ignore-scripts」;AGENTS.md:46「Don’t run lifecycle scripts unless the user asks」;CI 全链路 npm-audit.yml:25 也是 <code>npm ci --ignore-scripts --no-audit --no-fund</code>——正常开发根本不执行任何包的安装脚本。</li>
+<li><strong>npm audit CI 每日定时</strong>:.github/workflows/npm-audit.yml:5 cron <code>'37 7 * * *'</code> 每天跑;:28 <code>npm audit --omit=dev --audit-level=moderate</code> 查生产依赖漏洞;:31 <code>npm audit signatures --omit=dev</code> 校验注册表签名;连 actions 都钉 SHA(:16 注释 <code># v7.0.1</code>)。</li>
+<li><strong>锁文件变更门禁</strong>:AGENTS.md:49「Pre-commit blocks lockfile commits unless <code>PI_ALLOW_LOCKFILE_CHANGE=1</code>」;shrinkwrap 再生成只走专用脚本(:48)。组合拳的逻辑:运行时权限哲学上「全给」,但<strong>依赖进入的每一道门都上锁</strong>——因为对本地 Agent 而言,恶意依赖与恶意仓库是仅剩的两条未授权代码入口。</li>
+</ul>
+<h3 id="44-agentsmd-开发哲学与示例即契约">4.4 AGENTS.md 开发哲学与「示例即契约」</h3>
+<ul>
+<li>仓库给人与 Agent 共用的开发规则 AGENTS.md 是哲学的执行细则,两条最锋利:AGENTS.md:25「Do not preserve backward compatibility unless the user asks for it.」——版本语义配套 AGENTS.md:129「minor = breaking changes」,小版本号里可以放心破坏;AGENTS.md:23「Use only erasable TypeScript syntax (Node strip-only mode)…no parameter properties, <code>enum</code>, <code>namespace</code>/<code>module</code>, <code>import =</code>」——只写 Node 能直接剥离类型的语法,不引入任何需要编译期发射的构造,把「零构建」的可能性焊死在代码风格里。</li>
+<li><strong>示例即契约</strong>:examples/extensions/ 下共 85 个 .ts(含 9 个自带目录的复杂示例),它们不只是文档——tsconfig.examples.json:14 把 <code>examples/**/*.ts</code> 纳入编译,AGENTS.md:23 明确 examples 属于 root config 检查范围,即 <strong>85 个示例全部被 tsgo 类型检查</strong>:API 一改,示例先红。功能不成熟就进不了核心,先在示例层活下来被真实使用验证(03 章的 plan-mode、sandbox、subagent 全是这条路)。</li>
+<li>这条纪律的闭环:不保向后兼容给内核「减负自由」,示例即契约给 API「回归刹车」——一个敢天天破坏、一个保证破坏能被立即看见,两者缺一不可。</li>
+</ul>
+<h2 id="5-动手活动取舍对照表">5. 动手活动:取舍对照表</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:六项取舍对照表(Pi 的答案 vs 其他 Agent 的答案 vs 我的判断)</p>
+<p><strong>目标</strong>:对「不需要就不建」清单逐项做三方对照,形成你自己的取舍判断,而不是照抄作者结论。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>复制 4.1 的表,加两列:「其他 Agent 的答案」「我的判断」。其他 Agent 一列只填本模块各 README 已核证的定位级事实——Claude Code(01 README)内置 plan mode、子代理与审批弹窗;Codex(02 README)走 Rust 极简 CLI + 审批/sandbox 模式;Hermes(03 README)把权限与记忆/技能做成运行时资产;OpenCode(04 README)以 TS 插件生态承接扩展。不追任何外部源码细节;</li>
+<li>对每项写一行「Pi 省了什么 / 把成本转嫁给了谁」(可抄 4.1 末列再自己补一句);</li>
+<li>任选两项,写下你的立场:完全同意、部分同意还是反对,理由必须落在「代价」上(例:无内置权限弹窗对个人开发者爽,但对团队默认共享工作站的场景意味着什么?);</li>
+<li>笔记输出:六行对照表 + 两段立场 + 一段总结「Pi 的哲学里,哪一条是你最想抄走的、哪一条你绝不敢抄」。</li>
+</ol>
+<p><strong>完成标准</strong>:六项每一行的替代路径都能报出出处(仓库文件:行号或博客小节名);「我的判断」列至少两项非空且给出代价分析;能一句话回答「Pi 为什么把权限策略做成扩展示例而不是内置功能」。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>现象/坑</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以为 system prompt 能当安全边界</td>
+<td>Pi 无内置权限,提示词对注入无免疫力(SECURITY.md:56 明确 Out Of Scope)</td>
+<td>边界只能来自容器(README.md:42-46);不可信仓库先用 Docker/Gondolin</td>
+</tr>
+<tr>
+<td>project_trust 点了信任就万事大吉</td>
+<td>信任只放行项目资源加载,「is not a sandbox」(docs/security.md:7)</td>
+<td>信任 ≠ 授权模型随便跑;危险操作仍要容器或 permission-gate 示例</td>
+</tr>
+<tr>
+<td>供应链硬化被误读为「依赖随便加」</td>
+<td>硬化管的是依赖<strong>来源与脚本</strong>,扩展代码本身仍全权(docs/extensions.md:111)</td>
+<td>只装可信扩展;带 install 脚本的新依赖必须走白名单评审流程</td>
+</tr>
+<tr>
+<td>升级 Pi 后自己的扩展/技能坏了</td>
+<td>作者明确不保向后兼容(AGENTS.md:25),minor 即可破坏</td>
+<td>把扩展当独立代码维护,锁 Pi 版本或跟 changelog</td>
+</tr>
+<tr>
+<td>以为「不内置 to-do/plan」= 模型不需要规划</td>
+<td>规划能力仍在,只是状态载体换成文件</td>
+<td>自己维护 PLAN.md/TODO.md 的版本化与更新纪律</td>
+</tr>
+<tr>
+<td>讲义行号与本地快照对不上</td>
+<td>2026-09 检出快照,仓库每日在变</td>
+<td>用 grep/search 按方法名重定位,方法比行号可靠</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>Pi 的落点</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不内置清单</td>
+<td>MCP/子代理/plan mode/权限弹窗/后台 bash/to-do 六项,各有替代路径</td>
+<td>博客 2025-11-30、README.md:42-46</td>
+</tr>
+<tr>
+<td>定位</td>
+<td>「spaceship with 80% of functionality I have no use for」的反面;prompt+工具 &lt;1000 tokens</td>
+<td>博客</td>
+</tr>
+<tr>
+<td>信任模型</td>
+<td>无内置权限 = 进程全权;project_trust 只管项目资源;默认四工具</td>
+<td>README.md:40、project-trust.ts:57、agent-session.ts:2800</td>
+</tr>
+<tr>
+<td>安全边界</td>
+<td>外部容器 + 扩展示例,内核不做判断面</td>
+<td>README.md:42-46、permission-gate.ts</td>
+</tr>
+<tr>
+<td>供应链硬化</td>
+<td>精确锁版+overrides、shrinkwrap+脚本白名单、–ignore-scripts、每日 audit、锁文件门禁</td>
+<td>package.json:46-74、shrinkwrap 脚本:13-16、npm-audit.yml:5</td>
+</tr>
+<tr>
+<td>开发哲学</td>
+<td>不保向后兼容、erasable TS、示例即契约(85 示例被 tsgo 检查)</td>
+<td>AGENTS.md:23/:25、tsconfig.examples.json:14</td>
+</tr>
+<tr>
+<td>总代价</td>
+<td>功能克制换来可通读内核;安全责任整体移交用户</td>
+<td>SECURITY.md:11-17</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:① Pi 说权限弹窗是「security theater」,02.04/06 却说「闸门必须在代码里、执行前」——两种立场各自在什么前提假设下成立,冲突点在哪?②「功能上 YOLO、依赖上保守」矛盾吗?③ 如果你有权给清单加第七个「不内置」项,你选什么,替代路径是什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>① 02.04/06 的闸门假设「代码边界能被可靠执行」(服务端多租户、可审计、有强身份);Pi 的论点针对<strong>本地单用户 harness</strong>:模型已能读写文件+执行命令+联网,「读隐私→外发」无法被弹窗阻断,弹窗只增加打断成本——所以把边界外移到容器。冲突点在于「人确认」对不可逆动作(rm -rf、git push)是否仍有价值:Pi 的回答是交给 permission-gate 这类可选扩展,而不是默认内置。② 不矛盾,是同一信任模型的两面:运行时对「用户指令」全权放行(YOLO),是因为攻击面主要不在用户自己的指令,而在<strong>未经评审的第三方代码</strong>——依赖、锁文件、扩展脚本;供应链是唯一能「静默注入可执行代码」的入口,所以那里每一道门都上锁。③ 开放题,示例答案:内置终端复用/分屏——替代路径是 tmux(把进程可见性交给 OS 层),理由同后台 bash:状态管理不属于 LLM harness;或内置网页搜索——替代路径是 <code>curl</code> + 带 README 的 CLI 工具,理由同 MCP 的 token 开销论。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/earendil-works/pi">earendil-works/pi(GitHub 仓库,本章全部源码出处)</a></li>
+<li><a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/">Mario Zechner:What I learned building an opinionated and minimal coding agent(2025-11-30,「不需要就不建」一手材料)</a></li>
+<li><a href="https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/">Mario Zechner:What if you don’t need MCP?(2025-11-02,不用 MCP 的展开论证)</a></li>
+<li><a href="https://pi.dev">pi.dev(官网:Permissions &amp; Containerization、Security 文档)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/05/04/"><span>上一篇</span><strong>02.09.05.04 扩展系统</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/05/06/"><span>下一篇</span><strong>02.09.05.06 与大型实现对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念一份带替代路径的不内置清单">1. 概念:一份带替代路径的「不内置清单」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么一个simple-boy的反飞船宣言">2. 为什么:一个「simple boy」的反飞船宣言</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用清单画在默认四工具这条线上">3. 作用:清单画在「默认四工具」这条线上</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-清单逐条评省了什么把成本转嫁给了谁">4.1 清单逐条评:省了什么,把成本转嫁给了谁</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-信任与安全模型进程全权--事件而不是权限系统">4.2 信任与安全模型:进程全权 + 事件,而不是权限系统</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-供应链硬化功能上-yolo依赖上保守">4.3 供应链硬化:功能上 YOLO,依赖上保守</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-agentsmd-开发哲学与示例即契约">4.4 AGENTS.md 开发哲学与「示例即契约」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动取舍对照表">5. 动手活动:取舍对照表</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

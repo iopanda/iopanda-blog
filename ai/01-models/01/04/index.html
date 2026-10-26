@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.04 Token 与 Embedding · iopanda</title><meta name="description" content="01.01.04 Token 与 Embedding · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.04 Token 与 Embedding · iopanda"><meta property="og:description" content="01.01.04 Token 与 Embedding · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">Token 与 Embedding</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Token 与 Embedding</span></nav><header class="ai-article-header"><p class="ai-number">01.01.04</p><h1>Token 与 Embedding</h1><p class="ai-meta"><time datetime="2026-09-02T15:20">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>tokenization</li><li>embeddings</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章我们认识了神经网络:它是一台从数据里学出来的「函数机器」,吃进去的是数字,吐出来的是预测。但用户给模型的是中文、英文、代码、表情——<strong>文字不会自己变成数字</strong>。本章回答这条流水线的第一公里:文字如何被切成 token,又如何变成携带语义的向量(embedding)。这是理解上下文窗口、API 计费与 RAG 检索的必备基础。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>解释为什么神经网络读不了原始文字,以及 one-hot 方案为什么行不通;</li>
+<li>描述 token 与 tokenization,用 BPE 的「合并」思路说明「常见词一个 token、罕见词被拆分」;</li>
+<li>估算同一段中文、英文、代码、表情的 token 数差异,并解释 token 数如何影响上下文窗口、计费、延迟与截断;</li>
+<li>说清 embedding 是什么、从哪里来,区分 token embedding 与文本 embedding,并指出「位置信息缺失」这个关键问题;</li>
+<li>用余弦相似度解释向量检索,说明向量数据库与 RAG 各自解决什么问题。</li>
+</ol>
+<h2 id="1-概念模型为什么读不了文字">1. 概念:模型为什么读不了文字</h2>
+<h3 id="11-神经网络的输入只能是数字">1.1 神经网络的输入只能是数字</h3>
+<ul>
+<li>神经网络内部全是矩阵乘法与激活函数(见 03 章),<strong>只能对浮点数做运算</strong>;而文字是离散符号,没有天然的数值大小。因此任何 NLP 模型的第一件事都是<strong>数值化</strong>:把文字变成数字再送入网络——这串数字的质量,直接决定后面所有层能学到什么。</li>
+</ul>
+<h3 id="12-最朴素的方案one-hot-编码以及它为什么失败">1.2 最朴素的方案:one-hot 编码,以及它为什么失败</h3>
+<ul>
+<li>给词表里每个词一个编号,再把编号展开成「只有一个位置是 1、其余全是 0」的向量,就是 <strong>one-hot 编码</strong>:词表为 [“猫”,“狗”,“飞机”] 时,猫 → <code>[1,0,0]</code>、狗 → <code>[0,1,0]</code>、飞机 → <code>[0,0,1]</code>。</li>
+<li>它有两个致命问题,也正是本章两个主角(Token 与 Embedding)要解决的:
+<ol>
+<li><strong>维度爆炸</strong>:词表 10 万词就要 10 万维向量,存储和计算都不可接受;</li>
+<li><strong>无语义距离</strong>:任意两个 one-hot 向量的夹角都一样——「猫」与「狗」的距离,竟然和「猫」与「飞机」完全相同,模型无从知道谁和谁更像。</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-token-与-tokenization把文字切成子词">2. Token 与 Tokenization:把文字切成子词</h2>
+<h3 id="21-概念什么是-token">2.1 概念:什么是 token</h3>
+<ul>
+<li>**Tokenization(分词)**是把原始文本切成一个个小单元的过程,切出的每个单元叫一个 <strong>token</strong>。下游一切环节(上下文窗口、计费、延迟)都以 token 为单位。</li>
+<li>切多细合适?三种粒度各有代价:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>切分粒度</th>
+<th>做法</th>
+<th>优点</th>
+<th>致命缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按词</td>
+<td>按空格/标点切整词</td>
+<td>语义完整、token 少</td>
+<td>词表爆炸;中文没有空格;新词(如 <code>ipod</code>)无解</td>
+</tr>
+<tr>
+<td>按字符/字节</td>
+<td>每个字符一个 token</td>
+<td>词表极小、永无生词</td>
+<td>token 数暴涨,信息被切碎,模型难以学习</td>
+</tr>
+<tr>
+<td><strong>子词(Subword)</strong></td>
+<td>常见词整块保留、罕见词拆碎</td>
+<td>词表有限且无生词</td>
+<td>需要额外学习合并规则</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>今天所有主流模型(GPT、Llama、BERT)都采用<strong>子词方案</strong>。它同时解决了「词表爆炸」与「生词无处安放」这对矛盾。</li>
+</ul>
+<h3 id="22-详细介绍bpe-与-wordpiece-的合并思想">2.2 详细介绍:BPE 与 WordPiece 的「合并」思想</h3>
+<ul>
+<li>
+<p>**BPE(Byte-Pair Encoding)**源自 2016 年机器翻译论文《Neural Machine Translation of Rare Words with Subword Units》,核心思想就一个字:<strong>合并</strong>。</p>
+<ol>
+<li>先把语料拆到字符级:<code>l o w e r</code>;</li>
+<li>统计所有相邻字符对的出现频率,把最高频的一对合并成新单元(如 <code>l+o→lo</code>);</li>
+<li>反复合并,直到词表达到预设大小(如 3 万~13 万)。</li>
+</ol>
+</li>
+<li>
+<p>训练完成后,切词规则也固定了:<strong>能整块匹配词表就整块,匹配不到就递归拆小</strong>。例如 <code>lower → [lower]</code>(常见词 1 个 token)、<code>lowest → [low, est]</code>(罕见词拆两块)、<code>ipod → [i, pod]</code>(没见过的词也能拼出来,没有 [UNK])。</p>
+</li>
+<li>
+<p><strong>WordPiece</strong>(BERT 使用)与 BPE 思路类似,只是合并时按「能带来多少信息增益」打分;GPT 系列用的是 <strong>byte-level BPE</strong>:先按 UTF-8 把文本变成字节再合并,因此任何文字、符号、emoji 都能被表示,彻底消灭「未登录词」。词表规模参考:GPT-4 约 10 万(cl100k_base),Llama 3 约 12.8 万,BERT 约 3 万。</p>
+</li>
+<li>
+<p>一句话总结:<strong>Tokenization 解决的是「词表无限但模型词表有限」的矛盾——把语言的无限可能性,压进一个有限大小的词表里。</strong></p>
+</li>
+</ul>
+<h3 id="23-为什么中文代码表情的-token-数和直觉不同">2.3 为什么中文、代码、表情的 token 数和直觉不同</h3>
+<ul>
+<li>英文:空格天然分词,高频词与常用后缀(如 <code>fast</code>、<code>er</code>)常被合并成整块,平均 <strong>1 个词 ≈ 1~2 个 token</strong>(OpenAI 经验值:100 token ≈ 75 个英文单词)。</li>
+<li>中文:没有空格,汉字组合接近无限,BPE 只能把高频相邻字对(如「我们」「模型」)合并成词;实测 <strong>1 个汉字 ≈ 1~2 个 token</strong>(生僻字更多)。所以同样 8K 的窗口,大约只能装下 4000~5000 个汉字。</li>
+<li>代码与表情:代码的空格、缩进、运算符、换行全部计入 token,超长标识符会被拆碎;一个 emoji 由多个字节/码点复合而成,动辄占 <strong>2~3 个甚至更多 token</strong>,一串 🎉🎉🎉 可能比整句话还贵。</li>
+</ul>
+<h2 id="3-作用token-数决定成本与能力边界">3. 作用:token 数决定成本与能力边界</h2>
+<ul>
+<li><strong>为什么工程上必须盯紧 token 数?</strong> 因为它同时决定四个指标:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>影响项</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上下文窗口</td>
+<td>窗口以 token 计数,超长即放不下(回忆 01 章:模型无真实记忆,全靠窗口)</td>
+</tr>
+<tr>
+<td>计费</td>
+<td>各家 API 按「输入 token + 输出 token」计价,省 token 就是省钱</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>生成速度约等于「每秒吐多少 token」,输入越长首字越慢</td>
+</tr>
+<tr>
+<td>截断</td>
+<td>超过窗口的内容被静默丢弃,可能导致回答遗漏关键信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>实操建议:<strong>先用 tokenizer 实测再优化</strong>。各模型都有官方计数工具(如 OpenAI 的 Tokenizer 页面与 tiktoken 库),别凭「字数」猜,中文尤其容易低估。经验换算口诀:100 token ≈ 75 个英文单词 ≈ 50~60 个汉字——提示词与文档越精炼,留给模型思考与回答的空间越大。</li>
+</ul>
+<h2 id="4-概念embedding给-token-一个语义坐标">4. 概念:Embedding,给 token 一个语义坐标</h2>
+<h3 id="41-概念token--向量语义相近则向量相近">4.1 概念:token → 向量,语义相近则向量相近</h3>
+<ul>
+<li><strong>Embedding(嵌入)<strong>把每个 token 映射成一个</strong>固定维度的稠密向量</strong>(例如 4096 维的浮点数组),作为神经网络的第一层输入:<code>文本 → Tokenizer → [token, …] → 查表 → [向量₁, 向量₂, …]</code>。</li>
+<li>它的核心性质:<strong>语义相近的 token,向量在空间里也相邻</strong>。「猫」的向量离「狗」近、离「飞机」远。经典例子来自 word2vec(2013):<code>国王 − 男人 + 女人 ≈ 女王</code>——词向量之间居然能做语义加减法。</li>
+<li>生活化类比:把向量空间想成一张「语义地图」,每个词是一个坐标点——同义词是邻居,反义词隔着马路,无关词天各一方;「猫追狗」这句话,就是地图上一串依次点亮的路标。</li>
+</ul>
+<h3 id="42-为什么需要它one-hot-的两个缺陷被同时修复">4.2 为什么需要它:one-hot 的两个缺陷被同时修复</h3>
+<ul>
+<li>维度爆炸被压缩(词表 10 万 → 每个 token 只需 4096 维),<strong>无语义距离</strong>被修复(向量夹角可算相似度,模型从第一层起就「知道」猫狗相近);</li>
+<li>更深一层:向量不是人设计的,<strong>是训练中学出来的表示</strong>——这正是 03 章「表示学习」的形态:神经网络在调整参数的同时,也在调整每个词的坐标。</li>
+</ul>
+<h3 id="43-详细介绍embedding-从哪里来">4.3 详细介绍:embedding 从哪里来</h3>
+<ul>
+<li>训练开始时,模型会初始化一张 <strong>token embedding 矩阵</strong>,形状为 <code>[词表大小 × 隐藏维度]</code>;前向计算时,把 token 的整数 ID 当作<strong>行号</strong>,取出对应那一行向量,就是查表(查表不可训练,训练的是矩阵里的数值)。</li>
+<li>矩阵随机初始化后,随反向传播被梯度下降不断更新(03 章的四步循环):一句话让模型预测错了,就把这句话里所有词的坐标往「更对」的方向微调一点。<strong>所谓语义,是模型在海量语料上「撞」出来的统计规律。</strong></li>
+<li>关键参数:词表大小与隐藏维度。维度并非越大越好——维度翻倍,参数量翻倍,训练与推理成本同步上升。举例:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模型(举例)</th>
+<th>词表大小</th>
+<th>隐藏维度</th>
+<th>embedding 矩阵参数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-2 small</td>
+<td>50,257</td>
+<td>768</td>
+<td>≈ 3860 万</td>
+</tr>
+<tr>
+<td>Llama 3 8B</td>
+<td>128,256</td>
+<td>4096</td>
+<td>≈ 5.25 亿(约占 8B 参数的 6%)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>值得记住:embedding 层往往是<strong>最大的单层参数块</strong>之一,但它只做「查表」,真正的智能来自它之上的那些层。</li>
+</ul>
+<h3 id="44-token-embedding-与文本-embedding">4.4 token embedding 与文本 embedding</h3>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>token embedding</th>
+<th>文本 embedding(句子/段落向量)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对象</td>
+<td>词表里的单个 token</td>
+<td>一段完整的文本</td>
+</tr>
+<tr>
+<td>怎么得到</td>
+<td>LLM 内部的 embedding 层查表</td>
+<td>专用模型编码后池化,或调 API(如 OpenAI text-embedding-3-small,1536 维)</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>作为 LLM 每一层计算的起点</td>
+<td>语义检索、聚类、去重、推荐</td>
+</tr>
+<tr>
+<td>谁来训练</td>
+<td>随 LLM 预训练一起</td>
+<td>专门的对比学习目标(让相似句子靠近)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一句话:<strong>token embedding 在模型「里面」当输入;文本 embedding 在模型「外面」当工具。</strong></li>
+</ul>
+<h3 id="45-位置信息缺失一个必须预告的问题">4.5 位置信息缺失:一个必须预告的问题</h3>
+<ul>
+<li>查表的结果与顺序无关:「猫追狗」与「狗追猫」的 token 集合完全相同,逐 token 查表得到的向量也一模一样——但两句意思相反。<strong>embedding 只回答了「有哪些词」,没回答「词以什么顺序出现」</strong>;模型必须额外注入位置信息(位置编码),并让词与词之间能按需交换信息——这正是下一章<strong>注意力机制</strong>登场的理由。</li>
+</ul>
+<h2 id="5-作用向量检索向量数据库与-rag">5. 作用:向量检索、向量数据库与 RAG</h2>
+<h3 id="51-余弦相似度怎么度量语义近不近">5.1 余弦相似度:怎么度量「语义近不近」</h3>
+<ul>
+<li>两个向量的相似度,常用<strong>余弦相似度</strong>度量——只看方向夹角,不看长度:<code>cos(θ) = (a·b) / (|a||b|)</code>。</li>
+<li>夹角越小,余弦值越接近 1,语义越相近。为什么不用欧氏距离?因为向量长度往往只反映「文本长度/语气强度」这类无关信息;且主流 API 返回的向量已归一化(长度为 1),此时余弦相似度退化为一次点积,计算极快。</li>
+<li>有了相似度,「找意思相近的文本」就变成了「找夹角最小的向量」——这是一个纯数学问题,机器可以毫秒级完成。</li>
+</ul>
+<h3 id="52-向量数据库与-rag-基础">5.2 向量数据库与 RAG 基础</h3>
+<ul>
+<li>当文本量达到百万级,逐一计算余弦相似度太慢,于是有了<strong>向量数据库</strong>(如 Milvus、pgvector、Chroma):用近似最近邻算法(ANN)建索引,在毫秒级返回 Top-K 最相似向量。</li>
+<li>这直接支撑了 <strong>RAG(检索增强生成)</strong>——01 章提到的「用检索给模型补事实」的落地方式:
+<ol>
+<li>离线建库:文档 → 切块 → 文本 embedding → 存入向量数据库;</li>
+<li>用户提问 → 同样转成 embedding → 余弦检索 Top-K 片段;</li>
+<li>把检索片段与问题一起拼进提示词;</li>
+<li>LLM 依据片段生成答案。</li>
+</ol>
+</li>
+<li>RAG 解决的是 LLM 的三个先天短板:<strong>事实易错</strong>(幻觉)、<strong>知识过时</strong>(训练截止日)、<strong>没有私有知识</strong>(内部文档、实时数据)。Embedding 质量直接决定检索质量,进而决定答案上限。</li>
+</ul>
+<h3 id="53-场景与提醒">5.3 场景与提醒</h3>
+<ul>
+<li>典型场景:语义搜索(搜「怎么退款」能命中「取消订单政策」)、文档去重、客服知识库、代码检索、推荐系统。但需清醒:<strong>相似 ≠ 事实相关</strong>——「冷」与「热」向量可能很近,相似度只是「可替换性」的近似,不是逻辑判断;embedding 模型要按语言与领域选型,中文场景须验证多语效果并做真实查询评测。</li>
+</ul>
+<h2 id="6-总结">6. 总结</h2>
+<h3 id="61-本章一览">6.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数值化</td>
+<td>神经网络只吃数字,文字必须先转成数值</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>文本切分出的最小单元;子词方案兼顾词表大小与生词问题</td>
+</tr>
+<tr>
+<td>BPE</td>
+<td>从字符开始、反复合并高频相邻对的子词算法</td>
+</tr>
+<tr>
+<td>token 数</td>
+<td>决定窗口、计费、延迟、截断;中文/代码/emoji 与直觉不同</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>token 的稠密向量坐标;语义相近则向量相近;训练中查表学出</td>
+</tr>
+<tr>
+<td>向量检索</td>
+<td>余弦相似度 + 向量数据库 = 毫秒级语义搜索,是 RAG 的地基</td>
+</tr>
+<tr>
+<td>位置缺失</td>
+<td>查表与顺序无关,词序信息要靠位置编码与注意力补上</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-思考题">6.2 思考题</h3>
+<ol>
+<li>为什么说 one-hot 编码下「猫」与「狗」的距离和「猫」与「飞机」一样?这个缺陷会造成什么后果?</li>
+<li>若 BPE 已把 <code>low</code>、<code>er</code> 合并进词表,推测 <code>lower</code> 会被切成几个 token?<code>lowest</code> 呢?为什么「永远没有生词」?</li>
+<li>你的提示词约 2000 个汉字,模型上下文窗口为 8K token,按 1 汉字 ≈ 1.5 token 估算,还留多少空间给回答?这解释了中文用户的什么日常痛点?</li>
+<li>「猫追狗」与「狗追猫」token 完全相同。若模型只看 embedding 不看位置,会发生什么?工程上由哪些机制解决?</li>
+<li>为什么 RAG 用「语义相似」而不是「关键词匹配」?举一个关键词匹配会失败的查询例子。</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>one-hot 任意两词夹角都相同(正交),模型没有任何先验知识区分相关与无关词;学习「猫吃鱼」的规律无法迁移到「狗吃骨头」。</li>
+<li><code>lower → [lower]</code>(1 个);<code>lowest → [low, est]</code> 或 <code>[low, e, st]</code>(2~3 个)。子词方案能把任意新词拼出来,最多拆到字符/字节级,所以没有 [UNK]。</li>
+<li>2000 × 1.5 = 3000 token 输入,剩约 5000 token ≈ 3300 个汉字;同容量下中文能表达的内容远少于英文,长文档场景需切块与摘要。</li>
+<li>模型分不清施事与受事,可能把两句话当一回事;需要位置编码标记先后 + 注意力机制按需关联,详见 05、06 章。</li>
+<li>关键词匹配对同义表达失效,如搜「怎么退货」难以命中只写了「退款流程」的文档;语义检索靠向量相似度能跨词面找到意思相近的内容。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/learn/nlp-course/chapter6/5">Hugging Face NLP Course:Byte-Pair Encoding tokenization</a></li>
+<li><a href="https://huggingface.co/learn/nlp-course/chapter6/6">Hugging Face NLP Course:WordPiece tokenization</a></li>
+<li><a href="https://platform.openai.com/docs/guides/embeddings">OpenAI:Vector embeddings 官方文档</a></li>
+<li><a href="https://learn.microsoft.com/zh-cn/azure/ai-services/openai/concepts/understand-embeddings">Microsoft Learn:了解 Azure OpenAI 中的嵌入</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/03/"><span>上一篇</span><strong>01.01.03 神经网络</strong></a><a class="ai-pager-next" href="/ai/01-models/01/05/"><span>下一篇</span><strong>01.01.05 注意力机制</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念模型为什么读不了文字">1. 概念:模型为什么读不了文字</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-神经网络的输入只能是数字">1.1 神经网络的输入只能是数字</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#12-最朴素的方案one-hot-编码以及它为什么失败">1.2 最朴素的方案:one-hot 编码,以及它为什么失败</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-token-与-tokenization把文字切成子词">2. Token 与 Tokenization:把文字切成子词</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-概念什么是-token">2.1 概念:什么是 token</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-详细介绍bpe-与-wordpiece-的合并思想">2.2 详细介绍:BPE 与 WordPiece 的「合并」思想</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#23-为什么中文代码表情的-token-数和直觉不同">2.3 为什么中文、代码、表情的 token 数和直觉不同</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用token-数决定成本与能力边界">3. 作用:token 数决定成本与能力边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-概念embedding给-token-一个语义坐标">4. 概念:Embedding,给 token 一个语义坐标</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-概念token--向量语义相近则向量相近">4.1 概念:token → 向量,语义相近则向量相近</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-为什么需要它one-hot-的两个缺陷被同时修复">4.2 为什么需要它:one-hot 的两个缺陷被同时修复</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-详细介绍embedding-从哪里来">4.3 详细介绍:embedding 从哪里来</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-token-embedding-与文本-embedding">4.4 token embedding 与文本 embedding</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-位置信息缺失一个必须预告的问题">4.5 位置信息缺失:一个必须预告的问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-作用向量检索向量数据库与-rag">5. 作用:向量检索、向量数据库与 RAG</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#51-余弦相似度怎么度量语义近不近">5.1 余弦相似度:怎么度量「语义近不近」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#52-向量数据库与-rag-基础">5.2 向量数据库与 RAG 基础</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#53-场景与提醒">5.3 场景与提醒</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#61-本章一览">6.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#62-思考题">6.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

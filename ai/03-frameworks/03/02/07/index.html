@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.03.02.07 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比 · iopanda</title><meta name="description" content="03.03.02.07 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比 · 框架 / 训练与微调框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/03/02/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.03.02.07 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比 · iopanda"><meta property="og:description" content="03.03.02.07 Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比 · 框架 / 训练与微调框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/03/02/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="03" data-active-subsection="02" data-active-article="/ai/03-frameworks/03/02/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 训练与微调框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/03/"><span class="tree-number">03</span><span class="tree-title">训练与微调框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/03/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Unsloth"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/03/02/"><span class="tree-number">02</span><span class="tree-title">Unsloth</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/03/02/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/">训练与微调框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/02/">Unsloth</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比</span></nav><header class="ai-article-header"><p class="ai-number">03.03.02.07</p><h1>Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比</h1><p class="ai-meta"><time datetime="2026-09-04T00:55">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>training</li><li>fine-tuning</li><li>unsloth</li><li>comparison</li></ul></header><div class="ai-prose"><h1 id="unsloth-与-pefttrlllama-factoryaxolotl-的深度对比">Unsloth 与 PEFT、TRL、LLaMA-Factory、Axolotl 的深度对比</h1>
+<blockquote>
+<p>到这里，Unsloth 的位置已经很清楚：它不是先解决训练统一性，不是先解决 alignment，也不是先解决 YAML 编排，而是先解决“资源门槛太高”这个现实问题。[18] 这一篇就是把它放回整个 training framework 版图里，讲清楚它为什么是一条独立路线。</p>
+</blockquote>
+<p><strong>学习目标</strong>：</p>
+<ol>
+<li>站在 Unsloth 视角解释它与 PEFT、TRL、LLaMA-Factory、Axolotl 的差异；</li>
+<li>理解为什么“提速和省显存”本身就是框架主线；</li>
+<li>判断什么时候该选 Unsloth，什么时候不该；</li>
+<li>写一段“为什么这里选 Unsloth”的架构说明；</li>
+<li>识别资源效率路线最常见的误用。</li>
+</ol>
+<h2 id="1-与-peft-的差异">1. 与 PEFT 的差异</h2>
+<ul>
+<li>PEFT 更像方法库；</li>
+<li>Unsloth 更像把方法跑快、跑省的实现路线。</li>
+</ul>
+<h2 id="2-与-trl-的差异">2. 与 TRL 的差异</h2>
+<ul>
+<li>TRL 更像 alignment 任务框架；</li>
+<li>Unsloth 更像资源效率优先路线。</li>
+</ul>
+<h2 id="3-与-llama-factory-的差异">3. 与 LLaMA-Factory 的差异</h2>
+<ul>
+<li>LLaMA-Factory 更像统一训练工厂；</li>
+<li>Unsloth 更像单卡/低资源友好的加速路线。</li>
+</ul>
+<h2 id="4-与-axolotl-的差异">4. 与 Axolotl 的差异</h2>
+<ul>
+<li>Axolotl 更像配置编排器；</li>
+<li>Unsloth 更像提速器和低门槛训练入口。</li>
+</ul>
+<h2 id="5-什么时候最适合-unsloth">5. 什么时候最适合 Unsloth</h2>
+<p>适合：</p>
+<ul>
+<li>显存紧张</li>
+<li>预算敏感</li>
+<li>需要快速迭代</li>
+<li>单卡为主</li>
+</ul>
+<p>不那么适合：</p>
+<ul>
+<li>训练平台统一性是主问题</li>
+<li>alignment 复杂度是主问题</li>
+<li>多 recipe / 多模型编排是主问题</li>
+</ul>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unsloth 最像什么</td>
+<td>一条以资源效率为中心的微调路线</td>
+</tr>
+<tr>
+<td>它和 PEFT 的差异</td>
+<td>一个是方法库，一个是资源效率实现路线</td>
+</tr>
+<tr>
+<td>它和 TRL 的差异</td>
+<td>一个先稳任务，一个先稳资源门槛</td>
+</tr>
+<tr>
+<td>它和 LLaMA-Factory 的差异</td>
+<td>一个先稳统一入口，一个先稳能跑起来</td>
+</tr>
+<tr>
+<td>它和 Axolotl 的差异</td>
+<td>一个先稳 recipe 编排，一个先稳训练成本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[18] <a href="https://github.com/unslothai/unsloth/blob/main/README.md">https://github.com/unslothai/unsloth/blob/main/README.md</a> — Unsloth README</li>
+<li>[77] <a href="https://github.com/huggingface/peft">https://github.com/huggingface/peft</a> — PEFT GitHub</li>
+<li>[78] <a href="https://github.com/huggingface/trl">https://github.com/huggingface/trl</a> — TRL GitHub</li>
+<li>[79] <a href="https://github.com/hiyouga/LLaMA-Factory">https://github.com/hiyouga/LLaMA-Factory</a> — LLaMA-Factory GitHub</li>
+<li>[80] <a href="https://github.com/axolotl-ai-cloud/axolotl">https://github.com/axolotl-ai-cloud/axolotl</a> — Axolotl GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/03/02/06/"><span>上一篇</span><strong>03.03.02.06 课程助教 Agent 的 Unsloth 架构案例</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/03/03/01/"><span>下一篇</span><strong>03.03.03.01 PEFT 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-与-peft-的差异">1. 与 PEFT 的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-与-trl-的差异">2. 与 TRL 的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-与-llama-factory-的差异">3. 与 LLaMA-Factory 的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-与-axolotl-的差异">4. 与 Axolotl 的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-什么时候最适合-unsloth">5. 什么时候最适合 Unsloth</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

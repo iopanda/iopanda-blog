@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.03.04 边想边做还是想完再做 · iopanda</title><meta name="description" content="02.03.04 边想边做还是想完再做 · 智能体 / 规划与推理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/03/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.03.04 边想边做还是想完再做 · iopanda"><meta property="og:description" content="02.03.04 边想边做还是想完再做 · 智能体 / 规划与推理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/03/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="03" data-active-subsection data-active-article="/ai/02-agents/03/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 规划与推理"></button><a class="tree-link tree-link--section" href="/ai/02-agents/03/"><span class="tree-number">03</span><span class="tree-title">规划与推理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/03/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">边想边做还是想完再做</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/03/">规划与推理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">边想边做还是想完再做</span></nav><header class="ai-article-header"><p class="ai-number">02.03.04</p><h1>边想边做还是想完再做</h1><p class="ai-meta"><time datetime="2026-09-05T10:30">2026-09-05</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>react</li><li>plan-and-execute</li></ul></header><div class="ai-prose"><h1 id="边想边做还是想完再做">边想边做还是想完再做</h1>
+<p>同一个报错，交给两个 Agent。</p>
+<p>第一个先生成六步计划：读日志、定位异常栈、查依赖版本、比对配置、改配置、跑测试。写完就开始执行。第三步查依赖版本时发现，计划里假定的那个库根本没装——它读的是另一套环境。后面三步全部作废。</p>
+<p>第二个直接读日志，读完发现异常栈指向一个配置文件，再读那个文件，改掉，跑测试。四步结束。</p>
+<p>差别不在模型，在计划成型的时间点。<strong>计划在拿到观察之前写成，就要承担观察推翻它的全部风险。</strong></p>
+<h2 id="两种循环的结构">两种循环的结构</h2>
+<p><strong>ReAct</strong>（Yao et al., 2022, arXiv:2210.03629）把每一步拆成三件事：想一句（当前该做什么）、做一个动作（调用一个工具）、看结果（观察）。观察进入上下文，下一步的“想”基于它。循环到模型判断任务完成，或触发终止条件。</p>
+<p>第一章第 6 节拆过这个循环的实现，那里有一个结论值得重述：<strong>ReAct 的质量主要由观察质量决定。</strong> 工具返回一堆无关文本时，模型的“想”就是在噪音上做推理，循环越久偏得越远。</p>
+<p><strong>Plan-and-Execute</strong> 把循环切成两段。规划器看一次任务，产出一份完整计划（通常是带依赖关系的步骤列表）；执行器逐步执行，每步只看到“计划项 + 必要上下文”。</p>
+<p>两段的成本结构差别很大。</p>
+<h2 id="成本一次与-n-次">成本：一次与 n 次</h2>
+<p>ReAct 每一步都要把完整轨迹重新发一遍。走到第 n 步时，输入里包含前面 n−1 步的所有想法、动作和观察。</p>
+<p>粗糙估一下：每步净增 2K token，第 n 步的输入约 2n K。走十步，总输入约 2×(1+2+…+10) = 110K。这就是第二章那个“四轮见底”在长任务上的放大版——<strong>成本随步数平方增长</strong>。</p>
+<p>Plan-and-Execute 的执行器每次只带计划项和它需要的那块材料。同样是十步、每步 2K 的产出，总输入约 10 × 4K = 40K，线性增长。规划器本身只调一次，成本固定。</p>
+<p>省下来的钱买的是一个风险：计划写成时没有观察。</p>
+<h2 id="两种失败形状">两种失败形状</h2>
+<p><strong>ReAct 的失败</strong>：漂移与重复。走到第八步时忘了原始目标，开始处理一个相邻问题；或者反复调用同一个工具，因为上一次的结果没被读懂。这两类失败在轨迹里非常显眼——步数暴涨，动作类型集中，观察内容重复。</p>
+<p><strong>Plan-and-Execute 的失败</strong>：盲目执行。计划第 2 步失败了，执行器依然按计划做第 3 步，最后交出一份建立在错误前提上的完整报告。它的失败更隐蔽，因为每一步都“完成了”，最终产物看起来齐全。</p>
+<p>还有一个 Plan-and-Execute 特有的错：规划器不知道执行器的真实能力。计划里写“调用订座接口查询空位”，而系统里根本没有这个工具，执行器只能跳过或编造。</p>
+<h2 id="选择判据">选择判据</h2>
+<p>四个问题，按顺序问。</p>
+<p><strong>环境反馈密度。</strong> 每一步都要读外部状态（文件、数据库、网页、报错）才能决定下一步，选 ReAct。信息在任务开始时就已经齐了（写一份基于给定材料的报告），选 Plan-and-Execute。</p>
+<p><strong>任务可预知性。</strong> 步骤能被提前列全（流程固定、依赖清晰），计划先行有价值，因为它可以被审阅、被批准。步骤依赖执行中发现的东西（调试、探索性调研），计划必然过期。</p>
+<p><strong>成本敏感度。</strong> 步数超过十步、调用量大，ReAct 的平方成本会成为主要开支。</p>
+<p><strong>是否需要人工审批。</strong> 计划是唯一能在执行前给人看的产物。要做审批，就得有显式计划；纯 ReAct 的轨迹没法预审。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>ReAct</th>
+<th>Plan-and-Execute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计划成型时间</td>
+<td>每步</td>
+<td>执行前一次</td>
+</tr>
+<tr>
+<td>观察的用途</td>
+<td>直接改变下一步</td>
+<td>只能触发重新规划</td>
+</tr>
+<tr>
+<td>token 成本</td>
+<td>随步数平方增长</td>
+<td>随步数线性增长</td>
+</tr>
+<tr>
+<td>失败形状</td>
+<td>漂移、重复、忘记目标</td>
+<td>盲目执行、计划过期</td>
+</tr>
+<tr>
+<td>可审计性</td>
+<td>事后看轨迹</td>
+<td>事前审计划</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>环境不确定、步数少</td>
+<td>流程固定、步数多、需审批</td>
+</tr>
+</tbody>
+</table>
+<h2 id="混合骨架加局部迭代">混合：骨架加局部迭代</h2>
+<p>生产系统里纯用某一种的不多，常见的组合是三层。</p>
+<p><strong>规划器出骨架</strong>：五到八个粗粒度阶段，不写具体调用。</p>
+<p><strong>执行器在阶段内用 ReAct</strong>：每个阶段内部允许自由调用工具、观察、调整，因为这一段的不确定性最高。</p>
+<p><strong>触发式重新规划</strong>：不是每一步都重规划，只在几个明确条件成立时重来——某个阶段连续两次失败、观察与计划假设冲突、剩余预算不足以完成剩余步骤。第 3.5 节会展开这些条件。</p>
+<p>这个结构的关键是<strong>计划里的每个阶段都要有验收点</strong>。没有验收点的阶段，执行器无法判断自己是否完成，重新规划也无从触发。</p>
+<h2 id="名字不重要">名字不重要</h2>
+<p>ReAct 与 Plan-and-Execute 是两种编排习惯，不是两个必须选边的阵营。很多框架同时提供两者，行为差别远小于名字给人的印象。</p>
+<p>真正决定行为的是三件事：计划写到什么粒度、观察能不能改变计划、失败之后谁负责重来。把这三件事定清楚，用什么名字都行；定不清楚，套哪个框架都会跑偏。</p>
+<h2 id="下一步出错之后">下一步：出错之后</h2>
+<p>两种结构都会失败，区别只在失败的样子。剩下真正的问题是：Agent 怎么知道自己错了，错了之后做什么。</p>
+<p>这是下一节的主题，也是这一章里结论最不乐观的一节。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Yao, S. et al. (2022). <em>ReAct: Synergizing Reasoning and Acting in Language Models.</em> arXiv:2210.03629</li>
+<li>Kim, S. et al. (2023). <em>An LLM Compiler for Parallel Function Calling.</em> arXiv:2312.04511</li>
+<li>LangChain. <em>Plan-and-Execute agents.</em> <a href="https://blog.langchain.dev/planning-agents/">https://blog.langchain.dev/planning-agents/</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/03/03/"><span>上一篇</span><strong>02.03.03 让模型先写草稿</strong></a><a class="ai-pager-next" href="/ai/02-agents/03/05/"><span>下一篇</span><strong>02.03.05 错了怎么知道</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#两种循环的结构">两种循环的结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#成本一次与-n-次">成本：一次与 n 次</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#两种失败形状">两种失败形状</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#选择判据">选择判据</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#混合骨架加局部迭代">混合：骨架加局部迭代</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#名字不重要">名字不重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#下一步出错之后">下一步：出错之后</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

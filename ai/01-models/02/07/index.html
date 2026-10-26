@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.02.07 实现解码器 Transformer · iopanda</title><meta name="description" content="01.02.07 实现解码器 Transformer · 模型 / 预训练与训练，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/02/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.02.07 实现解码器 Transformer · iopanda"><meta property="og:description" content="01.02.07 实现解码器 Transformer · 模型 / 预训练与训练，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/02/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="02" data-active-subsection data-active-article="/ai/01-models/02/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 预训练与训练"></button><a class="tree-link tree-link--section" href="/ai/01-models/02/"><span class="tree-number">02</span><span class="tree-title">预训练与训练</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/02/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">实现解码器 Transformer</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/02/">预训练与训练</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">实现解码器 Transformer</span></nav><header class="ai-article-header"><p class="ai-number">01.02.07</p><h1>实现解码器 Transformer</h1><p class="ai-meta"><time datetime="2026-09-02T20:07">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-pretraining</li><li>transformer</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章 <a href="/ai/01-models/02/06/">构建数据管道</a> 把文本变成了成批的输入与下一词标签;本章把数据喂进模型:亲手实现一个教学规模的 decoder-only Transformer。动手前先弄清三件事——它是什么、为什么注意力必须遮住未来、残差连接与 LayerNorm 在深层网络里各起什么作用;最后用形状检查和「未来扰动测试」证明它真的只会利用过去的信息。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>画出 Mini GPT 从 token id 到词表 logits 的数据流,并说明它为什么没有 encoder;</li>
+<li>解释自注意力为什么必须遮住未来,以及 mask 为什么要在 softmax 之前施加;</li>
+<li>说明残差连接与 LayerNorm 各自解决什么问题,缺少它们会发生什么;</li>
+<li>实现带因果 mask 的多头自注意力、Transformer Block 与 MiniGPT 组合;</li>
+<li>对模型输出形状和「不能偷看未来」做最小验证,判断训练前代码是否正确。</li>
+</ol>
+<h2 id="1-解码器-transformer概念与模型边界">1. 解码器 Transformer:概念与模型边界</h2>
+<ul>
+<li><strong>概念</strong>:解码器 Transformer(Decoder-only Transformer)是一种只保留「解码器」的自回归架构:输入是前面的 token 序列,输出是每个位置对「下一个 token 是谁」的未归一化打分。它没有独立的编码器,也没有交叉注意力——全部注意力都发生在输入序列内部(自注意力),因此推理时能一个 token 接一个 token 地自己续写。</li>
+<li><strong>为什么预训练语言模型几乎都选它</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>理由</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标天然匹配</td>
+<td>预训练任务是「根据前文预测下一个 token」;decoder-only 每个位置的输出正好对应一个预测,架构与目标一一对应,无需为 encoder 另设计掩码语言模型目标</td>
+</tr>
+<tr>
+<td>训练与生成同构</td>
+<td>训练时模型「看着过去预测未来」,生成时它也「只看着自己刚写出的过去」,两者结构一致,不存在错位</td>
+</tr>
+<tr>
+<td>生态最成熟</td>
+<td>GPT 系列与主流开源模型(Llama、Mistral、Qwen 等)均为 decoder-only,加速库与工程经验可直接复用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>取舍</strong>:本章实现的是「会预测下一个 token」的基础模型部分;它还不是聊天产品——要变成好用的助手,还需要 01.03 单元的指令微调与偏好对齐。</li>
+</ul>
+<p>核心数据流如下:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70">    A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">token ids: B </span><span style="color:#E1E4E8">× </span><span style="color:#9ECBFF">T</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">token embedding</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">加位置 embedding</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    C </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">N 个 decoder blocks</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    D </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">LayerNorm</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    E </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> F</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">Linear head</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    F </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> G</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">logits: B </span><span style="color:#E1E4E8">× </span><span style="color:#9ECBFF">T </span><span style="color:#E1E4E8">× </span><span style="color:#9ECBFF">V</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<p>其中 <code>B</code> 是 batch size、<code>T</code> 是 context length、<code>V</code> 是词表大小。<code>logits</code> 是未归一化分数,不是 token id:训练时交给交叉熵计算损失,生成时才转换为概率并抽样(第 9 章)。</p>
+<p>推荐初始配置:<code>vocab_size=2000</code>、<code>context_length=128</code>、<code>d_model=128</code>、<code>n_heads=4</code>、<code>n_layers=4</code>。必须满足 <code>d_model % n_heads == 0</code>,整除才能把每个 token 的 <code>d_model</code> 维表示均分为 <code>n_heads</code> 份,每份 <code>head_dim = d_model / n_heads</code> 维。</p>
+<h2 id="2-注意力为何必须遮住未来">2. 注意力为何必须遮住未来</h2>
+<h3 id="21-自注意力在做什么">2.1 自注意力在做什么</h3>
+<p>自注意力先计算位置间的相似度:<code>QKᵀ / √d_head</code> 得到分数矩阵,用 softmax 归一成权重,再对 <code>V</code> 加权求和。简单说,每个位置「向序列中所有位置打听信息,并按相关性汇总」——这种互通是<strong>双向</strong>的:位置 3 既能看位置 1,也能看位置 10。对需要理解全文的 encoder 这正合适,但对「预测下一个 token」的语言模型,却是致命的。</p>
+<h3 id="22-为什么必须只准看过去">2.2 为什么必须「只准看过去」</h3>
+<p>语言模型在位置 3 预测下一个词时,不能读取位置 4 及以后,否则训练损失会虚假地很低,生成时却没有未来 token 可读。展开说有三个原因:</p>
+<ol>
+<li><strong>目标会退化成复读</strong>。位置 3 的任务是预测位置 4;如果它能看到位置 4 的 token,最优策略就是直接抄答案——损失可以压到接近 0,但模型什么都没学会,一旦生成(未来不存在)就立即原形毕露。</li>
+<li><strong>训练与生成不对称</strong>。训练时整段文本都在,未来「确实存在」;生成时未来还没有产生。若训练允许偷看,模型学到的「能力」在推理时根本无法复现,这是最隐蔽的 train/serve 错位:验证损失漂亮,生成却是一团乱码。</li>
+<li><strong>删 labels 救不了</strong>。labels 只是计算损失时的正确答案,删掉它只让「该位置不算损失」;输入序列中的未来 token 依然会通过注意力把信息传给早期位置,泄漏照样发生。</li>
+</ol>
+<div class="callout callout--important" data-callout="important">
+<p class="callout-title">如果不遮未来会怎样</p>
+<p>loss 会异常地低(接近直接复制),验证集 loss 同样低得可疑——一切看起来「训练成功」,实际是模型在作弊。因此因果性不是锦上添花的正确性检查,而是训练能否开始的先决条件,必须在训前用 4.1 节的最小测试证明。</p>
+</div>
+<h3 id="23-因果-mask-的正确实现">2.3 因果 mask 的正确实现</h3>
+<p>因果 mask 是下三角矩阵:允许位置 <code>i</code> 看 <code>j ≤ i</code>;被遮住的位置在 softmax <strong>之前</strong>填充为负无穷:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">mask </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.tril(torch.ones(T, T, </span><span style="color:#FFAB70">dtype</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">torch.bool, </span><span style="color:#FFAB70">device</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">x.device))</span></span>
+<span class="line"><span style="color:#E1E4E8">scores </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scores.masked_fill(</span><span style="color:#F97583">~</span><span style="color:#E1E4E8">mask, </span><span style="color:#79B8FF">float</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"-inf"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">weights </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.softmax(scores, </span><span style="color:#FFAB70">dim</span><span style="color:#F97583">=-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>被遮位置经 softmax 后权重为 0(<code>exp(-inf) == 0</code>),可见位置的权重仍归一化、总和为 1。两个易错点:</p>
+<ul>
+<li>不要在 softmax <strong>之后</strong>再把权重置零:剩余权重不再和为 1,输出被不成比例地缩小,破坏概率解释;</li>
+<li>把 mask 注册为 buffer(<code>register_buffer</code>),它就能随 <code>.to(device)</code> 一起移动,且不会被优化器当作参数更新。</li>
+</ul>
+<h2 id="3-残差连接与-layernorm让网络深得起来">3. 残差连接与 LayerNorm:让网络深得起来</h2>
+<h3 id="31-layernorm稳住每个-token-的表示尺度">3.1 LayerNorm:稳住每个 token 的表示尺度</h3>
+<ul>
+<li><strong>概念</strong>:LayerNorm 对<strong>每个 token</strong> 在通道维(<code>d_model</code>)上计算均值与方差,把表示归一化成零均值、单位方差,再乘可学习的缩放 <code>γ</code> 与偏移 <code>β</code>。它与 batch 无关,天然适配变长序列和单样本推理(不必像 BatchNorm 那样依赖 batch 统计)。</li>
+<li><strong>为什么需要</strong>:Transformer 有几十上百层,激活值的尺度会随层数逐层漂移、方差被不断放大。注意力里的 softmax 对输入尺度极敏感,尺度漂移会让训练发散或震荡。</li>
+<li><strong>如果不做会怎样</strong>:深层网络的数值尺度失控,学习率几乎无法选择——调大一点就发散,调小一点就几乎不学;浅层能跑的配置,加深几层就崩。</li>
+</ul>
+<h3 id="32-残差连接给梯度一条高速公路">3.2 残差连接:给梯度一条「高速公路」</h3>
+<ul>
+<li><strong>概念</strong>:残差连接把子层的输出加回输入,写成 <code>x + 子层(变换(x))</code>。它让每个 Block 只负责学习「相对输入的增量」,而不是从零刻画整个映射。</li>
+<li><strong>为什么需要</strong>:反向传播时梯度要穿过所有层连乘,层数一深,梯度指数级消失或爆炸,深层参数几乎得不到更新。残差提供了恒等捷径:无论网络多深,<code>∂x / ∂x</code> 这一项保证梯度至少有一条不衰减的路径直接回传,深层网络才训得动。</li>
+<li><strong>如果不做会怎样</strong>:去掉残差的深层 Transformer 梯度消失、难以收敛,模型实际表达能力退化成「浅层网络」——这也是 2016 年 ResNet 之后所有深层架构都标配残差的原因。</li>
+</ul>
+<h3 id="33-组合成-block先归一再变换后相加">3.3 组合成 Block:先归一、再变换、后相加</h3>
+<p>现代语言模型普遍采用 pre-norm 布局(先 <code>norm</code> 再进子层,残差加在子层输出上),梯度路径最干净。在 <code>src/model.py</code> 中先实现以下最小版本;该版本故意不使用 flash attention,目的是让每一步的 shape 可见:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> math</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> torch</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> torch </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> nn</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#9ECBFF">因果（自回归）多头注意力。</span></span>
+<span class="line"><span style="color:#9ECBFF">---</span></span>
+<span class="line"><span style="color:#9ECBFF">每个位置只能「看到」自己和它之前的位置，看不到未来 —— 这是 GPT 类模型能够逐 token 生成的前提：预测第 t 个 token 时不能泄露第 t+1 个 token 的信息。</span></span>
+<span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CausalSelfAttention</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">nn</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Module</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#9ECBFF">	初始化注意力层的参数与因果掩码。</span></span>
+<span class="line"><span style="color:#9ECBFF">	---</span></span>
+<span class="line"><span style="color:#9ECBFF">	Args:</span></span>
+<span class="line"><span style="color:#9ECBFF">		d_model: 隐藏层维度，即每个 token 的向量长度。</span></span>
+<span class="line"><span style="color:#9ECBFF">		d_heads: 注意力头数，d_model 必须能被它整除。</span></span>
+<span class="line"><span style="color:#9ECBFF">		context_length: 最大上下文长度，决定因果掩码矩阵的大小。</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, d_model: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">, n_heads: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">, context_length: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">().</span><span style="color:#79B8FF">__init__</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 多头是把 d_model 均分给每个头，除不尽说明配置非法，直接快速失败。</span></span>
+<span class="line"><span style="color:#F97583">        assert</span><span style="color:#E1E4E8"> d_model </span><span style="color:#F97583">%</span><span style="color:#E1E4E8"> n_heads </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.n_heads </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n_heads</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 单个头的维度，用于后面的注意力收缩</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.head_dim </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> d_model </span><span style="color:#F97583">//</span><span style="color:#E1E4E8"> n_heads</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 一次线性变换同时算出 Q、K、V（输出 3 倍维度后再切分）。</span></span>
+<span class="line"><span style="color:#6A737D">        # 相比三个独立的 Linear，合并成一次矩阵乘法能更充分地利用 GPU 的算力。</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.qkv </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Linear(d_model, </span><span style="color:#79B8FF">3</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> d_model)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 输出投影：把各头拼接后的结果再混合一次，让不同头之间的信息可以交互。</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.proj </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Linear(d_model, d_model)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 下三角布尔矩阵：tril 的第 i 行第 j 列为 True，表示「位置 i 允许关注位置 j」。</span></span>
+<span class="line"><span style="color:#6A737D">        # 注册为 buffer 而非 Parameter，因为它不需要梯度更新，但会随 model.to(device) 一起被搬到 GPU，省去手动搬运。</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.register_buffer(</span><span style="color:#9ECBFF">"mask"</span><span style="color:#E1E4E8">, torch.tril(torch.ones(context_length, context_length, </span><span style="color:#FFAB70">dtype</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">torch.bool)))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#9ECBFF">	前向计算</span></span>
+<span class="line"><span style="color:#9ECBFF">	---</span></span>
+<span class="line"><span style="color:#9ECBFF">	Args:</span></span>
+<span class="line"><span style="color:#9ECBFF">		x: 形状 (batch, steps, channels)，其中 channels 即 d_model。</span></span>
+<span class="line"><span style="color:#9ECBFF">	Return:</span></span>
+<span class="line"><span style="color:#9ECBFF">		与输入同形状的张量 (batch, steps, channels)。</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> forward</span><span style="color:#E1E4E8">(self, x: torch.Tensor) -&gt; torch.Tensor:</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">	    # batch: 批量大小</span></span>
+<span class="line"><span style="color:#6A737D">	    # steps: 当前序列长度</span></span>
+<span class="line"><span style="color:#6A737D">	    # channels: 隐藏维度 d_model</span></span>
+<span class="line"><span style="color:#E1E4E8">        batch, steps, channels </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x.shape</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 一次投影得到 Q/K/V，再沿最后一维平均切成三份</span></span>
+<span class="line"><span style="color:#E1E4E8">        q, k, v </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.qkv(x).chunk(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">dim</span><span style="color:#F97583">=-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#9ECBFF">        """</span></span>
+<span class="line"><span style="color:#9ECBFF">        把 (batch, steps, d_model) 拆成 (batch, n_heads, steps, head_dim)。</span></span>
+<span class="line"><span style="color:#9ECBFF">        先把最后一维拆成 (n_heads, head_dim) 两部分，再把「头」这一维交换到前面。这样每个头就变成独立的 (steps, head_dim) 矩阵，可交给批量矩阵乘法统一处理。</span></span>
+<span class="line"><span style="color:#9ECBFF">        """</span></span>
+<span class="line"><span style="color:#F97583">        def</span><span style="color:#B392F0"> split_heads</span><span style="color:#E1E4E8">(t):</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> t.view(batch, steps, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.n_heads, </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.head_dim).transpose(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        q, k, v </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> map</span><span style="color:#E1E4E8">(split_heads, (q, k, v))</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 缩放点积注意力：Q 与 K 的转置相乘，得到任意两个位置之间的相关性分数。</span></span>
+<span class="line"><span style="color:#6A737D">		# 除以 sqrt(head_dim) 是为了防止维度增大时点积方差过大，把 softmax 推入饱和区</span></span>
+<span class="line"><span style="color:#6A737D">		# 导致梯度过小；这一步是「Scaled」Dot-Product Attention 中 Scaled 的含义。</span></span>
+<span class="line"><span style="color:#E1E4E8">        scores </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q </span><span style="color:#F97583">@</span><span style="color:#E1E4E8"> k.transpose(</span><span style="color:#F97583">-</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> math.sqrt(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.head_dim)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 因果掩码：把「未来」位置（mask 为 False 的上三角区域）的分数置为 -inf，</span></span>
+<span class="line"><span style="color:#6A737D">		# 经 softmax 后这些位置的权重恰好为 0，等价于被完全屏蔽。</span></span>
+<span class="line"><span style="color:#6A737D">		# 只取前 steps×steps 是为了兼容短于 context_length 的输入。</span></span>
+<span class="line"><span style="color:#E1E4E8">        scores </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scores.masked_fill(</span><span style="color:#F97583">~</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.mask[:steps, :steps], </span><span style="color:#79B8FF">float</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"-inf"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 沿 key 维度（最后一维）做 softmax，得到每个位置对所有可见位置的注意力权重（和为 1）</span></span>
+<span class="line"><span style="color:#E1E4E8">        weights </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.softmax(scores, </span><span style="color:#FFAB70">dim</span><span style="color:#F97583">=-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 用注意力权重对 V 加权求和，得到每个位置融合上下文后的输出</span></span>
+<span class="line"><span style="color:#E1E4E8">        out </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> weights </span><span style="color:#F97583">@</span><span style="color:#E1E4E8"> v</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 还原形状：把「头」这一维换回中间位置，再合并回 (batch, steps, d_model)。</span></span>
+<span class="line"><span style="color:#6A737D">		# transpose 之后内存不再连续，必须先 contiguous() 才能安全地 view。</span></span>
+<span class="line"><span style="color:#E1E4E8">        out </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> out.transpose(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">).contiguous().view(batch, steps, channels)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 最后过一层输出投影，混合各个头的信息</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.proj(out)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#9ECBFF">一个 Transformer 残差块：注意力子层 + 前馈子层。</span></span>
+<span class="line"><span style="color:#9ECBFF">采用 Pre-Norm 结构（先归一化，再送入子层），相比原始 Transformer 的 Post-Norm</span></span>
+<span class="line"><span style="color:#9ECBFF">训练更稳定，因此被 GPT-2 及之后的模型普遍采用。</span></span>
+<span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Block</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">nn</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Module</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#9ECBFF">	初始化两个子层以及它们各自的前置归一化。</span></span>
+<span class="line"><span style="color:#9ECBFF">	---</span></span>
+<span class="line"><span style="color:#9ECBFF">	Args:</span></span>
+<span class="line"><span style="color:#9ECBFF">		d_model: 隐藏层维度。</span></span>
+<span class="line"><span style="color:#9ECBFF">		n_heads: 注意力头数。</span></span>
+<span class="line"><span style="color:#9ECBFF">		context_length: 最大上下文长度。</span></span>
+<span class="line"><span style="color:#9ECBFF">		mlp_ratio: 前馈网络中间层的升维倍数，默认 4。</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, d_model, n_heads, context_length, mlp_ratio</span><span style="color:#F97583">=</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">().</span><span style="color:#79B8FF">__init__</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.norm1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.LayerNorm(d_model) </span><span style="color:#6A737D"># 注意力子层之前的归一化</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.attn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> CausalSelfAttention(d_model, n_heads, context_length)</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.norm2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.LayerNorm(d_model) </span><span style="color:#6A737D"># 前馈子层之前的归一化</span></span>
+<span class="line"><span style="color:#6A737D">        # 前馈网络：先升维 mlp_ratio 倍以提供足够的非线性表达能力，再降回 d_model。</span></span>
+<span class="line"><span style="color:#6A737D">		# GELU 比 ReLU 更平滑，是 GPT 系列的默认激活函数。</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.mlp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Sequential(nn.Linear(d_model, mlp_ratio </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> d_model), nn.GELU(), nn.Linear(mlp_ratio </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> d_model, d_model))</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#9ECBFF">	前向计算：两个子层各自带一条残差连接。</span></span>
+<span class="line"><span style="color:#9ECBFF">	---</span></span>
+<span class="line"><span style="color:#9ECBFF">	Args:</span></span>
+<span class="line"><span style="color:#9ECBFF">		x: 形状 (batch, steps, d_model)。</span></span>
+<span class="line"><span style="color:#9ECBFF">	Returns:</span></span>
+<span class="line"><span style="color:#9ECBFF">		与输入同形状的张量 (batch, steps, d_model)。</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> forward</span><span style="color:#E1E4E8">(self, x):</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.attn(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.norm1(x)) </span><span style="color:#6A737D"># 残差连接 x + 子层输出：让梯度可以沿捷径直通底层，是深层网络能够训练的关键</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.mlp(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.norm2(x))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>初始化阶段不必先理解所有数学推导,但必须理解两件事:其一,每个 Block 的输入输出形状始终是 <code>[B, T, d_model]</code>——残差要求前后形状一致,这是设计上不变式;其二,MLP 把每个 token 独立地「想得更深」,注意力负责跨位置交换信息,两者分工不同、缺一不可。</p>
+<h2 id="4-组合-minigpt-并验证因果性">4. 组合 MiniGPT 并验证因果性</h2>
+<ul>
+<li><strong>概念</strong>:<code>token_embedding</code> 把 token id 查表成可学习向量;<code>position_embedding</code> 给每个位置一个可学习向量——没有它,模型无法区分「猫吃鱼」和「鱼吃猫」(常见误区见第 5 节);<code>head</code> 把最后的表示投影回词表大小。</li>
+<li><strong>验证逻辑</strong>:模型是输入的确定性函数。若因果 mask 正确,改动第 <code>T</code> 个(未来)token,前 <code>T-1</code> 个位置的 logits 必须纹丝不动;若它们变了,说明未来信息泄漏进了注意力。</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#9ECBFF">最小可用的 GPT 语言模型。</span></span>
+<span class="line"><span style="color:#9ECBFF">结构：词嵌入 + 可学习位置嵌入 -&gt; N × (注意力 + 前馈) -&gt; LayerNorm -&gt; 线性输出头。</span></span>
+<span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MiniGPT</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">nn</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Module</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#9ECBFF">	初始化模型的各个组件。</span></span>
+<span class="line"><span style="color:#9ECBFF">	---</span></span>
+<span class="line"><span style="color:#9ECBFF">	Args:</span></span>
+<span class="line"><span style="color:#9ECBFF">		vocab_size: 词表大小，决定输入 id 的取值范围与输出 logits 的维度。</span></span>
+<span class="line"><span style="color:#9ECBFF">		context_length: 最大上下文长度。</span></span>
+<span class="line"><span style="color:#9ECBFF">		d_model: 隐藏层维度。</span></span>
+<span class="line"><span style="color:#9ECBFF">		n_heads: 每层注意力的头数。</span></span>
+<span class="line"><span style="color:#9ECBFF">		n_layers: Transformer Block 的堆叠层数。</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, vocab_size, context_length, d_model</span><span style="color:#F97583">=</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">, n_heads</span><span style="color:#F97583">=</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, n_layers</span><span style="color:#F97583">=</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">().</span><span style="color:#79B8FF">__init__</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.context_length </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> context_length</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 词嵌入：token id -&gt; d_model 维向量</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.token_embedding </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Embedding(vocab_size, d_model)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 位置嵌入：位置 id -&gt; d_model 维向量。注意力机制本身对顺序不敏感，</span></span>
+<span class="line"><span style="color:#6A737D">		# 必须额外注入位置信息；这里使用可学习的位置表，长度固定为 context_length。</span></span>
+<span class="line"><span style="color:#6A737D">		# 也正因如此，输入长度超过 context_length 会索引越界，forward 中做了显式校验。</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.position_embedding </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Embedding(context_length, d_model)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 把 n_layers 个结构相同的 Block 串成顺序容器</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.blocks </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Sequential(</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">[Block(d_model, n_heads, context_length) </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> _ </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> range</span><span style="color:#E1E4E8">(n_layers)])</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 输出前的最终归一化（Pre-Norm 架构的收尾步骤）</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.norm </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.LayerNorm(d_model)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 语言模型头：d_model -&gt; vocab_size，输出每个位置对全词表的分数。</span></span>
+<span class="line"><span style="color:#6A737D">		# bias=False 是 GPT-2 的做法；GPT-2 还会让它与词嵌入共享权重，本项目未做共享。</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.head </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nn.Linear(d_model, vocab_size, </span><span style="color:#FFAB70">bias</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#9ECBFF">    """</span></span>
+<span class="line"><span style="color:#9ECBFF">    前向计算，返回每个位置对全词表的未归一化分数（logits）。</span></span>
+<span class="line"><span style="color:#9ECBFF">    ---</span></span>
+<span class="line"><span style="color:#9ECBFF">	Args:</span></span>
+<span class="line"><span style="color:#9ECBFF">		ids: 形状 (batch, steps) 的 token id 张量。</span></span>
+<span class="line"><span style="color:#9ECBFF">	Returns:</span></span>
+<span class="line"><span style="color:#9ECBFF">		形状 (batch, steps, vocab_size) 的 logits。</span></span>
+<span class="line"><span style="color:#9ECBFF">	---</span></span>
+<span class="line"><span style="color:#9ECBFF">	注意：此处刻意不做 softmax —— 训练时交给 CrossEntropyLoss（其内部含 log_softmax，数值更稳定）；推理时若需要概率，再手动调用 softmax 即可。</span></span>
+<span class="line"><span style="color:#9ECBFF">	"""</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> forward</span><span style="color:#E1E4E8">(self, ids):</span></span>
+<span class="line"><span style="color:#E1E4E8">        _, steps </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ids.shape </span><span style="color:#6A737D"># 只需要序列长度；batch 维交给后续广播自动对齐</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 位置嵌入表的长度就是 context_length，越界会触发难以定位的索引错误，</span></span>
+<span class="line"><span style="color:#6A737D">		# 因此提前抛出语义清晰的异常</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> steps </span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.context_length:</span></span>
+<span class="line"><span style="color:#F97583">            raise</span><span style="color:#79B8FF"> ValueError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"输入超过 context_length"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 位置 id 为 0, 1, ..., steps-1；device 跟随输入，避免 CPU / GPU 张量相加时报错</span></span>
+<span class="line"><span style="color:#E1E4E8">        positions </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.arange(steps, </span><span style="color:#FFAB70">device</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">ids.device)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 词嵌入与位置嵌入逐元素相加，广播成 (batch, steps, d_model)，得到输入表示</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.token_embedding(ids) </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.position_embedding(positions)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        # 依次经过全部 Block、最终归一化、输出头，得到 logits</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.head(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.norm(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.blocks(x)))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>先用随机合法 id 检查 <code>model(ids).shape == (B, T, vocab_size)</code>。再复制一份输入,只改最后一个 token;在 <code>model.eval()</code> 且关闭 dropout 的条件下,前 <code>T-1</code> 个位置 logits 应保持相同——这是 mask 的直接验收:早期位置不应受未来 token 影响。</p>
+<h3 id="41-将两段代码保存并实际运行">4.1 将两段代码保存并实际运行</h3>
+<p>将本章第 3、4 节两段代码按顺序放入同一个 <code>src/model.py</code> 文件;文件开头保留 <code>import math</code>、<code>import torch</code>、<code>from torch import nn</code>。然后在文件末尾加入下列 smoke test(它不是训练,只验证网络接线):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">	# 固定随机种子，保证每次运行的结果可复现</span></span>
+<span class="line"><span style="color:#E1E4E8">    torch.manual_seed(</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> MiniGPT(</span><span style="color:#FFAB70">vocab_size</span><span style="color:#F97583">=</span><span style="color:#79B8FF">2000</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">context_length</span><span style="color:#F97583">=</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    # 构造一个 (batch=2, steps=8) 的随机输入</span></span>
+<span class="line"><span style="color:#E1E4E8">    ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.randint(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2000</span><span style="color:#E1E4E8">, (</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    # 复制一份，并且只改动「第一个样本的最后一个 token」，其余位置保持完全一致</span></span>
+<span class="line"><span style="color:#E1E4E8">    changed </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ids.clone()</span></span>
+<span class="line"><span style="color:#E1E4E8">    changed[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (changed[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">%</span><span style="color:#79B8FF"> 2000</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    # 切换到推理模式（关闭 dropout 等训练期行为；本模型虽无 dropout，但属良好习惯）</span></span>
+<span class="line"><span style="color:#E1E4E8">    model.eval()</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    # 两次前向：两批输入仅最后一个 token 不同</span></span>
+<span class="line"><span style="color:#E1E4E8">    first </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model(ids)</span></span>
+<span class="line"><span style="color:#E1E4E8">    second </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model(changed)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"logits shape:"</span><span style="color:#E1E4E8">, first.shape)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    # 因果性检查：由于每个位置只能看到自己和之前的位置，改动最后一个 token</span></span>
+<span class="line"><span style="color:#6A737D">	# 不应影响前面任何位置的输出，因此该最大差值应为 0（浮点误差下可能极小）。</span></span>
+<span class="line"><span style="color:#6A737D">	# 若明显不为 0，说明掩码失效，模型在训练时会「偷看」未来答案。</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"earlier-position max difference:"</span><span style="color:#E1E4E8">, (first[:, :</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> second[:, :</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">]).abs().max().item())</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    # 打印可训练参数总量，便于对照模型规模</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"parameters:"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">sum</span><span style="color:#E1E4E8">(p.numel() </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> p </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> model.parameters()))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行 <code>python src/model.py</code>。预期 shape 是 <code>torch.Size([2, 8, 2000])</code>,前七个位置差异为 <code>0.0</code>(极少数设备可能显示约 <code>1e-7</code> 的浮点误差)。若差异明显大于 <code>1e-6</code>,不要开始训练:优先检查 <code>masked_fill</code> 是否在 softmax 前执行、mask 是否使用 <code>[:steps, :steps]</code>。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动 1:实现并验收 Mini GPT 前向传播</p>
+<p><strong>目标</strong>:完成 <code>src/model.py</code> 与 <code>reports/model-smoke-test.md</code>。</p>
+<p><strong>步骤</strong>:1)实现注意力、Block、MiniGPT;2)用来自上一章的一个 batch 前向运行;3)记录参数量和 logits shape;4)执行「仅修改最后一 token」的因果性测试并记录最大差异。</p>
+<p><strong>完成标准</strong>:logits shape 为 <code>[batch_size, context_length, vocab_size]</code>;没有 NaN/Inf;前 <code>T-1</code> 个位置的差异为 0(或浮点误差量级),最后一个位置允许变化。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>部件</th>
+<th>解决的问题</th>
+<th>关键约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token/position embedding</td>
+<td>id 和顺序的表示</td>
+<td>id 不得越界</td>
+</tr>
+<tr>
+<td>causal attention</td>
+<td>汇集历史上下文</td>
+<td>禁止访问未来</td>
+</tr>
+<tr>
+<td>Block</td>
+<td>深层特征变换</td>
+<td>残差前后 shape 不变</td>
+</tr>
+<tr>
+<td>language-model head</td>
+<td>输出词表分数</td>
+<td>logits 是 <code>[B,T,V]</code></td>
+</tr>
+</tbody>
+</table>
+<p>常见误区:没有位置 embedding 的 Transformer 无法区分词序;把模型输出先 argmax 再算损失会切断梯度;训练集能跑并不证明 mask 正确,必须做未来扰动测试。</p>
+<p>思考题:若 <code>T=128</code>,位置 50 最多能注意到哪些位置?为什么只允许其看到过去不能通过「删除 labels」实现?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>它可以注意位置 0 至 50。标签是计算损失时的正确答案;模型输入中的未来 token 仍会通过注意力泄漏,必须在注意力分数上施加 mask。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>Vaswani 等,<a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a></li>
+<li><a href="https://huggingface.co/docs/transformers/main/en/llm_tutorial">Hugging Face:LLM course / causal language modeling</a></li>
+<li><a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html">PyTorch:<code>nn.MultiheadAttention</code> 的因果语义</a></li>
+<li>Alammar,<a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a></li>
+<li>Karpathy,<a href="https://github.com/karpathy/nanoGPT">nanoGPT 参考实现</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/02/06/"><span>上一篇</span><strong>01.02.06 构建数据管道</strong></a><a class="ai-pager-next" href="/ai/01-models/02/08/"><span>下一篇</span><strong>01.02.08 训练循环与检查点</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-解码器-transformer概念与模型边界">1. 解码器 Transformer:概念与模型边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-注意力为何必须遮住未来">2. 注意力为何必须遮住未来</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-自注意力在做什么">2.1 自注意力在做什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-为什么必须只准看过去">2.2 为什么必须「只准看过去」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#23-因果-mask-的正确实现">2.3 因果 mask 的正确实现</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-残差连接与-layernorm让网络深得起来">3. 残差连接与 LayerNorm:让网络深得起来</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-layernorm稳住每个-token-的表示尺度">3.1 LayerNorm:稳住每个 token 的表示尺度</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-残差连接给梯度一条高速公路">3.2 残差连接:给梯度一条「高速公路」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#33-组合成-block先归一再变换后相加">3.3 组合成 Block:先归一、再变换、后相加</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-组合-minigpt-并验证因果性">4. 组合 MiniGPT 并验证因果性</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-将两段代码保存并实际运行">4.1 将两段代码保存并实际运行</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

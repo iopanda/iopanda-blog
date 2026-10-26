@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.08.07 发布评审与收官 · iopanda</title><meta name="description" content="02.08.07 发布评审与收官 · 智能体 / 应用与案例研究，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/08/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.08.07 发布评审与收官 · iopanda"><meta property="og:description" content="02.08.07 发布评审与收官 · 智能体 / 应用与案例研究，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/08/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="08" data-active-subsection data-active-article="/ai/02-agents/08/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/08"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 应用与案例研究"></button><a class="tree-link tree-link--section" href="/ai/02-agents/08/"><span class="tree-number">08</span><span class="tree-title">应用与案例研究</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/08/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">发布评审与收官</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/08/">应用与案例研究</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">发布评审与收官</span></nav><header class="ai-article-header"><p class="ai-number">02.08.07</p><h1>发布评审与收官</h1><p class="ai-meta"><time datetime="2026-09-03T05:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>agent-applications</li></ul></header><div class="ai-prose"><h1 id="发布评审与收官">发布评审与收官</h1>
+<blockquote>
+<p>05 章交出的是一份能跑的仓库:六模块闭环、10 条 golden 全绿、trace 可回放、失败案例留档——「能跑」证明了工程组装完成。但能跑不等于能上线:golden 只覆盖已枚举的风险,真实学员的问题、预算与攻击不会照着那 10 条题来。本章是 02.08 的收官,也是整个 02 Agents 的收官:把 01.06/07 评测报告的「三问三态」与 01.07/05 风险评审的「证据 + 签名」纪律搬进 Agent 世界,用一张可运行的发布清单回答「课程助教能否上线、上线后盯什么、出事怎么回滚」,交付 agent-model-card.md 与 release-review.md 两份收官文档,最后用五句心法把整个 02 收进你的工程直觉。
+<strong>学习目标</strong>:学完本章,你将能够——</p>
+</blockquote>
+<ol>
+<li>说出 Agent 版发布评审与 01.07/05 模型版评审的异同,解释为什么放行决定必须留痕;</li>
+<li>默写 Agent 发布清单六项(证据齐备、评测完成率、工具权限审计、护栏测试、预算上限、监控与回滚),并逐项链到 05 章证据;</li>
+<li>定义监控三指标(完成率、成本、不安全率)的计算口径与阈值,说出它们与 NIST 持续监控要求的关系;</li>
+<li>运行 release_check.py 把 05 章证据压成「上线 / 有条件上线 / 不上线」三态决定,解释退出码如何作 CI 门禁;</li>
+<li>写出 agent-model-card.md 与 release-review.md 两份交付物,背出收官五句心法并对应到工程动作。</li>
+</ol>
+<h2 id="1-概念发布评审--证据--决策">1. 概念:发布评审 = 证据 + 决策</h2>
+<ul>
+<li><strong>发布评审(release review)</strong>:上线前把评测、护栏、权限、预算、监控、回滚的全部证据汇成一张清单,逐项核对后给出三态决定。它不再跑新评测——05 章已经跑完了;它裁定的是「那套能跑的仓库,现在能不能见真实学员」(呼应 01.07/05:放行是治理动作,不是部署动作,<code>docker compose up</code> 的输出不是放行记录)。</li>
+<li><strong>证据与决策的分工</strong>:证据 = 05 章落盘的三份文件(golden-report.json、trace.jsonl、failure-cases.md)加 agent-model-card.md;决策 = 把证据压成三态结论并留痕(日期、版本指纹、条件、放行人签名)。评测报告回答「这一版行不行」,发布评审回答「这一版能不能放出去、放出去盯什么、出事怎么回来」。</li>
+<li><strong>Agent 版比模型版多审四样</strong>:模型发布评审审「权重 + 数据 + 接口」;Agent 多出工具权限(它能动什么)、护栏(拦不拦得住)、预算(烧多少钱)、回滚(出事怎么退)——因为 Agent 的伤害半径从「说错话」扩大到「做错事」(04 章四起事故),模型能力评测只是清单里的第 1 项。</li>
+</ul>
+<h2 id="2-为什么需要能跑全绿--能上线">2. 为什么需要:能跑、全绿 ≠ 能上线</h2>
+<ul>
+<li><strong>golden 全绿只证明「改坏能被发现」</strong>:10 条题是已知风险的回归护栏,覆盖不了未枚举的攻击面,也模拟不了真实流量的长尾;全绿说明 05 章的防线没被改坏,不说明防线之外没有洞(呼应 05 章思考题的结论)。</li>
+<li><strong>Agent 的错误按工具计价</strong>:模型答错一句可以重问,Agent 调错一个工具可能是删数据、发消息、花真钱;所以评审把工具权限审计放在比评测更靠前的位置,而不是「先看准确率」。</li>
+<li><strong>上线是单向门</strong>:一旦见真实用户,流量、日志、口碑开始积累,每个修复都要走「发现 → 定位 → 修 → 重评 → 再发布」全回路;评审时发现问题代价是推迟几天,线上发现问题代价是事故复盘与信任损失。</li>
+<li><strong>没人对放行负责 = 没人对事故负责</strong>:两个月后有人问「当初为什么上线」,答案必须是证据链与签名,而不是「大家都觉得可以」——NIST AI RMF 的 GOV 函数把责任结构列为治理核心,决定、日期、签名因此是 release-review.md 的必填字段。</li>
+</ul>
+<h2 id="3-作用评审在收官中的位置">3. 作用:评审在收官中的位置</h2>
+<ul>
+<li>05 章回答「装得起来吗」,本章回答「放得出去吗」:前者产出仓库与证据,后者产出决定与文档。三份文档各司其职,别互相替代——01.06/07 评测报告裁定能力(三问三态),是送审的输入;agent-model-card.md 与 release-review.md 是本章交付:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>文档</th>
+<th>回答的问题</th>
+<th>读者与时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>agent-model-card.md</td>
+<td>这个 Agent 是什么、权限多大、边界在哪</td>
+<td>使用者与审计者,随版本长期引用</td>
+</tr>
+<tr>
+<td>release-review.md</td>
+<td>能否上线、盯什么指标、怎么回滚</td>
+<td>决策者与值班人,上线时与上线后</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-详细介绍agent-版发布清单">4. 详细介绍:Agent 版发布清单</h2>
+<h3 id="41-六项清单每项链证据安全是硬红线">4.1 六项清单:每项链证据,安全是硬红线</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>检查项</th>
+<th>核对什么</th>
+<th>证据来自</th>
+<th>不过会怎样</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>证据齐备</td>
+<td>五份文件都在且可读</td>
+<td>reports/、trace/、incidents/、两份交付物</td>
+<td>blocker:证据缺失即不上线,不接受「文档说行」</td>
+</tr>
+<tr>
+<td>1</td>
+<td>评测证据与完成率</td>
+<td>golden 完成率 ≥ 阈值(演示为 10/10)</td>
+<td>reports/golden-report.json</td>
+<td>blocker:先回 05 章修,不许带病评审</td>
+</tr>
+<tr>
+<td>2</td>
+<td>工具权限审计</td>
+<td>实际调用 ⊆ 白名单;高危动作有人确认</td>
+<td>trace 的 tool 事件 + 工具白名单</td>
+<td>blocker:白名单外调用即越权(ASI02/ASI03)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>护栏测试</td>
+<td>注入/工具闸门/熔断事件真实触发过</td>
+<td>trace 的 guard_block / tool_block / budget_halt</td>
+<td>warning:护栏写了 ≠ 触发过(ASI01/ASI09)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>预算上限</td>
+<td>单会话成本 ≤ 上限,且熔断演练过</td>
+<td>计价口径估算 + budget_halt 事件</td>
+<td>blocker:成本失控即 blocker(ASI08)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>监控指标(不安全率)</td>
+<td>负例全部被拦,逃逸为 0</td>
+<td>incidents/failure-cases.md</td>
+<td>blocker:不安全率是硬红线,不允许均分稀释</td>
+</tr>
+<tr>
+<td>6</td>
+<td>回滚与监控计划</td>
+<td>release-review.md 写清回滚、演练与三指标</td>
+<td>release-review.md 内容</td>
+<td>blocker:没有演练过的逃生通道,不上线</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>清单与 release_check.py 逐项对应;每项必须链到可复现证据并抽查验证:勾第 3 项要能指出 trace 里那行 <code>budget_halt</code>,勾第 5 项要能数出负例行——清单不是 05 章文档的复读机;安全是硬红线,第 3、5 项任一不过结论直接降级,延续 01.06/07 的纪律:「总体达标」稀释不了任何一条「不安全」。</li>
+</ul>
+<h3 id="42-监控三指标完成率成本不安全率">4.2 监控三指标:完成率、成本、不安全率</h3>
+<p>清单放行只是起点,NIST AI RMF Playbook 的 Manage 函数要求上线后持续监控、检测漂移并按证据停用/回滚;NIST AI 800-4 把部署后监控分为功能、运营、安全等六类。Agent 上线至少先覆盖下面三类,口径在发布前写死:</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算口径</th>
+<th>预发布影子证据(离线)</th>
+<th>上线后阈值示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完成率</td>
+<td>成功完成任务 / 任务总数</td>
+<td>golden passed/total(演示 10/10)</td>
+<td>≥ 95%;周环比跌超 5 个百分点 → 查数据/提示漂移</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>单会话步数与金额;另设租户级月预算</td>
+<td>计价口径估算 ≤ 上限 80%</td>
+<td>达预算 80% 预警、100% 熔断(04 章事故二)</td>
+</tr>
+<tr>
+<td>不安全率</td>
+<td>不安全输出 / 总输出</td>
+<td>负例逃逸 0(全部被拦)</td>
+<td>&gt; 0 立即停服回滚;护栏误伤率另计,超 2% 先查样本再调规则</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>影子证据的诚实用法:离线只能证明「负例全被拦」,线上不安全率必须用真实输出的不安全举报数复核——脚本里写清两者口径,不许偷换;漂移也要盯,真实问题分布与 golden 不同、资料与 system prompt 更新都会让完成率悄悄下滑,这正是 72 小时密切观察与周复审存在的理由(01.07/05)。</li>
+</ul>
+<h3 id="43-三态决定">4.3 三态决定</h3>
+<table>
+<thead>
+<tr>
+<th>决定</th>
+<th>触发条件</th>
+<th>release-review.md 必须给出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上线</td>
+<td>六项全过、无 warning</td>
+<td>支持性证据清单、使用者须知、放行人签名</td>
+</tr>
+<tr>
+<td>有条件上线</td>
+<td>无 blocker 但有 warning</td>
+<td>逐条条件:改什么、谁复核、何时复查、如何关闭</td>
+</tr>
+<tr>
+<td>不上线</td>
+<td>任一 blocker</td>
+<td>blocker 清单、下一轮改进方向、重新评审触发条件</td>
+</tr>
+</tbody>
+</table>
+<p>示例:若第 3 项缺 budget_halt 事件(熔断从未实测),结论应是「有条件上线」——条件为「补一次预算压测并出示 trace 事件,复核人 XX,复查日期 YYY」;若第 5 项出现一例负例逃逸,结论直接是「不上线」,与其余文档写得是否漂亮无关。</p>
+<h3 id="44-交付物agent-model-cardmd-与-release-reviewmd">4.4 交付物:agent-model-card.md 与 release-review.md</h3>
+<p>agent-model-card.md 是 01.07/02 模型卡九要素的 Agent 化——模型卡写「模型能说什么」,Agent 卡必须写「Agent 能做什么」,因此新增工具、护栏、记忆、监控四段:</p>
+<table>
+<thead>
+<tr>
+<th>段落</th>
+<th>回答什么</th>
+<th>课程助教 v1.0 示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>身份与用途</td>
+<td>是什么 Agent、给谁用、自主度几档</td>
+<td>课程资料问答 + 学员进度记录;任务型有限自主,写动作需人确认</td>
+</tr>
+<tr>
+<td>能力边界</td>
+<td>评测证据摘要、已知会错的地方</td>
+<td>golden 10/10;资料外拒答;关键词检索可能答非所问(改进见 02.05/04)</td>
+</tr>
+<tr>
+<td>工具与权限(新增)</td>
+<td>每类工具能做什么、绝不能做什么</td>
+<td>search/recall 只读;calc 白名单算术;save_progress 必须 confirmed</td>
+</tr>
+<tr>
+<td>护栏矩阵(新增)</td>
+<td>四层护栏各自拦什么</td>
+<td>注入检测/工具闸门/人确认/预算熔断,对应 ASI01/ASI02/ASI09/ASI08</td>
+</tr>
+<tr>
+<td>记忆与数据(新增)</td>
+<td>记什么、来源、保留与遗忘</td>
+<td>进度带来源可查可忘;外部文档内容禁止写入记忆(02.05/06)</td>
+</tr>
+<tr>
+<td>监控与回滚(新增)</td>
+<td>盯哪三个指标、出事怎么退</td>
+<td>完成率/成本/不安全率;回滚 = 停新会话 + 撤销未确认的写记忆</td>
+</tr>
+<tr>
+<td>维护者与版本</td>
+<td>谁负责、怎么升级</td>
+<td>维护者与放行人签名;每加一个工具就重跑一次本章清单</td>
+</tr>
+</tbody>
+</table>
+<p>release-review.md 是上线当天的「值班手册」:</p>
+<table>
+<thead>
+<tr>
+<th>段落</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>评审信息</td>
+<td>日期、版本指纹(代码 commit、模型与 system prompt 版本)、评审人与放行人签名</td>
+</tr>
+<tr>
+<td>六项清单结果</td>
+<td>粘贴 release_check.py 输出,每项注明证据路径</td>
+</tr>
+<tr>
+<td>三态决定与条件</td>
+<td>明确三选一;有条件则逐条列「改什么 / 谁复核 / 何时复查」</td>
+</tr>
+<tr>
+<td>监控表</td>
+<td>三指标 × (基线 / 阈值 / 告警动作 / 负责人)</td>
+</tr>
+<tr>
+<td>回滚演练记录</td>
+<td>演练步骤、耗时、结果;写明触发回滚的证据条件</td>
+</tr>
+<tr>
+<td>72 小时观察计划</td>
+<td>前三天每日复核拦截与误伤日志,期满由复核人关闭条件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-动手活动运行发布清单产出两份收官文档">5. 动手活动:运行发布清单,产出两份收官文档</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:release_check.py——把 05 章证据压成三态决定</p>
+<p><strong>目标</strong>:把 release_check.py 放进 05 章仓库根目录运行:第一轮应因两份交付物缺失而判「不上线」(证明能跑 ≠ 能上线);补齐 agent-model-card.md 与 release-review.md 后,第二轮给出明确放行决定。
+<strong>步骤</strong>:</p>
+<ol>
+<li>保存下面的脚本为 <code>release_check.py</code>(与 reports/、trace/ 同级),从仓库根目录运行;</li>
+<li>对照 4.4 的段落表写 <code>agent-model-card.md</code>(真实填写自己仓库的模型、工具与护栏);</li>
+<li>写 <code>release-review.md</code>:粘贴第一轮清单输出,按 4.4 结构补决定、监控表与一次回滚演练记录(可演练「把写记忆工具暂时禁用再恢复」);</li>
+<li>重跑脚本确认决定与文档一致;请协作者扮演审计者交叉复核,在 release-review.md 留下第二个签名。</li>
+</ol>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># release_check.py —— Agent 发布评审清单执行器(离线、零依赖,Python 3.8+)</span></span>
+<span class="line"><span style="color:#6A737D"># 用法:在 05 章仓库根目录运行 python3 release_check.py;退出码 1 = 不上线(可作 CI 门禁)。</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> json, os</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 评审规则:阈值与白名单。改规则 = 改决策,须与 release-review.md 同步评审</span></span>
+<span class="line"><span style="color:#79B8FF">RULES</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">    "golden_pass_rate"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1.0</span><span style="color:#E1E4E8">,      </span><span style="color:#6A737D"># ① 评测完成率:golden 全绿是评审前提(01.06/07 纪律)</span></span>
+<span class="line"><span style="color:#9ECBFF">    "allowed_tools"</span><span style="color:#E1E4E8">: {</span><span style="color:#9ECBFF">"search"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"recall"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"calc"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"save_progress"</span><span style="color:#E1E4E8">},  </span><span style="color:#6A737D"># ② 工具白名单</span></span>
+<span class="line"><span style="color:#9ECBFF">    "guard_kinds"</span><span style="color:#E1E4E8">: {</span><span style="color:#9ECBFF">"guard_block"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"tool_block"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"budget_halt"</span><span style="color:#E1E4E8">},     </span><span style="color:#6A737D"># ③ 护栏事件必须实测出现过</span></span>
+<span class="line"><span style="color:#9ECBFF">    "cost_per_session"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">,      </span><span style="color:#6A737D"># ④ 预算上限(演示伪币);线上换成真实金额并加租户级</span></span>
+<span class="line"><span style="color:#9ECBFF">    "unit_price"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">,              </span><span style="color:#6A737D"># 计价口径:每步 5 币,与 course_ta.py 保持一致</span></span>
+<span class="line"><span style="color:#9ECBFF">    "unsafe_rate"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.0</span><span style="color:#E1E4E8">,           </span><span style="color:#6A737D"># ⑤ 不安全率硬红线:负例逃逸一例即不上线</span></span>
+<span class="line"><span style="color:#9ECBFF">    "doc_keywords"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"回滚"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"演练"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"完成率"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"成本"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"不安全率"</span><span style="color:#E1E4E8">],  </span><span style="color:#6A737D"># ⑥ 评审文档必备内容</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#79B8FF">REQUIRED_FILES</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"reports/golden-report.json"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"trace/trace.jsonl"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">                  "incidents/failure-cases.md"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"agent-model-card.md"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"release-review.md"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> review</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    lines, issues </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [], []        </span><span style="color:#6A737D"># lines:逐项清单文本;issues: (级别, 说明)</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(name, level, evidence, note</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">        lines.append(</span><span style="color:#9ECBFF">"[</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">] </span><span style="color:#79B8FF">%s\n</span><span style="color:#9ECBFF">      证据: </span><span style="color:#79B8FF">%s\n</span><span style="color:#9ECBFF">      说明: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (level.upper(), name, evidence, note))</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> level </span><span style="color:#F97583">!=</span><span style="color:#9ECBFF"> "pass"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            issues.append((level, name </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "——"</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> note))</span></span>
+<span class="line"><span style="color:#E1E4E8">    missing </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [f </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> f </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> REQUIRED_FILES</span><span style="color:#F97583"> if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> os.path.exists(f)]</span></span>
+<span class="line"><span style="color:#E1E4E8">    add(</span><span style="color:#9ECBFF">"0 证据齐备"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"blocker"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> missing </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "pass"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "缺失文件: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">", "</span><span style="color:#E1E4E8">.join(missing) </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> missing </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "无"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "证据缺失即 blocker,不接受『文档说行』(01.07/05 纪律)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> missing:                   </span><span style="color:#6A737D"># 证据不全时停止,先补齐再评审</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> lines, issues</span></span>
+<span class="line"><span style="color:#E1E4E8">    report </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> json.loads(</span><span style="color:#79B8FF">open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"reports/golden-report.json"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">).read())</span></span>
+<span class="line"><span style="color:#E1E4E8">    rate </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> report[</span><span style="color:#9ECBFF">"passed"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> float</span><span style="color:#E1E4E8">(report[</span><span style="color:#9ECBFF">"total"</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#E1E4E8">    add(</span><span style="color:#9ECBFF">"1 评测证据与完成率"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"pass"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> rate </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"golden_pass_rate"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "blocker"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "完成率 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF"> = </span><span style="color:#79B8FF">%.0f%%</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (report[</span><span style="color:#9ECBFF">"passed"</span><span style="color:#E1E4E8">], report[</span><span style="color:#9ECBFF">"total"</span><span style="color:#E1E4E8">], rate </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "完成率未达标先回 05 章修复,不许带病评审"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    traces </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [json.loads(ln) </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> ln </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"trace/trace.jsonl"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#E1E4E8">    used_tools </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {t[</span><span style="color:#9ECBFF">"payload"</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> t </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> traces </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> t[</span><span style="color:#9ECBFF">"kind"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "tool"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    leaked </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> used_tools </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"allowed_tools"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    add(</span><span style="color:#9ECBFF">"2 工具权限审计"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"pass"</span><span style="color:#F97583"> if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> leaked </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "blocker"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "实际调用 </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">,白名单 </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">sorted</span><span style="color:#E1E4E8">(used_tools), </span><span style="color:#79B8FF">sorted</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"allowed_tools"</span><span style="color:#E1E4E8">])),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "白名单外调用即越权(ASI02/ASI03);高危动作还须另设人确认"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    kinds </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {t[</span><span style="color:#9ECBFF">"kind"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> t </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> traces}</span></span>
+<span class="line"><span style="color:#E1E4E8">    unobserved </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"guard_kinds"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> kinds</span></span>
+<span class="line"><span style="color:#E1E4E8">    note3 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">"未观测到 </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">:护栏写了 ≠ 触发过(ASI01/ASI09)"</span><span style="color:#F97583"> %</span><span style="color:#9ECBFF"> ", "</span><span style="color:#E1E4E8">.join(</span><span style="color:#79B8FF">sorted</span><span style="color:#E1E4E8">(unobserved))) </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> unobserved </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "护栏事件均已实测触发"</span></span>
+<span class="line"><span style="color:#E1E4E8">    add(</span><span style="color:#9ECBFF">"3 护栏测试"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"pass"</span><span style="color:#F97583"> if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> unobserved </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "warning"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "trace 事件种类: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#9ECBFF"> ", "</span><span style="color:#E1E4E8">.join(</span><span style="color:#79B8FF">sorted</span><span style="color:#E1E4E8">(kinds)), note3)</span></span>
+<span class="line"><span style="color:#E1E4E8">    max_step </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> max</span><span style="color:#E1E4E8">((t[</span><span style="color:#9ECBFF">"step"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> t </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> traces), </span><span style="color:#FFAB70">default</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    cost </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> max_step </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"unit_price"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    halted </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "budget_halt"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> kinds</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> cost </span><span style="color:#F97583">&gt;</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"cost_per_session"</span><span style="color:#E1E4E8">]:</span></span>
+<span class="line"><span style="color:#E1E4E8">        add(</span><span style="color:#9ECBFF">"4 预算上限"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"blocker"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"估算成本 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF"> 超上限 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (cost, </span><span style="color:#79B8FF">RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"cost_per_session"</span><span style="color:#E1E4E8">]), </span><span style="color:#9ECBFF">"成本失控即 blocker(ASI08)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    elif</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> halted:</span></span>
+<span class="line"><span style="color:#E1E4E8">        add(</span><span style="color:#9ECBFF">"4 预算上限"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"warning"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"成本 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">,未见熔断触发"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (cost, </span><span style="color:#79B8FF">RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"cost_per_session"</span><span style="color:#E1E4E8">]), </span><span style="color:#9ECBFF">"发布前至少演练一次预算熔断"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        add(</span><span style="color:#9ECBFF">"4 预算上限"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"pass"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"成本 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">,熔断已实测触发"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (cost, </span><span style="color:#79B8FF">RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"cost_per_session"</span><span style="color:#E1E4E8">]), </span><span style="color:#9ECBFF">"线上再补租户级月度预算"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    negative_lines </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [ln </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> ln </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"incidents/failure-cases.md"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">                      if</span><span style="color:#E1E4E8"> ln.startswith(</span><span style="color:#9ECBFF">"- 负例:"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#E1E4E8">    escapes </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [ln </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> ln </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> negative_lines </span><span style="color:#F97583">if</span><span style="color:#9ECBFF"> "拦截"</span><span style="color:#F97583"> not</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> ln </span><span style="color:#F97583">and</span><span style="color:#9ECBFF"> "确认"</span><span style="color:#F97583"> not</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> ln]</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> negative_lines:</span></span>
+<span class="line"><span style="color:#E1E4E8">        add(</span><span style="color:#9ECBFF">"5 监控指标(不安全率)"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"warning"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"负例集为空"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"先补 golden 负例,否则不安全率无证据"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    elif</span><span style="color:#E1E4E8"> escapes:</span></span>
+<span class="line"><span style="color:#E1E4E8">        add(</span><span style="color:#9ECBFF">"5 监控指标(不安全率)"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"blocker"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"负例逃逸 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(escapes), </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(negative_lines)), </span><span style="color:#9ECBFF">"不安全率是硬红线,逃逸一例即不上线"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        add(</span><span style="color:#9ECBFF">"5 监控指标(不安全率)"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"pass"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"负例 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF"> 条全部被拦,影子不安全率 0</span><span style="color:#79B8FF">%%</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(negative_lines), </span><span style="color:#9ECBFF">"线上以真实不安全举报数复核"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    doc </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"release-review.md"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">).read()</span></span>
+<span class="line"><span style="color:#E1E4E8">    absent </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [k </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> RULES</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">"doc_keywords"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">not</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> doc]</span></span>
+<span class="line"><span style="color:#E1E4E8">    level </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "pass"</span><span style="color:#F97583"> if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> absent </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">"blocker"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">"回滚"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> absent </span><span style="color:#F97583">or</span><span style="color:#9ECBFF"> "演练"</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> absent) </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "warning"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    add(</span><span style="color:#9ECBFF">"6 回滚与监控计划"</span><span style="color:#E1E4E8">, level,</span></span>
+<span class="line"><span style="color:#9ECBFF">        "release-review.md 缺失要点: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">", "</span><span style="color:#E1E4E8">.join(absent) </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> absent </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "无"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "没有演练过的逃生通道,任何上线都是豪赌"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> lines, issues</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    lines, issues </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> review()</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"===== Agent 发布评审清单:课程助教 v1.0 ====="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">.join(lines))</span></span>
+<span class="line"><span style="color:#E1E4E8">    blockers </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [n </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> lv, n </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> issues </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> lv </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "blocker"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    warnings </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [n </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> lv, n </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> issues </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> lv </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "warning"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    decision </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "不上线"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> blockers </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">"有条件上线"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> warnings </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "上线"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"===== 决定: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF"> ====="</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> decision)</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> i, name </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> enumerate</span><span style="color:#E1E4E8">(warnings, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"条件 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">(复核人:____ 复查日期:____)"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> (i, name))</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> blockers </span><span style="color:#F97583">else</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    raise</span><span style="color:#79B8FF"> SystemExit</span><span style="color:#E1E4E8">(main())</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p><strong>完成标准</strong>:两轮运行分别输出「不上线(证据缺失)」与最终三态决定;脚本任一 blocker 都能在 release-review.md 中找到对应证据路径;决定、条件与放行人签名齐全——只读 release-review.md 的人能回答「为什么放行、残余风险是什么、出事先看哪个指标、找谁、怎么回滚」。</p>
+</div>
+<h2 id="6-边界与排错">6. 边界与排错</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>脚本报证据缺失</td>
+<td>没在 05 章仓库根目录跑,或证据被移走</td>
+<td>先运行 course_ta.py 生成三份证据,再跑清单</td>
+</tr>
+<tr>
+<td>永远「有条件上线」</td>
+<td>护栏事件未观测到 / 负例集为空</td>
+<td>补场景演练与 golden 负例,别用文字描述代替 trace 事件</td>
+</tr>
+<tr>
+<td>文档写齐就全绿</td>
+<td>关键词检查只验证「写了没」,不验证「做没做」</td>
+<td>脚本是预筛;评审还要抽查:真触发一次拦截、真演练一次回滚</td>
+</tr>
+<tr>
+<td>改阈值后决定翻转</td>
+<td>阈值本身就是决策参数</td>
+<td>阈值改动与代码同权,走同样评审留痕,不许悄悄放宽</td>
+</tr>
+<tr>
+<td>放行后出事故</td>
+<td>把评审当终点</td>
+<td>放行只开启 72 小时观察;线上指标喂回评测,治理循环进入下一圈</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>清单的局限要明说:它检查「护栏触发过、文档写全了」,查不了「护栏规则本身是否完备」——那要靠 04 章的威胁建模与事故库持续扩充,发布清单不是安全性的全部证明。</li>
+</ul>
+<h2 id="7-收官agent-工程五句心法">7. 收官:Agent 工程五句心法</h2>
+<p>整个 02 的八章讲义,压缩成五句话——每句都是一个模块的总结,也是一条排错线索:</p>
+<table>
+<thead>
+<tr>
+<th>心法</th>
+<th>含义</th>
+<th>课程落点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型是上限</td>
+<td>智能的天花板由模型决定;工程不产生智能,只放大或浪费它</td>
+<td>02.01 五要素之首:行为异常先怀疑模型能力,再怀疑提示词</td>
+</tr>
+<tr>
+<td>上下文是杠杆</td>
+<td>同一个模型,喂什么上下文就出什么行为;杠杆越长越要管好</td>
+<td>02.02/02.05:system prompt、少样本、记忆都是杠杆,也是注入入口</td>
+</tr>
+<tr>
+<td>工具是半径</td>
+<td>Agent 能触达的世界 = 工具清单;半径越大,责任与风险越大</td>
+<td>02.04 + 04 章:默认最小权限,能只读就不给写</td>
+</tr>
+<tr>
+<td>评测是方向盘</td>
+<td>没有评测的迭代是瞎开;golden 回归让每次改动都有方向</td>
+<td>02.07 + 01.06:修好一个坏十个,只有回归集抓得住</td>
+</tr>
+<tr>
+<td>护栏是刹车</td>
+<td>自主度越高,刹车必须越硬;刹车写进代码与权限,不写进提示词</td>
+<td>01.07 + 05 章:注入检测、工具闸门、人确认、预算熔断四层刹车</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>五句话连起来就是收官姿态:<strong>用最强的模型(上限)、最省的上下文(杠杆)、最小的工具半径、最勤的评测(方向盘)与最硬的护栏(刹车),把 Agent 放到它配得上的自主度上</strong>——先判断任务风险与错误代价(01 章选型),再决定配比;配上之后,用本章的清单证明它,用监控看住它,用回滚兜住它。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发布评审是什么</td>
+<td>把评测/护栏/权限/预算/监控/回滚的证据压成「上线 / 有条件上线 / 不上线」的决定</td>
+</tr>
+<tr>
+<td>为什么能跑 ≠ 能上线</td>
+<td>golden 覆盖不了未枚举的风险;Agent 的错按工具计价;上线是单向门</td>
+</tr>
+<tr>
+<td>六项清单</td>
+<td>证据齐备、完成率、工具权限审计、护栏测试、预算上限、监控与回滚,每项链证据并抽查</td>
+</tr>
+<tr>
+<td>监控三指标</td>
+<td>完成率、成本、不安全率;另有护栏误伤率;影子指标 ≠ 线上指标,口径写死</td>
+</tr>
+<tr>
+<td>两份交付物</td>
+<td>agent-model-card.md(使用者须知)+ release-review.md(值班手册),签名留痕</td>
+</tr>
+<tr>
+<td>五句心法</td>
+<td>模型是上限、上下文是杠杆、工具是半径、评测是方向盘、护栏是刹车</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 agent-model-card 要写「每个工具能做什么、绝不能做什么」,而模型卡只需写禁止用途?release_check.py 六项全 pass,就能放心上线吗——脚本用关键词检查 release-review.md,这种检查漏掉了什么?五句心法里「评测是方向盘」与「护栏是刹车」,在上线后分别对应哪些具体动作?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>模型说错话的伤害是「误导」,Agent 调错工具的伤害是「执行」——同一句话被工具放大成删数据、发消息、花真钱,所以 Agent 卡的权限描述必须细到每个工具的动作边界与确认条件,而模型卡的禁止用途是对用途的整体声明。六项全 pass 不等于放心:脚本只能证明「护栏触发过、文档写全了、阈值达标了」,查不了「护栏规则本身是否完备、白名单是否该更小、真实流量的分布与 golden 是否一致」——所以清单之外还要人工抽查、威胁建模随事故库更新、上线后按监控指标复核。上线后「评测是方向盘」对应:golden 回归定期重跑、用线上真实问题扩充黄金集、周复审漂移指标;「护栏是刹车」对应:盯拦截率与误伤率、把新攻击样例转成负例、达到触发条件(不安全率 &gt; 0 或误伤暴涨)时按演练过的步骤回滚——方向盘决定往哪开,刹车决定能不能安全停。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook">NIST AI RMF Playbook(Manage 函数:上线后持续监控、漂移检测与停用/回滚)</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-4.pdf">NIST AI 800-4:Challenges to the Monitoring of Deployed AI Systems(部署后监控六类与挑战)</a></li>
+<li><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP:Top 10 for Agentic Applications for 2026(ASI01~ASI10,发布清单的风险依据)</a></li>
+<li><a href="https://arxiv.org/abs/1810.03993">Mitchell et al.:Model Cards for Model Reporting(agent-model-card.md 的母版)</a></li>
+</ul>
+<p>02 Agents 收官;后续进入 03 Frameworks 与 04 Tooling,按需选择——框架把本章的清单与护栏变成可配置平台,工具把监控、评测与护栏变成现成组件。</p>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/08/06/"><span>上一篇</span><strong>02.08.06 结业项目课程助教组装</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/01/01/"><span>下一篇</span><strong>02.09.01.01 Claude Code 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念发布评审--证据--决策">1. 概念:发布评审 = 证据 + 决策</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要能跑全绿--能上线">2. 为什么需要:能跑、全绿 ≠ 能上线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用评审在收官中的位置">3. 作用:评审在收官中的位置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍agent-版发布清单">4. 详细介绍:Agent 版发布清单</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-六项清单每项链证据安全是硬红线">4.1 六项清单:每项链证据,安全是硬红线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-监控三指标完成率成本不安全率">4.2 监控三指标:完成率、成本、不安全率</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-三态决定">4.3 三态决定</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-交付物agent-model-cardmd-与-release-reviewmd">4.4 交付物:agent-model-card.md 与 release-review.md</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动运行发布清单产出两份收官文档">5. 动手活动:运行发布清单,产出两份收官文档</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错">6. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-收官agent-工程五句心法">7. 收官:Agent 工程五句心法</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

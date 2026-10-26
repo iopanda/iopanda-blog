@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.04.02 模型只提议，不执行 · iopanda</title><meta name="description" content="02.04.02 模型只提议，不执行 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/04/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.04.02 模型只提议，不执行 · iopanda"><meta property="og:description" content="02.04.02 模型只提议，不执行 · 智能体 / 工具调用与协议，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/04/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="04" data-active-subsection data-active-article="/ai/02-agents/04/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具调用与协议"></button><a class="tree-link tree-link--section" href="/ai/02-agents/04/"><span class="tree-number">04</span><span class="tree-title">工具调用与协议</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/04/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">模型只提议，不执行</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/04/">工具调用与协议</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">模型只提议，不执行</span></nav><header class="ai-article-header"><p class="ai-number">02.04.02</p><h1>模型只提议，不执行</h1><p class="ai-meta"><time datetime="2026-09-07T09:50">2026-09-07</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>function-calling</li></ul></header><div class="ai-prose"><h1 id="模型只提议不执行">模型只提议，不执行</h1>
+<p>产品评审会上有人问：“模型会不会自己去查数据库？”</p>
+<p>答案取决于怎么理解“自己”。模型确实会在需要时“查”——它会产出一段结构化请求，声明“我要调用 <code>get_chapter_stats</code>，参数是 chapter=5”。但这个调用是<strong>你的代码</strong>执行的。模型从头到尾没有网络权限，也不能执行 SQL。</p>
+<p>这个区分听起来是常识，实际是最常被搞混的一处。搞混的后果很具体：把安全检查做在提示词里，指望模型“不要做危险操作”，而不是做在执行代码里。</p>
+<h2 id="四步闭环">四步闭环</h2>
+<p>一次工具调用，完整走完是四步。</p>
+<p><strong>声明。</strong> 请求里带上工具清单，每个工具是名字 + 描述 + JSON Schema 参数结构。这份清单随每次调用一起发送，模型的候选动作空间就是它。</p>
+<p><strong>提议。</strong> 模型返回 <code>tool_calls</code> 数组，每项包含 <code>id</code>、<code>function.name</code>、<code>function.arguments</code>。注意 <code>arguments</code> 是<strong>字符串</strong>，内容是 JSON。模型生成的是文本，不是对象。</p>
+<p><strong>执行。</strong> 调用方解析参数、校验、执行、拿到结果。这一步在所有 SDK 之外，是你的代码。</p>
+<p><strong>回填。</strong> 把结果作为一条 <code>role: "tool"</code> 的消息发回，带 <code>tool_call_id</code> 与提议配对。模型读到结果，继续生成，或再提议一次调用。</p>
+<p>OpenAI 在 2023 年 6 月 13 日上线 function calling，把此前 ReAct 那种“模型输出 <code>Action: search[...]</code> 然后正则解析”的做法换成了受约束的结构化输出。差别不在能力，在可靠性：文本协议里，模型可能把格式写错、写多一行解释、少写一个方括号，解析器就崩了；结构化输出里，工具名只能从声明里选，参数按 schema 生成。</p>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>谁负责</th>
+<th>出错的典型样子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>声明</td>
+<td>开发者</td>
+<td>描述含糊、参数缺约束</td>
+</tr>
+<tr>
+<td>提议</td>
+<td>模型</td>
+<td>选错工具、参数值不合理</td>
+</tr>
+<tr>
+<td>执行</td>
+<td>你的代码</td>
+<td>参数没校验、权限没检查</td>
+</tr>
+<tr>
+<td>回填</td>
+<td>你的代码</td>
+<td>结果不配对、截断不标注</td>
+</tr>
+</tbody>
+</table>
+<h2 id="缝在哪里">缝在哪里</h2>
+<p>四步里，第 2 步与第 3 步之间有一条缝。<strong>提议与执行之间没有任何强制关系。</strong></p>
+<p>模型说“调用 <code>delete_question(question_id=3)</code>”，你的代码可以不执行。这个“可以不”，就是全部安全设计的落点：白名单、参数范围、人工确认、幂等检查，都放在这条缝里。</p>
+<p>反过来，如果你的代码拿到提议就执行，那模型事实上拥有了这段代码的全部权限。它不是“能查数据库”，它是“能删库”——只要它写得出那个参数。</p>
+<p>这条推论值得单独记下：<strong>Agent 的权限等于工具代码的权限，与提示词里的自我约束无关。</strong> 前面几章反复说过类似的话，在工具这一层表现得最直接。</p>
+<h2 id="一次调用里的三种错">一次调用里的三种错</h2>
+<p><strong>选错工具。</strong> 工具清单里有两个名字相近的工具（<code>get_order</code> 与 <code>get_order_items</code>），模型选了后者去查订单状态。工具数量增加时这类错误明显上升——五十个工具的选择准确率远低于五个。</p>
+<p><strong>参数不合语义。</strong> <code>question_id=3</code> 格式合法、类型正确，语义上指错了对象。schema 校验管不到这一层，只能靠参数命名的清晰度和执行侧的语义校验。</p>
+<p><strong>同一动作做两次。</strong> 网络超时后调用方重试，而第一次其实已经成功。这类错误在写操作上最致命，解法是幂等键——把 <code>request_id</code> 作为参数传入，服务端对同一个键只执行一次。</p>
+<p>前两种是模型侧的，第三种是调用方侧的。三者都需要在执行代码里处理。</p>
+<h2 id="并行调用与顺序">并行调用与顺序</h2>
+<p>新版接口默认允许一次返回多个 <code>tool_calls</code>，调用方并发执行后一并回填。它省掉了一整轮往返，对“同时查五个文件”这类任务收益明显。</p>
+<p>代价是两条：<strong>依赖关系丢失</strong>——模型可能把本应先查 A 再查 B 的两件事同时提出；<strong>重复调用</strong>——同一个工具带相同参数出现两次。</p>
+<p>处理办法很朴素：执行前按 <code>name + 规范化参数</code> 去重；对有依赖的调用串行化，或者干脆在工具描述里写清“必须先调用 A 才能调用 B”。</p>
+<p><code>tool_choice</code> 提供了粗粒度控制：<code>auto</code> 让模型自己决定，<code>required</code> 强制至少调用一次，<code>none</code> 禁用工具，也可以指定必须调用某一个。结构化抽取任务常用指定的那一种，保证它一定走工具而不是自由发挥。</p>
+<h2 id="它挡不住的部分">它挡不住的部分</h2>
+<p><strong>模型对工具能力的想象。</strong> 描述里写“查询学生成绩”，模型可能认为它能查任意学期、任意课程，而实现只支持当前学期。它会在参数里填一个不存在的学期，然后在拿到错误后反复重试。</p>
+<p><strong>长清单的衰减。</strong> 工具越多，选择越差，而且衰减发生在“看起来最相似的那几个”之间。第二十几章会讲工具检索，那里有系统的做法。</p>
+<p><strong>提议的正确性与执行的正确性，是两件事。</strong> 提议合理、执行有 bug，最终结果依然错。工具代码需要和普通代码一样的测试。</p>
+<h2 id="下一步让描述说人话">下一步：让描述说人话</h2>
+<p>上面所有“选错工具”的问题，第一个可调的旋钮是工具描述本身。</p>
+<p>下一节讲这件事：同一段逻辑，换一种写法，选中率和参数正确率能差多少，以及为什么大多数工具的描述是写给评审看的，而读者其实是模型。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>OpenAI (2023). <em>Function calling and other API updates.</em> <a href="https://openai.com/blog/function-calling-and-other-api-updates">https://openai.com/blog/function-calling-and-other-api-updates</a></li>
+<li>OpenAI. <em>Function calling guide.</em> <a href="https://platform.openai.com/docs/guides/function-calling">https://platform.openai.com/docs/guides/function-calling</a></li>
+<li>Yao, S. et al. <em>ReAct.</em> arXiv:2210.03629（文本协议的原始形态）</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/04/01/"><span>上一篇</span><strong>02.04.01 引言：模型伸出手的地方</strong></a><a class="ai-pager-next" href="/ai/02-agents/04/03/"><span>下一篇</span><strong>02.04.03 工具描述是写给模型看的</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#四步闭环">四步闭环</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#缝在哪里">缝在哪里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#一次调用里的三种错">一次调用里的三种错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#并行调用与顺序">并行调用与顺序</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它挡不住的部分">它挡不住的部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#下一步让描述说人话">下一步：让描述说人话</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

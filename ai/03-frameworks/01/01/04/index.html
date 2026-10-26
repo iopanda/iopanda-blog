@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.01.04 MessagesState、ToolNode 与 create_react_agent · iopanda</title><meta name="description" content="03.01.01.04 MessagesState、ToolNode 与 create_react_agent · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/01/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.01.04 MessagesState、ToolNode 与 create_react_agent · iopanda"><meta property="og:description" content="03.01.01.04 MessagesState、ToolNode 与 create_react_agent · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/01/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="01" data-active-article="/ai/03-frameworks/01/01/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 LangGraph"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/01/"><span class="tree-number">01</span><span class="tree-title">LangGraph</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/01/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">MessagesState、ToolNode 与 create_react_agent</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/01/">LangGraph</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">MessagesState、ToolNode 与 create_react_agent</span></nav><header class="ai-article-header"><p class="ai-number">03.01.01.04</p><h1>MessagesState、ToolNode 与 create_react_agent</h1><p class="ai-meta"><time datetime="2026-09-03T15:30">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>langgraph</li><li>messages</li><li>toolnode</li></ul></header><div class="ai-prose"><h1 id="messagesstatetoolnode-与-create_react_agent">MessagesState、ToolNode 与 create_react_agent</h1>
+<blockquote>
+<p>前两篇讲的是 LangGraph 的底层世界观：<a href="/ai/03-frameworks/01/01/02/">状态图</a>、<a href="/ai/03-frameworks/01/01/03/">持久化与中断</a>。但真实团队不会永远从零手搭每一个节点——总会问：有没有一些高层构件，既保留图运行时的能力，又别让我每次都从 <code>StateGraph</code> 空白纸开始？LangGraph 的答案是有，但方式很有意思：不是把底层图藏掉，而是在 <code>langgraph-prebuilt</code> 里提供 <code>create_react_agent</code>、<code>ToolNode</code>、<code>ValidationNode</code>、interrupt schemas 这些更高层的组件。[1][2][3] 再看源码 <code>graph/message.py</code>，可以发现 LangGraph 连“消息状态怎样合并”都给了明确 reducer 语义：<code>MessagesState</code>、<code>add_messages</code>、<code>MessageGraph</code>（已弃用）都在表达同一个判断——<strong>即便你在做聊天 Agent，底层仍然是状态图，不是黑箱对话循环。</strong>[4]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解 LangGraph 为什么同时提供低层 <code>StateGraph</code> 和高层 prebuilt 构件；</li>
+<li>说出 <code>MessagesState</code>、<code>add_messages</code>、<code>ToolNode</code>、<code>ValidationNode</code>、<code>create_react_agent</code> 各自解决什么问题；</li>
+<li>解释为什么消息合并规则本身是系统设计问题，而不是聊天 UI 问题；</li>
+<li>区分“高层预构件帮你快起步”和“高层预构件替你做架构判断”这两件事；</li>
+<li>为课程助教 Agent 判断什么时候该从 prebuilt 起步，什么时候该下钻到自定义图。</li>
+</ol>
+<h2 id="1-概念langgraph-不是只有低层也不是只鼓励你手画图">1. 概念：LangGraph 不是只有低层，也不是只鼓励你手画图</h2>
+<p><code>langgraph-prebuilt</code> 的 README 直接写得很清楚：这里提供高层 API，用来创建和执行 LangGraph agents/tools，包括 <code>create_react_agent</code>、<code>ToolNode</code>、<code>ValidationNode</code>、Agent Inbox schemas 等。[3]</p>
+<p>这说明 LangGraph 的整体产品策略不是单线的，而是双层的：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>代表抽象</th>
+<th>解决什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低层</td>
+<td><code>StateGraph</code> / channels / reducers / checkpoint</td>
+<td>复杂运行时与状态控制</td>
+</tr>
+<tr>
+<td>高层</td>
+<td><code>create_react_agent</code> / <code>ToolNode</code> / <code>ValidationNode</code></td>
+<td>常见 Agent 形态的快速搭建</td>
+</tr>
+</tbody>
+</table>
+<p>这是一种很成熟的分层：</p>
+<ul>
+<li>不想让所有人都从白纸建图；</li>
+<li>但也不想让高层封装把底层能力锁死。</li>
+</ul>
+<p>所以 LangGraph 与某些“只有高层 agent builder”的框架不同，它更像：<strong>先给你完整运行时，再给你几块经过验证的脚手架。</strong></p>
+<h2 id="2-messagesstate为什么聊天-agent-在-langgraph-里仍然是状态图">2. <code>MessagesState</code>：为什么聊天 Agent 在 LangGraph 里仍然是状态图</h2>
+<p><code>graph/message.py</code> 很值得认真读。[4]</p>
+<p>几个核心概念：</p>
+<ul>
+<li><code>MessagesState</code></li>
+<li><code>add_messages</code></li>
+<li><code>MessageGraph</code>（deprecated）</li>
+<li><code>push_message</code></li>
+</ul>
+<p>其中最重要的是 <code>MessagesState</code>：</p>
+<ul>
+<li>它本质上就是一个 <code>messages</code> 字段；</li>
+<li>这个字段的 reducer 不是默认覆盖，而是 <code>add_messages</code>。</li>
+</ul>
+<p>这说明 LangGraph 对“聊天状态”的理解不是：</p>
+<ul>
+<li>简单拼字符串；</li>
+<li>顺手 append 到 list。</li>
+</ul>
+<p>而是：</p>
+<ul>
+<li>消息有 ID；</li>
+<li>新消息可能追加，也可能覆盖旧消息；</li>
+<li><code>RemoveMessage</code> 可以删除消息；</li>
+<li>合并规则必须明确。</li>
+</ul>
+<p>这背后的工程含义很大：<strong>聊天不是 UI 层 append 一下而已，聊天历史本身就是状态演化协议。</strong></p>
+<h2 id="3-add_messages为什么消息-reducer-值得单独被设计">3. <code>add_messages</code>：为什么消息 reducer 值得单独被设计</h2>
+<p><code>add_messages</code> 的 docstring 和实现都在强调两件事：[4]</p>
+<ol>
+<li>默认 append-only，但相同 ID 时可替换；</li>
+<li>支持删除消息与格式化输出。</li>
+</ol>
+<p>这解决的不是表面问题，而是长期维护问题：</p>
+<ul>
+<li>若消息只能 append，纠错、覆盖、结构化工具响应会很难处理；</li>
+<li>若消息随意覆盖，又会失去轨迹可追溯性；</li>
+<li>若没有 ID 语义，多轮工具调用和人工插入都难以稳定关联。</li>
+</ul>
+<p>所以 <code>add_messages</code> 其实是在给消息状态定义“最小一致性协议”。</p>
+<p>这也说明为什么 <code>MessageGraph</code> 会被弃用，官方建议直接用 <code>StateGraph + messages key</code>：[4]</p>
+<ul>
+<li>不想把“聊天图”做成特殊世界；</li>
+<li>而是让聊天也回归通用状态图抽象。</li>
+</ul>
+<p>这在架构上是很漂亮的：不同形态最终收敛到同一套状态语义。</p>
+<h2 id="4-toolnode为什么工具执行应该是图里的正规节点">4. <code>ToolNode</code>：为什么工具执行应该是图里的正规节点</h2>
+<p><code>langgraph-prebuilt</code> 提供 <code>ToolNode</code>，专门执行 tool calls。[3]</p>
+<p>很多框架里，工具执行是 Agent 内部黑箱的一部分；LangGraph 把它做成节点，有三个直接好处：</p>
+<ol>
+<li>工具调用进入了显式控制流；</li>
+<li>工具前后状态可以被 tracing / checkpoint / interrupt 看见；</li>
+<li>工具失败、校验、重试更容易接到图边界上。</li>
+</ol>
+<p>这与 <a href="/ai/02-agents/04/01/">02.04 Tool Use and Protocols</a> 的结论完全一致：工具不是聊天附属功能，而是 Agent 触达外部世界的边界。LangGraph 的做法是把这个边界显式化。</p>
+<h2 id="5-validationnode为什么工具参数校验不该全靠模型自觉">5. <code>ValidationNode</code>：为什么工具参数校验不该全靠模型自觉</h2>
+<p><code>ValidationNode</code> 的 README 示例展示了一个非常典型的思路：对工具调用参数按 Pydantic schema 校验，不合法就直接拒绝。[3]</p>
+<p>这个构件的意义很大，因为它承认：</p>
+<ul>
+<li>模型会生成看起来“差不多”的参数；</li>
+<li>但差不多不等于系统可以接受；</li>
+<li>参数校验必须落在图运行时或应用层，而不是落在模型承诺层。</li>
+</ul>
+<p>这与 <a href="/ai/01-models/07/03/">提示注入与工具安全</a> 是同一个原则：真正的边界在代码，不在提示词。</p>
+<h2 id="6-create_react_agent为什么它值钱但不是万用答案">6. <code>create_react_agent</code>：为什么它值钱，但不是万用答案</h2>
+<p><code>create_react_agent</code> 是 LangGraph prebuilt 里最著名的高层入口。[3]</p>
+<p>它值钱的地方在于：</p>
+<ul>
+<li>很快就能得到一个 tool-calling ReAct-style agent；</li>
+<li>仍然建在 LangGraph 运行时之上；</li>
+<li>后续若复杂度上升，你不是非得推倒重来。</li>
+</ul>
+<p>但它也有明显边界：</p>
+<ul>
+<li>它解决的是“常见 ReAct 代理怎么快起步”；</li>
+<li>它不替你决定复杂审批流、共享状态、多分支恢复、特殊中断策略怎么建。</li>
+</ul>
+<p>所以更准确的理解是：
+<strong><code>create_react_agent</code> 是一块快捷脚手架，不是复杂系统的架构师。</strong></p>
+<h2 id="7-为什么高层构件对开发者和架构师都重要">7. 为什么高层构件对开发者和架构师都重要</h2>
+<h3 id="71-对开发者">7.1 对开发者</h3>
+<ul>
+<li>可以更快起步；</li>
+<li>能复用经过验证的消息/工具/校验模式；</li>
+<li>不必每次手写最基础的 ReAct 节点图。</li>
+</ul>
+<h3 id="72-对架构师">7.2 对架构师</h3>
+<ul>
+<li>可以用高层构件做最小验证；</li>
+<li>验证通过后再判断是否要下沉到自定义图；</li>
+<li>让“先验证任务成立，再投入更重控制流建模”成为可能。</li>
+</ul>
+<p>这也是 LangGraph 与纯高层框架一个非常大的差异：它允许你从高层起步，但不会把你锁死在高层。</p>
+<h2 id="8-什么时候用-prebuilt什么时候直接写-stategraph">8. 什么时候用 prebuilt，什么时候直接写 <code>StateGraph</code></h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>更建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先验证单 Agent + tools 是否成立</td>
+<td><code>create_react_agent</code></td>
+</tr>
+<tr>
+<td>工具执行节点需要被显式接到图里</td>
+<td><code>ToolNode</code></td>
+</tr>
+<tr>
+<td>需要参数约束和 tool schema 校验</td>
+<td><code>ValidationNode</code></td>
+</tr>
+<tr>
+<td>已经出现复杂状态、审批、中断、恢复</td>
+<td>自定义 <code>StateGraph</code></td>
+</tr>
+<tr>
+<td>聊天历史本身需要精细控制</td>
+<td><code>StateGraph</code> + <code>MessagesState</code></td>
+</tr>
+</tbody>
+</table>
+<p>一句话：<strong>高层构件适合加速常见模式；底层状态图适合承接独特复杂度。</strong></p>
+<h2 id="9-动手活动从-create_react_agent-走到自定义图的判断卡">9. 动手活动：从 <code>create_react_agent</code> 走到自定义图的判断卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>langgraph-prebuilt-decision.md</code></p>
+<p><strong>目标</strong>：不是写代码，而是先判断课程助教 Agent 能否直接从 prebuilt 起步。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>列需求：检索资料、回答问题、成绩查询、风险审查、人工复核；</li>
+<li>判断哪些部分可直接落在 <code>create_react_agent</code>；</li>
+<li>判断哪些部分必须显式节点化（如工具校验、人工中断、输出审查）；</li>
+<li>设计一条从 prebuilt 演化到自定义图的迁移路径；</li>
+<li>写一句结论：为什么不是所有问题都该一开始就手搭整张图。</li>
+</ol>
+<p><strong>完成标准</strong>：你能说清“哪些复杂度可以先借预构件验证，哪些复杂度必须自己建图”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：用 prebuilt 就不需要理解状态图。</strong> 错，预构件只是在复用常见图模式；</li>
+<li><strong>误区二：聊天历史就是 append list。</strong> 消息合并、覆盖、删除、本地工具回写都需要协议；</li>
+<li><strong>误区三：<code>create_react_agent</code> 能承包所有架构问题。</strong> 它不能替你做复杂治理设计；</li>
+<li><strong>误区四：ToolNode 只是方便。</strong> 更重要的是工具边界进入了显式控制流；</li>
+<li><strong>误区五：ValidationNode 只是表单校验。</strong> 它本质上是在把模型输出重新纳入系统契约。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prebuilt 的作用</td>
+<td>给常见 Agent 形态提供更快起步的脚手架</td>
+</tr>
+<tr>
+<td><code>MessagesState</code> 的意义</td>
+<td>让聊天历史也回到通用状态图与 reducer 语义</td>
+</tr>
+<tr>
+<td><code>add_messages</code> 的意义</td>
+<td>给消息状态定义可追溯、可覆盖、可删除的合并协议</td>
+</tr>
+<tr>
+<td><code>ToolNode</code> 的意义</td>
+<td>让工具执行成为图里的显式节点</td>
+</tr>
+<tr>
+<td><code>ValidationNode</code> 的意义</td>
+<td>把工具参数校验放回代码与 schema 层</td>
+</tr>
+<tr>
+<td><code>create_react_agent</code> 的边界</td>
+<td>它帮你快起步，但不替你做复杂系统架构判断</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果一个团队用 <code>create_react_agent</code> 很快跑通了 demo，为什么这不自动说明“架构已经定了”？哪些信号出现时，说明你该从预构件退回到底层 <code>StateGraph</code>，亲自接管控制流？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为 demo 跑通只证明“常见模式能工作”，不证明复杂度已经被处理。一旦出现多分支路由、共享状态聚合、人工审批、复杂恢复、特殊工具校验、消息历史精细治理等需求，预构件的抽象就可能不再够用。此时应该退回到底层 <code>StateGraph</code>，不是否定 prebuilt，而是承认系统复杂度已经超出了通用脚手架的舒适区。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://github.com/langchain-ai/langgraph">https://github.com/langchain-ai/langgraph</a> — LangGraph GitHub</li>
+<li>[2] <a href="https://docs.langchain.com/oss/python/langgraph/overview">https://docs.langchain.com/oss/python/langgraph/overview</a> — LangGraph docs overview</li>
+<li>[3] <a href="https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt">https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt</a> — LangGraph prebuilt README</li>
+<li>[4] <a href="https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py">https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py</a> — LangGraph message graph source</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/01/03/"><span>上一篇</span><strong>03.01.01.03 持久化、中断、人审与工程落地</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/01/05/"><span>下一篇</span><strong>03.01.01.05 Checkpointer、thread_id 与持久化后端选型</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念langgraph-不是只有低层也不是只鼓励你手画图">1. 概念：LangGraph 不是只有低层，也不是只鼓励你手画图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-messagesstate为什么聊天-agent-在-langgraph-里仍然是状态图">2. MessagesState：为什么聊天 Agent 在 LangGraph 里仍然是状态图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-add_messages为什么消息-reducer-值得单独被设计">3. add_messages：为什么消息 reducer 值得单独被设计</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-toolnode为什么工具执行应该是图里的正规节点">4. ToolNode：为什么工具执行应该是图里的正规节点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-validationnode为什么工具参数校验不该全靠模型自觉">5. ValidationNode：为什么工具参数校验不该全靠模型自觉</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-create_react_agent为什么它值钱但不是万用答案">6. create_react_agent：为什么它值钱，但不是万用答案</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-为什么高层构件对开发者和架构师都重要">7. 为什么高层构件对开发者和架构师都重要</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#71-对开发者">7.1 对开发者</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#72-对架构师">7.2 对架构师</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-什么时候用-prebuilt什么时候直接写-stategraph">8. 什么时候用 prebuilt，什么时候直接写 StateGraph</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动从-create_react_agent-走到自定义图的判断卡">9. 动手活动：从 create_react_agent 走到自定义图的判断卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

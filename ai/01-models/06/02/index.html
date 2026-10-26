@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.06.02 构建黄金数据集 · iopanda</title><meta name="description" content="01.06.02 构建黄金数据集 · 模型 / 评测与基准，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/06/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.06.02 构建黄金数据集 · iopanda"><meta property="og:description" content="01.06.02 构建黄金数据集 · 模型 / 评测与基准，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/06/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="06" data-active-subsection data-active-article="/ai/01-models/06/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评测与基准"></button><a class="tree-link tree-link--section" href="/ai/01-models/06/"><span class="tree-number">06</span><span class="tree-title">评测与基准</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/06/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">构建黄金数据集</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/06/">评测与基准</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">构建黄金数据集</span></nav><header class="ai-article-header"><p class="ai-number">01.06.02</p><h1>构建黄金数据集</h1><p class="ai-meta"><time datetime="2026-09-03T00:25">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-evaluation</li><li>golden-dataset</li></ul></header><div class="ai-prose"><h1 id="构建黄金数据集">构建黄金数据集</h1>
+<blockquote>
+<p>上一章把「评测目标、指标、阈值」写进了评测计划,但计划只是一张蓝图:真正要回答「模型答对了吗」,手里必须先有一批<strong>人工审核过、答案已知的考题</strong>。本章解决的就是这个问题——为课程助教建一套 18 条的黄金数据集(golden set):讲清它和训练数据的区别、期望行为该怎么标注、为什么题目绝不能「被模型见过」,最后交付一份可版本化的 <code>golden.jsonl</code> 与校验脚本。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出黄金集的定义,并用「练习册、模拟考、期末题」讲清它与训练、验证数据的区别;</li>
+<li>解释为什么模型输出是开放的,必须用「期望行为」而不是逐字答案来评判;</li>
+<li>按常见、边界、高风险三类收集题目,说明「少而精」的理由与版本化纪律;</li>
+<li>解释去污染(decontamination)的含义,以及评测题泄漏进训练数据的三种途径;</li>
+<li>为课程助教创建 18 条、四类别的 <code>eval/golden.jsonl</code>,附版本记录与校验脚本。</li>
+</ol>
+<h2 id="1-概念黄金集是人工审核过的期末题">1. 概念:黄金集是「人工审核过的期末题」</h2>
+<ul>
+<li><strong>黄金集(golden set)</strong> 是一组固定的、<strong>人工逐条审核过</strong>的「问题 → 期望行为」样本,是评测的基准答案,也是后续所有分数(03 章自动化指标、04 章 LLM 裁判)共同的考场。</li>
+<li>每个样本只回答两件事:<strong>问什么</strong>(输入)与<strong>怎样算答对</strong>(期望行为)。它不含标准答案全文——期望行为描述的是「对的样子」,不是「唯一的话」。</li>
+<li>复习 01.03/08 的数据三分法,把它延续到评测场景:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>数据角色</th>
+<th>类比</th>
+<th>谁看过</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练数据 train</td>
+<td>练习册</td>
+<td>模型反复读</td>
+<td>学知识、学格式</td>
+</tr>
+<tr>
+<td>验证数据 valid</td>
+<td>模拟考</td>
+<td>模型间接见过</td>
+<td>早停、选 checkpoint</td>
+</tr>
+<tr>
+<td>黄金集 golden</td>
+<td>期末题</td>
+<td><strong>模型从未见过</strong></td>
+<td>评测与验收</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>与 01.03 的 golden set 一脉相承:那里用于「训练前冻结、收官验收」;本单元把它升级为<strong>持续评测的标尺</strong>——每一次改提示词、换 adapter、换基座,都跑同一套题,分数才能互相比较。</li>
+</ul>
+<h2 id="2-为什么需要没有参考答案就谈不上对错">2. 为什么需要:没有参考答案,就谈不上对错</h2>
+<ul>
+<li>传统机器学习评测有明确的 ground truth 标签,算个准确率即可;而 LLM 输出是<strong>开放生成</strong>——同一道题,合法答案有无数种写法,没有「唯一正确串」可供比对。</li>
+<li>既然答案开放,评判就必须依赖外部约定:一套人工审核过的期望行为。没有它,「感觉变好了」无法量化,两个版本的模型也<strong>没有共同的比较基准</strong>——你说 8.0 好,我说 7.5 好,谁也说服不了谁。</li>
+<li>黄金集还是整个评测流程的<strong>地基</strong>:03 章的自动化指标在它上面算分,04 章的裁判在它上面打 rubric,05 章的失败样本从它上面产生。地基若是随手抓来的题目,再精妙的指标也只是在给垃圾数据化妆。</li>
+</ul>
+<h2 id="3-作用与位置评测改进循环里的固定锚点">3. 作用与位置:评测改进循环里的固定锚点</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70">    A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">01 评测设计&lt;br&gt;任务与指标</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">02 黄金集&lt;br&gt;固定考题</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    B </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">03/04 跑分&lt;br&gt;程序化指标 + LLM 裁判</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    C </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> D</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">05 错误分析&lt;br&gt;找失败模式</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    D </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> E</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">改提示 / 换模型 / 补数据</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    E </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> B</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<ul>
+<li>黄金集的价值在于<strong>固定</strong>:锚点不动,循环里其他一切都可以动。今天改提示词、明天换 adapter,都回到同一套题上重跑,分数曲线才有意义;上线后新发现的线上事故,也应沉淀成<strong>新的黄金题</strong>,防止同类问题静默回归(呼应 01.04/07 的运维纪律)。</li>
+</ul>
+<h2 id="4-收集三类问题少而精版本化">4. 收集:三类问题、少而精、版本化</h2>
+<ul>
+<li>选题覆盖三个层次,缺一不可:
+<ul>
+<li><strong>常见题</strong>:高频主流程,如「主键是什么?」「解释外键」——保证日常使用质量;</li>
+<li><strong>边界题</strong>:资料外、模糊、歧义的输入,如「明天东京的天气?」——检验拒答与澄清能力;</li>
+<li><strong>高风险题</strong>:诱导编造、索要学员隐私、要求绕过规则——检验最坏情况下的行为。</li>
+</ul>
+</li>
+<li>数量<strong>少而精</strong>:15~20 条足够起步。理由有三:每条都要人工审核与逐条复核,多了审不过来;分数是「信号」而非统计检验,20 条足够暴露大问题;呼应 01.03 的数据纪律与 LIMA 实验——<strong>少量可信、覆盖失败边界的样本,胜过海量随手抓来的题目</strong>。</li>
+<li>全对或全错的题目要警惕:若 18 题全部答对,说明题太易、没有区分度,应补边界与高风险题;若大面积答错,先回去检查 01 章的任务定义与提示词,而不是急着改题。</li>
+<li><strong>版本化纪律</strong>(延续 01.03/08 的冻结原则):<code>golden.jsonl</code> 用 git 管理,创建时间戳早于任何训练 run;发现要改题,不原地修改,而是<strong>升版本</strong>(v1.0 → v1.1)并记录变更原因,保证历史分数可追溯。</li>
+</ul>
+<h2 id="5-标注期望行为不是逐字答案">5. 标注:期望行为,不是逐字答案</h2>
+<ul>
+<li>每条样本记录五个字段:<code>id</code>、<code>category</code>、<code>question</code>、<code>expected_behavior</code>、<code>source</code>。其中 <code>expected_behavior</code> 是灵魂——它描述「什么样的输出算对」,例如「给出主键定义,并说明值唯一且非空」。</li>
+<li><strong>「拒绝编造」同样是合法期望</strong>:对资料外问题,期望行为就是「明确说明没有依据并拒答」——一条标注得当的拒答题,能让「答得好」与「拒得对」都被测到。</li>
+<li>好期望行为的三条标准:可判定(两个评分人能达成一致)、聚焦(一条只测一个行为,不叠三个要求)、挂钩(能回指到 01 章评测计划里的任务与指标)。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>数量</th>
+<th>示例问题</th>
+<th>期望行为写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>答案题</td>
+<td>8</td>
+<td>「什么是主键?」</td>
+<td>给出定义与关键性质(唯一、非空)</td>
+</tr>
+<tr>
+<td>拒答题</td>
+<td>4</td>
+<td>「明天东京的天气?」</td>
+<td>明确说明无实时资料并拒答,不编造</td>
+</tr>
+<tr>
+<td>格式题</td>
+<td>3</td>
+<td>「用三点解释外键」</td>
+<td>恰好三点、每条一句,遵守输出约定</td>
+</tr>
+<tr>
+<td>边界题</td>
+<td>3</td>
+<td>「主键和外键是不是一回事?」</td>
+<td>先澄清概念差异,再分别定义</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-去污染题目绝不能被模型看过">6. 去污染:题目绝不能「被模型看过」</h2>
+<ul>
+<li><strong>去污染(decontamination)</strong> 指确保评测题及其近似变体从未进入模型见过的任何材料——否则模型「背过题」会被误读成「会做题」,分数系统性虚高。GPT-4 技术报告专门披露了基准测试去污染的做法,可见这是行业共识。</li>
+<li>三条典型泄漏途径,对照自查:
+<ol>
+<li><strong>微调数据泄漏</strong>:评测题(或同题换词)混进了 01.03 的 <code>train.jsonl</code>;</li>
+<li><strong>提示词泄漏</strong>:评测题被当 few-shot 示例写进 system 或上下文;</li>
+<li><strong>开发过程泄漏</strong>:开发时用这道题调过提示词,记住了它的「正确答案」。</li>
+</ol>
+</li>
+<li>呼应 01.05 的图文泄漏教训:评测泄漏和训练数据泄漏是同一种病——<strong>信息从不该出现的地方流入模型</strong>,只是这里的后果是分数失真。实操:建集时记录时间戳;把 <code>golden.jsonl</code> 的问题与 <code>train.jsonl</code> 的 user 消息做近似重复扫描;发现交集即作废该题并在版本记录中说明。</li>
+</ul>
+<h2 id="7-动手创建-goldenjsonl">7. 动手:创建 golden.jsonl</h2>
+<ul>
+<li>在课程助教评测项目下创建 <code>eval/golden.jsonl</code>,共 18 条(配额见第 5 章表格),<strong>每行一个 JSON 对象,对象内部不换行</strong>:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"qa-01"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"category"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"question"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"什么是主键？"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"expected_behavior"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"给出主键定义：唯一标识表中每一行的一列或一组列，值唯一且非空"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"source"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"课件：数据库基础，2026-09-03"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"refuse-01"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"category"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"refuse"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"question"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明天东京的天气怎么样？"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"expected_behavior"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明确说明没有实时资料并拒答，不编造天气"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"source"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"真实用户边界问题，2026-09-03"</span><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="json" aria-hidden="true">json</span></div>
+<ul>
+<li>写完后在 <code>eval/</code> 下建 <code>check_golden.py</code>,校验 JSON 合法性、字段齐全、id 唯一,并对训练数据做粗略去污染扫描:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> json</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">rows </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [json.loads(x) </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"eval/golden.jsonl"</span><span style="color:#E1E4E8">).read_text().splitlines() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> x]</span></span>
+<span class="line"><span style="color:#F97583">assert</span><span style="color:#79B8FF"> 15</span><span style="color:#F97583"> &lt;=</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(rows) </span><span style="color:#F97583">&lt;=</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"数量应为 15~20,当前 </span><span style="color:#79B8FF">{len</span><span style="color:#E1E4E8">(rows)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#E1E4E8">ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [r[</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows]</span></span>
+<span class="line"><span style="color:#F97583">assert</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(ids) </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">set</span><span style="color:#E1E4E8">(ids)), </span><span style="color:#9ECBFF">"存在重复 id"</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows:</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"category"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"question"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"expected_behavior"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"source"</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">        assert</span><span style="color:#E1E4E8"> k </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">and</span><span style="color:#79B8FF"> str</span><span style="color:#E1E4E8">(r[k]).strip(), </span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">r.get(</span><span style="color:#9ECBFF">'id'</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">'?'</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 缺少字段 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">k</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#E1E4E8">train_text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Path(</span><span style="color:#9ECBFF">"finetune/data/train.jsonl"</span><span style="color:#E1E4E8">).read_text(</span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> Path(</span></span>
+<span class="line"><span style="color:#9ECBFF">    "finetune/data/train.jsonl"</span><span style="color:#E1E4E8">).exists() </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> ""</span></span>
+<span class="line"><span style="color:#E1E4E8">leaks </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [r[</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> r[</span><span style="color:#9ECBFF">"question"</span><span style="color:#E1E4E8">][:</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> train_text]</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"golden 共 </span><span style="color:#79B8FF">{len</span><span style="color:#E1E4E8">(rows)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 条;疑似泄漏: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">leaks </span><span style="color:#F97583">or</span><span style="color:#9ECBFF"> '无'</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<ul>
+<li>运行 <code>python eval/check_golden.py</code>;任何 <code>JSONDecodeError</code> 都表示某行不是合法 JSON,应定位行号修复而非删除重来——删数据会把「该审的问题」一起删掉。</li>
+</ul>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:交付 v1.0 并记录版本</p>
+<p><strong>目标</strong>:<code>eval/golden.jsonl</code>(18 条,四类别齐全)、<code>eval/check_golden.py</code> 与 <code>eval/golden-README.md</code>。<strong>步骤</strong>:在 README 记录版本 v1.0、创建时间、作者、每类题目来源与审核人;把 golden 的问题与 01.03 的 <code>train.jsonl</code> 逐条比对,确认无近似重复后提交 git。<strong>完成标准</strong>:脚本输出「golden 共 18 条;疑似泄漏:无」;随机抽 5 条,能说出每条期望行为判定的依据。</p>
+</div>
+<h2 id="8-边界与排错">8. 边界与排错</h2>
+<ul>
+<li><strong>分数全对或全错</strong>:题目太难或太易,没有区分度——补边界/高风险题,或回到 01 章复查任务定义;</li>
+<li><strong>期望行为写成了逐字答案</strong>:合法改写会被误判,人工复核时评分人也会吵架——改成描述「关键事实 + 格式 + 边界」,而不是抄一段范文;</li>
+<li><strong>题与训练数据近似重复却没发现</strong>:分数虚高而不自知——建集时跑一次去污染扫描,每次训练数据变更后重扫;</li>
+<li><strong>黄金集越加越肥</strong>:上百条后人工复核与裁判成本失控,失去「少而精」的快速反馈优势——新增题目需说明它覆盖了哪个新失败模式,否则不收;</li>
+<li><strong>只收集常见题</strong>:拒答与高风险行为完全没有评测覆盖——把风险题当成普通题一样对待,坏行为才会在评测期暴露而不是上线后。</li>
+</ul>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键判断</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黄金集是什么</td>
+<td>人工审核过的「问题 → 期望行为」样本,模型从未见过的期末题</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>开放生成无唯一答案,必须靠外部期望行为定对错;它是所有指标的地基</td>
+</tr>
+<tr>
+<td>怎么收集</td>
+<td>常见/边界/高风险三类;15~20 条少而精;git 版本化,改动升版本</td>
+</tr>
+<tr>
+<td>怎么标注</td>
+<td>期望行为而非逐字答案;「拒答不编造」也是合法期望</td>
+</tr>
+<tr>
+<td>去污染</td>
+<td>评测题不得进入训练数据、提示词示例与开发过程,否则分数虚高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么 golden 集只写 <code>expected_behavior</code> 而不写参考回答全文?若上线后发现有一条黄金题恰好被用户问过并进入了后续的训练数据,你该按什么流程处理?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>写期望行为是为了「判对错」,写全文则会诱导评分人(包括 LLM 裁判)做逐字比对,惩罚合法的不同表述;且全文一旦泄漏给模型,等于把答案提前交卷。发现黄金题进入训练数据即构成污染:作废该题、在 <code>golden-README.md</code> 记录泄漏途径与时间,升级为 v1.1 并补一条同难度新题——分数必须始终建立在「没被看过」的题上。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2305.11206">LIMA: Less Is More for Alignment</a></li>
+<li><a href="https://arxiv.org/abs/2303.08774">GPT-4 Technical Report(基准去污染方法论)</a></li>
+<li><a href="https://arxiv.org/abs/2307.03109">A Survey on Evaluation of Large Language Models</a></li>
+<li><a href="https://arxiv.org/abs/2506.13023">A Practical Guide for Evaluating LLMs and LLM-Reliant Systems</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/06/01/"><span>上一篇</span><strong>01.06.01 评测设计</strong></a><a class="ai-pager-next" href="/ai/01-models/06/03/"><span>下一篇</span><strong>01.06.03 自动化指标</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念黄金集是人工审核过的期末题">1. 概念:黄金集是「人工审核过的期末题」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要没有参考答案就谈不上对错">2. 为什么需要:没有参考答案,就谈不上对错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用与位置评测改进循环里的固定锚点">3. 作用与位置:评测改进循环里的固定锚点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-收集三类问题少而精版本化">4. 收集:三类问题、少而精、版本化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-标注期望行为不是逐字答案">5. 标注:期望行为,不是逐字答案</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-去污染题目绝不能被模型看过">6. 去污染:题目绝不能「被模型看过」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手创建-goldenjsonl">7. 动手:创建 golden.jsonl</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-边界与排错">8. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

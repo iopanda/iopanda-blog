@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.03.07 训练与微调框架 概览 · iopanda</title><meta name="description" content="03.03.07 训练与微调框架 概览 · 框架 / 训练与微调框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/03/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.03.07 训练与微调框架 概览 · iopanda"><meta property="og:description" content="03.03.07 训练与微调框架 概览 · 框架 / 训练与微调框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/03/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="03" data-active-subsection data-active-article="/ai/03-frameworks/03/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 训练与微调框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/03/"><span class="tree-number">03</span><span class="tree-title">训练与微调框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/03/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">训练与微调框架 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/">训练与微调框架</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">训练与微调框架 概览</span></nav><header class="ai-article-header"><p class="ai-number">03.03.07</p><h1>训练与微调框架 概览</h1><p class="ai-meta"><time datetime="2026-09-03T23:45">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>ai</li><li>frameworks</li><li>training</li><li>fine-tuning</li><li>learning-path</li></ul></header><div class="ai-prose"><h1 id="训练与微调框架-概览">训练与微调框架 概览</h1>
+<blockquote>
+<p><code>01 Models</code> 已经把预训练、微调、对齐、评测、推理和治理的基本能力讲清楚了；<code>03.01 Agent Frameworks</code> 讨论了 Agent 系统如何承载；<code>03.02 RAG and Retrieval Frameworks</code> 又把检索增强从技巧提升为系统。接下来的 <code>03.03 Training and Fine-tuning Frameworks</code> 要回答的是另一类非常工程化的问题：<strong>当你真的要训练、继续预训练、监督微调、偏好优化、QLoRA、对齐或指令工厂化时，应该拿什么框架承载训练流水线、配置、分布式、数据、模板和实验纪律？</strong> 这一章不把 fine-tuning 看成“跑一条脚本”，而是把它视为数据—配置—训练器—分布式—评测—导出的完整工程链路。[77][78][79][80][81]</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分五条主流 training / fine-tuning framework 路线：统一微调工厂、极致提速路线、参数高效微调库、对齐/RLHF 框架、脚本化训练编排框架；</li>
+<li>解释为什么同样是做 SFT/LoRA/QLoRA/DPO，不同框架的设计中心完全不同；</li>
+<li>用模型规模、显存约束、训练任务类型、分布式复杂度、团队工程偏好，为真实项目选框架；</li>
+<li>判断什么时候你需要的是“完整训练工厂”，什么时候只需要“在现有栈里补一个库”；</li>
+<li>为一个课程助教或领域助手写出 fine-tuning framework 选型卡。</li>
+</ol>
+<h2 id="1-为什么-03-还要单开一个-training-framework-模块">1. 为什么 03 还要单开一个 Training Framework 模块</h2>
+<ul>
+<li>很多团队第一次做微调，会误以为它只是：准备数据 → 写 YAML / CLI 参数 → 跑 trainer。</li>
+<li>但一旦任务从 demo 变成工程，就会出现：
+<ul>
+<li>数据模板和聊天格式怎么统一；</li>
+<li>LoRA/QLoRA、全参、DPO、PPO、GRPO 到底由谁承载；</li>
+<li>分布式、混精度、梯度检查点、FSDP/DeepSpeed 这些由谁管理；</li>
+<li>导出成 Hugging Face / GGUF / 推理可用格式时谁兜底；</li>
+<li>如何在速度、显存、质量、代码透明度之间做取舍；</li>
+<li>哪些是训练框架问题，哪些其实是底层 infra 问题。</li>
+</ul>
+</li>
+<li>所以 training framework 的真正价值，不在“少敲命令”，而在：<strong>把训练链路中最容易失控的复杂度收进一种稳定语言。</strong></li>
+</ul>
+<h2 id="2-2026-09-我建议这一模块先聚焦的-top-5">2. 2026-09 我建议这一模块先聚焦的 top 5</h2>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">现实边界</p>
+<p>这里的 top 5 不是“训练生态唯一正确榜单”，而是按 2026-09 的工程代表性和教学价值筛出来的五条路线：统一训练工厂、极致加速微调、参数高效微调库、对齐/RLHF 框架、配置驱动训练编排。[77][78][79][80][81]</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更像什么</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/03/01/01/">LLaMA-Factory</a></td>
+<td>统一高效微调工厂</td>
+<td>SFT、DPO、RLHF、VLM、模板、导出一体化</td>
+<td>训练平台 / 统一工厂</td>
+<td>想快速覆盖多模型多任务微调的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/02/01/">Unsloth</a></td>
+<td>极致显存/速度优化的微调路线</td>
+<td>快速 LoRA/QLoRA、低显存、易上手</td>
+<td>加速器 / 微调提速框架</td>
+<td>资源紧张、希望迅速把微调跑起来的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/03/01/">PEFT</a></td>
+<td>参数高效微调库</td>
+<td>LoRA/IA3/AdaLoRA 等方法抽象</td>
+<td>训练能力库</td>
+<td>已有 Hugging Face 训练栈、只想补 PEFT 能力的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/04/01/">TRL</a></td>
+<td>对齐与偏好优化训练框架</td>
+<td>SFT、DPO、PPO、奖励建模、RLHF</td>
+<td>对齐训练框架</td>
+<td>重点做 alignment / preference optimization 的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/03/05/01/">Axolotl</a></td>
+<td>配置驱动的 LLM 微调编排框架</td>
+<td>YAML 驱动、多后端、多训练 recipe</td>
+<td>训练编排框架</td>
+<td>想用配置管理复杂训练 recipe 的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-为什么先不把-deepspeed--transformers--accelerate-放进这组-top-5-主角">3. 为什么先不把 DeepSpeed / Transformers / Accelerate 放进这组 top 5 主角</h2>
+<ul>
+<li><code>Transformers</code> / <code>Accelerate</code> 极其重要，但更像这一章所有路线的共同底层训练栈，而不是“fine-tuning framework 的风格代表”；</li>
+<li><code>DeepSpeed</code> 极其重要，但更像 distributed training / optimization infrastructure，而不是这组“微调框架语言”的主角；</li>
+<li><code>OpenRLHF</code> 也值得讲，但如果这一章第一批主角只留 5 个，<code>TRL</code> 更像当代更通用的 alignment 入口，而 <code>OpenRLHF</code> 更适合后续在 RLHF / large-scale alignment / Ray-based infra 子话题中展开。</li>
+</ul>
+<p>换句话说，这一章先讲“你用什么语言组织 training / fine-tuning complexity”，而不是先讲底层加速 infra 怎么选。</p>
+<h2 id="4-这一模块建议怎么读">4. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/03-frameworks/03/03/01/">03 PEFT</a>：先把参数高效微调抽象钉牢；</li>
+<li>再看 <a href="/ai/03-frameworks/03/04/01/">04 TRL</a>：理解对齐/偏好优化为什么是另一层训练问题；</li>
+<li>再看 <a href="/ai/03-frameworks/03/01/01/">01 LLaMA-Factory</a>：理解“统一训练工厂”路线；</li>
+<li>再看 <a href="/ai/03-frameworks/03/05/01/">05 Axolotl</a>：理解“配置即训练 recipe”路线；</li>
+<li>最后看 <a href="/ai/03-frameworks/03/02/01/">02 Unsloth</a>：理解“提速和省显存”为什么会成为框架主卖点。</li>
+</ol>
+<h2 id="41-按读者身份的推荐阅读路径">4.1 按读者身份的推荐阅读路径</h2>
+<table>
+<thead>
+<tr>
+<th>你是谁</th>
+<th>建议先读什么</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已有 Hugging Face 训练经验的人</td>
+<td><a href="/ai/03-frameworks/03/03/01/">PEFT</a> → <a href="/ai/03-frameworks/03/04/01/">TRL</a></td>
+<td>先在熟悉训练栈上叠加 PEFT 与 alignment 能力</td>
+</tr>
+<tr>
+<td>资源受限 / 单卡开发者</td>
+<td><a href="/ai/03-frameworks/03/02/01/">Unsloth</a> → <a href="/ai/03-frameworks/03/03/01/">PEFT</a></td>
+<td>先解决“跑得起来”，再理解抽象</td>
+</tr>
+<tr>
+<td>想快速跑多模型、多任务微调的人</td>
+<td><a href="/ai/03-frameworks/03/01/01/">LLaMA-Factory</a></td>
+<td>统一工厂路线最直接</td>
+</tr>
+<tr>
+<td>喜欢配置驱动和 recipe 管理的人</td>
+<td><a href="/ai/03-frameworks/03/05/01/">Axolotl</a></td>
+<td>训练编排语言清晰</td>
+</tr>
+<tr>
+<td>重点做偏好优化 / alignment 的人</td>
+<td><a href="/ai/03-frameworks/03/04/01/">TRL</a></td>
+<td>对齐训练是第一主线</td>
+</tr>
+</tbody>
+</table>
+<h2 id="42-按系统主矛盾的速查表">4.2 按系统主矛盾的速查表</h2>
+<table>
+<thead>
+<tr>
+<th>你的系统最先会死在哪</th>
+<th>优先想到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练方法多、模型多、模板多，统一管理困难</td>
+<td><a href="/ai/03-frameworks/03/01/01/">LLaMA-Factory</a></td>
+</tr>
+<tr>
+<td>显存不够、训练太慢、单卡想把 QLoRA 跑起来</td>
+<td><a href="/ai/03-frameworks/03/02/01/">Unsloth</a></td>
+</tr>
+<tr>
+<td>已有训练栈稳定，只缺参数高效微调抽象</td>
+<td><a href="/ai/03-frameworks/03/03/01/">PEFT</a></td>
+</tr>
+<tr>
+<td>重点是 DPO / PPO / reward modeling / RLHF</td>
+<td><a href="/ai/03-frameworks/03/04/01/">TRL</a></td>
+</tr>
+<tr>
+<td>训练 recipe 多、配置复杂、希望 YAML 驱动实验</td>
+<td><a href="/ai/03-frameworks/03/05/01/">Axolotl</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="43-这章最容易读偏的三个误区">4.3 这章最容易读偏的三个误区</h2>
+<ul>
+<li><strong>误区一：把 fine-tuning framework 当成“命令行皮肤”。</strong> 真正差异在训练复杂度如何被组织；</li>
+<li><strong>误区二：把 distributed infra 和 fine-tuning framework 混成一回事。</strong> DeepSpeed/FSDP 更像底层能力，不完全等于上层框架路线；</li>
+<li><strong>误区三：只看谁支持的训练方法多。</strong> 真正要看的是：你的任务、显存、模板、配置、评测、导出复杂度，谁才是主矛盾。</li>
+</ul>
+<h2 id="44-如果你时间不够只读哪三篇">4.4 如果你时间不够，只读哪三篇</h2>
+<p>如果你现在不是在系统建课，而是在真实项目里要尽快做判断，我建议优先读这三篇：</p>
+<ol>
+<li><a href="/ai/03-frameworks/03/03/01/">03 PEFT</a>
+<ul>
+<li>因为它先把“参数高效微调到底在抽象什么”钉牢；</li>
+</ul>
+</li>
+<li><a href="/ai/03-frameworks/03/04/01/">04 TRL</a>
+<ul>
+<li>因为它告诉你“普通 SFT”与“alignment / preference optimization”不是一回事；</li>
+</ul>
+</li>
+<li><a href="/ai/03-frameworks/03/06/01/">06 Training Framework 选型矩阵</a>
+<ul>
+<li>因为最后真正落地时，你要做的是架构判断，而不是框架背诵。</li>
+</ul>
+</li>
+</ol>
+<p>如果读完这三篇你仍然觉得：</p>
+<ul>
+<li>训练入口太散，再回去看 <a href="/ai/03-frameworks/03/01/01/">01 LLaMA-Factory</a>；</li>
+<li>机器根本训不动，再回去看 <a href="/ai/03-frameworks/03/02/01/">02 Unsloth</a>；</li>
+<li>recipe 和长期治理最痛，再回去看 <a href="/ai/03-frameworks/03/05/01/">05 Axolotl</a>。</li>
+</ul>
+<h2 id="5-我建议本模块的内容结构">5. 我建议本模块的内容结构</h2>
+<ol>
+<li>总览 README</li>
+<li>每个 framework 一个总 README</li>
+<li>每个 framework 至少拆成 4~6 篇：
+<ul>
+<li>设计哲学 / 核心抽象</li>
+<li>数据/模板/配置/训练器 架构</li>
+<li>分布式/显存/导出/评测 等差异化能力</li>
+<li>课程助教或领域助手案例</li>
+<li>与其他框架的深度对比</li>
+</ul>
+</li>
+<li>最后收口一篇：<a href="/ai/03-frameworks/03/06/01/">06 Training Framework 选型矩阵</a></li>
+</ol>
+<h2 id="6-本模块的推荐交付物">6. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>finetune-stack-card.md</td>
+<td>某个项目的训练栈结构卡</td>
+<td>能回答“为什么这套栈能支撑数据、训练、导出和评测”</td>
+</tr>
+<tr>
+<td>finetune-eval-plan.md</td>
+<td>微调后评测计划</td>
+<td>能区分训练损失、离线质量、上线风险</td>
+</tr>
+<tr>
+<td>framework-selection-card.md</td>
+<td>训练框架选型卡</td>
+<td>能解释“为什么选 A，不选 B”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="61-建议配套产物">6.1 建议配套产物</h2>
+<p>如果要把这一章学成“可进设计评审的训练能力”，建议至少同时产出四样东西：</p>
+<ol>
+<li><code>dataset-and-template-card.md</code>
+<ul>
+<li>列数据格式、chat template、system prompt 约定；</li>
+</ul>
+</li>
+<li><code>finetune-stack-card.md</code>
+<ul>
+<li>列训练器、微调方法、分布式后端、导出链；</li>
+</ul>
+</li>
+<li><code>finetune-eval-plan.md</code>
+<ul>
+<li>列 SFT/DPO/RLHF 对应的评测口径；</li>
+</ul>
+</li>
+<li><code>training-framework-selection-card.md</code>
+<ul>
+<li>写清为什么选某个训练框架，不选其他路线。</li>
+</ul>
+</li>
+</ol>
+<h2 id="62-我更推荐的最小闭环产物">6.2 我更推荐的最小闭环产物</h2>
+<p>如果你不想一上来写很多文档，最小也要交出下面三样东西：</p>
+<table>
+<thead>
+<tr>
+<th>最小交付物</th>
+<th>为什么不能省</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataset-and-template-card.md</code></td>
+<td>没有它，训练/推理协议最容易静默错配</td>
+</tr>
+<tr>
+<td><code>finetune-stack-card.md</code></td>
+<td>没有它，团队很快说不清训练器、adapter、分布式、导出谁负责什么</td>
+</tr>
+<tr>
+<td><code>training-framework-selection-card.md</code></td>
+<td>没有它，框架选择就只能退化成“谁更火”</td>
+</tr>
+</tbody>
+</table>
+<p>这三个东西加起来，才构成一个最小可审计训练方案：</p>
+<ul>
+<li>数据怎么进来；</li>
+<li>训练链怎么组织；</li>
+<li>为什么是这套框架，而不是别的。</li>
+</ul>
+<h2 id="63-这章学完之后你应该真的会什么">6.3 这章学完之后，你应该真的会什么</h2>
+<p>学完这一章，理想状态不是“我知道 5 个框架名字”，而是你真的能完成下面三件事：</p>
+<ol>
+<li>看到一个项目，就能先判断它最痛的是资源、方法、对齐、工厂，还是 recipe 治理；</li>
+<li>能写出一页纸说明：为什么这里选 PEFT / TRL / Unsloth / LLaMA-Factory / Axolotl；</li>
+<li>能在设计评审里把“训练系统”讲成一个可交付架构，而不是一串命令。</li>
+</ol>
+<h2 id="7-本模块笔记导航">7. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/03-frameworks/03/01/01/">01 LLaMA-Factory</a></li>
+<li><a href="/ai/03-frameworks/03/02/01/">02 Unsloth</a></li>
+<li><a href="/ai/03-frameworks/03/03/01/">03 PEFT</a></li>
+<li><a href="/ai/03-frameworks/03/04/01/">04 TRL</a></li>
+<li><a href="/ai/03-frameworks/03/05/01/">05 Axolotl</a></li>
+<li><a href="/ai/03-frameworks/03/06/01/">06 Training Framework 选型矩阵</a></li>
+</ol>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>不是“怎么跑训练脚本”，而是“如何组织 fine-tuning system”</td>
+</tr>
+<tr>
+<td>为什么单开</td>
+<td>训练复杂度来自数据、模板、方法、显存、分布式、导出、评测的组合</td>
+</tr>
+<tr>
+<td>top 5 是谁</td>
+<td>LLaMA-Factory / Unsloth / PEFT / TRL / Axolotl</td>
+</tr>
+<tr>
+<td>五条路线分别代表什么</td>
+<td>统一训练工厂 / 极致提速 / PEFT 能力库 / 对齐框架 / 配置驱动编排</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>学会判断 training complexity 的主矛盾，而不是背命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[77] <a href="https://github.com/huggingface/peft">https://github.com/huggingface/peft</a> — PEFT GitHub</li>
+<li>[78] <a href="https://github.com/huggingface/trl">https://github.com/huggingface/trl</a> — TRL GitHub</li>
+<li>[79] <a href="https://github.com/hiyouga/LLaMA-Factory">https://github.com/hiyouga/LLaMA-Factory</a> — LLaMA-Factory GitHub</li>
+<li>[80] <a href="https://github.com/axolotl-ai-cloud/axolotl">https://github.com/axolotl-ai-cloud/axolotl</a> — Axolotl GitHub</li>
+<li>[81] <a href="https://github.com/unslothai/unsloth">https://github.com/unslothai/unsloth</a> — Unsloth GitHub</li>
+<li>[82] <a href="https://github.com/microsoft/DeepSpeed">https://github.com/microsoft/DeepSpeed</a> — DeepSpeed GitHub</li>
+<li>[83] <a href="https://github.com/huggingface/transformers">https://github.com/huggingface/transformers</a> — Transformers GitHub</li>
+<li>[84] <a href="https://github.com/huggingface/accelerate">https://github.com/huggingface/accelerate</a> — Accelerate GitHub</li>
+<li>[85] <a href="https://github.com/OpenRLHF/OpenRLHF">https://github.com/OpenRLHF/OpenRLHF</a> — OpenRLHF GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/03/06/01/"><span>上一篇</span><strong>03.03.06.01 训练框架选型矩阵 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/04/01/01/"><span>下一篇</span><strong>03.04.01.01 vLLM 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么-03-还要单开一个-training-framework-模块">1. 为什么 03 还要单开一个 Training Framework 模块</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议这一模块先聚焦的-top-5">2. 2026-09 我建议这一模块先聚焦的 top 5</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么先不把-deepspeed--transformers--accelerate-放进这组-top-5-主角">3. 为什么先不把 DeepSpeed / Transformers / Accelerate 放进这组 top 5 主角</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-这一模块建议怎么读">4. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#41-按读者身份的推荐阅读路径">4.1 按读者身份的推荐阅读路径</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#42-按系统主矛盾的速查表">4.2 按系统主矛盾的速查表</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#43-这章最容易读偏的三个误区">4.3 这章最容易读偏的三个误区</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#44-如果你时间不够只读哪三篇">4.4 如果你时间不够，只读哪三篇</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-我建议本模块的内容结构">5. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块的推荐交付物">6. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#61-建议配套产物">6.1 建议配套产物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#62-我更推荐的最小闭环产物">6.2 我更推荐的最小闭环产物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#63-这章学完之后你应该真的会什么">6.3 这章学完之后，你应该真的会什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-本模块笔记导航">7. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

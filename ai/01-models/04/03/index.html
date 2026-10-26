@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.04.03 模型量化 · iopanda</title><meta name="description" content="01.04.03 模型量化 · 模型 / 推理与部署，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/04/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.04.03 模型量化 · iopanda"><meta property="og:description" content="01.04.03 模型量化 · 模型 / 推理与部署，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/04/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="04" data-active-subsection data-active-article="/ai/01-models/04/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与部署"></button><a class="tree-link tree-link--section" href="/ai/01-models/04/"><span class="tree-number">04</span><span class="tree-title">推理与部署</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/04/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">模型量化</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/04/">推理与部署</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">模型量化</span></nav><header class="ai-article-header"><p class="ai-number">01.04.03</p><h1>模型量化</h1><p class="ai-meta"><time datetime="2026-09-02T23:30">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-inference</li><li>quantization</li></ul></header><div class="ai-prose"><blockquote>
+<p>本章在同一任务上比较原精度与量化推理,目标是选出一个<strong>可用</strong>的配置,而不是盲目追求最小显存。你会先弄清权重为什么非得是小数、降低精度到底牺牲了什么,再动手跑原精度与 4-bit 两组对比,用任务结果做决定——量化是否成功,由评测说了算,不由「加载成功」说了算。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>解释为什么权重必须用浮点、为什么推理时又能容忍更低精度;</li>
+<li>说出 FP32/FP16/BF16/INT8/4-bit 的含义、字节数与典型用途;</li>
+<li>解释量化误差通过什么路径影响输出,为什么必须用固定任务评测;</li>
+<li>区分训练后量化(PTQ)与训练中量化(QAT)两种时机与取舍;</li>
+<li>检查硬件与依赖兼容性,判断某格式在本机是否可用;</li>
+<li>测量显存、速度与输出质量,以任务证据选择配置。</li>
+</ol>
+<h2 id="1-概念为什么权重是浮点">1. 概念:为什么权重是浮点</h2>
+<ul>
+<li>神经网络权重是<strong>连续实数</strong>:预训练用梯度下降更新参数,每次更新的增量是任意小数,因此权重必须能表达连续取值,无法用整数硬存。浮点(float)用「符号位 + 指数位 + 尾数位」表示一个数,位数固定却能覆盖极大的动态范围——这正是训练与推理的默认格式。</li>
+<li>但<strong>推理阶段可以降精度</strong>:推理只做前向计算,不再需要梯度,权重不必保留完整精度。语言模型的输出由最后一层 logits 的<strong>相对排名</strong>决定,而 logits 是数亿个权重的<strong>平均贡献</strong>——单个权重错一点,往往不足以翻盘。这就是量化(quantization)能成立的根本原因:把每个权重从 32 位压缩到 16、8 甚至 4 位,换取显存与下载体积的大幅下降。</li>
+<li>一句话:<strong>训练需要高精度是因为要算梯度;推理只需要足够好的近似,因为要的是相对排名,不是精确数值</strong>。量化解决的是「资源不够」——显存装不下、带宽撑不住、下载太慢;它<strong>不保证</strong>更快、更准,也不保证在任何电脑上都能跑。</li>
+<li><strong>收益核算</strong>:把每参数字节降下来,同时撬动三处成本——显存(装得下更大的模型或更长的上下文)、下载(模型文件体积同步缩小:0.5B 的 FP32 权重约 2 GB,4-bit 约 0.25 GB)、带宽(逐层读取更快)。但它<strong>不改变参数量,也不改变 KV cache 的占用</strong>——后者由序列长度决定,见 01 推理基础。</li>
+</ul>
+<h2 id="2-概念精度格式一览每一位都是钱">2. 概念:精度格式一览:每一位都是钱</h2>
+<p>先把常见格式的「位数 → 字节 → 结构 → 用途」对齐:</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>位数</th>
+<th>每参数字节</th>
+<th>结构(符号/指数/尾数)</th>
+<th>含义与典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FP32</strong></td>
+<td>32 bit</td>
+<td>4 B</td>
+<td>1/8/23</td>
+<td>单精度浮点,训练基准与 CPU 默认;0.5B 模型权重约 2 GB</td>
+</tr>
+<tr>
+<td><strong>FP16</strong></td>
+<td>16 bit</td>
+<td>2 B</td>
+<td>1/5/10</td>
+<td>半精度,指数范围窄(最大约 65504),消费级 GPU 训练/推理主格式</td>
+</tr>
+<tr>
+<td><strong>BF16</strong></td>
+<td>16 bit</td>
+<td>2 B</td>
+<td>1/8/7</td>
+<td>与 FP32 相同指数范围、尾数更粗;训练友好,无需 loss scaling</td>
+</tr>
+<tr>
+<td><strong>INT8</strong></td>
+<td>8 bit</td>
+<td>1 B</td>
+<td>整数档位 + 缩放因子</td>
+<td>把浮点范围映射到 256 个整数档;GPU 常带 INT8 加速单元</td>
+</tr>
+<tr>
+<td><strong>4-bit</strong></td>
+<td>4 bit</td>
+<td>0.5 B</td>
+<td>16 个档位(NF4/FP4)</td>
+<td>极低比特,几乎总配合「反量化回高精度计算」;显存最省</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>字节换算</strong>:权重显存下限 ≈ 参数量 × 每参数字节。Qwen2.5-0.5B 约 5 亿参数:FP32 约 2 GB、FP16/BF16 约 1 GB、INT8 约 0.5 GB、4-bit 约 0.25 GB——位数每减半,存储成本就减半。但这只是<strong>权重</strong>的账:实际占用还要加 KV cache、激活值与运行时开销,所以不能只拿参数量乘以字节就宣布「装得下」。</li>
+<li><strong>INT8/4-bit 不是截断小数</strong>:整数格式只能表达离散档位,量化的实质是<strong>映射</strong>——先按权重分布算出缩放因子(必要时再加零点),把连续值归到最近的整数档,用时再乘回缩放因子。档位怎么放有讲究:4-bit 的 NF4(normal float 4)按正态分布形状放置 16 个档位,比均匀放置更贴合真实权重分布,是 QLoRA 论文(01.03)带入主流的方案。</li>
+<li><strong>FP16 与 BF16 的差异值得记住</strong>:两者都是 2 字节,但 FP16 把位数让给尾数、牺牲指数范围(小数值易下溢),BF16 反过来保住指数范围、牺牲尾数。训练中 BF16 更省心;推理加速上 FP16 的硬件支持更普遍。</li>
+<li>**FP8(8 位浮点)**是 2023 年后进入部署视野的格式(如 1/4/3 分配),自 Hopper 起有原生加速,精度介于 BF16 与 INT8 之间;生态仍在收敛,本章不展开,知道「位数相同,浮点与整数的取舍不同」即可。</li>
+</ul>
+<h2 id="3-概念量化误差如何影响输出">3. 概念:量化误差如何影响输出</h2>
+<ul>
+<li>量化对每个权重引入<strong>舍入误差</strong>:档位越少,误差越大。误差不会停在那一层——它随前向计算逐层传播、累积,最终使 logits 发生微小漂移。若漂移小到不足以改变 token 的排名,输出与原文逐字相同;一旦某个候选 token 的排名被翻转,输出就从那里开始不同,并随自回归逐 token 放大。</li>
+<li>所以量化失败很少表现为「模型完全不能用」,而更像:大多数回答照旧,个别长句走样、格式破损、数字出错,或概率性乱码。任务对误差的容忍度差异很大:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>敏感度</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>闲聊、摘要、风格改写</td>
+<td>低</td>
+<td>等价表达多,个别 token 偏差可被容忍</td>
+</tr>
+<tr>
+<td>JSON/格式受限输出</td>
+<td>中</td>
+<td>结构由少量 token 决定,一处走样整段不可用</td>
+</tr>
+<tr>
+<td>数学、代码、日期计算</td>
+<td>高</td>
+<td>精确 token 序列敏感,排名一翻即错</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>因此<strong>任务越依赖精确数值,低比特的风险越高</strong>;语言风格类任务通常最皮实。选 4-bit 之前,先想清楚你的 10 问里有多少属于高敏感列。</li>
+<li>推论是评测纪律:比较 FP16 与 4-bit 必须<strong>同一批问题、同一生成参数</strong>(含 <code>do_sample=False</code>),否则输出差异可能来自采样随机性而非量化误差。显存变小、加载成功、tokens/s 变高都不是成功证据——唯一证据是任务评分没有跌破你预设的阈值。</li>
+</ul>
+<h2 id="4-概念量化的两种时机ptq-与-qat">4. 概念:量化的两种时机:PTQ 与 QAT</h2>
+<table>
+<thead>
+<tr>
+<th>时机</th>
+<th>全称</th>
+<th>做法</th>
+<th>优点</th>
+<th>代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PTQ</strong></td>
+<td>训练后量化(Post-Training Quantization)</td>
+<td>拿已训好的权重直接转低比特,可选少量样本校准缩放因子</td>
+<td>无需训练数据与算力,几分钟搞定</td>
+<td>精度损失不可控,比特越低越明显</td>
+</tr>
+<tr>
+<td><strong>QAT</strong></td>
+<td>训练中量化(Quantization-Aware Training)</td>
+<td>在(继续)训练的前向中模拟量化误差,让权重学会容忍</td>
+<td>低比特下精度明显更好</td>
+<td>需要训练管线、数据与算力</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>日常部署见到的绝大多数是 <strong>PTQ</strong>,又有两种落地形态:<strong>加载时量化</strong>(如本章 bitsandbytes:权重以 4-bit 存入显存,计算前按块反量化回 FP16,零校准数据、即插即用)与<strong>校准式量化</strong>(如 GPTQ/AWQ:离线用少量代表样本把缩放因子调到最优,再导出可直接高效运行的格式,适合产品化吞吐场景)。</li>
+<li><strong>QAT</strong> 在训练阶段就把「权重要被量化」这件事告诉模型:前向用带误差的量化权重,反向仍走连续梯度,模型在训练中学会自我补偿。效果最好,但要重跑训练,一般留给对精度极其敏感、且要压到 INT4/INT8 的产品。01.03 的 QLoRA 则属于「训练时把基座压成 4-bit」的另一场景,动机与本单元的推理量化不同。</li>
+<li>推理部署若发现 4-bit 质量不够,升级路径是:先试 INT8 或校准式 PTQ,还不够再考虑 QAT——<strong>不要一上来就用最激进的格式</strong>。那为什么不停在 2-bit(每参数 0.25 B,仅 4 个档位)?因为 2-bit 在 PTQ 下质量崩塌几乎必然,通常要靠 QAT 或专门方法才勉强可用——4-bit 是当前「省显存 vs 保质量」的性价比拐点,这也是本章选它做对比的原因。</li>
+</ul>
+<h2 id="5-概念硬件兼容量化不是免费的">5. 概念:硬件兼容:量化不是免费的</h2>
+<ul>
+<li><strong>格式必须硬件认识才有加速</strong>。FP16 张量核心自 NVIDIA Volta(2017)起;BF16 自 Ampere(A100/RTX 30 系)起;INT8 自 Turing(RTX 20 系)起;4-bit 几乎没有 GPU 的原生指令——bitsandbytes 的 4-bit 加载依赖 CUDA,权重低比特存储、计算前反量化回 FP16,省的是<strong>显存与访存带宽</strong>,不是把计算本身变成 4-bit。</li>
+<li><strong>量化省显存是普适的,更快不是</strong>。大模型推理常受内存带宽限制,权重变小后逐层搬运更快,tokens/s 可能上升;但小模型上反量化与调度开销可能盖过收益,甚至更慢。CPU 一般没有低比特加速单元,FP16 也未必比 FP32 快;Apple Silicon(MPS)对 FP16 支持较好、低比特支持有限。</li>
+<li><strong>先查兼容性再动手</strong>:GPU 型号、驱动、CUDA、bitsandbytes 版本都要对得上;无 CUDA 时如实记录「不适用」并继续 FP16/CPU 基线,而不是把报错吞掉假装成功;只用官方渠道安装的依赖,<strong>不要使用未知二进制包</strong>——这是把「可用」与「看起来可用」分开的第一道防线。典型环境速查:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>常见可用格式</th>
+<th>本章做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA GPU(Volta 起)</td>
+<td>FP16/BF16/INT8</td>
+<td>FP16 基线 + 4-bit 对比</td>
+</tr>
+<tr>
+<td>NVIDIA GPU(Ampere 起)</td>
+<td>上述 + 低比特生态更成熟</td>
+<td>bitsandbytes 4-bit 首选</td>
+</tr>
+<tr>
+<td>仅 CPU</td>
+<td>FP32(FP16 未必更快)</td>
+<td>记录「不适用」,跑 FP16/CPU 基线</td>
+</tr>
+<tr>
+<td>Apple Silicon</td>
+<td>FP16 尚可,低比特支持有限</td>
+<td>不做 4-bit,在报告里写明原因</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-动手先做兼容性检查再加载">6. 动手:先做兼容性检查,再加载</h2>
+<p>在 <code>minigpt-course</code> 根目录(仍激活 <code>.venv</code>)安装并检查:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> bitsandbytes</span></span>
+<span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'no CUDA')"</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>无 CUDA 时记录「不适用」,继续 FP16/CPU 基线;不要使用未知二进制包。支持环境可创建 <code>finetune/src/load_4bit.py</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> torch</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> transformers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AutoModelForCausalLM, BitsAndBytesConfig</span></span>
+<span class="line"><span style="color:#E1E4E8">q </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> BitsAndBytesConfig(</span><span style="color:#FFAB70">load_in_4bit</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">bnb_4bit_quant_type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"nf4"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    bnb_4bit_compute_dtype</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">torch.float16)</span></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> AutoModelForCausalLM.from_pretrained(</span><span style="color:#9ECBFF">"Qwen/Qwen2.5-0.5B-Instruct"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    quantization_config</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">q, </span><span style="color:#FFAB70">device_map</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(model.get_memory_footprint())</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>分别运行原模型与 4-bit 脚本,用上一章(01 推理基础)建立的固定 10 问生成,并记录 bytes、TTFT、tokens/s 与全部输出(指标口径见 01 推理基础)。若输出出现乱码或加载失败,保留完整报错与 torch/transformers/bitsandbytes 版本——<strong>不要将失败称为「量化成功」</strong>;同一份报告里写明失败发生在哪一步,本身就是兼容性结论。</p>
+<h2 id="7-动手活动量化决策">7. 动手活动:量化决策</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:量化决策</p>
+<p><strong>目标</strong>:<code>reports/quantization.md</code>。<strong>步骤</strong>:写一张 FP/4-bit 对照表,包含设备、显存、速度、10 问评分和失败例。<strong>完成标准</strong>:选择配置的理由同时满足资源限制与任务阈值,而非只比较模型大小。</p>
+</div>
+<h2 id="8-常见错误与结论">8. 常见错误与结论</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装或导入 bitsandbytes 报错</td>
+<td>核对 CUDA 版本与安装来源,回退官方文档安装</td>
+<td>依赖与驱动/平台不匹配;未知二进制包风险</td>
+</tr>
+<tr>
+<td>加载成功但输出乱码/重复</td>
+<td>保留报错与版本,换 INT8 或 FP16 基线对比</td>
+<td>4-bit 量化误差超出该任务容忍度</td>
+</tr>
+<tr>
+<td>显存变小但速度反而变慢</td>
+<td>记录并接受:小模型上开销可能盖过收益</td>
+<td>量化省带宽,不保证快;计算仍在 FP16</td>
+</tr>
+<tr>
+<td>4-bit 跑不起来</td>
+<td>记「不适用」,用 FP16/CPU 或云端/更小模型</td>
+<td>硬件或驱动不支持该格式,不是学习失败</td>
+</tr>
+</tbody>
+</table>
+<p>一句话结论:<strong>量化是工程取舍</strong>——先用兼容性检查圈出「本机能用的格式」,再在同任务、同参数下用显存、速度与任务评分三组数字选型;无法在本机运行 4-bit 是兼容性结论,不是学习失败,云端或更小模型是可审计的替代路径。</p>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>权重为什么是浮点</td>
+<td>训练需要连续梯度;推理只看 logits 相对排名,故能容忍近似</td>
+</tr>
+<tr>
+<td>各格式多少字节</td>
+<td>FP32=4 B、FP16/BF16=2 B、INT8=1 B、4-bit=0.5 B(每参数)</td>
+</tr>
+<tr>
+<td>量化误差如何影响输出</td>
+<td>逐层累积使 logits 漂移,排名翻转才改变输出;须固定任务评测</td>
+</tr>
+<tr>
+<td>两种量化时机</td>
+<td>PTQ 事后直接转(快、有损);QAT 训练中模拟误差(慢、更准)</td>
+</tr>
+<tr>
+<td>硬件兼容</td>
+<td>格式需硬件原生支持才有加速;无 CUDA 如实记录「不适用」</td>
+</tr>
+<tr>
+<td>选型准则</td>
+<td>同时满足资源限制与任务阈值,而非只比模型大小</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「加载成功 + 显存减半」不能作为量化成功的证据?FP16 与 BF16 都是 2 字节,为什么训练界偏爱 BF16?同样的 4-bit 模型,为什么代码生成任务比闲聊更容易出错?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>显存减半只证明权重存进了低比特,不证明输出质量达标——输出可能乱码或错误率上升,必须用同一批问题与生成参数跑任务评分。BF16 保留了 FP32 的指数范围,训练中不易下溢、无需 loss scaling;FP16 尾数多但范围窄。代码与数学任务对精确 token 序列敏感,logits 排名稍被量化误差扰动就可能翻车;闲聊有大量等价表达,容错高。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes">Transformers:bitsandbytes 量化</a></li>
+<li><a href="https://huggingface.co/docs/bitsandbytes/main/en/index">bitsandbytes 官方文档</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/04/02/"><span>上一篇</span><strong>01.04.02 生成参数控制</strong></a><a class="ai-pager-next" href="/ai/01-models/04/04/"><span>下一篇</span><strong>01.04.04 本地推理与 vLLM</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念为什么权重是浮点">1. 概念:为什么权重是浮点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-概念精度格式一览每一位都是钱">2. 概念:精度格式一览:每一位都是钱</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-概念量化误差如何影响输出">3. 概念:量化误差如何影响输出</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-概念量化的两种时机ptq-与-qat">4. 概念:量化的两种时机:PTQ 与 QAT</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-概念硬件兼容量化不是免费的">5. 概念:硬件兼容:量化不是免费的</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手先做兼容性检查再加载">6. 动手:先做兼容性检查,再加载</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动量化决策">7. 动手活动:量化决策</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-常见错误与结论">8. 常见错误与结论</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

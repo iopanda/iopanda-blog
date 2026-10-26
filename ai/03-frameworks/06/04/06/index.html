@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.04.06 课程助教系统的数据资产案例 · iopanda</title><meta name="description" content="03.06.04.06 课程助教系统的数据资产案例 · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.04.06 课程助教系统的数据资产案例 · iopanda"><meta property="og:description" content="03.06.04.06 课程助教系统的数据资产案例 · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection="04" data-active-article="/ai/03-frameworks/06/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/06/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Dagster"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/06/04/"><span class="tree-number">04</span><span class="tree-title">Dagster</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教系统的数据资产案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/04/">Dagster</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教系统的数据资产案例</span></nav><header class="ai-article-header"><p class="ai-number">03.06.04.06</p><h1>课程助教系统的数据资产案例</h1><p class="ai-meta"><time datetime="2026-09-09T10:08">2026-09-09</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>workflow</li><li>orchestration</li><li>dagster</li><li>case-study</li></ul></header><div class="ai-prose"><h1 id="课程助教系统的数据资产案例">课程助教系统的数据资产案例</h1>
+<blockquote>
+<p>把 Dagster 放回课程助教主线时，它最自然的角色不是“管理长时审批流程”，也不是“运营大量定时批处理 DAG”，而是：<strong>课程助教背后其实有一整套需要被治理的数据资产——知识库表、切片与向量索引、评估数据集、模型/prompt 版本、问答日志聚合表。</strong> 这时候最关键的问题不是任务怎么排、流程怎么恢复，而是这些资产是否新鲜、依赖关系是否清楚、责任人是谁。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>判断课程助教系统何时适合 Dagster；</li>
+<li>设计知识库、向量索引、评估数据集这类资产的依赖与分区结构；</li>
+<li>说明为什么这里最重要的是资产血缘与新鲜度，而不是任务调度或状态恢复；</li>
+<li>识别这个案例里的关键风险：资产建模成本、check 门禁的粒度、partition 数量膨胀；</li>
+<li>写一张课程助教系统的 Dagster 适配卡。</li>
+</ol>
+<h2 id="1-什么时候课程助教适合-dagster">1. 什么时候课程助教适合 Dagster</h2>
+<ul>
+<li>知识库内容会持续更新，需要清楚“这份切片/索引是从哪个课程文档、哪个版本产生的”；</li>
+<li>评估数据集、模型/prompt 版本需要被追踪新鲜度，而不是散落在某次脚本运行的日志里；</li>
+<li>多个团队（内容组、算法组、运营组）都要对同一批数据资产负责，需要明确 owner 和数据结构；</li>
+<li>需要在“内容变更”和“评估结果变化”之间建立可追溯的血缘，而不是靠人工记忆。</li>
+</ul>
+<h2 id="2-推荐架构">2. 推荐架构</h2>
+<ul>
+<li>asset 层：<code>course_content_raw</code>（原始课程文档）→ <code>course_chunks</code>（切片）→ <code>course_embeddings</code>（向量索引）→ <code>qa_eval_dataset</code>（评估集）→ <code>qa_eval_report</code>（评估报表）</li>
+<li>op 层：抓取、清洗、切片、embedding 调用、检索评估、报表生成——这些是资产背后的计算细节</li>
+<li>resource 层：向量数据库、LLM API、对象存储——按本地/测试/生产环境切换实现</li>
+<li>sensor 层：新课程内容上线时触发 <code>course_content_raw</code> 重新物化，进而联动下游资产</li>
+<li>partition 层：按课程/按更新周期给 <code>course_chunks</code>、<code>course_embeddings</code> 分区，只重算变化的那部分课程内容</li>
+<li>asset check 层：切片完整性检查、embedding 维度校验、评估集覆盖率检查，必要时用 <code>blocking=True</code> 挡住带质量问题的资产继续下传</li>
+<li>治理层：给关键资产标 owner（内容组/算法组）、tag（课程名、敏感度），在资产目录里统一检索</li>
+</ul>
+<h2 id="3-为什么这里不优先选-temporalairflow-或-prefect">3. 为什么这里不优先选 Temporal、Airflow 或 Prefect</h2>
+<p>不是因为这三者不强，而是这里的问题主语更偏：</p>
+<ul>
+<li>关心的是“这份知识库/评估集资产现在新不新鲜、依赖了哪些上游”，不是长时审批或跨天等待（这是 Temporal 的主场）；</li>
+<li>关心的是资产之间的依赖与血缘，而不只是“任务图按什么顺序跑”（这是 Airflow 更偏 task-first 的主场）；</li>
+<li>关心的是跨工具、跨团队的资产治理和数据目录，而不是“把已有脚本原地升级”（这是 Prefect 更偏开发者体验优先的主场）。</li>
+</ul>
+<p>如果课程助教之后长出跨天人工审批环节，那部分更适合评估 Temporal；如果主要诉求变成大量稳定定时批处理而资产血缘不是当务之急，Airflow 可能性价比更高。</p>
+<h2 id="4-动手活动">4. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>course-ta-dagster-card.md</code></p>
+<p>为课程助教列：哪些是需要被追踪血缘和新鲜度的数据资产、哪些资产该分区、哪些环节需要 blocking 的数据质量门禁、谁是每份资产的 owner。写一句结论：你的课程助教后台主复杂度是资产治理，还是任务调度或流程状态恢复。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教为什么适合 Dagster</td>
+<td>因为知识库、评估集、模型版本本质上是需要被治理的数据资产</td>
+</tr>
+<tr>
+<td>最大价值</td>
+<td>让内容更新、评估结果变化之间的血缘可追溯</td>
+</tr>
+<tr>
+<td>不适合什么</td>
+<td>主要问题是长时审批/补偿流程，或还没到需要资产治理的阶段</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[14] <a href="https://github.com/dagster-io/dagster">https://github.com/dagster-io/dagster</a> — Dagster GitHub / README</li>
+<li>[28] <a href="https://docs.dagster.io/guides/automate/sensors">https://docs.dagster.io/guides/automate/sensors</a> — Dagster sensors guide</li>
+<li>[29] <a href="https://docs.dagster.io/guides/build/partitions-and-backfills/partitioning-assets">https://docs.dagster.io/guides/build/partitions-and-backfills/partitioning-assets</a> — Dagster partitioning assets guide</li>
+<li>[31] <a href="https://docs.dagster.io/guides/test/asset-checks">https://docs.dagster.io/guides/test/asset-checks</a> — Dagster asset checks guide</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/04/05/"><span>上一篇</span><strong>03.06.04.05 资产治理、可观测性与工程边界</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/06/04/07/"><span>下一篇</span><strong>03.06.04.07 Dagster 与 Temporal、Airflow、Prefect、Kestra 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-什么时候课程助教适合-dagster">1. 什么时候课程助教适合 Dagster</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-推荐架构">2. 推荐架构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么这里不优先选-temporalairflow-或-prefect">3. 为什么这里不优先选 Temporal、Airflow 或 Prefect</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动">4. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

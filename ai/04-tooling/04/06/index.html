@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.04.06 提示管理 概览 · iopanda</title><meta name="description" content="04.04.06 提示管理 概览 · 工具链 / 提示管理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.04.06 提示管理 概览 · iopanda"><meta property="og:description" content="04.04.06 提示管理 概览 · 工具链 / 提示管理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="04" data-active-subsection data-active-article="/ai/04-tooling/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 提示管理"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/04/"><span class="tree-number">04</span><span class="tree-title">提示管理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">提示管理 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/">提示管理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">提示管理 概览</span></nav><header class="ai-article-header"><p class="ai-number">04.04.06</p><h1>提示管理 概览</h1><p class="ai-meta"><time datetime="2026-09-03T18:29">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>prompt-management</li></ul></header><div class="ai-prose"><h1 id="提示管理-概览">提示管理 概览</h1>
+<blockquote>
+<p>如果说 <code>02.02 Prompt and Context Engineering</code> 讲的是提示词为什么重要，那么 <code>04.04</code> 讲的是：<strong>当 prompt 已经不再是脚本里的一个长字符串，而是会被反复修改、多人协作、上线回滚、自动评测、结构化约束与程序化优化时，应该拿什么工具和方法来管理它？</strong> 这一章不把 prompt management 只理解成“存模板”，而是把它看成版本控制、实验、结构约束、程序化搜索与可追踪演进的组合问题。</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分提示模板、prompt versioning、prompt testing、programming with LM、structured outputs 几条路线；</li>
+<li>比较 Langfuse Prompts、Promptfoo、DSPy、Guidance、Outlines 的设计中心；</li>
+<li>解释为什么 prompt 管理不能只靠复制粘贴和聊天记录；</li>
+<li>为一个课程助教的 system prompt、few-shot、输出 schema 设计版本与验证流程；</li>
+<li>理解“programming, not prompting”与“structured outputs”为什么会改变提示词工程边界。</li>
+</ol>
+<h2 id="1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</h2>
+<ul>
+<li>当 prompt 进入多人协作和持续迭代阶段，最大的风险不是写不出来，而是改了以后不知道变好还是变坏；</li>
+<li>提示词管理的难点常和代码不同：它同时涉及自然语言、结构约束、实验数据集与模型差异；</li>
+<li>这一组工具并不都在做同一件事：有的把 prompt 当资产管理，有的把它当测试对象，有的干脆试图把“写 prompt”升级为“写程序”；</li>
+<li>学习重点是理解不同抽象如何改变提示词工程，而不是背模板语法。</li>
+</ul>
+<h2 id="2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/04-tooling/04/01/01/">Langfuse Prompts</a></td>
+<td>把 prompt 放进版本化、可追踪的平台工作流</td>
+<td>prompt registry、版本、playground、online feedback</td>
+<td>已经采用 Langfuse 工作流的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/04/02/01/">Promptfoo</a></td>
+<td>把 prompt 当作可回归测试的工件</td>
+<td>fixtures、assertions、matrix compare、CI</td>
+<td>想用工程化方式验证 prompt 变更的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/04/03/01/">DSPy</a></td>
+<td>从“写 prompt”转向“写可优化的 LM 程序”</td>
+<td>signatures、modules、optimizers、programming model</td>
+<td>愿意用程序抽象替代手调模板的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/04/04/01/">Guidance</a></td>
+<td>用受控生成语言编写更可约束的提示流程</td>
+<td>templating、control、constrained generation</td>
+<td>需要在生成过程里施加较强控制的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/04/05/01/">Outlines</a></td>
+<td>把结构化输出与约束生成做成默认能力</td>
+<td>JSON/schema/CFG style constraints</td>
+<td>首先关心结构稳定性的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-这一模块建议怎么读">3. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/04-tooling/04/01/01/">01 Langfuse Prompts</a> 与 <a href="/ai/04-tooling/04/02/01/">02 Promptfoo</a>：先稳住版本与测试；</li>
+<li>再看 <a href="/ai/04-tooling/04/03/01/">03 DSPy</a>：理解为什么有人想摆脱手工 prompt 调参；</li>
+<li>然后看 <a href="/ai/04-tooling/04/04/01/">04 Guidance</a> 与 <a href="/ai/04-tooling/04/05/01/">05 Outlines</a>：理解受控生成与结构化约束怎样改变工程边界。</li>
+</ol>
+<h2 id="4-我建议本模块的内容结构">4. 我建议本模块的内容结构</h2>
+<p>这一模块可以复用你已经稳定下来的写法：</p>
+<ol>
+<li>本组总览 README；</li>
+<li>每个产品一个文件夹与 <code>README.md</code>；</li>
+<li>每个产品至少拆成 4~6 篇：
+<ul>
+<li>它为什么存在 / 解决什么首要复杂度；</li>
+<li>核心抽象、架构与部署形态；</li>
+<li>与同类产品相比的设计中心；</li>
+<li>在课程助教或企业内部知识系统中的落点；</li>
+<li>适用边界、排错与迁移成本；</li>
+</ul>
+</li>
+<li>最终再补一篇本组的选型矩阵：回答“为什么选 A，不选 B”。</li>
+</ol>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prompt-registry-spec.md</td>
+<td>定义 prompt 名称、版本、回滚、实验与审批规则</td>
+<td>能让团队知道“哪个 prompt 在生产上”</td>
+</tr>
+<tr>
+<td>prompt-test-matrix.md</td>
+<td>给关键 prompt 建回归测试矩阵</td>
+<td>每次改动都有可比结果</td>
+</tr>
+<tr>
+<td>structured-output-contract.md</td>
+<td>定义输出 schema、失败兜底与重试策略</td>
+<td>避免“会说但不稳定”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/04-tooling/04/01/01/">01 Langfuse Prompts</a></li>
+<li><a href="/ai/04-tooling/04/02/01/">02 Promptfoo</a></li>
+<li><a href="/ai/04-tooling/04/03/01/">03 DSPy</a></li>
+<li><a href="/ai/04-tooling/04/04/01/">04 Guidance</a></li>
+<li><a href="/ai/04-tooling/04/05/01/">05 Outlines</a></li>
+</ol>
+<h2 id="7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</h2>
+<ul>
+<li>不要先记安装命令，先问它把哪类复杂度当作一等公民；</li>
+<li>不要只看 happy path，重点看治理、排错、迁移、协作与上线证据；</li>
+<li>不要问“谁最强”，要问“谁最匹配当前系统的首要矛盾”；</li>
+<li>不要把开源工具当成银弹，工具只是把某类工程纪律做成现成组件。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>把 prompt 变成可版本化、可测试、可约束的工程资产</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>prompt 改动频繁且影响巨大，不能只靠感觉回忆</td>
+</tr>
+<tr>
+<td>代表产品</td>
+<td>Langfuse Prompts / Promptfoo / DSPy / Guidance / Outlines</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>版本、测试、程序抽象与结构约束四件事一起看</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[131] <a href="https://github.com/langfuse/langfuse">https://github.com/langfuse/langfuse</a> — Langfuse GitHub</li>
+<li>[132] <a href="https://github.com/promptfoo/promptfoo">https://github.com/promptfoo/promptfoo</a> — Promptfoo GitHub</li>
+<li>[133] <a href="https://github.com/stanfordnlp/dspy">https://github.com/stanfordnlp/dspy</a> — DSPy GitHub</li>
+<li>[134] <a href="https://github.com/guidance-ai/guidance">https://github.com/guidance-ai/guidance</a> — Guidance GitHub</li>
+<li>[135] <a href="https://github.com/dottxt-ai/outlines">https://github.com/dottxt-ai/outlines</a> — Outlines GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/04/05/01/"><span>上一篇</span><strong>04.04.05.01 Outlines 概览</strong></a><a class="ai-pager-next" href="/ai/04-tooling/05/01/01/"><span>下一篇</span><strong>04.05.01.01 Qdrant 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-这一模块建议怎么读">3. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-我建议本模块的内容结构">4. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

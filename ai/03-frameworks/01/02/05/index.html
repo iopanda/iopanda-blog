@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.02.05 Agent Worker、Services 与分布式运行时 · iopanda</title><meta name="description" content="03.01.02.05 Agent Worker、Services 与分布式运行时 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/02/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.02.05 Agent Worker、Services 与分布式运行时 · iopanda"><meta property="og:description" content="03.01.02.05 Agent Worker、Services 与分布式运行时 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/02/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="02" data-active-article="/ai/03-frameworks/01/02/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 AutoGen"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/02/"><span class="tree-number">02</span><span class="tree-title">AutoGen</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/02/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">Agent Worker、Services 与分布式运行时</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/02/">AutoGen</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Agent Worker、Services 与分布式运行时</span></nav><header class="ai-article-header"><p class="ai-number">03.01.02.05</p><h1>Agent Worker、Services 与分布式运行时</h1><p class="ai-meta"><time datetime="2026-09-03T19:10">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>autogen</li><li>runtime</li><li>services</li><li>distributed</li></ul></header><div class="ai-prose"><h1 id="agent-workerservices-与分布式运行时">Agent Worker、Services 与分布式运行时</h1>
+<blockquote>
+<p>如果只看 AgentChat，AutoGen 很像一个“多角色对话框架”；但继续往设计文档里看，尤其是 <code>Services.md</code>，你会发现它其实还有一套更大的野心：<strong>把 Agent system 看成一组 workers 加若干 supporting services 组成的 runtime。</strong> 文档明确说，AutoGen agent systems 可以同进程，也可以分布式；workers 与 services 在分布式下通过 gRPC 通信，事件统一包装为 CloudEvents；backend 可以是 in-memory，也可以走更重的分布式路径。[40] 这一章就讲这一层：为什么 AutoGen 不只是“多 Agent chat”，而是在尝试把多 Agent 做成一个可扩展、可分布式的系统运行时。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释 AutoGen 为什么会引入 workers、services、gateway、event bus 这些系统级概念；</li>
+<li>理解为什么同进程与分布式运行在 AutoGen 里只是部署层变化，不是编程模型突变；</li>
+<li>说出 CloudEvents、gRPC、message session state 在运行时里的职责；</li>
+<li>比较 AutoGen 这种 runtime 视角与 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>、<a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a> 的差异；</li>
+<li>为一个可能扩展到多进程/多语言的 Agent 系统画出 runtime 结构图。</li>
+</ol>
+<h2 id="1-概念autogen-不只在造-agent也在造-agent-runtime">1. 概念：AutoGen 不只在造 Agent，也在造 Agent runtime</h2>
+<p><code>Services.md</code> 的第一段就很说明问题：每个 AutoGen agent system 有一个或多个 Agent Workers，以及一组管理/支持 agents 的 services；这些东西可以同进程，也可以分布式；在所有情况下，events 都包装成 CloudEvents。[40]</p>
+<p>这句话的分量很重，因为它说明框架关心的不是：</p>
+<ul>
+<li>你有没有几个角色；
+而是：</li>
+<li>这些角色如何被托管；</li>
+<li>如何通讯；</li>
+<li>如何跨进程；</li>
+<li>如何保持统一事件模型。</li>
+</ul>
+<p>这已经明显超出“聊天框架”的范畴，更像 runtime architecture 了。</p>
+<h2 id="2-agent-worker为什么它比一个-agent-实例更像系统单元">2. Agent Worker：为什么它比“一个 Agent 实例”更像系统单元</h2>
+<p>在 AutoGen 的 runtime 视角里，Worker 的意义大致相当于：</p>
+<ul>
+<li>承载 agent 执行；</li>
+<li>连接消息流；</li>
+<li>对外通过 runtime/service/gateway 协同；</li>
+<li>在分布式时成为真正的部署单元。[40]</li>
+</ul>
+<p>这和只在代码里 new 几个 agent object 很不一样。因为一旦概念升级到 Worker，系统就开始关心：</p>
+<ul>
+<li>agent 是在哪里运行的；</li>
+<li>它的消息怎样进出；</li>
+<li>它是否跨语言或跨机器；</li>
+<li>它的状态如何保存和迁移。</li>
+</ul>
+<p>这说明 AutoGen 对“扩展性”的理解从一开始就偏系统工程。</p>
+<h2 id="3-services为什么支撑多-agent-的不只是-agents-自己">3. Services：为什么支撑多 Agent 的不只是 agents 自己</h2>
+<p>文档列出 services/gateway/message session state 这些概念时，实际在提醒你：
+<strong>复杂多 Agent 系统需要一圈外部系统来支撑，而不是只靠 agent 自己互相说话。</strong>[40]</p>
+<p>至少包括：</p>
+<ul>
+<li>agent registry</li>
+<li>message/session state</li>
+<li>event bus bridge</li>
+<li>RPC gateway</li>
+<li>分布式消息递送支持</li>
+</ul>
+<p>这和很多“把多个模型摆在一起聊”式 demo 的根本差别就在这里：</p>
+<ul>
+<li>demo 把复杂度埋在代码里；</li>
+<li>AutoGen 试图把复杂度抽到运行时服务层。</li>
+</ul>
+<h2 id="4-cloudevents为什么消息格式标准化是跨系统协作的前提">4. CloudEvents：为什么消息格式标准化是跨系统协作的前提</h2>
+<p><code>Programming Model</code> 文档已经说明，AutoGen 事件使用 CloudEvents 规范。[8] <code>Services.md</code> 又再次确认：不论同进程还是分布式，events 都是 CloudEvents。[40]</p>
+<p>这件事特别重要，因为它意味着：</p>
+<ul>
+<li>事件是可跨语言理解的；</li>
+<li>事件不仅仅给某个本地 Python 对象看；</li>
+<li>系统的协作语义试图摆脱“框架内私有消息格式”的局限。</li>
+</ul>
+<p>对架构师来说，这非常值钱。因为标准化消息模型会直接影响：</p>
+<ul>
+<li>多语言 agent 互通；</li>
+<li>外部系统能否参与消息链；</li>
+<li>事件审计与桥接是否容易；</li>
+<li>未来是否能替换或扩展底层服务。</li>
+</ul>
+<h2 id="5-同进程-vs-分布式为什么编程模型尽量不变很关键">5. 同进程 vs 分布式：为什么编程模型尽量不变很关键</h2>
+<p>AutoGen 设计里一个很成熟的点是：</p>
+<ul>
+<li>同进程时，通信和事件投递走内存；</li>
+<li>分布式时，workers 通过 gRPC 与 service 通信；</li>
+<li>但上层 agent/message/handler 思想尽量保持一致。[40]</li>
+</ul>
+<p>这很重要，因为它在保护开发者心智：</p>
+<ul>
+<li>你可以先在单进程里做实验；</li>
+<li>未来再按需求迁到分布式；</li>
+<li>不至于每次扩展部署形态都要重写整个协作模型。</li>
+</ul>
+<p>这也是 AutoGen 从一开始就比很多实验性多 Agent demo 更“系统”的地方。</p>
+<h2 id="6-gateway--session-state为什么它们说明-autogen-在认真看运营中的系统">6. Gateway / Session State：为什么它们说明 AutoGen 在认真看“运营中的系统”</h2>
+<p>文档里提到 gateway 提供：</p>
+<ul>
+<li>其他服务 API 的 RPC bridge；</li>
+<li>workers 与 event bus 的 RPC bridge；</li>
+<li>message session state 跟踪消息队列与投递。[40]</li>
+</ul>
+<p>这些词说明它关心的是已经运营起来的系统，而不是只关心本地 demo。因为一旦系统真的运行在：</p>
+<ul>
+<li>多 worker</li>
+<li>多用户</li>
+<li>多轮消息</li>
+<li>跨服务协作
+环境里，message session state 就不再是附属信息，而是决定：</li>
+<li>哪条消息已投递；</li>
+<li>哪条消息在排队；</li>
+<li>哪个会话走到哪里；</li>
+<li>哪个 worker 应继续接哪段流。</li>
+</ul>
+<p>这说明 AutoGen 在 runtime 层的想象力其实很大。</p>
+<h2 id="7-这和-langgraph--openai-agents-sdk-的差异是什么">7. 这和 LangGraph / OpenAI Agents SDK 的差异是什么</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>最像哪种 runtime 视角</th>
+<th>AutoGen 的不同</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LangGraph</td>
+<td>图执行与状态恢复 runtime</td>
+<td>AutoGen 更像消息驱动、worker/service runtime</td>
+</tr>
+<tr>
+<td>OpenAI Agents SDK</td>
+<td>产品化 agent runtime primitives</td>
+<td>AutoGen 更像分布式协作系统 runtime</td>
+</tr>
+<tr>
+<td>CrewAI</td>
+<td>业务角色与流程系统</td>
+<td>AutoGen 更偏 runtime/message/system 抽象</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：LangGraph 像状态机运行时，OpenAI Agents SDK 像产品 runtime，AutoGen 则更像<strong>消息协作系统 runtime</strong>。</p>
+<h2 id="8-为什么这层设计既先进也让它更难维护">8. 为什么这层设计既先进，也让它更难维护</h2>
+<p>先进的地方：</p>
+<ul>
+<li>能承接大规模协作想象；</li>
+<li>更适合研究分布式/跨语言 agent systems；</li>
+<li>编程模型有机会从单机延展到系统级。</li>
+</ul>
+<p>难维护的地方：</p>
+<ul>
+<li>心智负担很重；</li>
+<li>同时要理解 agent 协作和 runtime 服务层；</li>
+<li>生产治理、调试、运维成本更高；</li>
+<li>maintenance mode 后，这类大 runtime 想象的后续演进更依赖继任者或自维护。</li>
+</ul>
+<p>也就是说，AutoGen 最迷人的地方，也是它最容易让团队低估成本的地方。</p>
+<h2 id="9-动手活动为一个分布式课程助教画-runtime-图">9. 动手活动：为一个分布式课程助教画 runtime 图</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>autogen-runtime-map.md</code></p>
+<p><strong>目标</strong>：不要只画几个角色，而是画 worker / service / gateway / event bus 的结构。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>画 3 类 agent workers：研究、回答、审查；</li>
+<li>画 supporting services：registry、session state、event bus bridge；</li>
+<li>标哪些事件在同进程可内存走，哪些未来可能经 gRPC 走；</li>
+<li>标 CloudEvents 在哪里定义消息语义；</li>
+<li>写一句结论：系统复杂度主要来自角色数，还是来自 runtime 层。</li>
+</ol>
+<p><strong>完成标准</strong>：你能清楚说出“为什么这已经不是几个 agent 对话那么简单”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：分布式只是部署问题。</strong> 在多 Agent 系统里，runtime 模型会直接影响架构；</li>
+<li><strong>误区二：有 message handler 就天然能跨服务。</strong> 还需要统一事件语义与服务边界；</li>
+<li><strong>误区三：同进程跑通就等于系统设计合理。</strong> 分布式一来，隐式约定会被放大；</li>
+<li><strong>误区四：gateway/session state 只是运维细节。</strong> 它们恰恰定义了运营中的系统行为；</li>
+<li><strong>误区五：框架愿景大就代表适合每个团队。</strong> 愿景越大，心智和维护成本也越高。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AutoGen 在 runtime 层更像什么</td>
+<td>一个 agent workers + services 的消息协作系统</td>
+</tr>
+<tr>
+<td>Worker 的意义</td>
+<td>把 agent 从代码对象提升为运行单元</td>
+</tr>
+<tr>
+<td>Services 的意义</td>
+<td>把 registry、gateway、session state、event bus 支撑显式化</td>
+</tr>
+<tr>
+<td>CloudEvents 的意义</td>
+<td>让事件语义跨进程、跨语言可统一</td>
+</tr>
+<tr>
+<td>同进程/分布式差异</td>
+<td>部署形态可变，但消息/事件编程模型尽量连续</td>
+</tr>
+<tr>
+<td>最大代价</td>
+<td>系统心智和维护复杂度都很高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个框架如果从 Day 1 就认真考虑 workers、services、gateway、session state 和 CloudEvents，会比普通多 Agent demo 更有系统潜力，但也更容易让团队掉进“过早复杂化”的坑？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为它解决的是更大尺度的问题：不是“几个 agent 能不能合作”，而是“这套协作能不能成为运行中的系统”。这当然更有潜力，但也意味着团队必须更早面对协议、服务边界、消息语义、部署与运维成本。如果需求还停留在单机实验阶段，这套复杂度很可能是过早引入的负担；只有当系统真的朝分布式、多语言或大规模协作方向演进时，这些抽象才开始真正值回票价。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[8] <a href="https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/01%20-%20Programming%20Model.md">https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/01%20-%20Programming%20Model.md</a> — AutoGen programming model</li>
+<li>[40] <a href="https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md">https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/05%20-%20Services.md</a> — AutoGen services design</li>
+<li>[2] <a href="https://github.com/microsoft/autogen">https://github.com/microsoft/autogen</a> — AutoGen GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/02/04/"><span>上一篇</span><strong>03.01.02.04 AgentChat、RoutedAgent 与消息协议</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/02/06/"><span>下一篇</span><strong>03.01.02.06 课程助教 Agent 的 AutoGen 架构案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念autogen-不只在造-agent也在造-agent-runtime">1. 概念：AutoGen 不只在造 Agent，也在造 Agent runtime</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-agent-worker为什么它比一个-agent-实例更像系统单元">2. Agent Worker：为什么它比“一个 Agent 实例”更像系统单元</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-services为什么支撑多-agent-的不只是-agents-自己">3. Services：为什么支撑多 Agent 的不只是 agents 自己</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-cloudevents为什么消息格式标准化是跨系统协作的前提">4. CloudEvents：为什么消息格式标准化是跨系统协作的前提</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-同进程-vs-分布式为什么编程模型尽量不变很关键">5. 同进程 vs 分布式：为什么编程模型尽量不变很关键</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-gateway--session-state为什么它们说明-autogen-在认真看运营中的系统">6. Gateway / Session State：为什么它们说明 AutoGen 在认真看“运营中的系统”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这和-langgraph--openai-agents-sdk-的差异是什么">7. 这和 LangGraph / OpenAI Agents SDK 的差异是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-为什么这层设计既先进也让它更难维护">8. 为什么这层设计既先进，也让它更难维护</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动为一个分布式课程助教画-runtime-图">9. 动手活动：为一个分布式课程助教画 runtime 图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

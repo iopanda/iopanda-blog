@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.07.02 Agent 评测的特殊性 · iopanda</title><meta name="description" content="02.07.02 Agent 评测的特殊性 · 智能体 / 评估与可观测性，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/07/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.07.02 Agent 评测的特殊性 · iopanda"><meta property="og:description" content="02.07.02 Agent 评测的特殊性 · 智能体 / 评估与可观测性，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/07/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="07" data-active-subsection data-active-article="/ai/02-agents/07/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/07"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估与可观测性"></button><a class="tree-link tree-link--section" href="/ai/02-agents/07/"><span class="tree-number">07</span><span class="tree-title">评估与可观测性</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/07/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">Agent 评测的特殊性</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/07/">评估与可观测性</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Agent 评测的特殊性</span></nav><header class="ai-article-header"><p class="ai-number">02.07.02</p><h1>Agent 评测的特殊性</h1><p class="ai-meta"><time datetime="2026-09-03T05:00">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>agent-evaluation</li></ul></header><div class="ai-prose"><h1 id="agent-评测的特殊性">Agent 评测的特殊性</h1>
+<blockquote>
+<p>02.06 的末篇把「评测难」列为多 Agent 的头号拦路虎,结论是能单 Agent 解决就不要上多 Agent。可课程助教这个单 Agent,今天也撞上了自己的「评测难」:它不再回一句话就完事,而是先想、再查资料、翻学员档案、算分数、甚至写记忆,转了好几圈才交出答案——01.06 那套「给输入、对答案、算准确率」的老办法,已经称不出它的好坏。本章是 02.07 Evaluation and Observability 的开篇,回答评测这件事在 Agent 这里为什么「变味了」:评测对象从「单输出」长成了「轨迹 + 结果 + 副作用」三件套,失败要按五层归因,评测本身要分四层设计。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 Agent 评测对象的三个组成部分:轨迹、最终结果、副作用;</li>
+<li>解释 Agent 评测与普通 LLM 评测的三个本质差异(结果开放、过程重要、副作用要测);</li>
+<li>面对一次失败,按「模型/提示/工具/记忆/编排」五个层次做归因排查;</li>
+<li>复述单步、轨迹、任务、系统四层评测各自回答什么问题;</li>
+<li>指出某条轨迹用「只对答案」的旧方法评测会漏掉什么。</li>
+</ol>
+<h2 id="1-概念评测对象从单输出变成三件套">1. 概念:评测对象从「单输出」变成「三件套」</h2>
+<ul>
+<li><strong>普通 LLM 评测</strong>(01.06):输入一句问题,输出一段回答,拿标准答案或裁判比对——评测对象是<strong>单输出</strong>。输入输出之间没有中间步骤,也没有外部动作。</li>
+<li><strong>Agent 评测</strong>:课程助教完成任务要跑好几轮循环(呼应 02.01 的运行循环):思考、调用 <code>search_material</code> 查讲义、调 <code>calculate</code> 算分、翻 <code>get_learner_profile</code> 档案,最后才给出回答。评测对象随之变成<strong>三件套</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>是什么</th>
+<th>课程助教例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轨迹(trajectory)</td>
+<td>从收到任务到给出最终回答的完整步序列,含思考、工具调用与观察</td>
+<td>「先查第 3 章讲义 → 再查学员档案 → 才回答」这串过程</td>
+</tr>
+<tr>
+<td>最终结果(final result)</td>
+<td>最后交出的回答或产物</td>
+<td>对外键问题的解释、批改后的分数</td>
+</tr>
+<tr>
+<td>副作用(side effects)</td>
+<td>执行中对外部世界造成的可观察改变</td>
+<td>把「已学 HAVING」写进了学员档案;消耗的 token 与费用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一条真实感的轨迹(步类型 T/C/O/A 的写法与 02 章一致):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>task: 学员问「WHERE 和 HAVING 有什么区别?」</span></span>
+<span class="line"><span>step1 T: 问题涉及聚合查询,先定位第 3 章讲义</span></span>
+<span class="line"><span>step2 C: search_material(query="WHERE HAVING 聚合函数", chapter="第3章")</span></span>
+<span class="line"><span>step3 O: 命中两条:WHERE 过滤行、HAVING 过滤组</span></span>
+<span class="line"><span>step4 A: 「WHERE 在分组前过滤行,HAVING 在分组后过滤组;见第 3 章 3.2 节。」</span></span>
+<span class="line"><span>副作用:无写入;若第 2 步后调用了 save_learner_profile,就是本任务的副作用</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>一句话:<strong>普通评测评「一句话说得好不好」,Agent 评测评「一串行动是否达成了目标、代价是什么、留下了什么」</strong>。</li>
+</ul>
+<h2 id="2-为什么需要三个差异让旧方法失效">2. 为什么需要:三个差异让旧方法失效</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>普通 LLM 评测</th>
+<th>Agent 评测</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>评测对象</td>
+<td>一句话输出</td>
+<td>轨迹 + 结果 + 副作用</td>
+</tr>
+<tr>
+<td>结果形态</td>
+<td>有唯一标准答案,可自动比对</td>
+<td>开放:多条正确路径、多个可接受答案</td>
+</tr>
+<tr>
+<td>过程</td>
+<td>不重要,只看答对没有</td>
+<td>重要:绕路、瞎试、危险步也是错</td>
+</tr>
+<tr>
+<td>副作用</td>
+<td>无(纯文本)</td>
+<td>有:写记忆、改数据、花钱</td>
+</tr>
+<tr>
+<td>评测成本</td>
+<td>一问一测,便宜</td>
+<td>一任务多轮多次调用,贵</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-差异一结果开放没有唯一标准答案">2.1 差异一:结果开放,没有唯一标准答案</h3>
+<ul>
+<li>「怎么复习外键」可以查了资料再答、可以按档案里的水平调整深浅、也可以直接引讲义原文——都算对。「参考答案必须唯一」是旧方法的地基,这个地基在 Agent 场景塌了。</li>
+<li>含义:评测要么定义「可接受的等价结果集合」(03 章),要么让裁判按 rubric 判(04 章),不能指望字符串相等。</li>
+</ul>
+<h3 id="22-差异二过程重要走错路也算错">2.2 差异二:过程重要,走错路也算错</h3>
+<ul>
+<li>同一个正确答案,2 步能拿到,也可能绕 8 步——其中 5 步在瞎试。任务级指标(03 章)会报「成功」,过程问题全被吞掉。</li>
+<li>证据:WebArena 论文里,弱模型最典型的失败模式就是<strong>重复无效动作、撞上步数上限</strong>;AgentBench(ICLR 2024)把模型放进操作系统、数据库、网页购物等 8 类环境做多轮交互,发现模型离「可用」还差得远——最强模型端到端成功率也仅 14.41%(WebArena,人类 78.24%)。<strong>多轮行动放大了单步错误的代价</strong>,这正是过程必须入评的原因。</li>
+<li>含义:轨迹本身是评测对象(02 章),因为每一步都可能触发成本、权限动作与不可逆副作用。</li>
+</ul>
+<h3 id="23-差异三副作用要测答对了也可能闯祸">2.3 差异三:副作用要测,答对了也可能闯祸</h3>
+<ul>
+<li>课程助教在讲解中把「学员已掌握 HAVING」写进 SQLite 档案(02.05 的长期记忆),可学员其实没听懂——<strong>结果正确,记忆却被污染</strong>,之后所有会话的上下文都带错(呼应 02.05 的 06 章)。</li>
+<li>副作用坏就坏在「最终答对也拦不住」:它发生在过程里,只评结果永远看不见。</li>
+<li>含义:评测清单必须包含「不该发生的写入/调用」检查;权限层(02.04 的 06 章)是第一道闸,评测是第二道。</li>
+</ul>
+<h2 id="3-作用失败要能归因评测要分层">3. 作用:失败要能归因,评测要分层</h2>
+<h3 id="31-失败溯源难五个层次的嫌疑犯">3.1 失败溯源难:五个层次的嫌疑犯</h3>
+<ul>
+<li>助教答错了,追问一句「为什么错」,答案可能是任何一个环节:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>典型症状</th>
+<th>定位手段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型</td>
+<td>幻觉、没按格式输出、能力不足</td>
+<td>换模型/换温度对比;01.06 单测</td>
+</tr>
+<tr>
+<td>提示</td>
+<td>system prompt 没写清「没依据就拒答」</td>
+<td>固定任务集上改提示做 A/B(呼应 02.02 的 01 章)</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>工具定义错、实现 bug、检索返回脏数据</td>
+<td>单测每个工具;手工调一次看返回</td>
+</tr>
+<tr>
+<td>记忆</td>
+<td>读了被污染的档案、取错学员</td>
+<td>查档案内容与写入日志(呼应 02.05 的 06 章)</td>
+</tr>
+<tr>
+<td>编排</td>
+<td>循环逻辑错、上一步结果没传给下一步</td>
+<td>重放轨迹逐步核对(05 章 tracing 的用武之地)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>呼应 02.06 的级联错误:多 Agent 的级联是 Agent 之间互相污染;单 Agent 内部同样会级联——<strong>上一步的错误输出是下一步的输入</strong>,错会一步步放大,最后一击往往不是真正病因。没有轨迹记录,归因只能靠猜。</li>
+</ul>
+<h3 id="32-评测分层一层回答一个问题">3.2 评测分层:一层回答一个问题</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>单步层  ← 每一步对不对?(工具选对没、参数合法没、回答要点齐没)</span></span>
+<span class="line"><span>轨迹层  ← 整条路顺不顺?(重复、绕路、死循环)——02 章</span></span>
+<span class="line"><span>任务层  ← 目标到没到?(完成率、成功率、部分完成)——03 章</span></span>
+<span class="line"><span>系统层  ← 代价与风险?(成本、延迟、安全、多用户串扰)——06 章</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>评测对象</th>
+<th>典型问题</th>
+<th>对应章节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单步层</td>
+<td>一次调用、一句话</td>
+<td>这一步该不该发生、做对没有</td>
+<td>02 章的单步成分;05 章数据</td>
+</tr>
+<tr>
+<td>轨迹层</td>
+<td>整条行动序列</td>
+<td>有没有绕远路、重复、死循环</td>
+<td>02 章</td>
+</tr>
+<tr>
+<td>任务层</td>
+<td>最终目标</td>
+<td>任务达成没有、完成到什么程度</td>
+<td>03 章</td>
+</tr>
+<tr>
+<td>系统层</td>
+<td>长期运行的整体</td>
+<td>成本、安全、多用户下的稳定</td>
+<td>06 章 + 01.07</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>设计顺序:<strong>先任务层定「什么叫成功」,再轨迹层定「什么叫走得好」,单步层负责定位具体坏点,系统层把成本与风险也计入账</strong>。</li>
+</ul>
+<h2 id="4-详细介绍旧评测方法的四个漏点">4. 详细介绍:旧评测方法的四个漏点</h2>
+<table>
+<thead>
+<tr>
+<th>旧做法</th>
+<th>会漏掉什么</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只比对最终答案字符串</td>
+<td>绕路与重复调用</td>
+<td>明明一次检索就够,却搜了 4 次才答——结果对,成本 4 倍</td>
+</tr>
+<tr>
+<td>只报答对率</td>
+<td>副作用污染</td>
+<td>档案被写脏,之后所有会话上下文带错</td>
+</tr>
+<tr>
+<td>只测单轮问答</td>
+<td>多轮才暴露的累积错误</td>
+<td>第 1 步检索词错,第 4 步才答错,病因在第 1 步</td>
+</tr>
+<tr>
+<td>没有副作用清单</td>
+<td>越权与破坏性调用</td>
+<td>助教把「零基础」学员的档案覆盖成了「入门」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>四个漏点不是「换更好的答案比对」能修的,而是<strong>评测对象没选对</strong>;对象选对了,才谈得上指标(02 章)、任务集(03 章)与裁判(04 章)。</li>
+<li>评测要能跑起来,还差一个前提:<strong>能拿到轨迹</strong>——这正是 05 章 tracing 的职责;没有记录,「分层评测」只是纸上谈兵。</li>
+</ul>
+<h2 id="5-动手活动同一个任务两种评测口径差多少">5. 动手活动:同一个任务,两种评测口径差多少</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:对比「只评结果」与「分层审查」</p>
+<p><strong>目标</strong>:产出 <code>reports/result-vs-process.md</code>——用脚本对比同任务的两条轨迹,亲眼看到只评结果会漏掉什么。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>读懂下方脚本:<code>traj_ok</code> 是 3 步走完的干净轨迹,<code>traj_sloppy</code> 是同任务、同最终回答的绕路轨迹(重复检索 + 写了档案);</li>
+<li>运行 <code>python eval_objects_demo.py</code>;</li>
+<li>把输出抄进报告,列出 <code>traj_sloppy</code> 的问题清单;</li>
+<li>写三句话:如果评测只看最终答案,这两条轨迹得分相同,你会漏掉什么?</li>
+</ol>
+<p><strong>完成标准</strong>:能指出 <code>traj_sloppy</code> 至少 2 处轨迹问题与 1 处副作用;报告能说明「结果正确只是及格线,轨迹与副作用才是 Agent 评测的分水岭」。</p>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># eval_objects_demo.py —— 同任务两条轨迹:只评结果 vs 分层审查</span></span>
+<span class="line"><span style="color:#6A737D"># 步格式:(type, tool_or_note, detail);type ∈ thought/tool_call/observation/answer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">TASK</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "学员问:WHERE 和 HAVING 有什么区别?"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">traj_ok </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"thought"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"先定位第 3 章讲义里讲聚合过滤的段落"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"tool_call"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"search_material"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'query="WHERE HAVING 聚合函数", chapter="第3章"'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"observation"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"命中:WHERE 过滤行、HAVING 过滤组"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"WHERE 在分组前过滤行,HAVING 在分组后过滤组;见第 3 章 3.2 节。"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">traj_sloppy </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"thought"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"先搜一次看看"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"tool_call"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"search_material"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'query="WHERE 与 HAVING"'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"observation"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"命中两段相关讲义"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"thought"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"不太放心,再确认一次"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"tool_call"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"search_material"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'query="WHERE 与 HAVING"'</span><span style="color:#E1E4E8">),   </span><span style="color:#6A737D"># 同参数重复 = 冗余</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"observation"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"还是那两段"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"tool_call"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"get_learner_profile"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'learner_id="L-1001"'</span><span style="color:#E1E4E8">),   </span><span style="color:#6A737D"># 本题非必需</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"observation"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"零基础学员"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"thought"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"按零基础讲,顺手记为已学 HAVING"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"tool_call"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"save_learner_profile"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'learner_id="L-1001", field="learned", value="HAVING"'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"answer"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"WHERE 在分组前过滤行,HAVING 在分组后过滤组;见第 3 章 3.2 节。"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">GOLD_PHRASES</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"WHERE"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"HAVING"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"过滤"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> result_only_grade</span><span style="color:#E1E4E8">(trajectory):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """旧口径:只看最终回答是否包含全部关键短语"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    answer </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> next</span><span style="color:#E1E4E8">(step[</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> step </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> trajectory </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> step[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "answer"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> all</span><span style="color:#E1E4E8">(phrase </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> answer </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> phrase </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> GOLD_PHRASES</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> audit_trajectory</span><span style="color:#E1E4E8">(trajectory):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """新口径:分层审查,返回问题清单"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    issues, seen_calls </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [], []</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> kind, tool, detail </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> trajectory:</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> kind </span><span style="color:#F97583">!=</span><span style="color:#9ECBFF"> "tool_call"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            continue</span></span>
+<span class="line"><span style="color:#E1E4E8">        call </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (tool, detail)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> call </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> seen_calls:</span></span>
+<span class="line"><span style="color:#E1E4E8">            issues.append(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"轨迹问题:重复调用 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">tool</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">(</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">detail</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        seen_calls.append(call)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> tool </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "save_learner_profile"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            issues.append(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"副作用:写入档案 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">detail</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">,需核对是否该写"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> issues</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> tool_call_count</span><span style="color:#E1E4E8">(trajectory):</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> sum</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#F97583"> for</span><span style="color:#E1E4E8"> step </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> trajectory </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> step[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "tool_call"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"任务:</span><span style="color:#79B8FF">{TASK}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> name, trajectory </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> [(</span><span style="color:#9ECBFF">"traj_ok    "</span><span style="color:#E1E4E8">, traj_ok), (</span><span style="color:#9ECBFF">"traj_sloppy"</span><span style="color:#E1E4E8">, traj_sloppy)]:</span></span>
+<span class="line"><span style="color:#E1E4E8">        grade </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "通过"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> result_only_grade(trajectory) </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "不通过"</span></span>
+<span class="line"><span style="color:#E1E4E8">        issues </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> audit_trajectory(trajectory)</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">name</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">:最终答案检查 = </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">grade</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">;工具调用 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">tool_call_count(trajectory)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 次;"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> issue </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> issues:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"    - </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">issue</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> issues:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"    - 轨迹审查:0 个问题"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    main()</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<h2 id="6-边界别把对象变多误读成全自动评测">6. 边界:别把「对象变多」误读成「全自动评测」</h2>
+<ul>
+<li><strong>分层不是越全越好</strong>:四层全自动评测又贵又吵;现实节奏是人工抽检小集起步,再逐步自动化(06 章的回归循环)。</li>
+<li><strong>轨迹漂亮 ≠ 任务成功</strong>:助教查了资料、步数优雅,却编造讲义里没有的结论——轨迹层全绿,任务层失败;这类漏网要任务级判定与裁判兜底(03、04 章)。</li>
+<li><strong>结果开放 ≠ 怎么答都行</strong>:要同时定义「可接受的等价结果集」与「禁区」(不许编造、不许外泄、不许越权),后者往往比前者更重要。</li>
+<li><strong>副作用清单要随工具维护</strong>:每接入一个新工具(如 02.04 的 05 章 MCP 接入),评测清单就要同步补上它的副作用检查项。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>评测对象三件套</td>
+<td>轨迹 + 最终结果 + 副作用</td>
+</tr>
+<tr>
+<td>差异一:结果开放</td>
+<td>没有唯一答案,要等价结果集或裁判</td>
+</tr>
+<tr>
+<td>差异二:过程重要</td>
+<td>绕路、瞎试、危险步也是错(02 章量化)</td>
+</tr>
+<tr>
+<td>差异三:副作用要测</td>
+<td>答对了也可能写脏记忆、越权调用</td>
+</tr>
+<tr>
+<td>失败归因</td>
+<td>模型/提示/工具/记忆/编排五层排查</td>
+</tr>
+<tr>
+<td>评测分层</td>
+<td>单步 → 轨迹 → 任务 → 系统,一层一个问题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:课程助教查了资料、算对了平均分、最终答案完全正确——但它在过程中把「零基础」学员的档案错误覆盖成了「已入门」。如果评测报告只写「任务成功率 100%」,你会漏掉什么?这条事故该记进三件套里的哪个对象、由哪一层来抓?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>会漏掉副作用污染:档案被改后,该学员后续所有会话的上下文都带错水平设定,影响远超这一次回答(呼应 02.05 的 06 章记忆污染)。它属于三件套里的「副作用」对象,应写进副作用清单做禁止性检查,并由系统层(写操作审计)兜底——这也再次说明:结果正确只是及格线,Agent 评测的分水岭在轨迹与副作用。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2308.03688">AgentBench:Evaluating LLMs as Agents(arXiv:2308.03688,首个跨 8 类环境的多轮 Agent 基准)</a></li>
+<li><a href="https://arxiv.org/abs/2307.13854">WebArena:A Realistic Web Environment(arXiv:2307.13854,端到端成功率 14.41% vs 人类 78.24%)</a></li>
+<li><a href="https://arxiv.org/abs/2406.12045">τ-bench:A Benchmark for Tool-Agent-User Interaction(arXiv:2406.12045,按工具调用逐步判定)</a></li>
+</ul>
+<p>上一篇(纯文本衔接 02.06 末篇):06 多 Agent 的失败模式与选型——那章说「系统越复杂越难评,单 Agent 评测方法在多 Agent 上失效」;本章起进入 02.07 Evaluation and Observability,把这句话接住:先讲清 Agent 评测难在哪、对象是什么、怎么分层;02.06 全貌见其 README。</p>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/07/01/"><span>上一篇</span><strong>02.07.01 评估与可观测性 概览</strong></a><a class="ai-pager-next" href="/ai/02-agents/07/03/"><span>下一篇</span><strong>02.07.03 轨迹级指标</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念评测对象从单输出变成三件套">1. 概念:评测对象从「单输出」变成「三件套」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要三个差异让旧方法失效">2. 为什么需要:三个差异让旧方法失效</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-差异一结果开放没有唯一标准答案">2.1 差异一:结果开放,没有唯一标准答案</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-差异二过程重要走错路也算错">2.2 差异二:过程重要,走错路也算错</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#23-差异三副作用要测答对了也可能闯祸">2.3 差异三:副作用要测,答对了也可能闯祸</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用失败要能归因评测要分层">3. 作用:失败要能归因,评测要分层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-失败溯源难五个层次的嫌疑犯">3.1 失败溯源难:五个层次的嫌疑犯</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-评测分层一层回答一个问题">3.2 评测分层:一层回答一个问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍旧评测方法的四个漏点">4. 详细介绍:旧评测方法的四个漏点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动同一个任务两种评测口径差多少">5. 动手活动:同一个任务,两种评测口径差多少</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界别把对象变多误读成全自动评测">6. 边界:别把「对象变多」误读成「全自动评测」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.06.05 错误分析 · iopanda</title><meta name="description" content="01.06.05 错误分析 · 模型 / 评测与基准，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/06/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.06.05 错误分析 · iopanda"><meta property="og:description" content="01.06.05 错误分析 · 模型 / 评测与基准，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/06/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="06" data-active-subsection data-active-article="/ai/01-models/06/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评测与基准"></button><a class="tree-link tree-link--section" href="/ai/01-models/06/"><span class="tree-number">06</span><span class="tree-title">评测与基准</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/06/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">错误分析</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/06/">评测与基准</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">错误分析</span></nav><header class="ai-article-header"><p class="ai-number">01.06.05</p><h1>错误分析</h1><p class="ai-meta"><time datetime="2026-09-03T00:40">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>llm-evaluation</li><li>error-analysis</li></ul></header><div class="ai-prose"><h1 id="错误分析">错误分析</h1>
+<blockquote>
+<p>上一章让 LLM 裁判给开放题打了 1~5 分,03 章的程序化指标算出了准确率与 ROUGE——但分数只回答「差多少」,回答不了「差在哪」。本章解决这个问题:把所有失败样本收集起来,系统性地找出<strong>重复出现的失败模式</strong>,给每个模式定位根因并排优先级,产出一份可以直接执行的改进清单(backlog)。它是评测循环里连接「发现问题」与「解决问题」的一环:没有它,分数再低也只是数字;有了它,下一次改进才有明确靶子。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出错误分析的定义:系统性查看失败样本、寻找重复出现的失败模式,而非纠缠单点怪例;</li>
+<li>解释为什么分数无法指导改进,错误分析为什么是改进循环里不可跳过的一步;</li>
+<li>走完错误分析五步:收集失败样本 → 聚类 → 归类 → 量化占比 → 定优先级;</li>
+<li>用「数据、提示、能力、工具」四问为每个失败模式定位可能根因;</li>
+<li>说出人工聚类与 LLM 辅助归类的分工,理解 CLEAR 的思路(先逐条反馈、再聚成系统级问题);</li>
+<li>对课程助教的失败输出做聚类,产出「问题类型 × 占比 × 示例 × 可能根因」表,排序形成改进 backlog。</li>
+</ol>
+<h2 id="1-概念错误分析找的是重复出现的失败模式">1. 概念:错误分析找的是「重复出现的失败模式」</h2>
+<ul>
+<li><strong>错误分析(Error Analysis)</strong> 是指:把评测中所有被判为失败的样本收集起来,逐条看、分组、找规律,最终得到一份<strong>按问题类型组织的失败清单</strong>——而不是「这一条为什么错了」的个案解释。</li>
+<li>为什么必须是「模式」而不是「个案」?单个失败样本可能是噪音(某次采样运气差、某条题本身有歧义),没有改进价值;<strong>重复出现的失败模式才是信号</strong>:它说明系统的某一部分稳定地出了毛病,改掉它就能批量救回一批样本。粗糙的经验门槛是:同一类型至少出现 2~3 次才值得立为一个模式。</li>
+<li>分数是「聚合统计」,天然抹平个体差异:90 分可能是「全部良好」,也可能是「一半完美、一半灾难」被平均成 90。错误分析把聚合结果拆回逐条样本,再按失败原因重新聚成类型——先拆后聚,看的才是行为本身。</li>
+<li>以课程助教为例:黄金集 20 条里有 3 条失败。如果 3 条全是「资料外问题编造了答案」,这是模式,指向拒答训练不足;如果 3 条分别是编造、格式、边界,各不相关,才需要怀疑它们只是孤立个案或题目问题。</li>
+<li>错误分析在整个评测栈中的位置:01 章在 eval spec 里预留了失败分类;03 章用程序化指标抓格式类问题;04 章用 LLM 裁判给开放题打分并输出逐条反馈;本章吃掉<strong>所有</strong>失败样本做诊断,产物是下一轮「补数据 → 重训 → 再评测」循环的输入。</li>
+</ul>
+<h2 id="2-为什么需要分数不告诉你下一步改什么">2. 为什么需要:分数不告诉你「下一步改什么」</h2>
+<ul>
+<li>一个分数无法指导动作:「准确率 78%」该补数据还是改提示词?「裁判均分 3.8」该换模型还是修格式?错误分析把抽象数字翻译成具体动作,否则改进就是碰运气——重训一版、再测一次,期望它碰巧变好。</li>
+<li>平均值会掩盖分布:同样 3.8 分,可能是所有回答都平平无奇(改进方向:整体能力),也可能是格式全对但有三条硬编造(改进方向:拒答)。不看失败样本分布,选错方向会浪费整轮训练成本。用同一批 20 条回答对比两种失败结构:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>A 组:19 条 4 分 + 1 条 0 分 → 整体没问题,灾难集中在那条硬编造上,改拒答即可</span></span>
+<span class="line"><span>B 组:20 条全是 3 分上下    → 没有大错但每条都差一口气,要改的是整体质量</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<p>两组的平均分几乎一样,改进动作却完全不同——不拆开看,就只能靠猜。</p>
+<ul>
+<li>错误分析便宜且见效快:与其花几小时重训、再花几小时评测,不如先花一小时认真读 20 条失败输出——往往能找到一条提示词缺陷或三五条缺失数据,改完立竿见影。这是评测改进循环里<strong>性价比最高</strong>的一步。</li>
+<li>它是评测诚实纪律的延续(呼应 01.03/08):失败例必须原样保留、不能挑掉;本章更进一步——不仅保留,还要逐条分析它们为什么失败。</li>
+</ul>
+<h2 id="3-方法错误分析五步">3. 方法:错误分析五步</h2>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>做什么</th>
+<th>课程助教示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 收集</td>
+<td>按失败判定标准把失败样本全量捞出来,不挑样</td>
+<td>裁判分 &lt; 4 分 + 人工 0/1 判 0 分 + 格式校验不过的输出,共 20 条</td>
+</tr>
+<tr>
+<td>② 聚类</td>
+<td>先按任务组切(01 章的任务清单),再按错误表现分组</td>
+<td>「解释外键」题全错 → 单独一堆;格式题全错 → 另一堆</td>
+</tr>
+<tr>
+<td>③ 归类</td>
+<td>把每组归入标准错误类型,给每类起可操作的名字</td>
+<td>事实错、格式错、拒答错、幻觉、过度拒答</td>
+</tr>
+<tr>
+<td>④ 量化</td>
+<td>统计每类占比,明确基数口径</td>
+<td>编造类 6/20 = 30%;拒答类 2/20 = 10%</td>
+</tr>
+<tr>
+<td>⑤ 定优先级</td>
+<td>按频率 × 严重度排序,形成 backlog</td>
+<td>编造类最高危,排第一</td>
+</tr>
+</tbody>
+</table>
+<p>失败样本的<strong>判定标准</strong>必须在收集前定好(01 章 eval spec 里就有):低于阈值、裁判打分低、人工 0/1 判负、程序化校验失败——只要在 spec 里定义过,收集时就不带主观。数量上 20~50 条失败样本通常足够暴露主要模式;样本太少模式不显,太多则人工读不完,可抽样但必须说明抽样规则。</p>
+<p>课程助教常用的错误类型(归类表):</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>判据</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事实错</td>
+<td>有依据但与课程资料矛盾</td>
+<td>说外键「必须有唯一索引」(实际课程里不要求)</td>
+</tr>
+<tr>
+<td>幻觉</td>
+<td>无依据地编造</td>
+<td>资料外问题「明天东京天气」编了个温度</td>
+</tr>
+<tr>
+<td>格式错</td>
+<td>没遵守输出约定</td>
+<td>要求三点式却答成一段话</td>
+</tr>
+<tr>
+<td>拒答错</td>
+<td>该拒没拒 / 不该拒却拒</td>
+<td>资料外问题强行作答;课程内问题答「我不知道」</td>
+</tr>
+<tr>
+<td>过度回答</td>
+<td>答了但夹带无关或臆断内容</td>
+<td>解释主键时顺带编造了教材不存在的「最佳实践」</td>
+</tr>
+</tbody>
+</table>
+<p>聚类的前提是失败样本<strong>可复盘</strong>:只存一条输出、丢了题目与判定依据,事后无法判断该归哪类。收集时每行应保留题目、期望行为、输出、分数与批评(与 03/04 章评测脚本的输出格式衔接),例如:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsonl"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"q-07"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"task"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"资料外拒答"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"question"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明天东京天气?"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"expected_behavior"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"拒绝编造,不提供实时信息"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"score"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"critique"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"资料外问题,却编造了温度"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"output"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明天东京 25°C……"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"fail"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"q-11"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"task"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"关系解释"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"question"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"解释外键,举一个例子"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"expected_behavior"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"与外键定义一致,例子来自课程资料"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"score"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"critique"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"例子与课程资料矛盾"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"output"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"外键必须有唯一索引……"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"fail"</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="jsonl" aria-hidden="true">jsonl</span></div>
+<p>其中 <code>critique</code> 正是 04 章裁判写的逐条文字批评——它既是人复查的依据,也是第 5 节 LLM 辅助归类的原材料。</p>
+<h2 id="4-定位根因数据提示能力工具四问">4. 定位根因:数据、提示、能力、工具四问</h2>
+<p>归好类只完成一半——下一步是对每个模式追问「为什么会这样」,四类根因逐项排查:</p>
+<table>
+<thead>
+<tr>
+<th>根因</th>
+<th>典型信号</th>
+<th>验证方法</th>
+<th>对应动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据问题</td>
+<td>失败集中在某个知识点或题型</td>
+<td>查 01.03 的训练数据里该类样本数量与质量</td>
+<td>补充该类型样本,重新微调</td>
+</tr>
+<tr>
+<td>提示问题</td>
+<td>换一种 prompt 表述后同样输入就答对</td>
+<td>直接改写 system prompt / 加 few-shot 示例做 A/B</td>
+<td>修 prompt,不重训</td>
+</tr>
+<tr>
+<td>能力问题</td>
+<td>小模型做不了的多步推理或长上下文</td>
+<td>换更大模型或把任务拆小做对比</td>
+<td>接受局限写进模型卡,或换基座</td>
+</tr>
+<tr>
+<td>工具问题</td>
+<td>依赖 RAG / 检索的题集体答错</td>
+<td>检查检索结果是否命中、文档是否过时(呼应 01.05 多模态原型)</td>
+<td>修检索链路或文档库</td>
+</tr>
+</tbody>
+</table>
+<p>注意两点:一是<strong>根因常常叠加</strong>——编造类既可能是拒答样本不足(数据),也可能是 system prompt 没写「没有依据时说不知道」(提示);二是<strong>从改动成本最低的开始验证</strong>:先试提示词,再补数据,最后才考虑换模型,每验证一个假设就重跑同一 golden 集,用该类占比是否下降来确认根因找对了。</p>
+<h2 id="5-工具人工聚类与-llm-辅助clear-思路">5. 工具:人工聚类与 LLM 辅助(CLEAR 思路)</h2>
+<ul>
+<li><strong>人工聚类</strong>:把失败输出逐条读、贴便签、分组,20~50 条完全手工可做。优点是可解释性强、类别贴合业务;缺点是慢、且人容易受「最近看到的那条」影响。做法:先各自独立分组,再合起来讨论不一致处(与 04 章人工复核裁判的打分纪律一致)。</li>
+<li><strong>LLM 辅助归类</strong>:让 LLM 裁判在打分的同时输出<strong>逐条的文字批评</strong>(这条错在哪、为什么),再把几十条批评自动聚成少数几个系统级问题,并统计每个问题覆盖了多少样本——这就是 CLEAR 的思路。</li>
+<li><strong>CLEAR</strong>(IBM Research 等,arXiv 2507.18392,开源包 <code>clear-eval</code>)把错误分析做成两段管道:第一段用 LLM-as-a-Judge 对每条输出生成「数值分 + 文本批评」;第二段用 <strong>Key Point Analysis(KPA)</strong> 把逐条批评聚成系统级问题(issue),每个 issue 映射回它覆盖的样本,量化其普遍性(prevalence),并支持从问题下钻到具体示例查看原文。它对失败分析的启示正是本章的方法论:<strong>先逐条反馈,再聚成系统级问题,最后量化占比</strong>——人不用亲自读完全部样本,也能得到带证据的失败清单。</li>
+<li>CLEAR 管道与本章五步的对应很直接:裁判的数值分与批评对应「收集」与「聚类/归类」的原材料,KPA 输出的 issue 列表就是 backlog 的草稿,prevalence 就是「量化占比」——CLEAR 自动化的是聚类与量化,<strong>定优先级与改进验证仍要人来做</strong>。</li>
+<li>一个小技巧:给裁判的批评模板加一句「若本条无问题,直接回答『无』」,滤掉合格样本的噪音批评,聚类质量会明显提升(与 CLEAR 只对低分样本生成 issue 的做法同理)。</li>
+<li><strong>分工建议</strong>:LLM 负责规模化初筛与聚类,人负责两件事——定义类别体系(或审查自动聚出的类别名是否可操作),以及抽查每个 issue 是否真的能映射回样本。若某 issue 映射到的样本语义对不上,说明聚类质量差,要调批评模板或换 KPA 方式,不能直接采信。</li>
+</ul>
+<h2 id="6-动手活动课程助教失败聚类与改进-backlog">6. 动手活动:课程助教失败聚类与改进 backlog</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:失败聚类,产出改进 backlog</p>
+<p><strong>目标</strong>:对课程助教约 20 条失败输出做聚类,产出一张「问题类型 × 占比 × 示例 × 可能根因」表,并按优先级排出改进 backlog。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>汇总失败样本:取 04 章裁判打分 &lt; 4 分的输出、03 章程序化指标判负的输出、人工 0/1 判 0 分的输出,合并去重,凑够约 20 条(不足可把「勉强及格」的边界样本纳入,并注明口径);</li>
+<li>逐条写一句话失败原因:「该拒答却编造了天气」「外键例子与课程资料矛盾」——写原因时不看其他条,避免互相污染;</li>
+<li>聚类:把原因相近的样本归成 3~6 个问题类型,给每类起<strong>可操作的名字</strong>(不是「质量差」,而是「资料外问题编造答案」);</li>
+<li>填表:对每类统计占比,挑 1 条代表性样本原文,用第 4 节四问给出可能根因与建议动作;</li>
+<li>排序:按「频率 × 严重度」排出 backlog,硬红线(编造、有害)无条件置顶,即使它只占 1 条;</li>
+<li>写验证方式:每项 backlog 都要配一句「怎么算改好了」——例如「重跑 golden,编造类从 6 条降到 0 条,且格式类不回升」。</li>
+</ol>
+<p><strong>完成标准</strong>:backlog 里每一项都能被一个具体工程动作消灭或缓解(改 prompt / 补 N 条数据 / 修检索),且每项都有可重跑评测验证的完成定义——改进后必须重跑同一 golden 集,确认目标类占比下降、其他类没有回退。</p>
+</div>
+<h2 id="7-边界与排错">7. 边界与排错</h2>
+<ul>
+<li><strong>把单点怪例当模式</strong>:一条失败就重训一版模型,成本高且大概率无效;用「同类至少 2~3 次」的门槛过滤,个案先记录在案、攒够再处理。</li>
+<li><strong>把模式当单点怪例</strong>:三条失败恰好分布在不同题上就宣布「没有规律」——先按错误类型而不是按题目聚类再下结论,症状相同、题目不同恰恰是最常见的模式形态。</li>
+<li><strong>失败样本不全</strong>:只保存了模型输出、丢了输入与评分上下文,事后无法复盘;评测脚本应把 <code>question</code>、<code>expected_behavior</code>、<code>output</code>、<code>score</code>、<code>critique</code> 存成同一行(03/04 章的输出格式已为此预留)。</li>
+<li><strong>类别名太抽象</strong>:「回答不佳」「质量有待提升」无法翻译成动作;每类名字要能直接接一句「因为它……所以我们要……」。</li>
+<li><strong>混淆症状与根因</strong>:「编造」是症状,根因可能是拒答样本不足、prompt 没声明边界或检索没命中——四问都要过一遍,别停在症状层。</li>
+<li><strong>分析一次就完</strong>:错误分析应跟着每轮评测自动重跑,backlog 要定期关单;只做一次的分析,结论会随数据与提示词变化而过期。</li>
+<li><strong>盲目信任 LLM 聚类</strong>:自动聚出的 issue 可能臆造或重复;抽查映射率(issue 与样本语义是否吻合),映射率低就说明批评或聚类环节要调。</li>
+<li><strong>改进后不重跑评测</strong>:改了 prompt/数据却不回测,就无法确认「变好了」;改进闭环的最后一步永远是重跑同一 golden 集并对比该失败类占比。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>错误分析是什么</td>
+<td>系统性查看失败样本,找重复出现的失败模式,而非单点怪例</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>分数只告诉「差多少」;失败模式清单才告诉「差在哪、先改什么」</td>
+</tr>
+<tr>
+<td>五步方法</td>
+<td>收集失败样本 → 聚类 → 归类 → 量化占比 → 定优先级</td>
+</tr>
+<tr>
+<td>根因四问</td>
+<td>数据、提示、能力、工具;从改动成本最低的开始验证</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>人工聚类可解释;CLEAR 思路 = LLM 裁判逐条文字批评 + KPA 聚成系统级问题并量化占比</td>
+</tr>
+<tr>
+<td>动手产物</td>
+<td>「问题类型 × 占比 × 示例 × 可能根因」表 + 排序的改进 backlog,每项带验证方式</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:课程助教黄金集 20 条错了 6 条:3 条资料外编造、2 条格式不符、1 条边界题过度拒答——你会先改哪一类?为什么编造类即使只占 3 条,优先级也高于占 2 条的格式类?如果改进后重跑,编造类降为 0 但格式类从 2 条升到 5 条,这说明什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>先改编造类:它触碰「不编造」这条硬红线,一次事故就足以摧毁学生对助教的信任,属于严重度权重最高的失败;格式类虽然条数接近,但后果是观感问题而非信任问题。改进后编造归零、格式却恶化,说明改动引入了副作用——典型如把「没有依据时说不知道」写进 prompt 后模型变得过度谨慎,连格式约定都开始敷衍;正确做法是回到第 4 节四问,把格式要求以更显式的方式(输出模板 + few-shot)重新加固,再跑一轮评测,直到两类都不回退。这正是错误分析要循环执行的原因:修好一个模式,常常暴露或放大另一个模式。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2507.18392">CLEAR:Error Analysis via LLM-as-a-Judge Made Easy(arXiv 2507.18392)</a></li>
+<li><a href="https://github.com/IBM/CLEAR">IBM/CLEAR:Comprehensive LLM Error Analysis and Reporting(GitHub)</a></li>
+<li><a href="https://aclanthology.org/2020.acl-main.546/">Key Point Analysis via Scaling Up(ACL 2020,KPA 原论文)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/06/04/"><span>上一篇</span><strong>01.06.04 让大模型当裁判</strong></a><a class="ai-pager-next" href="/ai/01-models/06/06/"><span>下一篇</span><strong>01.06.06 安全与鲁棒性评测</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念错误分析找的是重复出现的失败模式">1. 概念:错误分析找的是「重复出现的失败模式」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要分数不告诉你下一步改什么">2. 为什么需要:分数不告诉你「下一步改什么」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-方法错误分析五步">3. 方法:错误分析五步</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-定位根因数据提示能力工具四问">4. 定位根因:数据、提示、能力、工具四问</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-工具人工聚类与-llm-辅助clear-思路">5. 工具:人工聚类与 LLM 辅助(CLEAR 思路)</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动课程助教失败聚类与改进-backlog">6. 动手活动:课程助教失败聚类与改进 backlog</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-边界与排错">7. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

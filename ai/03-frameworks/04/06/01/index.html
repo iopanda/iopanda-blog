@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.04.06.01 推理框架选型矩阵 概览 · iopanda</title><meta name="description" content="03.04.06.01 推理框架选型矩阵 概览 · 框架 / 推理与服务框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/04/06/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.04.06.01 推理框架选型矩阵 概览 · iopanda"><meta property="og:description" content="03.04.06.01 推理框架选型矩阵 概览 · 框架 / 推理与服务框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/04/06/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="04" data-active-subsection="06" data-active-article="/ai/03-frameworks/04/06/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与服务框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/04/"><span class="tree-number">04</span><span class="tree-title">推理与服务框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/04/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理框架选型矩阵"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/04/06/"><span class="tree-number">06</span><span class="tree-title">推理框架选型矩阵</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/04/06/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">推理框架选型矩阵 概览</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/">推理与服务框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/06/">推理框架选型矩阵</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">推理框架选型矩阵 概览</span></nav><header class="ai-article-header"><p class="ai-number">03.04.06.01</p><h1>推理框架选型矩阵 概览</h1><p class="ai-meta"><time datetime="2026-09-04T06:05">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>inference</li><li>serving</li><li>architecture</li><li>selection</li></ul></header><div class="ai-prose"><h1 id="推理框架选型矩阵-概览">推理框架选型矩阵 概览</h1>
+<blockquote>
+<p>到这里，<a href="/ai/03-frameworks/04/01/01/">vLLM</a>、<a href="/ai/03-frameworks/04/02/01/">SGLang</a>、<a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a>、<a href="/ai/03-frameworks/04/04/01/">llama.cpp</a>、<a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a> 五条路线都已经拆开了。现在真正重要的，不再是“它们分别是什么”，而是：<strong>当你的 serving system 出现具体矛盾时，到底该选哪一条路线，为什么不是别的那一条。</strong> 这一篇就是把 inference framework 从知识点压缩成架构判断。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用系统主矛盾，而不是 benchmark 热度，来做 inference framework 选型；</li>
+<li>区分高吞吐 serving、受控生成 runtime、NVIDIA 优化后端、本地边缘运行时、通用多模型平台这五条路线；</li>
+<li>判断一个项目为什么适合某框架，也为什么不适合另一些框架；</li>
+<li>为课程助教、企业 AI 平台、本地助手、agent serving 写 inference framework 选型卡；</li>
+<li>建立一套可审计、可复盘的 serving decision record。</li>
+</ol>
+<h2 id="1-选型首先看你的-serving-复杂度住在哪里">1. 选型首先看：你的 serving 复杂度住在哪里</h2>
+<p>很多团队选 inference framework 的方式是：</p>
+<ul>
+<li>谁 benchmark 漂亮；</li>
+<li>谁社区最火；</li>
+<li>谁支持 OpenAI API；</li>
+<li>谁看起来功能最多。</li>
+</ul>
+<p>这类选法最容易错，因为 inference framework 的真正差异不在功能表，而在它优先承接哪一种复杂度。</p>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>它首先解决什么复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/04/01/01/">vLLM</a></td>
+<td>高频在线 LLM serving 的吞吐、KV cache、调度复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/02/01/">SGLang</a></td>
+<td>结构化生成、tool use、workflow-aware serving 的控制复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a></td>
+<td>NVIDIA 硬件上的执行路径、量化、并行、极限性能复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/04/01/">llama.cpp</a></td>
+<td>本地、离线、边缘、设备适配与模型工件分发复杂度</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a></td>
+<td>多模型、多后端、多协议、多环境统一治理复杂度</td>
+</tr>
+</tbody>
+</table>
+<p>所以第一原则不是“谁最好”，而是：
+<strong>你的系统最贵的复杂度到底是什么。</strong></p>
+<h2 id="2-五条路线的第一性差异">2. 五条路线的第一性差异</h2>
+<h3 id="21-vllm高吞吐-serving-路线">2.1 vLLM：高吞吐 serving 路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>API 并发高；</li>
+<li>KV cache 成本高；</li>
+<li>TTFT / 吞吐 / tail latency 已经成为成本核心；</li>
+<li>需要 OpenAI-compatible 接口尽快接生态；</li>
+</ul>
+<p>那么你缺的不是通用平台，而是高吞吐 LLM serving engine。</p>
+<h3 id="22-sglang受控生成-runtime-路线">2.2 SGLang：受控生成 runtime 路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>需要结构化输出；</li>
+<li>需要 tool parsing、reasoning parsing；</li>
+<li>模型要进入 agent / workflow / MCP loop；</li>
+<li>你不想把所有控制逻辑都堆在应用层；</li>
+</ul>
+<p>那么你缺的不是纯 serving 引擎，而是 generation runtime。</p>
+<h3 id="23-tensorrt-llmnvidia-深优化后端路线">2.3 TensorRT-LLM：NVIDIA 深优化后端路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>核心硬件明确是 NVIDIA；</li>
+<li>想把量化、kernel、graph、并行做到更深；</li>
+<li>模型规模和性能指标已经要求高端集群部署；</li>
+<li>团队愿意为更高性能上限支付更高复杂度；</li>
+</ul>
+<p>那么你缺的不是通用接口，而是 execution backend。</p>
+<h3 id="24-llamacpp本地边缘运行时路线">2.4 llama.cpp：本地/边缘运行时路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>要离线跑；</li>
+<li>要支持 Mac / CPU / 边缘盒子；</li>
+<li>要把模型文件分发到用户机器；</li>
+<li>希望最小依赖部署；</li>
+</ul>
+<p>那么你缺的不是云端 serving，而是设备侧 runtime。</p>
+<h3 id="25-triton通用多模型平台路线">2.5 Triton：通用多模型平台路线</h3>
+<p>如果你的问题是：</p>
+<ul>
+<li>模型种类多；</li>
+<li>后端种类多；</li>
+<li>协议、监控、限流、版本、仓库都想统一；</li>
+<li>团队真正的问题已经是平台运营；</li>
+</ul>
+<p>那么你缺的不是单引擎，而是 inference platform。</p>
+<h2 id="3-五个框架横向矩阵">3. 五个框架横向矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>vLLM</th>
+<th>SGLang</th>
+<th>TensorRT-LLM</th>
+<th>llama.cpp</th>
+<th>Triton</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一主语</td>
+<td>高频在线 LLM serving</td>
+<td>受控生成 runtime</td>
+<td>NVIDIA 执行后端</td>
+<td>本地/边缘运行时</td>
+<td>通用多模型平台</td>
+</tr>
+<tr>
+<td>最适合谁</td>
+<td>想把大模型 API 服务跑快的团队</td>
+<td>需要结构化/agentic serving 的团队</td>
+<td>有强 NVIDIA 基础设施的团队</td>
+<td>做离线、本地、桌面、边缘产品的团队</td>
+<td>运营多模型、多后端平台的团队</td>
+</tr>
+<tr>
+<td>最强价值</td>
+<td>continuous batching + KV cache 利用</td>
+<td>generation control + serving 合一</td>
+<td>kernel/graph/quantization 深优化</td>
+<td>GGUF + 多后端 portability</td>
+<td>repository + backend + batching + ensemble 治理</td>
+</tr>
+<tr>
+<td>最大优势</td>
+<td>LLM serving 性价比高</td>
+<td>控制面能力强</td>
+<td>性能上限高</td>
+<td>部署可达性高</td>
+<td>平台统一性强</td>
+</tr>
+<tr>
+<td>最大代价</td>
+<td>平台治理不是第一主语</td>
+<td>系统复杂度更高</td>
+<td>硬件绑定更深</td>
+<td>不以大规模平台为第一优先</td>
+<td>对简单场景偏重</td>
+</tr>
+<tr>
+<td>不适合什么</td>
+<td>多模型平台治理为主的问题</td>
+<td>只是简单 chat API</td>
+<td>硬件异构且不想深调优</td>
+<td>高并发公网多租户平台</td>
+<td>单模型轻量上线</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-用场景来选而不是用框架来选">4. 用场景来选，而不是用框架来选</h2>
+<h3 id="41-场景一公网课程助教在线问答-api">4.1 场景一：公网课程助教在线问答 API</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>学生高并发提问；</li>
+<li>长系统提示和课程规则前缀；</li>
+<li>API 吞吐和延迟是核心。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/04/01/01/">vLLM</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 llama.cpp：主问题不是离线分发；</li>
+<li>不是 Triton：当前还不是多模型平台治理；</li>
+<li>不是 TensorRT-LLM：执行后端极限优化不是第一主语；</li>
+<li>不是 SGLang：如果只是普通问答，高级控制面未必最值钱。</li>
+</ul>
+<h3 id="42-场景二课程助教长成-tool-use--structured-output--workflow-服务">4.2 场景二：课程助教长成 tool-use / structured output / workflow 服务</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>不是只要快；</li>
+<li>而是输出结构、工具调用、会话状态、工作流控制要正式化。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/04/02/01/">SGLang</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 vLLM：它更先解决 serving efficiency；</li>
+<li>不是 Triton：平台治理不是第一主语；</li>
+<li>不是 llama.cpp：场景不是设备侧离线；</li>
+<li>不是 TensorRT-LLM：控制复杂度比执行极限更痛。</li>
+</ul>
+<h3 id="43-场景三企业有明确-nvidia-gpu-集群追求性能上限">4.3 场景三：企业有明确 NVIDIA GPU 集群，追求性能上限</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>延迟、吞吐、量化、并行都已进入正式 SLA；</li>
+<li>团队愿意为后端深优化投入工程能力。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 vLLM：它更偏应用 serving runtime；</li>
+<li>不是 SGLang：主问题不是 generation control；</li>
+<li>不是 llama.cpp：不是设备侧本地场景；</li>
+<li>不是 Triton：Triton 更像平台壳，不是性能优化主语。</li>
+</ul>
+<h3 id="44-场景四教师电脑--学生笔记本--实验室-mac-mini-的离线助教">4.4 场景四：教师电脑 / 学生笔记本 / 实验室 Mac mini 的离线助教</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>模型能否被量化、打包、分发；</li>
+<li>能否在现实设备上离线运行。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/04/04/01/">llama.cpp</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 vLLM：不需要在线高吞吐；</li>
+<li>不是 SGLang：不需要复杂 agentic control plane；</li>
+<li>不是 TensorRT-LLM：不是 NVIDIA 数据中心问题；</li>
+<li>不是 Triton：平台运营不是主矛盾。</li>
+</ul>
+<h3 id="45-场景五企业统一-ai-推理平台">4.5 场景五：企业统一 AI 推理平台</h3>
+<p>系统主矛盾：</p>
+<ul>
+<li>模型类型很多；</li>
+<li>后端很多；</li>
+<li>协议、版本、监控、限流、路由都要统一。</li>
+</ul>
+<p>最自然：<a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a></p>
+<p>为什么不是别的：</p>
+<ul>
+<li>不是 vLLM：它更偏单类 LLM serving；</li>
+<li>不是 SGLang：它更偏 generation runtime；</li>
+<li>不是 llama.cpp：它更偏设备侧运行时；</li>
+<li>不是 TensorRT-LLM：它更偏后端，不是平台壳。</li>
+</ul>
+<h2 id="5-课程助教这个案例到底怎么选">5. 课程助教这个案例到底怎么选</h2>
+<p>如果把“课程助教 Agent”主线拿来做真实 serving 选型，比较自然的结论也是分阶段的：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>主问题</th>
+<th>更自然的框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一阶段：教师/学生本机离线原型</td>
+<td>本地部署、量化、分发</td>
+<td><a href="/ai/03-frameworks/04/04/01/">llama.cpp</a></td>
+</tr>
+<tr>
+<td>第二阶段：在线问答 API</td>
+<td>吞吐、KV cache、OpenAI-compatible 接口</td>
+<td><a href="/ai/03-frameworks/04/01/01/">vLLM</a></td>
+</tr>
+<tr>
+<td>第三阶段：结构化输出 + 工具 + 多轮控制</td>
+<td>workflow-aware serving</td>
+<td><a href="/ai/03-frameworks/04/02/01/">SGLang</a></td>
+</tr>
+<tr>
+<td>第四阶段：校园或企业平台统一多模型</td>
+<td>平台治理</td>
+<td><a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a></td>
+</tr>
+<tr>
+<td>第五阶段：明确 NVIDIA 高端集群优化</td>
+<td>执行路径极限性能</td>
+<td><a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a></td>
+</tr>
+</tbody>
+</table>
+<p>这张表最重要的含义是：
+<strong>inference framework selection 往往也是阶段题，而不是一次性终局题。</strong></p>
+<h2 id="6-四类常见错配">6. 四类常见错配</h2>
+<h3 id="错配一把-llamacpp-当公网大平台">错配一：把 llama.cpp 当公网大平台</h3>
+<p>结果：</p>
+<ul>
+<li>本地体验很好；</li>
+<li>但高并发、多租户、平台治理很快变成额外工程负担。</li>
+</ul>
+<h3 id="错配二把-triton-当单模型最快答案">错配二：把 Triton 当单模型最快答案</h3>
+<p>结果：</p>
+<ul>
+<li>平台能力很强；</li>
+<li>但如果系统根本还没长到平台复杂度，这层会显得偏重。</li>
+</ul>
+<h3 id="错配三明明是-agentworkflow-serving却只盯吞吐-benchmark">错配三：明明是 agent/workflow serving，却只盯吞吐 benchmark</h3>
+<p>结果：</p>
+<ul>
+<li>token 生成很快；</li>
+<li>但结构化输出、tool parsing、会话控制仍然堆在应用层，复杂度没有真正下降。</li>
+</ul>
+<h3 id="错配四明明已经是-nvidia-大集群性能问题却还只从-api-层选框架">错配四：明明已经是 NVIDIA 大集群性能问题，却还只从 API 层选框架</h3>
+<p>结果：</p>
+<ul>
+<li>服务能上线；</li>
+<li>但执行路径、量化、并行、成本上限始终没被正式优化。</li>
+</ul>
+<h2 id="7-动手活动写一张-inference-framework-selection-card">7. 动手活动：写一张 inference-framework-selection-card</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>inference-framework-selection-card.md</code></p>
+<p><strong>目标</strong>：为你的项目做一张真正可复盘的 serving 框架选型卡。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>写清楚当前主矛盾：在线吞吐、结构化控制、NVIDIA 性能、本地分发、平台治理，哪一个最痛；</li>
+<li>写清楚当前阶段：离线原型、在线 API、agentic serving、企业平台；</li>
+<li>选一个主框架；</li>
+<li>再写两个“不选其他框架”的反向理由；</li>
+<li>写预期交付物：模型工件、server config、routing policy、监控面、API surface；</li>
+<li>写验证标准：怎么证明这次选型真的降低了复杂度，而不是新增复杂度。</li>
+</ol>
+<p><strong>完成标准</strong>：你的结论不只是“我们用了 X”，而是“因为系统主复杂度在 Y，所以 X 最自然，而 A/B/C 不自然”。</p>
+</div>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选 inference framework 的第一原则是什么</td>
+<td>看 serving complexity 住在哪里</td>
+</tr>
+<tr>
+<td>五条路线分别是什么</td>
+<td>高吞吐 serving / 受控生成 runtime / NVIDIA 后端 / 本地运行时 / 通用平台</td>
+</tr>
+<tr>
+<td>为什么不要只看 benchmark</td>
+<td>因为不同框架在解决完全不同的问题</td>
+</tr>
+<tr>
+<td>真正好的选型长什么样</td>
+<td>能解释为什么选它，也能解释为什么不选别的</td>
+</tr>
+<tr>
+<td>对课程助教最重要的启发</td>
+<td>serving 选型通常也是阶段题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么 inference framework 的错配，往往不是“服务起不来”，而是“服务能跑，但复杂度被放到了错误的层次”？在你的系统里，当前真正最贵的是吞吐、结构化控制、硬件执行、本地交付，还是平台运营？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为今天的大多数框架都能把模型跑起来，但它们承接复杂度的层次完全不同。错配时，系统不会立刻报错，而是会在几周后表现为：应用层胶水越来越多、平台层过重、性能成本压不下去、本地交付始终落不了地、或者多模型运营开始失控。真正好的选型，不是找“最强引擎”，而是找“最能把当前主复杂度收进正确层次的框架”。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[6] <a href="https://github.com/vllm-project/vllm">https://github.com/vllm-project/vllm</a> — vLLM GitHub</li>
+<li>[7] <a href="https://github.com/sgl-project/sglang">https://github.com/sgl-project/sglang</a> — SGLang GitHub</li>
+<li>[8] <a href="https://github.com/NVIDIA/TensorRT-LLM">https://github.com/NVIDIA/TensorRT-LLM</a> — TensorRT-LLM GitHub</li>
+<li>[9] <a href="https://github.com/ggml-org/llama.cpp">https://github.com/ggml-org/llama.cpp</a> — llama.cpp GitHub</li>
+<li>[10] <a href="https://github.com/triton-inference-server/server">https://github.com/triton-inference-server/server</a> — Triton Inference Server GitHub</li>
+<li>[7] <a href="https://github.com/triton-inference-server/server/blob/main/README.md">https://github.com/triton-inference-server/server/blob/main/README.md</a> — Triton README</li>
+<li>[8] <a href="https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md">https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md</a> — Triton model repository doc</li>
+<li>[12] <a href="https://github.com/triton-inference-server/server/blob/main/docs/getting_started/llm.md">https://github.com/triton-inference-server/server/blob/main/docs/getting_started/llm.md</a> — Triton LLM getting started doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/04/05/07/"><span>上一篇</span><strong>03.04.05.07 Triton 与 vLLM、SGLang、TensorRT-LLM、llama.cpp 的深度对比</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/04/07/"><span>下一篇</span><strong>03.04.07 推理与服务框架 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-选型首先看你的-serving-复杂度住在哪里">1. 选型首先看：你的 serving 复杂度住在哪里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-五条路线的第一性差异">2. 五条路线的第一性差异</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-vllm高吞吐-serving-路线">2.1 vLLM：高吞吐 serving 路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-sglang受控生成-runtime-路线">2.2 SGLang：受控生成 runtime 路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#23-tensorrt-llmnvidia-深优化后端路线">2.3 TensorRT-LLM：NVIDIA 深优化后端路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#24-llamacpp本地边缘运行时路线">2.4 llama.cpp：本地/边缘运行时路线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#25-triton通用多模型平台路线">2.5 Triton：通用多模型平台路线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-五个框架横向矩阵">3. 五个框架横向矩阵</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-用场景来选而不是用框架来选">4. 用场景来选，而不是用框架来选</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-场景一公网课程助教在线问答-api">4.1 场景一：公网课程助教在线问答 API</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-场景二课程助教长成-tool-use--structured-output--workflow-服务">4.2 场景二：课程助教长成 tool-use / structured output / workflow 服务</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-场景三企业有明确-nvidia-gpu-集群追求性能上限">4.3 场景三：企业有明确 NVIDIA GPU 集群，追求性能上限</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-场景四教师电脑--学生笔记本--实验室-mac-mini-的离线助教">4.4 场景四：教师电脑 / 学生笔记本 / 实验室 Mac mini 的离线助教</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-场景五企业统一-ai-推理平台">4.5 场景五：企业统一 AI 推理平台</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-课程助教这个案例到底怎么选">5. 课程助教这个案例到底怎么选</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-四类常见错配">6. 四类常见错配</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配一把-llamacpp-当公网大平台">错配一：把 llama.cpp 当公网大平台</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配二把-triton-当单模型最快答案">错配二：把 Triton 当单模型最快答案</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配三明明是-agentworkflow-serving却只盯吞吐-benchmark">错配三：明明是 agent/workflow serving，却只盯吞吐 benchmark</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#错配四明明已经是-nvidia-大集群性能问题却还只从-api-层选框架">错配四：明明已经是 NVIDIA 大集群性能问题，却还只从 API 层选框架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动写一张-inference-framework-selection-card">7. 动手活动：写一张 inference-framework-selection-card</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.02.04 沙箱与执行模型 · iopanda</title><meta name="description" content="02.09.02.04 沙箱与执行模型 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/02/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.02.04 沙箱与执行模型 · iopanda"><meta property="og:description" content="02.09.02.04 沙箱与执行模型 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/02/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="02" data-active-article="/ai/02-agents/09/02/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 OpenAI Codex"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/02/"><span class="tree-number">02</span><span class="tree-title">OpenAI Codex</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/02/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">沙箱与执行模型</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/02/">OpenAI Codex</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">沙箱与执行模型</span></nav><header class="ai-article-header"><p class="ai-number">02.09.02.04</p><h1>沙箱与执行模型</h1><p class="ai-meta"><time datetime="2026-09-03T06:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>codex-source</li></ul></header><div class="ai-prose"><h1 id="沙箱与执行模型">沙箱与执行模型</h1>
+<blockquote>
+<p>02 章讲过,模型手里最重的工具是 exec_command——一条由模型现写的 shell 命令;本章回答「凭什么让它在你的机器上跑」。Codex 的答案是把「想要什么」与「怎么限制」拆成两层:上层 SandboxPolicy 只表达意图,下层 Seatbelt、bwrap+seccomp、Windows 受限令牌各自在三平台落地。这就是 02.04/06「权限边界」最硬核的一半:策略看得见,平台兜底看不见。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 SandboxPolicy 的四个变体及语义,解释为什么常说「三态」而源码里是四态;</li>
+<li>讲清「策略-平台分离」:同一策略如何映射到 macOS Seatbelt、Linux bwrap+seccomp 与 Windows 受限令牌;</li>
+<li>复述 macOS 策略里 <code>(deny default)</code> 与 <code>(require-not ...)</code> 如何联手保护 .git/.codex;</li>
+<li>说明 Linux 双层结构(bwrap 外层建文件系统视图、seccomp 内层管网络)与 Windows 受限令牌的能力边界;</li>
+<li>描述「执行 → 拒绝检测 → escalation 升级 → 放宽重试」管线,并解释「deny-read 禁止裸奔」不变量。</li>
+</ol>
+<h2 id="1-概念沙箱三态与策略-平台分离">1. 概念:沙箱三态与「策略-平台分离」</h2>
+<ul>
+<li>概念出处:02.04/06 权限边界讲过「最小权限 + 白名单」;沙箱是它的执行层落地——在操作系统层面把进程的读、写、网络能力削到策略允许的最小集,即使模型被提示注入带偏(02.02/06),命令也没有越界能力(呼应 02.04/04 代码执行型工具的风险)。</li>
+<li>设计骨架一句话:协议层只声明意图,平台层各自翻译。<code>SandboxPolicy</code> 是序列化形态(legacy 兼容),运行时先把它转成平台无关的 <code>FileSystemSandboxPolicy</code>(protocol/src/permissions.rs:218-230:kind 为 Restricted/Unrestricted/ExternalSandbox,条目为 {path, access: Read/Write/Deny}),再由每个平台后端翻译成自己的机制;<code>SandboxPolicy::WorkspaceWrite</code> 展开为条目在 permissions.rs:2282 <code>legacy_runtime_file_system_policy_for_cwd</code>。</li>
+</ul>
+<h2 id="2-为什么模型生成的-shell-命令不可信">2. 为什么:模型生成的 shell 命令不可信</h2>
+<ul>
+<li>攻击面来自提示注入:仓库里一段 README 就可能诱导模型去读 ~/.ssh 或删文件。审批只能拦「看起来危险」的命令,模型无法预见所有间接危害,所以要第二道防线——即使命令真被执行,权限也已被削过。</li>
+<li>只靠策略文本不够:macOS 的 Seatbelt 语言、Linux 的 namespace/seccomp、Windows 的 ACL 机制完全不同,必须逐平台写翻译器;策略与平台分离后,平台翻译出错只让单一机制失效,不会让策略语义漂移,新增平台也只需补一个后端。</li>
+</ul>
+<h2 id="3-作用位置一次-exec_command-的沙箱化路径">3. 作用位置:一次 exec_command 的沙箱化路径</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>exec_command / apply_patch 等工具(Sandboxable)</span></span>
+<span class="line"><span>  → 询问策略:escalate_on_failure / sandbox_permissions(core/src/tools/sandboxing.rs:344)</span></span>
+<span class="line"><span>  → SandboxManager::transform 把命令包上平台沙箱前缀(sandboxing/src/manager.rs:338-489)</span></span>
+<span class="line"><span>  → ExecRequest 统一规格(core/src/sandboxing/mod.rs:49-74)</span></span>
+<span class="line"><span>  → 平台执行:macOS sandbox-exec -p &lt;策略&gt; / Linux codex-linux-sandbox / Windows helper exe</span></span>
+<span class="line"><span>  → 退出后拒绝检测(denial.rs)→ 疑似被沙箱拒绝?→ 请求审批升级 → 放宽后重试</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>与审批的分工(04 章细讲):审批决定「要不要跑」,沙箱决定「跑起来能碰到什么」;两者在 exec_policy.rs 与 tools/sandboxing.rs 的交界汇合(<code>prompt_is_rejected_by_policy</code>,exec_policy.rs:48-238)。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-策略层sandboxpolicy三态实为四变体">4.1 策略层:SandboxPolicy——「三态」实为四变体</h3>
+<ul>
+<li>定义于 protocol/src/protocol.rs:1066-1118,文档注释自称 “Determines execution restrictions for model shell commands”(protocol.rs:1066):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#E1E4E8">#[serde(tag </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "type"</span><span style="color:#E1E4E8">, rename_all </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "kebab-case"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#F97583">pub</span><span style="color:#F97583"> enum</span><span style="color:#B392F0"> SandboxPolicy</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    #[serde(rename </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "danger-full-access"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#B392F0">    DangerFullAccess</span><span style="color:#E1E4E8">,             </span><span style="color:#6A737D">// 零限制,注释:Use with caution</span></span>
+<span class="line"><span style="color:#E1E4E8">    #[serde(rename </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "read-only"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#B392F0">    ReadOnly</span><span style="color:#E1E4E8"> { network_access</span><span style="color:#F97583">:</span><span style="color:#B392F0"> bool</span><span style="color:#E1E4E8"> },          </span><span style="color:#6A737D">// 只读;network_access 默认 false</span></span>
+<span class="line"><span style="color:#E1E4E8">    #[serde(rename </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "external-sandbox"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#B392F0">    ExternalSandbox</span><span style="color:#E1E4E8"> { network_access</span><span style="color:#F97583">:</span><span style="color:#B392F0"> NetworkAccess</span><span style="color:#E1E4E8"> }, </span><span style="color:#6A737D">// 已在外部沙箱内,磁盘全放行</span></span>
+<span class="line"><span style="color:#E1E4E8">    #[serde(rename </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "workspace-write"</span><span style="color:#E1E4E8">)]</span></span>
+<span class="line"><span style="color:#B392F0">    WorkspaceWrite</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        writable_roots</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Vec</span><span style="color:#E1E4E8">&lt;</span><span style="color:#B392F0">AbsolutePathBuf</span><span style="color:#E1E4E8">&gt;,  </span><span style="color:#6A737D">// cwd/TMPDIR 之外额外可写目录</span></span>
+<span class="line"><span style="color:#E1E4E8">        network_access</span><span style="color:#F97583">:</span><span style="color:#B392F0"> bool</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        exclude_tmpdir_env_var</span><span style="color:#F97583">:</span><span style="color:#B392F0"> bool</span><span style="color:#E1E4E8">,          </span><span style="color:#6A737D">// 默认不排除 TMPDIR</span></span>
+<span class="line"><span style="color:#E1E4E8">        exclude_slash_tmp</span><span style="color:#F97583">:</span><span style="color:#B392F0"> bool</span><span style="color:#E1E4E8">,               </span><span style="color:#6A737D">// 默认不排除 /tmp</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li>「三态」指日常三个档位 ReadOnly / WorkspaceWrite / DangerFullAccess;<code>ExternalSandbox</code> 是容易被忽略的第四态:声明「本进程已经在外部沙箱里」,因此磁盘访问全部放行、只按 network_access 约束网络(protocol.rs:1084-1091 注释)。字符串标签仅用于诊断输出,代码注释明确「不得用于授权」(sandbox_tags.rs:90-105)。</li>
+</ul>
+<h3 id="42-macosseatbeltdeny-default--require-not">4.2 macOS:Seatbelt——deny default + require-not</h3>
+<ul>
+<li>固定调用 <code>/usr/bin/sandbox-exec</code>(seatbelt.rs:63,注释说明:固定绝对路径防 PATH 注入、防被篡改);策略文本由 4 个内嵌 .sbpl 模板加动态段拼成(seatbelt.rs:21-34,<code>include_str!</code>)。基座模板写着 “; start with closed-by-default”,随即就是 <code>(deny default)</code>(seatbelt_base_policy.sbpl:7-8):默认拒绝一切,再逐条放行——标准的 fail-closed。</li>
+<li>组装入口:<code>create_seatbelt_command_args</code>(seatbelt.rs:844)委托 <code>create_seatbelt_command_args_with_profile</code>(seatbelt.rs:851):先由 FileSystemSandboxPolicy 反推 readable/writable/unreadable roots;可写 root 除了 allow 之外还要 deny 自身被 unlink(seatbelt.rs:511-517,防止授权边界目录被整体替换成符号链接);受保护元数据名由正则拒绝(seatbelt.rs:585-597),名称清单在 permissions.rs:32-36 <code>PROTECTED_METADATA_PATH_NAMES</code>。</li>
+<li>最值得细读的核心片段:对每个「可写根下的被排除子路径」同时生成 literal 与 subpath 两条 <code>require-not</code>(seatbelt.rs:555-563):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// Exclude both the exact protected path and anything beneath it.</span></span>
+<span class="line"><span style="color:#6A737D">// `subpath` alone leaves a gap for first-time creation of the</span></span>
+<span class="line"><span style="color:#6A737D">// protected directory itself, such as `mkdir .codex`.</span></span>
+<span class="line"><span style="color:#E1E4E8">require_parts</span><span style="color:#F97583">.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">format!</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">    "(require-not (literal (param </span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">{excluded_param}</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">)))"</span></span>
+<span class="line"><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">require_parts</span><span style="color:#F97583">.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">format!</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">    "(require-not (subpath (param </span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">{excluded_param}</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">)))"</span></span>
+<span class="line"><span style="color:#E1E4E8">));</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li>讲解:literal 精确挡路径本身,subpath 挡其下全部内容;若只有 subpath,目录尚不存在时(如首次 <code>mkdir .codex</code>)匹配不到,模型可先建目录占位、之后再往里写——两条叠加才覆盖「创建 + 遍历 + 读写」全生命周期。防「rename 逃逸」的 deny 放在策略最末(seatbelt.rs:1008-1017):rename 一个被允许的祖先目录,会把受保护后代整体搬出 carveout,所以对受保护祖先目录补 <code>file-write-unlink</code> deny,且置于末尾避免被更宽的 allow 覆盖。</li>
+</ul>
+<h3 id="43-linuxbwrap-外层--seccomp-内层">4.3 Linux:bwrap 外层 + seccomp 内层</h3>
+<ul>
+<li>进程以 argv[0] = <code>codex-linux-sandbox</code> 自调用(landlock.rs:6 <code>CODEX_LINUX_SANDBOX_ARG0</code>),把整个 PermissionProfile 序列化成参数传给自身。主流程 linux_run_main.rs:159 <code>run_main</code> 走三条路径:
+<ol>
+<li>默认路径:外层用 bubblewrap 建文件系统视图(网络全隔离时 <code>--unshare-net</code>,bwrap.rs:102 <code>should_unshare_network</code>),再以隐藏参数 <code>--apply-seccomp-then-exec</code> 重新 exec 自身进入内层(linux_run_main.rs:194-221):先 capget 校验进程没有任何 effective/permitted capability,再 fork + exec 目标命令——bwrap 管「文件系统长什么样」,seccomp 管「系统调用能不能发」;</li>
+<li>full-disk-write 且无代理网络:只施加进程级限制后直接 exec(linux_run_main.rs:277-288);</li>
+<li>legacy 路径 <code>--use-legacy-landlock</code>:线程内 Landlock 整盘只读 + dev/null 与 writable_roots 可写,代码注释自述已被 bwrap 取代、保留作兜底。</li>
+</ol>
+</li>
+<li>网络 seccomp 由 seccompiler 生成 BPF(linux-sandbox/src/landlock.rs:165-268):无论 Restricted 还是 ProxyRouted 都常拒 ptrace、process_vm_readv/writev、io_uring_*;Restricted 额外拒 connect/accept/bind/listen,socket() 只许 AF_UNIX;ProxyRouted 只许 AF_INET/AF_INET6(注释:AF_UNIX socket() 全拒,因为无法桥接);受管网络要求下,即使策略是 Enabled/DangerFullAccess 也强制装 seccomp(landlock.rs:96-103),宁可 fail-closed。</li>
+</ul>
+<h3 id="44-windows受限令牌">4.4 Windows:受限令牌</h3>
+<ul>
+<li>两个后端由 WindowsSandboxLevel 决定(sandboxing/src/windows.rs:32-34 <code>windows_sandbox_uses_elevated_backend</code>):Elevated 走提升后端,否则走 WindowsRestrictedToken 后端。受限令牌核心一次调用(windows-sandbox-rs/src/token.rs:480-481):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> flags </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> DISABLE_MAX_PRIVILEGE</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> LUA_TOKEN</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> WRITE_RESTRICTED</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> ok </span><span style="color:#F97583">=</span><span style="color:#B392F0"> CreateRestrictedToken</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#6A737D">    // ...以 capability SID 作为 restricting SID,次序见注释 "Exact order"</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">// 收尾:仅保留 SeChangeNotifyPrivilege(token.rs:504)</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li>语义:禁止全部特权、转 LUA(limited user account)、写受限;restricting SID 按注释要求的精确次序排列(token.rs:461-477),文件系统「哪里可写」由目标 ACL 上是否含对应 capability SID 决定;额外 restricting SID 刻意不进默认 DACL,防止「持有路由身份即获得对象访问权」;最终只保留 SeChangeNotifyPrivilege(token.rs:504)。</li>
+<li>能力边界:受限令牌后端表达不了「split 策略 / deny-read」,遇到就直接 Refuse-to-run(windows.rs:113-118,错误消息明说 “cannot enforce deny-read restrictions directly; refusing to run unsandboxed”,windows.rs:126);嵌套可写子路径等无法忠实表达的情形同样拒绝(windows.rs:147-169)——绝不降级裸奔。</li>
+</ul>
+<h3 id="45-拒绝检测与升级escalation">4.5 拒绝检测与升级(escalation)</h3>
+<ul>
+<li>沙箱内命令失败不一定是被沙箱拒绝,denial.rs:5-12 注释坦承没有确定性判定,只能用启发式(<code>is_likely_sandbox_denied</code>,denial.rs:13-42):exit_code <mark class="obsidian-highlight"> 0 直接放过;快速失败码 2/126/127 判非沙箱拒绝(denial.rs:25-28);LinuxSeccomp 下退出码 </mark> 128+SIGSYS 判拒绝(denial.rs:31-38);再按关键词大小写不敏感地匹配 stderr/stdout/合并输出(denial.rs:50-58:<code>operation not permitted</code>、<code>permission denied</code>、<code>read-only file system</code>、<code>seccomp</code>、<code>sandbox</code>、<code>landlock</code>、<code>failed to write file</code>);executor 侧有上报标志则直接采信(denial.rs:45-72)。进程退出后留 20ms 宽限收齐输出,统一调用 <code>check_for_sandbox_denial</code>(core/src/unified_exec/process.rs:288)并转为 <code>UnifiedExecError::sandbox_denied</code>。</li>
+<li>升级链:判定为沙箱拒绝后,工具运行时把 SandboxPermissions 升为 RequireEscalated(<code>escalate_on_failure</code>,core/src/tools/sandboxing.rs:344)→ 请求用户 approval → <code>BypassSandboxFirstAttempt</code>(core/src/tools/sandboxing.rs:235-266)放宽后重试;AskForApproval 为 Never 或 Granular 关闭 sandbox_approval 时,该请求会被策略直接拒绝(exec_policy.rs:48-238);同一会话已批准一次则不再打断(<code>should_bypass_approval</code>,sandboxing.rs:315-321)。</li>
+</ul>
+<h3 id="46-安全不变量deny-read-禁裸奔gitcodex-只读-carveout环境变量剥离">4.6 安全不变量:deny-read 禁裸奔、.git/.codex 只读 carveout、环境变量剥离</h3>
+<ul>
+<li>最重要的一条不变量(core/src/tools/sandboxing.rs:269-279):策略含任何 Deny read 时,禁止无沙箱升级:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#F97583">pub</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">crate</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">fn</span><span style="color:#B392F0"> unsandboxed_execution_allowed</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    file_system_sandbox_policy</span><span style="color:#F97583">:</span><span style="color:#F97583"> &amp;</span><span style="color:#B392F0">FileSystemSandboxPolicy</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">) </span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0"> bool</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    !</span><span style="color:#E1E4E8">file_system_sandbox_policy</span><span style="color:#F97583">.</span><span style="color:#B392F0">has_denied_read_restrictions</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li>注释点破动机:denied-read 只存在于沙箱内部;若含 deny-read 还允许绕过沙箱,等于把策略明令拒绝的路径静默放行(sandboxing.rs:272-274)。因此这类命令由 <code>sandbox_permissions_preserving_denied_reads</code> 回退为「默认沙箱重试」而非裸跑(sandboxing.rs:281-295)。</li>
+<li>.git/.codex carveout:<code>PROTECTED_METADATA_PATH_NAMES</code>(protocol/src/permissions.rs:32-36)列出 .git、.agents、.codex 等名字;每个可写 root 无显式规则时自动追加这些子路径的只读条目(append_default_read_only_*,permissions.rs:2353 附近);workspace root 的 .codex 在目录尚不存在时也受保护(<code>protect_missing_dot_codex</code>,permissions.rs:2263-2270),保证首次 mkdir .codex 也要走审批;git 子模块/worktree 的 gitdir 指针文件一并处理(permissions.rs:2236-2256)。冲突顺序 Deny &gt; Write &gt; Read(FileSystemAccessMode 的 PartialOrd,permissions.rs:88-111)。</li>
+<li>环境变量剥离:<code>NON_INHERITABLE_ENV_VARS</code>(protocol/src/shell_environment.rs:14-20)列出 exec-server 认证 token、<code>NODE_REPL_AUTH_TOKEN</code> 等,spawn 时强制过滤,子进程拿不到宿主凭证;网络禁用信号 <code>CODEX_SANDBOX_NETWORK_DISABLED=1</code> 由系统注入(spawn.rs:21、87),用户无法自行注入因为这些变量在 ExecRequest 内被系统覆写(exec_env.rs:41-66)。</li>
+</ul>
+<h2 id="5-动手活动读-seatbeltrs找一条-require-not-并解释它保护什么">5. 动手活动:读 seatbelt.rs,找一条 require-not 并解释它保护什么</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:源码反推 Seatbelt 规则的保护对象</p>
+<p><strong>目标</strong>:不依赖本文结论,直接从源码推导一条 Seatbelt 规则的语义,训练「策略文本 → 保护对象」的翻译能力(对应交付物:沙箱策略-平台映射表)。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>打开 codex-rs/sandboxing/src/seatbelt.rs,定位生成 <code>require-not</code> 的循环(约 555-563);</li>
+<li>向上追溯 excluded_param 从哪来(找 build 参数阶段收集 excluded_subpaths 的代码),说出它对应权限模型里的哪类路径(Deny read? 受保护元数据?);</li>
+<li>再找 protected_metadata_names 的循环(seatbelt.rs:565-569 与其调用点 605-613),对比 literal/subpath 与 regex 两条机制各自覆盖什么缺口;</li>
+<li>若本机是 macOS,可跑 <code>codex sandbox</code> 相关子命令或直接 <code>sandbox-exec -p '(deny default)' /bin/ls</code> 体验;非 macOS 只做静态阅读。</li>
+</ol>
+<p><strong>完成标准</strong>:能写出 ① 某条 require-not 保护 .git/.codex 的「首次创建 + 子路径全部访问」;② 只写 subpath 会漏 <code>mkdir .codex</code> 的原因;③ regex 版本(seatbelt.rs:585-597,形如 <code>^/root/.git(/.*)?$</code>)为什么能覆盖「目录尚不存在」与「按名字追加的 carveout」;④ 511-517 与 1008-1017 两处 deny 分别防什么(替换边界、rename 逃逸)。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令被误判为沙箱拒绝</td>
+<td>拒绝检测是启发式(denial.rs:5-9 自述无确定性方法),zshrc 报错可能恰好含关键词</td>
+<td>escalation 前把 stderr 片段展示给用户,而不是静默重试</td>
+</tr>
+<tr>
+<td>跨平台行为不完全一致</td>
+<td>macOS 网络策略较宽(代理/直连),Linux 受管网络强制 seccomp 更紧;策略语义一致、平台强度有差</td>
+<td>关键命令先在 Linux 侧验证 fail-closed;关注 macOS 网络放行的已知 issue #10390</td>
+</tr>
+<tr>
+<td>ExternalSandbox 配错环境</td>
+<td>它是「信任声明」:说自己已在沙箱内就获得全盘访问</td>
+<td>无外层沙箱时切勿使用,等于自废武功</td>
+</tr>
+<tr>
+<td>请求绕过沙箱却被拒</td>
+<td>策略含 deny-read 时 <code>unsandboxed_execution_allowed</code> 恒为 false(4.6)</td>
+<td>这是设计而非 bug:回退默认沙箱重试</td>
+</tr>
+<tr>
+<td>legacy Landlock 失效</td>
+<td>容器内缺 Landlock ABI</td>
+<td>走 bwrap 外层路径,而非静默降级成全放行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三态实为四态</td>
+<td>ReadOnly / WorkspaceWrite / DangerFullAccess + ExternalSandbox(声明已在外部沙箱)</td>
+</tr>
+<tr>
+<td>策略-平台分离</td>
+<td>SandboxPolicy 序列化意图 → FileSystemSandboxPolicy → Seatbelt / bwrap+seccomp / 受限令牌</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td><code>(deny default)</code> + 逐条 allow;require-not literal+subpath 挡 .git/.codex 首次创建与全部子路径;rename 防护置策略末尾</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>bwrap 外层建文件系统视图,内层 capget 校验 + seccomp;网络分 Restricted / ProxyRouted 两档</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>CreateRestrictedToken(禁特权 + LUA + 写受限);表达不了 deny-read 就 Refuse-to-run</td>
+</tr>
+<tr>
+<td>拒绝 → 升级</td>
+<td>denial.rs 启发式判拒绝 → RequireEscalated → 用户 approval → 放宽重试;已批准一次不再打断</td>
+</tr>
+<tr>
+<td>不变量</td>
+<td>deny-read 禁裸奔;.git/.codex 只读 carveout 自动追加;凭证环境变量强制剥离</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「策略含 deny-read 时」绝不允许无沙箱升级,而 deny-write 情形相对可容忍?macOS 的 require-not 为什么需要 literal 与 subpath 两条而不是一条?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>deny-read 只存在于沙箱机制内部:一旦绕过沙箱,内核里没有任何东西再阻止读,等于用「一次审批」换掉「一整条防线」,把 ~/.ssh 等被拒读路径静默放行;deny-write 绕过后的危害面是「写坏文件」,仍有只读兜底且用户已明确知情,风险量级不同。literal 管路径本身,subpath 管路径之下;只有 subpath 时,目录尚不存在(如首次 <code>mkdir .codex</code>)匹配不到,模型可先建目录占位再逐层写入,carveout 从根上被架空;两条叠加才覆盖「创建 + 遍历 + 读写」全生命周期——这也是 seatbelt.rs:555-556 注释里 “leaves a gap for first-time creation” 的含义。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/openai/codex">openai/codex(GitHub 仓库,本章源码出处)</a></li>
+<li><a href="https://developers.openai.com/codex/">OpenAI Codex documentation(CLI 使用与配置)</a></li>
+<li><a href="https://github.com/openai/codex/blob/main/codex-rs/README.md">Codex CLI(含 –sandbox / approvals 的 README)</a></li>
+<li><a href="https://github.com/containers/bubblewrap">bubblewrap(外层文件系统沙箱所用工具)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/02/03/"><span>上一篇</span><strong>02.09.02.03 主循环与工具系统</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/02/05/"><span>下一篇</span><strong>02.09.02.05 配置与审批模式</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念沙箱三态与策略-平台分离">1. 概念:沙箱三态与「策略-平台分离」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么模型生成的-shell-命令不可信">2. 为什么:模型生成的 shell 命令不可信</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用位置一次-exec_command-的沙箱化路径">3. 作用位置:一次 exec_command 的沙箱化路径</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-策略层sandboxpolicy三态实为四变体">4.1 策略层:SandboxPolicy——「三态」实为四变体</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-macosseatbeltdeny-default--require-not">4.2 macOS:Seatbelt——deny default + require-not</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-linuxbwrap-外层--seccomp-内层">4.3 Linux:bwrap 外层 + seccomp 内层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-windows受限令牌">4.4 Windows:受限令牌</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-拒绝检测与升级escalation">4.5 拒绝检测与升级(escalation)</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#46-安全不变量deny-read-禁裸奔gitcodex-只读-carveout环境变量剥离">4.6 安全不变量:deny-read 禁裸奔、.git/.codex 只读 carveout、环境变量剥离</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动读-seatbeltrs找一条-require-not-并解释它保护什么">5. 动手活动:读 seatbelt.rs,找一条 require-not 并解释它保护什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

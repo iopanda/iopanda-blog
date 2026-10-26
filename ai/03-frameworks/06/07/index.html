@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.07 工作流编排框架 概览 · iopanda</title><meta name="description" content="03.06.07 工作流编排框架 概览 · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.07 工作流编排框架 概览 · iopanda"><meta property="og:description" content="03.06.07 工作流编排框架 概览 · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection data-active-article="/ai/03-frameworks/06/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">工作流编排框架 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">工作流编排框架 概览</span></nav><header class="ai-article-header"><p class="ai-number">03.06.07</p><h1>工作流编排框架 概览</h1><p class="ai-meta"><time datetime="2026-09-04T09:40">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>ai</li><li>frameworks</li><li>workflow</li><li>orchestration</li><li>learning-path</li></ul></header><div class="ai-prose"><h1 id="工作流编排框架-概览">工作流编排框架 概览</h1>
+<blockquote>
+<p><code>03.05 Evaluation and Observability Frameworks</code> 已经把质量系统讲清楚了；接下来的 <code>03.06 Workflow Orchestration Frameworks</code> 要回答的是另一类极其工程化的问题：<strong>当你的 AI 系统不再是单次调用，而是一个会跨步骤、跨服务、跨时间持续执行的业务流程时，你拿什么框架去编排、恢复、调度、重试、监控和治理这些工作流？</strong> 这一章不把 workflow orchestration 看成“写几个 cron 和 queue”，而是把它视为 state、retries、durability、scheduling、human-in-the-loop、data dependencies 和 production operations 的组合系统。[11][12][13][14][15]</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分五条主流 workflow orchestration framework 路线：durable execution、data workflow scheduling、Python-native orchestration、data asset orchestration、event-driven orchestration；</li>
+<li>解释为什么同样是“编排流程”，Temporal、Airflow、Prefect、Dagster、Kestra 的设计中心完全不同；</li>
+<li>用状态持久化、调度模型、恢复语义、开发者体验、资产治理和组织协作方式来做 workflow framework 选型；</li>
+<li>判断什么时候你需要的是 durable workflow engine，什么时候更需要 DAG scheduler 或 asset orchestrator；</li>
+<li>为一个课程助教、数据系统或企业自动化平台写 workflow framework 选型卡。</li>
+</ol>
+<h2 id="1-为什么单开这一章">1. 为什么单开这一章</h2>
+<ul>
+<li>很多团队一开始会把 workflow 理解成：
+<ul>
+<li>定时跑一下；</li>
+<li>按顺序调几个 API；</li>
+<li>失败了重试一下。</li>
+</ul>
+</li>
+<li>但一旦进入真实工程，就会出现：
+<ul>
+<li>流程跨多步、多服务、多小时甚至多天；</li>
+<li>某一步失败后到底从哪恢复；</li>
+<li>人工审批、等待外部事件、超时补偿怎么表达；</li>
+<li>数据依赖、资产依赖、任务依赖是不是一回事；</li>
+<li>哪些是 durable execution 问题，哪些是 DAG scheduling 问题，哪些是资产治理问题。</li>
+</ul>
+</li>
+<li>所以 workflow orchestration framework 的真正价值，不在“能把步骤串起来”，而在：<strong>把跨时间、跨状态、跨失败模式的复杂度收进稳定语言。</strong></li>
+</ul>
+<h2 id="2-2026-09-我建议这一模块先聚焦的-top-5">2. 2026-09 我建议这一模块先聚焦的 top 5</h2>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">现实边界</p>
+<p>这里的 top 5 不是“编排生态唯一正确榜单”，而是按 2026-09 的工程代表性和教学价值筛出来的五条路线：durable execution、经典数据调度、Python-native orchestration、asset-first orchestration、event-driven orchestration。[11][12][13][14][15]</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更像什么</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/06/01/01/">Temporal</a></td>
+<td>面向长生命周期业务流程的 durable execution engine</td>
+<td>stateful workflows + retries + recovery</td>
+<td>durable workflow engine</td>
+<td>需要可靠恢复、补偿、长时运行流程的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/06/02/01/">Apache Airflow</a></td>
+<td>经典工作流调度平台</td>
+<td>DAG scheduling + task orchestration + ops</td>
+<td>数据/任务调度平台</td>
+<td>有大量 batch/ETL/定时调度需求的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/06/03/01/">Prefect</a></td>
+<td>Python-native workflow orchestration</td>
+<td>developer UX + resilient flows</td>
+<td>Python 工作流框架</td>
+<td>想用 Python 直接写可恢复流程的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/06/04/01/">Dagster</a></td>
+<td>data asset orchestration platform</td>
+<td>assets + lineage + software-defined data</td>
+<td>数据资产编排平台</td>
+<td>数据团队、分析工程团队、资产治理需求强的组织</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/06/05/01/">Kestra</a></td>
+<td>event-driven orchestration &amp; scheduling platform</td>
+<td>declarative workflows + triggers + integrations</td>
+<td>事件驱动自动化平台</td>
+<td>想统一任务、事件、自动化与关键业务流程的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-为什么先不把-n8n--argo-workflows-放进这一组主角">3. 为什么先不把 n8n / Argo Workflows 放进这一组主角</h2>
+<ul>
+<li><code>n8n</code> 很强，也非常流行，但更偏 visual automation / integration platform；在这一章首批主角里，我更优先保留面向开发者和架构师更强的工程编排语言；[16]</li>
+<li><code>Argo Workflows</code> 也很重要，但更偏 Kubernetes-native workflow engine / infra orchestration；如果这一章第一批只留 5 个，<code>Temporal</code> 与 <code>Airflow</code>/<code>Dagster</code>/<code>Prefect</code>/<code>Kestra</code> 的路线差异更适合作为教学骨架；[17]</li>
+<li>这一章先讲“你用什么语言组织 workflow complexity”，不先追求把所有自动化平台都列全。</li>
+</ul>
+<h2 id="4-这一模块建议怎么读">4. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/03-frameworks/06/01/01/">03.06.01 Temporal</a>：先把 durable workflow engine 的核心心智钉牢；</li>
+<li>再看 <a href="/ai/03-frameworks/06/02/01/">03.06.02 Apache Airflow</a>：理解 DAG scheduling 路线；</li>
+<li>再看 <a href="/ai/03-frameworks/06/03/01/">03.06.03 Prefect</a>：理解 Python-native orchestration 路线；</li>
+<li>再看 <a href="/ai/03-frameworks/06/04/01/">03.06.04 Dagster</a>：理解 asset-first orchestration 路线；</li>
+<li>最后看 <a href="/ai/03-frameworks/06/05/01/">03.06.05 Kestra</a>：理解 event-driven orchestration 路线。</li>
+</ol>
+<h2 id="5-本模块笔记导航">5. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/03-frameworks/06/01/01/">03.06.01 Temporal</a></li>
+<li><a href="/ai/03-frameworks/06/02/01/">03.06.02 Apache Airflow</a></li>
+<li><a href="/ai/03-frameworks/06/03/01/">03.06.03 Prefect</a></li>
+<li><a href="/ai/03-frameworks/06/04/01/">03.06.04 Dagster</a></li>
+<li><a href="/ai/03-frameworks/06/05/01/">03.06.05 Kestra</a></li>
+<li><a href="/ai/03-frameworks/06/06/01/">03.06.06 Workflow Framework 选型矩阵</a></li>
+</ol>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>不是“怎么串步骤”，而是“如何组织跨时间状态和恢复的 workflow system”</td>
+</tr>
+<tr>
+<td>top 5 是谁</td>
+<td>Temporal / Airflow / Prefect / Dagster / Kestra</td>
+</tr>
+<tr>
+<td>五条路线分别代表什么</td>
+<td>durable engine / DAG 调度 / Python workflow / asset orchestration / 事件驱动编排</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>学会判断 workflow complexity 的主矛盾，而不是只看谁能画 DAG</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[11] <a href="https://github.com/temporalio/temporal">https://github.com/temporalio/temporal</a> — Temporal GitHub</li>
+<li>[12] <a href="https://github.com/apache/airflow">https://github.com/apache/airflow</a> — Apache Airflow GitHub</li>
+<li>[13] <a href="https://github.com/PrefectHQ/prefect">https://github.com/PrefectHQ/prefect</a> — Prefect GitHub</li>
+<li>[14] <a href="https://github.com/dagster-io/dagster">https://github.com/dagster-io/dagster</a> — Dagster GitHub</li>
+<li>[15] <a href="https://github.com/kestra-io/kestra">https://github.com/kestra-io/kestra</a> — Kestra GitHub</li>
+<li>[16] <a href="https://github.com/n8n-io/n8n">https://github.com/n8n-io/n8n</a> — n8n GitHub</li>
+<li>[17] <a href="https://github.com/argoproj/argo-workflows">https://github.com/argoproj/argo-workflows</a> — Argo Workflows GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/06/05/"><span>上一篇</span><strong>03.06.06.05 课程助教系统的 workflow 选型卡</strong></a><a class="ai-pager-next" href="/ai/04-tooling/01/01/01/"><span>下一篇</span><strong>04.01.01.01 LiteLLM 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么单开这一章">1. 为什么单开这一章</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议这一模块先聚焦的-top-5">2. 2026-09 我建议这一模块先聚焦的 top 5</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么先不把-n8n--argo-workflows-放进这一组主角">3. 为什么先不把 n8n / Argo Workflows 放进这一组主角</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-这一模块建议怎么读">4. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块笔记导航">5. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.02.07 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比 · iopanda</title><meta name="description" content="03.02.02.07 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/02/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.02.07 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比 · iopanda"><meta property="og:description" content="03.02.02.07 Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/02/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="02" data-active-article="/ai/03-frameworks/02/02/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Haystack"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/02/"><span class="tree-number">02</span><span class="tree-title">Haystack</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/02/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/02/">Haystack</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比</span></nav><header class="ai-article-header"><p class="ai-number">03.02.02.07</p><h1>Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比</h1><p class="ai-meta"><time datetime="2026-09-03T21:50">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>haystack</li><li>comparison</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="haystack-与-llamaindexragflowlightragpathway-的深度对比">Haystack 与 LlamaIndex、RAGFlow、LightRAG、Pathway 的深度对比</h1>
+<blockquote>
+<p>到这里，Haystack 本身已经拆得不浅了：<a href="/ai/03-frameworks/02/02/02/">pipeline 语言</a>、<a href="/ai/03-frameworks/02/02/03/">组件家族</a>、<a href="/ai/03-frameworks/02/02/04/">production RAG 纪律</a>、<a href="/ai/03-frameworks/02/02/05/">动态 route</a>、<a href="/ai/03-frameworks/02/02/06/">课程助教案例</a>。这一篇要做的，是把 Haystack 放回整个 retrieval framework 版图中：<strong>它到底最适合解决什么复杂度，为什么它不像 LlamaIndex，也不像 RAGFlow、LightRAG 或 Pathway？</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>站在 Haystack 视角，解释它与 LlamaIndex、RAGFlow、LightRAG、Pathway 的核心差异；</li>
+<li>理解为什么“显式 pipeline”是一条独立路线，而不是代码风格偏好；</li>
+<li>用流程复杂度、对象复杂度、平台复杂度、图检索复杂度、实时流复杂度五个维度做判断；</li>
+<li>判断什么时候 Haystack 是最自然主骨架，什么时候它只是其中一条实现路线；</li>
+<li>写出一段“为什么这里选 Haystack 而不是别的”的架构说明。</li>
+</ol>
+<h2 id="1-比较前提haystack-首先是一种显式链路语言">1. 比较前提：Haystack 首先是一种“显式链路语言”</h2>
+<p>理解 Haystack 最关键的一点是：</p>
+<ul>
+<li>它不是先把知识组织成对象；</li>
+<li>不是先给你整机平台；</li>
+<li>不是先把图关系作为主角；</li>
+<li>也不是先把数据流 freshness 作为中心。</li>
+</ul>
+<p>它首先关心的是：</p>
+<ul>
+<li>检索链怎么走；</li>
+<li>组件怎么分工；</li>
+<li>路由怎么显式表达；</li>
+<li>评测怎么嵌回主路径；</li>
+<li>运行过程怎么透明。</li>
+</ul>
+<p>这让它特别像“retrieval workflow language”。</p>
+<h2 id="2-haystack-vs-llamaindex流程语言-vs-对象语言">2. Haystack vs LlamaIndex：流程语言 vs 对象语言</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Haystack</th>
+<th>LlamaIndex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一语言</td>
+<td>component / pipeline / route</td>
+<td>document / node / index / query engine</td>
+</tr>
+<tr>
+<td>首先关心什么</td>
+<td>链路如何显式编排</td>
+<td>数据如何被结构化成可查询对象</td>
+</tr>
+<tr>
+<td>更像什么</td>
+<td>检索工作流框架</td>
+<td>文档与查询对象框架</td>
+</tr>
+<tr>
+<td>最强主矛盾</td>
+<td>流程透明性与链路治理</td>
+<td>知识对象组织与查询对象扩展</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：</p>
+<ul>
+<li>Haystack 先问“上下文怎样流动”；</li>
+<li>LlamaIndex 先问“知识怎样成对象”。</li>
+</ul>
+<h2 id="3-haystack-vs-ragflow显式可编程-pipeline-vs-整机式-rag-引擎">3. Haystack vs RAGFlow：显式可编程 pipeline vs 整机式 RAG 引擎</h2>
+<p>RAGFlow 更像整机方案：</p>
+<ul>
+<li>parsing、indexing、retrieval、context layer 一体化更强；</li>
+<li>平台味更重；</li>
+<li>更接近“先拿到完整引擎”。</li>
+</ul>
+<p>Haystack 则更像：</p>
+<ul>
+<li>把每层拆开给你；</li>
+<li>允许你自己显式拼检索链；</li>
+<li>更强调 chain transparency 而不是整机便利性。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Haystack</th>
+<th>RAGFlow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更像什么</td>
+<td>可编程检索流水线框架</td>
+<td>平台化 RAG engine</td>
+</tr>
+<tr>
+<td>最适合谁</td>
+<td>想显式掌控 retrieval chain 的团队</td>
+<td>想快速获得完整平台体验的团队</td>
+</tr>
+<tr>
+<td>代价</td>
+<td>需要自己做更多架构判断</td>
+<td>平台边界更强、可编程空间相对不同</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-haystack-vs-lightrag通用-pipeline-路线-vs-轻量图检索路线">4. Haystack vs LightRAG：通用 pipeline 路线 vs 轻量图检索路线</h2>
+<p>LightRAG 更聚焦 graph-enhanced retrieval，自带明确的图检索立场。</p>
+<p>Haystack 则更通用：</p>
+<ul>
+<li>它并不要求你先用图关系组织系统；</li>
+<li>它先给你 pipeline / route / components；</li>
+<li>图关系只是未来可能接入的 retrieval strategy 之一。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Haystack</th>
+<th>LightRAG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认中心</td>
+<td>检索链路显式编排</td>
+<td>轻量 graph-aware retrieval</td>
+</tr>
+<tr>
+<td>更像什么</td>
+<td>通用 retrieval workflow framework</td>
+<td>特化图检索路线</td>
+</tr>
+<tr>
+<td>何时更自然</td>
+<td>多组件、多评测、多 route 系统</td>
+<td>图关系对召回质量至关重要时</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-haystack-vs-pathway工作流透明性-vs-实时数据路径透明性">5. Haystack vs Pathway：工作流透明性 vs 实时数据路径透明性</h2>
+<p>Pathway 的第一痛点是：</p>
+<ul>
+<li>数据在持续变化；</li>
+<li>索引需要增量更新；</li>
+<li>freshness 和流式数据路径是主角。</li>
+</ul>
+<p>Haystack 的第一痛点则常常是：</p>
+<ul>
+<li>retrieval 链怎么显式组织；</li>
+<li>component 怎么组合；</li>
+<li>evaluation 和 observability 怎么接。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Haystack</th>
+<th>Pathway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认数据假设</td>
+<td>检索链可显式编排</td>
+<td>数据流持续变化</td>
+</tr>
+<tr>
+<td>更像什么</td>
+<td>检索工作流框架</td>
+<td>实时数据流框架</td>
+</tr>
+<tr>
+<td>首先优化什么</td>
+<td>链路透明和治理</td>
+<td>freshness 与增量更新</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：Haystack 更像“检索工作台”，Pathway 更像“知识流加工厂”。</p>
+<h2 id="6-为什么说-haystack-最像上下文工程流水线">6. 为什么说 Haystack 最像“上下文工程流水线”</h2>
+<p>README 里“Built for context engineering”这句话特别关键。[54]</p>
+<p>它意味着：</p>
+<ul>
+<li>retrieval 不只是查；</li>
+<li>ranking、filtering、combining、structuring、routing 都是 context engineering；</li>
+<li>Haystack 的真正价值，不是帮你做一个回答器，而是帮你设计“上下文怎样在系统里被加工”。</li>
+</ul>
+<p>这让它特别适合那些：</p>
+<ul>
+<li>不满足于 one-shot top-k；</li>
+<li>需要明确治理和评测链；</li>
+<li>希望每一步都看得见的团队。</li>
+</ul>
+<h2 id="7-什么时候-haystack-最像正确主骨架">7. 什么时候 Haystack 最像正确主骨架</h2>
+<p>这些场景里，它往往很自然：</p>
+<ol>
+<li>你最先需要显式 pipeline；</li>
+<li>你要做 hybrid retrieval；</li>
+<li>你要做 route、rank、filter、eval 的正式链路；</li>
+<li>你要把可观测性和可恢复性纳入检索工作流；</li>
+<li>你要做 production RAG，而不仅是第一版 demo。</li>
+</ol>
+<h2 id="8-什么时候它不是最优第一选择">8. 什么时候它不是最优第一选择</h2>
+<p>这些情况下，它可能不是首选：</p>
+<ol>
+<li>你首先更在乎文档对象和索引对象设计；</li>
+<li>你想直接拿到端到端 RAG 平台；</li>
+<li>你主要在探索 graph RAG；</li>
+<li>你主要在解决实时流式更新问题；</li>
+<li>你当前系统还非常轻，pipeline 心智可能显得偏重。</li>
+</ol>
+<h2 id="9-从-haystack-视角看为什么不用别的">9. 从 Haystack 视角看“为什么不用别的”</h2>
+<h3 id="不选-llamaindex-的理由">不选 LlamaIndex 的理由</h3>
+<ul>
+<li>你当前最痛的是 retrieval chain 和 eval chain，而不是对象世界组织；</li>
+<li>你更希望上下文流向被显式摊开。</li>
+</ul>
+<h3 id="不选-ragflow-的理由">不选 RAGFlow 的理由</h3>
+<ul>
+<li>你更需要可编程链路，而不是先上整机平台；</li>
+<li>你愿意自己做架构判断，以换取透明度。</li>
+</ul>
+<h3 id="不选-lightrag-的理由">不选 LightRAG 的理由</h3>
+<ul>
+<li>你核心问题不是图关系，而是通用 retrieval workflow；</li>
+<li>你想要更宽泛的 pipeline 能力。</li>
+</ul>
+<h3 id="不选-pathway-的理由">不选 Pathway 的理由</h3>
+<ul>
+<li>你主矛盾不在数据 freshness，而在 retrieval/generation chain 设计；</li>
+<li>你当前数据更新模式还不足以逼你进入 streaming world。</li>
+</ul>
+<h2 id="10-动手活动写一段为什么我们选-haystack的架构说明">10. 动手活动：写一段“为什么我们选 Haystack”的架构说明</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>why-haystack.md</code></p>
+<p><strong>目标</strong>：为一个 production RAG 系统写一段可复核的选型说明。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>用一句话写出系统首要复杂度；</li>
+<li>说明为什么 component/pipeline/context engineering 是关键；</li>
+<li>对比 LlamaIndex、RAGFlow、LightRAG、Pathway：它们各自更先解决什么；</li>
+<li>说明为什么这些不是当前第一优先级；</li>
+<li>补一段未来演化：何时可能要接平台、图检索或实时流框架。</li>
+</ol>
+<p><strong>完成标准</strong>：读者看完后能明确知道你是在按 retrieval workflow complexity 选型，而不是按热度投票。</p>
+</div>
+<h2 id="11-边界与排错">11. 边界与排错</h2>
+<ul>
+<li><strong>误区一：Haystack 只是把步骤写清楚。</strong> 它真正值钱的是显式链路治理；</li>
+<li><strong>误区二：有 pipeline 就一定比对象框架高级。</strong> 它只是解决另一类复杂度；</li>
+<li><strong>误区三：能做 hybrid retrieval 就什么都适合。</strong> 首要复杂度不匹配时仍可能绕；</li>
+<li><strong>误区四：production-ready 就等于少写代码。</strong> 往往恰恰意味着要写清更多边界；</li>
+<li><strong>误区五：评测只是附加模块。</strong> 在 Haystack 里，评测本来就是主链世界的一部分。</li>
+</ul>
+<h2 id="12-总结">12. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Haystack 最像什么</td>
+<td>一套显式检索工作流语言</td>
+</tr>
+<tr>
+<td>它和 LlamaIndex 的核心差异</td>
+<td>一个先讲流程，一个先讲对象</td>
+</tr>
+<tr>
+<td>它和 RAGFlow 的核心差异</td>
+<td>一个先给可编程链路，一个先给整机平台</td>
+</tr>
+<tr>
+<td>它和 LightRAG 的核心差异</td>
+<td>一个通用 workflow，一个聚焦图检索</td>
+</tr>
+<tr>
+<td>它和 Pathway 的核心差异</td>
+<td>一个先稳检索链路，一个先稳实时知识流</td>
+</tr>
+<tr>
+<td>什么时候选它</td>
+<td>当你的主矛盾是 retrieval/generation chain 的透明性、评测与治理</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么一个 retrieval framework 最有价值的地方，有时不是“它能接多少后端”，而是“它能否让团队把链路摊开来看、分层来测、逐层来调”？把 Haystack 放在这个位置上，会帮助你避免哪类典型系统误判？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为 production RAG 的真正难点常常不在单点能力，而在链路复杂度：召回、排序、路由、合成、评测、追踪这些层一旦糊在一起，系统就会变得既难调又难进化。把 Haystack 放在“显式检索工作流语言”这个位置上，会帮助你避免两类误判：一是把 RAG 当黑箱问答器，二是把 retrieval 和 generation 的问题混为一谈。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[42] <a href="https://github.com/deepset-ai/haystack">https://github.com/deepset-ai/haystack</a> — Haystack GitHub</li>
+<li>[54] <a href="https://github.com/deepset-ai/haystack/blob/main/README.md">https://github.com/deepset-ai/haystack/blob/main/README.md</a> — Haystack README</li>
+<li>[55] <a href="https://github.com/deepset-ai/haystack/blob/main/haystack/core/pipeline/pipeline.py">https://github.com/deepset-ai/haystack/blob/main/haystack/core/pipeline/pipeline.py</a> — Haystack pipeline source</li>
+<li>[43] <a href="https://github.com/infiniflow/ragflow">https://github.com/infiniflow/ragflow</a> — RAGFlow GitHub</li>
+<li>[44] <a href="https://github.com/HKUDS/LightRAG">https://github.com/HKUDS/LightRAG</a> — LightRAG GitHub</li>
+<li>[45] <a href="https://github.com/pathwaycom/pathway">https://github.com/pathwaycom/pathway</a> — Pathway GitHub</li>
+<li>[41] <a href="https://github.com/run-llama/llama_index">https://github.com/run-llama/llama_index</a> — LlamaIndex GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/02/06/"><span>上一篇</span><strong>03.02.02.06 课程助教 Agent 的 Haystack 架构案例</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/03/01/"><span>下一篇</span><strong>03.02.03.01 RAGFlow 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-比较前提haystack-首先是一种显式链路语言">1. 比较前提：Haystack 首先是一种“显式链路语言”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-haystack-vs-llamaindex流程语言-vs-对象语言">2. Haystack vs LlamaIndex：流程语言 vs 对象语言</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-haystack-vs-ragflow显式可编程-pipeline-vs-整机式-rag-引擎">3. Haystack vs RAGFlow：显式可编程 pipeline vs 整机式 RAG 引擎</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-haystack-vs-lightrag通用-pipeline-路线-vs-轻量图检索路线">4. Haystack vs LightRAG：通用 pipeline 路线 vs 轻量图检索路线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-haystack-vs-pathway工作流透明性-vs-实时数据路径透明性">5. Haystack vs Pathway：工作流透明性 vs 实时数据路径透明性</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-为什么说-haystack-最像上下文工程流水线">6. 为什么说 Haystack 最像“上下文工程流水线”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-什么时候-haystack-最像正确主骨架">7. 什么时候 Haystack 最像正确主骨架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-什么时候它不是最优第一选择">8. 什么时候它不是最优第一选择</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-从-haystack-视角看为什么不用别的">9. 从 Haystack 视角看“为什么不用别的”</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-llamaindex-的理由">不选 LlamaIndex 的理由</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-ragflow-的理由">不选 RAGFlow 的理由</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-lightrag-的理由">不选 LightRAG 的理由</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#不选-pathway-的理由">不选 Pathway 的理由</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-动手活动写一段为什么我们选-haystack的架构说明">10. 动手活动：写一段“为什么我们选 Haystack”的架构说明</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-边界与排错">11. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#12-总结">12. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

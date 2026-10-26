@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.02.06 构建数据管道 · iopanda</title><meta name="description" content="01.02.06 构建数据管道 · 模型 / 预训练与训练，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/02/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.02.06 构建数据管道 · iopanda"><meta property="og:description" content="01.02.06 构建数据管道 · 模型 / 预训练与训练，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/02/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="02" data-active-subsection data-active-article="/ai/01-models/02/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 预训练与训练"></button><a class="tree-link tree-link--section" href="/ai/01-models/02/"><span class="tree-number">02</span><span class="tree-title">预训练与训练</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/02/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">构建数据管道</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/02/">预训练与训练</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">构建数据管道</span></nav><header class="ai-article-header"><p class="ai-number">01.02.06</p><h1>构建数据管道</h1><p class="ai-meta"><time datetime="2026-09-02T20:20">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-pretraining</li><li>data-pipeline</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章训练出自己的 tokenizer,文字与整数 id 之间有了稳定映射;但模型真正消费的不是一段文字,也不是一串整数,而是<strong>形状固定、成批出现的张量</strong>。本章填平这段鸿沟,先回答三个问题——<strong>为什么必须把文本变成 batch?x 与 y 为什么要右移一位?Dataset 与 DataLoader 各管什么?</strong>——再动手把文本编码成 token 文件、写出能吐出 <code>(x, y)</code> batch 的 <code>src/data.py</code>。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说清训练为什么必须喂 batch,而不是逐字符或整篇文本;</li>
+<li>解释输入 <code>x</code> 与标签 <code>y</code> 的右移一位关系,并说明为什么不能让两者相同;</li>
+<li>把清洗、切分后的文本编码为可复用的 token id 文件;</li>
+<li>编写返回固定上下文窗口的 <code>Dataset</code>,并区分它与 <code>DataLoader</code> 各自的职责;</li>
+<li>取出 batch 检查形状、dtype 与 id 边界,在训练前完成三道检查。</li>
+</ol>
+<h2 id="1-为什么必须把文本变成-batch">1. 为什么必须把文本变成 batch</h2>
+<ul>
+<li><strong>概念</strong>:数据管道(data pipeline)指「原始文本 → 定型 batch」的完整工序。第 05 章结束时我们有了 tokenizer(文字与 id 的映射);本章把 id 排成<strong>样本</strong>、把样本聚成 <strong>batch</strong>,使 batch 形状与模型的输入约定一致。它是语料与模型之间唯一的接口:管道出错,训练再久也学不到东西。</li>
+<li><strong>模型吃不了「一段文字」</strong>:神经网络的输入是数值张量,一次前向要处理一批样本。文本必须先经 tokenizer 变为整数,再按固定窗口切成样本,最后堆叠成 <code>(batch_size, context_length)</code> 的整型张量,才能送入 embedding 层。</li>
+<li><strong>为什么不能一次只喂一个样本</strong>:单个样本的梯度只是「这一个窗口」的噪声估计,方向抖动大;一批样本的梯度是多个窗口的平均,更接近真实方向,参数更新更稳。同时 GPU 的并行优势来自同时计算一大批样本——喂 1 个 token 与喂 1000 个 token 的耗时远小于 1000 倍,<strong>把硬件喂饱,训练才划算</strong>。</li>
+<li><strong>为什么不能喂整篇文本</strong>:文档长度不一,而模型输入必须是定长张量(embedding 与注意力都按固定上下文 <code>T</code> 设计)。所以任何语料最终都要切成<strong>等长窗口</strong>;第 01 章配置里的 <code>context_length: 128</code> 就是窗口宽度。</li>
+<li><strong>取舍</strong>:batch 越大,梯度越稳、硬件利用率越高,但显存占用线性增长,每个 epoch 的参数更新次数也变少。<code>batch_size=16</code>、<code>context_length=128</code> 是教学规模的平衡点,也是实验卡里定下的预算,不要擅自加大到显存撑不住。</li>
+</ul>
+<h2 id="2-一个样本长什么样x-与-y-右移一位">2. 一个样本长什么样:x 与 y 右移一位</h2>
+<p>设一段 token 为 <code>[14, 38, 9, 21, 7]</code>,上下文长度 <code>T=4</code>。模型的任务是「根据前文预测下一个 token」,于是同一段 token 被切成两个错开一位的张量:</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>内容</th>
+<th>模型任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code>(输入)</td>
+<td><code>[14, 38, 9, 21]</code></td>
+<td>已经看见的 token</td>
+</tr>
+<tr>
+<td><code>y</code>(标签)</td>
+<td><code>[38, 9, 21, 7]</code></td>
+<td>每个位置的下一个 token</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>为什么必须右移一位</strong>:监督信号是「下一个 token」——位置 <code>i</code> 的标签必须是模型看完 <code>x[0..i]</code> 后应预测出的 token,即 <code>x[i+1]</code>。切片写法一步到位:<code>x, y = chunk[:-1], chunk[1:]</code>,或逐位验证 <code>y[i] == x[i + 1]</code>。</li>
+<li><strong>为什么不能让 <code>x</code> 与 <code>y</code> 相同</strong>:若输入与标签一模一样,模型只需学会恒等复制(把输入原样输出)就能把 loss 压到接近 0;但复制不是预测,生成时面对从未见过的前文会立刻失效。<strong>标签必须永远比输入晚一步,模型学的才是预测,而不是复读。</strong></li>
+<li>模型一次输出 <code>T</code> 个位置上的词表概率,交叉熵会<strong>逐位置</strong>把输出与 <code>y</code> 比较;因此 <code>x</code> 与 <code>y</code> 的形状必须完全一致,否则 logits 与标签无法对齐(第 5 节三道检查之一)。</li>
+<li><strong>文档边界</strong>:语料若由多篇独立文档构成,应在文档之间插入 <code>&lt;eos&gt;</code>,让模型学会「一篇内容结束」的位置。训练、验证、测试必须<strong>各自编码,且始终使用同一份 tokenizer</strong>;文档边界与长文本截断策略要写进配置,方便复查。</li>
+</ul>
+<h2 id="3-先制作可检查的-token-文件">3. 先制作可检查的 token 文件</h2>
+<p>本课程的简单方案:把第 04 章切分出的每个子集(如 <code>train.txt</code>)分别编码成一维 <code>.pt</code> 文件。<strong>训练、验证、测试必须各自编码,且始终使用同一份 tokenizer。</strong> 建议目录如下:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>data/</span></span>
+<span class="line"><span>  processed/train.txt</span></span>
+<span class="line"><span>  tokenized/train.pt</span></span>
+<span class="line"><span>  tokenized/valid.pt</span></span>
+<span class="line"><span>artifacts/tokenizer.json</span></span>
+<span class="line"><span>src/data.py</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<p>编码脚本的核心是<strong>保存整数张量,而不是 Python 字符串或 list</strong>:<code>torch.load</code> 后直接得到可切片的 <code>torch.Tensor</code>,后续 Dataset 只做张量切片,零转换开销。若语料由多篇独立文档构成,应在文档之间插入 <code>&lt;eos&gt;</code>,让模型学会一篇内容结束的位置:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> torch</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> tokenizers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Tokenizer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">tokenizer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Tokenizer.from_file(</span><span style="color:#9ECBFF">"artifacts/tokenizer.json"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">eos_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer.token_to_id(</span><span style="color:#9ECBFF">"&lt;eos&gt;"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> encode_file</span><span style="color:#E1E4E8">(source: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">, target: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">) -&gt; </span><span style="color:#79B8FF">None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Path(source).read_text(</span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer.encode(text).ids </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> [eos_id]</span></span>
+<span class="line"><span style="color:#E1E4E8">    torch.save(torch.tensor(ids, </span><span style="color:#FFAB70">dtype</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">torch.long), target)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">encode_file(</span><span style="color:#9ECBFF">"data/processed/train.txt"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"data/tokenized/train.pt"</span><span style="color:#E1E4E8">)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<ul>
+<li>这里的 <code>torch.long</code> 很重要:PyTorch 的嵌入层与 <code>cross_entropy</code> 都要求类别 id 是整型,浮点 id 会在第一次前向就报 dtype 错误。</li>
+<li>编码完成后打印 token 总数与前 20 个 id,并把它们 decode 回文字抽查,确认「文字 → id → 文字」没有走样。</li>
+</ul>
+<h2 id="4-dataset-与-dataloader职责必须分清">4. Dataset 与 DataLoader:职责必须分清</h2>
+<ul>
+<li><strong>概念</strong>:<code>Dataset</code> 回答「给定一个索引,返回一个样本」;<code>DataLoader</code> 回答「把许多样本聚成一个 batch,按什么顺序送出」。前者定义<strong>样本长什么样</strong>,后者定义<strong>批怎么组</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>职责</th>
+<th>不负责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dataset</code></td>
+<td><code>__len__</code> 报告样本总数;<code>__getitem__</code> 按索引切出 <code>(x, y)</code></td>
+<td>打乱、聚批、并行加载</td>
+</tr>
+<tr>
+<td><code>DataLoader</code></td>
+<td>按 <code>batch_size</code> 聚批、按 <code>shuffle</code> 决定顺序、多进程预取</td>
+<td>样本内部结构、窗口怎么切</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>为什么必须拆成两层</strong>:样本规则与批策略是两类独立的变化方向。改窗口长度、是否插 EOS,只动 <code>Dataset</code>;改批量、是否打乱、要不要多进程,只动 <code>DataLoader</code>。训练与验证可以复用同一个 <code>Dataset</code>,却各自配置 loader(验证集 <code>shuffle=False</code>)。</li>
+<li><strong>shuffle 打乱的是什么</strong>:<code>shuffle=True</code> 随机排列的是<strong>窗口的送出顺序</strong>,绝不是重新切分 train/valid/test——那是第 04 章的职责,把两者混为一谈会让验证集「泄题」。相邻两个窗口仍可能来自同一篇文档,这是随机窗口方案的已知特性,教学规模下可接受。</li>
+<li><strong>样本计数与右移的实现</strong>:<code>__len__</code> 返回 <code>len(ids) - context_length</code>,即 token 流里所有可能的窗口起点数;窗口彼此重叠是允许且正常的。<code>__getitem__</code> 从 <code>index</code> 处切出 <code>context_length + 1</code> 个 token,再用 <code>chunk[:-1]</code> 与 <code>chunk[1:]</code> 两个切片一步完成右移:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> torch</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> torch.utils.data </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Dataset, DataLoader</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> NextTokenDataset</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Dataset</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, token_ids: torch.Tensor, context_length: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> token_ids</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.context_length </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> context_length</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.ids) </span><span style="color:#F97583">&lt;=</span><span style="color:#E1E4E8"> context_length:</span></span>
+<span class="line"><span style="color:#F97583">            raise</span><span style="color:#79B8FF"> ValueError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"token 数必须大于 context_length"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __len__</span><span style="color:#E1E4E8">(self) -&gt; </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.ids) </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.context_length</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __getitem__</span><span style="color:#E1E4E8">(self, index: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">        chunk </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.ids[index:index </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.context_length </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> chunk[:</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">], chunk[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">:]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.load(</span><span style="color:#9ECBFF">"data/tokenized/train.pt"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">weights_only</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">dataset </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> NextTokenDataset(ids, </span><span style="color:#FFAB70">context_length</span><span style="color:#F97583">=</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">loader </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DataLoader(dataset, </span><span style="color:#FFAB70">batch_size</span><span style="color:#F97583">=</span><span style="color:#79B8FF">16</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">shuffle</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">drop_last</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">x, y </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> next</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">iter</span><span style="color:#E1E4E8">(loader))</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(x.shape, y.shape, x.dtype)  </span><span style="color:#6A737D"># torch.Size([16, 128]) 两者均为 long</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<ul>
+<li><code>drop_last=True</code>:样本总数未必整除 <code>batch_size</code>,丢弃末尾不满一组的部分,保证每个 batch 形状严格是 <code>[16, 128]</code>。</li>
+<li>验证集的 loader 一般设 <code>shuffle=False</code>,让每次评估看到同一批窗口,验证 loss 才可稳定对比。</li>
+<li><strong>本章不需要 padding 与 attention mask</strong>:每个窗口等长,天然是规则的矩形张量。等以后遇到长度不一的样本才需要 padding,且损失函数必须忽略 pad token(第 08 章训练循环再处理)。</li>
+</ul>
+<h3 id="41-创建本项目真正使用的-srcdatapy">4.1 创建本项目真正使用的 <code>src/data.py</code></h3>
+<p>前一节的片段请整理为下面这个完整文件。它同时负责「文本编码」与「取窗口」,下一章的训练脚本会直接导入它:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> torch</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> tokenizers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Tokenizer</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> torch.utils.data </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Dataset, DataLoader</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> NextTokenDataset</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Dataset</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, token_ids: torch.Tensor, context_length: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> token_ids.dtype </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> torch.long:</span></span>
+<span class="line"><span style="color:#F97583">            raise</span><span style="color:#79B8FF"> TypeError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"token ids 必须是 torch.long"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(token_ids) </span><span style="color:#F97583">&lt;=</span><span style="color:#E1E4E8"> context_length:</span></span>
+<span class="line"><span style="color:#F97583">            raise</span><span style="color:#79B8FF"> ValueError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"token 数必须大于 context_length"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> token_ids</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.context_length </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> context_length</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __len__</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.ids) </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.context_length</span></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __getitem__</span><span style="color:#E1E4E8">(self, index):</span></span>
+<span class="line"><span style="color:#E1E4E8">        chunk </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.ids[index:index </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.context_length </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> chunk[:</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">], chunk[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">:]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> encode_split</span><span style="color:#E1E4E8">(split: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">, tokenizer_path</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"artifacts/tokenizer.json"</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">    tokenizer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Tokenizer.from_file(tokenizer_path)</span></span>
+<span class="line"><span style="color:#E1E4E8">    text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Path(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"data/processed/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">split</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">.txt"</span><span style="color:#E1E4E8">).read_text(</span><span style="color:#FFAB70">encoding</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    eos_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer.token_to_id(</span><span style="color:#9ECBFF">"&lt;eos&gt;"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tokenizer.encode(text).ids </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> [eos_id]</span></span>
+<span class="line"><span style="color:#E1E4E8">    output </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Path(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"data/tokenized/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">split</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">.pt"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    output.parent.mkdir(</span><span style="color:#FFAB70">parents</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">exist_ok</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    torch.save(torch.tensor(ids, </span><span style="color:#FFAB70">dtype</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">torch.long), output)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(split, </span><span style="color:#9ECBFF">"tokens="</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(ids), </span><span style="color:#9ECBFF">"saved="</span><span style="color:#E1E4E8">, output)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    encode_split(</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    encode_split(</span><span style="color:#9ECBFF">"valid"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    train_ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.load(</span><span style="color:#9ECBFF">"data/tokenized/train.pt"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">weights_only</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    loader </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DataLoader(NextTokenDataset(train_ids, </span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">), </span><span style="color:#FFAB70">batch_size</span><span style="color:#F97583">=</span><span style="color:#79B8FF">16</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">shuffle</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">drop_last</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    x, y </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> next</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">iter</span><span style="color:#E1E4E8">(loader))</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"x"</span><span style="color:#E1E4E8">, x.shape, x.dtype, </span><span style="color:#9ECBFF">"y"</span><span style="color:#E1E4E8">, y.shape, y.dtype)</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>从项目根目录执行 <code>python src/data.py</code>:预期依次出现 train、valid 的 token 数和 <code>torch.Size([16, 128])</code>。若报 <code>token 数必须大于 context_length</code>,说明数据量不足:先把 <code>context_length</code> 暂改为 64,并在实验记录里写明这个决定;<strong>不要凭空重复训练数据</strong>。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动 1:交付第一个可训练 batch</p>
+<p><strong>目标</strong>:创建 <code>src/data.py</code>,让它能从 <code>train.pt</code> 返回 <code>(x, y)</code>。</p>
+<p><strong>步骤</strong>:1) 将 train 与 valid 文本编码为 <code>torch.long</code>;2) 把 <code>context_length=128</code>、<code>batch_size=16</code> 写入配置;3) 分别取一个训练 batch 和验证 batch;4) 打印 shape、dtype、最小/最大 id,并 decode 第一条输入及其标签。</p>
+<p><strong>完成标准</strong>:两个 batch 都是 <code>[16, 128]</code> 的 <code>torch.long</code>;任意位置满足 <code>y[0, i] == x[0, i + 1]</code>(最后一个位置除外);最大 id 小于 tokenizer 的词表大小。</p>
+</div>
+<h2 id="5-在模型前建立三道检查">5. 在模型前建立三道检查</h2>
+<p>「直接开始训练」会把管道错误与模型错误混在一起,难以排查;先把以下三项跑通,能比训练更早发现问题:</p>
+<ol>
+<li><code>x.min() &gt;= 0</code> 且 <code>x.max() &lt; vocab_size</code>,否则 embedding 查表会越界;</li>
+<li><code>x.shape == y.shape == (batch_size, context_length)</code>,否则 logits 与标签无法对齐;</li>
+<li>decode 几条窗口,确认没有乱码、整段重复或意外混入验证集文本。</li>
+</ol>
+<p>若总 token 数很少,<code>context_length=128</code> 可能使可用窗口不足——这是<strong>数据量不足的信号</strong>,不应用复制同一行文本来「补数据」。可以先降低上下文长度完成教学实验,并在实验记录中说明限制。</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>先检查</th>
+<th>通常原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token 数必须大于 context_length</code></td>
+<td>打印 token 总数</td>
+<td>语料太小或窗口太长;降 <code>context_length</code> 并记录</td>
+</tr>
+<tr>
+<td><code>x.max()</code> 大于等于词表大小</td>
+<td>检查编码与词表</td>
+<td>编码用了旧 tokenizer,或 id 未重新映射</td>
+</tr>
+<tr>
+<td>decode 出现乱码</td>
+<td>抽查原始文本</td>
+<td>编码与解码路径不一致,或文件编码不是 UTF-8</td>
+</tr>
+<tr>
+<td>最后一个 batch 形状不是 <code>[16, 128]</code></td>
+<td>检查 loader 参数</td>
+<td>忘了 <code>drop_last=True</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>产物</th>
+<th>用途</th>
+<th>必查项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>train.pt</code> / <code>valid.pt</code></td>
+<td>已编码的 token 流</td>
+<td><code>long</code>、来源切分正确</td>
+</tr>
+<tr>
+<td><code>NextTokenDataset</code></td>
+<td>产生输入/下一词标签</td>
+<td>右移一位</td>
+</tr>
+<tr>
+<td><code>DataLoader</code></td>
+<td>产生 batch</td>
+<td>shape、id 范围、样本抽查</td>
+</tr>
+</tbody>
+</table>
+<p>常见误区:因果语言模型的 mask 不是在 <code>Dataset</code> 里把未来 token 删掉;训练样本中的 <code>y</code> 本来就包含「答案」,真正防止模型偷看未来的,是下一章注意力层里的 causal mask——<strong>管道负责把样本喂对,防泄漏由模型结构负责</strong>。</p>
+<p><strong>思考题</strong>:为什么验证集也要经过 tokenizer,却不能参与 tokenizer 训练?如果把 <code>&lt;eos&gt;</code> 完全省略,生成多篇独立文本时可能发生什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>tokenizer 必须对所有输入使用同一套 id 语义;但若用验证文本学习子词合并规则,验证信息会泄漏进 tokenizer,验证分数虚高。没有 EOS 时,模型更难学会「自然结束」,可能把相邻文档当成一篇连续生成。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html">PyTorch:Dataset 与 DataLoader 教程</a></li>
+<li><a href="https://docs.pytorch.org/docs/stable/data.html">PyTorch:torch.utils.data API</a></li>
+<li><a href="https://github.com/karpathy/nanoGPT">nanoGPT:数据准备与 batch 切分的经典参考实现</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/02/05/"><span>上一篇</span><strong>01.02.05 训练分词器</strong></a><a class="ai-pager-next" href="/ai/01-models/02/07/"><span>下一篇</span><strong>01.02.07 实现解码器 Transformer</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么必须把文本变成-batch">1. 为什么必须把文本变成 batch</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-一个样本长什么样x-与-y-右移一位">2. 一个样本长什么样:x 与 y 右移一位</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-先制作可检查的-token-文件">3. 先制作可检查的 token 文件</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-dataset-与-dataloader职责必须分清">4. Dataset 与 DataLoader:职责必须分清</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-创建本项目真正使用的-srcdatapy">4.1 创建本项目真正使用的 src/data.py</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-在模型前建立三道检查">5. 在模型前建立三道检查</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

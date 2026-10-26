@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.01.07 课程助教 Agent 的 LangGraph 架构案例 · iopanda</title><meta name="description" content="03.01.01.07 课程助教 Agent 的 LangGraph 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/01/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.01.07 课程助教 Agent 的 LangGraph 架构案例 · iopanda"><meta property="og:description" content="03.01.01.07 课程助教 Agent 的 LangGraph 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/01/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="01" data-active-article="/ai/03-frameworks/01/01/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 LangGraph"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/01/"><span class="tree-number">01</span><span class="tree-title">LangGraph</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/01/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">课程助教 Agent 的 LangGraph 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/01/">LangGraph</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 LangGraph 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.01.01.07</p><h1>课程助教 Agent 的 LangGraph 架构案例</h1><p class="ai-meta"><time datetime="2026-09-03T16:05">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>langgraph</li><li>case-study</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-langgraph-架构案例">课程助教 Agent 的 LangGraph 架构案例</h1>
+<blockquote>
+<p>前五篇已经把 LangGraph 的主要能力拆开了：<a href="/ai/03-frameworks/01/01/02/">为什么要用状态图</a>、<a href="/ai/03-frameworks/01/01/03/">为什么必须有恢复与中断</a>、<a href="/ai/03-frameworks/01/01/04/">如何借 prebuilt 快速起步</a>、<a href="/ai/03-frameworks/01/01/05/">状态到底怎么落盘</a>、<a href="/ai/03-frameworks/01/01/06/">高级控制流怎么组织</a>。这一章把这些零件重新组装回一个真实案例：<strong>如果要把课程助教 Agent 做成一个可上线、可恢复、可审计、可人工介入的系统，用 LangGraph 应该怎样拆？</strong> 这篇不是官方教程翻译，而是按前面 01.07 和 02 的治理纪律，给一个面向开发者和架构师的完整结构示例。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>把一个课程助教 Agent 从“会回答”拆成“会运行的系统”；</li>
+<li>为 LangGraph 设计 state schema、context schema、节点、边、checkpoint 点和 interrupt 点；</li>
+<li>区分哪些复杂度应该落在图里，哪些应该落在工具层、护栏层和人工层；</li>
+<li>解释为什么课程助教这种看起来简单的系统，最终也会长出状态图；</li>
+<li>画出一版足够接近生产系统的 LangGraph 架构草图。</li>
+</ol>
+<h2 id="1-问题定义课程助教不是问答机器人而是受治理的教学流程">1. 问题定义：课程助教不是“问答机器人”，而是“受治理的教学流程”</h2>
+<p>如果你只看 happy path，课程助教似乎很简单：</p>
+<ul>
+<li>学生提问；</li>
+<li>检索资料；</li>
+<li>模型回答；</li>
+<li>返回结果。</li>
+</ul>
+<p>但一旦把 <a href="/ai/01-models/07/05/">风险评审与发布</a> 的要求带进来，真实系统马上复杂起来：</p>
+<ol>
+<li>有些问题需要检索多轮资料，而不是一次命中；</li>
+<li>有些问题涉及成绩、隐私、课程规则，需要权限判断；</li>
+<li>有些回答需要结构化输出、引用、甚至升级人工复核；</li>
+<li>有些步骤失败后不能整轮重来；</li>
+<li>不同用户、不同会话、不同任务需要 thread 隔离；</li>
+<li>还要给发布评审留下审计痕迹。</li>
+</ol>
+<p>这时它已经不再只是“聊天”，而是一个<strong>带治理要求的长流程系统</strong>。这正是 LangGraph 的适用区间。</p>
+<h2 id="2-为什么这类系统适合-langgraph而不只是高层-sdk">2. 为什么这类系统适合 LangGraph，而不只是高层 SDK</h2>
+<p>课程助教的主矛盾并不是“角色很多”，而是：</p>
+<ul>
+<li>分支多；</li>
+<li>风险分类多；</li>
+<li>恢复点重要；</li>
+<li>人审有正式位置；</li>
+<li>输出前要过校验。</li>
+</ul>
+<p>因此它更像一条带状态和治理的工作流，而不是纯粹的多角色协作系统。若直接用一个高层 agent loop 去承载全部逻辑，会很快出现：</p>
+<ul>
+<li>什么时候继续检索，埋在 prompt 里；</li>
+<li>哪一步需要停给人看，写在外围 if/else；</li>
+<li>哪一步失败能否复用前面的结果，说不清；</li>
+<li>最后出了事故，只能读长日志猜系统想了什么。</li>
+</ul>
+<p>LangGraph 的价值就在于把这些决策边界显式化。</p>
+<h2 id="3-先定-schemastate-和-context-必须分开">3. 先定 schema：state 和 context 必须分开</h2>
+<h3 id="31-state_schema">3.1 <code>state_schema</code></h3>
+<p>建议课程助教至少有这些 state 字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>生命周期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messages</code></td>
+<td>对话消息与工具消息</td>
+<td>全流程</td>
+</tr>
+<tr>
+<td><code>user_query</code></td>
+<td>当前用户问题</td>
+<td>全流程</td>
+</tr>
+<tr>
+<td><code>retrieved_chunks</code></td>
+<td>检索得到的候选资料片段</td>
+<td>可跨多轮检索聚合</td>
+</tr>
+<tr>
+<td><code>retrieval_attempts</code></td>
+<td>已检索次数</td>
+<td>全流程</td>
+</tr>
+<tr>
+<td><code>draft_answer</code></td>
+<td>模型生成的草稿答案</td>
+<td>中后段</td>
+</tr>
+<tr>
+<td><code>risk_flags</code></td>
+<td>风险检查结果</td>
+<td>中后段</td>
+</tr>
+<tr>
+<td><code>approval_required</code></td>
+<td>是否需要人工复核</td>
+<td>中后段</td>
+</tr>
+<tr>
+<td><code>approved_answer</code></td>
+<td>人工批准或修改后的答案</td>
+<td>人审后</td>
+</tr>
+<tr>
+<td><code>final_answer</code></td>
+<td>最终返回内容</td>
+<td>收尾阶段</td>
+</tr>
+<tr>
+<td><code>audit_events</code></td>
+<td>审计痕迹摘要</td>
+<td>全流程</td>
+</tr>
+</tbody>
+</table>
+<p>这里有两个设计要点：</p>
+<ul>
+<li><code>retrieved_chunks</code>、<code>risk_flags</code>、<code>audit_events</code> 很可能需要 reducer/聚合语义；</li>
+<li><code>draft_answer</code>、<code>final_answer</code> 则更适合 LastValue 风格的“当前最后值”。</li>
+</ul>
+<h3 id="32-context_schema">3.2 <code>context_schema</code></h3>
+<p>建议把这些放进 context，而不是 state：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>为什么是 context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>本次运行的身份上下文，不应被节点任意修改</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>权限判断用，但不应在图中被篡改</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td>审计追踪字段</td>
+</tr>
+<tr>
+<td><code>db_conn</code> / service clients</td>
+<td>运行依赖，不是业务状态</td>
+</tr>
+<tr>
+<td><code>current_term</code> / course_id</td>
+<td>课程作用域</td>
+</tr>
+<tr>
+<td><code>policy_version</code></td>
+<td>风险规则版本</td>
+</tr>
+</tbody>
+</table>
+<p>这与 <a href="/ai/03-frameworks/01/05/02/">PydanticAI 的依赖边界</a> 是相通的：<strong>可变业务状态与不可变运行依赖必须分家。</strong></p>
+<h2 id="4-再定节点按决策边界拆而不是按函数名拆">4. 再定节点：按“决策边界”拆，而不是按函数名拆</h2>
+<p>建议拆成下面几层：</p>
+<h3 id="41-输入层">4.1 输入层</h3>
+<ol>
+<li>
+<p><code>normalize_input</code></p>
+<ul>
+<li>清理输入格式；</li>
+<li>统一消息结构；</li>
+<li>初始化 state。</li>
+</ul>
+</li>
+<li>
+<p><code>classify_request</code></p>
+<ul>
+<li>判断是普通课程问答、成绩查询、治理规则咨询、还是高风险请求；</li>
+<li>输出 route label。</li>
+</ul>
+</li>
+</ol>
+<h3 id="42-检索与生成层">4.2 检索与生成层</h3>
+<ol start="3">
+<li>
+<p><code>retrieve_materials</code></p>
+<ul>
+<li>调检索工具；</li>
+<li>向 <code>retrieved_chunks</code> 聚合片段；</li>
+<li>记录 <code>retrieval_attempts</code>。</li>
+</ul>
+</li>
+<li>
+<p><code>judge_evidence_sufficiency</code></p>
+<ul>
+<li>判断资料是否足够；</li>
+<li>不足则回到检索；</li>
+<li>充足则前进到生成。</li>
+</ul>
+</li>
+<li>
+<p><code>draft_answer</code></p>
+<ul>
+<li>基于资料与问题生成草稿；</li>
+<li>输出 <code>draft_answer</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="43-治理层">4.3 治理层</h3>
+<ol start="6">
+<li>
+<p><code>risk_check</code></p>
+<ul>
+<li>判断是否涉及隐私、成绩、越权、政策敏感；</li>
+<li>输出 <code>risk_flags</code>、<code>approval_required</code>。</li>
+</ul>
+</li>
+<li>
+<p><code>human_review_interrupt</code></p>
+<ul>
+<li>若需要人工复核，则 interrupt；</li>
+<li>人工回复通过 <code>Command(resume=...)</code> 或同类恢复机制回写结果。</li>
+</ul>
+</li>
+</ol>
+<h3 id="44-收尾层">4.4 收尾层</h3>
+<ol start="8">
+<li>
+<p><code>validate_output</code></p>
+<ul>
+<li>检查结构、引用、拒答模板、敏感内容；</li>
+<li>不通过可回到生成或转人工。</li>
+</ul>
+</li>
+<li>
+<p><code>finalize_response</code></p>
+<ul>
+<li>生成 <code>final_answer</code>；</li>
+<li>写审计摘要。</li>
+</ul>
+</li>
+<li>
+<p><code>persist_audit</code></p>
+</li>
+</ol>
+<ul>
+<li>输出必要审计事件；</li>
+<li>结束流程。</li>
+</ul>
+<h2 id="5-边怎么连流程图的真正价值在这里">5. 边怎么连：流程图的真正价值在这里</h2>
+<p>课程助教最关键的不是“有几个节点”，而是边怎么定义：</p>
+<table>
+<thead>
+<tr>
+<th>从</th>
+<th>到</th>
+<th>条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>normalize_input</code></td>
+<td><code>classify_request</code></td>
+<td>固定</td>
+</tr>
+<tr>
+<td><code>classify_request</code></td>
+<td><code>retrieve_materials</code></td>
+<td>普通问答 / 规则咨询</td>
+</tr>
+<tr>
+<td><code>classify_request</code></td>
+<td><code>risk_check</code></td>
+<td>成绩/隐私/高风险请求</td>
+</tr>
+<tr>
+<td><code>retrieve_materials</code></td>
+<td><code>judge_evidence_sufficiency</code></td>
+<td>固定</td>
+</tr>
+<tr>
+<td><code>judge_evidence_sufficiency</code></td>
+<td><code>retrieve_materials</code></td>
+<td>证据不足且次数未超限</td>
+</tr>
+<tr>
+<td><code>judge_evidence_sufficiency</code></td>
+<td><code>draft_answer</code></td>
+<td>证据充足</td>
+</tr>
+<tr>
+<td><code>draft_answer</code></td>
+<td><code>risk_check</code></td>
+<td>固定</td>
+</tr>
+<tr>
+<td><code>risk_check</code></td>
+<td><code>human_review_interrupt</code></td>
+<td>需要人工</td>
+</tr>
+<tr>
+<td><code>risk_check</code></td>
+<td><code>validate_output</code></td>
+<td>风险可自动放行</td>
+</tr>
+<tr>
+<td><code>human_review_interrupt</code></td>
+<td><code>validate_output</code></td>
+<td>人工批准/修改完成</td>
+</tr>
+<tr>
+<td><code>validate_output</code></td>
+<td><code>draft_answer</code></td>
+<td>校验失败但可修正</td>
+</tr>
+<tr>
+<td><code>validate_output</code></td>
+<td><code>finalize_response</code></td>
+<td>校验通过</td>
+</tr>
+<tr>
+<td><code>finalize_response</code></td>
+<td><code>persist_audit</code></td>
+<td>固定</td>
+</tr>
+</tbody>
+</table>
+<p>这张边表本身就已经是架构文档的一部分。因为它明确回答了：系统为什么会走到某一步，以及失败时为什么会回到哪里。</p>
+<h2 id="6-checkpoint-该打在哪不是每一步都一样重要">6. checkpoint 该打在哪：不是每一步都一样重要</h2>
+<p>建议至少在以下节点后 checkpoint：</p>
+<ol>
+<li><code>classify_request</code> 后
+<ul>
+<li>因为这是主路由分叉点；</li>
+</ul>
+</li>
+<li><code>retrieve_materials</code> 后
+<ul>
+<li>检索成本高，且资料可复用；</li>
+</ul>
+</li>
+<li><code>draft_answer</code> 后
+<ul>
+<li>草稿生成贵，且供后续审查；</li>
+</ul>
+</li>
+<li><code>human_review_interrupt</code> 前后
+<ul>
+<li>人工决策必须成为正式恢复点；</li>
+</ul>
+</li>
+<li><code>finalize_response</code> 后
+<ul>
+<li>最终状态与审计信息要有清晰快照。</li>
+</ul>
+</li>
+</ol>
+<p>这样做的目的不是“多存一些”，而是让失败恢复时：</p>
+<ul>
+<li>不重做已经贵的工作；</li>
+<li>不重跑已经人工做过的判断；</li>
+<li>能清楚区分哪个阶段已经完成。</li>
+</ul>
+<h2 id="7-interrupt-应该放在哪不是所有高风险都在最后一层">7. interrupt 应该放在哪：不是所有高风险都在最后一层</h2>
+<p>课程助教至少有三类典型 interrupt 点：</p>
+<ol>
+<li><strong>成绩/隐私查询</strong>
+<ul>
+<li>需要确认权限和身份；</li>
+</ul>
+</li>
+<li><strong>导出/发送类动作</strong>
+<ul>
+<li>即使答案正确，也可能带来不可逆副作用；</li>
+</ul>
+</li>
+<li><strong>模型草稿存在规则冲突</strong>
+<ul>
+<li>如资料外编造、敏感边界不清、规则冲突。</li>
+</ul>
+</li>
+</ol>
+<p>关键不是“让人看一下”，而是让人工复核进入图的正规结构：</p>
+<ul>
+<li>进入前 checkpoint；</li>
+<li>恢复时有明确 <code>resume</code> 输入；</li>
+<li>审批结果回写 state；</li>
+<li>trace 能看见人在哪一步接管过系统。</li>
+</ul>
+<h2 id="8-thread_id-怎么设计别等上线后再想">8. thread_id 怎么设计：别等上线后再想</h2>
+<p>对课程助教这类系统，一个简单但稳的设计是：</p>
+<ul>
+<li><code>thread_id = learner_id + session_id</code></li>
+</ul>
+<p>如果还要支持某些任务型流程（例如“生成复习提纲”）与普通聊天分开，可以进一步拆成：</p>
+<ul>
+<li><code>thread_id = learner_id + task_type + session_id</code></li>
+</ul>
+<p>为什么要这么早设计？因为后续这些都依赖它：</p>
+<ul>
+<li>会话恢复；</li>
+<li>审计查询；</li>
+<li>单用户数据清理；</li>
+<li>任务级别回放；</li>
+<li>多线程并行学习场景隔离。</li>
+</ul>
+<h2 id="9-哪些逻辑不该塞进-langgraph-本身">9. 哪些逻辑不该塞进 LangGraph 本身</h2>
+<p>LangGraph 适合承载的是：</p>
+<ul>
+<li>控制流；</li>
+<li>状态语义；</li>
+<li>中断与恢复；</li>
+<li>模块化流程。</li>
+</ul>
+<p>但下面这些仍应留在图外或作为工具/护栏职责：</p>
+<ul>
+<li>真正的数据库鉴权；</li>
+<li>PII 正则脱敏实现；</li>
+<li>API 网关级速率限制；</li>
+<li>向量检索底层实现；</li>
+<li>组织层面的审批制度。</li>
+</ul>
+<p>也就是说：<strong>LangGraph 负责编排和边界，不负责替代所有基础设施。</strong></p>
+<h2 id="10-一个更接近生产的最终结构">10. 一个更接近生产的最终结构</h2>
+<p>你可以把整个课程助教系统理解成：</p>
+<ul>
+<li>LangGraph：负责运行主流程与恢复语义；</li>
+<li>检索工具层：负责课程资料、成绩、规则查询；</li>
+<li>护栏层：负责输入/输出与工具边界过滤；</li>
+<li>审批层：负责人类接管；</li>
+<li>观测层：负责 trace、审计、监控；</li>
+<li>持久化层：负责 checkpoints、线程历史、删除与恢复。</li>
+</ul>
+<p>这正是为什么 LangGraph 更像“运行时内核”，而不是“又一个 prompt 框架”。</p>
+<h2 id="11-动手活动产出一份课程助教-langgraph-设计文档">11. 动手活动：产出一份课程助教 LangGraph 设计文档</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>course-ta-langgraph-architecture.md</code></p>
+<p><strong>目标</strong>：基于本章内容，为课程助教输出一份可评审的 LangGraph 设计文档。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>写 <code>state_schema</code> 与 <code>context_schema</code>；</li>
+<li>画节点表与边表；</li>
+<li>标每个 checkpoint 点与 interrupt 点；</li>
+<li>指出每个高风险工具的权限与审计策略；</li>
+<li>写一段“为什么选 LangGraph，而不是更轻 SDK”的结论。</li>
+</ol>
+<p><strong>完成标准</strong>：另一个工程师只看文档，就能实现出同一张图的第一版原型。</p>
+</div>
+<h2 id="12-边界与排错">12. 边界与排错</h2>
+<ul>
+<li><strong>误区一：课程助教只是问答，不需要图。</strong> 一旦加上治理、检索回查、人审、恢复，它就不只是问答；</li>
+<li><strong>误区二：把所有状态都长期保存。</strong> 临时中间值要区分出来，否则 checkpoint 越积越脏；</li>
+<li><strong>误区三：人审只写在制度文档，不写进图。</strong> 这样运行时就无法恢复和追踪；</li>
+<li><strong>误区四：thread_id 随便取。</strong> 后续恢复、审计、删除都会痛；</li>
+<li><strong>误区五：图能承载控制流，就把权限判断也全交给图。</strong> 真实权限校验仍需在工具/服务层落地。</li>
+</ul>
+<h2 id="13-总结">13. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教为什么会长成图</td>
+<td>因为它很快会长出回查、分支、人审、恢复和审计要求</td>
+</tr>
+<tr>
+<td>state / context 如何分</td>
+<td>业务可变状态进 state，身份与依赖进 context</td>
+</tr>
+<tr>
+<td>节点怎么拆</td>
+<td>按决策边界拆，不按函数名拆</td>
+</tr>
+<tr>
+<td>checkpoint 打在哪</td>
+<td>打在高成本、高分叉、高责任的阶段后</td>
+</tr>
+<tr>
+<td>interrupt 放在哪</td>
+<td>放在高风险、不可逆、需要问责的动作前</td>
+</tr>
+<tr>
+<td>LangGraph 真正承载什么</td>
+<td>主流程、状态语义、恢复、中断与运行边界</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果课程助教下一阶段要支持“自动为全班生成个性化复习提纲并邮件发送”，为什么你几乎肯定不能继续把它当成一个简单问答 Agent？在 LangGraph 架构上，最先需要扩的会是哪几层？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为系统会从单次回答扩展成批量流程：需要按学生逐个生成、记录进度、校验发送对象、支持失败恢复、处理人工审批和发送审计。它不再只是“回答得对不对”，而是“流程能否安全、可控、可恢复地执行完”。在 LangGraph 上，最先要扩的是子图/批量编排、checkpoint 设计、人工审批节点、发送工具的权限与审计，以及 thread/task 粒度的状态隔离。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://github.com/langchain-ai/langgraph">https://github.com/langchain-ai/langgraph</a> — LangGraph GitHub</li>
+<li>[2] <a href="https://docs.langchain.com/oss/python/langgraph/overview">https://docs.langchain.com/oss/python/langgraph/overview</a> — LangGraph docs overview</li>
+<li>[3] <a href="https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint">https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint</a> — LangGraph checkpoint README</li>
+<li>[28] <a href="https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt">https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt</a> — LangGraph prebuilt README</li>
+<li>[29] <a href="https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py">https://github.com/langchain-ai/langgraph/blob/main/libs/langgraph/langgraph/graph/message.py</a> — LangGraph message graph source</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/01/06/"><span>上一篇</span><strong>03.01.01.06 Channels、Command、子图与高级控制流</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/01/08/"><span>下一篇</span><strong>03.01.01.08 LangGraph 与 CrewAI、OpenAI Agents SDK、PydanticAI 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-问题定义课程助教不是问答机器人而是受治理的教学流程">1. 问题定义：课程助教不是“问答机器人”，而是“受治理的教学流程”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这类系统适合-langgraph而不只是高层-sdk">2. 为什么这类系统适合 LangGraph，而不只是高层 SDK</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-先定-schemastate-和-context-必须分开">3. 先定 schema：state 和 context 必须分开</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-state_schema">3.1 state_schema</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-context_schema">3.2 context_schema</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-再定节点按决策边界拆而不是按函数名拆">4. 再定节点：按“决策边界”拆，而不是按函数名拆</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-输入层">4.1 输入层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-检索与生成层">4.2 检索与生成层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-治理层">4.3 治理层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-收尾层">4.4 收尾层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-边怎么连流程图的真正价值在这里">5. 边怎么连：流程图的真正价值在这里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-checkpoint-该打在哪不是每一步都一样重要">6. checkpoint 该打在哪：不是每一步都一样重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-interrupt-应该放在哪不是所有高风险都在最后一层">7. interrupt 应该放在哪：不是所有高风险都在最后一层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-thread_id-怎么设计别等上线后再想">8. thread_id 怎么设计：别等上线后再想</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-哪些逻辑不该塞进-langgraph-本身">9. 哪些逻辑不该塞进 LangGraph 本身</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-一个更接近生产的最终结构">10. 一个更接近生产的最终结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-动手活动产出一份课程助教-langgraph-设计文档">11. 动手活动：产出一份课程助教 LangGraph 设计文档</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#12-边界与排错">12. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#13-总结">13. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

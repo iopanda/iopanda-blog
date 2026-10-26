@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.07 Agent 框架选型矩阵 · iopanda</title><meta name="description" content="03.01.07 Agent 框架选型矩阵 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.07 Agent 框架选型矩阵 · iopanda"><meta property="og:description" content="03.01.07 Agent 框架选型矩阵 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection data-active-article="/ai/03-frameworks/01/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">Agent 框架选型矩阵</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Agent 框架选型矩阵</span></nav><header class="ai-article-header"><p class="ai-number">03.01.07</p><h1>Agent 框架选型矩阵</h1><p class="ai-meta"><time datetime="2026-09-03T14:05">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>architecture</li><li>selection</li></ul></header><div class="ai-prose"><h1 id="agent-框架选型矩阵">Agent 框架选型矩阵</h1>
+<blockquote>
+<p>前五篇分别拆了 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>、<a href="/ai/03-frameworks/01/02/01/">AutoGen</a>、<a href="/ai/03-frameworks/01/03/01/">CrewAI</a>、<a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a>、<a href="/ai/03-frameworks/01/05/01/">PydanticAI</a> 的设计中心：有的先抓状态图，有的先抓角色协作，有的先抓现代运行时原语，有的先抓类型与工程契约。读到这里，开发者和架构师最需要的已经不是“再认识一个框架”，而是回答一个更难、也更值钱的问题：<strong>面对真实项目，为什么选它，而不是别的？</strong> 本章把前五篇收口成一张选型矩阵：从任务形态、控制流复杂度、错误代价、团队语言栈、治理要求、迁移成本六个维度，给出面向工程决策的判断框架，并补上一条经常被忽略但最重要的结论——很多场景里，你真正该选的不是“最强框架”，而是“最少后悔的框架”。[1][2][3][4][5][24]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用一张表比较五个主流 Agent Framework 的设计中心、优势、代价与盲区；</li>
+<li>说明为什么框架选型首先是架构问题，而不是 API 喜好问题；</li>
+<li>用六个维度为真实项目做框架判断：任务形态、控制流、错误代价、语言栈、治理、迁移；</li>
+<li>识别四类典型错配：小题大做、协作过度、控制流过隐、契约失控；</li>
+<li>为一个课程助教 Agent 写出可审计的 framework-selection-card.md。</li>
+</ol>
+<h2 id="1-概念框架选型不是谁功能多而是谁先解决你的首要矛盾">1. 概念：框架选型不是“谁功能多”，而是“谁先解决你的首要矛盾”</h2>
+<ul>
+<li>很多框架页面都会列出一长串能力：tool use、memory、guardrails、streaming、multi-agent、observability、human in the loop…… 但这些能力名单本身并不能回答架构问题。</li>
+<li>真正决定选型的，不是“框架会不会这些”，而是<strong>框架默认把哪一类复杂度当成一等公民</strong>。</li>
+<li>换句话说，框架差异首先不是功能覆盖面，而是工程哲学：
+<ul>
+<li>谁先把状态显式化？</li>
+<li>谁先把角色协作抽象出来？</li>
+<li>谁先把工具/guardrails/session/tracing 收进统一运行时？</li>
+<li>谁先把类型、依赖和输出契约钉死？</li>
+</ul>
+</li>
+<li>所以选型问题不能问“哪个最好”，只能问：<strong>你的系统最先会死在哪一类复杂度上？</strong></li>
+</ul>
+<h2 id="2-为什么需要矩阵同样叫-agent死法完全不同">2. 为什么需要矩阵：同样叫 Agent，死法完全不同</h2>
+<p>在 <a href="/ai/03-frameworks/01/06/">02 Agents</a> 里我们已经见过，Agent 的失败从来不只有一种：</p>
+<ul>
+<li>有的死在上下文失控；</li>
+<li>有的死在工具越权；</li>
+<li>有的死在多 Agent 协作混乱；</li>
+<li>有的死在输出结构不稳定；</li>
+<li>有的死在长流程恢复不了；</li>
+<li>有的死在护栏、审计和人审补不上。</li>
+</ul>
+<p>不同框架其实是在优先消灭不同死法：</p>
+<table>
+<thead>
+<tr>
+<th>首要风险</th>
+<th>更自然的框架倾向</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>长流程、复杂分支、失败恢复</td>
+<td><a href="/ai/03-frameworks/01/01/01/">LangGraph</a></td>
+<td>图、状态、checkpoint 是它的主战场 [1][6]</td>
+</tr>
+<tr>
+<td>多角色协作与对话分工</td>
+<td><a href="/ai/03-frameworks/01/02/01/">AutoGen</a> / <a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+<td>前者偏协作范式，后者偏业务团队 [2][8][12][13]</td>
+</tr>
+<tr>
+<td>现代 Agent 原语快速集成</td>
+<td><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a></td>
+<td>tools、handoffs、guardrails、sessions、tracing 一盒给齐 [15][16][17][18]</td>
+</tr>
+<tr>
+<td>Python 工程契约、typed output、依赖治理</td>
+<td><a href="/ai/03-frameworks/01/05/01/">PydanticAI</a></td>
+<td>类型、依赖、capabilities、usage limits 是强项 [19][20][23]</td>
+</tr>
+</tbody>
+</table>
+<p>因此矩阵的作用，不是排榜单，而是把“不同死法 → 不同优先框架”这件事讲清楚。</p>
+<h2 id="3-六个选型维度开发者和架构师真正该问什么">3. 六个选型维度：开发者和架构师真正该问什么</h2>
+<h3 id="31-维度一任务形态你做的是聊天流程工作台还是自治系统">3.1 维度一：任务形态——你做的是聊天、流程、工作台，还是自治系统？</h3>
+<table>
+<thead>
+<tr>
+<th>任务形态</th>
+<th>更像什么</th>
+<th>优先想到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单 Agent 问答 + 少量工具</td>
+<td>轻应用</td>
+<td><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a> / <a href="/ai/03-frameworks/01/05/01/">PydanticAI</a></td>
+</tr>
+<tr>
+<td>角色明确的业务自动化</td>
+<td>团队协作</td>
+<td><a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+</tr>
+<tr>
+<td>长流程、多分支、多中断点</td>
+<td>有状态运行时</td>
+<td><a href="/ai/03-frameworks/01/01/01/">LangGraph</a></td>
+</tr>
+<tr>
+<td>多代理研究/实验/遗留协作系统</td>
+<td>会话式多 Agent</td>
+<td><a href="/ai/03-frameworks/01/02/01/">AutoGen</a></td>
+</tr>
+</tbody>
+</table>
+<p>第一问永远不是“哪家最火”，而是“我的系统更像哪种东西”。系统形态错判，后面所有 API 比较都失去意义。</p>
+<h3 id="32-维度二控制流复杂度流程是写死的还是边跑边决定的">3.2 维度二：控制流复杂度——流程是写死的，还是边跑边决定的？</h3>
+<p>Anthropic 的建议很明确：能写死成 workflow 的，就不要先上 fully agentic system。[24] 这条建议其实直接决定框架优先级：</p>
+<ul>
+<li>流程大多可预编排：优先工作流/typed SDK；</li>
+<li>流程要在运行中频繁分叉、暂停、恢复：优先显式状态图；</li>
+<li>流程核心是多角色协作而非状态恢复：优先 CrewAI / AutoGen；</li>
+<li>流程本身不复杂，但你需要 tool、handoff、guardrail、session 一次凑齐：优先 OpenAI Agents SDK。</li>
+</ul>
+<p>一句话：<strong>控制流越复杂，越要远离“隐式 prompt 协作”；控制流越简单，越要避免过重编排。</strong></p>
+<h3 id="33-维度三错误代价错一次是重问还是事故">3.3 维度三：错误代价——错一次，是重问，还是事故？</h3>
+<p>这个维度最容易被低估。框架能力再强，只要错误代价高，系统就必须优先选择更容易审计、插入人审、限制权限的路线。</p>
+<table>
+<thead>
+<tr>
+<th>错误代价</th>
+<th>典型场景</th>
+<th>选型含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低</td>
+<td>普通问答、灵感生成</td>
+<td>可以优先考虑开发效率</td>
+</tr>
+<tr>
+<td>中</td>
+<td>企业知识回答、内部分析</td>
+<td>要加强输出契约、日志、trace</td>
+</tr>
+<tr>
+<td>高</td>
+<td>写库、发通知、成绩/财务/隐私操作</td>
+<td>优先看权限、人审、显式控制流、回滚</td>
+</tr>
+</tbody>
+</table>
+<p>因此：</p>
+<ul>
+<li>高错误代价 + 长流程 = LangGraph/PydanticAI 一类更容易做显式边界；</li>
+<li>高错误代价 + 业务审批流 = CrewAI 的 Flow 或其他显式流程更自然；</li>
+<li>高错误代价但系统只是短流程 = 轻量 SDK 也能做，但 guardrails、human-in-the-loop、session 隔离必须补齐。[15][18]</li>
+</ul>
+<h2 id="4-五个框架的横向矩阵看设计中心不看宣传页">4. 五个框架的横向矩阵：看设计中心，不看宣传页</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>默认一等公民</th>
+<th>最强点</th>
+<th>最大代价</th>
+<th>最适合</th>
+<th>最不适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/01/01/01/">LangGraph</a></td>
+<td>图、状态、恢复、人审</td>
+<td>长流程与复杂控制流可显式化 [1][6]</td>
+<td>建模成本高，小任务显得重</td>
+<td>复杂业务流程、审批、恢复、持久状态</td>
+<td>只有一两步的小 Agent</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/02/01/">AutoGen</a></td>
+<td>多 Agent 会话与事件协作</td>
+<td>理解和实验多角色协作很自然 [2][8][9]</td>
+<td>2026 已 maintenance mode，绿地项目风险高 [2][10]</td>
+<td>教学、研究、遗留系统维护</td>
+<td>新项目长期主干框架</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+<td>角色团队 + 流程双抽象</td>
+<td>业务语义强，适合角色协作自动化 [3][12][13][14]</td>
+<td>抽象层次多，设计不清时会“既像人又像流，结果两头都重”</td>
+<td>组织结构明确、任务分工清晰的自动化系统</td>
+<td>没有角色专长拆分的简单单 Agent</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a></td>
+<td>tools / handoffs / guardrails / sessions / tracing</td>
+<td>现代 Agent 原语一体化，产品落地快 [15][16][17][18]</td>
+<td>对超复杂显式状态图的表达不如 LangGraph 直接</td>
+<td>多终端、多模态、快速产品化的 Agent 应用</td>
+<td>极重流程控制、状态恢复主导的系统</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/05/01/">PydanticAI</a></td>
+<td>类型、依赖、输出契约、能力组合</td>
+<td>Python 工程纪律强，typed output 和依赖治理清晰 [19][20][23]</td>
+<td>若团队不重类型或不在 Python 主栈，优势会被削弱</td>
+<td>Python 后端团队、重测试与可维护性场景</td>
+<td>只求快速原型、对契约不敏感的临时项目</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一句人话版">一句人话版</h3>
+<ul>
+<li>你怕系统变成“黑箱长流程”——先看 LangGraph；</li>
+<li>你怕系统变成“多个角色吵成一团”——先看 CrewAI，再回头理解 AutoGen；</li>
+<li>你怕自己要手拼一堆现代 Agent 基础设施——先看 OpenAI Agents SDK；</li>
+<li>你怕输出不稳、依赖乱飞、代码难测——先看 PydanticAI；</li>
+<li>你已经有 AutoGen 存量——先做迁移评估，不要直接重写，也不要假装维护状态不存在。</li>
+</ul>
+<h2 id="5-典型场景用案例而不是抽象名词做判断">5. 典型场景：用案例而不是抽象名词做判断</h2>
+<h3 id="场景-a课程助教问答系统">场景 A：课程助教问答系统</h3>
+<p>特点：</p>
+<ul>
+<li>主体是单 Agent；</li>
+<li>主要工具是检索、成绩查询、规则查询；</li>
+<li>高风险请求需要人审；</li>
+<li>会话隔离和审计很重要；</li>
+<li>控制流不算极端复杂。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>首选 <a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a> 或 <a href="/ai/03-frameworks/01/05/01/">PydanticAI</a>；</li>
+<li>若后续演化出审批流、长恢复、复杂状态机，再考虑 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>。</li>
+</ul>
+<p>原因：这里的首要矛盾不是多角色协作，而是工具、安全、会话、输出契约与审计。</p>
+<h3 id="场景-b企业内部报告流水线">场景 B：企业内部报告流水线</h3>
+<p>特点：</p>
+<ul>
+<li>任务长；</li>
+<li>有资料收集、草稿、审阅、审批、发布；</li>
+<li>中途可能失败、暂停、回退；</li>
+<li>输出要可追溯。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>首选 <a href="/ai/03-frameworks/01/01/01/">LangGraph</a>；</li>
+<li>若角色协作特别强，可在图中嵌子 Agent 或混合 <a href="/ai/03-frameworks/01/03/01/">CrewAI</a> 思路。</li>
+</ul>
+<p>原因：这里真正复杂的是状态与控制流，而不是“角色能不能多开几个”。</p>
+<h3 id="场景-c销售运营多角色自动化">场景 C：销售/运营多角色自动化</h3>
+<p>特点：</p>
+<ul>
+<li>有线索研究、邮件撰写、线索评分、审批、发送；</li>
+<li>角色职责天然清晰；</li>
+<li>与业务流程结合强。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>优先 <a href="/ai/03-frameworks/01/03/01/">CrewAI</a>；</li>
+<li>若只需要较轻运行时原语，也可看 <a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a>。</li>
+</ul>
+<p>原因：这里的首要矛盾是“组织协作如何贴近业务语言”，Crew/Flow 的表达优势会更明显。</p>
+<h3 id="场景-dpython-后端团队的结构化智能服务">场景 D：Python 后端团队的结构化智能服务</h3>
+<p>特点：</p>
+<ul>
+<li>输出需要稳定 schema；</li>
+<li>依赖要严格注入；</li>
+<li>测试、mock、静态检查重要；</li>
+<li>复杂度来自工程治理，而不一定来自多 Agent。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>优先 <a href="/ai/03-frameworks/01/05/01/">PydanticAI</a>；</li>
+<li>若未来控制流升级，再与图式方案结合。</li>
+</ul>
+<p>原因：系统首先会死在契约和维护性，而不是死在“不会多 Agent”。</p>
+<h2 id="6-什么时候不该急着上框架甚至该先自研">6. 什么时候不该急着上框架，甚至该先自研</h2>
+<p>这部分也要诚实：不是所有场景都值得立刻选重框架。</p>
+<p>先自研最小循环更合适的信号：</p>
+<ol>
+<li>你还没验证任务本身是否成立；</li>
+<li>任务只有 1~2 个工具调用；</li>
+<li>没有长状态、没有审批流、没有多角色专长拆分；</li>
+<li>你甚至还说不清 trace、session、guardrail 到底需不需要。</li>
+</ol>
+<p>这和 [24] 的建议完全一致：<strong>先用最简单的可行结构，复杂度按需加装。</strong></p>
+<p>一句话：</p>
+<ul>
+<li>还没确定自己在解决什么问题时，框架会放大迷茫；</li>
+<li>已经确定复杂度在哪时，框架才会放大生产力。</li>
+</ul>
+<h2 id="7-迁移视角框架选型不是一次性婚姻而是阶段性联盟">7. 迁移视角：框架选型不是一次性婚姻，而是阶段性联盟</h2>
+<p>架构师最容易犯的错之一，是把框架当永久信仰。更合理的做法是把它看成阶段性复杂度管理工具。</p>
+<table>
+<thead>
+<tr>
+<th>现在的痛点</th>
+<th>可能的迁移方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从手写循环长成复杂状态机</td>
+<td>自研 → <a href="/ai/03-frameworks/01/01/01/">LangGraph</a></td>
+</tr>
+<tr>
+<td>从单 Agent 长成角色团队自动化</td>
+<td>自研 / OpenAI Agents SDK → <a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+</tr>
+<tr>
+<td>从原型代码长成需要强类型服务</td>
+<td>自研 / OpenAI Agents SDK → <a href="/ai/03-frameworks/01/05/01/">PydanticAI</a></td>
+</tr>
+<tr>
+<td>从 AutoGen 存量走向长期维护</td>
+<td><a href="/ai/03-frameworks/01/02/01/">AutoGen</a> → 目标框架按实际复杂度重选</td>
+</tr>
+</tbody>
+</table>
+<p>所以“现在选哪个”不够，最好连“半年后最可能迁去哪”一起想清楚。这样你会自然关注：</p>
+<ul>
+<li>状态能不能抽出来；</li>
+<li>工具边界是不是够清楚；</li>
+<li>输出契约是不是显式；</li>
+<li>审计和 trace 有没有可迁移性。</li>
+</ul>
+<h2 id="8-动手活动为课程助教-agent-写框架选型卡">8. 动手活动：为课程助教 Agent 写框架选型卡</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>framework-selection-card.md</code></p>
+<p><strong>目标</strong>：不是写“我喜欢哪个框架”，而是写一张开发者与架构师都能复核的选型卡。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>用一句话定义当前系统：单 Agent 问答、审批型流程、角色协作系统，还是长生命周期有状态系统；</li>
+<li>从六个维度打分：任务形态、控制流复杂度、错误代价、语言栈、治理要求、迁移压力；</li>
+<li>对五个框架逐个写：
+<ul>
+<li>为什么可能选它；</li>
+<li>为什么现在不选它；</li>
+</ul>
+</li>
+<li>明确给出主选项 + 备选项；</li>
+<li>再写一行迁移预案：若复杂度增加，下一步会往哪种框架形态演化。</li>
+</ol>
+<p><strong>完成标准</strong>：另一名工程师只读你的选型卡，就能回答「为什么不是别的框架」「三个月后复杂度升级时往哪迁」。</p>
+</div>
+<h2 id="9-边界与排错">9. 边界与排错</h2>
+<ul>
+<li><strong>误区一：把 star 数当架构结论。</strong> 热度只能证明关注度，不能证明你的系统与其设计中心匹配；</li>
+<li><strong>误区二：把功能表当选型依据。</strong> 大多数主流框架最后都能“做出类似 demo”，真正差在默认路径和维护成本；</li>
+<li><strong>误区三：觉得多 Agent 天然更高级。</strong> 协作只有在专长分工清晰时才值回复杂度；</li>
+<li><strong>误区四：低错误代价系统上重框架。</strong> 会把简单问题工程化过度；</li>
+<li><strong>误区五：高错误代价系统上轻自由度框架却不补治理。</strong> 这是把未来事故留给值班人；</li>
+<li><strong>误区六：忽略维护状态。</strong> 像 <a href="/ai/03-frameworks/01/02/01/">AutoGen</a> 这种 maintenance mode 项目，历史价值和新项目风险必须分开判断。[2][7][10]</li>
+</ul>
+<h2 id="10-总结">10. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选型首先看什么</td>
+<td>看首要复杂度，不看功能清单</td>
+</tr>
+<tr>
+<td>六个维度</td>
+<td>任务形态、控制流、错误代价、语言栈、治理要求、迁移压力</td>
+</tr>
+<tr>
+<td>LangGraph 什么时候强</td>
+<td>状态、路由、恢复、人审是主矛盾时</td>
+</tr>
+<tr>
+<td>CrewAI 什么时候强</td>
+<td>角色协作与业务流程表达是主矛盾时</td>
+</tr>
+<tr>
+<td>OpenAI Agents SDK 什么时候强</td>
+<td>现代 Agent 原语要快速凑齐时</td>
+</tr>
+<tr>
+<td>PydanticAI 什么时候强</td>
+<td>Python 工程契约、typed output、依赖治理是主矛盾时</td>
+</tr>
+<tr>
+<td>AutoGen 的现实位置</td>
+<td>协作范式重要，但新项目要谨慎看维护状态</td>
+</tr>
+<tr>
+<td>最重要的心法</td>
+<td>不是选“最强”，而是选“最少后悔”</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果你的项目今天只是一个带检索和工具调用的课程助教，但你已经确定三个月后要加入审批流、长期记忆、跨会话状态、以及失败恢复，你是现在就一步到位选显式状态图框架，还是先上轻量 SDK 再迁移？哪种选择更合理，取决于什么证据？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>没有唯一正确答案，关键看你是否已经确认那些复杂度“真的会来”，以及它们何时来、代价多大。若三个月后的需求高度确定，且现在就需要按那套边界设计状态与审批，提前选显式状态图框架可能更省返工；若这些需求仍是模糊路线图，而当前系统主要痛点只是工具、会话、输出和 guardrail，先用轻量 SDK 更符合“复杂度按需加装”的工程纪律。证据不应是愿景，而应是已排期的需求、风险等级、团队能力与迁移成本评估。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://github.com/langchain-ai/langgraph">https://github.com/langchain-ai/langgraph</a> — LangGraph GitHub</li>
+<li>[2] <a href="https://github.com/microsoft/autogen">https://github.com/microsoft/autogen</a> — AutoGen GitHub</li>
+<li>[3] <a href="https://github.com/crewAIInc/crewAI">https://github.com/crewAIInc/crewAI</a> — CrewAI GitHub</li>
+<li>[4] <a href="https://github.com/openai/openai-agents-python">https://github.com/openai/openai-agents-python</a> — OpenAI Agents SDK GitHub</li>
+<li>[5] <a href="https://github.com/pydantic/pydantic-ai">https://github.com/pydantic/pydantic-ai</a> — PydanticAI GitHub</li>
+<li>[6] <a href="https://docs.langchain.com/oss/python/langgraph/overview">https://docs.langchain.com/oss/python/langgraph/overview</a> — LangGraph docs overview</li>
+<li>[7] <a href="https://microsoft.github.io/autogen/stable">https://microsoft.github.io/autogen/stable</a> — AutoGen stable docs</li>
+<li>[8] <a href="https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/01%20-%20Programming%20Model.md">https://raw.githubusercontent.com/microsoft/autogen/main/docs/design/01%20-%20Programming%20Model.md</a> — AutoGen programming model</li>
+<li>[10] <a href="https://github.com/microsoft/agent-framework">https://github.com/microsoft/agent-framework</a> — Microsoft Agent Framework GitHub</li>
+<li>[12] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx</a> — CrewAI agents concepts</li>
+<li>[13] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx</a> — CrewAI crews concepts</li>
+<li>[14] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx</a> — CrewAI flows concepts</li>
+<li>[15] <a href="https://openai.github.io/openai-agents-python">https://openai.github.io/openai-agents-python</a> — OpenAI Agents SDK docs</li>
+<li>[16] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/agents.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/agents.md</a> — OpenAI Agents core agents doc</li>
+<li>[17] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md</a> — OpenAI Agents handoffs doc</li>
+<li>[18] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md</a> — OpenAI Agents guardrails doc</li>
+<li>[19] <a href="https://pydantic.dev/docs/ai">https://pydantic.dev/docs/ai</a> — Pydantic AI docs</li>
+<li>[20] <a href="https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/agent.md">https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/agent.md</a> — Pydantic AI agent doc</li>
+<li>[23] <a href="https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md">https://raw.githubusercontent.com/pydantic/pydantic-ai/main/docs/multi-agent-applications.md</a> — Pydantic AI multi-agent applications doc</li>
+<li>[24] <a href="https://www.anthropic.com/research/building-effective-agents">https://www.anthropic.com/research/building-effective-agents</a> — Anthropic: Building effective agents</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/06/"><span>上一篇</span><strong>03.01.06 Agent 框架 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/01/01/"><span>下一篇</span><strong>03.02.01.01 LlamaIndex 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念框架选型不是谁功能多而是谁先解决你的首要矛盾">1. 概念：框架选型不是“谁功能多”，而是“谁先解决你的首要矛盾”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要矩阵同样叫-agent死法完全不同">2. 为什么需要矩阵：同样叫 Agent，死法完全不同</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-六个选型维度开发者和架构师真正该问什么">3. 六个选型维度：开发者和架构师真正该问什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-维度一任务形态你做的是聊天流程工作台还是自治系统">3.1 维度一：任务形态——你做的是聊天、流程、工作台，还是自治系统？</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-维度二控制流复杂度流程是写死的还是边跑边决定的">3.2 维度二：控制流复杂度——流程是写死的，还是边跑边决定的？</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#33-维度三错误代价错一次是重问还是事故">3.3 维度三：错误代价——错一次，是重问，还是事故？</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-五个框架的横向矩阵看设计中心不看宣传页">4. 五个框架的横向矩阵：看设计中心，不看宣传页</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#一句人话版">一句人话版</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-典型场景用案例而不是抽象名词做判断">5. 典型场景：用案例而不是抽象名词做判断</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#场景-a课程助教问答系统">场景 A：课程助教问答系统</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#场景-b企业内部报告流水线">场景 B：企业内部报告流水线</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#场景-c销售运营多角色自动化">场景 C：销售/运营多角色自动化</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#场景-dpython-后端团队的结构化智能服务">场景 D：Python 后端团队的结构化智能服务</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-什么时候不该急着上框架甚至该先自研">6. 什么时候不该急着上框架，甚至该先自研</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-迁移视角框架选型不是一次性婚姻而是阶段性联盟">7. 迁移视角：框架选型不是一次性婚姻，而是阶段性联盟</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-动手活动为课程助教-agent-写框架选型卡">8. 动手活动：为课程助教 Agent 写框架选型卡</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-边界与排错">9. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-总结">10. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

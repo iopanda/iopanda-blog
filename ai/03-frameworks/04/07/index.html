@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.04.07 推理与服务框架 概览 · iopanda</title><meta name="description" content="03.04.07 推理与服务框架 概览 · 框架 / 推理与服务框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/04/07/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.04.07 推理与服务框架 概览 · iopanda"><meta property="og:description" content="03.04.07 推理与服务框架 概览 · 框架 / 推理与服务框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/04/07/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="04" data-active-subsection data-active-article="/ai/03-frameworks/04/07/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与服务框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/04/"><span class="tree-number">04</span><span class="tree-title">推理与服务框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/04/07/" aria-current="page"><span class="tree-number">07</span><span class="tree-title">推理与服务框架 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/">推理与服务框架</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">推理与服务框架 概览</span></nav><header class="ai-article-header"><p class="ai-number">03.04.07</p><h1>推理与服务框架 概览</h1><p class="ai-meta"><time datetime="2026-09-04T03:25">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>ai</li><li>frameworks</li><li>inference</li><li>serving</li><li>learning-path</li></ul></header><div class="ai-prose"><h1 id="推理与服务框架-概览">推理与服务框架 概览</h1>
+<blockquote>
+<p><code>03.03 Training and Fine-tuning Frameworks</code> 已经把训练系统讲清楚了；接下来的 <code>03.04 Inference and Serving Frameworks</code> 要回答的是另一类同样工程化的问题：<strong>当模型已经训好以后，你拿什么框架把它稳定、高吞吐、低延迟、可扩展、可观测地跑起来？</strong> 这一章不把 inference 看成 <code>model.generate()</code>，而是把它视为 batching、KV cache、scheduler、parallelism、quantization、serving API、multi-tenant 和 deployment topology 的组合工程。[6][7][8][9][10]</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分五条主流 inference / serving 路线：高吞吐在线服务、structured generation serving、NVIDIA 优化推理、边缘/本地推理、通用推理编排；</li>
+<li>解释为什么同样是“跑模型”，vLLM、SGLang、TensorRT-LLM、llama.cpp、Triton 的设计中心完全不同；</li>
+<li>用吞吐、延迟、硬件、部署环境、多租户和输出形态来做 serving framework 选型；</li>
+<li>判断什么时候你需要的是 LLM-native serving engine，什么时候更需要通用 inference platform；</li>
+<li>为一个课程助教或企业推理服务写 inference framework 选型卡。</li>
+</ol>
+<h2 id="1-为什么单开这一章">1. 为什么单开这一章</h2>
+<ul>
+<li>很多团队把 serving 误解成“把训练后的模型挂个 API”；</li>
+<li>但一旦进入真实交付，就会出现：
+<ul>
+<li>continuous batching 和 scheduler 由谁负责；</li>
+<li>KV cache、prefix cache、speculative decoding、quantization 怎么组合；</li>
+<li>OpenAI-compatible API 是否够用；</li>
+<li>多模型、多租户、多 LoRA、结构化输出、工具调用怎么承载；</li>
+<li>GPU 集群、边缘设备、CPU 本地部署是否需要不同路线；</li>
+<li>哪些是 inference engine 问题，哪些是 serving platform 问题。</li>
+</ul>
+</li>
+<li>所以 inference framework 的真正价值，不在“能出 token”，而在：<strong>把服务复杂度收进稳定运行时。</strong></li>
+</ul>
+<h2 id="2-2026-09-我建议这一模块先聚焦的-top-5">2. 2026-09 我建议这一模块先聚焦的 top 5</h2>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">现实边界</p>
+<p>这里的 top 5 不是“推理生态唯一正确榜单”，而是按 2026-09 的工程代表性和教学价值筛出来的五条路线：高吞吐 LLM serving、structured serving / program execution、NVIDIA 优化推理、本地/边缘推理、通用 inference platform。[6][7][8][9][10]</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更像什么</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/04/01/01/">vLLM</a></td>
+<td>高吞吐、内存高效的 LLM serving engine</td>
+<td>continuous batching / paged attention / online serving</td>
+<td>LLM-native inference engine</td>
+<td>想把大模型 API 服务跑得快、稳、便宜的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/02/01/">SGLang</a></td>
+<td>面向 structured generation 与 agent/workflow 的 serving framework</td>
+<td>serving + structured program execution</td>
+<td>程序化推理运行时</td>
+<td>需要高性能生成同时重视结构化输出、agent 调度的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a></td>
+<td>面向 NVIDIA GPU 的深度优化推理栈</td>
+<td>kernel / graph / quantization / throughput</td>
+<td>硬件优化推理后端</td>
+<td>NVIDIA 集群、高性能生产推理团队</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/04/01/">llama.cpp</a></td>
+<td>C/C++ 本地与边缘 LLM 推理引擎</td>
+<td>portability / local inference / GGUF</td>
+<td>本地推理运行时</td>
+<td>Mac、CPU、边缘设备、本地 AI 产品</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a></td>
+<td>通用多模型 inference platform</td>
+<td>model serving orchestration</td>
+<td>通用推理平台</td>
+<td>需要统一管理多模型、多后端、多协议的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-为什么先不把-tgi--lmdeploy-放进这一组主角">3. 为什么先不把 TGI / LMDeploy 放进这一组主角</h2>
+<ul>
+<li><code>TGI</code> 历史影响很大，但当前 GitHub 状态已 archived，更适合在历史脉络或迁移话题里提；[11]</li>
+<li><code>LMDeploy</code> 很值得讲，尤其在压缩、部署和 serving 一体化上有价值，但这章第一批主角只留 5 个时，<code>TensorRT-LLM</code> 和 <code>Triton</code> 在基础设施代表性上更强，<code>vLLM</code>/<code>SGLang</code>/<code>llama.cpp</code> 的路线辨识度也更清晰；[12]</li>
+<li>这一章先讲“你用什么语言组织 inference complexity”，不先追求覆盖所有引擎。</li>
+</ul>
+<h2 id="4-这一模块建议怎么读">4. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/03-frameworks/04/01/01/">03.04.01 vLLM</a>：先把 LLM-native serving engine 的核心心智钉牢；</li>
+<li>再看 <a href="/ai/03-frameworks/04/02/01/">03.04.02 SGLang</a>：理解“推理引擎 + 结构化生成运行时”为什么会独立成路线；</li>
+<li>再看 <a href="/ai/03-frameworks/04/03/01/">03.04.03 TensorRT-LLM</a>：理解硬件优化 serving 栈；</li>
+<li>再看 <a href="/ai/03-frameworks/04/04/01/">03.04.04 llama.cpp</a>：理解本地/边缘推理路线；</li>
+<li>最后看 <a href="/ai/03-frameworks/04/05/01/">03.04.05 Triton Inference Server</a>：理解通用 platform 路线。</li>
+</ol>
+<h2 id="41-按读者身份的推荐阅读路径">4.1 按读者身份的推荐阅读路径</h2>
+<table>
+<thead>
+<tr>
+<th>你是谁</th>
+<th>建议先读什么</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在线 LLM API 的开发者</td>
+<td><a href="/ai/03-frameworks/04/01/01/">vLLM</a> → <a href="/ai/03-frameworks/04/06/01/">Inference Framework 选型矩阵</a></td>
+<td>先把高吞吐 serving 的主语钉牢，再做判断</td>
+</tr>
+<tr>
+<td>做 agent / workflow / tool use 系统的人</td>
+<td><a href="/ai/03-frameworks/04/02/01/">SGLang</a> → <a href="/ai/03-frameworks/04/06/01/">Inference Framework 选型矩阵</a></td>
+<td>先理解受控生成 runtime，再决定是否需要更重平台</td>
+</tr>
+<tr>
+<td>有明确 NVIDIA GPU 集群的人</td>
+<td><a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a></td>
+<td>先看执行路径优化是否就是你的主问题</td>
+</tr>
+<tr>
+<td>做离线、本地、桌面、边缘产品的人</td>
+<td><a href="/ai/03-frameworks/04/04/01/">llama.cpp</a></td>
+<td>先把设备侧运行时路线看清楚</td>
+</tr>
+<tr>
+<td>做企业多模型平台的人</td>
+<td><a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a></td>
+<td>先看平台治理逻辑，而不是先盯单模型 benchmark</td>
+</tr>
+</tbody>
+</table>
+<h2 id="42-按系统主矛盾的速查表">4.2 按系统主矛盾的速查表</h2>
+<table>
+<thead>
+<tr>
+<th>你的系统最先会死在哪</th>
+<th>优先想到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高频并发、KV cache 成本、TTFT / tail latency</td>
+<td><a href="/ai/03-frameworks/04/01/01/">vLLM</a></td>
+</tr>
+<tr>
+<td>结构化输出、tool parsing、workflow control、agent serving</td>
+<td><a href="/ai/03-frameworks/04/02/01/">SGLang</a></td>
+</tr>
+<tr>
+<td>NVIDIA 硬件上的极限量化、并行、执行路径优化</td>
+<td><a href="/ai/03-frameworks/04/03/01/">TensorRT-LLM</a></td>
+</tr>
+<tr>
+<td>模型必须跑在 Mac / CPU / 边缘盒子 / 用户机器上</td>
+<td><a href="/ai/03-frameworks/04/04/01/">llama.cpp</a></td>
+</tr>
+<tr>
+<td>多模型、多后端、多协议、多环境统一治理</td>
+<td><a href="/ai/03-frameworks/04/05/01/">Triton Inference Server</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="43-这章最容易读偏的三个误区">4.3 这章最容易读偏的三个误区</h2>
+<ul>
+<li><strong>误区一：把 inference framework 当成“谁更快”。</strong> 真正差异在复杂度由哪一层承接；</li>
+<li><strong>误区二：把 serving engine、execution backend、platform 壳混成一回事。</strong> 它们经常是上下层关系；</li>
+<li><strong>误区三：只看 OpenAI-compatible API。</strong> 外部接口相似，不等于内部运行时主语相同。</li>
+</ul>
+<h2 id="44-如果你时间不够只读哪三篇">4.4 如果你时间不够，只读哪三篇</h2>
+<p>如果你现在不是在系统建课，而是在真实项目里要尽快做判断，我建议优先读这三篇：</p>
+<ol>
+<li><a href="/ai/03-frameworks/04/01/01/">03.04.01 vLLM</a>
+<ul>
+<li>因为它先把在线 LLM serving 的核心心智钉牢；</li>
+</ul>
+</li>
+<li><a href="/ai/03-frameworks/04/05/01/">03.04.05 Triton Inference Server</a>
+<ul>
+<li>因为它告诉你“单模型引擎”和“平台壳”不是一回事；</li>
+</ul>
+</li>
+<li><a href="/ai/03-frameworks/04/06/01/">03.04.06 Inference Framework 选型矩阵</a>
+<ul>
+<li>因为最后真正落地时，你要做的是架构判断，而不是框架背诵。</li>
+</ul>
+</li>
+</ol>
+<p>如果读完这三篇你仍然觉得：</p>
+<ul>
+<li>结构控制和 agent serving 最痛，再回去看 <a href="/ai/03-frameworks/04/02/01/">03.04.02 SGLang</a>；</li>
+<li>NVIDIA 集群性能最痛，再回去看 <a href="/ai/03-frameworks/04/03/01/">03.04.03 TensorRT-LLM</a>；</li>
+<li>本地/边缘分发最痛，再回去看 <a href="/ai/03-frameworks/04/04/01/">03.04.04 llama.cpp</a>。</li>
+</ul>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>serving-stack-card.md</td>
+<td>某个项目的 serving 栈结构卡</td>
+<td>能回答“为什么这套栈能支撑模型、接口、监控和部署”</td>
+</tr>
+<tr>
+<td>serving-sla-card.md</td>
+<td>吞吐 / 延迟 / 资源预算卡</td>
+<td>能区分 TTFT、TPOT、P95/P99、GPU 利用率</td>
+</tr>
+<tr>
+<td>inference-framework-selection-card.md</td>
+<td>serving 框架选型卡</td>
+<td>能解释“为什么选 A，不选 B”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="51-我更推荐的最小闭环产物">5.1 我更推荐的最小闭环产物</h2>
+<p>如果你不想一上来写很多文档，最小也要交出下面三样东西：</p>
+<table>
+<thead>
+<tr>
+<th>最小交付物</th>
+<th>为什么不能省</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model-artifact-and-runtime-card.md</code></td>
+<td>没有它，模型工件、量化格式、运行时要求会一直混在一起</td>
+</tr>
+<tr>
+<td><code>serving-stack-card.md</code></td>
+<td>没有它，团队很快说不清引擎、平台、协议、监控谁负责什么</td>
+</tr>
+<tr>
+<td><code>inference-framework-selection-card.md</code></td>
+<td>没有它，框架选择就只能退化成“谁 benchmark 更好看”</td>
+</tr>
+</tbody>
+</table>
+<p>这三个东西加起来，才构成一个最小可审计 serving 方案：</p>
+<ul>
+<li>模型以什么形态交付；</li>
+<li>服务链怎么组织；</li>
+<li>为什么是这套框架，而不是别的。</li>
+</ul>
+<h2 id="52-这章学完之后你应该真的会什么">5.2 这章学完之后，你应该真的会什么</h2>
+<p>学完这一章，理想状态不是“我知道 5 个 serving 框架名字”，而是你真的能完成下面三件事：</p>
+<ol>
+<li>看到一个项目，就能先判断它最痛的是吞吐、控制、执行后端、本地交付，还是平台治理；</li>
+<li>能写出一页纸说明：为什么这里选 vLLM / SGLang / TensorRT-LLM / llama.cpp / Triton；</li>
+<li>能在设计评审里把“推理系统”讲成一个可交付架构，而不是一句“起个模型服务”。</li>
+</ol>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/03-frameworks/04/01/01/">03.04.01 vLLM</a></li>
+<li><a href="/ai/03-frameworks/04/02/01/">03.04.02 SGLang</a></li>
+<li><a href="/ai/03-frameworks/04/03/01/">03.04.03 TensorRT-LLM</a></li>
+<li><a href="/ai/03-frameworks/04/04/01/">03.04.04 llama.cpp</a></li>
+<li><a href="/ai/03-frameworks/04/05/01/">03.04.05 Triton Inference Server</a></li>
+<li><a href="/ai/03-frameworks/04/06/01/">03.04.06 Inference Framework 选型矩阵</a></li>
+</ol>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>不是“怎么调用模型”，而是“如何组织 inference system”</td>
+</tr>
+<tr>
+<td>top 5 是谁</td>
+<td>vLLM / SGLang / TensorRT-LLM / llama.cpp / Triton</td>
+</tr>
+<tr>
+<td>五条路线分别代表什么</td>
+<td>高吞吐 serving / 结构化生成 / NVIDIA 优化 / 本地推理 / 通用平台</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>学会判断 serving complexity 的主矛盾，而不是只看 benchmark</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[6] <a href="https://github.com/vllm-project/vllm">https://github.com/vllm-project/vllm</a> — vLLM GitHub</li>
+<li>[7] <a href="https://github.com/sgl-project/sglang">https://github.com/sgl-project/sglang</a> — SGLang GitHub</li>
+<li>[8] <a href="https://github.com/NVIDIA/TensorRT-LLM">https://github.com/NVIDIA/TensorRT-LLM</a> — TensorRT-LLM GitHub</li>
+<li>[9] <a href="https://github.com/ggml-org/llama.cpp">https://github.com/ggml-org/llama.cpp</a> — llama.cpp GitHub</li>
+<li>[10] <a href="https://github.com/triton-inference-server/server">https://github.com/triton-inference-server/server</a> — Triton Inference Server GitHub</li>
+<li>[11] <a href="https://github.com/huggingface/text-generation-inference">https://github.com/huggingface/text-generation-inference</a> — TGI GitHub (archived)</li>
+<li>[12] <a href="https://github.com/InternLM/lmdeploy">https://github.com/InternLM/lmdeploy</a> — LMDeploy GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/04/06/01/"><span>上一篇</span><strong>03.04.06.01 推理框架选型矩阵 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/05/01/01/"><span>下一篇</span><strong>03.05.01.01 Langfuse 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么单开这一章">1. 为什么单开这一章</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议这一模块先聚焦的-top-5">2. 2026-09 我建议这一模块先聚焦的 top 5</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么先不把-tgi--lmdeploy-放进这一组主角">3. 为什么先不把 TGI / LMDeploy 放进这一组主角</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-这一模块建议怎么读">4. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#41-按读者身份的推荐阅读路径">4.1 按读者身份的推荐阅读路径</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#42-按系统主矛盾的速查表">4.2 按系统主矛盾的速查表</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#43-这章最容易读偏的三个误区">4.3 这章最容易读偏的三个误区</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#44-如果你时间不够只读哪三篇">4.4 如果你时间不够，只读哪三篇</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#51-我更推荐的最小闭环产物">5.1 我更推荐的最小闭环产物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#52-这章学完之后你应该真的会什么">5.2 这章学完之后，你应该真的会什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

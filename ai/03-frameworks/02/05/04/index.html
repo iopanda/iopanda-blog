@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.05.04 Real-time Retrieval、Windowing 与 Freshness · iopanda</title><meta name="description" content="03.02.05.04 Real-time Retrieval、Windowing 与 Freshness · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/05/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.05.04 Real-time Retrieval、Windowing 与 Freshness · iopanda"><meta property="og:description" content="03.02.05.04 Real-time Retrieval、Windowing 与 Freshness · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/05/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="05" data-active-article="/ai/03-frameworks/02/05/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pathway"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/05/"><span class="tree-number">05</span><span class="tree-title">Pathway</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/05/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">Real-time Retrieval、Windowing 与 Freshness</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/05/">Pathway</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Real-time Retrieval、Windowing 与 Freshness</span></nav><header class="ai-article-header"><p class="ai-number">03.02.05.04</p><h1>Real-time Retrieval、Windowing 与 Freshness</h1><p class="ai-meta"><time datetime="2026-09-03T22:35">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>pathway</li><li>freshness</li><li>windowing</li></ul></header><div class="ai-prose"><h1 id="real-time-retrievalwindowing-与-freshness">Real-time Retrieval、Windowing 与 Freshness</h1>
+<blockquote>
+<p>Pathway 最大的不同在于，它天然把 freshness 当一等问题，而不是运维附加问题。README 明说处理 late / out-of-order 数据、支持 persistence、强调 consistency。[68] 这意味着 retrieval 质量不只取决于相似度，还取决于答案是不是基于足够新的上下文。</p>
+</blockquote>
+<p><strong>学习目标</strong>：</p>
+<ol>
+<li>解释 freshness 为什么是 real-time RAG 的核心质量维度；</li>
+<li>理解 late / out-of-order data 对 retrieval 的影响；</li>
+<li>说出 windowing / consistency 在实时知识系统中的作用；</li>
+<li>区分“召回正确”和“时间上正确”；</li>
+<li>为一个实时知识场景设计 freshness 策略。</li>
+</ol>
+<h2 id="1-freshness-不是锦上添花而是-correctness-的一部分">1. freshness 不是锦上添花，而是 correctness 的一部分</h2>
+<p>如果知识源持续变化，那么一个语义上很相关、但已经过期的 chunk，本质上也是错误上下文。</p>
+<p>所以 real-time retrieval 至少有两层正确性：</p>
+<ul>
+<li>检索相关性正确；</li>
+<li>时间相关性正确。</li>
+</ul>
+<h2 id="2-late--out-of-order-为什么重要">2. late / out-of-order 为什么重要</h2>
+<p>流系统里，新数据不一定按理想顺序到达。Pathway 把这件事放进框架核心，说明它默认真实数据源会乱序。[68]</p>
+<p>对于 RAG，这意味着：</p>
+<ul>
+<li>最后到的不一定是最新被处理到的；</li>
+<li>更新传播时序会影响答案；</li>
+<li>consistency 和 latency 需要平衡。</li>
+</ul>
+<h2 id="3-windowing--persistence-的价值">3. windowing / persistence 的价值</h2>
+<p>窗口和持久化的价值，不只是算子层特性，而是 retrieval 结果能否在重启、延迟、重放后仍保持可理解的一致行为。[68]</p>
+<h2 id="4-适合什么系统">4. 适合什么系统</h2>
+<ul>
+<li>实时监控与问答</li>
+<li>持续更新的文档中心</li>
+<li>会被频繁修订的知识源</li>
+<li>对“最新信息”高度敏感的系统</li>
+</ul>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>pathway-freshness-plan.md</code></p>
+<p>选择一个数据持续变化的知识场景，写出：哪些信息必须分钟级更新，哪些可小时级，哪些需要重放恢复。写一句结论：为什么 freshness 本身就是 retrieval quality。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>freshness 是什么</td>
+<td>上下文的新鲜度与时间正确性</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>过期但相关的答案同样会误导用户</td>
+</tr>
+<tr>
+<td>Pathway 的优势</td>
+<td>它从框架层正视更新、一致性和重放问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[68] <a href="https://github.com/pathwaycom/pathway/blob/main/README.md">https://github.com/pathwaycom/pathway/blob/main/README.md</a> — Pathway README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/05/03/"><span>上一篇</span><strong>03.02.05.03 Streaming ETL、Incremental Index 与 Update Semantics</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/05/05/"><span>下一篇</span><strong>03.02.05.05 生产系统中的吞吐、延迟与治理</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-freshness-不是锦上添花而是-correctness-的一部分">1. freshness 不是锦上添花，而是 correctness 的一部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-late--out-of-order-为什么重要">2. late / out-of-order 为什么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-windowing--persistence-的价值">3. windowing / persistence 的价值</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-适合什么系统">4. 适合什么系统</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

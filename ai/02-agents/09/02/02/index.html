@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.02.02 仓库布局与 Rust 核心 · iopanda</title><meta name="description" content="02.09.02.02 仓库布局与 Rust 核心 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/02/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.02.02 仓库布局与 Rust 核心 · iopanda"><meta property="og:description" content="02.09.02.02 仓库布局与 Rust 核心 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/02/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="02" data-active-article="/ai/02-agents/09/02/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 OpenAI Codex"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/02/"><span class="tree-number">02</span><span class="tree-title">OpenAI Codex</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/02/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">仓库布局与 Rust 核心</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/02/">OpenAI Codex</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">仓库布局与 Rust 核心</span></nav><header class="ai-article-header"><p class="ai-number">02.09.02.02</p><h1>仓库布局与 Rust 核心</h1><p class="ai-meta"><time datetime="2026-09-03T06:10">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>codex-source</li></ul></header><div class="ai-prose"><h1 id="仓库布局与-rust-核心">仓库布局与 Rust 核心</h1>
+<blockquote>
+<p>02.01 到 02.08,我们回答的是「Agent 该长什么样」——概念、骨架、护栏;从本章起,钻到一个真实开源实现里回答「生产级编码 Agent 是怎么造出来的」。OpenAI Codex 是 02.09 蓝图里第一个解剖对象,解剖的第一步永远是地图:仓库怎么摆、入口在哪、一次命令如何走到 agent 主循环。本章盘点 codex-rs 的 110+ 个 crate、追踪入口链,把 02.01 的「模型+循环+工具」骨架落成真实的目录与函数。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出 Codex 仓库的顶层四大块,以及 codex-rs 工作区里核心/执行/协议/配置/沙箱等 crate 分层;</li>
+<li>解释「Rust 核心 + TS 壳」双栈各自的职责与分工理由;</li>
+<li>沿 <code>cli/src/main.rs</code> 的入口链,指出交互 TUI 与 exec 两条主路径的分叉点(带文件:行号);</li>
+<li>用 <code>cargo tree</code> 与 <code>grep</code> 在本地仓库复现依赖分层与入口定位——这套方法可迁移到任何 Rust 仓库;</li>
+<li>把 02.01 的模型/循环/工具骨架,映射到 codex-rs 的真实 crate 与目录。</li>
+</ol>
+<h2 id="1-概念编码-agent-的工程实现-rust-核心--ts-cli双栈">1. 概念:编码 Agent 的工程实现 =「Rust 核心 + TS CLI」双栈</h2>
+<ul>
+<li>02.01 的骨架由模型、循环、工具、记忆、上下文组成,那是<strong>概念模型</strong>;Codex 是它的<strong>工程实例</strong>。工程形态一句话:agent「大脑与手脚」用 Rust 写成单二进制,外面再套一层 TypeScript/桌面壳与 SDK。</li>
+<li>顶层四块(仓库根目录):<code>codex-rs/</code>——Rust cargo 工作区,agent 引擎本体,本课程主战场;<code>codex-cli/</code>——TS 包装层(npm 包 <code>@openai/codex</code>,入口 <code>codex-cli/bin/codex.js</code>,负责安装与桌面体验);<code>sdk/</code>——python/typescript 客户端 SDK;<code>docs/</code> 与 <code>scripts/</code>、<code>bazel/</code> 等——文档与构建工具。</li>
+<li>事实笔记称 codex-rs 有 110+ 个 crate,核验成立:工作区声明在 <code>codex-rs/Cargo.toml:1-2</code>(<code>[workspace]</code> / <code>members = [</code>),members 列表共 144 个条目——其中顶层 crate 目录 104 个,其余分布在 <code>utils/*</code>、<code>ext/*</code>、<code>memories/*</code> 等子目录,两种口径都超过「110+」。</li>
+</ul>
+<h2 id="2-为什么这样设计性能单二进制与-ui-生态的分工">2. 为什么这样设计:性能、单二进制与 UI 生态的分工</h2>
+<ul>
+<li><strong>引擎是系统编程,Rust 顺手</strong>:agent 要长时间跑循环、拉起并监控子进程、做沙箱与权限控制(03 章)、并发处理流式响应——进程与系统调用密集,内存安全 + async 让「跑一整天不崩、不越权」成为可维护的承诺。</li>
+<li><strong>单二进制好分发好嵌入</strong>:IDE、CI、<code>codex exec</code> 脚本都只要一个可执行文件,不依赖 Node 运行时;<code>codex-cli/</code>(TS)只做壳与桌面侧体验,<code>codex-cli/package.json</code> 的 description 自称「coding agent that runs locally」,但真正干活的是 Rust 引擎。</li>
+<li><strong>TS 的价值在 UI 生态</strong>:桌面应用、编辑器集成、网页壳;<code>sdk/typescript</code> 与 <code>sdk/python</code> 则是给外部程序调用的客户端——这与 02.01 的「模型通道 + 工具 + 循环」概念分层一致:通道可以有很多,引擎只有一个。</li>
+</ul>
+<h2 id="3-作用一张地图认-codex-rs-的-crate-分层">3. 作用:一张地图认 codex-rs 的 crate 分层</h2>
+<p>对照 02.01 骨架,codex-rs 的 crate 大致落进七类(目录名即 crate 名,后续章节逐个深入):</p>
+<table>
+<thead>
+<tr>
+<th>02.01 骨架</th>
+<th>codex-rs 代表 crate</th>
+<th>职责速写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>循环+会话</td>
+<td><code>core</code></td>
+<td>会话/turn/提交循环、AGENTS.md、压缩,<code>core/src/session/turn.rs</code> 是 02 章主角</td>
+</tr>
+<tr>
+<td>非交互执行</td>
+<td><code>exec</code>、<code>exec-server</code></td>
+<td>headless 跑一轮;exec-server 是常驻服务形态</td>
+</tr>
+<tr>
+<td>模型通道</td>
+<td><code>chatgpt</code>、<code>login</code>、<code>model-provider</code>、<code>lmstudio</code>/<code>ollama</code></td>
+<td>ChatGPT 登录与后端、模型提供方路由(04 章展开)</td>
+</tr>
+<tr>
+<td>工具</td>
+<td><code>core/src/tools/</code>、<code>apply-patch</code>、<code>shell-command</code>、<code>file-system</code></td>
+<td>内置工具实现与补丁应用等</td>
+</tr>
+<tr>
+<td>协议与消息</td>
+<td><code>protocol</code></td>
+<td>turn/消息/SandboxMode/AskForApproval 等共享类型</td>
+</tr>
+<tr>
+<td>配置与策略</td>
+<td><code>config</code>、<code>config-schema</code>、<code>execpolicy</code></td>
+<td>配置分层加载、exec 策略(04 章)</td>
+</tr>
+<tr>
+<td>沙箱与安全</td>
+<td><code>sandboxing</code>、<code>linux-sandbox</code>、<code>windows-sandbox-rs</code>、<code>bwrap</code></td>
+<td>平台沙箱实现(03 章)</td>
+</tr>
+<tr>
+<td>周边</td>
+<td><code>cli</code>/<code>tui</code>、<code>hooks</code>、<code>skills</code>、<code>codex-mcp</code>、<code>otel</code>、<code>rollout</code></td>
+<td>入口、扩展点、遥测与轨迹</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>观察要点:Codex 把「概念模块」切成了<strong>小而专的 crate</strong>,靠 cargo 工作区统一版本;<code>cli</code> 是唯一入口壳,<code>exec</code> 复用 core 的逻辑但换一套事件输出(JSON/流),说明「同一引擎、多个人机接口」是刻意设计。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-入口追踪mainrs1043--clap--子命令分发">4.1 入口追踪:main.rs:1043 → clap → 子命令分发</h3>
+<p>主程序在 <code>codex-rs/cli/src/main.rs</code>,但它<strong>不在文件头</strong>(文件近 5000 行,前面是各子命令的参数类型)。真入口:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// cli/src/main.rs:1043-1050(fn main:初始化构建信息后,交给 arg0 分派再进 cli_main)</span></span>
+<span class="line"><span style="color:#F97583">fn</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0"> anyhow</span><span style="color:#F97583">::</span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&lt;()&gt; {</span></span>
+<span class="line"><span style="color:#B392F0">    codex_build_info</span><span style="color:#F97583">::</span><span style="color:#B392F0">initialize!</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> remote_control_disabled </span><span style="color:#F97583">=</span><span style="color:#B392F0"> codex_app_server</span><span style="color:#F97583">::</span><span style="color:#B392F0">take_remote_control_disabled_env</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">    arg0_dispatch_or_else</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">move</span><span style="color:#F97583"> |</span><span style="color:#E1E4E8">arg0_paths</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Arg0DispatchPaths</span><span style="color:#F97583">|</span><span style="color:#F97583"> async</span><span style="color:#F97583"> move</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        cli_main</span><span style="color:#E1E4E8">(arg0_paths, remote_control_disabled)</span><span style="color:#F97583">.await?</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">        Ok</span><span style="color:#E1E4E8">(())</span></span>
+<span class="line"><span style="color:#E1E4E8">    })</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li><code>arg0_dispatch_or_else</code>(定义于 <code>arg0/src/lib.rs:219</code>)是 Codex 的<strong>多二进制分身</strong>机制:仓库里多个入口名(<code>codex</code>、<code>codex-exec</code>、<code>codex-linux-sandbox</code>…)共享同一批 main,按 <code>argv[0]</code> 决定谁干活。<code>exec/src/main.rs</code> 头部注释明说:同二进制的 <code>codex-exec</code> 被以 <code>codex-linux-sandbox</code> 之名调用时,改跑 Landlock+seccomp 沙箱逻辑——这是分发安装包时的务实设计。</li>
+<li><code>cli_main</code>(<code>cli/src/main.rs:1052</code>)先 <code>MultitoolCli::parse()</code>(<code>main.rs:1062</code>,clap 解析),再 <code>match subcommand</code>(<code>main.rs:1097</code>)。子命令枚举定义在 <code>main.rs:137</code>,变体包括 Agents/Exec/Review/Login/Mcp/Plugin/McpServer/AppServer/Sandbox/Apply/Resume/Queue/Fork/Doctor/Features 等 30 个左右;<code>Exec</code> 带可见别名 <code>e</code>(<code>main.rs:143</code>)。</li>
+</ul>
+<h3 id="42-两条主路径无子命令--交互-tuiexec--非交互执行">4.2 两条主路径:无子命令 → 交互 TUI;exec → 非交互执行</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// cli/src/main.rs:1150-1165(exec 子命令分支:参数合并后整包交给 exec crate)</span></span>
+<span class="line"><span style="color:#B392F0">Some</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Subcommand</span><span style="color:#F97583">::</span><span style="color:#B392F0">Exec</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">mut</span><span style="color:#E1E4E8"> exec_cli)) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    reject_remote_mode_for_subcommand</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        root_remote</span><span style="color:#F97583">.</span><span style="color:#B392F0">as_deref</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">        root_remote_auth_token_env</span><span style="color:#F97583">.</span><span style="color:#B392F0">as_deref</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "exec"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    )</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    exec_cli</span></span>
+<span class="line"><span style="color:#F97583">        .</span><span style="color:#E1E4E8">shared</span></span>
+<span class="line"><span style="color:#F97583">        .</span><span style="color:#B392F0">inherit_exec_root_options</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">interactive</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">shared);</span></span>
+<span class="line"><span style="color:#E1E4E8">    exec_cli</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">strict_config </span><span style="color:#F97583">|=</span><span style="color:#E1E4E8"> root_strict_config;</span></span>
+<span class="line"><span style="color:#B392F0">    prepend_config_flags</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">        &amp;mut</span><span style="color:#E1E4E8"> exec_cli</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">config_overrides,</span></span>
+<span class="line"><span style="color:#E1E4E8">        root_config_overrides</span><span style="color:#F97583">.</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#B392F0">    codex_exec</span><span style="color:#F97583">::</span><span style="color:#B392F0">run_main</span><span style="color:#E1E4E8">(exec_cli, arg0_paths</span><span style="color:#F97583">.</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">())</span><span style="color:#F97583">.await?</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li><strong>无子命令</strong>(<code>main.rs:1098</code> 的 <code>None</code> 分支)→ <code>run_interactive_tui(...)</code>(<code>main.rs:1141</code>,定义在 <code>main.rs:2574</code>):全屏 TUI 里跑 agent,终端直接聊天;03 章后你会知道,交互模式默认走沙箱审批流程。</li>
+<li><strong><code>codex exec "..."</code></strong> → 上面这个分支 → <code>codex_exec::run_main</code>(<code>exec/src/lib.rs:246</code>)。留意 <code>main.rs:1175</code>:连 <code>codex review</code> 都是先 <code>ExecCli::try_parse_from(["codex", "exec"])</code> 再造一个 exec 调用——<strong>review 在内部就是一次非交互执行</strong>,这解释了为什么 exec 的配置项那么全。</li>
+<li>同理 <code>codex apply</code>、<code>codex resume</code> 等各有分支,但引擎都收敛到 core 的同一条主循环(02 章),CLI 层只负责「把参数翻译成一次会话请求」。</li>
+</ul>
+<h3 id="43-一次-codex-exec-的启动链">4.3 一次 codex exec 的启动链</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>codex exec "帮我加个错误处理"</span></span>
+<span class="line"><span>  cli/src/main.rs:1043  fn main</span></span>
+<span class="line"><span>    └─ arg0_dispatch_or_else(arg0/src/lib.rs:219)</span></span>
+<span class="line"><span>  cli/src/main.rs:1052  cli_main → MultitoolCli::parse()(main.rs:1062)</span></span>
+<span class="line"><span>  cli/src/main.rs:1097  match subcommand</span></span>
+<span class="line"><span>    ├─ None → run_interactive_tui(main.rs:1141)→ TUI + core 主循环</span></span>
+<span class="line"><span>    └─ Exec → codex_exec::run_main(cli/src/main.rs:1164)</span></span>
+<span class="line"><span>  exec/src/lib.rs:246   run_main:装日志 → 判沙箱模式 → 找 codex_home</span></span>
+<span class="line"><span>                       → load_bootstrap_config_or_exit → 模型提供方</span></span>
+<span class="line"><span>  exec/src/lib.rs:660   run_exec_session(真正干活:起 client、跑会话)</span></span>
+<span class="line"><span>  core/src/session/turn.rs   主循环(turn/工具分发,02 章)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<p><code>run_main</code> 里可随手抓两个「工程分界」:沙箱模式在 CLI 层就被强制改写(<code>exec/src/lib.rs:296-300</code>,<code>--dangerously-bypass-approvals-and-sandbox</code> 直接映射 <code>SandboxMode::DangerFullAccess</code>,04 章会讲它的审批联动);配置加载走 <code>load_bootstrap_config_or_exit</code>(<code>exec/src/lib.rs:340</code>),把「打包默认→系统→用户→项目→CLI」叠成最终配置(04 章)。启动链做完环境准备后,真正的主循环并不在 exec,而在 core——<strong>exec 只是「一次性会话的外壳」</strong>。</p>
+<h3 id="44-构建体系cargo-工作区--bazel--justfile-三套并存">4.4 构建体系:cargo 工作区 + bazel + justfile 三套并存</h3>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// exec/src/lib.rs:246-249 与 296-300(run_main 的头部与沙箱模式判定,节选)</span></span>
+<span class="line"><span style="color:#F97583">pub</span><span style="color:#F97583"> async</span><span style="color:#F97583"> fn</span><span style="color:#B392F0"> run_main</span><span style="color:#E1E4E8">(cli</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Cli</span><span style="color:#E1E4E8">, arg0_paths</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Arg0DispatchPaths</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0"> anyhow</span><span style="color:#F97583">::</span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&lt;()&gt; {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> let</span><span style="color:#B392F0"> Err</span><span style="color:#E1E4E8">(err) </span><span style="color:#F97583">=</span><span style="color:#B392F0"> set_default_originator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"codex_exec"</span><span style="color:#F97583">.</span><span style="color:#B392F0">to_string</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#B392F0">        tracing</span><span style="color:#F97583">::</span><span style="color:#B392F0">warn!</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">err, </span><span style="color:#9ECBFF">"Failed to set codex exec originator override {err:?}"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // ……(中间:解析 CLI 字段、初始化 tracing,见 exec/src/lib.rs:251-294)……</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> sandbox_mode </span><span style="color:#F97583">=</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> dangerously_bypass_approvals_and_sandbox {</span></span>
+<span class="line"><span style="color:#B392F0">        Some</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">SandboxMode</span><span style="color:#F97583">::</span><span style="color:#B392F0">DangerFullAccess</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        sandbox_mode_cli_arg</span><span style="color:#F97583">.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Into</span><span style="color:#F97583">::</span><span style="color:#E1E4E8">&lt;</span><span style="color:#B392F0">SandboxMode</span><span style="color:#E1E4E8">&gt;</span><span style="color:#F97583">::</span><span style="color:#E1E4E8">into)</span></span>
+<span class="line"><span style="color:#E1E4E8">    };</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li><strong>cargo 工作区</strong>(<code>codex-rs/Cargo.toml:1</code>)是日常开发主通道,144 个成员统一 <code>Cargo.lock</code>,<code>rust-toolchain.toml:2</code> 固定 channel 1.95.0——锁编译器版本是「大仓库可复现构建」的第一步。</li>
+<li><strong>bazel</strong>(仓库根 <code>BUILD.bazel</code>、<code>MODULE.bazel</code>,codex-rs 内也有 <code>BUILD.bazel</code>)服务于大规模缓存构建与多语言混编;对学员而言知道它存在即可,读代码走 cargo 路径。</li>
+<li><strong>justfile</strong> 是开发者的快捷入口:第 16-18 行把 <code>codex</code> 配方定义为 <code>cargo run --bin codex -- {args}</code>(还有 <code>exec</code>、<code>fmt</code>、<code>clippy</code> 等配方)——源码仓库里敲 <code>just codex exec "hi"</code> 就等于用最新代码跑一次。</li>
+</ul>
+<h2 id="5-动手活动在本地仓库验证依赖分层与入口">5. 动手活动:在本地仓库验证依赖分层与入口</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:定位入口 + 画 crate 分层</p>
+<p><strong>目标</strong>:不靠讲义,自己从源码仓库里把「入口在哪、谁依赖谁」挖出来。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>进入 <code>/Users/sunxiaoyu/Documents/repos/github/openai/codex/codex-rs</code>,执行 <code>grep -n "fn main" cli/src/main.rs</code>,确认入口在 1043 行附近(不在文件头!);</li>
+<li>执行 <code>cargo tree -p codex-cli --depth 2 | head -40</code>,观察 cli 直接依赖哪些工作区 crate(应能看到 <code>codex-core</code>、<code>codex-exec</code>、<code>codex-protocol</code> 等 <code>codex-*</code> 前缀的本地依赖);</li>
+<li>在 <code>codex-rs/Cargo.toml</code> 的 <code>members</code> 里任挑 5 个 crate(如 <code>protocol</code>、<code>sandboxing</code>、<code>config</code>),到对应目录读一行 crate 文档注释或模块结构,判断它属于第 3 节表格的哪一类;</li>
+<li>对照第 3 节表格,在纸上补完「02.01 骨架 → crate → 关键文件」三列映射(至少 6 行)。</li>
+</ol>
+<p><strong>完成标准</strong>:能报出 main 入口的确切行号、cli 的 3 个直接依赖名,并把 6 个 crate 分对类别;若 <code>cargo tree</code> 首次运行较慢属正常(全量解析 144 个成员)。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>现象/坑</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地行号与讲义不一致</td>
+<td>讲义行号是仓库快照,Codex 每天在变</td>
+<td>用 <code>grep -n</code> 重新定位;方法比行号可靠</td>
+</tr>
+<tr>
+<td>把 <code>codex-cli/</code>(TS)当主程序</td>
+<td>它是 npm/桌面壳,agent 引擎在 <code>codex-rs</code>,产出的二进制也叫 <code>codex</code></td>
+<td>读引擎代码一律进 <code>codex-rs/</code></td>
+</tr>
+<tr>
+<td>同一二进制却有两种行为(<code>codex-linux-sandbox</code>)</td>
+<td>arg0 分身机制按 <code>argv[0]</code> 派发</td>
+<td>遇到「名字不符行为」先查 <code>arg0/src/lib.rs</code> 与目标 crate 的 main 注释</td>
+</tr>
+<tr>
+<td><code>cargo tree</code> 输出爆炸、<code>cargo build</code> 很慢</td>
+<td>工作区 144 个成员相互依赖</td>
+<td>用 <code>-p &lt;crate&gt;</code> 限定;首次构建只 <code>cargo build -p codex-cli</code></td>
+</tr>
+<tr>
+<td>以为 <code>main.rs</code> 第 1 行就是入口</td>
+<td>大文件把参数类型放在前、<code>fn main</code> 在 1043</td>
+<td>找 Rust 入口用 <code>grep -n "fn main"</code>;这也是阅读任何大型 Rust 工程的通用技巧</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:本章只给了「地图与入口」,先不要试图一次读懂 core 的会话逻辑;02 章会沿 <code>core/src/session/turn.rs</code> 逐行展开主循环,03/04 章再补沙箱与配置。带着地图读代码,比从头啃 5000 行的 main.rs 高效得多。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>Codex 的落点</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>双栈工程形态</td>
+<td>Rust 引擎(codex-rs)+ TS 壳(codex-cli)/ SDK</td>
+<td>仓库顶层目录</td>
+</tr>
+<tr>
+<td>cargo 工作区</td>
+<td>144 个成员 crate,统一 Cargo.lock 与工具链 1.95.0</td>
+<td><code>codex-rs/Cargo.toml:1-2</code>、<code>rust-toolchain.toml:2</code></td>
+</tr>
+<tr>
+<td>单一入口壳</td>
+<td><code>fn main</code> → arg0 分派 → <code>cli_main</code> → clap 子命令</td>
+<td><code>cli/src/main.rs:1043/1046/1052/1062</code></td>
+</tr>
+<tr>
+<td>两条主路径</td>
+<td>无子命令→TUI(<code>main.rs:1141</code>);exec→<code>codex_exec::run_main</code>(<code>main.rs:1164</code>)</td>
+<td><code>cli/src/main.rs</code></td>
+</tr>
+<tr>
+<td>引擎复用</td>
+<td>exec/review 都收敛到 core 主循环;exec 只是会话外壳</td>
+<td><code>exec/src/lib.rs:246</code>、<code>core/src/session/turn.rs</code></td>
+</tr>
+<tr>
+<td>三套构建</td>
+<td>cargo(读代码)/ justfile(开发)/ bazel(规模化)</td>
+<td><code>justfile:18</code>、<code>codex-rs/BUILD.bazel</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:① 为什么入口不直接写在文件头,而要套一层 <code>arg0_dispatch_or_else</code>?② 为什么引擎放 Rust、壳放 TS,而不是全 TS 或反过来?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>① 一个二进制、多个身份:分发物里有 <code>codex</code>、<code>codex-exec</code>、<code>codex-linux-sandbox</code> 等多个入口名,分身逻辑集中在 arg0 crate(exec/src/main.rs 头注释证实同二进制的行为切换);若各写各的 main,多份拷贝必然行为漂移。② 引擎要长时间跑循环、拉起并监控子进程、在三平台做沙箱与权限控制,这是系统编程,Rust 的内存安全与 async 恰好承接;单静态二进制也便于 IDE/CI 内嵌。TS 的价值在 UI 生态与快速迭代的壳层,SDK 则对外提供 python/typescript 通道。若全 TS,沙箱与进程控制会重蹈「Node 进程里再包一层沙箱」的高成本覆辙。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/openai/codex">openai/codex(GitHub 仓库,本讲义源码出处)</a></li>
+<li><a href="https://developers.openai.com/codex">OpenAI Codex 官方文档(安装、CLI 与配置参考)</a></li>
+<li><a href="https://developers.openai.com/codex/cli">Codex CLI 快速上手(交互与 exec 用法)</a></li>
+</ul>
+<p>本单元开篇承接 02.09 蓝图与 01 Claude Code 的 README:那里给了「Codex 是什么」的概览,本章把它落成「源码地图与入口链」;从 02.01 的概念骨架直接对照着认结构,无需其他前置章节。</p>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/02/01/"><span>上一篇</span><strong>02.09.02.01 OpenAI Codex 概览</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/02/03/"><span>下一篇</span><strong>02.09.02.03 主循环与工具系统</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念编码-agent-的工程实现-rust-核心--ts-cli双栈">1. 概念:编码 Agent 的工程实现 =「Rust 核心 + TS CLI」双栈</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这样设计性能单二进制与-ui-生态的分工">2. 为什么这样设计:性能、单二进制与 UI 生态的分工</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用一张地图认-codex-rs-的-crate-分层">3. 作用:一张地图认 codex-rs 的 crate 分层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-入口追踪mainrs1043--clap--子命令分发">4.1 入口追踪:main.rs:1043 → clap → 子命令分发</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-两条主路径无子命令--交互-tuiexec--非交互执行">4.2 两条主路径:无子命令 → 交互 TUI;exec → 非交互执行</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-一次-codex-exec-的启动链">4.3 一次 codex exec 的启动链</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-构建体系cargo-工作区--bazel--justfile-三套并存">4.4 构建体系:cargo 工作区 + bazel + justfile 三套并存</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动在本地仓库验证依赖分层与入口">5. 动手活动:在本地仓库验证依赖分层与入口</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.05.04 长期记忆外部存储 · iopanda</title><meta name="description" content="02.05.04 长期记忆外部存储 · 智能体 / 记忆与检索，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/05/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.05.04 长期记忆外部存储 · iopanda"><meta property="og:description" content="02.05.04 长期记忆外部存储 · 智能体 / 记忆与检索，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/05/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="05" data-active-subsection data-active-article="/ai/02-agents/05/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 记忆与检索"></button><a class="tree-link tree-link--section" href="/ai/02-agents/05/"><span class="tree-number">05</span><span class="tree-title">记忆与检索</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/05/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">长期记忆外部存储</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/05/">记忆与检索</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">长期记忆外部存储</span></nav><header class="ai-article-header"><p class="ai-number">02.05.04</p><h1>长期记忆外部存储</h1><p class="ai-meta"><time datetime="2026-09-03T04:10">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>memory-retrieval</li></ul></header><div class="ai-prose"><h1 id="长期记忆外部存储">长期记忆外部存储</h1>
+<blockquote>
+<p>02 章的会话记忆对象把「关键事实」抽进了内存 dict:本会话内随取随用,可进程一退出、dict 归零——学员周二学到第 3 章,周五回来问「上次讲到哪」,助教依然一脸茫然。问题不在压缩技术,在<strong>存储介质</strong>:值得跨会话的信息,必须写到模型与进程之外的持久介质上。本章是 02.05 的第三课,把 01 章需求表里的「笔记本级」语义记忆实现出来:先讲外部存储是什么、为什么跨会话记忆必须落盘,再定「何时写入、何时读取」的读写时机,最后动手给课程助教做一个基于 SQLite 的长期记忆模块——验收标准只有一条:<strong>进程重启后,它还认得老学员</strong>。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说清「外部存储」的含义:记忆驻留在进程之外(磁盘/数据库),跨会话、跨重启存活;</li>
+<li>解释为什么学员档案必须落盘,而会话摘要、滑动窗口内容不必;</li>
+<li>按「会话开始读、关键事实出现即写、任务结束收尾写」规划读写时机;</li>
+<li>用 Python 标准库 sqlite3 实现学员档案的创建、覆盖写入(upsert)、精确读取与删除;</li>
+<li>对比 JSON 文件、SQLite 与向量库的适用边界,并为自己的记忆模块选型。</li>
+</ol>
+<h2 id="1-概念外部存储--把记忆写到进程之外">1. 概念:外部存储 = 把记忆写到进程之外</h2>
+<ul>
+<li><strong>长期记忆(long-term memory,语义记忆)</strong>:跨会话稳定的事实——学员水平、学到哪一章、欠了哪些承诺。02 章已论证它在「本会话内」靠消息重放与压缩,本章解决「会话结束之后」:让事实活在<strong>模型、会话对象、甚至进程之外</strong>。</li>
+<li><strong>外部存储(external storage)</strong>:写入磁盘的存储介质,课程助教用的是三类——JSON 文件、SQLite 数据库、向量库(04 章)。它们在 01 章的隐喻里对应「笔记本」与「图书馆」:便签随手撕,笔记本要归档。</li>
+<li>为什么「外部」这个词是关键:02 章的 <code>ConversationMemory</code> 也是存储,但它住在进程内存里,进程结束即清空;SQLite 把数据写进 <code>.db</code> 文件,文件在,记忆就在——<strong>跨会话的真相是「文件比进程活得久」</strong>。一份最朴素的档案表:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">CREATE</span><span style="color:#F97583"> TABLE</span><span style="color:#B392F0"> learners</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    learner_id </span><span style="color:#F97583">TEXT</span><span style="color:#F97583"> PRIMARY KEY</span><span style="color:#E1E4E8">,   </span><span style="color:#6A737D">-- 学员唯一 ID,档案的「钥匙」</span></span>
+<span class="line"><span style="color:#F97583">    level</span><span style="color:#F97583">      TEXT</span><span style="color:#E1E4E8">,               </span><span style="color:#6A737D">-- 水平:零基础 / 入门 / 进阶</span></span>
+<span class="line"><span style="color:#E1E4E8">    chapter    </span><span style="color:#F97583">TEXT</span><span style="color:#E1E4E8">,               </span><span style="color:#6A737D">-- 学到哪一章</span></span>
+<span class="line"><span style="color:#E1E4E8">    notes      </span><span style="color:#F97583">TEXT</span><span style="color:#E1E4E8">,               </span><span style="color:#6A737D">-- 备注与承诺</span></span>
+<span class="line"><span style="color:#E1E4E8">    updated_at </span><span style="color:#F97583">TEXT</span><span style="color:#6A737D">                -- 最近一次更新时间</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre><span class="code-lang" data-lang="sql" aria-hidden="true">sql</span></div>
+<h2 id="2-为什么需要没有长期记忆的课程助教">2. 为什么需要:没有长期记忆的课程助教</h2>
+<ul>
+<li>把「学员上次学到第几章」这种需求(01 章需求表第二行)放进会话记忆是存不住的:会话对象随会话结束销毁,摘要与事实通道一并清空。三种典型场景直接暴露差距:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>无长期记忆的表现</th>
+<th>有长期记忆的表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>隔三天回来问「上次讲到哪了」</td>
+<td>当新学员重新摸底,重复讲已会内容</td>
+<td>开场读取档案,直接续讲第 3 章</td>
+</tr>
+<tr>
+<td>学员说「其实我学过 SQL」</td>
+<td>下次会话又按零基础教</td>
+<td>一次覆盖更新,此后按入门讲</td>
+</tr>
+<tr>
+<td>上周承诺「明天出三道题」</td>
+<td>忘得干净,学员来催</td>
+<td>开场带出待办,先补承诺再讲新课</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>为什么不用 02 章的手段硬扛:会话记忆优化的是「窗口预算内给模型看什么」,前提是<strong>会话还在</strong>;它从不承诺「重启后还记得」。把跨会话事实塞回每轮上下文也做不到——你无法预知学员下次问什么,更不可能把一年档案天天全量重放(token 与注意力都烧不起,呼应 02.02 的 02 章)。</li>
+<li>一句话:<strong>会话记忆管「别忘事」,长期记忆管「还记得人」</strong>——后者只能靠写盘解决。</li>
+</ul>
+<h2 id="3-作用读写时机与在-agent-里的位置">3. 作用:读写时机与在 Agent 里的位置</h2>
+<ul>
+<li>长期记忆模块挂在 Agent 主循环上,只做两件事,但时机很讲究:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>会话开始 → load_progress(learner_id)        ← 读取时机:开场把档案装进上下文</span></span>
+<span class="line"><span>会话中   → 关键事实出现 → save_progress(...)   ← 写入时机:不等会话结束</span></span>
+<span class="line"><span>任务结束 → 收尾 save(进度、承诺、结论)          ← 写入时机:结果落地</span></span>
+<span class="line"><span>                        ↕</span></span>
+<span class="line"><span>              SQLite 文件(进程之外,跨会话存活)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<table>
+<thead>
+<tr>
+<th>时机</th>
+<th>触发条件</th>
+<th>写/读什么</th>
+<th>反面教材</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会话开始(读)</td>
+<td>学员 ID 已知</td>
+<td>水平、章节、待办,拼进 system 上下文</td>
+<td>每次重新摸底,浪费一轮问答</td>
+</tr>
+<tr>
+<td>会话中(写)</td>
+<td>关键事实出现:「我零基础」「学过 SQL」</td>
+<td>同名覆盖对应字段</td>
+<td>只在会话结束才写,中途崩了就丢</td>
+</tr>
+<tr>
+<td>任务结束(写)</td>
+<td>辅导完成、承诺给出</td>
+<td>新进度与待办收尾落盘</td>
+<td>只写进度不写承诺,下次开场还是忘</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>与相邻章节的分工:02 章的关键事实抽取是「挑出来」(进内存 dict),本章是「存下去」(进 SQLite)——把 02 章的 <code>facts</code> 通道落盘,就是长期记忆的雏形;04 章的向量库存的是「资料全文」,靠语义检索取回,而本章档案按学员 ID <strong>精确读取</strong>,不需要检索。</li>
+<li>设计红线:<strong>单一真相源</strong>。同一份进度只允许存在一处(SQLite),别在 JSON 备份、缓存、上下文里各存一份——三份迟早不一致,排错时你分不清谁是真的(呼应 01 章「更新也是记忆设计的一部分」)。</li>
+</ul>
+<h2 id="4-详细介绍选型表结构与幂等写入">4. 详细介绍:选型、表结构与幂等写入</h2>
+<h3 id="41-三种存储介质怎么选">4.1 三种存储介质怎么选</h3>
+<table>
+<thead>
+<tr>
+<th>介质</th>
+<th>写入并发</th>
+<th>查询</th>
+<th>规模</th>
+<th>课程助教用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON 文件</td>
+<td>无(整文件覆写)</td>
+<td>加载后内存遍历</td>
+<td>单学员原型</td>
+<td>演示与单机玩具</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>好(行级锁 + WAL)</td>
+<td>SQL:按 ID/条件精确查</td>
+<td>单机百万行内</td>
+<td>学员档案、进度(本章)</td>
+</tr>
+<tr>
+<td>向量库(04 章)</td>
+<td>好</td>
+<td>按语义相似度 top-k</td>
+<td>海量文本</td>
+<td>课程资料全文</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>SQLite 是本章主角:Python 标准库自带 <code>sqlite3</code>,零安装;整个库是一个文件,备份即复制;支持事务(ACID)与并发读;官方定位就是「嵌入式应用的文件格式」(见引用)。单进程课程助教用它绰绰有余;JSON 文件在「只有一位学员、只追加不查询」时更简单,但并发写会互相覆写,查询要靠手写遍历。</li>
+<li>表结构即档案模型:主键 <code>learner_id</code> 保证「一名学员一行」;<code>updated_at</code> 记录最近写入时刻,既是审计线索(06 章)也是「这条档案新不新」的依据。</li>
+</ul>
+<h3 id="42-幂等写入与覆盖语义">4.2 幂等写入与覆盖语义</h3>
+<ul>
+<li>学员说「其实我学过 SQL」时,系统要做的不是追加一行新记录,而是<strong>把旧值覆盖掉</strong>——02 章 facts 通道的同名覆盖,在数据库里就是 <code>INSERT ... ON CONFLICT DO UPDATE</code>(upsert):同一 ID 重复写入永不产生重复行,最新值恒为真相。</li>
+<li>忘掉一条事实同样是一条语句:<code>DELETE FROM learners WHERE learner_id = ?</code>——「记忆的删除」在 06 章展开,但 schema 从一开始就要支持它,别把档案设计成只能追加的日志。</li>
+<li>用命令行可以直接验证持久化(写完动手脚本后跑):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sqlite3</span><span style="color:#9ECBFF"> assistant_memory.db</span><span style="color:#9ECBFF"> '.schema learners'</span></span>
+<span class="line"><span style="color:#B392F0">sqlite3</span><span style="color:#9ECBFF"> assistant_memory.db</span><span style="color:#9ECBFF"> 'SELECT learner_id, level, chapter FROM learners;'</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<h2 id="5-动手活动课程助教长期记忆模块">5. 动手活动:课程助教长期记忆模块</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:long_term_memory.py——重启后仍记得学员进度</p>
+<p><strong>目标</strong>:实现 <code>LearnerStore</code>(建表 / upsert 写入 / 按 ID 读取 / 删除),模拟「周二会话写入 → 进程重启 → 周五会话读取」,验证模块验收:重启后仍记得学员进度,且同名覆盖不产生重复行。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>保存为 <code>long_term_memory.py</code> 并运行两次(纯 Python 3,只用标准库 <code>sqlite3</code>;第二次运行验证 upsert 幂等:行数仍为 1);</li>
+<li>观察输出:第一次运行先写入再「重启」读取,档案完整回来;随后学员水平更新为「入门」,再查已是新值;</li>
+<li>用上文的 <code>sqlite3</code> 命令直接查库文件,确认数据真实落在磁盘(删掉 <code>.db</code> 文件再跑一次,观察「失忆」);</li>
+<li>回答:为什么第二次运行不会出现两行 <code>xiaoming</code>?如果把 <code>save_progress</code> 里的 upsert 改成裸 <code>INSERT</code>,第二次运行会怎样?</li>
+<li>加一个 <code>forget(learner_id)</code> 删除方法,在脚本末尾调用并验证档案消失——为 06 章的「遗忘」留好接口。</li>
+</ol>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># long_term_memory.py —— 课程助教长期记忆模块:SQLite 落盘,重启后仍记得(纯 Python 3)</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> sqlite3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">DB_PATH</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "assistant_memory.db"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> LearnerStore</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">    """学员档案的跨会话存取:upsert 写入,按 learner_id 精确读取。"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#79B8FF"> __init__</span><span style="color:#E1E4E8">(self, db_path</span><span style="color:#F97583">=</span><span style="color:#79B8FF">DB_PATH</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sqlite3.connect(db_path)</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.execute(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "CREATE TABLE IF NOT EXISTS learners ("</span></span>
+<span class="line"><span style="color:#9ECBFF">            "learner_id TEXT PRIMARY KEY,"</span></span>
+<span class="line"><span style="color:#9ECBFF">            "level TEXT,"</span></span>
+<span class="line"><span style="color:#9ECBFF">            "chapter TEXT,"</span></span>
+<span class="line"><span style="color:#9ECBFF">            "notes TEXT,"</span></span>
+<span class="line"><span style="color:#9ECBFF">            "updated_at TEXT)"</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.commit()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> save_progress</span><span style="color:#E1E4E8">(self, learner_id, level, chapter, notes</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """写入时机:任务结束或关键事实出现。同名学员一律覆盖,不产生重复行。"""</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.execute(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "INSERT INTO learners(learner_id, level, chapter, notes, updated_at) "</span></span>
+<span class="line"><span style="color:#9ECBFF">            "VALUES(?, ?, ?, ?, datetime('now')) "</span></span>
+<span class="line"><span style="color:#9ECBFF">            "ON CONFLICT(learner_id) DO UPDATE SET "</span></span>
+<span class="line"><span style="color:#9ECBFF">            "level=excluded.level, chapter=excluded.chapter, "</span></span>
+<span class="line"><span style="color:#9ECBFF">            "notes=excluded.notes, updated_at=excluded.updated_at"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            (learner_id, level, chapter, notes),</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.commit()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> load_progress</span><span style="color:#E1E4E8">(self, learner_id):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """读取时机:会话开始。查不到返回 None,助教按新学员接待。"""</span></span>
+<span class="line"><span style="color:#E1E4E8">        row </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.conn.execute(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "SELECT level, chapter, notes, updated_at FROM learners "</span></span>
+<span class="line"><span style="color:#9ECBFF">            "WHERE learner_id = ?"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            (learner_id,),</span></span>
+<span class="line"><span style="color:#E1E4E8">        ).fetchone()</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> row </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">        level, chapter, notes, updated_at </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> row</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"level"</span><span style="color:#E1E4E8">: level, </span><span style="color:#9ECBFF">"chapter"</span><span style="color:#E1E4E8">: chapter,</span></span>
+<span class="line"><span style="color:#9ECBFF">                "notes"</span><span style="color:#E1E4E8">: notes, </span><span style="color:#9ECBFF">"updated_at"</span><span style="color:#E1E4E8">: updated_at}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> forget</span><span style="color:#E1E4E8">(self, learner_id):</span></span>
+<span class="line"><span style="color:#9ECBFF">        """删除一条档案:记忆的删除接口,06 章数据治理会用到。"""</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.execute(</span><span style="color:#9ECBFF">"DELETE FROM learners WHERE learner_id = ?"</span><span style="color:#E1E4E8">, (learner_id,))</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.commit()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> count</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.conn.execute(</span><span style="color:#9ECBFF">"SELECT COUNT(*) FROM learners"</span><span style="color:#E1E4E8">).fetchone()[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> close</span><span style="color:#E1E4E8">(self):</span></span>
+<span class="line"><span style="color:#79B8FF">        self</span><span style="color:#E1E4E8">.conn.close()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> session_tuesday</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#9ECBFF">    """周二会话:任务结束,把学员进度写入外部存储。"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    store </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LearnerStore()</span></span>
+<span class="line"><span style="color:#E1E4E8">    store.save_progress(</span></span>
+<span class="line"><span style="color:#9ECBFF">        "xiaoming"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">level</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"零基础"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">chapter</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"第 3 章 主键与外键"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">        notes</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"已布置 3 道练习题,承诺明天检查"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    )</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"周二会话:写入完成,当前记录数 = </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> store.count())</span></span>
+<span class="line"><span style="color:#E1E4E8">    store.close()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> session_friday</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#9ECBFF">    """周五会话:新进程、新连接,开场读取档案——重启后仍记得。"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    store </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LearnerStore()</span></span>
+<span class="line"><span style="color:#E1E4E8">    profile </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> store.load_progress(</span><span style="color:#9ECBFF">"xiaoming"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> profile </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"周五会话:查无此人,按新学员接待"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"周五会话:欢迎回来!上次学到 </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">(水平:</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">),备注:</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">,更新于 </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#F97583">              %</span><span style="color:#E1E4E8"> (profile[</span><span style="color:#9ECBFF">"chapter"</span><span style="color:#E1E4E8">], profile[</span><span style="color:#9ECBFF">"level"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">                 profile[</span><span style="color:#9ECBFF">"notes"</span><span style="color:#E1E4E8">], profile[</span><span style="color:#9ECBFF">"updated_at"</span><span style="color:#E1E4E8">]))</span></span>
+<span class="line"><span style="color:#E1E4E8">    store.save_progress(</span></span>
+<span class="line"><span style="color:#9ECBFF">        "xiaoming"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">level</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"入门"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">chapter</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"第 4 章 索引与事务"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">        notes</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"练习题已批改,5 对 3"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    )</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"水平更新为「入门」后,记录数仍为 </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">(upsert 覆盖,无重复行)"</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8"> store.count())</span></span>
+<span class="line"><span style="color:#E1E4E8">    store.close()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"=== 模拟:周二会话(进程 1)==="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    session_tuesday()</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"=== 模拟:进程重启,周五会话(进程 2)==="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    session_friday()</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p><strong>完成标准</strong>:两次运行输出一致——周五会话开场读回周二写入的章节与备注(重启后仍记得);水平更新后 <code>count()</code> 恒为 1(覆盖而非追加);用 <code>sqlite3</code> 命令行能查到 <code>xiaoming</code> 一行真实落盘;把 upsert 换成裸 <code>INSERT</code> 重跑两次,能看到重复行并解释为什么「只追加」的档案会自相矛盾(旧值新值并存,读到哪条取决于运气)。</p>
+</div>
+<h2 id="6-边界与排错">6. 边界与排错</h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sqlite3.OperationalError: database is locked</code></td>
+<td>多进程同时写同一个库文件</td>
+<td>课程助教单写者即可;必要时 <code>PRAGMA journal_mode=WAL;</code> 与写入重试(见引用)</td>
+</tr>
+<tr>
+<td>重启后查无此人</td>
+<td><code>.db</code> 文件路径是相对的,换了工作目录;或文件被删</td>
+<td>用绝对路径/配置项固定 DB 位置;备份即复制文件</td>
+</tr>
+<tr>
+<td>记录在,读出来却是旧值</td>
+<td>代码里另有一份内存缓存,双份真相</td>
+<td>只信 store:所有读写走 <code>LearnerStore</code>,删掉旁路缓存</td>
+</tr>
+<tr>
+<td>「学过 SQL」没生效</td>
+<td>实现成了只追加的日志,新旧档案并存</td>
+<td>upsert 覆盖 + 主键约束,让「最新值」成为数据库原语</td>
+</tr>
+<tr>
+<td>档案越存越多,含手机号等敏感信息</td>
+<td>什么都往档案里塞</td>
+<td>记忆最小化:只存影响后续行为的事实;PII 与删除流程见 06 章</td>
+</tr>
+<tr>
+<td>表结构要加一列</td>
+<td>旧库没有新字段</td>
+<td>迁移:<code>ALTER TABLE learners ADD COLUMN xxx;</code>(先备份再改)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:本章档案存的是「学员事实」,不是「课程资料」——资料要按语义取回,是 04 章向量库的活;SQLite 也能存向量(存 BLOB + 自己算相似度),但海量资料下检索性能与索引都不如专用向量库。长期记忆一旦上线,写入即承诺:任何覆盖都是「替学员做决定」,关键字段的变更记录留给审计(06 章)。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>长期记忆</td>
+<td>跨会话稳定的事实,写在模型与进程之外</td>
+</tr>
+<tr>
+<td>外部存储</td>
+<td>文件比进程活得久:SQLite/JSON/向量库</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>会话记忆随会话销毁;「还记得人」只能靠落盘</td>
+</tr>
+<tr>
+<td>读写时机</td>
+<td>开场读、关键事实即写、任务结束收尾写</td>
+</tr>
+<tr>
+<td>幂等写入</td>
+<td>upsert + 主键:一名学员一行,最新值恒为真相;忘掉 = 一行 DELETE</td>
+</tr>
+<tr>
+<td>选型</td>
+<td>JSON 单机原型、SQLite 档案、向量库管资料(04 章)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:02 章的事实通道放在内存 dict 里,本章把它落进 SQLite——为什么「学员进度」必须落盘,而滚动摘要不必?如果只把档案存成 JSON 日志、每次追加一行,学员先说「我零基础」再说「其实我学过 SQL」,下次会话读档会发生什么?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>进度与承诺要跨会话、跨进程存活,还要支持「覆盖旧值」与「按 ID 精确取回」,内存 dict 随进程消亡,JSON 文件则每次整文件覆写、无法表达「同一学员的最新值」;滚动摘要只服务本会话的回顾,会话结束即作废,落盘纯属浪费。JSON 追加日志会留下互相矛盾的条目——零基础与学过 SQL 并存,读取时只能按时间取最后一条,还要自己处理「删除无法表达」的问题;SQLite 的主键 + upsert 让覆盖成为数据库原语,忘掉一条事实也只是一行 DELETE,这正是 06 章「记忆的遗忘」需要的接口。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/sqlite3.html">Python 标准库文档:sqlite3——SQLite 数据库接口</a></li>
+<li><a href="https://www.sqlite.org/whentouse.html">SQLite:Appropriate Uses For SQLite(什么时候该选 SQLite)</a></li>
+<li><a href="https://www.sqlite.org/wal.html">SQLite:WAL 模式(并发读写与写入性能)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/05/03/"><span>上一篇</span><strong>02.05.03 会话记忆与会话压缩</strong></a><a class="ai-pager-next" href="/ai/02-agents/05/05/"><span>下一篇</span><strong>02.05.05 向量检索与语义记忆</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念外部存储--把记忆写到进程之外">1. 概念:外部存储 = 把记忆写到进程之外</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要没有长期记忆的课程助教">2. 为什么需要:没有长期记忆的课程助教</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用读写时机与在-agent-里的位置">3. 作用:读写时机与在 Agent 里的位置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍选型表结构与幂等写入">4. 详细介绍:选型、表结构与幂等写入</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-三种存储介质怎么选">4.1 三种存储介质怎么选</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-幂等写入与覆盖语义">4.2 幂等写入与覆盖语义</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动课程助教长期记忆模块">5. 动手活动:课程助教长期记忆模块</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错">6. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

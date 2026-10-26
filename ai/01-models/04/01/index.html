@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.04.01 推理基础 · iopanda</title><meta name="description" content="01.04.01 推理基础 · 模型 / 推理与部署，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/04/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.04.01 推理基础 · iopanda"><meta property="og:description" content="01.04.01 推理基础 · 模型 / 推理与部署，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/04/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="04" data-active-subsection data-active-article="/ai/01-models/04/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与部署"></button><a class="tree-link tree-link--section" href="/ai/01-models/04/"><span class="tree-number">04</span><span class="tree-title">推理与部署</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/04/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">推理基础</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/04/">推理与部署</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">推理基础</span></nav><header class="ai-article-header"><p class="ai-number">01.04.01</p><h1>推理基础</h1><p class="ai-meta"><time datetime="2026-09-02T23:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-inference</li><li>performance</li></ul></header><div class="ai-prose"><blockquote>
+<p>本章是 01.04 Inference and Deployment 的开篇,承接 01.03 微调收官项目里选定的模型。动手前先想清楚三件事:<strong>推理和训练有什么本质不同、一次生成内部为什么分两段、为什么必须先给「能跑的模型」测出性能基线</strong>。读完你会带着一份可比较的 baseline 进入后续 6 章(生成参数、量化、vLLM、API、压测、部署),而不是凭感觉判断快慢。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出推理与训练的本质差异,解释「训练 loss 下降」不等于「用户觉得快」;</li>
+<li>拆解生成的 prefill 与 decode 两阶段,说明为什么必须分两段、各自决定什么体验;</li>
+<li>读懂 TTFT、TPOT、tokens/s、总延迟、显存等指标,知道每个指标该看哪个;</li>
+<li>解释 KV cache 的原理、收益与代价,并估算它对显存的影响;</li>
+<li>用固定提示词与生成参数测量并记录可比较的性能基线。</li>
+</ol>
+<h2 id="1-推理-vs-训练两件相反的事">1. 推理 vs 训练:两件相反的事</h2>
+<ul>
+<li>上一单元(01.03)结束于微调,那是<strong>训练</strong>:拿着大量样本反复前向+反向传播,花数小时把权重调好。评价看 loss、准确率,时间单位是分钟到天。</li>
+<li>本章起是<strong>推理(服务)</strong>:模型参数已经固定,每次请求只做一次前向,在几十毫秒到几秒内产出一段回答。评价标准变成「多久开始回答、每秒吐几个字、几个人同时用会不会变慢」——这些正是本章要建立的基线。</li>
+<li>两者常被混淆:微调完跑通一次 demo 就以为「能服务了」。但 demo 里没人计时、没并发、输入短。<strong>能生成 ≠ 够快</strong>:性能是服务的第一属性,与正确性并列,没有基线就无从谈起。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>训练</th>
+<th>推理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数</td>
+<td>不断更新</td>
+<td>冻结不变</td>
+</tr>
+<tr>
+<td>计算方向</td>
+<td>前向 + 反向传播</td>
+<td>只有前向</td>
+</tr>
+<tr>
+<td>时长尺度</td>
+<td>分钟~天</td>
+<td>毫秒~秒</td>
+</tr>
+<tr>
+<td>随机性</td>
+<td>dropout 等正则</td>
+<td>仅可选采样</td>
+</tr>
+<tr>
+<td>评价指标</td>
+<td>loss、评测分数</td>
+<td>延迟、吞吐、显存</td>
+</tr>
+<tr>
+<td>关心的问题</td>
+<td>「学没学会」</td>
+<td>「多快、能扛多少人」</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-为什么必须先建性能基线">2. 为什么必须先建性能基线</h2>
+<ul>
+<li>若没有「改前成绩」,后面任何改动都无法归因:模型换成量化版(03 章)、换成 vLLM(04 章)、加上并发(06 章)之后「感觉快了/慢了」,你无法判断是哪个因素、快了多少。<strong>没有数字的优化汇报等于没优化</strong>。</li>
+<li>基线不是随便跑一次:要固定问题、固定 system prompt、固定生成参数(如 <code>do_sample=False</code>)、固定设备与输入长度,保证唯一变量是被测对象。这与 01.03 第 1 章的基线纪律同源——那边固定模型比数据,这里固定数据比性能。</li>
+<li>记录要完整可复现:模型 ID(含精确版本)、设备、输入 token 数、生成 token 数、总秒数、tokens/s、峰值显存、机器与日期。一周后的你或另一位同学拿到记录,要能复现同一测量。</li>
+<li>本章把结果写进 <code>reports/inference-baseline.md</code>,它就是后续每章优化实验的<strong>对照组</strong>:任何改动后的数字,都必须回到同一份提示词、同一个测量脚本上比较。</li>
+</ul>
+<h2 id="3-生成为什么分两段prefill-与-decode">3. 生成为什么分两段:prefill 与 decode</h2>
+<p>解码器模型每步只能预测「下一个 token」,但一次请求往往有几百到几千个输入 token。把输入一次性并行读完、再逐个往外吐,天然形成两个阶段:</p>
+<h3 id="31-prefill预填充读题">3.1 prefill(预填充):读题</h3>
+<ul>
+<li>模型把整个提示词(全部输入 token)<strong>一次性并行前向</strong>,算出每个 token 的隐状态与注意力 Key/Value,并顺势产出第一个新 token。</li>
+<li>因为是并行处理,prefill 是<strong>计算密集型</strong>(compute-bound),瓶颈在算力;耗时大致随输入长度线性增长,与输出长度无关。</li>
+<li>它决定 <strong>TTFT(首 token 延迟)</strong>:用户发出问题后「多久开始有回应」。长文档、长 prompt 变慢,主要慢在这一段。</li>
+</ul>
+<h3 id="32-decode解码逐字作答">3.2 decode(解码):逐字作答</h3>
+<ul>
+<li>拿到第一个新 token 后,模型把它接到序列末尾再前向一次得到第二个……如此循环,一次只推一个 token,直到遇到结束符或达到 <code>max_new_tokens</code>。</li>
+<li>每步虽只算一个新 token,却要把所有权重和全部历史过一遍,<strong>读取量远大于计算量</strong>,所以 decode 是<strong>访存带宽密集型</strong>(memory-bound);速度几乎与输入多长无关,只取决于显存带宽与缓存规模。</li>
+<li>它决定 <strong>tokens/s(生成速度)</strong>:输出 128 个 token 的任务,总时间几乎全部花在这一段。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>prefill</th>
+<th>decode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一次处理</td>
+<td>整个输入并行</td>
+<td>每次 1 个新 token</td>
+</tr>
+<tr>
+<td>瓶颈</td>
+<td>算力(compute-bound)</td>
+<td>显存带宽(memory-bound)</td>
+</tr>
+<tr>
+<td>决定的指标</td>
+<td>TTFT</td>
+<td>tokens/s(TPOT)</td>
+</tr>
+<tr>
+<td>随输入长度</td>
+<td>近似线性变慢</td>
+<td>几乎不变(有 KV cache 时)</td>
+</tr>
+<tr>
+<td>用户感受</td>
+<td>「有没有立刻回应」</td>
+<td>「回答流不流畅」</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-指标表服务性能看什么">4. 指标表:服务性能看什么</h2>
+<p>用户不关心 loss,他们只感受到五个数字——本章把它们全部测出来:</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>含义</th>
+<th>由哪段决定</th>
+<th>用户感受</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TTFT</strong></td>
+<td>请求发出到第一个输出 token 的耗时</td>
+<td>prefill</td>
+<td>「是否立刻有回应」</td>
+</tr>
+<tr>
+<td><strong>TPOT</strong></td>
+<td>每个输出 token 的平均耗时(= 1 ÷ tokens/s)</td>
+<td>decode</td>
+<td>「每个字等多久」</td>
+</tr>
+<tr>
+<td><strong>tokens/s</strong></td>
+<td>每秒生成的 token 数</td>
+<td>decode</td>
+<td>「回答是否流畅」</td>
+</tr>
+<tr>
+<td><strong>总延迟</strong></td>
+<td>请求开始到生成结束</td>
+<td>prefill + decode 之和</td>
+<td>「一次任务等多久」</td>
+</tr>
+<tr>
+<td><strong>显存峰值</strong></td>
+<td>服务占用显存上限</td>
+<td>权重 + KV cache + 激活</td>
+<td>「能承受多长输入、多少并发」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>五个指标不是孤立的:总延迟 ≈ TTFT + 输出 token 数 × TPOT(≈ TTFT + 输出数 ÷ tokens/s)。有了 baseline 的 TTFT 与 tokens/s,你就能<strong>预测</strong>任意长度任务的耗时,也能在改动后反推「慢的部分出在 prefill 还是 decode」——这正是基线最大的实用价值。</li>
+<li>注意区分<strong>单请求视角</strong>与<strong>系统视角</strong>:TTFT、tokens/s 描述单个用户体感;系统能扛多少并发、总吞吐多少,要等 06 章压测。先量准单请求,才有资格谈并发。</li>
+<li>经验提醒:短输出任务(如打标签)用户几乎只感知 TTFT;长输出任务(如写文章)感知的是 tokens/s;若两端都慢,才需要分别排查 prefill 与 decode 两段。</li>
+</ul>
+<h2 id="5-kv-cache用显存换掉重复计算">5. KV cache:用显存换掉重复计算</h2>
+<ul>
+<li><strong>是什么</strong>:decode 每推一个新 token,注意力都要与「前面所有 token」比较。若每步都重算历史的 Key/Value,第 n 步的代价随 n 增长,整段输出成本退化为 O(长度²),越写越慢。<strong>KV cache</strong> 就是 prefill 时把各层算出的 Key/Value 存进显存,之后每步只追加新 token 的 K/V、直接复用历史。</li>
+<li><strong>为什么需要</strong>:没有它,decode 每一步都要重算整段历史,128 个输出 token 的任务可能慢一个数量级;有了它,每步成本与已生成长度基本解耦,decode 才能维持近似恒定的速度。</li>
+<li><strong>换什么代价</strong>:显存。每多缓存 1 个 token 约需 2(K 与 V)× 层数 × KV 头数 × 头维度 × 每元素字节。以本项目 Qwen2.5-0.5B(24 层、2 个 KV 头、head_dim 64、BF16 2 字节)为例:每 token ≈ 2×24×2×64×2 ≈ 12 KB;8K 输出的单请求缓存 ≈ 100 MB,顶满 32K 上下文则逼近 400 MB——<strong>长输入与并发各自把缓存成倍放大</strong>,这正是服务端 OOM 最常见的来源(见第 7 节排错)。</li>
+<li>缓解方向早已埋在线索里:分组查询注意力(GQA)用少数 KV 头共享缓存,正是 Qwen2.5 把 KV 头压到 2~8 个的原因(呼应 01.01 架构章节);03 章量化、04 章 vLLM 的 PagedAttention 还会继续在缓存上做文章。</li>
+<li>想亲眼看到缓存的收益,把下面测量脚本里的 <code>use_cache=True</code> 改成 <code>False</code> 再测一次:tokens/s 会随输出变长一路下滑,输出越长对比越悬殊——「缓存换显存、显存换速度」的取舍就变成了你手上的数字。</li>
+</ul>
+<h2 id="6-动手先做一个可重复的本地测量">6. 动手:先做一个可重复的本地测量</h2>
+<p>在上一阶段的 <code>minigpt-course</code> 根目录执行(仍需激活 <code>.venv</code>),创建 <code>finetune/src/measure_generate.py</code>,在已有 <code>generate.py</code> 加载模型后使用:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> time, torch</span></span>
+<span class="line"><span style="color:#E1E4E8">prompt </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "请用三点解释什么是主键。"</span></span>
+<span class="line"><span style="color:#E1E4E8">ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.tensor([tokenizer.apply_chat_template(</span></span>
+<span class="line"><span style="color:#E1E4E8">    [{</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">:prompt}], </span><span style="color:#FFAB70">tokenize</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">add_generation_prompt</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)], </span><span style="color:#FFAB70">device</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">device)</span></span>
+<span class="line"><span style="color:#E1E4E8">torch.manual_seed(</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">); start </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> time.perf_counter()</span></span>
+<span class="line"><span style="color:#F97583">with</span><span style="color:#E1E4E8"> torch.no_grad():</span></span>
+<span class="line"><span style="color:#E1E4E8">    output </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model.generate(ids, </span><span style="color:#FFAB70">max_new_tokens</span><span style="color:#F97583">=</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">do_sample</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">use_cache</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">elapsed </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> time.perf_counter() </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> start</span></span>
+<span class="line"><span style="color:#E1E4E8">new_tokens </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> output.shape[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> ids.shape[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">({</span><span style="color:#9ECBFF">"input_tokens"</span><span style="color:#E1E4E8">: ids.shape[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"new_tokens"</span><span style="color:#E1E4E8">: new_tokens,</span></span>
+<span class="line"><span style="color:#9ECBFF">       "seconds"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">round</span><span style="color:#E1E4E8">(elapsed, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">"tokens_per_second"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">round</span><span style="color:#E1E4E8">(new_tokens</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">elapsed, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">)})</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行三次 <code>python -m finetune.src.measure_generate</code>,丢弃第一次下载/预热造成的异常值,记录其余三次的中位数到 <code>reports/inference-baseline.md</code>。如果有 NVIDIA GPU,同时在另一个终端运行 <code>nvidia-smi -l 1</code> 记录峰值显存;没有 GPU 就记录 CPU 与内存,不编造显存数据。</p>
+<p>对照第 4 节的公式解读两次测量:32 个新 token 的耗时里 prefill(读题)占比很高,主要反映 TTFT;128 个新 token 的耗时里 decode 占绝对多数,算出的 tokens/s 才是「流畅度」的真实数字。两次都做,才能把两段分开看。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：性能基线</p>
+<p><strong>目标</strong>：<code>inference-baseline.md</code>。<strong>步骤</strong>：对 32、128 个新 token 各测 3 次；记录模型 ID、设备、输入 token、总时间、tokens/s 和显存。<strong>完成标准</strong>：能说明短输出与长输出分别主要受 TTFT 或 decode 影响，并保留原始数字。</p>
+</div>
+<h2 id="7-总结与排错">7. 总结与排错</h2>
+<table>
+<thead>
+<tr>
+<th>关键判断</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>推理 vs 训练</td>
+<td>训练改参数,推理用固定参数换延迟与吞吐</td>
+</tr>
+<tr>
+<td>为什么分两段</td>
+<td>prefill 并行读题决定 TTFT,decode 逐字作答决定 tokens/s</td>
+</tr>
+<tr>
+<td>KV cache 本质</td>
+<td>缓存历史 K/V,用显存换掉 O(长度²) 的重复计算</td>
+</tr>
+<tr>
+<td>基线为什么重要</td>
+<td>没有改前成绩,后续任何优化都无法归因</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>首次很慢通常是权重加载或 GPU 预热,不能计入常态;OOM 常由长上下文或并发的 KV cache 引起,不能只看模型文件大小。后续所有优化都必须回到本章相同提示词和测量方法比较。</li>
+</ul>
+<p><strong>思考题</strong>:为什么训练时几乎没人提 KV cache,推理时它却成了显存大头?「输出 128 个 token 很快」能不能证明服务已经足够快?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>训练时每个 batch 都要反向传播、历史表示本来就会重算,缓存没有意义;推理是自回归逐 token 生成、历史只读不复算,缓存收益才凸显。单请求快只代表延迟好,不代表高并发下不 OOM、不排队——那需要显存记录与压测证据,见 06 章。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://docs.vllm.ai/en/latest/configuration/engine_args/">vLLM:推理引擎参数</a></li>
+<li><a href="https://huggingface.co/docs/transformers/main/en/main_classes/text_generation">Transformers:生成</a></li>
+<li><a href="https://huggingface.co/docs/transformers/en/kv_cache">Transformers:KV cache 指南</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/03/08/"><span>上一篇</span><strong>01.03.08 领域适配收官项目</strong></a><a class="ai-pager-next" href="/ai/01-models/04/02/"><span>下一篇</span><strong>01.04.02 生成参数控制</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-推理-vs-训练两件相反的事">1. 推理 vs 训练:两件相反的事</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么必须先建性能基线">2. 为什么必须先建性能基线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-生成为什么分两段prefill-与-decode">3. 生成为什么分两段:prefill 与 decode</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-prefill预填充读题">3.1 prefill(预填充):读题</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-decode解码逐字作答">3.2 decode(解码):逐字作答</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-指标表服务性能看什么">4. 指标表:服务性能看什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-kv-cache用显存换掉重复计算">5. KV cache:用显存换掉重复计算</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手先做一个可重复的本地测量">6. 动手:先做一个可重复的本地测量</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结与排错">7. 总结与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

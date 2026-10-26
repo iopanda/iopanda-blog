@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.02 机器学习基础 · iopanda</title><meta name="description" content="01.01.02 机器学习基础 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.02 机器学习基础 · iopanda"><meta property="og:description" content="01.01.02 机器学习基础 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">机器学习基础</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">机器学习基础</span></nav><header class="ai-article-header"><p class="ai-number">01.01.02</p><h1>机器学习基础</h1><p class="ai-meta"><time datetime="2026-09-02T16:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ml-basics</li><li>foundations</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章说「模型是从数据里学出来的函数」,本章回答「怎么学」。你会学到机器学习的三种学习范式、训练与评估的纪律(三集划分)、两个最经典的失败模式(过拟合与欠拟合),以及驱动一切学习的引擎:损失函数与梯度下降。这些概念是后续神经网络、Transformer、语言建模章节的共同地基。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用自己的话讲清「机器学习」的定义,并区分监督、无监督、强化三种学习范式;</li>
+<li>解释为什么要划分训练集、验证集、测试集,以及为什么绝不能拿测试集调参;</li>
+<li>判断一个模型是过拟合还是欠拟合,并说出至少三种缓解手段;</li>
+<li>说明损失函数与梯度下降的关系,以及学习率大小带来的后果;</li>
+<li>理解「数据决定上限」,并解释为什么大模型的预训练属于自监督学习。</li>
+</ol>
+<h2 id="1-概念机器学习是什么">1. 概念:机器学习是什么</h2>
+<ul>
+<li><strong>机器学习(Machine Learning,ML)</strong> 是让计算机<strong>从数据中自动归纳规律</strong>,而不是靠人逐条写规则的一类方法。经典定义来自 Tom Mitchell:<strong>「对于任务 T 和性能指标 P,如果程序在经历经验 E 后,在 T 上的 P 得到了提升,就说它在 E 上学到了东西。」</strong> 翻译成人话:做得多了,自然做得更好,并且好到可以量化。</li>
+<li>用公式对照上一章:<code>y = f(x; θ)</code>。传统编程是「人写 f」;机器学习是「<strong>给一堆 (x, y) 样本,让算法自己把 θ 调好</strong>,使得 f 对没见过的 x 也能给出合理的 y」。</li>
+<li>三个词的关系请记牢:<strong>AI(让机器像人一样智能)→ ML(用数据学出智能)→ 深度学习(用多层神经网络学)</strong>。大语言模型是深度学习的一种,而本章讲的是它们共享的地基。</li>
+</ul>
+<h3 id="11-为什么需要它规则写不完标签也标不完">1.1 为什么需要它:规则写不完,标签也标不完</h3>
+<ul>
+<li>上一章说过「例子多、规则难」的任务只能靠学。但机器学习还有第二重动机:<strong>数据里存在人看不见的规律</strong>——比如用户什么时段最容易下单、交易里哪种模式像欺诈,连领域专家都说不清,只能让模型自己去发现。</li>
+<li>它的作用(工程价值):把「经验」变成可复制、可部署、可持续改进的资产。模型一旦训练好,就能以毫秒级速度服务成千上万的请求;数据更新后重训,能力就跟着涨。</li>
+<li>详细介绍:<strong>一次完整的机器学习 = 数据 + 模型 + 损失函数 + 优化算法</strong> 四件套。数据提供经验,模型提供假设空间(能学成什么样),损失函数告诉你现在错得有多离谱,优化算法负责把损失压下去。后文 4~6 节逐个展开。</li>
+</ul>
+<h2 id="2-三种学习范式解决三类不同的问题">2. 三种学习范式:解决三类不同的问题</h2>
+<ul>
+<li>根据「样本里有什么」和「反馈从哪来」,机器学习分为三大范式。<strong>选范式之前先问:我的数据有标签吗?问题是一次性预测还是序列决策?</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>范式</th>
+<th>数据</th>
+<th>核心问题</th>
+<th>典型任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>监督学习</td>
+<td>带标签(x, y)</td>
+<td>「这是哪个类别/什么数值?」</td>
+<td>垃圾邮件分类、房价预测、图像识别</td>
+</tr>
+<tr>
+<td>无监督学习</td>
+<td>无标签(x)</td>
+<td>「数据里藏着什么结构?」</td>
+<td>客户分群、异常检测、降维可视化</td>
+</tr>
+<tr>
+<td>强化学习</td>
+<td>无标签,只有奖励信号</td>
+<td>「一连串动作怎么做收益最大?」</td>
+<td>游戏 AI、机器人控制、自动驾驶决策</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-监督学习有标准答案的例题集">2.1 监督学习:有标准答案的「例题集」</h3>
+<ul>
+<li><strong>概念</strong>:训练样本自带正确答案(标签),模型学会从输入映射到标签,再对新输入做预测。</li>
+<li><strong>为什么需要</strong>:大量业务问题本质是「预测」——这封邮件是垃圾吗?这位客户会不会流失?预测的前提是得有历史答案可学,这正是监督学习解决的事。</li>
+<li><strong>作用</strong>:分类(输出离散类别)与回归(输出连续数值)两大任务覆盖了企业里绝大多数预测场景。</li>
+<li><strong>详细介绍</strong>:标签质量直接决定上限——标错 5% 的样本,模型就学进 5% 的错误;类别不平衡(欺诈样本只占 0.1%)时,还要用重采样、加权损失等手段处理。经典算法:逻辑回归、决策树、支持向量机,以及(后面会讲的)神经网络。</li>
+</ul>
+<h3 id="22-无监督学习没有答案自己找结构">2.2 无监督学习:没有答案,自己找结构</h3>
+<ul>
+<li><strong>概念</strong>:样本没有标签,模型只根据数据本身的相似性发现结构。</li>
+<li><strong>为什么需要</strong>:标注是昂贵的(需要专家逐条人工标),而互联网上有海量「裸数据」。让模型先自己看数据,往往能省下大量标注成本,甚至发现人没想到的模式。</li>
+<li><strong>作用</strong>:聚类(把相似样本归组,如客户分群)、异常检测(找出离群点,如信用卡盗刷)、降维(把高维数据压到可视范围,如 PCA)。推荐系统里「买了 A 的人也买了 B」就是关联发现的典型应用。</li>
+<li><strong>详细介绍</strong>:聚类结果没有「正确标签」可对,只能用轮廓系数等内部指标或业务方人工判断好坏;这也是无监督结果的落地通常需要人参与验证的原因。</li>
+</ul>
+<h3 id="23-强化学习没有老师只有奖惩">2.3 强化学习:没有老师,只有奖惩</h3>
+<ul>
+<li><strong>概念</strong>:智能体(agent)在环境(environment)中试错行动,环境返回奖励(reward),智能体学习一套「状态→动作」策略使长期累计奖励最大。</li>
+<li><strong>为什么需要</strong>:围棋、机器人走路这类<strong>序列决策</strong>问题,既没有正确答案(没有「这一步最优走法」的标签),也无法靠一次性预测解决——每个动作都会影响后面的局面,只能靠试错摸索。</li>
+<li><strong>作用</strong>:AlphaGo 击败人类棋手、机器人学会抓取、推荐系统动态调价,都是强化学习的舞台。</li>
+<li><strong>详细介绍</strong>:它学习的是「行动」而非「预测」,样本是 (状态, 动作, 奖励) 序列而非独立数据点;难点在于奖励稀疏(下完一整盘棋才知道输赢)与探索-利用权衡(多试新招还是沿用老招)。你日常接触的大模型对话产品中,人类反馈强化学习(RLHF)也用了它的思想——这属于后训练阶段,详见系列后续章节。</li>
+</ul>
+<h2 id="3-训练验证测试三集划分">3. 训练、验证、测试:三集划分</h2>
+<ul>
+<li><strong>概念</strong>:把数据集按用途切成三份——<strong>训练集</strong>(模型用来学习的「课本」)、<strong>验证集</strong>(调超参数、选模型时用来「模拟考」)、<strong>测试集</strong>(最终「高考」,只考一次)。</li>
+<li><strong>为什么需要</strong>:模型在见过的数据上成绩好是必然的,真正的问题是「没见过的数据表现如何」。如果调参时也看测试集成绩,模型的超参数就会<strong>悄悄记住测试集</strong>,最后报告的分数虚高——这是最常见的自我欺骗。</li>
+<li><strong>作用</strong>:验证集让你在开发期反复比较不同方案;测试集只用来做<strong>最终一次</strong>的客观评估,保证你交付的分数能代表真实世界表现。</li>
+<li><strong>详细介绍</strong>:典型划分比例约 60% / 20% / 20%,数据量少时可用 K 折交叉验证(轮流拿一部分当验证集,平均成绩)。核心纪律一句话:<strong>测试集在模型定稿前绝不参与任何决策</strong>,连「看一眼分布」都算泄漏。时间序列数据还要按时间顺序切分,不能用未来预测过去。</li>
+</ul>
+<h2 id="4-过拟合与欠拟合学过头与没学会">4. 过拟合与欠拟合:学过头与没学会</h2>
+<ul>
+<li><strong>概念</strong>:<strong>欠拟合</strong>=模型太简单,训练集上都没学好(如用直线拟合抛物线);<strong>过拟合</strong>=模型太灵活,把训练集的噪声和个例都背下来了,训练成绩很好、验证成绩很差。</li>
+<li><strong>为什么需要认识它们</strong>:机器学习的大部分调参工作,本质都是在过拟合与欠拟合之间找平衡点。看两条曲线的走势就能定位问题:训练误差和验证误差都高→欠拟合;训练误差低而验证误差高→过拟合。</li>
+<li><strong>作用</strong>(识别价值):它是训练现场的第一诊断工具——loss 曲线一画,问题方向立刻清晰,不用瞎猜。</li>
+<li><strong>详细介绍</strong>(缓解手段):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>手段</th>
+<th>对付欠拟合</th>
+<th>对付过拟合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更多数据</td>
+<td>✅ 特征更丰富</td>
+<td>✅ 噪声被稀释(最有效)</td>
+</tr>
+<tr>
+<td>更复杂/更简单的模型</td>
+<td>✅ 加大容量</td>
+<td>✅ 减小容量</td>
+</tr>
+<tr>
+<td>正则化(约束参数别太大)</td>
+<td>—</td>
+<td>✅ 如 L1/L2 正则、dropout</td>
+</tr>
+<tr>
+<td>早停(验证集不再变好就停)</td>
+<td>—</td>
+<td>✅ 防止把噪声也学进去</td>
+</tr>
+<tr>
+<td>数据增强</td>
+<td>✅ 扩充样本</td>
+<td>✅ 增加多样性</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>生活化类比:欠拟合是复习没到位,考什么都懵;过拟合是只背了练习册原题,题目一换措辞就废。<strong>模型要的不是「背下练习册」,而是「掌握规律」</strong>——后者叫泛化(generalization)。</li>
+</ul>
+<h2 id="5-损失函数与梯度下降学习的引擎">5. 损失函数与梯度下降:学习的引擎</h2>
+<ul>
+<li><strong>概念</strong>:<strong>损失函数(loss function)</strong> 量化「模型输出离正确答案有多远」,是训练时唯一的裁判;<strong>梯度下降(gradient descent)</strong> 是按损失下降最快的方向反复微调参数 θ 的优化算法。</li>
+<li><strong>为什么需要</strong>:参数空间动辄百万维,不存在手解方程求最优解的可能;而损失函数给每个 θ 一个「海拔」,梯度就是「当前点最陡的下坡方向」,于是学习变成了<strong>下山</strong>:算梯度 → 沿反方向迈一小步 → 再算,直到走到谷底。</li>
+<li><strong>作用</strong>:损失函数的选择决定了模型在「优化什么」——分类任务用交叉熵(直接优化概率判断),回归任务用均方误差(MSE,惩罚大偏差),选错损失,模型会在错误的评价标准上努力。</li>
+<li><strong>详细介绍</strong>:更新规则是 <code>θ ← θ − η·∇L</code>,其中 <strong>η(学习率)是每步迈多大</strong>。学习率太大:步子跨过谷底,loss 震荡甚至发散;太小:龟速下山,训练半天没进展。实践中常用自适应优化器(Adam 等)自动调节每步大小。梯度下降还有个著名局限:高维空间里可能停在<strong>局部最低点</strong>而非全局最低点,所以初始化、批大小(batch size)等细节都会影响最终质量。神经网络的梯度计算与优化器更新,是下一章<a href="/ai/01-models/01/03/">神经网络</a>的主角。</li>
+</ul>
+<h2 id="6-数据决定上限质量泄漏与偏见">6. 数据决定上限:质量、泄漏与偏见</h2>
+<ul>
+<li><strong>概念</strong>:模型能学到的上限由数据决定,算法只决定「能多接近这个上限」——行业里叫 <strong>garbage in, garbage out(垃圾进,垃圾出)</strong>。</li>
+<li><strong>为什么需要重视</strong>:数据和代码不同,它的缺陷是隐形的。模型不会报错,只会安静地把数据里的错误、泄漏和偏见学成「规律」,上线后以不可预测的方式爆发。</li>
+<li><strong>作用</strong>:把「数据工程」当成一等公民,能省下后期数不清的返工——数据清洗、去重、质量抽检、分布监控,都是机器学习工程的核心日常。</li>
+<li><strong>详细介绍</strong>(三类典型数据病):
+<ol>
+<li><strong>质量差</strong>:错标、重复、过期样本混入,直接污染学习信号;</li>
+<li><strong>数据泄漏</strong>:模型在训练时「偷看」了本不该看到的信息。经典例子:用包含未来信息的字段预测明天(如用「今日是否已还款」预测今日违约)、去重前先切分导致同一用户既在训练集又在测试集——泄漏会让离线指标虚高到离谱,上线即翻车;</li>
+<li><strong>偏见</strong>:历史数据里的歧视与失衡会被放大固化,比如用人历史招聘数据训练的筛选模型学会「偏好男性」。识别并缓解数据偏见,是负责任 AI 的起点。</li>
+</ol>
+</li>
+</ul>
+<h2 id="7-机器学习与大模型预训练是自监督">7. 机器学习与大模型:预训练是自监督</h2>
+<ul>
+<li><strong>概念</strong>:今天的 LLM(如 GPT、Llama)属于机器学习,但训练方式很特别:<strong>预训练阶段没有人工标签</strong>——把互联网文本喂给模型,让它预测「下一个 token 是什么」,答案就在文本自身里,猜完立即对答案。</li>
+<li><strong>为什么需要</strong>:人工标注无法覆盖海量文本,而「预测下一个词」这种<strong>自监督(self-supervised)</strong> 任务能零成本地制造无限训练信号,让模型在千亿 token 上自学语言规律。</li>
+<li><strong>作用</strong>:正是这种「自己出题自己答」的机制,让模型从「每个任务标一批数据」进化到「一个模型,万千任务」——GPT-2 论文标题直接点破:<strong>语言模型是无监督的多任务学习者</strong>。</li>
+<li><strong>详细介绍</strong>:自监督属于无监督的进阶形态(用数据自身结构生成伪标签,把无监督问题转成监督问题);预训练之后,再用少量人工标注做监督微调(SFT)与 RLHF 对齐,就得到你日常使用的对话模型。一句话串起全章:<strong>范式是自监督,引擎是梯度下降,纪律是三集划分,命门是数据质量</strong>——这些正是后续章节展开的骨架。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<h3 id="81-本章一览">8.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>机器学习</td>
+<td>从数据中自动归纳规律,使任务表现可量化提升</td>
+</tr>
+<tr>
+<td>三种范式</td>
+<td>监督(有标签预测)、无监督(无标签找结构)、强化(试错学决策)</td>
+</tr>
+<tr>
+<td>三集划分</td>
+<td>训练集学习、验证集调参、测试集只做最终一次评估</td>
+</tr>
+<tr>
+<td>过拟合/欠拟合</td>
+<td>背下噪声 vs 没学会;用数据、正则化、早停平衡</td>
+</tr>
+<tr>
+<td>损失+梯度下降</td>
+<td>损失当裁判、梯度指方向、学习率定步幅</td>
+</tr>
+<tr>
+<td>数据决定上限</td>
+<td>质量差、泄漏、偏见会让模型学错东西</td>
+</tr>
+<tr>
+<td>LLM 预训练</td>
+<td>自监督:预测下一个 token,无需人工标签</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-思考题">8.2 思考题</h3>
+<ol>
+<li>一个垃圾邮件过滤器,应该用监督、无监督还是强化学习?为什么?</li>
+<li>同事为了「提高准确率」,反复在测试集上试了 50 个超参数组合,最后选了最好的那个。问题出在哪?</li>
+<li>训练 loss 一路下降、验证 loss 却开始回升,此刻模型处于什么状态?你第一步会做什么?</li>
+<li>学习率设成 0.001 和 10,分别会发生什么?为什么?</li>
+<li>为什么说 LLM 的预训练「不需要人工标注」?它用的伪标签是什么?</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>监督学习:垃圾邮件判断有明确答案(是否垃圾),可用历史标注邮件训练分类器;若没有标注,退而求其次可用无监督异常检测发现「可疑」邮件群。</li>
+<li>测试集被当成了验证集用,超参数已隐式拟合测试集,最终分数严重乐观;正确做法是只留验证集调参,测试集定稿后测一次。</li>
+<li>过拟合正在发生(模型开始背训练集噪声);先停训练(早停),再考虑加数据、加正则或减小模型容量。</li>
+<li>0.001 可能太小:每步几乎不动,收敛极慢;10 太大:步子越过谷底,loss 震荡甚至发散。合适的学习率应让 loss 平稳下降。</li>
+<li>预训练任务是「预测下一个 token」,正确答案就是文本中真实的下一个词,模型自己就能生成标签,故称自监督(伪标签=文本本身)。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://www.ibm.com/think/topics/machine-learning-types">IBM:Types of Machine Learning(机器学习类型)</a></li>
+<li><a href="https://developers.google.com/machine-learning/crash-course/overfitting">Google:Machine Learning Crash Course——数据、泛化与过拟合</a></li>
+<li><a href="https://arxiv.org/abs/1906.06675">Radford et al.:Language Models are Unsupervised Multitask Learners(GPT-2,2019)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/01/01/"><span>上一篇</span><strong>01.01.01 什么是 AI 模型</strong></a><a class="ai-pager-next" href="/ai/01-models/01/03/"><span>下一篇</span><strong>01.01.03 神经网络</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念机器学习是什么">1. 概念:机器学习是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-为什么需要它规则写不完标签也标不完">1.1 为什么需要它:规则写不完,标签也标不完</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-三种学习范式解决三类不同的问题">2. 三种学习范式:解决三类不同的问题</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-监督学习有标准答案的例题集">2.1 监督学习:有标准答案的「例题集」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-无监督学习没有答案自己找结构">2.2 无监督学习:没有答案,自己找结构</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#23-强化学习没有老师只有奖惩">2.3 强化学习:没有老师,只有奖惩</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-训练验证测试三集划分">3. 训练、验证、测试:三集划分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-过拟合与欠拟合学过头与没学会">4. 过拟合与欠拟合:学过头与没学会</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-损失函数与梯度下降学习的引擎">5. 损失函数与梯度下降:学习的引擎</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-数据决定上限质量泄漏与偏见">6. 数据决定上限:质量、泄漏与偏见</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-机器学习与大模型预训练是自监督">7. 机器学习与大模型:预训练是自监督</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#81-本章一览">8.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#82-思考题">8.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

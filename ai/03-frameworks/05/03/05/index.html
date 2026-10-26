@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.05.03.05 线上监控、权限、成本与工程边界 · iopanda</title><meta name="description" content="03.05.03.05 线上监控、权限、成本与工程边界 · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/05/03/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.05.03.05 线上监控、权限、成本与工程边界 · iopanda"><meta property="og:description" content="03.05.03.05 线上监控、权限、成本与工程边界 · 框架 / 评估与可观测性框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/05/03/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="05" data-active-subsection="03" data-active-article="/ai/03-frameworks/05/03/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估与可观测性框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/05/"><span class="tree-number">05</span><span class="tree-title">评估与可观测性框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/05/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 MLflow"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/05/03/"><span class="tree-number">03</span><span class="tree-title">MLflow</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/05/03/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">线上监控、权限、成本与工程边界</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/">评估与可观测性框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/05/03/">MLflow</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">线上监控、权限、成本与工程边界</span></nav><header class="ai-article-header"><p class="ai-number">03.05.03.05</p><h1>线上监控、权限、成本与工程边界</h1><p class="ai-meta"><time datetime="2026-09-04T08:01">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>evaluation</li><li>observability</li><li>mlflow</li><li>monitoring</li><li>governance</li></ul></header><div class="ai-prose"><h1 id="线上监控权限成本与工程边界">线上监控、权限、成本与工程边界</h1>
+<blockquote>
+<p>MLflow README 现在已经明确把 observability、evaluation、AI Gateway、prompt management、cost control 放进同一产品面。[31] 再加上 TypeScript SDK 和本地 docker-compose stack 的说明，可以看出它不仅在做实验记录，也在往 production governance 走。[32][35] 这意味着它的边界问题已经不只是“能不能追踪”，而是“能不能长期治理和运营”。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解为什么 MLflow 的重点之一是长期治理，而不是单次诊断；</li>
+<li>说出 traces、feedback、eval、gateway、artifact store 在生产里如何互相关联；</li>
+<li>理解成本、权限、追踪、部署为什么会在同一平台里交叉；</li>
+<li>判断什么时候需要 MLflow 这类平台，什么时候它可能偏重；</li>
+<li>为系统写一张 governance-ops card。</li>
+</ol>
+<h2 id="1-线上监控在-mlflow-里不只是-trace-ui">1. 线上监控在 MLflow 里不只是 trace UI</h2>
+<p>README 明确把 monitor、costs、model access 管理都放进平台叙事。[31]
+这说明在 MLflow 视角里，生产问题不只是“这次 trace 哪里错了”，还包括：</p>
+<ul>
+<li>服务是否在稳态运行；</li>
+<li>成本是否可见；</li>
+<li>权限和访问是否可控；</li>
+<li>traces 是否能回到后续治理动作。</li>
+</ul>
+<h2 id="2-feedback-和-eval-为什么会连到运营问题">2. feedback 和 eval 为什么会连到运营问题</h2>
+<p>TypeScript SDK 里已经把 trace feedback、assessment、severity level 这些对象直接做成可记录实体。[32]
+这说明线上反馈不是旁路数据，而是平台内正式信号。</p>
+<h2 id="3-artifact--metadata-stack-为什么重要">3. artifact / metadata stack 为什么重要</h2>
+<p>docker-compose README 清楚说明本地 stack 至少由：</p>
+<ul>
+<li>Tracking Server</li>
+<li>PostgreSQL metadata</li>
+<li>S3-compatible artifact storage
+组成。[35]</li>
+</ul>
+<p>这说明 MLflow 的平台主语天然不是“只看前端 UI”，而是后端 metadata 与 artifacts 的长期运营。</p>
+<h2 id="4-工程边界">4. 工程边界</h2>
+<p>MLflow 很强，但也不是所有团队都该默认选它：</p>
+<ul>
+<li>如果你只想做 LLM-native trace/debug，Langfuse 或 Phoenix 可能更直接；</li>
+<li>如果你只要 CI regression，promptfoo 更轻；</li>
+<li>如果你只要 code-first eval，DeepEval 更直接。</li>
+</ul>
+<p>MLflow 更适合已经进入组织治理问题的团队。</p>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>mlflow-governance-ops-card.md</code></p>
+<p>列你的系统是否需要：tracking server、artifact store、trace feedback、prompt registry、gateway、access control。写一句结论：你的主复杂度是诊断、测试，还是平台治理和运营。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MLflow 的运营主语是什么</td>
+<td>追踪、评估、工件、访问和成本的长期治理</td>
+</tr>
+<tr>
+<td>feedback 为什么重要</td>
+<td>它把线上信号纳入平台正式对象</td>
+</tr>
+<tr>
+<td>artifact / metadata 为什么重要</td>
+<td>平台治理必须有持久化、审计和复用能力</td>
+</tr>
+<tr>
+<td>最大边界</td>
+<td>对轻量 LLM-only 团队可能偏重</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[31] <a href="https://github.com/mlflow/mlflow/blob/master/README.md">https://github.com/mlflow/mlflow/blob/master/README.md</a> — MLflow README</li>
+<li>[32] <a href="https://github.com/mlflow/mlflow/blob/master/libs/typescript/README.md">https://github.com/mlflow/mlflow/blob/master/libs/typescript/README.md</a> — MLflow TypeScript SDK README</li>
+<li>[35] <a href="https://github.com/mlflow/mlflow/blob/master/docker-compose/README.md">https://github.com/mlflow/mlflow/blob/master/docker-compose/README.md</a> — MLflow docker compose README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/05/03/04/"><span>上一篇</span><strong>03.05.03.04 GenAI 与传统 ML 的统一治理</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/05/03/06/"><span>下一篇</span><strong>03.05.03.06 企业课程助教系统的 MLflow 架构案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-线上监控在-mlflow-里不只是-trace-ui">1. 线上监控在 MLflow 里不只是 trace UI</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-feedback-和-eval-为什么会连到运营问题">2. feedback 和 eval 为什么会连到运营问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-artifact--metadata-stack-为什么重要">3. artifact / metadata stack 为什么重要</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-工程边界">4. 工程边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

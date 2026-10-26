@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.05.06 与大型实现对比 · iopanda</title><meta name="description" content="02.09.05.06 与大型实现对比 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/05/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.05.06 与大型实现对比 · iopanda"><meta property="og:description" content="02.09.05.06 与大型实现对比 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/05/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="05" data-active-article="/ai/02-agents/09/05/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pi Coding Agent"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/05/"><span class="tree-number">05</span><span class="tree-title">Pi Coding Agent</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/05/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">与大型实现对比</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/05/">Pi Coding Agent</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">与大型实现对比</span></nav><header class="ai-article-header"><p class="ai-number">02.09.05.06</p><h1>与大型实现对比</h1><p class="ai-meta"><time datetime="2026-09-03T07:50">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>pi-source</li></ul></header><div class="ai-prose"><h1 id="与大型实现对比">与大型实现对比</h1>
+<blockquote>
+<p>收官章把 Pi 放回 02.09 的六对象棋盘:00 Learning Path 的八维框架是每个子单元共用的解剖模板,前四章逐维交了 Pi 的「源码答案」,本章用同一张表给 Pi 打分——最小内核+四工具对 Codex 的 Rust 极简 CLI、Hermes 的记忆/技能资产化、Claude Code 的闭源全功能、OpenCode 的 TS 插件生态与 Copilot 的云 agent。分数之外更值得追问:一个「10 万+ star 却保持小代码库」的项目,到底证明了什么?哪些设计值得抄,哪些坑必须先知道?</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用 00 Learning Path 的八维框架给 Pi 逐维打分,每一分都能报出「文件:行号」或「见 XX README」的证据;</li>
+<li>解释「10 万+ star 保持小代码库」意味着什么:star 是注意力指标而非复杂度指标,以及 Pi 用哪些纪律对抗膨胀;</li>
+<li>复述可抄清单四条(极简 system prompt、树状会话、TypeBox 校验、扩展事件面)并说出各自的源码出处;</li>
+<li>复述要避清单两条(无默认权限护栏、功能全靠拼装的发现成本)并给出落地替代方案;</li>
+<li>完成六对象收官对照表,能回答「如果我自己写 Agent,Pi 这一格抄什么、不抄什么」。</li>
+</ol>
+<h2 id="1-概念同一张八维表给六个实现排座次">1. 概念:同一张八维表,给六个实现排座次</h2>
+<ul>
+<li>00 Learning Path 定义的八维是:①源码结构与入口、②Agent 循环实现、③上下文构建、④工具系统、⑤记忆系统、⑥协议与扩展、⑦评测与质量、⑧安全设计——每个子目录都按这八维解剖,Pi 的 01~04 章就是逐维答案。收官只做一件事:<strong>把 Pi 的答案与另外五个实现并排,逐维打分</strong>。</li>
+<li>六个对象在设计光谱上各占一格(均为各子目录 README 2026-09 核证口径):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>一句话定位</th>
+<th>设计签名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pi</td>
+<td>极简可扩展终端编码 Agent(本讲义)</td>
+<td>最小内核+四工具,能力外置到扩展</td>
+</tr>
+<tr>
+<td>02 Codex</td>
+<td>Rust+TS 双栈全开源 CLI</td>
+<td>80+ crates 的 Rust 核心,三态沙箱策略「简单够用」(见 02 README)</td>
+</tr>
+<tr>
+<td>03 Hermes</td>
+<td>Python 全栈自我进化 Agent</td>
+<td>技能/记忆/用户画像作为运行时可变资产(见 03 README)</td>
+</tr>
+<tr>
+<td>01 Claude Code</td>
+<td>闭源核心+开源 SDK 外壳</td>
+<td>permissionMode+hooks+SKILL.md 全功能内置(见 01 README)</td>
+</tr>
+<tr>
+<td>04 OpenCode</td>
+<td>TS monorepo 社区 Agent</td>
+<td>插件生态+开箱 LSP+build/plan 双模式(见 04 README)</td>
+</tr>
+<tr>
+<td>06 GitHub Copilot</td>
+<td>平台化编码 Agent 家族</td>
+<td>云 agent 的 Issue→PR 异步工作流+平台护栏(见 06 README)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>打分纪律:Pi 侧一律给源码出处(文件:行号,前四章核证过);其他实现只引用其子目录 README 已核证信息,标注「见 XX README」,不断言源码细节——这是本单元横向对比的共识边界。</li>
+</ul>
+<h2 id="2-为什么小核外置与全功能内置不该用一把尺子量">2. 为什么:小核外置与全功能内置,不该用一把尺子量</h2>
+<ul>
+<li>「最小内核 + 扩展前置」和「全功能内置」是两种相反的赌注:前者赌<strong>默认面小则行为可预测、可审计、可整读</strong>(01 章的双层直路循环),后者赌<strong>开箱即用、功能完整则用户留存高</strong>(Claude Code 的权限模式与 hooks、Copilot 的平台工作流)。</li>
+<li>八维打分因此不是「谁更强」,而是「每一维上,该实现的取向完成得怎样」:Pi 在「安全设计」维天然低分——README.md:40 明说无内置权限系统,这是<strong>主动取舍</strong>(04 章「不需要就不建」)而非疏漏;它在「协议与扩展」维则应该满分,因为那是它押注的全部。打分表的意义是把这种取舍摊开,让你按自己的场景加权,而不是按总分排名。</li>
+<li>六对象里只有 Pi 和 Codex 把「极简」当卖点,但落点相反:Codex 用 Rust 重写换单二进制与低延迟、把沙箱做进内核(见 02 README);Pi 把内核削到只剩循环与四工具、把沙箱/权限/子代理全部外置成示例(04 章)。对照读这两格,「极简」的两种工程含义就清楚了。</li>
+</ul>
+<h2 id="3-作用一张表回答pi-站在哪凭什么">3. 作用:一张表回答「Pi 站在哪、凭什么」</h2>
+<ul>
+<li>表的价值是<strong>定位 + 溯源</strong>:每个分数都能顺着「文件:行号 / 见 XX README」回到一段可核证的事实;这样读者可以不同意分数、但必须面对证据。读表时记住两个校正:①Pi 的低分维(记忆、安全)多为「外置」而非「缺失」,要去看它给出的扩展路径是否成立;②其他实现的描述来自 README 规划口径,闭源对象(Claude Code/Copilot)的能力以文档与行为实验为准(见 01/06 README)。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-八维打分表pi-逐维评分与对照">4.1 八维打分表:Pi 逐维评分与对照</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>维度</th>
+<th>Pi 的落点与出处</th>
+<th>评分</th>
+<th>横向对照(见 XX README)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>源码结构与入口</td>
+<td>十包 monorepo,cli.ts 仅 21 行,启动链一次读到底(main.ts:561→675→816)</td>
+<td>★★★★★</td>
+<td>Codex 80+ crates 双栈(02);Hermes Python 全栈(03);Claude Code/Copilot 核心闭源(01/06)</td>
+</tr>
+<tr>
+<td>②</td>
+<td>Agent 循环实现</td>
+<td>双层直路循环:低层工具批+follow-up(agent-loop.ts:156),高层重试/压缩/续跑(agent-session.ts:1105)</td>
+<td>★★★★☆</td>
+<td>Codex turn/iteration 由 done 事件终止(02);OpenCode build/plan 双 agent(04);Copilot 云 agent 多轮迭代(06)</td>
+</tr>
+<tr>
+<td>③</td>
+<td>上下文构建</td>
+<td>极简 system prompt(system-prompt.ts:123-124)+ 树状 JSONL(session-manager.ts:846)+ 压缩(agent-session.ts:2125)</td>
+<td>★★★★☆</td>
+<td>Codex AGENTS.md 自动发现拼接(02);Claude Code skills 按需注入(01)</td>
+</tr>
+<tr>
+<td>④</td>
+<td>工具系统</td>
+<td>默认四工具 read/bash/edit/write,TypeBox schema 即契约(tools/index.ts:164、validation.ts:317)</td>
+<td>★★★★☆</td>
+<td>Codex 三态沙箱执行 exec(02);OpenCode 开箱 LSP(04)</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>记忆系统</td>
+<td>树状会话是「档案级」记忆;长期记忆/RAG 留给 dynamic context 扩展(extensions/types.ts:687/1275)</td>
+<td>★★★☆☆</td>
+<td>Hermes FTS5 全文检索+摘要压缩+画像(03);Copilot 云 session logs(06)</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>协议与扩展</td>
+<td>~40 个 on() 事件 6 类 + 四层资源 + 85 个示例(extensions/types.ts:1252-1382、loader.ts:711-720)</td>
+<td>★★★★★</td>
+<td>OpenCode TS 插件生态(04);Hermes skills/plugins/MCP(03);Claude Code hooks(01)</td>
+</tr>
+<tr>
+<td>⑦</td>
+<td>评测与质量</td>
+<td>evals 包在列;85 示例即契约被 tsgo 检查(root package.json:18);无大规模公开评测集</td>
+<td>★★★☆☆</td>
+<td>Hermes evals 与轨迹生成(03);Copilot 自动 code review/安全校验(06)</td>
+</tr>
+<tr>
+<td>⑧</td>
+<td>安全设计</td>
+<td>无内置权限系统(README.md:40),默认进程全权;供应链硬化反衬出「边界靠容器」(AGENTS.md、README.md:42-46)</td>
+<td>★★☆☆☆</td>
+<td>Codex 三态沙箱(02);Claude Code permissionMode 六模式(01);Copilot Actions 隔离+审批闸门(06)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>合计 30/40,形状说明一切:<strong>在 ①⑥(可读性、扩展面)拿满,在 ⑧(安全默认)垫底</strong>——这是「最小内核+扩展前置」哲学的精确投影:把复杂度从内核挪到事件面,把安全责任从内核挪到用户与容器。</li>
+</ul>
+<h3 id="4210-万-star-保持小代码库意味着什么">4.2「10 万+ star 保持小代码库」意味着什么</h3>
+<ul>
+<li>事实(见本子目录 README,2026-09 核证):Pi 已达 10 万+ star;同列 Codex 约 12.1 万、OpenCode 约 20.3 万(见 02/04 README)。差别不在 star 数,而在<strong>代码量</strong>:Codex 是 80+ crates 大仓(02 README),OpenCode 是 TS monorepo 大仓(04 README),而 Pi 的核心可以被本讲义五章整读——最大的单文件 agent-session.ts 也就 3515 行。</li>
+<li>这意味着四点:
+<ol>
+<li><strong>star 是注意力指标,不是复杂度指标</strong>。10 万 star 没有逼作者加功能,因为功能诉求被扩展系统吸收——85 个示例就是「需求中转站」(04 章:示例即契约);</li>
+<li><strong>小代码库需要反向纪律维护</strong>。CONTRIBUTING.md:23 写明新贡献者的 issue/PR 默认自动关闭、:27 维护者每日复审;AGENTS.md 要求不保向后兼容、erasable TS——「拒绝膨胀」被写进了开发流程,而不是靠意志;</li>
+<li><strong>完整通读本身就是卖点</strong>。对用户与安全审计者,「可读」意味着可验证:没有黑盒、没有闭源陷阱,这正对着 Claude Code/Copilot 的「闭源核心」(01/06 README);</li>
+<li><strong>但 star 替代不了默认护栏</strong>。高关注度 + 无内置权限(README.md:40)意味着新手最容易「裸奔」——这直接引出要避清单第一条。</li>
+</ol>
+</li>
+</ul>
+<h3 id="43-可抄清单带源码出处">4.3 可抄清单(带源码出处)</h3>
+<ol>
+<li><strong>极简 system prompt</strong>:模板只有身份、工具列表、两条固定指南与 cwd,其余(项目上下文/技能)一律<strong>追加区块</strong>而不改写模板——常驻指令压到最短,把上下文位置留给真实对话(system-prompt.ts:123-124、:128-166)。抄法:先写 10 行内的核心模板,再设计追加机制。</li>
+<li><strong>树状会话</strong>:单 JSONL append-only 树,entry 带 {type,id,parentId,timestamp}(session-manager.ts:846、:30),分支=移动 leaf、回溯=改指针,压缩=独立 LLM 调用+compaction entry 折叠(compaction.ts:126-136)。抄法:任何「要回溯、要分支」的会话需求,都比「复制整份日志」干净一个量级。</li>
+<li><strong>TypeBox 校验</strong>:工具参数 schema 即契约(read.ts:21-25、write.ts:15-19),运行时 Value.Convert+Check(validation.ts:317),校验失败转 isError 工具结果回灌模型而非抛异常(agent-loop.ts:625、:668-673)。抄法:execute 永远拿到「校验后参数」,工具内部零类型 if。</li>
+<li><strong>扩展事件面</strong>:把「功能清单」设计成「事件清单」——约 40 个 on() 事件覆盖会话/agent/工具/模型/输入/资源六类(extensions/types.ts:1252-1382),再配 registerTool/registerCommand/registerFlag 五类注册表(types.ts:1765-1778)。抄法:内核只留主循环与最小工具,所有「策略」(权限、plan、子代理)都做成事件消费者——permission-gate.ts:10-34 演示了如何用 tool_call 事件自造安全闸门。</li>
+</ol>
+<h3 id="44-要避清单">4.4 要避清单</h3>
+<ol>
+<li><strong>无默认权限护栏</strong>:默认四工具含 bash,进程以启动用户全权运行(README.md:40),官方给出的边界方案是「自己容器化」(README.md:42-46:Gondolin/Docker/OpenShell);permission-gate 只是 85 个示例之一,不装就没有。避法:生产环境要么直接容器化,要么抄 Codex 的三态沙箱默认只读(02 README)、Claude Code 的 permissionMode(01 README)或 Copilot 的 Actions 隔离(06 README)——<strong>护栏必须默认存在,不能靠用户记得去扩展市场里找</strong>。</li>
+<li><strong>功能全靠拼装的发现成本</strong>:内核只有四工具,plan mode/子代理/沙箱/权限全在 examples 里且 loader 只扫一层目录、不建注册中心(loader.ts:711-720);用户不知道「有这些扩展」就用不上,「80% 用户只用四工具还以为是全部」是真实风险。避法:团队自维护一份「必备扩展清单+预设配置」随仓库分发,把发现成本从每个用户身上转移到一次性的团队资产上。</li>
+</ol>
+<h3 id="45-收官六对象一句话对照表">4.5 收官:六对象一句话对照表</h3>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>一句话结论</th>
+<th>对 Pi 的启示(反向可抄)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pi(本章)</td>
+<td>最小内核+扩展事件面,可整读、可自举</td>
+<td>——</td>
+</tr>
+<tr>
+<td>02 Codex</td>
+<td>Rust 极简 CLI 把「沙箱」做进内核</td>
+<td>默认只读沙箱值得抄,不必全盘外置</td>
+</tr>
+<tr>
+<td>03 Hermes</td>
+<td>记忆/技能是运行时可变资产</td>
+<td>dynamic context 之外,「用中学」闭环可借鉴</td>
+</tr>
+<tr>
+<td>01 Claude Code</td>
+<td>闭源全功能+permissionMode 闸门</td>
+<td>默认审批模型与 hooks 事件面是事实标准</td>
+</tr>
+<tr>
+<td>04 OpenCode</td>
+<td>TS 插件生态+开箱 LSP</td>
+<td>插件发现/分发机制补 Pi 的「拼装成本」短板</td>
+</tr>
+<tr>
+<td>06 Copilot</td>
+<td>云 agent+平台护栏+PR 检查点</td>
+<td>异步工作流与自动安全校验适合平台场景</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-动手活动填-pi-一格--自建抄避表">5. 动手活动:填 Pi 一格 + 自建抄/避表</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:八维表自评与抄/避表</p>
+<p><strong>目标</strong>:不照抄 4.1,自己把 Pi 的一格填出来,并产出你自己的抄/避表。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>打开 00 Learning Path.md,对照八维定义,选 Pi 的任一维度(建议先选 ② 或 ④),写出你给 Pi 的分数与三条「文件:行号」证据;</li>
+<li>从 4.1 表里挑一个对照对象(建议 02 Codex),读其 README,用「见 02 README」标注写一句该对象同维的设计签名,说明你认同/反对讲义评分的原因;</li>
+<li>打开 packages/coding-agent/src/core/system-prompt.ts:123-166 与 session-manager.ts:846,核验 4.3 清单第 1、2 条出处,并各写一句「我抄它,因为……」;</li>
+<li>从 4.4 两条要避中选一条,写出你的替代方案(容器化?默认 deny 层?必备扩展清单?);</li>
+<li>若本地有仓库,<code>git clone --depth 1 https://github.com/earendil-works/pi</code> 后用 <code>wc -l packages/coding-agent/src/core/agent-session.ts</code> 验证「3515 行是最大单文件」。</li>
+</ol>
+<p><strong>完成标准</strong>:Pi 一格有分数+三条出处;对照对象一句设计签名标注「见 XX README」;抄/避表各至少一条且带源码出处或替代方案;能口头回答「10 万+ star 保持小代码库,对你意味着什么」。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>现象/坑</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以为 Pi「功能少=不好」</td>
+<td>少是主动取舍(04 章),低分维都有扩展出口</td>
+<td>评分看「取向完成度」,不是功能数</td>
+</tr>
+<tr>
+<td>以为 star 多=代码可信</td>
+<td>star 是注意力;护栏仍默认缺失</td>
+<td>信「可读+可验证」,不信 star 背书</td>
+</tr>
+<tr>
+<td>其他实现描述与源码有出入</td>
+<td>只引 README 规划口径,闭源对象靠文档</td>
+<td>需要深究时回到各对象自己的 01~05 章</td>
+</tr>
+<tr>
+<td>把 examples 当内置功能</td>
+<td>85 个示例是「可选配件」,默认不加载</td>
+<td>用前先看 docs/extensions.md 信任边界</td>
+</tr>
+<tr>
+<td>想照抄 Pi 的信任模型</td>
+<td>它要求宿主自带容器/沙箱纪律</td>
+<td>无容器条件就抄 Codex 的默认只读沙箱</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:本章所有「见 XX README」都是 2026-09 核证口径;代码库行号是检出快照,仓库每日在变,方法(重定位)比行号可靠——这条对六个对象一视同仁。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八维打分</td>
+<td>Pi 30/40:可读性(①⑥)满分、安全默认(⑧)垫底,形状=哲学投影</td>
+</tr>
+<tr>
+<td>10 万+ star 小代码库</td>
+<td>star 是注意力;小靠 CONTRIBUTING 纪律+扩展吸收需求维持</td>
+</tr>
+<tr>
+<td>可抄</td>
+<td>极简 system prompt / 树状会话 / TypeBox 校验 / 扩展事件面(4.3,各带出处)</td>
+</tr>
+<tr>
+<td>要避</td>
+<td>无默认权限护栏 / 拼装发现成本(4.4)</td>
+</tr>
+<tr>
+<td>收官结论</td>
+<td>小核外置的代价是安全默认与发现成本,收益是整读可审计与无限扩展面</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:① 八维表里 Pi 的「记忆系统」只得三星,但它的会话树对分支场景比线性日志强得多——三星合理吗?你会在什么场景给它加星?② 若你维护一个 10 万 star 的开源 Agent,敢不敢学 CONTRIBUTING.md:23 的「默认自动关 PR」?代价是什么?③ 「把安全外置给容器」与「把安全内置成沙箱(Codex)」,对个人用户与企业的适用边界分别在哪?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>① 三星评的是「默认能力」:树状会话(⑤维的档案层)确实一流,但长期记忆/RAG 需要扩展拼装,而 Hermes 把 FTS5 检索+摘要+画像做成了默认闭环(见 03 README)——若你的场景是「多会话跨天学习用户偏好」,Pi 需要你写扩展,该场景下三星合理;若你的场景是「单会话内反复改方案、来回试分支」,树的价值远超三星,可单独给它加星。② 敢,但要有配套:自动关是为了挡低质流量(作者博客称小团队+高门槛),代价是可能误伤真诚的新贡献者与社区热度;折中是 Hermes/OpenCode 式「bots 自动分流+维护者每日复审」(CONTRIBUTING.md:27 正是这么写的)。③ 个人用户:容器成本低、可接受「全权+自觉」;企业:审计与合规要求默认护栏,应选 Codex 式默认只读沙箱或 Copilot 式平台隔离——这正是 01.07 治理框架里「风险越高,自主度越低」的又一次印证。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/earendil-works/pi">earendil-works/pi(GitHub 仓库,本章 Pi 侧全部源码出处)</a></li>
+<li><a href="https://pi.dev">pi.dev(官网与文档)</a></li>
+<li><a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/">Mario Zechner:What I learned building an opinionated and minimal coding agent(设计哲学一手材料)</a></li>
+<li><a href="https://github.com/earendil-works/pi/blob/main/CONTRIBUTING.md">earendil-works/pi CONTRIBUTING.md(自动关 PR 纪律的原文出处)</a></li>
+</ul>
+<p>本子单元收官。进入 06 GitHub Copilot 子单元,见其 README——从「小核外置」的极致跳到「平台内置」的极致,八维表将迎来最后一个、也是最难解剖的对象。</p>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/05/05/"><span>上一篇</span><strong>02.09.05.05 设计哲学与取舍</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/06/01/"><span>下一篇</span><strong>02.09.06.01 GitHub Copilot 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念同一张八维表给六个实现排座次">1. 概念:同一张八维表,给六个实现排座次</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么小核外置与全功能内置不该用一把尺子量">2. 为什么:小核外置与全功能内置,不该用一把尺子量</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用一张表回答pi-站在哪凭什么">3. 作用:一张表回答「Pi 站在哪、凭什么」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-八维打分表pi-逐维评分与对照">4.1 八维打分表:Pi 逐维评分与对照</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#4210-万-star-保持小代码库意味着什么">4.2「10 万+ star 保持小代码库」意味着什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-可抄清单带源码出处">4.3 可抄清单(带源码出处)</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-要避清单">4.4 要避清单</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-收官六对象一句话对照表">4.5 收官:六对象一句话对照表</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动填-pi-一格--自建抄避表">5. 动手活动:填 Pi 一格 + 自建抄/避表</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.06.01 评测设计 · iopanda</title><meta name="description" content="01.06.01 评测设计 · 模型 / 评测与基准，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/06/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.06.01 评测设计 · iopanda"><meta property="og:description" content="01.06.01 评测设计 · 模型 / 评测与基准，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/06/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="06" data-active-subsection data-active-article="/ai/01-models/06/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评测与基准"></button><a class="tree-link tree-link--section" href="/ai/01-models/06/"><span class="tree-number">06</span><span class="tree-title">评测与基准</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/06/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">评测设计</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/06/">评测与基准</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">评测设计</span></nav><header class="ai-article-header"><p class="ai-number">01.06.01</p><h1>评测设计</h1><p class="ai-meta"><time datetime="2026-09-03T00:20">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>evaluation</li></ul></header><div class="ai-prose"><h1 id="评测设计">评测设计</h1>
+<blockquote>
+<p>01.03 微调出了更懂课程资料的课程助教 adapter,01.05 做出了能看 PPT 截图的多模态原型——它们「看起来变强了」,但拿什么证明真的达标、可以交付?本章解决这个问题:在动手跑任何分数之前,先设计一次可信的评测——把任务、指标、阈值、失败分类定义清楚,产出一份可执行的评测计划(eval spec)。它是整个 01.06 单元的地基:本章的计划定了「测什么、怎么算过」,后面各章依次补上黄金数据集(02)、程序化指标(03)、LLM 裁判(04)、错误分析(05)、安全评测(06)与最终报告(07)。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出评测的定义,解释它为什么与传统机器学习评测不同(开放生成、无单一答案);</li>
+<li>解释为什么没有评测的「感觉变好了」不可靠,评测为何是改进循环的锚点;</li>
+<li>说出评测四要素(任务定义、指标选择、阈值、失败分类),并说出评测目标必须可衡量且对应业务目标;</li>
+<li>区分离线评测与在线评测,描述分层评测(程序化指标 → LLM 裁判 → 人工)各自的位置;</li>
+<li>为课程助教写出一份 eval spec:任务清单、每任务的指标与阈值、失败类别、成本预算。</li>
+</ol>
+<h2 id="1-概念评测--任务--指标--阈值--失败分类">1. 概念:评测 = 任务 + 指标 + 阈值 + 失败分类</h2>
+<ul>
+<li><strong>评测(Evaluation)</strong> 不是「跑几个例子看看效果」,而是<strong>用定义好的任务、指标与阈值,判断模型在特定使用场景下是否达标</strong>。三个关键词缺一不可:任务没定义清,测出来的分数不知道在说什么;指标不合适,分数会骗人;不设阈值,分数再高也无法回答「能不能上线」。</li>
+<li>传统机器学习评测通常是<strong>有标准答案的闭卷考</strong>:图像分类对一张图,<code>label</code> 是唯一的,算准确率就行。LLM 评测本质不同——模型输出是<strong>开放的</strong>:同一个问题「解释外键」,一千个合格助教有一千种说法,没有唯一的正确答案可以比对。</li>
+<li>因为输出开放,LLM 评测要把「什么算对」翻译成<strong>可检查的期望行为</strong>:事实是否与课程资料一致、是否遵守输出格式、资料外问题是否拒答、回答是否有害。测的不是「和标准答案一字不差」,而是「行为是否符合期望」。</li>
+<li>评测的产物不只是分数,还包括<strong>失败的分类</strong>:哪些题错了、错成哪一类(事实错、格式错、拒答错……)。分数告诉你「差多少」,失败分类才告诉你「差在哪、下一步改什么」。</li>
+</ul>
+<h2 id="2-为什么需要评测是改进循环的锚点">2. 为什么需要:评测是改进循环的锚点</h2>
+<ul>
+<li>「模型好像变聪明了」「这几条回答挺专业」——这些<strong>感觉</strong>不可靠:人很容易记住变好的几条、忘掉变差的几条;而且没有基线对照,「感觉变好」可能只是提问姿势变了。01.03/08 反复强调的纪律就在这里落地:没有改前成绩,就无法证明训练有效。</li>
+<li>评测是<strong>改进循环</strong>的锚点,每一次「改数据、调提示词、重训练」都要靠评测闭环:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>设计评测 → 构建数据 → 跑指标 → 分析失败 → 改进 → 回到评测</span></span>
+<span class="line"><span>   (本章)    (02 章)   (03/04 章)  (05 章)   (01.03 方法)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>锚点的意思是:<strong>循环里只有评测是「不变的标准」</strong>。数据可以重造、模型可以重训,但评测任务与阈值一旦定下,就不能因为「这题太难、模型答不好」而偷偷改简单——改了,后面的分数就失去可比性(这正是 01.03/08 golden set 先冻结的原因)。</li>
+<li>评测还承担<strong>验收与沟通</strong>职能:向上汇报「能不能上线」、向同事交接「已知会错什么」、向第三方证明「没有挑样例」,靠的都是同一份可复现的评测,而不是演示。</li>
+<li>评测设计要<strong>先于模型存在</strong>:理想状态下,拿到模型之前就写好任务与阈值——先定「怎么算过」,再让训练去够它。反过来等「模型训完再想怎么测」,阈值会不自觉地迁就模型现状,评测就失去了仲裁作用;这也解释了 01.03/08 为什么坚持 golden 集必须在训练前冻结。</li>
+</ul>
+<h2 id="3-评测四要素">3. 评测四要素</h2>
+<p>任何评测计划都围绕四个问题展开,缺一个都不完整:</p>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>要回答的问题</th>
+<th>课程助教上的例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务定义</td>
+<td>测什么能力、输入输出长什么样、覆盖哪些边界</td>
+<td>「课程概念问答」「格式题」「资料外拒答题」等任务清单</td>
+</tr>
+<tr>
+<td>指标选择</td>
+<td>每条输出如何打分、用什么工具打</td>
+<td>依据正确率、格式合规率、拒答正确率、ROUGE-L(03 章)、LLM 裁判分(04 章)</td>
+</tr>
+<tr>
+<td>阈值</td>
+<td>多少分算过、哪些错误不可接受</td>
+<td>依据正确率 ≥ 90%、拒答题编造 = 0 容忍</td>
+</tr>
+<tr>
+<td>失败分类</td>
+<td>不达标的输出如何归类、后续怎么处理</td>
+<td>事实错/格式错/过度拒答/幻觉,每类给示例(05 章)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>评测目标必须可衡量,且对应业务目标</strong>。业务目标说「助教要让学生满意」不可直接测;把它拆成「回答有依据、资料外不乱说、遵守格式、及时响应」,再为每条配可测指标与阈值,业务语言就变成了工程验收标准。</li>
+<li>阈值要区分<strong>硬红线</strong>与<strong>软指标</strong>:编造课程资料里不存在的内容、泄漏私密信息属于硬红线,一条都不许有(阈值 = 0 容忍);「回答简洁程度」这类软指标可以定宽松阈值或只记录不卡上线。</li>
+</ul>
+<h2 id="4-评测发生在哪离线在线与分层">4. 评测发生在哪:离线、在线与分层</h2>
+<ul>
+<li><strong>离线评测(offline)</strong>:用固定的题集与脚本,在发布前对模型打分。便宜、可复现、可回归,是日常迭代的主力;本单元 01~07 章做的都是离线评测。</li>
+<li><strong>评测运行本身也要可复现</strong>:记录评测代码版本、模型与 adapter 版本、生成参数(<code>temperature</code>、<code>max_new_tokens</code>、seed)与依赖版本——同一模型同一题两次跑分不一致,先查解码参数再怀疑模型。这条纪律呼应 01.02/10 的实验追踪:评测 run 也是实验 run,不进追踪体系就无从解释分数漂移。</li>
+<li><strong>在线评测(online)</strong>:模型上线后,用真实用户流量观察(用户点不点赞、是否追问、线上日志的失败率)。它测的是<strong>离线题集覆盖不到的真实分布</strong>,但代价高、反馈慢、不可复现。两者关系:离线评测通过才能上线,在线评测则持续验证「离线假设没有过期」。</li>
+<li><strong>评测目标与交付管线一致</strong>:01.05/05 已埋下伏笔——评测时怎么调用模型(同一 system prompt、<code>do_sample=False</code>、同一图像预处理),交付时就要怎么调用;评测管线若比交付管线更宽容,分数就虚高。</li>
+<li><strong>分层评测</strong>:不同层级的评分者,精度与成本递增,配合使用:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>谁在评分</th>
+<th>适合评什么</th>
+<th>成本/速度</th>
+<th>何时用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>程序化指标</td>
+<td>代码规则(含 ROUGE、JSON 校验)</td>
+<td>分类正确性、格式、关键词</td>
+<td>最低/即时</td>
+<td>每个改动都跑回归</td>
+</tr>
+<tr>
+<td>LLM 裁判</td>
+<td>强模型按 rubric 打分</td>
+<td>帮助性、连贯性、安全性</td>
+<td>中/快</td>
+<td>开放题批量打分</td>
+</tr>
+<tr>
+<td>人工评测</td>
+<td>领域专家逐条审</td>
+<td>事实准确性、边界判断</td>
+<td>最高/慢</td>
+<td>golden 集全量或抽样复核</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>上一单元(01.05/05)的人工逐条 0/1 评分就是「人工层」的雏形;本单元 02 章把题集系统化为黄金集,03/04 章把评分自动化,人工则退到「复核裁判、抽查底线」的位置。</li>
+</ul>
+<p>综合以上,设计一次评测的推荐顺序如下(可直接当作写 eval spec 的提纲):</p>
+<ol>
+<li>从业务目标写出<strong>可衡量目标与硬红线</strong>,先于任何模型;</li>
+<li>列<strong>任务清单与样例题</strong>,覆盖常见、边界、高风险三类输入;</li>
+<li>为每个任务选定<strong>评分层级</strong>(程序化/LLM 裁判/人工)与对应指标;</li>
+<li>定下每个指标的<strong>阈值</strong>,并列出预期的失败类别;</li>
+<li>估算<strong>成本</strong>、把计划纳入版本管理,再进入 02 章的数据构建。</li>
+</ol>
+<p>这五步走完,评测计划就不再是「跑分脚本的需求说明」,而是一份可以评审、可以冻结、可以追溯到业务目标的工程文档。</p>
+<h2 id="5-动手活动写一份评测计划eval-spec">5. 动手活动:写一份评测计划(eval spec)</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:为课程助教写 eval spec</p>
+<p><strong>目标</strong>:在 01.03 的 <code>finetune/</code> 项目里新建 <code>finetune/eval/eval-spec.md</code>,把本章四要素落成一份可执行的评测计划。若你完成了 01.05 多模态原型,可在计划中追加「截图问答」任务组。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li><strong>写业务目标与可衡量目标</strong>:一句话业务目标,再拆成 2~4 条可测量指标(含硬红线);</li>
+<li><strong>列任务清单</strong>:至少四个任务组——课程概念问答(如「主键是什么?」「解释外键,举一个例子」)、格式题、资料外拒答题(如「明天东京天气?」)、边界歧义题(如「这章会考吗?」),每组 2~3 道样例题;</li>
+<li><strong>为每组定指标与阈值</strong>:参考下方「任务组示例表」填写,硬红线单独标注;</li>
+<li><strong>定义失败类别</strong>:列出你预期会看到的失败类型(事实错、格式错、过度拒答、编造等),各给一句话示例;</li>
+<li><strong>写成本预算</strong>:估算每轮评测的 token 消耗与人工耗时(见下)。</li>
+</ol>
+<p><strong>完成标准</strong>:第三方拿到 <code>eval-spec.md</code>,不看任何代码,也能说出「这门课助教评测哪些任务、每个任务多少分算过、出错算什么、一轮要花多少钱」。</p>
+</div>
+<p>课程助教「任务组示例表」(把第 3 节四要素落到五个任务组;你可以在 eval spec 里直接改数值):</p>
+<table>
+<thead>
+<tr>
+<th>任务组</th>
+<th>样例题</th>
+<th>指标</th>
+<th>阈值示例</th>
+<th>失败类别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>概念问答</td>
+<td>「主键是什么?」</td>
+<td>依据正确率(人工/裁判)</td>
+<td>≥ 90%</td>
+<td>事实错、幻觉</td>
+</tr>
+<tr>
+<td>关系解释</td>
+<td>「解释外键,举一个例子」</td>
+<td>依据正确率 + 格式合规率</td>
+<td>≥ 85%、≥ 95%</td>
+<td>事实错、格式错</td>
+</tr>
+<tr>
+<td>格式题</td>
+<td>「用三点式总结本章」</td>
+<td>格式合规率(程序化)</td>
+<td>≥ 95%</td>
+<td>格式错</td>
+</tr>
+<tr>
+<td>资料外拒答</td>
+<td>「明天东京天气?」</td>
+<td>拒答正确率</td>
+<td>= 100%(硬红线)</td>
+<td>编造、过度回答</td>
+</tr>
+<tr>
+<td>边界歧义题</td>
+<td>「这章会考吗?」</td>
+<td>澄清或拒答率</td>
+<td>≥ 90%</td>
+<td>过度拒答、臆断</td>
+</tr>
+</tbody>
+</table>
+<p>评测计划里的预算表可参考(30 道题、2 个模型各跑一轮):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>预算估算(课程助教,小模型):</span></span>
+<span class="line"><span>  输入:30 题 × 约 80 token            ≈ 2.4k token</span></span>
+<span class="line"><span>  输出:30 答 × 约 200 token            ≈ 6.0k token</span></span>
+<span class="line"><span>  每模型每轮 ≈ 8.4k token,2 模型 = 约 17k token</span></span>
+<span class="line"><span>  按 0.5B 本地推理:几乎为零;若用 API,按单价折算即可</span></span>
+<span class="line"><span>  人工复核:golden 集全量 30 条 × 约 1 分钟 + 讨论 ≈ 1 小时</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="6-边界与排错">6. 边界与排错</h2>
+<ul>
+<li><strong>「先跑起来再设计」</strong>:没有任务定义与阈值的评测,跑出来只是一堆数字——先写 eval spec(哪怕只有一页),再写评测代码。</li>
+<li><strong>阈值含糊</strong>:「准确率要高」「差不多就行」不可验收;每个指标都要有数值或「0 容忍」的明确表述。</li>
+<li><strong>任务与交付脱节</strong>:评测题全是课程概念问答,却没人测格式与拒答——上线后被学生问一句资料外问题就翻车;任务清单要覆盖常见、边界、高风险三类输入。</li>
+<li><strong>指标与任务错配</strong>:开放题用「是否包含某关键词」打分,会奖励废话、惩罚合法改写;先想清楚每个任务用什么层级评分(见第 4 节分层表),细节在 03/04 章展开。</li>
+<li><strong>预算为零</strong>:评测也要算成本(第 5 节);人工全量复核 500 条不现实,先定「全量程序化 + 抽样人工」的分层方案。</li>
+<li><strong>计划不纳入版本管理</strong>:eval spec 改阈值、加任务却不留痕,到 02 章冻结 golden 集后就无法追溯「标准何时被放宽过」;计划应与 golden 集一样提交 git,并记录每次修改的日期与理由——这既是工程纪律,也是评测可审计性的起点。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>评测是什么</td>
+<td>用定义好的任务 + 指标 + 阈值判断模型是否达标,并给失败分类</td>
+</tr>
+<tr>
+<td>与传统 ML 评测的差异</td>
+<td>输出开放、无单一答案,评的是「期望行为」而非逐字比对</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>「感觉变好了」不可靠;评测是改进循环里唯一不变的标准与验收依据</td>
+</tr>
+<tr>
+<td>四要素</td>
+<td>任务定义、指标选择、阈值、失败分类;评测目标可衡量且对应业务目标</td>
+</tr>
+<tr>
+<td>离线 vs 在线</td>
+<td>离线在发布前用固定题集打分;在线用真实流量验证离线假设是否过期</td>
+</tr>
+<tr>
+<td>分层评测</td>
+<td>程序化指标(回归) → LLM 裁判(开放题批量) → 人工(全量 golden/抽样复核),精度与成本递增</td>
+</tr>
+<tr>
+<td>动手产物</td>
+<td>eval-spec.md:业务目标、任务清单、指标阈值、失败类别、成本预算</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:如果 eval spec 写好后发现「概念问答阈值 90% 模型达不到」,你会先调低阈值还是先查任务与数据?评测目标和业务目标「学生满意」之间,还可能漏掉哪些不可测量的维度(如回答时效、语气)?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>先查任务与数据,不急着调阈值:达不到 90% 可能是题目太难或存在歧义(改题、补黄金集)、可能是模型确实没学会(回 01.03 补数据重训)、也可能是指标选错(用 ROUGE 评开放题)。调低阈值等于改评测标准,必须同时给出业务理由并留档。业务目标中「时效、语气、是否引发追问」等维度难以用本章指标直接测量,通常留给在线评测(响应时间监控、用户反馈)或人工抽样,这正说明离线评测要主动声明自己的覆盖边界,把测不到的部分交给后续章节的分层手段。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://crfm.stanford.edu/helm/">Stanford CRFM:HELM 全面评测框架</a></li>
+<li><a href="https://github.com/EleutherAI/lm-evaluation-harness">EleutherAI:lm-evaluation-harness 评测工具库</a></li>
+<li><a href="https://github.com/openai/evals">OpenAI Evals:评测任务编写指南</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/05/05/"><span>上一篇</span><strong>01.05.05 多模态收官项目</strong></a><a class="ai-pager-next" href="/ai/01-models/06/02/"><span>下一篇</span><strong>01.06.02 构建黄金数据集</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念评测--任务--指标--阈值--失败分类">1. 概念:评测 = 任务 + 指标 + 阈值 + 失败分类</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要评测是改进循环的锚点">2. 为什么需要:评测是改进循环的锚点</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-评测四要素">3. 评测四要素</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-评测发生在哪离线在线与分层">4. 评测发生在哪:离线、在线与分层</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动写一份评测计划eval-spec">5. 动手活动:写一份评测计划(eval spec)</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错">6. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.05.03 会话与压缩 · iopanda</title><meta name="description" content="02.09.05.03 会话与压缩 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/05/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.05.03 会话与压缩 · iopanda"><meta property="og:description" content="02.09.05.03 会话与压缩 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/05/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="05" data-active-article="/ai/02-agents/09/05/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Pi Coding Agent"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/05/"><span class="tree-number">05</span><span class="tree-title">Pi Coding Agent</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/05/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">会话与压缩</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/05/">Pi Coding Agent</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">会话与压缩</span></nav><header class="ai-article-header"><p class="ai-number">02.09.05.03</p><h1>会话与压缩</h1><p class="ai-meta"><time datetime="2026-09-03T07:35">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>pi-source</li></ul></header><div class="ai-prose"><h1 id="会话与压缩">会话与压缩</h1>
+<blockquote>
+<p>01 章通读完「内核最小集」,但四个工具的对话如何活过一轮、活过一百轮?Pi 的答案是把一次会话存成「单文件、只追加、可分支」的树:每次回车都在 JSONL 末尾追加一条带 parentId 的记录,回溯只是把「叶子指针」移回某个旧条目,离开的分支被折成一段摘要继续参与上下文。本章看这份文件如何从一行 header 长成一棵树,以及上下文逼近窗口时,压缩在哪三个时刻被触发、摘要由谁生成、旧主线如何折叠。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>画出一次会话的 JSONL 文件结构(header + 带 {type,id,parentId,timestamp} 的追加条目),并说明 v3 树与线性日志的差别;</li>
+<li>复述 /tree、fork 与书签(label)在树上的操作语义,说明「只移动 leaf 指针、不改写历史」如何实现回溯与分支;</li>
+<li>说出 _checkCompaction 的三个自动触发情形(溢出带重试/可恢复截断/阈值),以及阈值触发所用公式与默认参数;</li>
+<li>解释 findCutPoint 反向攒保留预算、只许在 turn 边界下刀的原理,并描述「摘要 = 独立 LLM 调用 + compaction entry 折叠旧主线」的完整流程;</li>
+<li>说出换分支/继承时的 branch_summary 折叠与「每轮可改写消息」的 context 事件钩子,并对照 02.05 判断 Pi 的会话记忆属于哪种形态。</li>
+</ol>
+<h2 id="1-概念append-only-的树--分支不复制回溯不重写">1. 概念:append-only 的树 = 分支不复制、回溯不重写</h2>
+<ul>
+<li>会话存储的权威注释一句话讲完设计:<strong>“Manages conversation sessions as append-only trees stored in JSONL files.”</strong>(session-manager.ts:846)。每条记录是一个 entry,四个基础字段人人必有,其余字段随 type 不同而增删:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// core/session-manager.ts:46-51</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> SessionEntryBase</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">	type</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	parentId</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">	timestamp</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>追加即成为「当前叶子」的孩子:appendMessage 把 parentId 取为 this.leafId,落盘后推进 leaf(session-manager.ts:1058-1068);<strong>分支就是把 leaf 移回某个较早的 entry 再继续 append</strong>——旧子树原样留在文件里,零复制。当前分支 = 从 leaf 沿 parentId 一路回溯到根的路径,这是所有「重建上下文」操作的输入。</li>
+<li>entry 类型全集:message / thinking_level_change / model_change / compaction / branch_summary / label / session_info / custom / custom_message。其中 compaction 与 branch_summary 是「树的伤疤」——把被丢弃的历史以摘要形式留在树上;custom 与 custom_message 是扩展的持久化与上下文注入通道(session-manager.ts:69-141)。</li>
+<li>文件版本号 CURRENT_SESSION_VERSION = 3(session-manager.ts:30);header 首行记录 {type:“session”, version, id, timestamp, cwd, parentSession}(session-manager.ts:32-39);旧版本文件由 parseSessionEntries(session-manager.ts:299)容错续读并重建 byId/leaf 索引。</li>
+</ul>
+<h2 id="2-为什么对话不是日志是带岔路的地图">2. 为什么:对话不是日志,是带岔路的地图</h2>
+<ul>
+<li>02.05 讨论会话记忆时把重点放在「窗口放不下怎么办」(截断/摘要/RAG);Pi 的切入点更根本:<strong>一次会话里用户会 fork、会回到历史岔口重试、会想同时保留多条候选分支</strong>——线性日志只能用「复制文件」表达这些操作,而复制意味着历史割裂、同一段上下文重复计费。</li>
+<li>append-only 树让每个操作退化成「指针移动 + 一次追加」:fork 同一份历史开新文件(header 记 parentSession,main.ts:342 forkSessionOrExit),树内换分支只改 leaf。append-only 还天然抗崩溃——写坏最多丢最后半行,不可能毁掉一棵树;若要「物理删除」旧消息反而危险,因为 parentId 链会被打断。</li>
+<li>「摘要即 entry」的哲学让丢失最小化:被放弃分支与被压缩旧文都不消失,而以 compaction / branch_summary 两种 entry 留在树的正确位置,重建上下文时再决定去留(session-manager.ts:853-854 注释:「handles compaction summaries and follows the path from root to current leaf」)。代价是每轮都要做一次树遍历 + 折叠计算(4.1 节),换来「想回到哪就能回到哪」。</li>
+</ul>
+<h2 id="3-作用一个真实会话文件长什么样">3. 作用:一个真实会话文件长什么样</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>&lt;fileTimestamp&gt;_&lt;sessionId&gt;.jsonl    # 目录 ~/.pi/agent/sessions/&lt;编码后 cwd&gt;/(session-manager.ts:476、954)</span></span>
+<span class="line"><span>┌─ header    {"type":"session","version":3,"id":"…","timestamp":"…","cwd":"/repo","parentSession":…}</span></span>
+<span class="line"><span>├─ entry     {"type":"message","id":"m1","parentId":null,   "message":{role:"user",…}}          ← 根</span></span>
+<span class="line"><span>├─ entry     {"type":"message","id":"m2","parentId":"m1",   "message":{role:"assistant",…}}</span></span>
+<span class="line"><span>├─ entry     {"type":"message","id":"m3","parentId":"m2",   "message":{role:"toolResult",…}}</span></span>
+<span class="line"><span>├─ entry     {"type":"compaction","id":"c1","parentId":"m3","summary":"此前历史摘要…",</span></span>
+<span class="line"><span>│            "firstKeptEntryId":"m12","tokensBefore":45123}                                      ← 折叠点</span></span>
+<span class="line"><span>├─ entry     {"type":"message","id":"m12","parentId":"c1",  "message":{role:"user",…}}           ← 保留起点</span></span>
+<span class="line"><span>│            …(m12 之后的保留消息,含后续 compaction 则再折一层)</span></span>
+<span class="line"><span>├─ entry     {"type":"message","id":"m30","parentId":"m29", "message":{role:"user",…}}</span></span>
+<span class="line"><span>├─ entry     {"type":"label","id":"l1","parentId":"m30","targetId":"m30","label":"checkpoint-A"} ← 书签</span></span>
+<span class="line"><span>├─ entry     {"type":"branch_summary","id":"b1","parentId":"m30","fromId":"m31",</span></span>
+<span class="line"><span>│            "summary":"分支里试过方案 X,失败原因是…"}                                           ← 离开的分支</span></span>
+<span class="line"><span>├─ entry     {"type":"message","id":"m31","parentId":"b1",  "message":{role:"user",…}}           ← 新分支继续</span></span>
+<span class="line"><span>└─ …每次 append 追加一行;重载时 parseSessionEntries(session-manager.ts:299)重建树</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>图上三处「非消息 entry」正是本章主角:compaction 折叠旧主线、branch_summary 折叠被放弃的分支、label 是用户书签——session-manager.ts:110-115 注释直言 “Label entry for user-defined bookmarks/markers on entries”。上下文重建时只有「沿 leaf 回溯路径」上的 entry 可见,旁支全靠摘要代表。</li>
+<li>/tree 在交互模式把同一份文件渲染成可导航树(slash-commands.ts:22,描述 “Navigate session tree (switch branches)”;交互层在 interactive-mode.ts:3056 拦截 /tree),选中目标后调用 AgentSession.navigateTree(agent-session.ts:3105)完成「折去旧支、移叶子」。</li>
+</ul>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-上下文重建沿-parentid-回溯--compaction-折叠">4.1 上下文重建:沿 parentId 回溯 + compaction 折叠</h3>
+<p>buildSessionContext(session-manager.ts:461)先沿 parentId 从 leaf 回溯到根,再经 buildContextEntries(session-manager.ts:418)处理路径上的 compaction:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// core/session-manager.ts:436-453</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> compactionIdx</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> path.</span><span style="color:#B392F0">findIndex</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">entry</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> entry.id </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> compaction.id);</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (compactionIdx </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">	return</span><span style="color:#E1E4E8"> path;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> contextEntries</span><span style="color:#F97583">:</span><span style="color:#B392F0"> SessionEntry</span><span style="color:#E1E4E8">[] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [compaction];   </span><span style="color:#6A737D">// 压缩点本身(摘要)保留</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> foundFirstKept </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">let</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8"> compactionIdx; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> entry</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> path[i];</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (entry.id </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> compaction.firstKeptEntryId) {</span></span>
+<span class="line"><span style="color:#E1E4E8">		foundFirstKept </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (foundFirstKept) {</span></span>
+<span class="line"><span style="color:#E1E4E8">		contextEntries.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(entry);      </span><span style="color:#6A737D">// firstKept 之后的老消息才保留</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">contextEntries.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">path.</span><span style="color:#B392F0">slice</span><span style="color:#E1E4E8">(compactionIdx </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">));   </span><span style="color:#6A737D">// 压缩点之后原样保留</span></span>
+<span class="line"><span style="color:#F97583">return</span><span style="color:#E1E4E8"> contextEntries;</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>语义一句话:<strong>compaction entry 占住历史位置,它之前的旧消息被丢弃,只留 firstKeptEntryId 之后的干净尾巴</strong>;尾巴里若再有更新的压缩点,则递归再折一层——多次压缩在文件里就是串接的 compaction entry 链,回溯路径始终完整。丢弃发生在「重建上下文」这一步,文件本身一字未删。</li>
+<li>重建产物 sessionContext.messages 直接回灌 agent.state.messages:自动压缩后(agent-session.ts:2351-2352)与换分支后(agent-session.ts:3277-3278)都走同一条重建路径,低层循环完全不感知树的形状。</li>
+</ul>
+<h3 id="42-分支回溯与书签换路时折-branchsummary">4.2 分支、回溯与书签:换路时折 branchSummary</h3>
+<ul>
+<li>树内换分支(rewind/checkout):navigateTree(agent-session.ts:3105)先沿「旧 leaf → 共同祖先 → 目标」收集被放弃片段 collectEntriesForBranchSummary(branch-summarization.ts:108,调用点 agent-session.ts:3131-3135);若该分支值得留档,默认用一次独立 LLM 调用 generateBranchSummary(branch-summarization.ts:293,输入预算 = contextWindow − reserveTokens,:313)写摘要,再经 branchWithSummary 落成 branch_summary entry(session-manager.ts:1382-1407:type:“branch_summary”,fromId 记「从哪条支路来」);最后移动叶子——有摘要时叶子落在摘要 entry 上,无摘要时直接 branch(newLeafId) 或 resetLeaf(agent-session.ts:3246-3268)。</li>
+<li>fork 开新文件:SessionManager.forkFrom(经 main.ts:342 forkSessionOrExit),新 header 的 parentSession 指向旧文件——分支跨文件,各文件内部仍是独立树。fork 继承的旧主线同样折成 branchSummary 消息(messages.ts:100 createBranchSummaryMessage),进上下文时包 BRANCH_SUMMARY_PREFIX/SUFFIX 的 <summary> 标签(messages.ts:19-24)。</li>
+<li>书签:label 是真实树 entry(见 3 节图),targetId 指向被打标记的条目;appendLabelChange 在压缩/换分支后把 label 挂到摘要或目标上(agent-session.ts:3261、3273)。它只影响导航与展示,不参与 LLM 上下文。</li>
+<li>生成的 branchSummary 消息在模型眼里是一条 role:“branchSummary” 的特殊消息(messages.ts:55-60),等价于告诉模型:「你曾在另一条路线上做过这些,现在回来了」。</li>
+</ul>
+<h3 id="43-压缩触发_checkcompaction-的三情形">4.3 压缩触发:_checkCompaction 的三情形</h3>
+<ul>
+<li>自动检查挂在每回合后处理链上:agent-session.ts:1141 由 _handlePostAgentRun 调用 _checkCompaction(实现在 :2125)。跳过条件很有讲究:设置关闭直接返回(:2127);aborted 消息不触发(:2130);<strong>消息早于最近一次压缩边界不触发</strong>(:2144-2149,防止压缩后旧 usage 立刻误触发第二次);溢出判断要求同模型(:2138-2139,换了更大窗口模型后旧错误不应再触发)。</li>
+<li>Case 1/2 溢出与可恢复截断(:2154-2195):isContextOverflow 判上下文溢出,isRecoverableLength 判「输出截断且原意未完成」。willRetry 取决于消息是否正常结束:正常完成的溢出只压缩不重试(:2161-2162);未完成的(截断/错误)则先把最后一条失败的 assistant 消息从 agent 状态摘除(:2191-2193),压缩后由 _handlePostAgentRun 返回 true 触发 agent.continue() 重试一次,_overflowRecoveryAttempted 防死循环(:2189,二次失败即放弃并报 “Context overflow recovery failed after one compact-and-retry attempt”,:2165-2185)。</li>
+<li>Case 3 阈值(:2197-2228):usage 有效就用 calculateContextTokens 直接算;出错或零 usage 的消息用 estimateContextTokens 从最后一条有效 usage 起估算(compaction.ts:202,其后消息按 chars/4 估,图片按常量估,estimateTokens @266)。判据与默认参数:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// core/compaction/compaction.ts:132-136、235-238</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> DEFAULT_COMPACTION_SETTINGS</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CompactionSettings</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">	enabled: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">	reserveTokens: </span><span style="color:#79B8FF">16384</span><span style="color:#E1E4E8">,      </span><span style="color:#6A737D">// 给模型输出的预留</span></span>
+<span class="line"><span style="color:#E1E4E8">	keepRecentTokens: </span><span style="color:#79B8FF">20000</span><span style="color:#E1E4E8">,   </span><span style="color:#6A737D">// 压缩后保留的最近 token 预算</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> shouldCompact</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">contextTokens</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">contextWindow</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">settings</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CompactionSettings</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> boolean</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">settings.enabled) </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">	return</span><span style="color:#E1E4E8"> contextTokens </span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8"> contextWindow </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> settings.reserveTokens;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>三情形之外还有两条压缩入口:下一轮开始前——prepareNextTurn 钩子接 _compactBeforeNextAssistantResponse(agent-session.ts:542-559,同一判据,防「上一轮没事、这一轮开头就爆」);手动——/compact 或扩展调用(AgentSession.compact,agent-session.ts:1939;slash-commands.ts:39)。压缩全程异步并持 AbortController,压缩进行中不接受新 prompt。</li>
+</ul>
+<h3 id="44-下刀与摘要findcutpoint--独立-llm-调用--compaction-entry">4.4 下刀与摘要:findCutPoint + 独立 LLM 调用 + compaction entry</h3>
+<ul>
+<li>prepareCompaction(compaction.ts:750)先定范围:末尾已是 compaction 则直接跳过(:754-756,说明 Pi 不允许连续两次空转压缩),否则范围 = 上次压缩的 firstKeptEntryId → 文件尾,并先记 tokensBefore(:776)。真正的切点由 findCutPoint(:403)决定:<strong>从最新往回走,逐条累加估算 token,攒够 keepRecentTokens(默认 20k)后在最近的合法切点下刀</strong>:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// core/compaction/compaction.ts:415-439(摘,注释为原文件注释)</span></span>
+<span class="line"><span style="color:#6A737D">// Walk backwards from newest, accumulating estimated message sizes</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> accumulatedTokens </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> cutIndex </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> cutPoints[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]; </span><span style="color:#6A737D">// Default: keep from first message (not header)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">let</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> endIndex </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&gt;=</span><span style="color:#E1E4E8"> startIndex; i</span><span style="color:#F97583">--</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> entry</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> entries[i];</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> messageTokens</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> sessionEntryToContextMessages</span><span style="color:#E1E4E8">(entry).</span><span style="color:#B392F0">reduce</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">		(</span><span style="color:#FFAB70">sum</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> sum </span><span style="color:#F97583">+</span><span style="color:#B392F0"> estimateTokens</span><span style="color:#E1E4E8">(message),</span></span>
+<span class="line"><span style="color:#79B8FF">		0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">	);</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (messageTokens </span><span style="color:#F97583">===</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">continue</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">	accumulatedTokens </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> messageTokens;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">	// Check if we've exceeded the budget</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> (accumulatedTokens </span><span style="color:#F97583">&gt;=</span><span style="color:#E1E4E8"> keepRecentTokens) {</span></span>
+<span class="line"><span style="color:#6A737D">		// Find the closest valid cut point at or after this entry</span></span>
+<span class="line"><span style="color:#F97583">		for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">let</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; c </span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8"> cutPoints.</span><span style="color:#79B8FF">length</span><span style="color:#E1E4E8">; c</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">			if</span><span style="color:#E1E4E8"> (cutPoints[c] </span><span style="color:#F97583">&gt;=</span><span style="color:#E1E4E8"> i) {</span></span>
+<span class="line"><span style="color:#E1E4E8">				cutIndex </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> cutPoints[c];</span></span>
+<span class="line"><span style="color:#F97583">				break</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">			}</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#F97583">		break</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>合法切点只可能是 turn 边界:isTurnStartEntry(compaction.ts:338)只认 user/bashExecution/custom/branchSummary/compactionSummary 这类回合起点,assistant 与 toolResult 都不算;toolResult 永远不是切点,因为它必须紧跟所属 toolCall(isCutPointMessage,compaction.ts:308-321)。若预算把某个 turn 拦腰劈开(isSplitTurn),劈开处前半段会走第二次独立摘要 TURN_PREFIX_SUMMARIZATION_PROMPT(compaction.ts:835-848),给保留的后半段补「本回合开头发生了什么」,两段摘要最后合并成一个 compaction summary(compact(),compaction.ts:887-947)。</li>
+<li>摘要是一次独立 LLM 调用,与主对话同供应商、独立计费:system 用专用 SUMMARIZATION_SYSTEM_PROMPT(buildSummarizationContext,compaction.ts:642-653),历史经 serializeConversation 成纯文本包进 <conversation> 标签(:686-693),增量压缩时旧摘要以 <previous-summary> 一并喂入做增量更新(:690-692);输出上限按 reserveTokens 比例掐死(:672-675),并校验「摘要请求不得调用工具」(:719-721)。产物除摘要文本外还自动附 readFiles/modifiedFiles 文件操作清单(compact() 结尾 :949-951,供结构化消费)。</li>
+<li>落盘与回灌:摘要经 appendCompaction 写成 compaction entry(session-manager.ts:1098-1120,type:“compaction”、firstKeptEntryId=保留起点,另记 tokensBefore/usage/fromHook),同时生成 role:“compactionSummary” 的消息占住被丢历史的位置:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// core/messages.ts:11-17</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> COMPACTION_SUMMARY_PREFIX</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> `The conversation history before this point was compacted into the following summary:</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">&lt;summary&gt;</span></span>
+<span class="line"><span style="color:#9ECBFF">`</span><span style="color:#E1E4E8">;</span></span></code></pre><span class="code-lang" data-lang="typescript" aria-hidden="true">typescript</span></div>
+<ul>
+<li>重建时模型看到的是「compactionSummary 消息 + 保留的最近 20k」;文件里旧消息一行不少,只是不再参与上下文——折叠发生在读路径,不是写路径。</li>
+</ul>
+<h3 id="45-dynamic-context每轮可注入可过滤的消息钩子">4.5 dynamic context:每轮可注入、可过滤的消息钩子</h3>
+<ul>
+<li>树与会话文件解决「跨轮持久」,而「每轮喂什么」由扩展的 context 事件掌管:它在每次 LLM 调用前触发、允许直接修改消息列表(extensions/types.ts:687-691,注册入口 on(“context”) @1275)。对照 02.05,这就是 RAG 与长期记忆的挂点——扩展可在每轮把检索结果作为消息注入,也可按主题把旧历史过滤出上下文,让窗口里只放当下需要的。</li>
+<li>注入的持久化形态是 custom_message entry(session-manager.ts:135-141):内容在 buildSessionContext 时转成 user 消息进上下文,details 只给扩展自己看,display 控制 TUI 是否渲染;相比之下 custom entry 是纯扩展私有存储,永不进 LLM 上下文(session-manager.ts:94-108 注释明言 “Does NOT participate in LLM context”)。三者分工:树 = 结构记忆、摘要 = 压缩记忆、context 钩子 = 工作记忆的实时编辑权。</li>
+<li>压缩与换分支也各有对等钩子:session_before_compact 可取消压缩或整体替换压缩产物(agent-session.ts:2266-2297),session_before_tree 可取消换路或自定义分支摘要(agent-session.ts:3160-3187)——扩展若想用「结构化索引」代替「文本摘要」,在这两处接管即可(fromHook 字段标记扩展产物)。</li>
+</ul>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:画会话文件结构图 + 压缩触发条件笔记</p>
+<p><strong>目标</strong>:不靠讲义,亲手把「树 + 压缩」画成一张图、整理成一张触发条件表;若本地无仓库,先 <code>git clone --depth 1 https://github.com/earendil-works/pi &amp;&amp; cd pi</code>。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>打开 packages/coding-agent/src/core/session-manager.ts:46-141,抄下 SessionEntryBase 与各 entry 接口,画出「一条主线被压缩、fork 后又回到旧点开新分支」的 JSONL 树形图(至少含 message、label、compaction、branch_summary 四种 entry,标出每条的 id/parentId 连线与 leaf 指针位置);</li>
+<li>在图上用两种颜色区分「文件里存在但上下文不可见」与「进上下文」,对照 buildContextEntries(session-manager.ts:418)核对你的标注;</li>
+<li>读 agent-session.ts:2125-2229,把三情形整理成表:触发条件 / willRetry / 传给 _runAutoCompaction 的 reason / 各自的反重入防护;</li>
+<li>读 compaction.ts:403-460 与 :750-829,用一段假会话(设 keepRecentTokens = 2000)手算 findCutPoint 的切点,确认切点一定落在 turn 边界;</li>
+<li>对照 02.05 的会话记忆形态,把 Pi 的 JSONL 树、compaction 摘要、context 钩子分别归类,写一句你的判断(例如「把丢弃做成树上的伤疤 vs 直接删除,代价与收益各是什么」)。</li>
+</ol>
+<p><strong>完成标准</strong>:图中每条 entry 都能说出「何时被 append、上下文里是否可见」;触发条件表覆盖溢出/截断/阈值三情形与全部跳过条件;手算切点与源码逻辑一致;笔记含 ≥8 处「文件:行号」出处。</p>
+</div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>现象/坑</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>压缩后立刻又触发一次压缩</td>
+<td>旧 usage 带的是压缩前的大窗口计数</td>
+<td>_checkCompaction 用最近 compaction 时间戳挡掉旧消息(:2144-2149)</td>
+</tr>
+<tr>
+<td>溢出恢复失败两次</td>
+<td>一次压缩重试治不好根因(任务本身超窗)</td>
+<td>Pi 放弃并报错(:2165-2185),换更大窗口模型或给用户减上下文</td>
+</tr>
+<tr>
+<td>以为摘要把旧文件删了</td>
+<td>折叠发生在读路径(buildContextEntries),文件只追加</td>
+<td>排查历史直接看原始 JSONL;HTML 导出也保留完整树</td>
+</tr>
+<tr>
+<td>切点砍在 assistant/toolResult 中间</td>
+<td>切点只许 turn 边界;劈开 turn 会补二次前缀摘要</td>
+<td>若摘要里见 “Turn Context (split turn)”,说明该轮被拦腰折叠</td>
+</tr>
+<tr>
+<td>把 branch_summary 当普通消息</td>
+<td>role:“branchSummary” 是特殊角色,来自被放弃分支</td>
+<td>它是树导航产物,与文件系统分支无关</td>
+</tr>
+<tr>
+<td>fork 与 /tree 分不清</td>
+<td>fork 开新文件(parentSession 链),/tree 在同文件内移 leaf</td>
+<td>跨会话延续用 –fork/新建,同会话回退换路用 /tree</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:本章的树与压缩是「窗口管理」的地基,但摘要质量、RAG 注入、结构化压缩默认都可由扩展接管(session_before_compact / session_before_tree / context 钩子)——扩展系统本身与钩子全清单留给 03 章;session-backends/sqlite-node 只是独立旁路后端,不改 JSONL 主路径(01 章已述)。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>Pi 的落点</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会话存储</td>
+<td>单 JSONL append-only 树,v3,entry {type,id,parentId,timestamp}</td>
+<td>session-manager.ts:30/46/846/954</td>
+</tr>
+<tr>
+<td>上下文重建</td>
+<td>沿 parentId 回溯 + compaction 折叠;文件不删,只过滤读路径</td>
+<td>session-manager.ts:418/461</td>
+</tr>
+<tr>
+<td>分支与书签</td>
+<td>/tree 移 leaf + branch_summary 折叠旧支 + label 书签</td>
+<td>agent-session.ts:3105、session-manager.ts:1382</td>
+</tr>
+<tr>
+<td>压缩触发</td>
+<td>溢出(带一次重试)/ 可恢复截断 / 阈值 window−16k</td>
+<td>agent-session.ts:2125-2229</td>
+</tr>
+<tr>
+<td>切点选择</td>
+<td>findCutPoint 反向攒 20k,只许 turn 边界</td>
+<td>compaction.ts:403/308-343</td>
+</tr>
+<tr>
+<td>摘要产物</td>
+<td>独立 LLM 调用 + compaction entry + compactionSummary 消息</td>
+<td>compaction.ts:656/750、session-manager.ts:1098</td>
+</tr>
+<tr>
+<td>dynamic context</td>
+<td>context 钩子每轮改消息;custom_message 持久注入</td>
+<td>extensions/types.ts:687/1275</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:① 为什么切点必须落在 turn 边界,toolResult 为什么永远不能成为切点?② 溢出重试只给一次、失败即放弃——若你是设计者,会允许「换更大窗口模型后自动重试」吗,代价是什么?③ Pi 把被丢弃的历史全部留在文件里、只在读路径过滤,与「物理删除省空间」相比各自的坑在哪?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>① 若在 assistant 消息中间下刀,保留区会以半截思考/半截工具调用开头,模型既缺上文又可能看到孤立 toolResult(其 toolCall 已被丢弃),极易幻觉或重复执行;只许 turn 边界保证保留区从「新回合起点」开始自洽。toolResult 必须紧跟所属 toolCall,切在它前面会造成调用与结果分离,所以 isCutPointMessage(compaction.ts:308-321)把它排除。② 允许自动换大窗口重试看似贴心,但会让压缩逻辑与模型目录耦合、掩盖真正的问题(任务规模超出任何窗口),而且一次失败后立刻二次压缩同样烧 token;Pi 把决定权留给用户(换模型/减上下文),这是「主见且最小」取舍的延续。③ 保留全部历史:文件无限增长、每次重载重建索引的成本上升、旧内容长留磁盘(隐私/合规视角也是负担);物理删除:分支回溯与「压缩错了想恢复」的能力永久丢失。Pi 赌「可回溯 &gt; 省空间」,代价由磁盘与重载时间承担——这也解释了它为何另起 sqlite-node 后端做搜索统计,而不是把主存储直接换成数据库。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/earendil-works/pi">earendil-works/pi(GitHub 仓库,本章全部源码出处)</a></li>
+<li><a href="https://pi.dev">pi.dev(官网与文档)</a></li>
+<li><a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/">Mario Zechner:What I learned building an opinionated and minimal coding agent(设计取舍一手材料)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/05/02/"><span>上一篇</span><strong>02.09.05.02 最小核心通读</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/05/04/"><span>下一篇</span><strong>02.09.05.04 扩展系统</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念append-only-的树--分支不复制回溯不重写">1. 概念:append-only 的树 = 分支不复制、回溯不重写</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么对话不是日志是带岔路的地图">2. 为什么:对话不是日志,是带岔路的地图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用一个真实会话文件长什么样">3. 作用:一个真实会话文件长什么样</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-上下文重建沿-parentid-回溯--compaction-折叠">4.1 上下文重建:沿 parentId 回溯 + compaction 折叠</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-分支回溯与书签换路时折-branchsummary">4.2 分支、回溯与书签:换路时折 branchSummary</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-压缩触发_checkcompaction-的三情形">4.3 压缩触发:_checkCompaction 的三情形</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-下刀与摘要findcutpoint--独立-llm-调用--compaction-entry">4.4 下刀与摘要:findCutPoint + 独立 LLM 调用 + compaction entry</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#45-dynamic-context每轮可注入可过滤的消息钩子">4.5 dynamic context:每轮可注入、可过滤的消息钩子</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

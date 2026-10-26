@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.04.04.06 离线课程助教的 llama.cpp 架构案例 · iopanda</title><meta name="description" content="03.04.04.06 离线课程助教的 llama.cpp 架构案例 · 框架 / 推理与服务框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/04/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.04.04.06 离线课程助教的 llama.cpp 架构案例 · iopanda"><meta property="og:description" content="03.04.04.06 离线课程助教的 llama.cpp 架构案例 · 框架 / 推理与服务框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/04/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="04" data-active-subsection="04" data-active-article="/ai/03-frameworks/04/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与服务框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/04/"><span class="tree-number">04</span><span class="tree-title">推理与服务框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/04/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 llama.cpp"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/04/04/"><span class="tree-number">04</span><span class="tree-title">llama.cpp</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/04/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">离线课程助教的 llama.cpp 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/">推理与服务框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/04/">llama.cpp</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">离线课程助教的 llama.cpp 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.04.04.06</p><h1>离线课程助教的 llama.cpp 架构案例</h1><p class="ai-meta"><time datetime="2026-09-04T05:23">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>inference</li><li>serving</li><li>llama-cpp</li><li>case-study</li></ul></header><div class="ai-prose"><h1 id="离线课程助教的-llamacpp-架构案例">离线课程助教的 llama.cpp 架构案例</h1>
+<blockquote>
+<p>把 llama.cpp 放回课程助教主线时，它最自然的角色不是校园级公网大服务，而是：<strong>一个真正可以离线部署在教师电脑、学生笔记本、实验室 Mac mini、边缘工作站上的课程助教。</strong> 这时候最关键的问题不再是峰值吞吐，而是：模型能否被打包、量化、分发，并在现实机器上稳定运行。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>判断课程助教何时适合 llama.cpp；</li>
+<li>设计离线课程助教的 GGUF、量化和本地服务面；</li>
+<li>区分“离线单机助教”和“在线校园平台助教”的架构差异；</li>
+<li>识别这个案例里的关键风险：模型过大、量化过激、安全边界不足；</li>
+<li>写一张离线课程助教的 llama.cpp 适配卡。</li>
+</ol>
+<h2 id="1-什么时候课程助教适合-llamacpp">1. 什么时候课程助教适合 llama.cpp</h2>
+<ul>
+<li>教师或学生本机离线使用；</li>
+<li>校园网络受限，不能稳定依赖云端；</li>
+<li>对隐私、本地数据控制有较高要求；</li>
+<li>需要在 Mac / CPU / 边缘盒子上跑；</li>
+<li>模型可接受 GGUF 与量化后的效果。</li>
+</ul>
+<h2 id="2-推荐架构">2. 推荐架构</h2>
+<ul>
+<li>模型工件：GGUF + 合适量化版本；</li>
+<li>运行时：llama.cpp CLI 或 <code>llama serve</code>；</li>
+<li>上层应用：桌面 UI / 本地 Web UI / 本机 agent；</li>
+<li>可选能力：JSON schema 约束、embeddings、本地工具调用。</li>
+</ul>
+<h2 id="3-为什么这里不优先选-vllm">3. 为什么这里不优先选 vLLM</h2>
+<p>因为这里的主问题不是：</p>
+<ul>
+<li>高并发在线调度；
+而是：</li>
+<li>模型能不能在用户机器上；</li>
+<li>能不能离线；</li>
+<li>能不能稳定安装、运行和分发。</li>
+</ul>
+<h2 id="4-动手活动">4. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>offline-course-ta-llamacpp-card.md</code></p>
+<p>列你的目标设备、RAM/VRAM、模型大小、量化类型、是否离线、是否本地 API。写一句结论：你的课程助教主复杂度是在线 serving，还是本地交付。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教为什么适合 llama.cpp</td>
+<td>因为它要被真正带到用户机器上</td>
+</tr>
+<tr>
+<td>最大价值</td>
+<td>让离线、本地、轻量部署成为现实</td>
+</tr>
+<tr>
+<td>不适合什么</td>
+<td>高并发公网课程问答平台</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[9] <a href="https://github.com/ggml-org/llama.cpp/blob/master/README.md">https://github.com/ggml-org/llama.cpp/blob/master/README.md</a> — llama.cpp README</li>
+<li>[10] <a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md">https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md</a> — llama.cpp server README</li>
+<li>[11] <a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md">https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md</a> — llama.cpp quantize README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/04/04/05/"><span>上一篇</span><strong>03.04.04.05 性能、模型规模与适用边界</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/04/04/07/"><span>下一篇</span><strong>03.04.04.07 llama.cpp 与 vLLM、SGLang、TensorRT-LLM、Triton 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-什么时候课程助教适合-llamacpp">1. 什么时候课程助教适合 llama.cpp</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-推荐架构">2. 推荐架构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么这里不优先选-vllm">3. 为什么这里不优先选 vLLM</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动">4. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.05.01 记忆与检索 概览 · iopanda</title><meta name="description" content="02.05.01 记忆与检索 概览 · 智能体 / 记忆与检索，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/05/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.05.01 记忆与检索 概览 · iopanda"><meta property="og:description" content="02.05.01 记忆与检索 概览 · 智能体 / 记忆与检索，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/05/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="05" data-active-subsection data-active-article="/ai/02-agents/05/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 记忆与检索"></button><a class="tree-link tree-link--section" href="/ai/02-agents/05/"><span class="tree-number">05</span><span class="tree-title">记忆与检索</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/05/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">记忆与检索 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/05/">记忆与检索</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">记忆与检索 概览</span></nav><header class="ai-article-header"><p class="ai-number">02.05.01</p><h1>记忆与检索 概览</h1><p class="ai-meta"><time datetime="2026-09-02T23:51">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p></header><div class="ai-prose"><h1 id="记忆与检索-概览">记忆与检索 概览</h1>
+<blockquote>
+<p>模块定位：LLM 是无状态的——每次请求都「失忆」。Agent 要跨轮、跨会话工作，必须自己管理记忆。本模块覆盖记忆的分类、短期（会话内）与长期（跨会话）记忆的实现、检索增强（RAG）在 Agent 中的角色，以及记忆的隐私与一致性问题。</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>说清 Agent 记忆的四种形态（工作记忆/情景记忆/语义记忆/程序记忆的通俗对应）；</li>
+<li>用 SQLite 或 JSON 实现短期对话记忆与会话压缩；</li>
+<li>用向量检索实现长期语义记忆；</li>
+<li>把 RAG 集成进 Agent 工具链，理解检索在规划中的位置；</li>
+<li>识别记忆污染、遗忘与 PII 风险，设计记忆清理策略。</li>
+</ol>
+<h2 id="子主题清单每章讲义要点">子主题清单（每章讲义要点）</h2>
+<h3 id="01-记忆的分类与需求">01 记忆的分类与需求</h3>
+<ul>
+<li>概念：工作记忆（上下文窗口内）、情景记忆（本会话发生的事）、语义记忆（跨会话事实）、程序记忆（技能/工具用法）</li>
+<li>为什么 LLM 需要外部记忆：模型权重是「慢知识」，上下文是「快记忆」，都不持久</li>
+<li>记忆要解决的三问：记什么、存多久、怎么取</li>
+<li>对照人类记忆的隐喻：便签 vs 笔记本 vs 图书馆</li>
+</ul>
+<h3 id="02-会话记忆与会话压缩">02 会话记忆与会话压缩</h3>
+<ul>
+<li>概念：多轮对话把历史塞回上下文；但历史无限增长 → 压缩</li>
+<li>取舍：完整历史（保真/费 token）vs 摘要历史（省 token/丢细节）</li>
+<li>技术：滑动窗口、滚动摘要、关键事实抽取</li>
+<li>动手：实现一个带「摘要+最近 N 轮」的记忆类，观察长对话下的行为差异</li>
+</ul>
+<h3 id="03-长期记忆外部存储">03 长期记忆：外部存储</h3>
+<ul>
+<li>概念：跨会话记住用户偏好、项目状态 → 存到 SQLite/JSON/向量库</li>
+<li>为什么需要：真实 Agent 要记住「学员上次学到第几章」</li>
+<li>读写时机：何时写入（任务结束/关键事实出现）、何时读取（任务开始）</li>
+<li>动手：课程助教记住「学员进度」的长期记忆模块</li>
+</ul>
+<h3 id="04-向量检索与语义记忆">04 向量检索与语义记忆</h3>
+<ul>
+<li>概念：把文本变向量，按语义相似度取回（复用 01.04 的 embedding 知识）</li>
+<li>为什么需要语义检索：精确匹配找不到「意思一样说法不同」的内容</li>
+<li>流程：切块 → embedding → 入库 → 查询 top-k → 拼入上下文</li>
+<li>动手：给课程助教加一个课程资料向量库，验证查得准/查不准的情形</li>
+<li>局限：相关性≠正确性，检索片段仍要当不可信内容处理</li>
+</ul>
+<h3 id="05-rag-在-agent-中的角色">05 RAG 在 Agent 中的角色</h3>
+<ul>
+<li>概念：RAG 是 Agent 的一个工具（检索工具），不是 Agent 本身</li>
+<li>什么时候先检索：知识密集任务、需引用来源的任务</li>
+<li>检索-规划联动：先检索再规划 vs 边规划边检索（Agentic RAG 思路）</li>
+<li>与 01.05 图文检索、01.02 数据质量纪律的呼应</li>
+<li>评测：检索命中率、引用正确性（02.07 展开）</li>
+</ul>
+<h3 id="06-记忆的隐私污染与遗忘">06 记忆的隐私、污染与遗忘</h3>
+<ul>
+<li>概念：记忆可能存了不该存的（PII）、记了错的（污染）、忘了该忘的</li>
+<li>风险：跨用户记忆串扰、注入内容污染长期记忆、隐私泄漏</li>
+<li>设计：记忆最小化、按用户隔离、删除流程、审计（呼应 01.07 数据治理）</li>
+<li>动手：为记忆模块写 data-governance 附录：存了什么、留多久、如何删</li>
+</ul>
+<h2 id="交付物与验收标准">交付物与验收标准</h2>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>交付物</th>
+<th>验收</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>02</td>
+<td>会话记忆类</td>
+<td>长对话不爆上下文，摘要不丢关键事实</td>
+</tr>
+<tr>
+<td>03</td>
+<td>长期记忆模块</td>
+<td>重启进程后仍记得学员进度</td>
+</tr>
+<tr>
+<td>04</td>
+<td>课程资料向量库</td>
+<td>语义相近问题能召回正确片段</td>
+</tr>
+<tr>
+<td>06</td>
+<td>记忆治理附录</td>
+<td>明确记录/保留/删除策略</td>
+</tr>
+</tbody>
+</table>
+<h2 id="衔接">衔接</h2>
+<ul>
+<li>上一篇：<a href="/ai/02-agents/04/">工具调用与协议</a>——工具访问外部世界，记忆让 Agent 记住世界状态；</li>
+<li>下一篇：<a href="/ai/02-agents/06/">多 Agent 系统</a>——单 Agent 有记忆后，看多个带记忆的 Agent 如何协作。</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/04/07/"><span>上一篇</span><strong>02.04.07 权限写在代码里</strong></a><a class="ai-pager-next" href="/ai/02-agents/05/02/"><span>下一篇</span><strong>02.05.02 记忆的分类与需求</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#子主题清单每章讲义要点">子主题清单（每章讲义要点）</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#01-记忆的分类与需求">01 记忆的分类与需求</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#02-会话记忆与会话压缩">02 会话记忆与会话压缩</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#03-长期记忆外部存储">03 长期记忆：外部存储</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#04-向量检索与语义记忆">04 向量检索与语义记忆</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#05-rag-在-agent-中的角色">05 RAG 在 Agent 中的角色</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#06-记忆的隐私污染与遗忘">06 记忆的隐私、污染与遗忘</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#交付物与验收标准">交付物与验收标准</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#衔接">衔接</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

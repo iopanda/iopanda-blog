@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.02.06.03 五个框架横向矩阵 · iopanda</title><meta name="description" content="03.02.06.03 五个框架横向矩阵 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/02/06/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.02.06.03 五个框架横向矩阵 · iopanda"><meta property="og:description" content="03.02.06.03 五个框架横向矩阵 · 框架 / RAG 与检索框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/02/06/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="02" data-active-subsection="06" data-active-article="/ai/03-frameworks/02/06/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 与检索框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/02/"><span class="tree-number">02</span><span class="tree-title">RAG 与检索框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/02/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 RAG 框架选型矩阵"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/02/06/"><span class="tree-number">06</span><span class="tree-title">RAG 框架选型矩阵</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/02/06/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">五个框架横向矩阵</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/">RAG 与检索框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/02/06/">RAG 框架选型矩阵</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">五个框架横向矩阵</span></nav><header class="ai-article-header"><p class="ai-number">03.02.06.03</p><h1>五个框架横向矩阵</h1><p class="ai-meta"><time datetime="2026-09-09T13:05">2026-09-09</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>rag</li><li>retrieval</li><li>selection</li><li>matrix</li></ul></header><div class="ai-prose"><h1 id="五个框架横向矩阵">五个框架横向矩阵</h1>
+<blockquote>
+<p>这一篇把上一篇的五类复杂度，逐一对齐到 <a href="/ai/03-frameworks/02/01/01/">LlamaIndex</a>、<a href="/ai/03-frameworks/02/02/01/">Haystack</a>、<a href="/ai/03-frameworks/02/03/01/">RAGFlow</a>、<a href="/ai/03-frameworks/02/04/01/">LightRAG</a>、<a href="/ai/03-frameworks/02/05/01/">Pathway</a> 五个框架，形成一张可以直接拿来对照的横向矩阵。所有判断都来自前五个子目录已经建立的事实，这里只做收敛。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>一眼看出五个框架在“第一语言”上的根本差异；</li>
+<li>按数据形态、查询形态、治理运营三个角度分别定位框架；</li>
+<li>用横向矩阵快速比较最强点、最大代价、最适合、最不适合；</li>
+<li>识别数据形态或查询形态判断错误会带来什么后果；</li>
+<li>把矩阵直接套进 retrieval-framework-selection-card。</li>
+</ol>
+<h2 id="1-五条路线的第一性差异">1. 五条路线的第一性差异</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>第一语言</th>
+<th>首先解决什么</th>
+<th>更像什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/02/01/01/">LlamaIndex</a></td>
+<td>Document / Node / Index / QueryEngine</td>
+<td>知识怎样成为可查询对象</td>
+<td>文档与查询对象框架</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/02/02/01/">Haystack</a></td>
+<td>Component / Pipeline / Route</td>
+<td>检索链怎样显式编排和评测</td>
+<td>检索工作流框架</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/02/03/01/">RAGFlow</a></td>
+<td>Context Engine / Dataset / Testing / Sharing</td>
+<td>如何先拿到完整知识平台</td>
+<td>RAG 平台 / engine</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/02/04/01/">LightRAG</a></td>
+<td>Entity / Relation / Chunk / Query Mode</td>
+<td>如何用轻量图结构增强召回</td>
+<td>轻量 graph RAG 路线</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/02/05/01/">Pathway</a></td>
+<td>Stream / Incremental Update / Freshness</td>
+<td>数据持续变化时如何保持答案新鲜</td>
+<td>实时数据流框架</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：LlamaIndex 先讲对象，Haystack 先讲链路，RAGFlow 先讲平台，LightRAG 先讲图增强，Pathway 先讲数据流。</p>
+<h2 id="2-数据形态先问你喂进去的到底是什么">2. 数据形态：先问你喂进去的到底是什么</h2>
+<table>
+<thead>
+<tr>
+<th>数据形态</th>
+<th>更自然的路线</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文档为主、知识库为主、元数据丰富</td>
+<td>LlamaIndex</td>
+<td>先把文档对象与索引对象组织清楚</td>
+</tr>
+<tr>
+<td>多种处理组件要显式拼接</td>
+<td>Haystack</td>
+<td>组件边界和流水线边界最清楚</td>
+</tr>
+<tr>
+<td>异构文档很多、解析质量和平台治理很重要</td>
+<td>RAGFlow</td>
+<td>先拿完整 context engine / parsing / testing / sharing</td>
+</tr>
+<tr>
+<td>实体关系密、跨文档结构关系强</td>
+<td>LightRAG</td>
+<td>图增强检索更自然</td>
+</tr>
+<tr>
+<td>数据本身在持续流入流出</td>
+<td>Pathway</td>
+<td>更新语义比一次性构建更重要</td>
+</tr>
+</tbody>
+</table>
+<p>最常见的误判之一，是明明系统面对的是持续变化的数据流，却还按“静态文档问答”设计；或明明系统只是静态课程资料，却过早引入流式框架。这两种都会导致复杂度错位。</p>
+<h2 id="3-查询形态系统到底是在回答哪类问题">3. 查询形态：系统到底是在回答哪类问题</h2>
+<table>
+<thead>
+<tr>
+<th>查询形态</th>
+<th>更自然的框架倾向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单域文档问答</td>
+<td>LlamaIndex / Haystack</td>
+</tr>
+<tr>
+<td>多知识域路由问答</td>
+<td>LlamaIndex / Haystack</td>
+</tr>
+<tr>
+<td>复杂比较、子问题分解、跨索引综合</td>
+<td>LlamaIndex</td>
+</tr>
+<tr>
+<td>高治理、可视化 chunking、citation-first 知识平台</td>
+<td>RAGFlow</td>
+</tr>
+<tr>
+<td>关系驱动查询、跨实体链路查询</td>
+<td>LightRAG</td>
+</tr>
+<tr>
+<td>近实时问答、更新优先级高于静态索引精雕细琢</td>
+<td>Pathway</td>
+</tr>
+</tbody>
+</table>
+<p>查询形态错判，会导致整个检索层表达语言错位。比如把复杂关系查询强行塞进普通 top-k RAG；或者把需要稳定 pipeline 评测的系统交给“整个平台默认配置”，都会很快出现盲区。</p>
+<h2 id="4-治理与运营你的系统只是能答还是要长期被运营">4. 治理与运营：你的系统只是能答，还是要长期被运营</h2>
+<table>
+<thead>
+<tr>
+<th>治理 / 运营需求</th>
+<th>更自然的路线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要是开发者自己维护，重代码可编程性</td>
+<td>LlamaIndex</td>
+</tr>
+<tr>
+<td>主要是团队内显式评测、调链、换组件</td>
+<td>Haystack</td>
+</tr>
+<tr>
+<td>需要 dataset 管理、权限、共享、testing、citation 一体化</td>
+<td>RAGFlow</td>
+</tr>
+<tr>
+<td>需要评估图抽取、图更新、图查询效果</td>
+<td>LightRAG</td>
+</tr>
+<tr>
+<td>需要 persistence、replay、freshness、一致性治理</td>
+<td>Pathway</td>
+</tr>
+</tbody>
+</table>
+<p>选型不仅是检索问题，还是运营问题。RAGFlow 和 Pathway 在这里的差异尤其大：前者更像知识平台运营，后者更像数据流运营。</p>
+<h2 id="5-横向矩阵最强点最大代价最适合最不适合">5. 横向矩阵：最强点、最大代价、最适合、最不适合</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>最强点</th>
+<th>最大代价</th>
+<th>最适合</th>
+<th>最不适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LlamaIndex</td>
+<td>知识对象和查询对象组织极强</td>
+<td>需要自己做较多架构判断</td>
+<td>文档/知识库主导系统</td>
+<td>你只想要一台现成平台</td>
+</tr>
+<tr>
+<td>Haystack</td>
+<td>检索链路透明、评测和组件化清晰</td>
+<td>pipeline 心智偏重，初学者可能觉得繁</td>
+<td>生产化 retrieval workflow</td>
+<td>极简问答 demo</td>
+</tr>
+<tr>
+<td>RAGFlow</td>
+<td>完整平台体验、citation/testing/sharing 一体化</td>
+<td>平台层更重，灵活度与平台边界要权衡</td>
+<td>想快速拿完整知识平台</td>
+<td>只想轻量本地代码实验</td>
+</tr>
+<tr>
+<td>LightRAG</td>
+<td>轻量图增强检索，适合关系密集知识</td>
+<td>图抽取与图存储仍会带来额外复杂度</td>
+<td>关系驱动 / 图增强问答</td>
+<td>完全不需要图关系的简单系统</td>
+</tr>
+<tr>
+<td>Pathway</td>
+<td>数据持续变化时的 live retrieval 语义最强</td>
+<td>对静态知识库会显得偏重</td>
+<td>实时知识流 / 增量更新系统</td>
+<td>低频更新的静态文档库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-反向信号快速排除不对症的框架">6. 反向信号：快速排除不对症的框架</h2>
+<table>
+<thead>
+<tr>
+<th>如果你的系统…</th>
+<th>优先排除</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据基本静态、更新很少</td>
+<td>Pathway（先看 LlamaIndex/Haystack）</td>
+</tr>
+<tr>
+<td>只是单一知识域的简单问答</td>
+<td>RAGFlow、LightRAG（先看 LlamaIndex/Haystack）</td>
+</tr>
+<tr>
+<td>实体关系并不密集、不需要跨文档关系查询</td>
+<td>LightRAG</td>
+</tr>
+<tr>
+<td>团队想要高度可编程、不想被平台边界卡住</td>
+<td>RAGFlow</td>
+</tr>
+<tr>
+<td>需要显式控制和评测检索链路的每一步</td>
+<td>先看 Haystack，而不是一步到位上平台</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-动手活动">7. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：更新</p>
+<p><code>retrieval-framework-selection-card.md</code></p>
+<p>把上一篇给自己系统的诊断结果，对照第 1-5 节的表格找出最接近的 1-2 个框架。用第 6 节的反向信号表再交叉验证一次：有没有哪个候选框架其实该被排除。</p>
+</div>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>五条路线的根本差异</td>
+<td>对象 / 链路 / 平台 / 图增强 / 数据流，五种第一语言</td>
+</tr>
+<tr>
+<td>数据形态判断错了会怎样</td>
+<td>静态系统被当成流系统会心智负担过重，反之则会追新鲜度追不上</td>
+</tr>
+<tr>
+<td>查询形态判断错了会怎样</td>
+<td>检索层表达语言错位，复杂查询被硬塞进简单 top-k</td>
+</tr>
+<tr>
+<td>治理运营维度为什么重要</td>
+<td>RAG 选型不只是检索问题，还是长期运营问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[41] <a href="https://github.com/run-llama/llama_index">https://github.com/run-llama/llama_index</a> — LlamaIndex GitHub</li>
+<li>[42] <a href="https://github.com/deepset-ai/haystack">https://github.com/deepset-ai/haystack</a> — Haystack GitHub</li>
+<li>[43] <a href="https://github.com/infiniflow/ragflow">https://github.com/infiniflow/ragflow</a> — RAGFlow GitHub</li>
+<li>[44] <a href="https://github.com/HKUDS/LightRAG">https://github.com/HKUDS/LightRAG</a> — LightRAG GitHub</li>
+<li>[45] <a href="https://github.com/pathwaycom/pathway">https://github.com/pathwaycom/pathway</a> — Pathway GitHub</li>
+<li>[46] <a href="https://github.com/run-llama/llama_index/blob/main/README.md">https://github.com/run-llama/llama_index/blob/main/README.md</a> — LlamaIndex README</li>
+<li>[54] <a href="https://github.com/deepset-ai/haystack/blob/main/README.md">https://github.com/deepset-ai/haystack/blob/main/README.md</a> — Haystack README</li>
+<li>[62] <a href="https://github.com/infiniflow/ragflow/blob/main/README.md">https://github.com/infiniflow/ragflow/blob/main/README.md</a> — RAGFlow README</li>
+<li>[68] <a href="https://github.com/pathwaycom/pathway/blob/main/README.md">https://github.com/pathwaycom/pathway/blob/main/README.md</a> — Pathway README</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/02/06/02/"><span>上一篇</span><strong>03.02.06.02 Retrieval Framework 选型方法论</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/02/06/04/"><span>下一篇</span><strong>03.02.06.04 典型业务场景对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-五条路线的第一性差异">1. 五条路线的第一性差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-数据形态先问你喂进去的到底是什么">2. 数据形态：先问你喂进去的到底是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-查询形态系统到底是在回答哪类问题">3. 查询形态：系统到底是在回答哪类问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-治理与运营你的系统只是能答还是要长期被运营">4. 治理与运营：你的系统只是能答，还是要长期被运营</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-横向矩阵最强点最大代价最适合最不适合">5. 横向矩阵：最强点、最大代价、最适合、最不适合</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-反向信号快速排除不对症的框架">6. 反向信号：快速排除不对症的框架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动">7. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

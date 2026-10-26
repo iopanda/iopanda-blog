@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.04.03.03 Signatures、Modules、Optimizers与评测闭环 · iopanda</title><meta name="description" content="04.04.03.03 Signatures、Modules、Optimizers与评测闭环 · 工具链 / 提示管理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/04/03/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.04.03.03 Signatures、Modules、Optimizers与评测闭环 · iopanda"><meta property="og:description" content="04.04.03.03 Signatures、Modules、Optimizers与评测闭环 · 工具链 / 提示管理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/04/03/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="04" data-active-subsection="03" data-active-article="/ai/04-tooling/04/03/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 提示管理"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/04/"><span class="tree-number">04</span><span class="tree-title">提示管理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/04/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 DSPy"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/04/03/"><span class="tree-number">03</span><span class="tree-title">DSPy</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/04/03/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">Signatures、Modules、Optimizers与评测闭环</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/">提示管理</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/04/03/">DSPy</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">Signatures、Modules、Optimizers与评测闭环</span></nav><header class="ai-article-header"><p class="ai-number">04.04.03.03</p><h1>Signatures、Modules、Optimizers与评测闭环</h1><p class="ai-meta"><time datetime="2026-09-03T22:45">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>prompt-management</li><li>dspy</li><li>capabilities</li></ul></header><div class="ai-prose"><h1 id="signaturesmodulesoptimizers与评测闭环">Signatures、Modules、Optimizers与评测闭环</h1>
+<blockquote>
+<p>DSPy 官网几乎把整个产品压缩在一组概念里：Signatures、Modules、Optimizers、Metrics and evaluation、Adapters。[4][5][6] 这说明 DSPy 的 prompt 管理，不是围绕版本号或模板库，而是围绕“程序结构如何被编译和优化”展开。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>看懂 DSPy 的能力为什么围绕程序抽象组织；</li>
+<li>区分 signatures、modules、optimizers、metrics 各自的角色；</li>
+<li>理解它为什么比手工 prompt 工程更系统，但也更重；</li>
+<li>判断哪些能力最先带来 ROI；</li>
+<li>避免把 DSPy 误解成“又一个 prompt 调参工具”。</li>
+</ol>
+<h2 id="1-signatures把提示意图显式化">1. Signatures：把提示意图显式化</h2>
+<p>DSPy 的 Signatures 是它最有辨识度的抽象之一。[4]</p>
+<p>产品上可以把它理解为：</p>
+<ul>
+<li>不直接写完整 prompt 文案；</li>
+<li>先声明输入、输出和任务意图；</li>
+<li>再让系统把这些声明转成更可优化的提示结构。</li>
+</ul>
+<p>这一步把 prompt 从“文本技巧”提升成“任务接口”。</p>
+<h2 id="2-modules把-prompt-工程变成组合系统">2. Modules：把 prompt 工程变成组合系统</h2>
+<p>Modules 是 DSPy 的第二根支柱。[4][6]</p>
+<p>它的价值在于：</p>
+<ul>
+<li>不再把所有逻辑挤在一个 prompt 里；</li>
+<li>可以把检索、分类、生成、判断等拆成模块；</li>
+<li>模块之间能组合成复杂系统。</li>
+</ul>
+<p>这也是为什么 DSPy 很适合多步骤 agent、RAG、knowledge-intensive workflows。[2]</p>
+<h2 id="3-optimizersdspy-最核心的差异化">3. Optimizers：DSPy 最核心的差异化</h2>
+<p>DSPy 的关键不只是写模块，而是能优化它们。README 和优化文档都明确强调 optimizing prompts and weights。[2][5]</p>
+<p>这意味着：</p>
+<ul>
+<li>提示词不再主要靠人手调；</li>
+<li>可以基于 evaluation 去搜索更好的指令、示例或程序配置；</li>
+<li>prompt 工程开始更像模型训练里的超参数优化。</li>
+</ul>
+<p>这是 DSPy 和其他 prompt 管理工具最本质的分叉点。</p>
+<h2 id="4-metrics-and-evaluation没有评测就没有优化">4. Metrics and evaluation：没有评测就没有优化</h2>
+<p>DSPy 官网明确把 Metrics and evaluation 和 Optimizers 并列。[4]</p>
+<p>这说明 DSPy 的优化并不是黑箱魔法，而是依赖：</p>
+<ul>
+<li>有什么任务标准；</li>
+<li>用什么 metric 衡量；</li>
+<li>哪种程序结构更优。</li>
+</ul>
+<p>所以 DSPy 虽然不主打“测试平台”外观，但本质上对评测依赖很强。</p>
+<h2 id="5-adapterssignatures-如何变成-prompt">5. Adapters：Signatures 如何变成 Prompt</h2>
+<p>官网明确有一个 “Adapters: how signatures become prompts” 概念。[4]</p>
+<p>这意味着 DSPy 并不是否定 prompt，而是把 prompt 下沉为编译后的表示。对产品经理来说，这很重要：</p>
+<ul>
+<li>用户不是不写 prompt，而是不再直接围绕 prompt 本身做最低层优化；</li>
+<li>他们优化的是更高阶的程序抽象。</li>
+</ul>
+<h2 id="6-哪些能力最先见效">6. 哪些能力最先见效</h2>
+<p>通常顺序是：</p>
+<ol>
+<li>先用 signatures 明确任务接口；</li>
+<li>再把常见步骤抽成 modules；</li>
+<li>再用 metrics 建立评价标准；</li>
+<li>最后让 optimizers 去做系统性改进。</li>
+</ol>
+<p>如果一开始就跳到 optimizer，而没有稳定任务定义和评测，收益会很不稳定。</p>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>它回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signatures</td>
+<td>任务接口怎样被显式定义 [4]</td>
+</tr>
+<tr>
+<td>Modules</td>
+<td>prompt 工程怎样变成组合系统 [6]</td>
+</tr>
+<tr>
+<td>Optimizers</td>
+<td>如何系统优化 prompt 与权重 [2][5]</td>
+</tr>
+<tr>
+<td>Metrics &amp; Evaluation</td>
+<td>优化依据是什么</td>
+</tr>
+<tr>
+<td>Adapters</td>
+<td>声明式结构如何落回真实 prompt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么 DSPy 的真正难点，不是学会一个 API，而是学会“先定义任务结构，再让系统优化”这套心智？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为这和传统 prompt 工程正好相反。传统方式先写 prompt 再微调；DSPy 要求先抽象任务、定义模块、建立评测，再交给系统优化。API 只是表层，心智切换才是 adoption 难点。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[2] <a href="https://raw.githubusercontent.com/stanfordnlp/dspy/main/README.md">https://raw.githubusercontent.com/stanfordnlp/dspy/main/README.md</a> — DSPy README</li>
+<li>[4] <a href="https://dspy.ai/">https://dspy.ai/</a> — DSPy homepage</li>
+<li>[5] <a href="https://dspy.ai/learn/optimization/overview/">https://dspy.ai/learn/optimization/overview/</a> — DSPy optimization docs</li>
+<li>[6] <a href="https://dspy.ai/learn/programming/modules/">https://dspy.ai/learn/programming/modules/</a> — DSPy modules docs</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/04/03/02/"><span>上一篇</span><strong>04.04.03.02 产品定位、程序化Prompt工程与适用场景</strong></a><a class="ai-pager-next" href="/ai/04-tooling/04/03/04/"><span>下一篇</span><strong>04.04.03.04 质量、社区、价格与采用边界</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-signatures把提示意图显式化">1. Signatures：把提示意图显式化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-modules把-prompt-工程变成组合系统">2. Modules：把 prompt 工程变成组合系统</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-optimizersdspy-最核心的差异化">3. Optimizers：DSPy 最核心的差异化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-metrics-and-evaluation没有评测就没有优化">4. Metrics and evaluation：没有评测就没有优化</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-adapterssignatures-如何变成-prompt">5. Adapters：Signatures 如何变成 Prompt</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-哪些能力最先见效">6. 哪些能力最先见效</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

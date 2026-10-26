@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.04.05 资产治理、可观测性与工程边界 · iopanda</title><meta name="description" content="03.06.04.05 资产治理、可观测性与工程边界 · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/04/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.04.05 资产治理、可观测性与工程边界 · iopanda"><meta property="og:description" content="03.06.04.05 资产治理、可观测性与工程边界 · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/04/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection="04" data-active-article="/ai/03-frameworks/06/04/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/06/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Dagster"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/06/04/"><span class="tree-number">04</span><span class="tree-title">Dagster</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/04/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">资产治理、可观测性与工程边界</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/04/">Dagster</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">资产治理、可观测性与工程边界</span></nav><header class="ai-article-header"><p class="ai-number">03.06.04.05</p><h1>资产治理、可观测性与工程边界</h1><p class="ai-meta"><time datetime="2026-09-09T10:06">2026-09-09</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>workflow</li><li>orchestration</li><li>dagster</li><li>governance</li><li>observability</li></ul></header><div class="ai-prose"><h1 id="资产治理可观测性与工程边界">资产治理、可观测性与工程边界</h1>
+<blockquote>
+<p>Dagster README 把自己的第三个关键特性描述成「unified control plane」——「Centralize your metadata in one tool with built-in observability, diagnostics, cataloging, and lineage」。[14] 这一篇讲清楚这句话具体落在哪些机制上：asset checks 怎么做数据质量门禁，metadata/tags 怎么撑起血缘与目录，以及 Dagster 相对其他编排框架的工程边界在哪。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解 asset check 如何把数据质量变成正式的、可阻断的门禁；</li>
+<li>说出 owners、tags、metadata、column lineage 分别在治理里扮演什么角色；</li>
+<li>理解资产目录（catalog）为什么是 Dagster 可观测性的核心载体；</li>
+<li>理解它的工程边界：什么时候 asset-first 建模是过度投入；</li>
+<li>为系统写一张 dagster-governance-boundary card。</li>
+</ol>
+<h2 id="1-asset-check把数据质量变成正式的可阻断的门禁">1. asset check：把数据质量变成正式的、可阻断的门禁</h2>
+<p>asset check 是「tests that verify specific properties of your data assets, allowing you to execute data quality checks on your data」。[31] 典型场景包括「Ensure a particular column doesn’t contain null values」「Verify that a tabular asset adheres to a specified schema」「Check if an asset’s data needs refreshing」——也就是说，check 不只管“对不对”，也管“新不新鲜”。[31]</p>
+<p>最关键的工程能力是可阻断性：把 <code>blocking=True</code> 设置上之后，一个 check 失败会直接挡住下游资产的物化，「if the <code>orders_id_has_no_nulls</code> check fails, the downstream <code>augmented_orders</code> asset won’t be materialized」。[31] 这意味着数据质量问题不会静默地往下游传染，而是在源头被拦下。check 结果会展示在 UI 里，Dagster+ 用户还能针对 check 失败配置告警。[31]</p>
+<h2 id="2-metadatatagsowners把治理信息挂在数据对象本身而不是挂在某次运行上">2. metadata/tags/owners：把治理信息挂在数据对象本身，而不是挂在某次运行上</h2>
+<p>Dagster 提供了几层互补的标注机制：[32]</p>
+<ul>
+<li><strong>owners</strong>：标明资产负责人（邮箱或 <code>team:</code> 前缀的团队名），可以驱动 Dagster+ 自动告警；</li>
+<li><strong>tags</strong>：「the primary way to organize assets in Dagster」，键值对形式（如 <code>{"domain": "marketing", "pii": "true"}</code>），可在资产目录里搜索筛选；</li>
+<li><strong>metadata</strong>：分为定义期 metadata（代码不变就不变）和运行期 metadata（每次物化可能不同，Dagster 会存成时间序列，比如行数随时间变化）。</li>
+</ul>
+<h2 id="3-血缘不只是谁依赖谁还能细到字段级别">3. 血缘不只是“谁依赖谁”，还能细到字段级别</h2>
+<p><code>dagster/column_schema</code> 记录字段结构，<code>dagster/column_lineage</code> 记录“某个输出字段依赖了哪些上游字段”，「Dagster+ provides rich visualization and navigation of column lineage in the Asset catalog」。[32] <code>dagster/code_references</code> 还能把资产链接回具体源码（本地文件或 GitHub/GitLab URL），做到「view those assets’ source code from the Dagster UI」。[32] 像 dbt 这类集成会自动填充这些 metadata，减少手工标注的工作量。[32]</p>
+<p>这说明 Dagster 的“可观测性”不是一个额外挂上去的监控面板，而是直接把血缘、结构、责任人这些信息焊在资产对象上——这也是它和 Airflow 的“任务运行监控”在心智上最大的不同：一个观测的是<strong>任务跑得怎么样</strong>，一个观测的是<strong>数据本身是什么样</strong>。</p>
+<h2 id="4-工程边界在哪里">4. 工程边界在哪里</h2>
+<p>asset-first 建模不是没有代价：</p>
+<ul>
+<li>你需要先花时间把“什么是资产、依赖关系是什么”想清楚，这对快速原型/一次性脚本来说是额外成本；</li>
+<li>如果流程本质上是一串带副作用的动作（发消息、调外部审批），而不是“生产一份数据资产”，用 op/job 甚至更轻的框架反而更直接；</li>
+<li>如果主要问题是长生命周期业务流程的状态恢复，<a href="/ai/03-frameworks/06/01/01/">Temporal</a> 的 durable execution 语义更对症；</li>
+<li>如果主要问题是大量稳定 batch DAG 的调度和运营，而资产血缘不是当务之急，<a href="/ai/03-frameworks/06/02/01/">Airflow</a> 的成熟度可能性价比更高；</li>
+<li>如果团队只是想让已有脚本更可靠，还没到需要资产目录和字段血缘的阶段，<a href="/ai/03-frameworks/06/03/01/">Prefect</a> 的门槛更低。</li>
+</ul>
+<h2 id="5-正确位置">5. 正确位置</h2>
+<p>Dagster 最自然的位置通常是：</p>
+<ul>
+<li>数据/分析工程团队，需要跨工具（dbt、Spark、Python）统一的资产目录；</li>
+<li>需要把数据质量检查、字段血缘、责任人正式化，而不是靠文档或口头约定；</li>
+<li>组织已经大到需要“谁负责这份数据”“这份数据现在新鲜吗”这类问题有正式答案。</li>
+</ul>
+<h2 id="6-动手活动">6. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>dagster-governance-boundary-card.md</code></p>
+<p>列你的资产里哪些需要 blocking 的数据质量门禁、哪些需要字段级血缘、哪些需要明确责任人。写一句结论：你的主问题是资产治理与可观测性，还是更轻的任务调度/脚本可靠性。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asset check 在做什么</td>
+<td>把数据质量和新鲜度变成可阻断的正式门禁</td>
+</tr>
+<tr>
+<td>metadata/tags/owners 在做什么</td>
+<td>把治理信息焊在数据对象本身，而不是某次运行</td>
+</tr>
+<tr>
+<td>血缘的独特之处</td>
+<td>可以细到字段级别，并链接回源码</td>
+</tr>
+<tr>
+<td>最大边界</td>
+<td>需要先投入资产建模成本，不适合纯副作用型或轻量脚本场景</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[14] <a href="https://github.com/dagster-io/dagster">https://github.com/dagster-io/dagster</a> — Dagster GitHub / README</li>
+<li>[31] <a href="https://docs.dagster.io/guides/test/asset-checks">https://docs.dagster.io/guides/test/asset-checks</a> — Dagster asset checks guide</li>
+<li>[32] <a href="https://docs.dagster.io/guides/build/assets/metadata-and-tags">https://docs.dagster.io/guides/build/assets/metadata-and-tags</a> — Dagster metadata and tags guide</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/04/04/"><span>上一篇</span><strong>03.06.04.04 传感器、分区与数据平台工作流</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/06/04/06/"><span>下一篇</span><strong>03.06.04.06 课程助教系统的数据资产案例</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-asset-check把数据质量变成正式的可阻断的门禁">1. asset check：把数据质量变成正式的、可阻断的门禁</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-metadatatagsowners把治理信息挂在数据对象本身而不是挂在某次运行上">2. metadata/tags/owners：把治理信息挂在数据对象本身，而不是挂在某次运行上</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-血缘不只是谁依赖谁还能细到字段级别">3. 血缘不只是“谁依赖谁”，还能细到字段级别</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-工程边界在哪里">4. 工程边界在哪里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-正确位置">5. 正确位置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动">6. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

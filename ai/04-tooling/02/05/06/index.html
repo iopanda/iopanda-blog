@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.02.05.06 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile · iopanda</title><meta name="description" content="04.02.05.06 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile · 工具链 / 可观测性与评估，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/02/05/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.02.05.06 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile · iopanda"><meta property="og:description" content="04.02.05.06 真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile · 工具链 / 可观测性与评估，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/02/05/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="02" data-active-subsection="05" data-active-article="/ai/04-tooling/02/05/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 可观测性与评估"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/02/"><span class="tree-number">02</span><span class="tree-title">可观测性与评估</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:04-tooling/02/05"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Ragas"></button><a class="tree-link tree-link--subsection" href="/ai/04-tooling/02/05/"><span class="tree-number">05</span><span class="tree-title">Ragas</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/02/05/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/02/">可观测性与评估</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/02/05/">Ragas</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile</span></nav><header class="ai-article-header"><p class="ai-number">04.02.05.06</p><h1>真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile</h1><p class="ai-meta"><time datetime="2026-09-03T20:35">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>observability-and-evaluation</li><li>ragas</li><li>case-studies</li></ul></header><div class="ai-prose"><h1 id="真实组织案例sioshibariarise-analyticshakkykddi-agile">真实组织案例：SIOS、HIBARI、ARISE analytics、Hakky、KDDI Agile</h1>
+<blockquote>
+<p>这一章我按“公开可验证的组织采用案例”来写，而不再用 SDK/框架集成充当案例。Ragas 目前没有像 Langfuse 那样清晰的 customers 页面，但公开网上已经能查到多家组织/公司写过自己在真实工作中如何引入或评估 Ragas。这些材料更接近“工程落地实录”，对课程读者反而很有参考价值。[6][7][8][9][10]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>从真实组织案例理解 Ragas 的落点；</li>
+<li>识别哪些组织最容易被 Ragas 吸引；</li>
+<li>从背景、痛点、集成、成本收益、结果五个维度分析案例；</li>
+<li>理解 Ragas 为什么常在知识问答/RAG 项目里被采用；</li>
+<li>避免把“集成支持”误当成“真实采用”。</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">说明</p>
+<p>以下案例以公开工程博客、技术文章和组织内容为依据。它们不一定都是标准化 vendor case study，但都明确体现了组织/公司在真实项目、PoC 或业务研发中使用或评估 Ragas。</p>
+</div>
+<h2 id="案例-1sios-technology">案例 1：SIOS Technology</h2>
+<p><strong>背景</strong>
+SIOS Tech Lab 由 SIOS Technology, Inc. 发布了《RAG評価フレームワーク Ragasを必要最低限で使ってみる》，明确以 Ragas 作为 RAG 评估框架进行介绍和实践。[6]</p>
+<p><strong>痛点</strong>
+文章一开始就点出典型问题：RAG 做出来了，但系统精度不知道好不好；想用 Ragas，又觉得资料复杂、上手门槛高。[6]</p>
+<p><strong>集成方法</strong>
+SIOS 选择用最小化方式接入 Ragas，并结合 Azure OpenAI Service 进行评估，重点是先理解输入结构、指标含义与结果解读。[6]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要准备评估输入和调用模型；</li>
+<li>收益：团队可以从“完全凭感觉”转向最小可用的量化评估；</li>
+<li>产品意义：说明 Ragas 很适合作为 RAG 团队的第一版质量基线工具。</li>
+</ul>
+<p><strong>结果</strong>
+SIOS 的公开实践表明，Ragas 被用作“让 RAG 评估开始发生”的起步工具，而不是停留在概念层。[6]</p>
+<h2 id="案例-2株式会社-hibari">案例 2：株式会社 HIBARI</h2>
+<p><strong>背景</strong>
+HIBARI 的工程文章明确写到，作者当前正在开发 RAG 系统，并在项目中实际使用过 Ragas，因此才会进一步怀疑“这个值真的可信吗”，并把 Ragas 与 LLM-as-a-judge 做对比验证。[7]</p>
+<p><strong>痛点</strong>
+当团队已经在做 RAG 系统时，真正的问题不再是“要不要评估”，而是“Ragas 给出的分数够不够可信，是否能支撑实务决策”。[7]</p>
+<p><strong>集成方法</strong>
+HIBARI 基于自造的多类别评估数据，把 Faithfulness、Answer Relevancy、Context Precision、Answer Correctness 等指标与另一套 judge 方法对照比较。[7]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要构建更系统的对比数据集，且会遇到实现与验证成本；</li>
+<li>收益：不仅能用 Ragas 打分，还能倒逼团队理解指标的可信边界；</li>
+<li>产品意义：这说明更成熟的团队不会只满足于“有分数”，而会进一步验证分数是否能用于业务判断。</li>
+</ul>
+<p><strong>结果</strong>
+HIBARI 的案例说明，Ragas 已经进入真实项目评估阶段，而不仅是学习用 demo；同时也提示读者：采用之后，下一步是验证指标解释力。[7]</p>
+<h2 id="案例-3arise-analytics">案例 3：ARISE analytics</h2>
+<p><strong>背景</strong>
+ARISE analytics 的技术博客明确写到，作者在负责面向客户支持的 AI agent 开发，尤其负责 RAG 部分精度提升，并在项目中导入 Ragas 的经验基础上写下这篇文章。[8]</p>
+<p><strong>痛点</strong>
+文章强调，RAG 即使引入了检索，也不代表天然高质量；检索到的信息若不合适，或模型处理不当，仍会导致不可靠回答，从而在实务上带来信任、法律和伦理风险。[8]</p>
+<p><strong>集成方法</strong>
+ARISE analytics 将 Ragas 用于面向客服场景的 RAG 质量度量，并围绕 retrieval 与 generation 两大评价轴展开说明。[8]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要把评估流程嵌入业务 agent/RAG 项目；</li>
+<li>收益：能把“客服回答靠不靠谱”从主观感受转向更客观的技术评价；</li>
+<li>产品意义：这很符合企业知识助手和客服 AI 场景对可解释质量的需求。</li>
+</ul>
+<p><strong>结果</strong>
+这是一个很强的组织级信号：Ragas 已经被用于真实面向业务的客服 AI/RAG 优化工作流中。[8]</p>
+<h2 id="案例-4hakky">案例 4：Hakky</h2>
+<p><strong>背景</strong>
+Hakky Handbook 发布了《RAGの性能評価ツール Ragas入門 (実装例つき)》，并把它放在 RAG 构建/评价体系化内容中。[9]</p>
+<p><strong>痛点</strong>
+文章明确指出：RAG 系统性能难以准确评估，需要专门工具把不同指标量化出来。[9]</p>
+<p><strong>集成方法</strong>
+Hakky 用 Ragas 解释 Question、Context、Answer、Ground Truth 等输入结构，并系统梳理 retrieval/generation 两侧的指标与实现方式。[9]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要建设标准化输入与评估数据；</li>
+<li>收益：帮助团队把 RAG 精度改进纳入更系统的方法框架；</li>
+<li>产品意义：说明咨询/交付型 AI 公司会把 Ragas 当成方法论工具，而不只是某个小库。</li>
+</ul>
+<p><strong>结果</strong>
+Hakky 的采用信号说明，Ragas 已经进入“面向客户项目的方法库”语境，而不只是个人实验工具。[9]</p>
+<h2 id="案例-5kddi-agile-development-center">案例 5：KDDI Agile Development Center</h2>
+<p><strong>背景</strong>
+Qiita 上由 KDDIアジャイル開発センター株式会社 署名的文章明确以 AWS Bedrock + Ragas 为主题，讨论如何让 RAG 从 PoC 走向本番运用。[10]</p>
+<p><strong>痛点</strong>
+文章指出，PoC 之后最大的难题之一就是：RAG 生成结果是否真正达到用户需要的质量，且如何持续验证这种质量。[10]</p>
+<p><strong>集成方法</strong>
+KDDI Agile 结合 Amazon Bedrock、LangChain 与 Ragas，构建实际的 RAG 评估管线，并强调 metrics-driven development、测试数据生成与运用中监视等能力。[10]</p>
+<p><strong>成本收益分析</strong></p>
+<ul>
+<li>成本：需要同时维护 RAG pipeline、评估数据与模型调用；</li>
+<li>收益：让 RAG 质量验证成为从 PoC 走向生产的正式步骤；</li>
+<li>产品意义：说明 Ragas 很适合帮助团队跨过“演示能跑”到“生产可信”的门槛。</li>
+</ul>
+<p><strong>结果</strong>
+KDDI Agile 的公开实践说明，Ragas 已经被用于企业级技术团队探索从 PoC 迈向生产的质量方法链条。[10]</p>
+<h2 id="6-这些案例共同说明了什么">6. 这些案例共同说明了什么</h2>
+<p>这 5 个组织虽然类型不同：</p>
+<ul>
+<li>产品研发公司；</li>
+<li>咨询/数据服务公司；</li>
+<li>企业技术团队；</li>
+<li>工程媒体与知识平台；</li>
+<li>正在做客服/知识型 AI 的组织。</li>
+</ul>
+<p>但共同点很一致：</p>
+<ol>
+<li>它们都在做知识问答/RAG/客服型应用；</li>
+<li>它们都在从“能跑”迈向“可量化评估”；</li>
+<li>它们都把 Ragas 当作解决 retrieval/generation 质量判断的专项工具；</li>
+<li>它们采用后的下一个问题，往往都是“如何让评估更可靠、更持续”。</li>
+</ol>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>组织</th>
+<th>Ragas 扮演的角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIOS Technology</td>
+<td>最小可用 RAG 评测起点</td>
+</tr>
+<tr>
+<td>株式会社 HIBARI</td>
+<td>与 LLM-as-a-judge 对照验证的专项评测层</td>
+</tr>
+<tr>
+<td>ARISE analytics</td>
+<td>客服/业务 RAG 质量度量层</td>
+</tr>
+<tr>
+<td>Hakky</td>
+<td>面向客户项目的方法论工具</td>
+</tr>
+<tr>
+<td>KDDI Agile</td>
+<td>从 PoC 迈向生产的 RAG 质量验证层</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：为什么采用 Ragas 的组织，大多不是把它当“平台本身”，而是当“RAG 质量专项层”？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为它最核心的价值不是包办整个 LLMOps 平台，而是把 RAG 的关键质量问题拆开评估。很多团队会把它嵌入更大的工程、平台或业务体系中，专门负责 retrieval/generation 这条质量链。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[6] <a href="https://tech-lab.sios.jp/archives/41949">https://tech-lab.sios.jp/archives/41949</a> — SIOS Technology: minimal Ragas usage article</li>
+<li>[7] <a href="https://zenn.dev/hibari_inc/articles/rag_evaluation_article">https://zenn.dev/hibari_inc/articles/rag_evaluation_article</a> — 株式会社 HIBARI: RAGAS vs LLM-as-a-judge</li>
+<li>[8] <a href="https://www.ariseanalytics.com/tech-info/20260313">https://www.ariseanalytics.com/tech-info/20260313</a> — ARISE analytics: Ragas intro from project experience</li>
+<li>[9] <a href="https://book.st-hakky.com/data-science/ragas-intro">https://book.st-hakky.com/data-science/ragas-intro</a> — Hakky Handbook: Ragas intro with implementation</li>
+<li>[10] <a href="https://qiita.com/minorun365/items/2f4e238f8bbc6e393ba5">https://qiita.com/minorun365/items/2f4e238f8bbc6e393ba5</a> — KDDI Agile Development Center: Ragas with AWS Bedrock</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/02/05/05/"><span>上一篇</span><strong>04.02.05.05 与 DeepEval、Langfuse、Phoenix 的竞品对比</strong></a><a class="ai-pager-next" href="/ai/04-tooling/02/06/"><span>下一篇</span><strong>04.02.06 可观测性与评估 概览</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-1sios-technology">案例 1：SIOS Technology</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-2株式会社-hibari">案例 2：株式会社 HIBARI</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-3arise-analytics">案例 3：ARISE analytics</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-4hakky">案例 4：Hakky</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#案例-5kddi-agile-development-center">案例 5：KDDI Agile Development Center</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-这些案例共同说明了什么">6. 这些案例共同说明了什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.03.03 让模型先写草稿 · iopanda</title><meta name="description" content="02.03.03 让模型先写草稿 · 智能体 / 规划与推理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/03/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.03.03 让模型先写草稿 · iopanda"><meta property="og:description" content="02.03.03 让模型先写草稿 · 智能体 / 规划与推理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/03/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="03" data-active-subsection data-active-article="/ai/02-agents/03/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 规划与推理"></button><a class="tree-link tree-link--section" href="/ai/02-agents/03/"><span class="tree-number">03</span><span class="tree-title">规划与推理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/03/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">让模型先写草稿</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/03/">规划与推理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">让模型先写草稿</span></nav><header class="ai-article-header"><p class="ai-number">02.03.03</p><h1>让模型先写草稿</h1><p class="ai-meta"><time datetime="2026-09-05T10:20">2026-09-05</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>chain-of-thought</li></ul></header><div class="ai-prose"><h1 id="让模型先写草稿">让模型先写草稿</h1>
+<p>一道小学应用题：小明买 3 支笔，每支 12 元，付了 100 元，找回多少？</p>
+<p>模型直接回答“64 元”。算式是 100 减 36，它算成了 100 减 36 之外的某个数。</p>
+<p>同一个问题，换一种问法——“先列出已知条件，再一步步算”——它回答“3 支 × 12 元 = 36 元，100 − 36 = 64 元，找回 64 元”。答案对了，过程也能核对。</p>
+<p>这类提示词在 2022 年被系统研究过两次。Wei 等人（arXiv:2201.11903）给了八个带推理过程的示例，PaLM 540B 在 GSM8K 上从 17.9% 提到 56.9%。Kojima 等人（arXiv:2205.11916）发现连示例都不需要，只加一句 “Let’s think step by step”，text-davinci-002 在 GSM8K 上从 17.9% 提到 58.1%，在 MultiArith 上从 17.7% 提到 78.7%。</p>
+<p>一句“逐步思考”带来四十个百分点。这个幅度值得解释清楚，因为它决定了这个方法在哪里失效。</p>
+<h2 id="它买到的是串行计算">它买到的是串行计算</h2>
+<p>Transformer 的一次前向传播深度固定。层数决定了它能做多少步连续的运算——一道需要五步算术的题，如果模型在第 28 层就把答案定了，后面十四层只是在为这个答案找说辞。</p>
+<p>Chain-of-Thought 把这个深度换成序列长度。模型每写一个中间结果，这个结果就成了后续 token 的输入条件：算出 36 之后，“100 − 36”是在已知 36 的基础上算的，而不是从原题重新推一遍。原本要在一次前向里完成的五步，被摊到了五十个 token 上。</p>
+<p>这个解释有一个可检验的推论：<strong>CoT 的收益与任务的串行深度正相关。</strong> 单步判断（这段文本是正面还是负面）几乎不受影响；需要五步以上计算或依赖链（数学题、多约束排期、逻辑推理）收益最大。</p>
+<p>另一条证据来自规模。Wei 等人的实验里，CoT 在约 100B 参数以下基本无效——小模型写出的推理链是通顺但无关的，等于给错误答案配了一段像样的解释。这个门槛后来随训练方式变化而移动，但结论保留：<strong>推理链的质量跟着模型的推理能力走，提示词本身不提供推理能力。</strong></p>
+<h2 id="三种形态">三种形态</h2>
+<p><strong>零示例触发。</strong> 提示词末尾加一句“先分析，再给结论”。成本一句话，适合原型。</p>
+<p><strong>少示例示范。</strong> 给三到八个“问题 + 完整推理 + 答案”的例子。收益大于零示例，代价是 token，而且示例的推理风格会被模仿——示例里跳步，输出也会跳步。</p>
+<p><strong>自一致采样（self-consistency）。</strong> Wang 等人（arXiv:2203.11171）的做法：同一问题采样多条推理链，对最终答案投票。GSM8K 上比单链再高十几个百分点。代价是 N 倍调用，只在答案可枚举、且错误代价高的场景值得。</p>
+<h2 id="三种失效方式">三种失效方式</h2>
+<p><strong>它不产生新信息。</strong> 推理链只能在上下文里已有的材料上做运算。检索没拿到教材原文时，模型会写出一段逻辑自洽、前提虚构的推理——而且看起来比直接答错更可信。这一条在 Agent 里尤其危险：错误的推理链会被后面的步骤当作既定事实。</p>
+<p><strong>解释与原因不一致。</strong> Turpin 等人（arXiv:2305.04388）做过一个实验：在提示里加入一个与正确答案无关的偏置（比如暗示“大多数人的答案是 B”），模型的答案会跟着偏，但它写出的推理链对这件事只字不提，仍然是一段关于题目本身的分析。<strong>模型给出的推理过程，是它认为合理的解释，而不是它实际的计算路径。</strong> 所以拿 CoT 做审计时要清楚：它能提高答案的正确率，但不能当作“模型真这么想的”证据。</p>
+<p><strong>格式类任务上是纯成本。</strong> 把一段文字转成 JSON、从简历里抽字段、按模板填表——这些任务没有串行深度，加“请逐步思考”只会让输出变长、解析变难，有时还会引入它自己编的中间值。</p>
+<h2 id="推理模型出现之后">推理模型出现之后</h2>
+<p>2024 年之后，一批模型把推理链放进了训练目标：o1（2024-09）、DeepSeek-R1（2025-01）在给出答案前先生成一段内部推理，长度由模型自己决定，用户看到的是摘要。</p>
+<p>对这些模型，两个实践结论。</p>
+<p><strong>“一步一步想”不再需要。</strong> 它已经在做，提示词再加一句通常只增加 token。有些平台上显式要求逐步输出反而会与内部推理重复，拖慢响应。</p>
+<p><strong>审计能力下降。</strong> 你看到的是摘要，不是原始链路。前一段说的“解释与原因不一致”问题依然存在，只是现在连那层解释都被压缩过了。高风险场景里，真正能验的还是外部检查：算出来的数对不对、引用的条款在不在、测试跑没跑过。</p>
+<p>选择上有一条简单规则：模型自带推理时，把精力放在给它足够的材料与明确的验收标准；模型不带推理时，才需要靠提示词把过程挤出来。</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>加 CoT</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多步算术、逻辑、多约束排期</td>
+<td>是</td>
+<td>串行深度高</td>
+</tr>
+<tr>
+<td>需要可核对的中间值</td>
+<td>是</td>
+<td>中间结果可被外部检查</td>
+</tr>
+<tr>
+<td>抽取、格式转换、分类</td>
+<td>否</td>
+<td>无串行深度，纯增成本</td>
+</tr>
+<tr>
+<td>事实问答（材料不在上下文里）</td>
+<td>否</td>
+<td>会生成虚构前提</td>
+</tr>
+<tr>
+<td>已自带推理的模型</td>
+<td>否</td>
+<td>内部已完成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="上限想得到够不着">上限：想得到，够不着</h2>
+<p>CoT 全程在脑内完成。它不能查资料，不能算除法，不能确认一条数据库记录是否存在。</p>
+<p>一道题需要“查第 5 章的平均分再和全校比”时，推理链再长也算不出平均分——那个数不在上下文里。模型会编一个，或者算错。</p>
+<p>下一步要把推理和行动接起来：想一步，做一步，看结果，再想。这就是下一节的主题。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Wei, J. et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.</em> arXiv:2201.11903</li>
+<li>Kojima, T. et al. (2022). <em>Large Language Models are Zero-Shot Reasoners.</em> arXiv:2205.11916</li>
+<li>Wang, X. et al. (2022). <em>Self-Consistency Improves Chain of Thought Reasoning.</em> arXiv:2203.11171</li>
+<li>Turpin, M. et al. (2023). <em>Language Models Don’t Always Say What They Think.</em> arXiv:2305.04388</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/03/02/"><span>上一篇</span><strong>02.03.02 任务拆到多细</strong></a><a class="ai-pager-next" href="/ai/02-agents/03/04/"><span>下一篇</span><strong>02.03.04 边想边做还是想完再做</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#它买到的是串行计算">它买到的是串行计算</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#三种形态">三种形态</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#三种失效方式">三种失效方式</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#推理模型出现之后">推理模型出现之后</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#上限想得到够不着">上限：想得到，够不着</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.06.03 五个框架横向矩阵 · iopanda</title><meta name="description" content="03.06.06.03 五个框架横向矩阵 · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/06/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.06.03 五个框架横向矩阵 · iopanda"><meta property="og:description" content="03.06.06.03 五个框架横向矩阵 · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/06/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection="06" data-active-article="/ai/03-frameworks/06/06/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/06/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流框架选型矩阵"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/06/06/"><span class="tree-number">06</span><span class="tree-title">工作流框架选型矩阵</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/06/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">五个框架横向矩阵</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/06/">工作流框架选型矩阵</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">五个框架横向矩阵</span></nav><header class="ai-article-header"><p class="ai-number">03.06.06.03</p><h1>五个框架横向矩阵</h1><p class="ai-meta"><time datetime="2026-09-09T12:05">2026-09-09</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>workflow</li><li>orchestration</li><li>selection</li><li>matrix</li></ul></header><div class="ai-prose"><h1 id="五个框架横向矩阵">五个框架横向矩阵</h1>
+<blockquote>
+<p>这一篇把上一篇的五个诊断维度，逐一对齐到 <a href="/ai/03-frameworks/06/01/01/">Temporal</a>、<a href="/ai/03-frameworks/06/02/01/">Airflow</a>、<a href="/ai/03-frameworks/06/03/01/">Prefect</a>、<a href="/ai/03-frameworks/06/04/01/">Dagster</a>、<a href="/ai/03-frameworks/06/05/01/">Kestra</a> 五个框架，形成一张可以直接拿来对照的横向矩阵。所有判断都来自前五个子目录已经建立的事实，这里只做收敛，不引入新的定性判断。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>一眼看出五个框架在五个维度上的强弱分布；</li>
+<li>理解“强/中/弱”背后各自对应哪个具体机制；</li>
+<li>用“反向信号”快速排除不对症的框架；</li>
+<li>判断两个框架看起来都“中等适合”时，该看哪个次要维度做区分；</li>
+<li>把矩阵直接套进 workflow-framework-selection-card。</li>
+</ol>
+<h2 id="1-主矩阵五维度--五框架">1. 主矩阵：五维度 × 五框架</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><a href="/ai/03-frameworks/06/01/01/">Temporal</a></th>
+<th><a href="/ai/03-frameworks/06/02/01/">Airflow</a></th>
+<th><a href="/ai/03-frameworks/06/03/01/">Prefect</a></th>
+<th><a href="/ai/03-frameworks/06/04/01/">Dagster</a></th>
+<th><a href="/ai/03-frameworks/06/05/01/">Kestra</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态恢复</td>
+<td>强——history/mutable state、retry/timer/signal 都是正式语义[11]</td>
+<td>弱——靠幂等 task + backfill 补历史，不是状态机恢复[12]</td>
+<td>中——<code>retries</code>/<code>retry_condition_fn</code> 正式化，但不是彻底的状态恢复引擎[13]</td>
+<td>弱——不以流程状态恢复为设计中心[14]</td>
+<td>中——Pause/HumanTask 让审批状态可持久化，但不是通用状态机语义[15]</td>
+</tr>
+<tr>
+<td>调度模型</td>
+<td>弱——不是调度平台，靠 schedule/timer 辅助长流程[11]</td>
+<td>强——DAG scheduling、backfill、schedule interval 是核心心智[12]</td>
+<td>中——deployment + work pool 支持调度，但非重心[13]</td>
+<td>中——schedule + sensor + partition 组合，服务于资产更新[14]</td>
+<td>强——schedule 与事件触发被统一在同一套 trigger 接口下[15]</td>
+</tr>
+<tr>
+<td>lineage/治理</td>
+<td>弱——不建模数据资产[11]</td>
+<td>弱——任务图不等于数据资产血缘[12]</td>
+<td>弱——同样不以资产血缘为中心[13]</td>
+<td>强——AssetKey、column lineage、asset check、owners 都是一等对象[14]</td>
+<td>弱——不以资产建模为核心[15]</td>
+</tr>
+<tr>
+<td>事件触发</td>
+<td>中——signal/schedule 支持外部事件，但语义偏“等待”而非“广泛集成”[11]</td>
+<td>弱——以定时批处理为主，事件驱动不是设计中心[12]</td>
+<td>中——automations/events 支持告警和响应，但覆盖面不追求“统一接口”[13]</td>
+<td>中——sensor 支持事件驱动的资产触发，服务于资产更新[14]</td>
+<td>强——webhook/polling/realtime 三类事件 trigger + 插件生态[15]</td>
+</tr>
+<tr>
+<td>开发者体验</td>
+<td>中——需要接受 durable execution 的心智成本[11]</td>
+<td>中——成熟但偏重，运维负担大[12]</td>
+<td>强——装饰器直接包裹已有 Python 函数，门槛最低[13]</td>
+<td>中——需要先做资产建模，前期投入较高[14]</td>
+<td>强——声明式 YAML + 无代码/AI Copilot，覆盖工程师和业务方[15]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-怎么读这张矩阵">2. 怎么读这张矩阵</h2>
+<ul>
+<li><strong>看“强”的维度，而不是数格子数量</strong>：每个框架大概只在 1-2 个维度上是“强”，这才是它的真正定位，其余维度是“够用”而不是“最优”。</li>
+<li><strong>“中”不代表平庸，代表“可以用，但不是它的设计中心”</strong>：比如 Prefect 的调度能力是“中”，不是说它调度功能差，而是调度不是它要解决的第一性问题。</li>
+<li><strong>两个框架都“中”时，回头看上一篇的方法论</strong>：先确认主矛盾到底是哪个维度，再看谁在那个维度上更接近“强”。</li>
+</ul>
+<h2 id="3-反向信号快速排除不对症的框架">3. 反向信号：快速排除不对症的框架</h2>
+<table>
+<thead>
+<tr>
+<th>如果你的系统…</th>
+<th>优先排除</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要是稳定的定时批处理，不需要状态恢复或资产血缘</td>
+<td>Temporal、Dagster（先看 Airflow/Prefect/Kestra）</td>
+</tr>
+<tr>
+<td>核心诉求是数据资产的血缘和新鲜度治理</td>
+<td>Kestra、Temporal（先看 Dagster）</td>
+</tr>
+<tr>
+<td>需要长时间等待人工审批、跨天补偿的业务流程</td>
+<td>Airflow、Dagster（先看 Temporal）</td>
+</tr>
+<tr>
+<td>团队只想让已有 Python 脚本更可靠，不需要跨语言/多角色协作</td>
+<td>Kestra、Dagster（先看 Prefect）</td>
+</tr>
+<tr>
+<td>需要工程师和非工程角色共同维护，且要统一调度与事件驱动</td>
+<td>Temporal、Dagster（先看 Kestra）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-一个容易被忽略的共性">4. 一个容易被忽略的共性</h2>
+<p>五个框架都支持“调度”和“重试”这两个基础能力——这恰恰说明这两项从来不是真正的选型分歧点。真正的分歧点永远落在“状态恢复的彻底程度”“任务图 vs 资产图”“血缘治理”“事件覆盖面”“开发者体验的取舍”这五个更深层的设计中心上。</p>
+<h2 id="5-动手活动">5. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：更新</p>
+<p><code>workflow-framework-selection-card.md</code></p>
+<p>把第 01 篇里给自己系统打的分，对照这张矩阵找出最接近的 1-2 个框架。用第 3 节的反向信号表再交叉验证一次：有没有哪个候选框架其实该被排除。</p>
+</div>
+<h2 id="6-总结">6. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>矩阵怎么用</td>
+<td>找每个框架真正“强”的 1-2 个维度，而不是数格子</td>
+</tr>
+<tr>
+<td>“中”是什么意思</td>
+<td>可以用，但不是设计中心</td>
+</tr>
+<tr>
+<td>反向信号的价值</td>
+<td>排除法比正向比较更快、更可靠</td>
+</tr>
+<tr>
+<td>共性说明了什么</td>
+<td>调度和重试不是分歧点，状态恢复/血缘/事件覆盖面/开发者体验才是</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[11] <a href="https://github.com/temporalio/temporal">https://github.com/temporalio/temporal</a> — Temporal GitHub</li>
+<li>[12] <a href="https://github.com/apache/airflow">https://github.com/apache/airflow</a> — Apache Airflow GitHub</li>
+<li>[13] <a href="https://github.com/PrefectHQ/prefect">https://github.com/PrefectHQ/prefect</a> — Prefect GitHub</li>
+<li>[14] <a href="https://github.com/dagster-io/dagster">https://github.com/dagster-io/dagster</a> — Dagster GitHub</li>
+<li>[15] <a href="https://github.com/kestra-io/kestra">https://github.com/kestra-io/kestra</a> — Kestra GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/06/02/"><span>上一篇</span><strong>03.06.06.02 Workflow Framework 选型方法论</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/06/06/04/"><span>下一篇</span><strong>03.06.06.04 典型业务场景对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-主矩阵五维度--五框架">1. 主矩阵：五维度 × 五框架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-怎么读这张矩阵">2. 怎么读这张矩阵</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-反向信号快速排除不对症的框架">3. 反向信号：快速排除不对症的框架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-一个容易被忽略的共性">4. 一个容易被忽略的共性</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动">5. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-总结">6. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

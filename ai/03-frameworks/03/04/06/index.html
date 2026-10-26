@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.03.04.06 课程助教 Agent 的 TRL 架构案例 · iopanda</title><meta name="description" content="03.03.04.06 课程助教 Agent 的 TRL 架构案例 · 框架 / 训练与微调框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/03/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.03.04.06 课程助教 Agent 的 TRL 架构案例 · iopanda"><meta property="og:description" content="03.03.04.06 课程助教 Agent 的 TRL 架构案例 · 框架 / 训练与微调框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/03/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="03" data-active-subsection="04" data-active-article="/ai/03-frameworks/03/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 训练与微调框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/03/"><span class="tree-number">03</span><span class="tree-title">训练与微调框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/03/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 TRL"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/03/04/"><span class="tree-number">04</span><span class="tree-title">TRL</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/03/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教 Agent 的 TRL 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/">训练与微调框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/03/04/">TRL</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 TRL 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.03.04.06</p><h1>课程助教 Agent 的 TRL 架构案例</h1><p class="ai-meta"><time datetime="2026-09-04T02:13">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>training</li><li>fine-tuning</li><li>trl</li><li>case-study</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-trl-架构案例">课程助教 Agent 的 TRL 架构案例</h1>
+<blockquote>
+<p>如果课程助教已经不再满足于“能回答”，而是开始要求：更稳定地拒绝越权请求、更一致地引用课程规则、更少幻觉、更符合助教语气和安全边界，那么它就进入了 TRL 擅长的世界。这里的重点不再是普通 instruction tuning，而是 <strong>post-training alignment</strong>。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>判断课程助教何时适合接入 TRL；</li>
+<li>设计课程助教从 SFT 到 DPO，再到 Reward/GRPO 的演化路径；</li>
+<li>识别课程助教在 alignment 上最重要的偏好维度；</li>
+<li>设计课程助教的评测证据链；</li>
+<li>写一张课程助教的 TRL 适配卡。</li>
+</ol>
+<h2 id="1-推荐演化路线">1. 推荐演化路线</h2>
+<ul>
+<li>第一阶段：SFT，把课程问答、规则解释、风格建立起来；</li>
+<li>第二阶段：DPO，用 chosen/rejected 样本优化“更像好助教”的回答；</li>
+<li>第三阶段：若要做更复杂的策略优化，再引入 reward model 与 GRPO/PPO。</li>
+</ul>
+<h2 id="2-课程助教最关键的偏好维度">2. 课程助教最关键的偏好维度</h2>
+<ul>
+<li>是否忠于课程规则；</li>
+<li>是否在不确定时诚实表达；</li>
+<li>是否避免编造作业答案来源；</li>
+<li>是否在越权请求上稳健拒绝；</li>
+<li>是否维持统一助教语气。</li>
+</ul>
+<h2 id="3-为什么这里-trl-比普通-sft-更自然">3. 为什么这里 TRL 比普通 SFT 更自然</h2>
+<p>因为这些要求不是“有没有见过这个问题”，而是“面对多个可答方式，哪种更被偏好”。
+这正是 TRL 处理的对象。</p>
+<h2 id="4-动手活动">4. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>course-ta-trl-card.md</code></p>
+<p>为课程助教写一个 chosen/rejected 标注规范：什么叫更好的回答，什么叫更差的回答。再写一句结论：为什么这些差异不能只靠 SFT 表达。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教何时适合 TRL</td>
+<td>当目标从“会答”升级为“答得更符合偏好与边界”</td>
+</tr>
+<tr>
+<td>默认路线</td>
+<td>SFT → DPO → Reward / GRPO</td>
+</tr>
+<tr>
+<td>最大价值</td>
+<td>把助教质量标准变成正式训练目标</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[20] <a href="https://github.com/huggingface/trl/blob/main/docs/source/sft_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/sft_trainer.md</a> — TRL SFTTrainer doc</li>
+<li>[21] <a href="https://github.com/huggingface/trl/blob/main/docs/source/dpo_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/dpo_trainer.md</a> — TRL DPOTrainer doc</li>
+<li>[23] <a href="https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/grpo_trainer.md</a> — TRL GRPOTrainer doc</li>
+<li>[24] <a href="https://github.com/huggingface/trl/blob/main/docs/source/reward_trainer.md">https://github.com/huggingface/trl/blob/main/docs/source/reward_trainer.md</a> — TRL RewardTrainer doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/03/04/05/"><span>上一篇</span><strong>03.03.04.05 训练稳定性、评测与工程边界</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/03/04/07/"><span>下一篇</span><strong>03.03.04.07 TRL 与 PEFT、LLaMA-Factory、Unsloth、Axolotl 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-推荐演化路线">1. 推荐演化路线</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-课程助教最关键的偏好维度">2. 课程助教最关键的偏好维度</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么这里-trl-比普通-sft-更自然">3. 为什么这里 TRL 比普通 SFT 更自然</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动">4. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

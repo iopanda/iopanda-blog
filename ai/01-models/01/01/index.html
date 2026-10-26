@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.01.01 什么是 AI 模型 · iopanda</title><meta name="description" content="01.01.01 什么是 AI 模型 · 模型 / 基础，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/01/01/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.01.01 什么是 AI 模型 · iopanda"><meta property="og:description" content="01.01.01 什么是 AI 模型 · 模型 / 基础，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/01/01/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="01" data-active-subsection data-active-article="/ai/01-models/01/01/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 基础"></button><a class="tree-link tree-link--section" href="/ai/01-models/01/"><span class="tree-number">01</span><span class="tree-title">基础</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/01/01/" aria-current="page"><span class="tree-number">01</span><span class="tree-title">什么是 AI 模型</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/01/">基础</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">什么是 AI 模型</span></nav><header class="ai-article-header"><p class="ai-number">01.01.01</p><h1>什么是 AI 模型</h1><p class="ai-meta"><time datetime="2026-09-02T15:00">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-models</li><li>foundations</li></ul></header><div class="ai-prose"><h1 id="什么是-ai-模型">什么是 AI 模型</h1>
+<blockquote>
+<p>本章不只解释「模型」这个词,而是回答三个递进的问题:<strong>它到底是什么、为什么需要它、它有什么用</strong>。读完你会建立一个判断框架,知道后续所有章节(神经网络、Transformer、语言建模)在整张拼图里的位置。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用自己的话定义 AI 模型,并区分模型、算法、权重三个易混概念;</li>
+<li>解释「基础模型 / 大语言模型 / 生成式 AI」的关系;</li>
+<li>说出为什么传统编程规则写不出今天的大模型能力;</li>
+<li>画出一张「模型 → 产品」的分层图(模型、提示词、知识库、工具);</li>
+<li>用四个问题快速评估任何一次模型选型。</li>
+</ol>
+<h2 id="1-概念ai-模型是什么">1. 概念:AI 模型是什么</h2>
+<ul>
+<li><strong>AI 模型</strong>是一个<strong>从输入到输出的数学函数</strong>:它接收数据(文本、图像、语音……),经过内部计算,输出预测或新内容。</li>
+<li>它的特殊之处在于:<strong>函数的具体行为不是人写的,而是从大量样本里「学」出来的</strong>。</li>
+<li>用公式表达:<code>y = f(x; θ)</code>,其中 <code>x</code> 是输入、<code>y</code> 是输出、<code>θ</code> 是模型参数。<strong>训练 = 调整 θ,让 f 的输出接近正确答案。</strong></li>
+</ul>
+<h3 id="11-与普通程序的本质区别">1.1 与「普通程序」的本质区别</h3>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>传统程序</th>
+<th>AI 模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规则来源</td>
+<td>程序员逐条手写</td>
+<td>从数据中自动归纳</td>
+</tr>
+<tr>
+<td>面对新情况</td>
+<td>没写到的就出错</td>
+<td>能泛化到没见过的输入</td>
+</tr>
+<tr>
+<td>内部结构</td>
+<td>清晰可读的 if/else</td>
+<td>数百万参数的数值矩阵</td>
+</tr>
+<tr>
+<td>错误形态</td>
+<td>逻辑 bug</td>
+<td>概率性偏差、幻觉</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>为什么需要模型而不是规则?</strong> 因为很多任务人类<strong>无法写出规则</strong>:怎么判断一张图里有猫?怎么把中文翻译成英文?人类自己能做到,却无法把「判断标准」写成几百条 if。这类任务的共同点是:<strong>例子多、规则难</strong>——这正是模型(从例子学规则)的用武之地。</li>
+</ul>
+<h2 id="2-为什么需要它三类问题的转变">2. 为什么需要它:三类问题的转变</h2>
+<ul>
+<li>回顾 AI 历史的三个问题形态,就能看清模型解决了什么:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>时代</th>
+<th>问题形态</th>
+<th>局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规则时代</td>
+<td>「我写规则,机器执行」</td>
+<td>复杂任务规则写不完</td>
+</tr>
+<tr>
+<td>统计机器学习</td>
+<td>「我设计特征,机器学映射」</td>
+<td>特征工程靠人工,表达力有限</td>
+</tr>
+<tr>
+<td>深度学习/基础模型</td>
+<td>「我给大量数据,机器自己学表示」</td>
+<td>需要算力、数据、评测纪律</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>模型(尤其是基础模型)带来的<strong>范式转变</strong>:过去每个任务训练一个专用模型;现在<strong>先在海量数据上预训练一个通用模型,再通过提示、检索、微调适配多种任务</strong>——这就是 2021 年斯坦福提出的「基础模型(Foundation Model)」概念的核心。</li>
+<li>一句话:<strong>基础模型解决的是「通用能力」问题,让 AI 从「一个任务一个模型」走向「一个模型多种任务」。</strong></li>
+</ul>
+<h2 id="3-它有什么作用从模型到产品">3. 它有什么作用:从模型到产品</h2>
+<ul>
+<li>模型本身不是产品。真正交付给用户的是<strong>系统</strong>——模型只是其中的「大脑」:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌─────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│              应用(聊天机器人/搜索助手/Agent)    │</span></span>
+<span class="line"><span>├──────────┬──────────┬──────────┬────────────┤</span></span>
+<span class="line"><span>│  模型     │  提示词   │  知识库   │  工具      │</span></span>
+<span class="line"><span>│ 理解+生成  │ 规定任务  │ 补充私有信息│ 查数据/调API│</span></span>
+<span class="line"><span>└──────────┴──────────┴──────────┴────────────┘</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li>这个分层解释了后续章节的安排:模型内部(03~08 章)解决「能力从哪来」;知识检索、工具调用、Agent(02 系列)解决「能力如何被可靠使用」。</li>
+<li><strong>作用总结</strong>:模型承担的是「理解和生成」这一核心智能动作;其余(记忆、执行、校验)由系统组件分工完成。</li>
+</ul>
+<h2 id="4-容易混淆的三个词">4. 容易混淆的三个词</h2>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>算法</strong></td>
+<td>解决问题的方法/步骤</td>
+<td>梯度下降、注意力机制</td>
+</tr>
+<tr>
+<td><strong>模型</strong></td>
+<td>算法 + 参数结合后的可运行产物</td>
+<td>GPT-4、Llama 3</td>
+</tr>
+<tr>
+<td><strong>模型权重</strong></td>
+<td>训练完成后保存的参数文件</td>
+<td><code>llama-3-8b.gguf</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>日常说「下载了一个模型」,准确说是<strong>下载了权重</strong>;「用 PyTorch 训练」,是让<strong>算法</strong>去更新<strong>权重</strong>,最终产出<strong>模型</strong>。</li>
+</ul>
+<h2 id="5-模型不等于全能">5. 模型不等于「全能」</h2>
+<ul>
+<li>大模型会写诗、会写代码、会翻译,看起来无所不能,但它有三个结构性特征:
+<ol>
+<li><strong>概率性</strong>:它生成的是「语言上合理的延续」,不是「查证过的事实」;</li>
+<li><strong>无真实记忆</strong>:对话中的「记得」是上下文窗口内的临时状态;</li>
+<li><strong>能力边界模糊</strong>:它没有内置的「我知道/不知道」开关,容易一本正经地编造(幻觉)。</li>
+</ol>
+</li>
+<li>因此工程上要用<strong>系统手段</strong>补足:检索增强(RAG)提供事实、工具调用提供实时数据、评测约束质量、人工复核兜底。</li>
+</ul>
+<h2 id="6-使用模型时应问的四个问题">6. 使用模型时应问的四个问题</h2>
+<ol>
+<li><strong>输入和输出各是什么,错误的代价有多大?</strong> 决定要不要加校验/人工;</li>
+<li><strong>需要领域知识吗?</strong> 若需要,优先考虑 RAG(外部检索)、工具调用还是微调(01.03);</li>
+<li><strong>如何评测质量、延迟、成本与安全?</strong> 没有评测的「感觉好用」不可靠(01.06);</li>
+<li><strong>数据与合规边界是什么?</strong> 输入是否含敏感信息?模型供应商的数据政策?</li>
+</ol>
+<h2 id="7-总结">7. 总结</h2>
+<h3 id="71-本章一览">7.1 本章一览</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI 模型</td>
+<td>从数据中学出来的输入→输出函数</td>
+</tr>
+<tr>
+<td>为什么需要</td>
+<td>例子多、规则难的任务,人写不出规则</td>
+</tr>
+<tr>
+<td>基础模型</td>
+<td>预训练通用模型,适配多种下游任务</td>
+</tr>
+<tr>
+<td>模型 vs 权重</td>
+<td>算法+参数=模型;权重=参数文件</td>
+</tr>
+<tr>
+<td>产品分层</td>
+<td>模型+提示词+知识库+工具=可用系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-思考题">7.2 思考题</h3>
+<ol>
+<li>为什么「写规则」的方式做不出图像识别?试着列一个「判断图片有无猫」的规则,看它有多脆弱。</li>
+<li>「基础模型」和「大语言模型」是同一个东西吗?区别在哪?</li>
+<li>模型生成的内容可能出错,工程上能用哪些手段兜底?</li>
+<li>找三个你日常使用的 AI 产品,拆解它们分别用了模型、知识库、工具的哪些部分。</li>
+</ol>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<ol>
+<li>猫的姿态、角度、遮挡、品种变化无穷,规则会指数级膨胀且互相冲突;模型从标注图片中学习「像猫的特征组合」,能泛化。</li>
+<li>不等同:LLM 是基于文本训练的模型;基础模型是更宽的概念,还包括图像、音频、多模态等模型。所有 LLM 都是基础模型,但基础模型不都是 LLM。</li>
+<li>检索增强提供事实依据、工具调用获取实时数据、输出 schema 约束格式、评测集回归、高风险场景人工复核。</li>
+<li>例如客服机器人=模型(对话)+知识库(FAQ 检索)+工具(查订单接口);代码助手=模型+工具(执行测试);搜索助手=模型+实时检索。</li>
+</ol>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://cloud.google.com/discover/what-are-foundation-models">Google Cloud:什么是基础模型</a></li>
+<li><a href="https://www.ibm.com/cn-zh/think/topics/foundation-models">IBM:什么是基础模型</a></li>
+<li><a href="https://arxiv.org/abs/2108.07258">Stanford CRFM:Foundation Models 综述</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><span class="ai-pager-empty" aria-hidden="true"></span><a class="ai-pager-next" href="/ai/01-models/01/02/"><span>下一篇</span><strong>01.01.02 机器学习基础</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念ai-模型是什么">1. 概念:AI 模型是什么</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-与普通程序的本质区别">1.1 与「普通程序」的本质区别</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要它三类问题的转变">2. 为什么需要它:三类问题的转变</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-它有什么作用从模型到产品">3. 它有什么作用:从模型到产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-容易混淆的三个词">4. 容易混淆的三个词</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-模型不等于全能">5. 模型不等于「全能」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-使用模型时应问的四个问题">6. 使用模型时应问的四个问题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#71-本章一览">7.1 本章一览</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#72-思考题">7.2 思考题</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

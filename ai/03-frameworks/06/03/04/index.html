@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.06.03.04 retries、mapping、events 与 resilient pipelines · iopanda</title><meta name="description" content="03.06.03.04 retries、mapping、events 与 resilient pipelines · 框架 / 工作流编排框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/06/03/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.06.03.04 retries、mapping、events 与 resilient pipelines · iopanda"><meta property="og:description" content="03.06.03.04 retries、mapping、events 与 resilient pipelines · 框架 / 工作流编排框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/06/03/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="06" data-active-subsection="03" data-active-article="/ai/03-frameworks/06/03/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/06"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工作流编排框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/06/"><span class="tree-number">06</span><span class="tree-title">工作流编排框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/06/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Prefect"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/06/03/"><span class="tree-number">03</span><span class="tree-title">Prefect</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/06/03/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">retries、mapping、events 与 resilient pipelines</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/">工作流编排框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/06/03/">Prefect</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">retries、mapping、events 与 resilient pipelines</span></nav><header class="ai-article-header"><p class="ai-number">03.06.03.04</p><h1>retries、mapping、events 与 resilient pipelines</h1><p class="ai-meta"><time datetime="2026-09-09T09:44">2026-09-09</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>workflow</li><li>orchestration</li><li>prefect</li><li>retry</li><li>events</li></ul></header><div class="ai-prose"><h1 id="retriesmappingevents-与-resilient-pipelines">retries、mapping、events 与 resilient pipelines</h1>
+<blockquote>
+<p>Prefect README 把自己的价值总结成一句话：帮团队「build resilient, dynamic data pipelines that react to the world around them and recover from unexpected changes」。[13] 这一篇要讲清楚这句话背后具体是什么机制在起作用：retries 怎么配、<code>.map()</code>/task runner 怎么做并发、events/automations 怎么让流程“对外部变化有反应”。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>理解 <code>retries</code>、<code>retry_delay_seconds</code>、<code>exponential_backoff</code>、<code>retry_jitter_factor</code>、<code>retry_condition_fn</code> 分别在解决什么问题；</li>
+<li>说出并发（concurrency）与并行（parallelism）在 Prefect 里的区别，以及 <code>.map()</code> 的资源风险；</li>
+<li>理解 automations 的 trigger/action 模型，以及 Reactive/Proactive 两种触发姿态；</li>
+<li>判断什么时候流程需要这些正式语义，什么时候不需要；</li>
+<li>为系统写一张 resilient-pipeline card。</li>
+</ol>
+<h2 id="1-retries-为什么不只是重试几次">1. retries 为什么不只是“重试几次”</h2>
+<p><code>@flow</code> 和 <code>@task</code> 都接受 <code>retries</code> 参数，失败时按整数次数重跑；task 级别的 <code>retries</code> 可以把重试范围限定得比 flow 级别更细。[22] 真正的工程细节在 <code>retry_delay_seconds</code>：</p>
+<ul>
+<li>可以是单个数字，也可以是一串递增延迟，比如 <code>[1, 2, 4, 8]</code>；[22]</li>
+<li>也可以直接用 <code>exponential_backoff</code> 工具按 <code>backoff_factor</code> 自动生成这串延迟，不用手写；[22]</li>
+<li><code>retry_jitter_factor</code> 给延迟加随机抖动，理由很直接：「Adding jitter to the retry delays avoids multiple tasks introducing load to external systems by failing and retrying at the exact same cadence」。[22]</li>
+</ul>
+<h2 id="2-为什么重试还需要条件判断">2. 为什么重试还需要“条件判断”</h2>
+<p>不是所有失败都值得重试——比如对方返回 401/404 时再重试没有意义。<code>retry_condition_fn</code> 让你用代码判断某次失败是否该重试：「If a callable passed to <code>retry_condition_fn</code> returns <code>True</code>, the task will be retried. Otherwise, the task will exit with an exception」。[22] 系统级默认值也可以通过 <code>PREFECT_TASKS_DEFAULT_RETRIES</code>、<code>PREFECT_TASKS_DEFAULT_RETRY_DELAY_SECONDS</code> 统一设置，再按需在单个 task 上覆盖。[22]</p>
+<p>这说明 Prefect 把“该不该重试”“重试要不要错峰”都变成了正式参数，而不是让每个团队各自在 try/except 里手写。</p>
+<h2 id="3-map-与并发并行的边界">3. <code>.map()</code> 与并发/并行的边界</h2>
+<p>Prefect 明确区分了两个概念：「Concurrency refers to a system that can do more than one thing simultaneously, but not at the <em>exact</em> same time」，「Parallelism refers to a system that can do more than one thing at the <em>exact</em> same time」。[21] task 默认同步执行、阻塞调用方；要并发/并行，需要 <code>.submit()</code> 提交给 task runner，或用 <code>.map()</code> 对一批输入并发跑同一个 task。[21]</p>
+<p><code>.map()</code> 的风险也写得很直接：它「can create many task instances very quickly, which might exceed your resource availability」。[21] 也就是说，<code>.map()</code> 好用，但对一个大数据集直接 map 很容易把并发数打到超出资源承受范围，需要配合 <code>ThreadPoolTaskRunner</code>/<code>ProcessPoolTaskRunner</code>/<code>DaskTaskRunner</code>/<code>RayTaskRunner</code> 的资源上限一起规划。[21]</p>
+<h2 id="4-automationsevents让流程对外部变化有反应">4. automations/events：让流程对外部变化有反应</h2>
+<p>automations 是 Prefect 里“resilient pipelines that react to the world around them”这句话的具体落地：一个 automation 由 trigger（触发条件）和一个或多个 action（响应动作）组成。[23] trigger 有两种姿态：</p>
+<ul>
+<li><strong>Reactive</strong>：某个事件确实发生时触发，例如 <code>prefect.flow-run.Failed</code>；</li>
+<li><strong>Proactive</strong>：某个预期事件在时间窗口内<strong>没有</strong>发生时触发，例如“5 分钟内没有完成”。[23]</li>
+</ul>
+<p>典型用法包括失败告警（收到 <code>prefect.flow-run.Failed</code> 事件就发通知）和取消长时间挂起的 flow run（Proactive trigger + <code>within</code> 时间窗口）。[23] action 是一个列表，意味着一次触发可以同时“取消 + 通知”，而不必只做一件事。[23]</p>
+<h2 id="5-这三者合起来为什么叫-resilient-pipeline">5. 这三者合起来为什么叫 resilient pipeline</h2>
+<ul>
+<li>retries/backoff/jitter 处理“单次失败怎么恢复”；</li>
+<li><code>.map()</code>/task runner 处理“同类任务怎么并发跑得快”；</li>
+<li>automations/events 处理“系统状态变化时怎么自动响应”。</li>
+</ul>
+<p>三者组合起来，才是 README 里那句「react to the world around them and recover from unexpected changes」的完整含义——它不是一个单一功能，而是重试语义、并发模型、事件响应三条能力叠加的结果。</p>
+<h2 id="6-动手活动">6. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>prefect-resilience-card.md</code></p>
+<p>列你的流程中哪些失败该重试、哪些错误码不该重试、哪一批任务适合 <code>.map()</code>、哪些状态变化需要自动通知或自动取消。写一句结论：你现在的“容错”逻辑是分散在业务代码里，还是已经收进 retries/automations 这类正式语义。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retries 在解决什么</td>
+<td>把重试次数、延迟、抖动、条件判断变成正式参数</td>
+</tr>
+<tr>
+<td><code>.map()</code>/task runner 在解决什么</td>
+<td>让同类任务并发/并行执行，同时暴露资源边界</td>
+</tr>
+<tr>
+<td>automations/events 在解决什么</td>
+<td>让流程对状态变化和外部事件自动响应</td>
+</tr>
+<tr>
+<td>三者合起来是什么</td>
+<td>resilient, dynamic pipeline：会恢复、会并发、会对外部变化反应</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[13] <a href="https://github.com/PrefectHQ/prefect/blob/main/README.md">https://github.com/PrefectHQ/prefect/blob/main/README.md</a> — Prefect README</li>
+<li>[21] <a href="https://docs.prefect.io/v3/concepts/task-runners">https://docs.prefect.io/v3/concepts/task-runners</a> — Prefect task runners concept doc</li>
+<li>[22] <a href="https://docs.prefect.io/v3/how-to-guides/workflows/retries">https://docs.prefect.io/v3/how-to-guides/workflows/retries</a> — Prefect retries how-to guide</li>
+<li>[23] <a href="https://docs.prefect.io/v3/how-to-guides/automations/creating-automations">https://docs.prefect.io/v3/how-to-guides/automations/creating-automations</a> — Prefect automations how-to guide</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/06/03/03/"><span>上一篇</span><strong>03.06.03.03 flow、task、state 与 deployment</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/06/03/05/"><span>下一篇</span><strong>03.06.03.05 观测、部署与工程边界</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-retries-为什么不只是重试几次">1. retries 为什么不只是“重试几次”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么重试还需要条件判断">2. 为什么重试还需要“条件判断”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-map-与并发并行的边界">3. .map() 与并发/并行的边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-automationsevents让流程对外部变化有反应">4. automations/events：让流程对外部变化有反应</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-这三者合起来为什么叫-resilient-pipeline">5. 这三者合起来为什么叫 resilient pipeline</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手活动">6. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

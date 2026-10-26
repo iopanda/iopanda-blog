@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.03.06 课程助教 Agent 的 CrewAI 架构案例 · iopanda</title><meta name="description" content="03.01.03.06 课程助教 Agent 的 CrewAI 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/03/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.03.06 课程助教 Agent 的 CrewAI 架构案例 · iopanda"><meta property="og:description" content="03.01.03.06 课程助教 Agent 的 CrewAI 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/03/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="03" data-active-article="/ai/03-frameworks/01/03/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 CrewAI"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/03/"><span class="tree-number">03</span><span class="tree-title">CrewAI</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/03/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教 Agent 的 CrewAI 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/03/">CrewAI</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 CrewAI 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.01.03.06</p><h1>课程助教 Agent 的 CrewAI 架构案例</h1><p class="ai-meta"><time datetime="2026-09-03T16:48">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>crewai</li><li>case-study</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-crewai-架构案例">课程助教 Agent 的 CrewAI 架构案例</h1>
+<blockquote>
+<p>前四篇把 CrewAI 的主要部件都拆开了：<a href="/ai/03-frameworks/01/03/02/">角色与任务</a>、<a href="/ai/03-frameworks/01/03/03/">Flow 与业务流程</a>、<a href="/ai/03-frameworks/01/03/04/">单角色执行边界</a>、<a href="/ai/03-frameworks/01/03/05/">人审与恢复</a>。这一章把这些抽象重新落回一个真实的、与你前面 01/02 主线一致的系统：<strong>课程助教 Agent</strong>。重点不是“能不能用 CrewAI 做出一个问答 demo”，而是：<strong>如果要做成一个带检索、草稿、风险审查、人工复核、可恢复流程的教学系统，CrewAI 应该如何拆层？</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用 CrewAI 的语言拆一个真实课程助教 Agent：角色、任务、Crew、Flow、审批；</li>
+<li>判断哪些逻辑属于角色自治，哪些逻辑属于流程控制；</li>
+<li>为课程助教设计 knowledge、guardrail、human feedback 与 persistence；</li>
+<li>解释为什么这个系统用 CrewAI 时，最关键的不是“多 Agent”，而是“分层”；</li>
+<li>画出一张可供开发者实现的 CrewAI 架构草图。</li>
+</ol>
+<h2 id="1-问题定义课程助教不是一个角色而是一套教学服务流程">1. 问题定义：课程助教不是一个角色，而是一套教学服务流程</h2>
+<p>如果只把课程助教理解成“回答课程问题”，你会自然倾向于单 Agent + 检索。但一旦把真实教学场景加进来，系统很快扩展为：</p>
+<ul>
+<li>检索讲义和课程规则；</li>
+<li>生成答案草稿；</li>
+<li>审查是否越权、是否涉及隐私/成绩；</li>
+<li>必要时升级人工；</li>
+<li>保留流程状态，方便追责和恢复；</li>
+<li>某些任务可能是批量型，比如生成个性化复习提纲。</li>
+</ul>
+<p>因此它更像一个教学服务流程，而不是一个纯问答机器人。CrewAI 在这里的价值，就在于它既能表达角色，也能表达流程。</p>
+<h2 id="2-先拆角色不要一上来就拆太多">2. 先拆角色：不要一上来就拆太多</h2>
+<p>课程助教并不需要五六个花哨角色。一个更稳的起点通常是三角结构：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要职责</th>
+<th>不该做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资料研究员</td>
+<td>检索课程资料、规则、参考片段</td>
+<td>不做最终放行</td>
+</tr>
+<tr>
+<td>答案撰写员</td>
+<td>基于资料生成草稿答案</td>
+<td>不直接决定高风险回答</td>
+</tr>
+<tr>
+<td>风险审查员</td>
+<td>检查隐私、成绩、越权、规则冲突</td>
+<td>不负责大量资料探索</td>
+</tr>
+</tbody>
+</table>
+<p>这样拆的原因不是为了“多 Agent 好看”，而是为了让知识域和责任域相对一致：</p>
+<ul>
+<li>研究员负责找；</li>
+<li>撰写员负责写；</li>
+<li>审查员负责卡边界。</li>
+</ul>
+<p>如果一开始再加“协调员”“评估员”“总结员”等一堆角色，系统复杂度会上升得很快，收益却不一定同步上升。</p>
+<h2 id="3-再拆任务角色只是人设任务才是运行骨架">3. 再拆任务：角色只是人设，任务才是运行骨架</h2>
+<p>每个角色对应的任务要尽量具体：</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>执行角色</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检索课程资料</td>
+<td>资料研究员</td>
+<td>用户问题、课程范围</td>
+<td>相关片段、规则依据</td>
+</tr>
+<tr>
+<td>生成答案草稿</td>
+<td>答案撰写员</td>
+<td>资料片段、问题</td>
+<td>draft answer</td>
+</tr>
+<tr>
+<td>风险审查</td>
+<td>风险审查员</td>
+<td>草稿、资料、用户身份</td>
+<td>风险标记、是否需人工</td>
+</tr>
+<tr>
+<td>人工复核</td>
+<td>人类审核者</td>
+<td>草稿、风险说明、上下文</td>
+<td>批准/修改/拒绝</td>
+</tr>
+<tr>
+<td>最终返回</td>
+<td>Flow/系统</td>
+<td>批准后的结果</td>
+<td>final answer</td>
+</tr>
+</tbody>
+</table>
+<p>CrewAI 在这里的关键价值，是让这些任务和角色之间的关系显式化，而不是把它们塞进一个万能 prompt。</p>
+<h2 id="4-crew-怎么组织别把所有问题都交给-crew">4. Crew 怎么组织：别把所有问题都交给 Crew</h2>
+<p>一个合理的 Crew 可以只负责中间的“自治协作段” ：</p>
+<ul>
+<li>研究员检索资料；</li>
+<li>撰写员产出草稿；</li>
+<li>审查员做第一轮风险判断。</li>
+</ul>
+<p>也就是说，Crew 最适合承接的是：</p>
+<ul>
+<li>需要多专长角色参与；</li>
+<li>路线有一定开放性；</li>
+<li>但还没有进入最终系统级放行动作。</li>
+</ul>
+<p>而这些事情通常不该交给 Crew 自己决定：</p>
+<ul>
+<li>流程什么时候开始；</li>
+<li>命中高风险是否直接进入人工复核；</li>
+<li>审批超时怎么处理；</li>
+<li>审批后从哪里恢复；</li>
+<li>最终输出前的系统级校验与审计。</li>
+</ul>
+<p>这些应当交给 Flow。也就是说：<strong>Crew 负责“内容生产段”，Flow 负责“业务治理段”。</strong></p>
+<h2 id="5-flow-怎么组织课程助教的真正主骨架在这里">5. Flow 怎么组织：课程助教的真正主骨架在这里</h2>
+<p>一个更稳的 Flow 可以是：</p>
+<ol>
+<li><code>start</code>: 接收用户提问</li>
+<li><code>precheck</code>: 判断请求类别与风险级别</li>
+<li><code>crew_run</code>: 触发内容生产 Crew</li>
+<li><code>review_gate</code>: 若风险低则进入输出校验；若风险高则触发 <code>@human_feedback</code></li>
+<li><code>resume_after_review</code>: 人工批准/修改/拒绝后的恢复节点</li>
+<li><code>final_validation</code>: 输出格式、安全与引用校验</li>
+<li><code>finish</code>: 返回结果并落审计记录</li>
+</ol>
+<p>你会发现，这里真正承担系统骨架的是 Flow，而不是 Crew。Crew 是中段的“智能协作模块”。这正是 CrewAI 最成熟的使用方式。</p>
+<h2 id="6-knowledge--guardrail--feedback-各落哪层">6. knowledge / guardrail / feedback 各落哪层</h2>
+<h3 id="61-knowledge">6.1 knowledge</h3>
+<p>更适合挂在角色层：</p>
+<ul>
+<li>研究员读课程讲义、FAQ、规则；</li>
+<li>审查员读安全边界、成绩政策、隐私规则。</li>
+</ul>
+<p>不要把所有知识源平铺给所有角色，否则边界会快速模糊。</p>
+<h3 id="62-guardrail">6.2 guardrail</h3>
+<p>应该分层：</p>
+<ul>
+<li>角色层：限制单个角色的输出边界；</li>
+<li>Flow 层：限制整个流程是否可继续、是否需人工。</li>
+</ul>
+<h3 id="63-human-feedback">6.3 human feedback</h3>
+<p>不要作为“事后加一个确认框”，而要放在 review gate 这种明确流程节点里，并保留恢复语义。</p>
+<h2 id="7-persistence-怎么设计课程助教并不只是聊天记录">7. persistence 怎么设计：课程助教并不只是聊天记录</h2>
+<p>流程状态至少应覆盖：</p>
+<ul>
+<li>当前问题类型；</li>
+<li>Crew 已跑到哪一步；</li>
+<li>研究结果与草稿是否生成；</li>
+<li>风险审查结果；</li>
+<li>是否等待人工；</li>
+<li>人工反馈内容；</li>
+<li>最终放行与审计摘要。</li>
+</ul>
+<p>这说明 persistence 在这里并不是“保存聊天历史”，而是保存教学服务流程的运行现场。</p>
+<h2 id="8-为什么这个案例很能说明-crewai-的适用边界">8. 为什么这个案例很能说明 CrewAI 的适用边界</h2>
+<p>课程助教这个案例有趣的地方在于：</p>
+<ul>
+<li>它确实需要多个角色，但不需要无限多角色；</li>
+<li>它确实需要流程控制，而且流程控制比角色数量更重要；</li>
+<li>它确实需要知识、guardrail、人工反馈、恢复；</li>
+<li>它对业务语义的要求比对底层状态机语义更直接。</li>
+</ul>
+<p>这正好说明 CrewAI 最适合的场景：<strong>角色协作存在，而且业务流程语言比底层状态机语言更适合团队沟通。</strong></p>
+<h2 id="9-和-langgraph-做同一案例时最大的差异">9. 和 LangGraph 做同一案例时最大的差异</h2>
+<p>如果你用 LangGraph 做这个课程助教，第一张图会更像：</p>
+<ul>
+<li>state</li>
+<li>nodes</li>
+<li>edges</li>
+<li>checkpoint</li>
+<li>interrupt</li>
+</ul>
+<p>如果你用 CrewAI 做，第一张图则更像：</p>
+<ul>
+<li>研究员</li>
+<li>撰写员</li>
+<li>审查员</li>
+<li>任务链</li>
+<li>审批流</li>
+</ul>
+<p>这不是孰优孰劣，而是表达语言不同：</p>
+<ul>
+<li>LangGraph 更接近运行时视角；</li>
+<li>CrewAI 更接近业务组织视角。</li>
+</ul>
+<h2 id="10-动手活动写课程助教的-crew--flow-架构说明">10. 动手活动：写课程助教的 Crew + Flow 架构说明</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>course-ta-crewai-architecture.md</code></p>
+<p><strong>目标</strong>：为课程助教输出一份可评审的 CrewAI 架构说明。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>列角色、任务和每个角色的知识域；</li>
+<li>画出 Crew 段与 Flow 段的边界；</li>
+<li>标记哪个节点需要 human feedback；</li>
+<li>标记持久化内容与恢复点；</li>
+<li>写一段“为什么这里用 CrewAI 更自然”的结论。</li>
+</ol>
+<p><strong>完成标准</strong>：团队成员只看这份说明，就能理解“谁负责生成内容，谁负责管流程”。</p>
+</div>
+<h2 id="11-边界与排错">11. 边界与排错</h2>
+<ul>
+<li><strong>误区一：课程助教一复杂就拼命加角色。</strong> 先问复杂度到底来自协作还是来自流程；</li>
+<li><strong>误区二：Crew 和 Flow 责任不分。</strong> 会导致系统一半像群聊，一半像 workflow，但两边都不清楚；</li>
+<li><strong>误区三：研究员和审查员共用全部知识源。</strong> 容易污染职责边界；</li>
+<li><strong>误区四：human feedback 放在最后。</strong> 高风险动作应在真正放行前停住；</li>
+<li><strong>误区五：把 persistence 只当聊天记录。</strong> 业务流程状态才是更重要的持久化对象。</li>
+</ul>
+<h2 id="12-总结">12. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教为什么适合 CrewAI</td>
+<td>因为它既有角色协作，又有明显业务流程</td>
+</tr>
+<tr>
+<td>角色怎么拆</td>
+<td>少而清晰：研究、撰写、审查</td>
+</tr>
+<tr>
+<td>Crew 负责什么</td>
+<td>中间的自治协作与内容生产</td>
+</tr>
+<tr>
+<td>Flow 负责什么</td>
+<td>入口、路由、审批、恢复、收尾</td>
+</tr>
+<tr>
+<td>human feedback 放哪</td>
+<td>放在 review gate 这类正式流程节点</td>
+</tr>
+<tr>
+<td>persistence 存什么</td>
+<td>不是只存聊天，而是存教学服务流程现场</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果课程助教下一阶段扩展成“批量为全班生成个性化复习提纲并发邮件”，为什么你首先要重新思考的不是“要不要多加一个写邮件角色”，而是 Flow 和持久化策略？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为这时系统的主矛盾从“单次内容协作”转向了“批量流程管理”：需要批次状态、失败恢复、审批、发件审计、收件人隔离和长时运行。多一个写邮件角色只能补局部功能，真正需要重构的是流程骨架和状态保存方式。先把 Flow 与 persistence 设计好，角色才不会把流程复杂度吞进对话黑箱里。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[11] <a href="https://docs.crewai.com">https://docs.crewai.com</a> — CrewAI docs</li>
+<li>[12] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/agents.mdx</a> — CrewAI agents concepts</li>
+<li>[13] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/crews.mdx</a> — CrewAI crews concepts</li>
+<li>[14] <a href="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx">https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/v1.15.18/en/concepts/flows.mdx</a> — CrewAI flows concepts</li>
+<li>[30] <a href="https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/agent/core.py">https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/agent/core.py</a> — CrewAI agent core source</li>
+<li>[31] <a href="https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/flow.py">https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/flow.py</a> — CrewAI flow source</li>
+<li>[32] <a href="https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/human_feedback.py">https://github.com/crewAIInc/crewAI/blob/main/lib/crewai/src/crewai/flow/human_feedback.py</a> — CrewAI human feedback source</li>
+<li>[33] <a href="https://github.com/crewAIInc/crewAI/tree/main/lib/crewai/src/crewai/flow/persistence">https://github.com/crewAIInc/crewAI/tree/main/lib/crewai/src/crewai/flow/persistence</a> — CrewAI flow persistence source tree</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/03/05/"><span>上一篇</span><strong>03.01.03.05 Human Feedback、Checkpoint 与可恢复业务流程</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/03/07/"><span>下一篇</span><strong>03.01.03.07 CrewAI 与 LangGraph、OpenAI Agents SDK、PydanticAI 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-问题定义课程助教不是一个角色而是一套教学服务流程">1. 问题定义：课程助教不是一个角色，而是一套教学服务流程</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-先拆角色不要一上来就拆太多">2. 先拆角色：不要一上来就拆太多</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-再拆任务角色只是人设任务才是运行骨架">3. 再拆任务：角色只是人设，任务才是运行骨架</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-crew-怎么组织别把所有问题都交给-crew">4. Crew 怎么组织：别把所有问题都交给 Crew</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-flow-怎么组织课程助教的真正主骨架在这里">5. Flow 怎么组织：课程助教的真正主骨架在这里</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-knowledge--guardrail--feedback-各落哪层">6. knowledge / guardrail / feedback 各落哪层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#61-knowledge">6.1 knowledge</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#62-guardrail">6.2 guardrail</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#63-human-feedback">6.3 human feedback</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-persistence-怎么设计课程助教并不只是聊天记录">7. persistence 怎么设计：课程助教并不只是聊天记录</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-为什么这个案例很能说明-crewai-的适用边界">8. 为什么这个案例很能说明 CrewAI 的适用边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-和-langgraph-做同一案例时最大的差异">9. 和 LangGraph 做同一案例时最大的差异</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-动手活动写课程助教的-crew--flow-架构说明">10. 动手活动：写课程助教的 Crew + Flow 架构说明</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-边界与排错">11. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#12-总结">12. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

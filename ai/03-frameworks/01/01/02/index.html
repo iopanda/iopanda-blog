@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.01.02 设计哲学与状态图 · iopanda</title><meta name="description" content="03.01.01.02 设计哲学与状态图 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/01/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.01.02 设计哲学与状态图 · iopanda"><meta property="og:description" content="03.01.01.02 设计哲学与状态图 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/01/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="01" data-active-article="/ai/03-frameworks/01/01/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 LangGraph"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/01/"><span class="tree-number">01</span><span class="tree-title">LangGraph</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/01/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">设计哲学与状态图</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/01/">LangGraph</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">设计哲学与状态图</span></nav><header class="ai-article-header"><p class="ai-number">03.01.01.02</p><h1>设计哲学与状态图</h1><p class="ai-meta"><time datetime="2026-09-03T14:25">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>langgraph</li><li>state-machine</li></ul></header><div class="ai-prose"><h1 id="设计哲学与状态图">设计哲学与状态图</h1>
+<blockquote>
+<p><a href="/ai/02-agents/01/06/">Agent 运行循环</a> 已经说明了 Agent 的最小骨架是 Thought → Action → Observation；<a href="/ai/02-agents/03/">规划与推理</a> 又让这个骨架开始分叉、回退、重试。问题是：<strong>当一个 Agent 不再只有 2~3 步，而是开始拥有状态、分支、人审、中断与恢复时，为什么它很自然会长成图？</strong> LangGraph 的答案非常激进也非常工程化：不要把复杂 Agent 继续写成一条越来越长的 prompt 链，而要把它重写成<strong>显式状态机</strong>。从官方定位看，它是 long-running、stateful agents 的 low-level orchestration framework；从源码入口看，<code>libs/langgraph/langgraph/graph/state.py</code> 直接把 <code>StateGraph</code> 定义成“nodes communicate by reading and writing to a shared state”的图构建器。[1][2]</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>解释为什么 LangGraph 的主角不是 Agent，而是 <code>StateGraph</code>；</li>
+<li>说出共享状态、节点、边、reducer 在图模型中的职责；</li>
+<li>理解 LangGraph 为什么把 <code>.compile()</code> 前后的世界分成“构建期”和“执行期”；</li>
+<li>用开发者视角看懂 <code>state.py</code>、<code>graph/_node.py</code>、<code>pregel/</code> 这些源码入口大致在干什么；</li>
+<li>判断一个 Agent 什么时候值得从循环升级成图。</li>
+</ol>
+<h2 id="1-概念langgraph-的第一抽象是图不是-agent">1. 概念：LangGraph 的第一抽象是图，不是 Agent</h2>
+<ul>
+<li>很多框架的入口是 <code>Agent(...)</code>；LangGraph 的入口却常常是 <code>StateGraph(...)</code>。[1][2]</li>
+<li>这说明它的根本设计判断是：复杂 Agent 的核心问题不是“再包一层模型对象”，而是<strong>把运行过程显式建模</strong>。</li>
+<li>在 <code>state.py</code> 里，<code>StateGraph</code> 的核心注释非常清楚：
+<ul>
+<li>nodes 通过读写 shared state 通信；</li>
+<li>节点签名可以理解为 <code>State -&gt; Partial&lt;State&gt;</code>；</li>
+<li>每个 state key 还能带 reducer，用于聚合来自多个节点的更新。[2]</li>
+</ul>
+</li>
+<li>这套设计和普通链式调用非常不一样：
+<ul>
+<li>链式调用默认“上一步输出是下一步输入”；</li>
+<li>状态图默认“整个系统共享一个事实账本，不同节点只增量修改其中一部分”。</li>
+</ul>
+</li>
+</ul>
+<p>这背后的架构含义很深：<strong>LangGraph 默认你做的不是“文本流水线”，而是“决策系统”。</strong></p>
+<h2 id="2-为什么要这样设计链适合线性图适合现实">2. 为什么要这样设计：链适合线性，图适合现实</h2>
+<p>线性 chain 在三个场景下会迅速失效：</p>
+<ol>
+<li><strong>状态跨步累积</strong>：你不只是把一段文本传下去，而是要同时保存用户问题、检索结果、审批状态、工具调用结果、风险级别；</li>
+<li><strong>流程会分支</strong>：资料不足要回去继续检索，风险过高要转人工，工具失败要重试或降级；</li>
+<li><strong>多个节点会共同更新同一事实</strong>：比如多个检索节点都往 <code>retrieved_chunks</code> 追加内容，这时不是简单覆盖，而是聚合。</li>
+</ol>
+<p>LangGraph 的 shared state + reducer 组合，就是专门为这三件事生的：</p>
+<ul>
+<li>shared state 让所有阶段围绕同一份运行事实工作；</li>
+<li>reducer 让并发或多来源更新有定义好的合并规则；</li>
+<li>graph edges 让分支路线显式，而不是埋在 prompt 里的“如果……则……”。</li>
+</ul>
+<p>为什么这对开发者和架构师重要？因为一旦系统复杂到这里，<strong>隐式逻辑会比模型幻觉更早杀死可维护性</strong>。</p>
+<h2 id="3-stategraph源码层面它到底在做什么">3. StateGraph：源码层面它到底在做什么</h2>
+<p>从 <code>libs/langgraph/langgraph/graph/state.py</code> 可以抓到几个最重要的设计点：[2]</p>
+<table>
+<thead>
+<tr>
+<th>设计点</th>
+<th>源码信号</th>
+<th>工程含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StateGraph</code> 是 builder class</td>
+<td>文档明确说必须先 <code>.compile()</code></td>
+<td>构建期与执行期分离</td>
+</tr>
+<tr>
+<td>node 签名是 <code>State -&gt; Partial&lt;State&gt;</code></td>
+<td>顶层 docstring 明写</td>
+<td>节点做增量更新，不必关心全状态重建</td>
+</tr>
+<tr>
+<td>state key 可带 reducer</td>
+<td>文档说明可用 <code>Annotated[type, reducer]</code></td>
+<td>并发/多节点更新可控聚合</td>
+</tr>
+<tr>
+<td>有 <code>context_schema</code></td>
+<td>文档建议把 <code>user_id</code>、<code>db_conn</code> 放这里</td>
+<td>把运行时上下文与业务状态分离</td>
+</tr>
+<tr>
+<td>底层接 <code>Pregel</code></td>
+<td>文件中直接 import <code>langgraph.pregel.Pregel</code></td>
+<td>执行模型不是随手递归，而是运行时引擎</td>
+</tr>
+</tbody>
+</table>
+<p>其中最关键的一点是 <code>context_schema</code> 与 <code>state_schema</code> 的分离：</p>
+<ul>
+<li><code>state_schema</code> 是<strong>会在流程里演化</strong>的东西；</li>
+<li><code>context_schema</code> 是<strong>本次运行可读取、但不应随节点任意篡改</strong>的东西。</li>
+</ul>
+<p>这个区分非常像后端系统里的：</p>
+<ul>
+<li>mutable state</li>
+<li>immutable run context</li>
+</ul>
+<p>很多 Agent 原型把这两者混在一起，后面一定出事故。</p>
+<h2 id="4-节点不是函数分解而是决策边界分解">4. 节点不是函数分解，而是“决策边界分解”</h2>
+<p>很多初学者会误以为：节点 = 把大函数拆小。实际上在 LangGraph 里，更合理的理解是：</p>
+<p><strong>节点 = 一次值得被单独观察、单独恢复、单独测量的决策边界。</strong></p>
+<p>例如课程助教 Agent 的节点不应该只是：</p>
+<ul>
+<li>query()</li>
+<li>search()</li>
+<li>answer()</li>
+</ul>
+<p>而应该更像：</p>
+<ul>
+<li>输入清洗</li>
+<li>检索资料</li>
+<li>判断证据是否足够</li>
+<li>生成草稿</li>
+<li>风险检查</li>
+<li>人工复核</li>
+<li>输出校验</li>
+</ul>
+<p>因为后者每一步都对应：</p>
+<ul>
+<li>是否继续？</li>
+<li>是否重试？</li>
+<li>是否升级？</li>
+<li>是否留审计？</li>
+</ul>
+<p>也就是说，LangGraph 要你拆的不是代码结构，而是<strong>运行语义</strong>。</p>
+<h2 id="5-reducer-为什么重要它决定并发状态是不是可解释">5. reducer 为什么重要：它决定并发状态是不是可解释</h2>
+<p><code>StateGraph</code> 允许每个 state key 带 reducer，这在普通教程里常常一笔带过，但对复杂系统其实很关键。[2]</p>
+<p>原因很简单：</p>
+<ul>
+<li>一旦多个节点都能更新同一字段，就必须定义合并语义；</li>
+<li>如果不定义，系统最后状态要么覆盖、要么顺序偶然，都会难以解释；</li>
+<li>reducer 本质上是给共享状态写并发协议。</li>
+</ul>
+<p>举例：</p>
+<ul>
+<li><code>retrieved_chunks</code> 需要 append 合并；</li>
+<li><code>risk_flags</code> 可能需要 set union；</li>
+<li><code>final_answer</code> 通常应该只有一个节点能写；</li>
+<li><code>tool_errors</code> 可能要聚合成列表。</li>
+</ul>
+<p>这件事和 prompt 无关，和架构有关。也是为什么 LangGraph 更像 workflow/runtime，而不像普通 prompt framework。</p>
+<h2 id="6-compile为什么它要把图构建和图执行分开">6. <code>.compile()</code>：为什么它要把图构建和图执行分开</h2>
+<p>源码和文档都反复强调：<code>StateGraph</code> 只是 builder，必须 <code>.compile()</code> 之后才能 <code>invoke()</code>、<code>stream()</code>、<code>ainvoke()</code>。[2]</p>
+<p>这不是形式主义，而是工程边界：</p>
+<ul>
+<li>构建期做静态检查：
+<ul>
+<li>节点有没有定义；</li>
+<li>边是否连通；</li>
+<li>schema 是否合理；</li>
+<li>reducer/branch/managed values 是否能成立；</li>
+</ul>
+</li>
+<li>执行期才关注：
+<ul>
+<li>运行状态如何流动；</li>
+<li>工具是否成功；</li>
+<li>流式输出如何产生；</li>
+<li>checkpoint 如何保存。</li>
+</ul>
+</li>
+</ul>
+<p>开发者的一个常见误区，是把这些都堆进 runtime 动态猜。LangGraph 则尽量把一部分错误前移到 compile 阶段。这种“尽早失败”的品味，非常适合复杂 Agent 系统。</p>
+<h2 id="7-pregel为什么-langgraph-底层执行引擎值得知道">7. Pregel：为什么 LangGraph 底层执行引擎值得知道</h2>
+<p>在 <code>state.py</code> 里可以直接看到它依赖 <code>langgraph.pregel.Pregel</code>。[2] 顶层 README 还明确承认灵感来自 Pregel、Apache Beam、NetworkX。[1]</p>
+<p>这至少说明三件事：</p>
+<ol>
+<li>它不是把图当可视化装饰，而是真把图当执行模型；</li>
+<li>它借的是“图式计算/流式数据处理”的系统思路，而不只是 LLM 包装技巧；</li>
+<li>它的野心不只是跑一次 Agent，而是承载更长、更可观测、更可恢复的工作流。</li>
+</ol>
+<p>对架构师来说，这很重要：你不是在选一个“模型小工具”，而是在选一种<strong>运行时世界观</strong>。</p>
+<h2 id="8-和同类框架相比langgraph-的第一性原理是什么">8. 和同类框架相比，LangGraph 的第一性原理是什么</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>第一性问题</th>
+<th>LangGraph 相比的特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/03-frameworks/01/03/01/">CrewAI</a></td>
+<td>怎么组织角色团队和流程</td>
+<td>LangGraph 更少“角色语义”，更多“状态机语义”</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/04/01/">OpenAI Agents SDK</a></td>
+<td>怎么快速获得现代 Agent 原语</td>
+<td>LangGraph 更像底层编排内核</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/05/01/">PydanticAI</a></td>
+<td>怎么把 Agent 做成 typed Python 组件</td>
+<td>LangGraph 更先问控制流和恢复</td>
+</tr>
+<tr>
+<td><a href="/ai/03-frameworks/01/02/01/">AutoGen</a></td>
+<td>多 Agent 之间怎样通信协作</td>
+<td>LangGraph 更先问系统当前处于哪个状态</td>
+</tr>
+</tbody>
+</table>
+<p>一句话：<strong>LangGraph 不先把 Agent 当“会说话的人”，而先把它当“会迁移状态的系统”。</strong></p>
+<h2 id="9-动手活动把课程助教最小循环翻译成-stategraph">9. 动手活动：把课程助教最小循环翻译成 StateGraph</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>langgraph-state-design.md</code></p>
+<p><strong>目标</strong>：把手写 ReAct 循环翻译成 LangGraph 式状态图，而不是直接写代码。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>定义 <code>state_schema</code>：<code>user_query</code>、<code>retrieved_chunks</code>、<code>draft_answer</code>、<code>risk_flags</code>、<code>final_answer</code>；</li>
+<li>定义 <code>context_schema</code>：<code>user_id</code>、<code>role</code>、<code>db_conn</code>、<code>request_id</code>；</li>
+<li>画节点：检索、判断证据、生成草稿、风险检查、人工复核、结束；</li>
+<li>给 <code>retrieved_chunks</code> 设计 reducer；</li>
+<li>标出哪些边是确定性的，哪些边依赖模型判断。</li>
+</ol>
+<p><strong>完成标准</strong>：你能回答“哪个字段是状态、哪个字段是上下文、哪个节点在修改什么、为什么某个字段需要 reducer”。</p>
+</div>
+<h2 id="10-边界与排错">10. 边界与排错</h2>
+<ul>
+<li><strong>误区一：一切流程都值得建图。</strong> 两步问答也上图，建模成本会超过收益；</li>
+<li><strong>误区二：state 什么都塞。</strong> 共享状态是运行事实账本，不是原始日志垃圾桶；</li>
+<li><strong>误区三：节点按代码函数切，而不是按决策边界切。</strong> 这样图会看起来工整，运行语义却很糊；</li>
+<li><strong>误区四：忽视 reducer。</strong> 多节点共写一个字段却不定义聚合语义，迟早出现“为什么这个状态被覆盖了”的排错噩梦；</li>
+<li><strong>误区五：把 compile 当样板动作。</strong> 构建期与执行期分离，本来就是为了把错误提前暴露。</li>
+</ul>
+<h2 id="11-总结">11. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LangGraph 的核心抽象是什么</td>
+<td><code>StateGraph</code>，不是一个普通 <code>Agent</code> 容器</td>
+</tr>
+<tr>
+<td>为什么会需要它</td>
+<td>复杂 Agent 迟早会遇到共享状态、分支、恢复和聚合问题</td>
+</tr>
+<tr>
+<td>节点本质是什么</td>
+<td>可观测、可恢复、可测量的决策边界</td>
+</tr>
+<tr>
+<td>reducer 为什么关键</td>
+<td>它定义了共享状态的并发合并语义</td>
+</tr>
+<tr>
+<td><code>.compile()</code> 为什么重要</td>
+<td>它把图的构建期检查与运行期执行分开</td>
+</tr>
+<tr>
+<td>底层执行模型是什么</td>
+<td>图运行时 + Pregel 风格引擎，而不是顺手递归调用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果你当前的 Agent 系统只有“问题进入 → 检索资料 → 生成答案 → 返回结果”四步，且没有共享状态聚合、没有分支恢复、没有人工审批，为什么 LangGraph 可能还不是最佳起点？哪些新需求一旦出现，才会让它的建模成本开始值回票价？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>这类系统的复杂度还主要停留在线性流程上，LangGraph 的图建模、schema、compile、state 管理会显得偏重。只有当你开始面对资料不足要回查、多节点共写状态、风险请求要转人工、流程中断后要从 checkpoint 继续、输出前要过多道关卡时，图的收益才会迅速超过心智和样板成本。LangGraph 不是让简单问题更简单，而是让复杂问题不至于失控。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://github.com/langchain-ai/langgraph">https://github.com/langchain-ai/langgraph</a> — LangGraph GitHub</li>
+<li>[2] <a href="https://docs.langchain.com/oss/python/langgraph/overview">https://docs.langchain.com/oss/python/langgraph/overview</a> — LangGraph docs overview</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/01/01/"><span>上一篇</span><strong>03.01.01.01 LangGraph 概览</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/01/03/"><span>下一篇</span><strong>03.01.01.03 持久化、中断、人审与工程落地</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念langgraph-的第一抽象是图不是-agent">1. 概念：LangGraph 的第一抽象是图，不是 Agent</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么要这样设计链适合线性图适合现实">2. 为什么要这样设计：链适合线性，图适合现实</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-stategraph源码层面它到底在做什么">3. StateGraph：源码层面它到底在做什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-节点不是函数分解而是决策边界分解">4. 节点不是函数分解，而是“决策边界分解”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-reducer-为什么重要它决定并发状态是不是可解释">5. reducer 为什么重要：它决定并发状态是不是可解释</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-compile为什么它要把图构建和图执行分开">6. .compile()：为什么它要把图构建和图执行分开</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-pregel为什么-langgraph-底层执行引擎值得知道">7. Pregel：为什么 LangGraph 底层执行引擎值得知道</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-和同类框架相比langgraph-的第一性原理是什么">8. 和同类框架相比，LangGraph 的第一性原理是什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-动手活动把课程助教最小循环翻译成-stategraph">9. 动手活动：把课程助教最小循环翻译成 StateGraph</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-边界与排错">10. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-总结">11. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

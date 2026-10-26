@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.07.03 轨迹级指标 · iopanda</title><meta name="description" content="02.07.03 轨迹级指标 · 智能体 / 评估与可观测性，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/07/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.07.03 轨迹级指标 · iopanda"><meta property="og:description" content="02.07.03 轨迹级指标 · 智能体 / 评估与可观测性，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/07/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="07" data-active-subsection data-active-article="/ai/02-agents/07/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/07"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 评估与可观测性"></button><a class="tree-link tree-link--section" href="/ai/02-agents/07/"><span class="tree-number">07</span><span class="tree-title">评估与可观测性</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/07/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">轨迹级指标</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/07/">评估与可观测性</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">轨迹级指标</span></nav><header class="ai-article-header"><p class="ai-number">02.07.03</p><h1>轨迹级指标</h1><p class="ai-meta"><time datetime="2026-09-03T05:05">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>agent-evaluation</li></ul></header><div class="ai-prose"><h1 id="轨迹级指标">轨迹级指标</h1>
+<blockquote>
+<p>01 章说 Agent 评测要盯「轨迹 + 结果 + 副作用」三件套,可「盯」总得有尺子:说一条轨迹「走岔了」,岔在哪一步?绕几步算绕?同一个调用重复几次算死循环?本章给过程质量装上四个数字——工具选择正确率、参数正确率、无效步占比、死循环率,并把课程助教的 10 条轨迹逐条标注、统计成报告。这是 02.07 的第二课:任务级指标回答「到了没有」(03 章),轨迹级指标回答「路走得对不对」——本章先把后者量化。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>说出轨迹级指标的定位:评「每一步走得好不好」,与任务级指标互补;</li>
+<li>定义工具选择正确率、参数正确率、无效步占比、死循环率及其计算口径;</li>
+<li>按「先看工具、再看参数、最后查重复」三步给轨迹步打标签;</li>
+<li>用脚本标注 10 条轨迹并统计出四指标与问题步清单;</li>
+<li>说明轨迹级指标的盲区(抓不到内容幻觉),知道该交给任务级与裁判(03、04 章)。</li>
+</ol>
+<h2 id="1-概念轨迹级指标评每一步走得好不好">1. 概念:轨迹级指标评「每一步走得好不好」</h2>
+<ul>
+<li><strong>轨迹级指标(trajectory-level metrics)</strong>:以整条轨迹为对象、以<strong>每一步</strong>为最小打分单元的一组指标,回答「这条路走得对不对、顺不顺、有没有白走」。</li>
+<li>课程助教的工具集沿用前几章:查讲义 <code>search_material(keyword, chapter)</code>、翻档案 <code>get_learner_profile(learner_id)</code>、写档案 <code>save_learner_profile(learner_id, field, value)</code>、计算 <code>calculate(expression)</code>——指标主要评其中的<strong>工具调用步</strong>。</li>
+<li>轨迹由四类步组成,先学会认步,才能评步:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>步类型</th>
+<th>记号</th>
+<th>是什么</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>思考</td>
+<td>T</td>
+<td>模型的内部推理</td>
+<td>「先查讲义再回答」</td>
+</tr>
+<tr>
+<td>工具调用</td>
+<td>C</td>
+<td>调用某个工具及参数</td>
+<td><code>search_material(query="外键")</code></td>
+</tr>
+<tr>
+<td>观察</td>
+<td>O</td>
+<td>工具返回的结果</td>
+<td>「命中外键定义与示例」</td>
+</tr>
+<tr>
+<td>最终回答</td>
+<td>A</td>
+<td>交给学员的答案</td>
+<td>「外键建立表间引用……」</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>本模块四个核心指标:工具选择正确率、参数正确率、无效步占比、死循环率——前两个评「单步质量」,后两个评「过程卫生」。一句话:<strong>任务级问「到了没有」,轨迹级问「路走得对不对、白走了几步」</strong>。</li>
+</ul>
+<h2 id="2-为什么需要任务成功了但绕了远路">2. 为什么需要:任务成功了,但绕了远路</h2>
+<ul>
+<li>「成功但绕远路」是 Agent 最常见的隐性坏味道——结果对,过程烂。只报任务成功率,这些全部被吞掉:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>代价</th>
+<th>轨迹级信号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务成功但绕路(搜 4 次才答对)</td>
+<td>token 与延迟成倍上涨,体验差</td>
+<td>冗余调用多、步数超期望</td>
+</tr>
+<tr>
+<td>成功但瞎试(先错工具再纠正)</td>
+<td>中途可能触发权限动作或副作用</td>
+<td>wrong_tool、bad_args</td>
+</tr>
+<tr>
+<td>卡死重试(同一步重复 N 次)</td>
+<td>烧钱、永不结束、需人工介入</td>
+<td>死循环、无效步占比趋近 1</td>
+</tr>
+<tr>
+<td>成功路径里夹着越权写入</td>
+<td>档案被污染,审计事故(呼应 01 章)</td>
+<td>出现不该出现的写类工具</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>证据:WebArena 论文分析弱模型时发现,最常见的失败正是<strong>重复无效动作、撞步数上限</strong>——这俩就是本章要量化的「无效步」与「死循环」;τ-bench(2024)则把任务成功拆成逐步判定:错工具(used_wrong_tool)、参数错(used_wrong_tool_argument)、多余动作(took_unintended_action)各有「罪名」,轨迹要全部工具调用都正确才算通过。</li>
+<li>呼应 02.06 的失败模式:级联错误的第一步往往是「某一步走错」;轨迹级指标的价值就是<strong>在级联放大之前,把坏步钉出来</strong>。</li>
+</ul>
+<h2 id="3-作用轨迹级指标在评测体系里的位置">3. 作用:轨迹级指标在评测体系里的位置</h2>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>trace(05 章) → 步类型标注(T/C/O/A)</span></span>
+<span class="line"><span>   ↓ 对照「期望工具序列」(人工示例或黄金任务集提供)</span></span>
+<span class="line"><span>规则判定:工具对不对 → 参数对不对 → 是否重复</span></span>
+<span class="line"><span>   ↓</span></span>
+<span class="line"><span>四指标 → 报告 → 喂给 03 章任务级判定与 04 章裁判做归因素材</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<ul>
+<li><strong>给任务级指标当放大镜</strong>:03 章报「t06 失败」只给结论;本章能补一句「失败原因是连续 3 次重复检索,白烧了 token」。</li>
+<li><strong>给回归评测当敏感探针</strong>:06 章的回归里,任务成功率常「大数不动」——改一行提示可能只影响一两条任务;无效步占比这类过程指标变化更灵敏,更容易暴露「提示把模型带偏了」。</li>
+<li><strong>前提是拿得到轨迹</strong>:指标算在轨迹上,没有 05 章的 tracing 记录寸步难行;期望工具序列则来自人工或任务设计(03 章黄金任务集的「期望行动路径」正是这里的输入)。</li>
+</ul>
+<h2 id="4-详细介绍指标定义与标注规则">4. 详细介绍:指标定义与标注规则</h2>
+<h3 id="41-指标定义表">4.1 指标定义表</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>怎么算</th>
+<th>异常信号</th>
+<th>常见误判</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工具选择正确率</td>
+<td>选中期望工具的步数 ÷ 工具步总数</td>
+<td>下降 → 工具清单/描述写得差(呼应 02.04 的 02 章)</td>
+<td>把「参数错」也算成选错工具</td>
+</tr>
+<tr>
+<td>参数正确率</td>
+<td>工具与参数全对的步数 ÷ 工具步总数</td>
+<td>下降 → 参数 schema 复杂、校验缺失</td>
+<td>只数「最终调用」漏掉中间错步</td>
+</tr>
+<tr>
+<td>无效步占比</td>
+<td>(错工具 + 参数错 + 冗余重复) ÷ 工具步总数</td>
+<td>持续上升 → 提示退化、任务太难硬试</td>
+<td>把 thought/observation 算进分母稀释</td>
+</tr>
+<tr>
+<td>死循环率</td>
+<td>出现死循环的任务数 ÷ 任务总数</td>
+<td>大于 0 → 查编排与失败处理(呼应 02.03 的 05 章)</td>
+<td>把「多次尝试不同方案」误判为死循环</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>口径声明</strong>:四个指标的分子分母统一用「工具调用步数」,thought/observation/answer 不参与,避免被思考文字稀释;换口径必须写进报告,否则跨团队没法比较。三个同分母指标的关系:<strong>参数正确率 + 无效步占比 = 1</strong>——从正反两面看同一件事,报告里写一个就够,但定义必须一致。</li>
+</ul>
+<h3 id="42-标注三步规则">4.2 标注三步规则</h3>
+<ol>
+<li><strong>先看工具</strong>:该不该调这个工具?工具名对不对(拼错、张冠李戴)?不对 → <code>wrong_tool</code>;</li>
+<li><strong>再看参数</strong>:工具对了,参数是否符合任务需要?不对 → <code>bad_args</code>;</li>
+<li><strong>最后查重复</strong>:同样的(工具,参数)之前出现过?出现过 → <code>redundant_repeat</code>;</li>
+<li>三步全过 → <code>correct</code>;思考、观察、回答步记为 <code>ok</code>,不参与统计。</li>
+</ol>
+<h3 id="43-死循环的判定">4.3 死循环的判定</h3>
+<ul>
+<li>启发式:<strong>同一(工具,参数)连续出现 ≥ 3 次</strong>,或整条轨迹超过步数上限仍不产出最终回答,判死循环——前者是「原地打转」,后者是「无限外环」。阈值不是真理:工具偶发失败时重试是合法的,阈值要按工具稳定性调,并在报告里注明。</li>
+</ul>
+<h2 id="5-动手活动标注-10-条轨迹并统计无效步占比">5. 动手活动:标注 10 条轨迹并统计无效步占比</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:课程助教轨迹标注与四指标统计</p>
+<p><strong>目标</strong>:产出 <code>reports/trajectory-metrics.md</code>——10 条轨迹全部完成步级标注,给出四指标与无效步清单。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>读脚本头部注释,弄清 T/C/O/A 行格式与标注规则;对照 t01(干净)与 t06(死循环)理解规则如何落地;</li>
+<li>运行 <code>python annotate_trajectories.py</code>,并抽查 t04、t09:手算各自的无效步数,与输出比对;</li>
+<li>写报告:逐条列无效步清单与根因、汇总四指标、回答「t10 轨迹级全绿说明了什么」。</li>
+</ol>
+<p><strong>完成标准</strong>:能说出 t06 被判死循环的依据(第几步起、连续几次、哪组参数);能指出 t09 的无效步属于哪一类;报告说明轨迹级抓不到的内容幻觉该交给哪一层。</p>
+</div>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># annotate_trajectories.py —— 轨迹步级标注 + 四指标统计(离线可跑)</span></span>
+<span class="line"><span style="color:#6A737D"># 行格式:T:思考 / C:工具名|参数 / O:观察摘要 / A:最终回答</span></span>
+<span class="line"><span style="color:#6A737D"># expect:期望工具调用序列「工具名|参数关键词」;关键词为空表示不限参数</span></span>
+<span class="line"><span style="color:#6A737D"># 规则:按序命中且参数匹配 -&gt; correct;工具对参数错 -&gt; bad_args;工具不对 -&gt; wrong_tool;</span></span>
+<span class="line"><span style="color:#6A737D">#      与前面某次调用相同 -&gt; redundant_repeat;同一(工具,参数)连续 &gt;= 3 次判死循环</span></span>
+<span class="line"><span style="color:#6A737D"># 口径:分母统一为工具调用步数</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">TRAJ</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#6A737D">    # (id, 任务, 期望工具序列, 步列表)</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t01"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"外键的作用?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|外键"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"T:先查讲义定位外键"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|外键的作用"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:外键建立表间引用……"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t02"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"练习 2.1 五位学员平均分"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|成绩表"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"calculate|/5"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"T:先找成绩表"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|成绩表"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:calculate|(85+92+78+90+88)/5"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:平均分 86.6 分。"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t03"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"外键的作用?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|外键"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"T:先看档案再答"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:get_learner_profile|L-1001"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|外键"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:外键建立表间引用……"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t04"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"WHERE 与 HAVING 区别?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|WHERE 与 HAVING"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"C:search_material|HAVING"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|WHERE 与 HAVING"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:WHERE 过滤行、HAVING 过滤组。"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t05"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"外键的作用?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|外键"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"C:search_material|外键的作用"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|外键的作用"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:外键建立表间引用……"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t06"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"第 3 章怎么讲索引?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|第3章 索引"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"T:学员问索引"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|第3章 索引"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|第3章 索引"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">      "C:search_material|第3章 索引"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|第3章 索引"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:照抄第一条结果。"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t07"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"外键的作用?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|外键"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"C:save_learner_profile|L-1001|learned=HAVING"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|外键"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:外键建立表间引用……"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t08"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"练习 2.1 答案与平均分"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|练习题"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"calculate|/5"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"C:search_material|练习题 2.1"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|练习题 2.1"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:calculate|(85+92+78+90+88)/5"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">      "A:答案如上,平均分 86.6 分。"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t09"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"外键的作用?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|外键"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"C:search_maeterial|外键"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|外键"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:外键建立表间引用……"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#9ECBFF">"t10"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"第 3 章讲窗口函数吗?"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"search_material|窗口函数"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">     [</span><span style="color:#9ECBFF">"T:先查讲义"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"C:search_material|窗口函数"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"A:第 3 章 3.5 节讲了窗口函数。(编造)"</span><span style="color:#E1E4E8">]),</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">LOOP_RUN</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 3</span><span style="color:#6A737D">  # 连续重复多少次判死循环</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> split_step</span><span style="color:#E1E4E8">(raw):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """拆一行轨迹为 (kind, tool, args);非 C 行 args 为空"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    kind, _, payload </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> raw.partition(</span><span style="color:#9ECBFF">":"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> kind </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "C"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        tool, _, args </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> payload.partition(</span><span style="color:#9ECBFF">"|"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> kind, tool.strip(), args.strip()</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> kind, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, payload.strip()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> args_match</span><span style="color:#E1E4E8">(actual, keyword):</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> keyword </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> ""</span><span style="color:#F97583"> or</span><span style="color:#E1E4E8"> keyword </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> actual</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> annotate</span><span style="color:#E1E4E8">(steps, expect):</span></span>
+<span class="line"><span style="color:#9ECBFF">    """给一条轨迹打标签,返回 (labels, issues);label 为 (序号, 类型, 内容, 标签)"""</span></span>
+<span class="line"><span style="color:#E1E4E8">    labels, issues </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [], []</span></span>
+<span class="line"><span style="color:#E1E4E8">    pending </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> list</span><span style="color:#E1E4E8">(expect)</span></span>
+<span class="line"><span style="color:#E1E4E8">    seen, run_key, run_len, run_start </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> set</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">None</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> i, raw </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> enumerate</span><span style="color:#E1E4E8">(steps, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">        kind, tool, args </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> split_step(raw)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> kind </span><span style="color:#F97583">!=</span><span style="color:#9ECBFF"> "C"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            labels.append((i, kind, </span><span style="color:#9ECBFF">"-"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"ok"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#F97583">            continue</span></span>
+<span class="line"><span style="color:#E1E4E8">        key </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (tool, args)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> key </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> run_key:</span></span>
+<span class="line"><span style="color:#E1E4E8">            run_len </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            run_key, run_len, run_start </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> key, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, i</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> run_len </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> LOOP_RUN</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            issues.append(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"死循环:第 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">run_start</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">~</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">i</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 步连续 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">run_len</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> 次重复 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">tool</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">(</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">args</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> key </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> seen:</span></span>
+<span class="line"><span style="color:#E1E4E8">            tag </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "redundant_repeat"</span></span>
+<span class="line"><span style="color:#F97583">        elif</span><span style="color:#E1E4E8"> pending:</span></span>
+<span class="line"><span style="color:#E1E4E8">            exp_tool, _, exp_kw </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pending[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">].partition(</span><span style="color:#9ECBFF">"|"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> tool </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> exp_tool.strip():</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> args_match(args, exp_kw.strip()):</span></span>
+<span class="line"><span style="color:#E1E4E8">                    tag, pending </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "correct"</span><span style="color:#E1E4E8">, pending[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">:]</span></span>
+<span class="line"><span style="color:#F97583">                else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">                    tag </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "bad_args"</span></span>
+<span class="line"><span style="color:#F97583">            else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">                tag </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "wrong_tool"</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            tag </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "wrong_tool"</span></span>
+<span class="line"><span style="color:#E1E4E8">        seen.add(key)</span></span>
+<span class="line"><span style="color:#E1E4E8">        labels.append((i, kind, </span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">tool</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">(</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">args</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">)"</span><span style="color:#E1E4E8">, tag))</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> labels, issues</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    agg </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"correct"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"bad_args"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"wrong_tool"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"redundant_repeat"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    looped </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"== 逐条标注 =="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> traj_id, task, expect, steps </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> TRAJ</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        labels, issues </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> annotate(steps, expect)</span></span>
+<span class="line"><span style="color:#E1E4E8">        stats </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"correct"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"bad_args"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"wrong_tool"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"redundant_repeat"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> _, kind, _, tag </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> labels:</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> kind </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "C"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">                stats[tag] </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> tag </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> agg:</span></span>
+<span class="line"><span style="color:#E1E4E8">            agg[tag] </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> stats[tag]</span></span>
+<span class="line"><span style="color:#E1E4E8">        n </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> sum</span><span style="color:#E1E4E8">(stats.values())</span></span>
+<span class="line"><span style="color:#E1E4E8">        invalid </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> stats[</span><span style="color:#9ECBFF">"wrong_tool"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> stats[</span><span style="color:#9ECBFF">"bad_args"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> stats[</span><span style="color:#9ECBFF">"redundant_repeat"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">traj_id</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> [</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">task</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">] 工具步 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">n</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">:正确 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">stats[</span><span style="color:#9ECBFF">'correct'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> / 错工具 "</span></span>
+<span class="line"><span style="color:#F97583">              f</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">stats[</span><span style="color:#9ECBFF">'wrong_tool'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> / 参数错 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">stats[</span><span style="color:#9ECBFF">'bad_args'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> / 冗余 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">stats[</span><span style="color:#9ECBFF">'redundant_repeat'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> n:</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"  无效步占比 = </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">invalid </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> n</span><span style="color:#F97583">:.1%</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> issue </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> issues:</span></span>
+<span class="line"><span style="color:#E1E4E8">            looped </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"  !! </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">issue</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    total </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> sum</span><span style="color:#E1E4E8">(agg.values())</span></span>
+<span class="line"><span style="color:#E1E4E8">    tool_acc </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (agg[</span><span style="color:#9ECBFF">"correct"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> agg[</span><span style="color:#9ECBFF">"bad_args"</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> total</span></span>
+<span class="line"><span style="color:#E1E4E8">    invalid_ratio </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (agg[</span><span style="color:#9ECBFF">"wrong_tool"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> agg[</span><span style="color:#9ECBFF">"bad_args"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> agg[</span><span style="color:#9ECBFF">"redundant_repeat"</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> total</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"== 汇总 =="</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"轨迹数 </span><span style="color:#79B8FF">{len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">TRAJ</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">;工具步总数 </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">total</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">;死循环率 = </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">looped </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">TRAJ</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:.1%</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> (</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">looped</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">{len</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">TRAJ</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"工具选择正确率 = </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">tool_acc</span><span style="color:#F97583">:.1%</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> (</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">agg[</span><span style="color:#9ECBFF">'correct'</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> agg[</span><span style="color:#9ECBFF">'bad_args'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">total</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">);"</span></span>
+<span class="line"><span style="color:#F97583">          f</span><span style="color:#9ECBFF">"参数正确率 = </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">agg[</span><span style="color:#9ECBFF">'correct'</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> total</span><span style="color:#F97583">:.1%</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> (</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">agg[</span><span style="color:#9ECBFF">'correct'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">total</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"无效步占比 = </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">invalid_ratio</span><span style="color:#F97583">:.1%</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF"> (</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">total </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> agg[</span><span style="color:#9ECBFF">'correct'</span><span style="color:#E1E4E8">]</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">total</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">)"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    main()</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<h2 id="6-边界与排错轨迹级指标的三个雷区">6. 边界与排错:轨迹级指标的三个雷区</h2>
+<ul>
+<li><strong>期望序列是「必要不充分」的检查</strong>:期望只列「必须做的调用」,绕路会被抓,可若模型走了另一条完全合法的路径,死规则会冤枉它——解法:期望写宽松关键词,把「路径等价」的判断交给 04 章裁判。</li>
+<li><strong>标注成本高,自评是循环论证</strong>:10 条轨迹人工标得动,1000 条不行;让模型给自己的步打标签等于「考生自己改卷」。规模化靠抽样人工 + 04 章 judge + 05 章自动 trace。</li>
+<li><strong>指标会打架,别只看一个数</strong>:步数最少不代表最好(少而错);无效步占比降了,可能是模型干脆不调工具直接编——轨迹级必须和任务级指标(03 章)一起看。</li>
+<li><strong>抓不到内容真实性</strong>:t10 就是例子——轨迹全绿,答案却是编的。轨迹级只管「路走得对不对」,「到的地方对不对、说的真不真」是 03 章任务级与 04 章裁判的职责。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轨迹级指标</td>
+<td>评每一步走得好不好:正确率 + 过程卫生</td>
+</tr>
+<tr>
+<td>三个口径指标</td>
+<td>工具选择正确率 = 选对工具 ÷ 工具步;参数正确率 = 全对 ÷ 工具步;无效步占比 = (错工具 + 参数错 + 冗余) ÷ 工具步</td>
+</tr>
+<tr>
+<td>死循环率</td>
+<td>死循环任务 ÷ 任务总数(连续重复 ≥ 3 次为启发式)</td>
+</tr>
+<tr>
+<td>标注三步</td>
+<td>工具对不对 → 参数对不对 → 是否重复</td>
+</tr>
+<tr>
+<td>盲区</td>
+<td>内容幻觉看不见,交给任务级与裁判</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:一条轨迹任务成功、四个指标全绿,但第 3 步把「学员已会 HAVING」写进了档案,而学员其实刚问完这个问题——指标为什么抓不到?如果想让它在回归评测里被自动抓到,该在哪一层补什么检查?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>指标只管「调用是否匹配期望序列」,不管「该写不该写」——若期望本身允许这次写入,轨迹级就哑了。该在系统层补副作用清单检查(写类工具按字段白名单放行,呼应 01 章与 02.04 的 06 章权限),并把「档案被改脏」作为 03 章任务级的失败条件;这也是 06 章回归评测要接进 CI 的原因。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2406.12045">τ-bench:A Benchmark for Tool-Agent-User Interaction(arXiv:2406.12045,工具调用逐步判定与错工具/参数错分类)</a></li>
+<li><a href="https://arxiv.org/abs/2307.13854">WebArena:A Realistic Web Environment(arXiv:2307.13854,弱模型重复无效动作与撞步数上限的分析)</a></li>
+<li><a href="https://arxiv.org/abs/2308.03688">AgentBench:Evaluating LLMs as Agents(arXiv:2308.03688,多轮轨迹交互评测的先行基准)</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/07/02/"><span>上一篇</span><strong>02.07.02 Agent 评测的特殊性</strong></a><a class="ai-pager-next" href="/ai/02-agents/07/04/"><span>下一篇</span><strong>02.07.04 任务级指标与黄金任务集</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念轨迹级指标评每一步走得好不好">1. 概念:轨迹级指标评「每一步走得好不好」</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么需要任务成功了但绕了远路">2. 为什么需要:任务成功了,但绕了远路</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用轨迹级指标在评测体系里的位置">3. 作用:轨迹级指标在评测体系里的位置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍指标定义与标注规则">4. 详细介绍:指标定义与标注规则</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-指标定义表">4.1 指标定义表</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-标注三步规则">4.2 标注三步规则</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-死循环的判定">4.3 死循环的判定</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动标注-10-条轨迹并统计无效步占比">5. 动手活动:标注 10 条轨迹并统计无效步占比</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与排错轨迹级指标的三个雷区">6. 边界与排错:轨迹级指标的三个雷区</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

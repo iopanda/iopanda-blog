@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.09.02.03 主循环与工具系统 · iopanda</title><meta name="description" content="02.09.02.03 主循环与工具系统 · 智能体 / Agent 实现，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/09/02/03/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.09.02.03 主循环与工具系统 · iopanda"><meta property="og:description" content="02.09.02.03 主循环与工具系统 · 智能体 / Agent 实现，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/09/02/03/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="09" data-active-subsection="02" data-active-article="/ai/02-agents/09/02/03/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/09"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 实现"></button><a class="tree-link tree-link--section" href="/ai/02-agents/09/"><span class="tree-number">09</span><span class="tree-title">Agent 实现</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:02-agents/09/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 OpenAI Codex"></button><a class="tree-link tree-link--subsection" href="/ai/02-agents/09/02/"><span class="tree-number">02</span><span class="tree-title">OpenAI Codex</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/09/02/03/" aria-current="page"><span class="tree-number">03</span><span class="tree-title">主循环与工具系统</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/">Agent 实现</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/09/02/">OpenAI Codex</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">主循环与工具系统</span></nav><header class="ai-article-header"><p class="ai-number">02.09.02.03</p><h1>主循环与工具系统</h1><p class="ai-meta"><time datetime="2026-09-03T06:15">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>codex-source</li></ul></header><div class="ai-prose"><h1 id="主循环与工具系统">主循环与工具系统</h1>
+<blockquote>
+<p>01 章认完了仓库布局,本章把镜头对准「会动的那部分」:一次用户提问,如何在 Codex 内部变成若干轮「模型推理 + 工具执行」,最终以一条回答收场。答案藏在 core crate 的 session 模块里——从会话级 submission_loop 到 turn 级 step 循环,再到工具注册表与 AGENTS.md 分层拼接,每一层都在回答同一个问题:模型怎么拿到工具、工具结果怎么回到模型。这正对应 02.01/03「Agent 运行循环」与 02.04「Function Calling」在真实工程里的落地形态。
+<strong>学习目标</strong>:学完本章,你将能够——</p>
+</blockquote>
+<ol>
+<li>区分 turn / step / iteration 三个术语,说出它们与 02.01「Agent 运行循环」概念的对应关系;</li>
+<li>沿 submission_loop → Op::TurnInput → run_turn 追完一次用户 turn 的启动链,指出会话级与 turn 级两层循环各自的边界;</li>
+<li>解释 Responses 流里 <code>Completed { end_turn: false }</code> 如何驱动「再来一轮」,<code>drain_in_flight</code> 如何把工具结果回灌会话历史;</li>
+<li>复述 ToolRouter → ToolRegistry → Handler 的工具分发路径,说出 PreToolUse hooks 的拦截点与内置工具的四大来源;</li>
+<li>说明 AGENTS.md 的逐层拼接规则,以及上下文超限时自动压缩的触发与执行方式。</li>
+</ol>
+<h2 id="1-概念turn--step--iteration-与两层循环">1. 概念:turn / step / iteration 与两层循环</h2>
+<ul>
+<li>02.01/03 的「Agent 运行循环」是概念骨架:感知 → 思考 → 行动 → 观察,循环到任务完成。Codex 把它切成两个粒度:<strong>turn</strong>(回合)与 <strong>step</strong>(步)。一次用户 turn = 从收到一条用户消息到模型给出「本轮到此为止」信号的完整服务,用户可感知、UI 可呈现;一个 step = 一次「采样请求 + 由此触发的工具执行」,是 token、预算与压缩记账的边界。<strong>iteration 不是代码里的类型</strong>,它描述 step 反复发生的次数——一次长 turn 往往包含几十个 step。</li>
+<li>代码里对应两层循环:<strong>会话级</strong> <code>submission_loop</code>(只分发 Op,不碰模型)与 <strong>turn 级</strong> step 循环(真正采样与执行工具)。同一会话同一时刻只跑一个 turn,靠 <code>TurnState</code> / <code>active_turn</code> 互斥保证串行;一次对话 = 多个 turn,一个 turn = 多个 step——一个 step ≈ 02.03/03 里 ReAct 的一轮「推理 + 行动」。</li>
+</ul>
+<h2 id="2-为什么这样设计模型一次只能推理一段">2. 为什么这样设计:模型一次只能推理一段</h2>
+<ul>
+<li>模型输出是流式的、单段的;工具执行结果不会自动出现在模型视野里,必须把它编码成新的输入 item 再发一次请求。因此任何编码 Agent 都必须在「采样」与「执行」间反复横跳,直到模型端给出完成信号(Responses API 的 <code>Completed</code> 且 <code>end_turn</code> 为真)。</li>
+<li>把这段横跳封装成 turn,是因为 turn 边界提供了三个天然挂点:turn 级 stop hooks、上下文记账(超限压缩)、以及用户可感知的进度/终止语义。若只留一个巨大的 step 循环,这些策略就无处安放;而若把每个工具调用都算成一次 turn,预算与 hooks 又会在每次工具后重复评估,徒增开销。</li>
+</ul>
+<h2 id="3-作用位置session-与-tools-两个目录">3. 作用位置:session 与 tools 两个目录</h2>
+<p>主循环全部位于 <code>codex-rs/core/src/session/</code>(<code>handlers.rs</code> 会话分发、<code>turn.rs</code> turn 执行、<code>turn_input.rs</code> 入口、<code>mod.rs</code> 会话装配),工具系统位于 <code>codex-rs/core/src/tools/</code>(<code>router.rs</code> 调用归一、<code>registry.rs</code> 注册表、<code>parallel.rs</code> 并发门、<code>spec_plan.rs</code> 工具清单构建)。01 章所说的「Rust 核心」,在这里具象成两个异步循环与一张工具注册表。</p>
+<h2 id="4-详细介绍">4. 详细介绍</h2>
+<h3 id="41-会话级-submission_loopop-分发器">4.1 会话级 submission_loop:Op 分发器</h3>
+<p><code>Session::spawn_internal</code>(session/mod.rs:518)在尾部把分发循环丢进 tokio,注释直接说明其生命周期:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// session/mod.rs:826-832 — 该任务会一直运行到收到 Op::Shutdown 为止</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> session_for_loop </span><span style="color:#F97583">=</span><span style="color:#B392F0"> Arc</span><span style="color:#F97583">::</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">session);</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> session_loop_handle </span><span style="color:#F97583">=</span><span style="color:#B392F0"> tokio</span><span style="color:#F97583">::</span><span style="color:#B392F0">spawn</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">async</span><span style="color:#F97583"> move</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    submission_loop</span><span style="color:#E1E4E8">(session_for_loop, configured_config, rx_sub)</span></span>
+<span class="line"><span style="color:#F97583">        .</span><span style="color:#B392F0">instrument</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">info_span!</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"session_loop"</span><span style="color:#E1E4E8">, thread_id </span><span style="color:#F97583">=</span><span style="color:#F97583"> %</span><span style="color:#E1E4E8">thread_id))</span><span style="color:#F97583">.await</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p><code>submission_loop</code>(session/handlers.rs:529)是会话级 <code>while let Ok(sub) = rx_sub.recv().await</code> 分发器:每个 <code>Op</code> 一个 arm,执行后返回 <code>should_exit: bool</code>,收到 <code>Op::Shutdown</code> 或 channel 关闭才退出(handlers.rs:719-728 做 teardown)。开始一次 agent turn 的关键路径是 <code>Op::TurnInput</code>(打断、手动压缩等 Op 也走同一分发器):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// session/handlers.rs:585-593 — 用户提交消息 → 进入 turn 处理,结果经 reply 回给调用方</span></span>
+<span class="line"><span style="color:#B392F0">Op</span><span style="color:#F97583">::</span><span style="color:#B392F0">TurnInput</span><span style="color:#E1E4E8"> { request, mode, reply } </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#B392F0"> turn_input</span><span style="color:#F97583">::</span><span style="color:#B392F0">handle</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">sess, </span><span style="color:#F97583">*</span><span style="color:#E1E4E8">request, mode, sub</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">id</span><span style="color:#F97583">.</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">())</span><span style="color:#F97583">.await</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> _ </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> reply</span><span style="color:#F97583">.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(result); </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<h3 id="42-turn-级-run_turnstep-循环与-sse-驱动">4.2 turn 级 run_turn:step 循环与 SSE 驱动</h3>
+<p><code>turn_input::handle</code>(session/turn_input.rs:197)→ <code>start_if_idle</code>(:327)→ <strong><code>run_turn</code></strong>(session/turn.rs:162)。run_turn 先固化首步的 <code>StepContext</code>——工具表在第一次采样前就固定下来,避免循环中工具漂移:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// session/turn.rs:229-246(要点)— 首个 step 的上下文(含工具表)在采样前固化</span></span>
+<span class="line"><span style="color:#6A737D">// run_turn owns the step used to seed context and make the first sampling request.</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> first_step_context </span><span style="color:#F97583">=</span><span style="color:#F97583"> match</span><span style="color:#E1E4E8"> sess</span></span>
+<span class="line"><span style="color:#F97583">    .</span><span style="color:#B392F0">capture_step_context_with_required_mcp_servers</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">...</span><span style="color:#E1E4E8"> required_servers, required_plugins)</span><span style="color:#F97583">.await</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p>随后进入主 step 循环(turn.rs:334)。每轮先组装发送给模型的输入:上下文保存在 <code>ContextManager</code>,经 <code>clone_history()</code> 取全量、<code>for_prompt</code>(context_manager/history.rs:315)做归一化与模态过滤后整段作为请求输入——这是「上下文组装」的核心。组装好输入后调 <code>run_sampling_request</code>(turn.rs:1418),其内部为每次重试建 <code>ToolCallRuntime</code> 并 <code>build_prompt</code>(turn.rs:1389)把工具表塞进 API 请求:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// session/turn.rs:1395-1405 — 每轮请求都携带「模型可见」的工具定义,且允许并行调用</span></span>
+<span class="line"><span style="color:#B392F0">Prompt</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    input,</span></span>
+<span class="line"><span style="color:#E1E4E8">    tools</span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> step_context</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">tool_router</span><span style="color:#F97583">.</span><span style="color:#B392F0">model_visible_specs</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">    parallel_tool_calls</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    base_instructions,</span></span>
+<span class="line"><span style="color:#E1E4E8">    output_schema</span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> turn_context</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">final_output_json_schema</span><span style="color:#F97583">.</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">    output_schema_strict</span><span style="color:#F97583">:</span><span style="color:#F97583"> !crate::</span><span style="color:#B392F0">guardian</span><span style="color:#F97583">::</span><span style="color:#B392F0">is_basic_session_source</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    cyber_access_program</span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> turn_context</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">cyber_access_program,</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p>流式采样在 <code>try_run_sampling_request</code>(turn.rs:2264):打开 responses 流后用 <code>FuturesOrdered</code> 维护在飞工具 future(turn.rs:2295-2308)。事件循环里两个关键分支:模型输出工具调用 item(<code>OutputItemDone</code>)→ <code>handle_output_item_done</code>(stream_events_utils.rs:290)转成工具 future 压入队列;流收尾事件 <code>Completed</code> 判定是否还要再来一轮:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// session/turn.rs:2666-2672 — SSE Completed:end_turn=false 表示模型还要继续(典型:刚发完工具调用)</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#F97583"> let</span><span style="color:#B392F0"> Some</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> end_turn {</span></span>
+<span class="line"><span style="color:#E1E4E8">    needs_follow_up </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">break</span><span style="color:#B392F0"> Ok</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">SamplingRequestResult</span><span style="color:#E1E4E8"> { needs_follow_up, last_agent_message });</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p>流结束后排空在飞工具——<strong>工具结果回灌历史</strong>就发生在这里:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// session/turn.rs:2216-2238(要点)— 把每个工具 future 的结果写回会话历史</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> fn</span><span style="color:#B392F0"> drain_in_flight</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">-&gt;</span><span style="color:#B392F0"> CodexResult</span><span style="color:#E1E4E8">&lt;()&gt; {</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#F97583"> let</span><span style="color:#B392F0"> Some</span><span style="color:#E1E4E8">(res) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> in_flight</span><span style="color:#F97583">.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">.await</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        match</span><span style="color:#E1E4E8"> res {</span></span>
+<span class="line"><span style="color:#B392F0">            Ok</span><span style="color:#E1E4E8">(envelope) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                sess</span><span style="color:#F97583">.</span><span style="color:#B392F0">record_annotated_conversation_items</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">turn_context, </span><span style="color:#B392F0">vec!</span><span style="color:#E1E4E8">[envelope])</span><span style="color:#F97583">.await</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#B392F0">            Err</span><span style="color:#E1E4E8">(err) </span><span style="color:#F97583">=&gt;</span><span style="color:#B392F0"> error_or_panic</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">format!</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"in-flight tool future failed during drain: {err}"</span><span style="color:#E1E4E8">)),</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p>工具输出以 <code>FunctionCallOutput</code> 形态的 item 进入历史,下一轮 <code>clone_history().for_prompt</code> 自然包含它们。回到主循环:若 <code>needs_follow_up</code>,<code>continue</code> 进入下一轮采样;否则跑 <code>run_turn_stop_hooks</code>,<code>should_block</code> 时把 hook 提示注入历史后继续、<code>should_stop</code> 时 break(turn.rs:547-608),最终 <code>Ok(last_agent_message)</code> 结束整个 turn(turn.rs:646)。</p>
+<h3 id="43-工具路由toolrouter--toolregistry--handler">4.3 工具路由:ToolRouter → ToolRegistry → Handler</h3>
+<ul>
+<li><strong>归一</strong>:模型原始输出是 <code>ResponseItem</code>,经 <code>ToolRouter::build_tool_call</code>(tools/router.rs:246)统一成 <code>ToolCall</code>:函数调用 → <code>ToolPayload::Function</code>,客户端执行的 <code>ToolSearchCall</code> → <code>ToolSearch</code>,自定义调用 → <code>Custom</code>;非工具 item(文本/推理)走 finalize 路径。</li>
+<li><strong>并发门</strong>:<code>ToolCallRuntime::handle_tool_call</code>(tools/parallel.rs:74)→ <code>tool_supports_parallel</code> 决定拿读锁(并行工具可并发)还是写锁(串行工具全局互斥)(parallel.rs:116-159),然后进 registry 分发。</li>
+<li><strong>注册表分发</strong>:<code>ToolRegistry::dispatch_any_with_terminal_outcome</code>(tools/registry.rs:495)。名字查不到不崩溃,而是生成解释文本回给模型:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// tools/registry.rs:516-536(要点)— 工具不存在 → RespondToModel:让模型「看见」错误并自我修正</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> tool </span><span style="color:#F97583">=</span><span style="color:#F97583"> match</span><span style="color:#79B8FF"> self</span><span style="color:#F97583">.</span><span style="color:#B392F0">tool</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">tool_name) {</span></span>
+<span class="line"><span style="color:#B392F0">    Some</span><span style="color:#E1E4E8">(tool) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> tool,</span></span>
+<span class="line"><span style="color:#B392F0">    None</span><span style="color:#F97583"> =&gt;</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> message </span><span style="color:#F97583">=</span><span style="color:#B392F0"> unsupported_tool_call_message</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">invocation</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">payload, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">tool_name);</span></span>
+<span class="line"><span style="color:#F97583">        ...</span><span style="color:#F97583"> return</span><span style="color:#B392F0"> Err</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">FunctionCallError</span><span style="color:#F97583">::</span><span style="color:#B392F0">RespondToModel</span><span style="color:#E1E4E8">(message));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li><strong>PreToolUse hooks 拦截点</strong>:真正执行 handler 之前,注册表先跑 hooks(registry.rs:567-591);hook 返回 <code>Blocked</code> 即 <code>RespondToModel</code> 拒回模型,也可改写调用输入——这是 02.04/06「权限边界」在工具链上的第一个闸门。放行后由 <code>handle_any_tool</code> 落地:</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// tools/registry.rs:772-797(要点)— 最终执行:每个工具 handler 实现 ToolExecutor::handle</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> fn</span><span style="color:#B392F0"> handle_any_tool</span><span style="color:#E1E4E8">(tool</span><span style="color:#F97583">:</span><span style="color:#F97583"> &amp;dyn</span><span style="color:#B392F0"> CoreToolRuntime</span><span style="color:#E1E4E8">, invocation</span><span style="color:#F97583">:</span><span style="color:#B392F0"> ToolInvocation</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    -&gt;</span><span style="color:#B392F0"> Result</span><span style="color:#E1E4E8">&lt;</span><span style="color:#B392F0">AnyToolResult</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">FunctionCallError</span><span style="color:#E1E4E8">&gt; {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> output </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tool</span><span style="color:#F97583">.</span><span style="color:#B392F0">handle</span><span style="color:#E1E4E8">(invocation</span><span style="color:#F97583">.</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">())</span><span style="color:#F97583">.await?</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    ...</span></span>
+<span class="line"><span style="color:#B392F0">    Ok</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">AnyToolResult</span><span style="color:#E1E4E8"> { call_id, payload, result</span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> output, post_tool_use_payload })</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p>成功后还有 PostToolUse hooks(registry.rs:684-731,可整段拒绝结果),最终 <code>into_response()</code> 变成 <code>FunctionCallOutput</code> 写回历史(parallel.rs:83-90)。</p>
+<ul>
+<li><strong>注册表结构</strong>(registry.rs:286-338):<code>IndexMap&lt;ToolName, RegisteredTool&gt;</code> + <code>first_collision</code>;内置工具重复注册直接 <code>error_or_panic</code>,外部(插件等)冲突则跳过并记录、保留内置——冲突裁决按信任度分层。</li>
+<li><strong>内置工具清单</strong>:<code>build_tool_router</code>(tools/spec_plan.rs:125)→ <code>add_core_tool_sources</code>(spec_plan.rs:974)汇聚四大来源(spec_plan.rs:1028-1031):</li>
+</ul>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// tools/spec_plan.rs:1028-1031 — 内置工具四大来源:shell / MCP 资源 / 通用工具 / 多智能体协作</span></span>
+<span class="line"><span style="color:#B392F0">add_shell_tools</span><span style="color:#E1E4E8">(context, registry);</span></span>
+<span class="line"><span style="color:#B392F0">add_mcp_resource_tools</span><span style="color:#E1E4E8">(context, registry);</span></span>
+<span class="line"><span style="color:#B392F0">add_core_utility_tools</span><span style="color:#E1E4E8">(context, registry);</span></span>
+<span class="line"><span style="color:#B392F0">add_collaboration_tools</span><span style="color:#E1E4E8">(context, registry);</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<ul>
+<li><strong>shell</strong>(spec_plan.rs:1075):<code>ExecCommandHandler</code>(exec_command)、<code>WriteStdinHandler</code>;</li>
+<li><strong>mcp-resource</strong>(:1123):list/read MCP 资源三件套;</li>
+<li><strong>utility</strong>(:1132 起,多受 feature 开关控制):<code>PlanHandler</code>(:1138)、<code>WaitForEnvironmentHandler</code>、<code>RequestUserInputHandler</code>、<code>RequestPermissionsHandler</code>、<code>NewContextWindowHandler</code>、<code>ApplyPatchHandler</code>(:1250)等;</li>
+<li><strong>collaboration</strong>(多智能体,:1280 起):v2 全套 <code>SpawnAgentHandlerV2 / SendMessageHandlerV2 / WaitAgentHandlerV2</code> 等。</li>
+</ul>
+<p>外部来源另计:MCP 服务器工具 <code>append_mcp_tools</code>(spec_plan.rs:159,按 exposure 策略直出或 deferred)、dynamic tools、扩展工具。guardian 审查子会话只拿 exec_command / write_stdin / view_image(spec_plan.rs:975-1026)。<code>ToolExposure</code>(Direct/Deferred/… )决定模型可见性,deferred 工具会被压缩成少量模型入口(如 list_tool),最终 <code>finalize_tool_router</code>(spec_plan.rs:352)产出 <code>model_visible_specs</code> 才真正发给模型。</p>
+<h3 id="44-上下文组装agentsmd-分层拼接与自动压缩">4.4 上下文组装:AGENTS.md 分层拼接与自动压缩</h3>
+<p>AGENTS.md 的规则写在模块头部的常量里(agents_md.rs:39-46):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#6A737D">// agents_md.rs:39-46 — 文件名与拼接分隔符(用户指令与项目文档之间的「分水岭」)</span></span>
+<span class="line"><span style="color:#F97583">pub</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> DEFAULT_AGENTS_MD_FILENAME</span><span style="color:#F97583">:</span><span style="color:#F97583"> &amp;</span><span style="color:#B392F0">str</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "AGENTS.md"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">pub</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> LOCAL_AGENTS_MD_FILENAME</span><span style="color:#F97583">:</span><span style="color:#F97583"> &amp;</span><span style="color:#B392F0">str</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "AGENTS.override.md"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> AGENTS_MD_SEPARATOR</span><span style="color:#F97583">:</span><span style="color:#F97583"> &amp;</span><span style="color:#B392F0">str</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">--- project-doc ---</span><span style="color:#79B8FF">\n\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">;</span></span></code></pre><span class="code-lang" data-lang="rust" aria-hidden="true">rust</span></div>
+<p><code>load_project_instructions</code>(agents_md.rs:55)从项目 root 到 cwd <strong>逐层收集</strong>:root 用 <code>.git</code> 等 <code>project_root_markers</code> 向上探测且不越过;每层目录按候选文件名取第一个命中的文档;拼接时(agents_md.rs:352-378)用户指令(user_instructions,宿主侧)在前,第一个项目文档出现才插入 <code>--- project-doc ---</code> 分隔符,后续文档仅以空行相连——分隔符的存在让模型能区分「操作者指令」与「仓库自带说明」两种信任来源。每个 StepContext 捕获时刷新一次(session/mod.rs:3540-3543),随 initial context 发送。</p>
+<p><strong>自动压缩</strong>:采样后 <code>context_window_token_status</code> 记账(turn.rs:461-471),当模型还需要继续(<code>needs_follow_up</code>)且 token 逼近上限(<code>token_limit_reached</code>)时命中 <code>should_roll_over</code>(turn.rs:505-506),调 <code>run_auto_compact(..., CompactionReason::ContextLimit, CompactionPhase::MidTurn)</code>(turn.rs:517-539)后 <code>continue</code> 重新采样。压缩本身也调模型:<code>run_inline_auto_compact_task</code>(compact.rs:116)把 <code>compact_prompt</code> 当作一次 UserInput 发出去,让模型自己总结历史、生成 Compaction item 替换旧历史——「压缩不是删,是让模型写纪要」;手动 <code>/compact</code> 则走 <code>run_compact_task</code>(compact.rs:148)。</p>
+<h2 id="5-动手活动读-turnrs画一次-turn-的事件序列图">5. 动手活动:读 turn.rs,画一次 turn 的事件序列图</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:一次 exec_command turn 的序列图(交付 02 章验收物)</p>
+<p><strong>目标</strong>:画出一次「模型调用 exec_command → 结果回灌 → 模型给出最终回答」的最小 turn 序列图,每步能标注 Thought / Action / Observation。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>打开 <code>codex-rs/core/src/session/turn.rs</code>,先读 <code>run_turn</code>(:162)与主循环(:334)的注释,再读 <code>try_run_sampling_request</code>(:2264)的事件分支;</li>
+<li>顺读 <code>stream_events_utils.rs:290</code>(<code>handle_output_item_done</code>)与 <code>tools/registry.rs:495</code>(<code>dispatch_any_with_terminal_outcome</code>);</li>
+<li>画出序列图,参与者:User / session_loop / run_turn / Responses stream / ToolRegistry / Handler,必须标出以下事件:TurnInput 入队 → 首步 StepContext 固化 → build_prompt 组装 → OutputItemDone → build_tool_call → PreToolUse hooks → drain_in_flight 回写 → Completed(end_turn)终止;并在每个工具执行段旁标注 Thought / Action / Observation。</li>
+</ol>
+<p><strong>完成标准</strong>:图中能指出 <code>needs_follow_up</code> 在哪些箭头处被置位、<code>FunctionCallOutput</code> 从哪个步骤进入历史;能用图回答「为什么 turn 比 step 更适合做预算与 hooks 的边界」。</p>
+</div>
+<p><strong>参考骨架</strong>(与真实文件逐行对照后简化,箭头即一次 await 或事件):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>User → session_loop : Op::TurnInput                      (handlers.rs:585)</span></span>
+<span class="line"><span>session_loop → run_turn : turn_input::handle             (turn_input.rs:197)</span></span>
+<span class="line"><span>run_turn → stream : build_prompt + client_session.stream  (turn.rs:1395 / 2295)</span></span>
+<span class="line"><span>stream → run_turn : OutputItemDone(function_call)</span></span>
+<span class="line"><span>run_turn → registry : build_tool_call(router.rs:246) → dispatch(registry.rs:495)</span></span>
+<span class="line"><span>registry : PreToolUse hooks 检查                           (registry.rs:568)</span></span>
+<span class="line"><span>registry → handler : handle_any_tool → tool.handle()       (registry.rs:772)</span></span>
+<span class="line"><span>handler → history : FunctionCallOutput 写回                (drain_in_flight, turn.rs:2216)</span></span>
+<span class="line"><span>stream → run_turn : Completed { end_turn: Some(false) }    (turn.rs:2666)</span></span>
+<span class="line"><span>run_turn : needs_follow_up=true → loop continue</span></span>
+<span class="line"><span>...重复采样直到 Completed end_turn 为 true → stop hooks → break(turn.rs:547)</span></span></code></pre><span class="code-lang" data-lang="text" aria-hidden="true">text</span></div>
+<h2 id="6-边界与坑">6. 边界与坑</h2>
+<table>
+<thead>
+<tr>
+<th>症状/现象</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型调用不存在的工具</td>
+<td>名字查不到 registry</td>
+<td>不崩溃,<code>RespondToModel</code> 文本回灌,让模型自我修正(registry.rs:516)</td>
+</tr>
+<tr>
+<td>hook 拦不住某类工具调用</td>
+<td>PreToolUse hooks 是 handler 执行前唯一闸门</td>
+<td>文件级策略靠 hook,进程级隔离靠 03 章沙箱兜底</td>
+</tr>
+<tr>
+<td>并行工具吞吐上不去</td>
+<td>串行工具拿写锁全局互斥(parallel.rs:116)</td>
+<td>新工具声明 parallel 能力前先评估是否真可并发</td>
+</tr>
+<tr>
+<td>长会话每轮都慢</td>
+<td>自动压缩是一次完整采样(模型写纪要)</td>
+<td>调 <code>compact_prompt</code>,或主动 /compact 挑时机;压缩 item 是模型输出,可能失真</td>
+</tr>
+<tr>
+<td>AGENTS.md 突然失效</td>
+<td>探测 root 的 markers 被改或 cwd 超出 root</td>
+<td>拼接只覆盖 turn 环境 cwd 之下(agents_md.rs:55),项目别依赖 root 外的文档</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>边界提醒:turn 是「预算与 hooks 边界」,不是「安全边界」;<code>end_turn=true</code> 只表示模型认为本轮完成,不代表任务达成——step 级超限由 token_budget 与压缩兜底,命令级危险动作留给审批与沙箱(03、04 章)。</li>
+</ul>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>turn / step</td>
+<td>turn 是用户可见的服务边界,step 是内部采样+执行的最小记账单位,iteration 即 step 的反复</td>
+</tr>
+<tr>
+<td>两层循环</td>
+<td>submission_loop 分发 Op(handlers.rs:529),run_turn 跑 step(turn.rs:162),会话内 turn 串行</td>
+</tr>
+<tr>
+<td>SSE 驱动</td>
+<td><code>Completed { end_turn: false }</code> → <code>needs_follow_up</code> → 再采样;为真 → stop hooks → break(turn.rs:2666 / 547)</td>
+</tr>
+<tr>
+<td>结果回灌</td>
+<td>drain_in_flight 把 FunctionCallOutput 写回历史,下一轮 for_prompt 自然带上(turn.rs:2216)</td>
+</tr>
+<tr>
+<td>工具链</td>
+<td>build_tool_call 归一 → 并发门 → registry 分发 → PreToolUse hooks → handler → PostToolUse</td>
+</tr>
+<tr>
+<td>内置工具</td>
+<td>四大来源:shell / mcp-resource / utility / collaboration(spec_plan.rs:1028-1031)</td>
+</tr>
+<tr>
+<td>项目指令</td>
+<td>AGENTS.md 从 root 到 cwd 逐层拼接,<code>--- project-doc ---</code> 分隔用户指令与项目文档(agents_md.rs:46)</td>
+</tr>
+<tr>
+<td>压缩</td>
+<td>token 超限 + 需续跑 → run_auto_compact → 模型自写纪要 → continue(turn.rs:505)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:一次 turn 里模型可能连续调用十几个工具,为什么 Codex 不把「每个工具调用」都当成一次新 turn?PreToolUse hooks 判定 Blocked 之后,拒绝信息以什么形态回到模型,这对安全审计有什么好处?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>turn 是用户可感知的服务边界,step 是内部记账边界:把工具调用算成 turn,会让 stop hooks、预算、压缩在每个工具后都重新评估一次,并且破坏「一条用户消息 = 一个 turn」的语义;turn 内 step 过多由 token_budget 记账与自动压缩兜底。Blocked 后注册表返回 <code>FunctionCallError::RespondToModel(message)</code>(registry.rs:567-591),Codex 把拒绝原因拼成输出 item 回写历史,模型下一轮能看到「为什么被拒」并改弦更张——拒绝因此进入上下文成为可审计、可回放的事件,而不是硬错误中断会话,这正是 02.04/06 权限边界「拒绝要可解释」的工程实现。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://github.com/openai/codex">openai/codex 源码仓库(本章引用:codex-rs/core/src/session 与 tools)</a></li>
+<li><a href="https://developers.openai.com/codex/">Codex 开发文档(Responses 流与工具语义)</a></li>
+<li><a href="https://platform.openai.com/docs/api-reference/responses/streaming">OpenAI Responses API streaming(SSE 事件:Completed / end_turn 字段)</a></li>
+<li><a href="https://github.com/openai/codex/tree/main/codex-rs/core/src/session">openai/codex 仓库 session 目录直链</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/09/02/02/"><span>上一篇</span><strong>02.09.02.02 仓库布局与 Rust 核心</strong></a><a class="ai-pager-next" href="/ai/02-agents/09/02/04/"><span>下一篇</span><strong>02.09.02.04 沙箱与执行模型</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念turn--step--iteration-与两层循环">1. 概念:turn / step / iteration 与两层循环</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-为什么这样设计模型一次只能推理一段">2. 为什么这样设计:模型一次只能推理一段</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-作用位置session-与-tools-两个目录">3. 作用位置:session 与 tools 两个目录</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-详细介绍">4. 详细介绍</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#41-会话级-submission_loopop-分发器">4.1 会话级 submission_loop:Op 分发器</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#42-turn-级-run_turnstep-循环与-sse-驱动">4.2 turn 级 run_turn:step 循环与 SSE 驱动</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#43-工具路由toolrouter--toolregistry--handler">4.3 工具路由:ToolRouter → ToolRegistry → Handler</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#44-上下文组装agentsmd-分层拼接与自动压缩">4.4 上下文组装:AGENTS.md 分层拼接与自动压缩</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手活动读-turnrs画一次-turn-的事件序列图">5. 动手活动:读 turn.rs,画一次 turn 的事件序列图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-边界与坑">6. 边界与坑</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

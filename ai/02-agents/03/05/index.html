@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>02.03.05 错了怎么知道 · iopanda</title><meta name="description" content="02.03.05 错了怎么知道 · 智能体 / 规划与推理，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/02-agents/03/05/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="02.03.05 错了怎么知道 · iopanda"><meta property="og:description" content="02.03.05 错了怎么知道 · 智能体 / 规划与推理，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/02-agents/03/05/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="02-agents" data-active-section="03" data-active-subsection data-active-article="/ai/02-agents/03/05/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:02-agents/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 规划与推理"></button><a class="tree-link tree-link--section" href="/ai/02-agents/03/"><span class="tree-number">03</span><span class="tree-title">规划与推理</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/02-agents/03/05/" aria-current="page"><span class="tree-number">05</span><span class="tree-title">错了怎么知道</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/">智能体</a><span class="sep" aria-hidden="true">›</span><a href="/ai/02-agents/03/">规划与推理</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">错了怎么知道</span></nav><header class="ai-article-header"><p class="ai-number">02.03.05</p><h1>错了怎么知道</h1><p class="ai-meta"><time datetime="2026-09-05T10:40">2026-09-05</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>book</li><li>ai-agent</li><li>self-correction</li><li>failure</li></ul></header><div class="ai-prose"><h1 id="错了怎么知道">错了怎么知道</h1>
+<p>一个判卷 Agent 把一份答案判成 8 分（满分 10）。它按流程进入“自查”环节，被要求复核自己的判断。</p>
+<p>复核后它改成 6 分，理由是“论述部分缺少对第二个前提的展开”。</p>
+<p>原答案里写了这个展开。第一次判断是对的，自查把它改错了。</p>
+<p>这类事故在加了“自我修正”环节的 Agent 上出现得比预想的多。原因不复杂：<strong>模型判断自己错了的能力，弱于它完成任务的能力。</strong> 修正的前提是识别错误，而识别错误需要的是一个独立于原有推理的信号——模型自己的第二次推理，通常提供不了这个信号。</p>
+<h2 id="四类失败四种处置">四类失败，四种处置</h2>
+<p>处理失败的第一步是分清失败的种类。处置方式完全不同，混在一起处理就会用错手段。</p>
+<p><strong>瞬时失败。</strong> 限流、超时、连接中断。特点是与内容无关，重试大概率成功。处置：退避重试，两到三次。</p>
+<p><strong>确定性失败。</strong> 参数不合法、工具不存在、权限不足。特点是重试必然同样失败。处置：改参数或换工具，重试同一个调用是纯粹浪费。</p>
+<p><strong>语义失败。</strong> 调用成功，结果是错的。查到的章节号不存在，算出的平均数与样本对不上。处置：需要外部校验才能发现，这是最难的一类。</p>
+<p><strong>计划过期。</strong> 每一步都对，前提变了。第 3.3 节里那个查依赖版本的例子。处置：重新规划，见下一节。</p>
+<p>前三类是执行层问题，第四类是规划层问题。多数“Agent 卡住”的现场，是把第四类当成第一类在重试。</p>
+<h2 id="自我修正的边界">自我修正的边界</h2>
+<p>2023 年有一篇论文把这个边界量化了：Huang 等人（arXiv:2310.01798）让模型在没有任何外部反馈的情况下自我修正推理题，GPT-3.5 与 GPT-4 的正确率在修正之后都下降了——模型把对的答案改错的情况，多于把错的改对。</p>
+<p>原因与前面那个判卷例子一致：没有新信息时，“我可能错了”只会引导模型重新表述一遍，而重新表述会引入新的偏差。它的第二次回答与第一次回答来自同一个分布，把两次结果取平均不会更接近真值。</p>
+<p>后来的综述（Kamoi et al., 2024, arXiv:2406.01297）给了一个更可用的结论：<strong>自我修正在有外部反馈时有效，在只有内部信号时无效。</strong> 外部反馈指工具报错、测试结果、schema 校验、规则比对、人的判断。</p>
+<p>这条结论直接决定了工程做法：修正环节必须挂在一个能返回对错的检查上。挂不上检查的步骤，就不要加自我修正——那只是在为同一个错误付两次钱。</p>
+<h2 id="reflexion-的位置">Reflexion 的位置</h2>
+<p>Reflexion（Shinn et al., 2023, arXiv:2303.11366）常被当作“自我修正”的代表，容易被误读。它的做法是：任务失败后，让模型写一段“这次为什么失败、下次怎么改”，存进记忆，下一轮开始时读进来。</p>
+<p>关键在于它的成功信号来自环境——原始实验里是单元测试通过与否，这正是外部反馈。模型写的那段反思是<strong>把外部信号翻译成可复用的经验</strong>，不是自己判断对错。</p>
+<p>所以 Reflexion 有效的场景都有一个共同点：任务可以被反复尝试，且每次尝试有客观的成败判定。代码生成、有测试的修复任务、可验证的查询，都属于这类。写一份无法验证的文案，反思只会积累一些听起来合理的教训。</p>
+<h2 id="防死循环四件套">防死循环四件套</h2>
+<p>修正机制一旦存在，就必须有制动。四道限制，全部写在代码里，不写在提示词里。</p>
+<p><strong>最大步数。</strong> 按任务复杂度设，通常 10 到 25。达到上限时终止并上报，不静默截断。</p>
+<p><strong>重复动作检测。</strong> 对“工具名 + 参数”取哈希，连续两次相同就判定为原地打转。注意要把参数规范化后再哈希——键序不同的相同参数应视为同一个动作。</p>
+<p><strong>预算上限。</strong> token 累计或费用累计，达到阈值终止。步数限制挡不住“每步都很贵”的情况。</p>
+<p><strong>进度检查。</strong> 每隔几步比较一次任务状态：待办项减少了没有，已收集的证据增加了没有。状态没变就是没有进展，与步数无关。</p>
+<p>这四道限制里，进度检查最有效也最少被实现。前三个只能防住明显的失控，一个每步都在换工具、换参数、但什么都没解决的 Agent，会平稳地耗尽预算。</p>
+<h2 id="修正需要新信息">修正需要新信息</h2>
+<p>判断一次重试是否有意义，有一个简单的检验：<strong>这一次与上一次相比，模型看到了什么新东西？</strong></p>
+<p>有新观察（错误信息、校验结果、检索到的原文），重试有意义，而且要把新观察明确放进提示——很多实现会把错误原文丢掉，只告诉模型“失败了，请再试一次”，这样重试等于采样第二次。</p>
+<p>没有新观察，重试只是在同一个分布里再抽一次。偶尔会抽对，但那是运气，不是修正。</p>
+<p>因此重试的写法有一个固定形状：失败原因 + 原始输出 + 期望的约束，三者一起回传。缺任何一项，模型都只能靠猜。</p>
+<h2 id="它挡不住的部分">它挡不住的部分</h2>
+<p><strong>识别不了错误，就无从修正。</strong> 这是最根本的限制。一个没有验收标准的步骤，Agent 与使用者都无法判断它是否完成，修正环节在这里是空的。</p>
+<p><strong>修对了这一步，修错了整体。</strong> 局部修正可能破坏全局一致性——判卷那次改动，单看“论述是否充分”是合理的，放进整份卷子的评分标准里才是错的。全局一致性只能由整体校验保证，而整体校验通常要等到最后一步。</p>
+<p><strong>错误会积累。</strong> 每一步 95% 的成功率，十二步之后是 54%。修正能改善单步，但不能让这个乘积变成加法。</p>
+<h2 id="下一步计划作废">下一步：计划作废</h2>
+<p>个体的失败可以靠重试与修正处理。当失败的原因在于计划本身——前提变了、路径不通、预算不够——重试解决不了。</p>
+<p>下一节讲什么时候该把计划整份推翻。</p>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li>Huang, J. et al. (2023). <em>Large Language Models Cannot Self-Correct Reasoning Yet.</em> arXiv:2310.01798</li>
+<li>Kamoi, R. et al. (2024). <em>When Can LLMs Actually Correct Their Own Mistakes?</em> arXiv:2406.01297</li>
+<li>Shinn, N. et al. (2023). <em>Reflexion: Language Agents with Verbal Reinforcement Learning.</em> arXiv:2303.11366</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/02-agents/03/04/"><span>上一篇</span><strong>02.03.04 边想边做还是想完再做</strong></a><a class="ai-pager-next" href="/ai/02-agents/03/06/"><span>下一篇</span><strong>02.03.06 计划要能被推翻</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#四类失败四种处置">四类失败，四种处置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#自我修正的边界">自我修正的边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#reflexion-的位置">Reflexion 的位置</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#防死循环四件套">防死循环四件套</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#修正需要新信息">修正需要新信息</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#它挡不住的部分">它挡不住的部分</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#下一步计划作废">下一步：计划作废</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#延伸阅读">延伸阅读</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

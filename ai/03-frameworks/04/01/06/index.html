@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.04.01.06 课程助教 Agent 的 vLLM 架构案例 · iopanda</title><meta name="description" content="03.04.01.06 课程助教 Agent 的 vLLM 架构案例 · 框架 / 推理与服务框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/04/01/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.04.01.06 课程助教 Agent 的 vLLM 架构案例 · iopanda"><meta property="og:description" content="03.04.01.06 课程助教 Agent 的 vLLM 架构案例 · 框架 / 推理与服务框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/04/01/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="04" data-active-subsection="01" data-active-article="/ai/03-frameworks/04/01/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与服务框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/04/"><span class="tree-number">04</span><span class="tree-title">推理与服务框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/04/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 vLLM"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/04/01/"><span class="tree-number">01</span><span class="tree-title">vLLM</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/04/01/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教 Agent 的 vLLM 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/">推理与服务框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/04/01/">vLLM</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 vLLM 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.04.01.06</p><h1>课程助教 Agent 的 vLLM 架构案例</h1><p class="ai-meta"><time datetime="2026-09-04T03:58">2026-09-04</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>framework</li><li>inference</li><li>serving</li><li>vllm</li><li>case-study</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-vllm-架构案例">课程助教 Agent 的 vLLM 架构案例</h1>
+<blockquote>
+<p>把 vLLM 放回课程助教主线时，它最自然的角色不是“本地离线助手”，而是：<strong>课程助教已经训好，现在要把它作为一个稳定的在线问答与工具调用 API 服务出去。</strong> 这时候真正重要的，不是单个回答能不能生成，而是高峰期多个学生同时提问时，系统是否还能稳住吞吐、延迟和上下文复用。</p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用 vLLM 的语言为课程助教设计在线 serving 架构；</li>
+<li>判断课程助教何时适合用 vLLM，而不是 llama.cpp 或 Triton；</li>
+<li>设计课程助教的 structured outputs、tool calling 和多 adapter 方案；</li>
+<li>设计课程助教的关键监控指标；</li>
+<li>写一张课程助教的 vLLM 适配卡。</li>
+</ol>
+<h2 id="1-为什么课程助教适合-vllm">1. 为什么课程助教适合 vLLM</h2>
+<p>当课程助教开始出现：</p>
+<ul>
+<li>高并发学生问答；</li>
+<li>长系统提示和课程规则前缀；</li>
+<li>统一 OpenAI-compatible 接口接前端/agent；</li>
+<li>结构化输出（如引用、评分、任务拆分）；</li>
+<li>多课程 adapter 或多学期 adapter；
+它就很自然进入 vLLM 世界。</li>
+</ul>
+<h2 id="2-推荐架构">2. 推荐架构</h2>
+<ul>
+<li>模型层：一个或多个 instruction-tuned 助教模型；</li>
+<li>服务层：vLLM OpenAI-compatible API；</li>
+<li>输出层：structured outputs 约束引用、答案结构；</li>
+<li>运营层：/metrics 接监控，观察 TTFT、吞吐、tail latency；</li>
+<li>可选：多 LoRA 承接不同课程或不同院系。</li>
+</ul>
+<h2 id="3-为什么这里不是优先选-llamacpp">3. 为什么这里不是优先选 llama.cpp</h2>
+<p>因为这里的主问题不是：</p>
+<ul>
+<li>单机离线运行；
+而是：</li>
+<li>在线并发服务；</li>
+<li>多请求调度；</li>
+<li>统一 API 面；</li>
+<li>课程峰值流量吸收。</li>
+</ul>
+<h2 id="4-动手活动">4. 动手活动</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">输出</p>
+<p><code>course-ta-vllm-card.md</code></p>
+<p>为课程助教列：模型、平均并发、平均上下文长度、是否需要 tool calling、是否需要 structured outputs、是否需要多课程 adapter。写一句结论：为什么这里的主复杂度是 serving，而不是本地推理。</p>
+</div>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教为什么适合 vLLM</td>
+<td>因为它一旦在线化，主问题就是吞吐、调度和服务面</td>
+</tr>
+<tr>
+<td>最大价值</td>
+<td>把助教模型稳定交付成 API 服务</td>
+</tr>
+<tr>
+<td>不适合什么</td>
+<td>完全离线、本地单用户、小规模边缘部署</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[13] <a href="https://github.com/vllm-project/vllm/blob/main/README.md">https://github.com/vllm-project/vllm/blob/main/README.md</a> — vLLM README</li>
+<li>[14] <a href="https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/openai_compatible_server.md">https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/openai_compatible_server.md</a> — vLLM OpenAI-compatible server doc</li>
+<li>[15] <a href="https://github.com/vllm-project/vllm/blob/main/docs/features/structured_outputs.md">https://github.com/vllm-project/vllm/blob/main/docs/features/structured_outputs.md</a> — vLLM structured outputs doc</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/04/01/05/"><span>上一篇</span><strong>03.04.01.05 吞吐、延迟、可观测性与工程边界</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/04/01/07/"><span>下一篇</span><strong>03.04.01.07 vLLM 与 SGLang、TensorRT-LLM、llama.cpp、Triton 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么课程助教适合-vllm">1. 为什么课程助教适合 vLLM</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-推荐架构">2. 推荐架构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么这里不是优先选-llamacpp">3. 为什么这里不是优先选 llama.cpp</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-动手活动">4. 动手活动</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

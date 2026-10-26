@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.02.09 采样与定性评测 · iopanda</title><meta name="description" content="01.02.09 采样与定性评测 · 模型 / 预训练与训练，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/02/09/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.02.09 采样与定性评测 · iopanda"><meta property="og:description" content="01.02.09 采样与定性评测 · 模型 / 预训练与训练，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/02/09/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="02" data-active-subsection data-active-article="/ai/01-models/02/09/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/02"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 预训练与训练"></button><a class="tree-link tree-link--section" href="/ai/01-models/02/"><span class="tree-number">02</span><span class="tree-title">预训练与训练</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/02/09/" aria-current="page"><span class="tree-number">09</span><span class="tree-title">采样与定性评测</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/02/">预训练与训练</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">采样与定性评测</span></nav><header class="ai-article-header"><p class="ai-number">01.02.09</p><h1>采样与定性评测</h1><p class="ai-meta"><time datetime="2026-09-02T20:30">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-pretraining</li><li>text-generation</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章(08)把 Mini GPT 训到验证损失收敛,并保存了最佳 checkpoint;这一章回答紧接着的两个问题:<strong>模型怎样把 logits 变成一段文字</strong>,以及<strong>凭什么相信这段文字是好的</strong>。你将理解为什么生成必须逐 token 进行、解码参数到底在控制什么风险,并建立一套可重复的定性评测流程,而不是凭一次「看起来不错」的输出下结论。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>用自己的话解释「为什么生成是逐 token 的自回归循环」,以及它与训练前向过程的区别;</li>
+<li>从 checkpoint 加载模型与 tokenizer,写出可运行的生成函数;</li>
+<li>区分 greedy、temperature、top-k、top-p 四种解码策略,并说明它们各自在控制什么风险;</li>
+<li>用固定提示词、固定 seed 和记录表完成一次可重复的定性评测;</li>
+<li>识别重复、乱码、提示泄漏与训练文本记忆的迹象,并把问题定位到原因,而不是盲调参数。</li>
+</ol>
+<h2 id="1-生成为什么是逐-token-的">1. 生成为什么是逐 token 的</h2>
+<h3 id="11-概念模型只会预测下一个-token">1.1 概念:模型只会「预测下一个 token」</h3>
+<ul>
+<li><strong>概念</strong>:Decoder-only 语言模型在预训练阶段只学会了一件事——给定前文,输出词表上每个 token 成为「下一个」的概率分布。因此模型内部<strong>不存在「一次写好整段话」的功能</strong>:整段输出只能由一次次「预测下一个 token」拼接而成。这种把输出重新喂回输入端、一步接一步推进的过程,称为<strong>自回归生成(Autoregressive Generation)</strong>。</li>
+<li><strong>为什么必须逐 token</strong>:这不是工程偷懒,而是架构与训练目标共同决定的。训练时模型被要求在每个位置做「下一个 token 预测」,并用因果掩码保证它永远看不见未来;到了生成阶段,模型只会用同一种方式工作——输入已有的前缀,输出下一个 token 的分布。你看到的「一句话」,其实是模型把这句话当作「下一个 token 的上下文」重复预测出来的。</li>
+<li><strong>为什么不这样做会出问题</strong>:若尝试让模型一次输出整段(一步预测多个 token),模型从未被训练过这种输出格式,结果会偏离它学到的分布,变成无意义的乱码。生产环境中的 speculative decoding 等加速技巧,本质仍是「小模型逐 token 起草、大模型一次校验多个 token」,不改变本节结论。</li>
+<li>训练与生成的对比:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>训练</th>
+<th>生成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>完整文本序列</td>
+<td>已有 token 前缀(提示词 + 已生成部分)</td>
+</tr>
+<tr>
+<td>预测位置</td>
+<td>所有位置同时计算</td>
+<td>只取<strong>最后一个位置</strong>的 logits</td>
+</tr>
+<tr>
+<td>正确答案</td>
+<td>有:右侧下一个 token</td>
+<td>没有,只能按策略抽样</td>
+</tr>
+<tr>
+<td>权重</td>
+<td>反向传播更新</td>
+<td>冻结,只做前向(<code>torch.no_grad()</code>)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>由此引出两个实操结论:<strong>①</strong> 输入超过训练时的 <code>context_length</code> 时,只保留最近 <code>context_length</code> 个 token——超出训练窗口的远古前缀,模型从未学会利用,留着只会拖慢计算;<strong>②</strong> 每生成一个 token 都要对整段上下文重新做一次前向,文本越长单步越慢(注意力开销随长度平方增长),这正是 01.04 推理单元中 KV cache 等优化的动机。</li>
+</ul>
+<h3 id="12-第一个生成函数">1.2 第一个生成函数</h3>
+<p>把 1.1 的循环写成代码,就是本章的第一个生成函数:输入已有 token → 取<strong>最后一个位置</strong>的 logits → 按策略选下一个 id → 追加到输入,循环 <code>max_new_tokens</code> 次。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#B392F0">@torch.no_grad</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> generate</span><span style="color:#E1E4E8">(model, ids, max_new_tokens, temperature</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1.0</span><span style="color:#E1E4E8">, top_k</span><span style="color:#F97583">=</span><span style="color:#79B8FF">None</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">    model.eval()</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> _ </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> range</span><span style="color:#E1E4E8">(max_new_tokens):</span></span>
+<span class="line"><span style="color:#E1E4E8">        window </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ids[:, </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">model.context_length:]</span></span>
+<span class="line"><span style="color:#E1E4E8">        logits </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model(window)[:, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, :]</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> temperature </span><span style="color:#F97583">&lt;=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">            raise</span><span style="color:#79B8FF"> ValueError</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"temperature 必须大于 0"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        logits </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> logits </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> temperature</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> top_k </span><span style="color:#F97583">is</span><span style="color:#F97583"> not</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            threshold </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.topk(logits, </span><span style="color:#79B8FF">min</span><span style="color:#E1E4E8">(top_k, logits.size(</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">))).values[:, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">:]</span></span>
+<span class="line"><span style="color:#E1E4E8">            logits </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> logits.masked_fill(logits </span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8"> threshold, </span><span style="color:#79B8FF">float</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"-inf"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">        probabilities </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.softmax(logits, </span><span style="color:#FFAB70">dim</span><span style="color:#F97583">=-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        next_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.multinomial(probabilities, </span><span style="color:#FFAB70">num_samples</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.cat([ids, next_id], </span><span style="color:#FFAB70">dim</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> ids</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<ul>
+<li>循环体四步:<strong>截窗 → 取末位 logits → 套解码策略 → 抽样并拼接</strong>;<code>temperature</code> 与 <code>top_k</code> 在这里已经出现,它们就是第 2 节的主角。</li>
+<li><code>torch.multinomial</code> 是按概率随机抽样,不是对 token id 做数学抽样。调用前确认模型、tokenizer、<code>vocab_size</code> 来自同一个实验;三者任意错配,结果都没有解释价值。</li>
+<li>因为抽样带随机性,同一提示词每次运行可能得到不同输出——这正是第 3 节要求「固定 seed、多 seed 复跑」的原因。</li>
+</ul>
+<h2 id="2-解码参数在控制风险不是在加智能">2. 解码参数:在控制风险,不是在「加智能」</h2>
+<h3 id="21-概念旋钮改的是怎么选不是会什么">2.1 概念:旋钮改的是「怎么选」,不是「会什么」</h3>
+<ul>
+<li><strong>概念</strong>:解码参数(温度、top-k、top-p)只作用于「从概率分布中挑选 token」这最后一步,不触碰权重、不增加知识、不改变模型的能力上限。它们是一组<strong>风险旋钮</strong>,用来在两类失败之间找平衡:<strong>确定性复读</strong>(greedy 导致的重复、呆板)与<strong>随机胡言</strong>(采样过度导致的发散、乱码)。</li>
+<li><strong>为什么需要它们</strong>:模型学到的原始概率分布并不天然适合直接展示——直接取最大概率会陷入重复短句,直接按原始分布抽样又会被长尾噪声带偏。解码参数把「下一句该冒多大险」变成可调的工程参数。</li>
+<li><strong>一个直觉</strong>:把概率分布想成一份候选菜单。greedy 是永远点销量第一的菜;temperature 决定你有多愿意尝试第二名之后的选择;top-k / top-p 是直接把「明显离谱的菜」从菜单上撕掉。菜单(模型学到的分布)没变,变的是点菜策略。</li>
+<li><strong>如果不做会怎样</strong>:不做选择地「默认输出」,等于既不知道候选集、也不知道随机性来源,任何生成结果都无法解释、无法复现。</li>
+</ul>
+<h3 id="22-四种策略对照各在控制什么风险">2.2 四种策略对照:各在控制什么风险</h3>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>做法</th>
+<th>控制什么风险</th>
+<th>代价与注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Greedy</td>
+<td>总选概率最大的 token</td>
+<td>消除随机性,输出可复现</td>
+<td>最容易重复与死板</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>logits 除以温度 T 后再归一化</td>
+<td>T&lt;1 压低低概率候选、抑制发散;T&gt;1 抹平分布、减少机械重复</td>
+<td>T 过高会放大噪声,开始胡言乱语</td>
+</tr>
+<tr>
+<td>Top-k</td>
+<td>只保留概率最高的 k 个候选再抽样</td>
+<td>剪掉长尾中离谱的候选</td>
+<td>k 太小单调,k 太大约等于没剪</td>
+</tr>
+<tr>
+<td>Top-p(nucleus)</td>
+<td>保留累计概率刚达到 p 的最小候选集</td>
+<td>候选数随上下文自适应:分布集中时少剪、分散时多剪</td>
+<td>仍需结合 temperature,不能包治百病</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>实现 greedy 时使用 <code>argmax</code>,不要设置温度后仍声称它是 greedy。实现 top-p 时先按概率降序排序、计算 cumulative sum、屏蔽累计概率越过 <code>p</code> 的候选,再把概率映射回原 id 顺序;至少保留最高概率 token,避免全为负无穷。</li>
+<li>初学实验可先完成 greedy 与 top-k,并把 top-p 作为扩展练习;第 3 节的生成脚本先实现 temperature + top-k 组合。</li>
+</ul>
+<h2 id="3-定性评测建立一份可重复的生成卡">3. 定性评测:建立一份可重复的生成卡</h2>
+<h3 id="31-什么是定性评测为什么-loss-不够">3.1 什么是定性评测,为什么 loss 不够</h3>
+<ul>
+<li><strong>概念</strong>:定性评测(Qualitative Evaluation)是让模型在固定提示词上生成文本、再由人按明确标签逐条审查的过程;与之相对的是 loss、困惑度这类<strong>定量</strong>指标。</li>
+<li><strong>为什么 loss 下降还不够</strong>:验证 loss 是全体 token 上的平均信号——某些位置「非常糟」可以被大部分位置「普通好」摊平;它也不回答「生成出来像不像话、会不会重复、有没有背下训练文本」。这些问题只有把模型真正跑起来看输出才能暴露。一句话:<strong>loss 告诉你训练是否在收敛,生成样例告诉你模型是否可用</strong>。</li>
+<li><strong>为什么评测必须可重复</strong>:如果每次临时挑提示词、换 seed,只展示最顺眼的一条输出,那么「这次训练比上次好」只是幸存者偏差。要比较两次训练,输入必须固定、参数必须记录、输出必须全留、审查必须有统一标签。</li>
+<li>在 <code>eval/prompts.jsonl</code> 固定 8–12 条提示词:短中文、英文、标点/数字、语料领域内的续写,以及至少两条从未出现在训练集的保留提示。不要临时挑选最好的输出。</li>
+<li>每次评测写入 <code>reports/generation.md</code>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>checkpoint</th>
+<th>prompt id</th>
+<th>seed</th>
+<th>参数</th>
+<th>输出</th>
+<th>人工标记</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>best-valid</td>
+<td>zh-01</td>
+<td>42</td>
+<td>temp=0.8, top_k=40</td>
+<td>原样保存</td>
+<td>连贯/重复/乱码/疑似记忆</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>同一参数和 seed 应产生相同结果(在相同硬件与可复现设置下尽量如此);同时至少用 3 个不同 seed 观察采样的稳定性。定性评测不是严格基准,但它能及早暴露训练 loss 看不出来的问题。</li>
+</ul>
+<h3 id="32-创建可直接运行的生成脚本">3.2 创建可直接运行的生成脚本</h3>
+<p>新建 <code>src/generate.py</code>。本脚本加载上一章训练出的最佳 checkpoint;请勿用未训练的 <code>latest.pt</code> 冒充最佳结果。</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> torch</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> tokenizers </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Tokenizer</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> src.model </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> MiniGPT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">torch.manual_seed(</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">device </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "cuda"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> torch.cuda.is_available() </span><span style="color:#F97583">else</span><span style="color:#9ECBFF"> "cpu"</span></span>
+<span class="line"><span style="color:#E1E4E8">path </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "runs/alice-bpe-v1/checkpoints/best-valid.pt"</span></span>
+<span class="line"><span style="color:#E1E4E8">checkpoint </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.load(path, </span><span style="color:#FFAB70">map_location</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">device, </span><span style="color:#FFAB70">weights_only</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">cfg </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> checkpoint[</span><span style="color:#9ECBFF">"config"</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"model"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">tokenizer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Tokenizer.from_file(</span><span style="color:#9ECBFF">"artifacts/tokenizer.json"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> MiniGPT(tokenizer.get_vocab_size(), </span><span style="color:#F97583">**</span><span style="color:#E1E4E8">cfg).to(device)</span></span>
+<span class="line"><span style="color:#E1E4E8">model.load_state_dict(checkpoint[</span><span style="color:#9ECBFF">"model_state"</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">@torch.no_grad</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> generate</span><span style="color:#E1E4E8">(prompt, count</span><span style="color:#F97583">=</span><span style="color:#79B8FF">120</span><span style="color:#E1E4E8">, temperature</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.8</span><span style="color:#E1E4E8">, top_k</span><span style="color:#F97583">=</span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#E1E4E8">    ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.tensor([tokenizer.encode(prompt).ids], </span><span style="color:#FFAB70">dtype</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">torch.long, </span><span style="color:#FFAB70">device</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">device)</span></span>
+<span class="line"><span style="color:#E1E4E8">    model.eval()</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> _ </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> range</span><span style="color:#E1E4E8">(count):</span></span>
+<span class="line"><span style="color:#E1E4E8">        logits </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model(ids[:, </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">model.context_length:])[:, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> temperature</span></span>
+<span class="line"><span style="color:#E1E4E8">        values, _ </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.topk(logits, </span><span style="color:#79B8FF">min</span><span style="color:#E1E4E8">(top_k, logits.size(</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)))</span></span>
+<span class="line"><span style="color:#E1E4E8">        logits[logits </span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8"> values[:, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">:]] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> float</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"-inf"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        ids </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> torch.cat([ids, torch.multinomial(torch.softmax(logits, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">), </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)], </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> tokenizer.decode(ids[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">].tolist())</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> prompt </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"Alice was"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"The Queen"</span><span style="color:#E1E4E8">]:</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"PROMPT:"</span><span style="color:#E1E4E8">, prompt)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(generate(prompt))</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行 <code>python -m src.generate &gt; reports/generation-raw.txt</code>,再用编辑器打开该文件。首先应看到两个 <code>PROMPT:</code>,并保留所有输出。若 <code>FileNotFoundError</code>,回到上一章先训练出 <code>best-valid.pt</code>;若 <code>size mismatch</code>,说明 tokenizer、配置或 checkpoint 来自不同实验,不能混用。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:生成并审计 10 条输出</p>
+<p><strong>目标</strong>:创建 <code>src/generate.py</code>、<code>eval/prompts.jsonl</code> 和 <code>reports/generation.md</code>。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li>加载 <code>best-valid.pt</code> 和 tokenizer;</li>
+<li>对固定提示词分别使用 greedy、<code>temperature=0.8 + top_k=40</code>;</li>
+<li>每种设置至少生成 10 条,原样保存;</li>
+<li>逐条标记「连贯、重复、乱码、敏感信息、疑似逐字训练数据」。</li>
+</ol>
+<p><strong>完成标准</strong>:报告含 checkpoint、配置、seed、所有输入和所有输出;不会只展示成功案例;若出现错误类别,至少附一条原始例子和可能原因。</p>
+</div>
+<h2 id="4-发现问题时先定位不要盲调参数">4. 发现问题时先定位,不要盲调参数</h2>
+<p>解码参数只是抽样旋钮,不是质量修复。遇到坏输出,第一步是判断它属于哪一类问题,再决定改模型、改数据还是改采样:</p>
+<table>
+<thead>
+<tr>
+<th>观察到的问题</th>
+<th>可能原因</th>
+<th>可验证动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>很快重复一个短句</td>
+<td>小数据、训练不足或过度贪婪</td>
+<td>比较不同 checkpoint 与 temperature</td>
+</tr>
+<tr>
+<td>大量 <code>&lt;unk&gt;</code> / 乱码</td>
+<td>tokenizer 或编码不一致</td>
+<td>decode id、核对 tokenizer hash</td>
+</tr>
+<tr>
+<td>与训练文本逐字相同</td>
+<td>小语料记忆或提示本身出现过</td>
+<td>用搜索/哈希检查来源,报告而非掩盖</td>
+</tr>
+<tr>
+<td>完全不连贯</td>
+<td>模型未学到、数据或标签错位</td>
+<td>回查 loss、右移标签与 id 范围</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>不要将「更高温度」当作质量修复:它只改变抽样分布,不能修复错误 tokenizer、错位标签或低质量训练数据。</li>
+<li>任何疑似个人信息或受限制内容都不能因为「模型生成了」而忽视;应回到数据来源和清洗记录处理(见 02、03 章)。</li>
+</ul>
+<h2 id="5-总结">5. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>产物</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>逐 token 生成</td>
+<td><code>src/generate.py</code></td>
+<td>把 checkpoint 变成文本</td>
+</tr>
+<tr>
+<td>解码策略</td>
+<td>greedy / temperature / top-k / top-p</td>
+<td>控制采样风险,而非「加智能」</td>
+</tr>
+<tr>
+<td>固定输入</td>
+<td><code>eval/prompts.jsonl</code></td>
+<td>评测输入不漂移</td>
+</tr>
+<tr>
+<td>记录表</td>
+<td><code>reports/generation.md</code></td>
+<td>保留全部输出与人工标记</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>生成是以同一 tokenizer 反复调用已训练模型的过程。可靠的定性评测有四个要素:固定输入、记录参数、保留全部输出、按明确标签审查。这样下一次训练才能与本次真正比较。</li>
+</ul>
+<p><strong>思考题</strong>:① 为什么只展示一个流畅输出不能证明模型较好?② 为什么 top-k 和 temperature 可以同时存在?③ 为什么评测既要固定 seed,又要求至少换 3 个 seed 复跑?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>① 单个输出可能恰好幸运,且无法展示失败率或重复率;只有保留全部输出并按标签统计,才能比较两次训练。② temperature 调整候选之间的相对分布,top-k 限制候选集合,两者作用在不同阶段,因此可组合。③ 固定 seed 保证同一参数下的结果可复现、可核对;换 seed 则是检验结论是否依赖某一次具体的随机抽样,避免把一次运气当成能力。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/main/en/generation_strategies">Hugging Face Transformers:文本生成策略</a></li>
+<li><a href="https://huggingface.co/blog/how-to-generate">Hugging Face 博客:How to generate text(不同解码方法对比)</a></li>
+<li><a href="https://docs.pytorch.org/docs/stable/generated/torch.multinomial.html">PyTorch:<code>torch.multinomial</code></a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/02/08/"><span>上一篇</span><strong>01.02.08 训练循环与检查点</strong></a><a class="ai-pager-next" href="/ai/01-models/02/10/"><span>下一篇</span><strong>01.02.10 实验追踪与可复现性</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-生成为什么是逐-token-的">1. 生成为什么是逐 token 的</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#11-概念模型只会预测下一个-token">1.1 概念:模型只会「预测下一个 token」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#12-第一个生成函数">1.2 第一个生成函数</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-解码参数在控制风险不是在加智能">2. 解码参数:在控制风险,不是在「加智能」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#21-概念旋钮改的是怎么选不是会什么">2.1 概念:旋钮改的是「怎么选」,不是「会什么」</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#22-四种策略对照各在控制什么风险">2.2 四种策略对照:各在控制什么风险</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-定性评测建立一份可重复的生成卡">3. 定性评测:建立一份可重复的生成卡</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-什么是定性评测为什么-loss-不够">3.1 什么是定性评测,为什么 loss 不够</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-创建可直接运行的生成脚本">3.2 创建可直接运行的生成脚本</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-发现问题时先定位不要盲调参数">4. 发现问题时先定位,不要盲调参数</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-总结">5. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

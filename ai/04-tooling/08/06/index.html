@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>04.08.06 安全护栏与内容审核 概览 · iopanda</title><meta name="description" content="04.08.06 安全护栏与内容审核 概览 · 工具链 / 安全护栏与内容审核，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/04-tooling/08/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="04.08.06 安全护栏与内容审核 概览 · iopanda"><meta property="og:description" content="04.08.06 安全护栏与内容审核 概览 · 工具链 / 安全护栏与内容审核，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/04-tooling/08/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="04-tooling" data-active-section="08" data-active-subsection data-active-article="/ai/04-tooling/08/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:04-tooling/08"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 安全护栏与内容审核"></button><a class="tree-link tree-link--section" href="/ai/04-tooling/08/"><span class="tree-number">08</span><span class="tree-title">安全护栏与内容审核</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/04-tooling/08/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">安全护栏与内容审核 概览</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/">工具链</a><span class="sep" aria-hidden="true">›</span><a href="/ai/04-tooling/08/">安全护栏与内容审核</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">安全护栏与内容审核 概览</span></nav><header class="ai-article-header"><p class="ai-number">04.08.06</p><h1>安全护栏与内容审核 概览</h1><p class="ai-meta"><time datetime="2026-09-03T18:29">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-tooling</li><li>safety-guardrails-moderation</li></ul></header><div class="ai-prose"><h1 id="安全护栏与内容审核-概览">安全护栏与内容审核 概览</h1>
+<blockquote>
+<p><code>01.07 Safety and Governance</code> 已经讲过安全治理原则，<code>02</code> 也一再强调高风险动作要有护栏与人工复核。<code>04.08</code> 则把视角收束到具体工具：<strong>有哪些开源组件，能把政策校验、输入输出过滤、PII 识别、对话轨道约束、红队测试、运行时拒答与人工接管做成可编程能力？</strong> 本章的重点不是神话某个“安全工具万能箱”，而是理解不同护栏工具到底在系统哪一层发力。</p>
+</blockquote>
+<p><strong>学习目标</strong>：完成本模块后，你将能够——</p>
+<ol>
+<li>区分 moderation、guardrails、PII protection、policy enforcement、red teaming 几个层次；</li>
+<li>比较 NeMo Guardrails、Guardrails AI、Presidio、OpenAI Guardrails、Promptfoo Red Teaming 的设计中心；</li>
+<li>解释为什么“护栏”既不是单一分类器，也不是一句 system prompt；</li>
+<li>为课程助教或企业知识助手设计一条输入—检索—生成—输出的人机治理链；</li>
+<li>知道什么时候该把风险前置到输入层，什么时候必须在动作层和输出层同时设卡。</li>
+</ol>
+<h2 id="1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</h2>
+<ul>
+<li>安全问题很少只发生在最终回答；它也可能发生在输入注入、越权检索、工具调用、副作用动作与日志泄露；</li>
+<li>不同工具的第一语言不同：有的擅长对话轨道控制，有的擅长结构与校验，有的擅长 PII，有的擅长红队回归；</li>
+<li>真正的工程问题不是“要不要安全”，而是把哪类风险放在哪一层处理；</li>
+<li>学习重点是把护栏看成多层系统，而不是一条黑箱拦截器。</li>
+</ul>
+<h2 id="2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</h2>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>一句话定位</th>
+<th>设计中心</th>
+<th>更适合谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai/04-tooling/08/01/01/">NeMo Guardrails</a></td>
+<td>偏对话轨道与可编程 guardrail 工作流的路线</td>
+<td>rails、policy flows、runtime control</td>
+<td>要对对话与动作流程做强约束的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/08/02/01/">Guardrails AI</a></td>
+<td>围绕验证、约束与 guardrail 组合的开发者工具</td>
+<td>validators、reasks、runtime checks</td>
+<td>希望把输出校验直接嵌入应用代码的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/08/03/01/">Presidio</a></td>
+<td>聚焦敏感信息识别、脱敏与隐私保护</td>
+<td>PII detection、redaction、anonymization</td>
+<td>需要先稳住隐私与合规边界的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/08/04/01/">OpenAI Guardrails</a></td>
+<td>面向现代 agent 应用的 guardrail SDK 路线</td>
+<td>guardrail primitives、developer integration</td>
+<td>想把运行时护栏直接接进 SDK 栈的团队</td>
+</tr>
+<tr>
+<td><a href="/ai/04-tooling/08/05/01/">Promptfoo Red Teaming</a></td>
+<td>用测试与攻击样例持续施压系统边界</td>
+<td>red team suites、security regression、adversarial cases</td>
+<td>想把越狱/注入/安全回归接进 CI 的团队</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-这一模块建议怎么读">3. 这一模块建议怎么读</h2>
+<ol>
+<li>先看 <a href="/ai/04-tooling/08/01/01/">01 NeMo Guardrails</a> 与 <a href="/ai/04-tooling/08/02/01/">02 Guardrails AI</a>：理解运行时护栏与输出校验两条主线；</li>
+<li>再看 <a href="/ai/04-tooling/08/03/01/">03 Presidio</a>：把隐私与 PII 单独拎出来；</li>
+<li>然后看 <a href="/ai/04-tooling/08/04/01/">04 OpenAI Guardrails</a>：理解现代 SDK 视角下的 guardrail 原语；</li>
+<li>最后看 <a href="/ai/04-tooling/08/05/01/">05 Promptfoo Red Teaming</a>：把红队与持续回归接进日常开发。</li>
+</ol>
+<h2 id="4-我建议本模块的内容结构">4. 我建议本模块的内容结构</h2>
+<p>这一模块可以复用你已经稳定下来的写法：</p>
+<ol>
+<li>本组总览 README；</li>
+<li>每个产品一个文件夹与 <code>README.md</code>；</li>
+<li>每个产品至少拆成 4~6 篇：
+<ul>
+<li>它为什么存在 / 解决什么首要复杂度；</li>
+<li>核心抽象、架构与部署形态；</li>
+<li>与同类产品相比的设计中心；</li>
+<li>在课程助教或企业内部知识系统中的落点；</li>
+<li>适用边界、排错与迁移成本；</li>
+</ul>
+</li>
+<li>最终再补一篇本组的选型矩阵：回答“为什么选 A，不选 B”。</li>
+</ol>
+<h2 id="5-本模块的推荐交付物">5. 本模块的推荐交付物</h2>
+<table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>说明</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>guardrail-layer-map.md</td>
+<td>画出输入、检索、生成、动作、输出五层护栏图</td>
+<td>能解释每层拦什么、为什么</td>
+</tr>
+<tr>
+<td>risk-control-playbook.md</td>
+<td>为课程助教定义高风险场景与控制措施</td>
+<td>不是只有拒答，还有人工接管与审计</td>
+</tr>
+<tr>
+<td>safety-regression-suite.md</td>
+<td>整理提示注入、越权、PII、违规输出回归样例</td>
+<td>每次变更都能重放关键风险</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-本模块笔记导航">6. 本模块笔记导航</h2>
+<ol>
+<li><a href="/ai/04-tooling/08/01/01/">01 NeMo Guardrails</a></li>
+<li><a href="/ai/04-tooling/08/02/01/">02 Guardrails AI</a></li>
+<li><a href="/ai/04-tooling/08/03/01/">03 Presidio</a></li>
+<li><a href="/ai/04-tooling/08/04/01/">04 OpenAI Guardrails</a></li>
+<li><a href="/ai/04-tooling/08/05/01/">05 Promptfoo Red Teaming</a></li>
+</ol>
+<h2 id="7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</h2>
+<ul>
+<li>不要先记安装命令，先问它把哪类复杂度当作一等公民；</li>
+<li>不要只看 happy path，重点看治理、排错、迁移、协作与上线证据；</li>
+<li>不要问“谁最强”，要问“谁最匹配当前系统的首要矛盾”；</li>
+<li>不要把开源工具当成银弹，工具只是把某类工程纪律做成现成组件。</li>
+</ul>
+<h2 id="8-总结">8. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一模块讲什么</td>
+<td>把安全治理原则落实到运行时工具与测试体系</td>
+</tr>
+<tr>
+<td>为什么重要</td>
+<td>AI 系统最昂贵的 bug 常常不是报错，而是越权和失控</td>
+</tr>
+<tr>
+<td>代表产品</td>
+<td>NeMo Guardrails / Guardrails AI / Presidio / OpenAI Guardrails / Promptfoo Red Teaming</td>
+</tr>
+<tr>
+<td>学习重点</td>
+<td>把护栏分层，而不是寄望单点拦截</td>
+</tr>
+</tbody>
+</table>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[171] <a href="https://github.com/NVIDIA-NeMo/Guardrails">https://github.com/NVIDIA-NeMo/Guardrails</a> — NeMo Guardrails GitHub</li>
+<li>[172] <a href="https://github.com/guardrails-ai/guardrails">https://github.com/guardrails-ai/guardrails</a> — Guardrails AI GitHub</li>
+<li>[173] <a href="https://github.com/data-privacy-stack/presidio">https://github.com/data-privacy-stack/presidio</a> — Presidio GitHub</li>
+<li>[174] <a href="https://github.com/openai/openai-guardrails-python">https://github.com/openai/openai-guardrails-python</a> — OpenAI Guardrails GitHub</li>
+<li>[175] <a href="https://github.com/promptfoo/promptfoo">https://github.com/promptfoo/promptfoo</a> — Promptfoo GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/04-tooling/08/05/01/"><span>上一篇</span><strong>04.08.05.01 Promptfoo 红队测试 概览</strong></a><a class="ai-pager-next" href="/ai/05-trending-projects/01/01/"><span>下一篇</span><strong>05.01.01 archify</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-为什么这一组工具要单独讲">1. 为什么这一组工具要单独讲</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-2026-09-我建议先聚焦的开源产品">2. 2026-09 我建议先聚焦的开源产品</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-这一模块建议怎么读">3. 这一模块建议怎么读</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-我建议本模块的内容结构">4. 我建议本模块的内容结构</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-本模块的推荐交付物">5. 本模块的推荐交付物</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-本模块笔记导航">6. 本模块笔记导航</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-这一模块该怎么学才不会学成产品说明书">7. 这一模块该怎么学，才不会学成“产品说明书”</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-总结">8. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

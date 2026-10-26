@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.03.02 指令数据集设计 · iopanda</title><meta name="description" content="01.03.02 指令数据集设计 · 模型 / 微调与对齐，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/03/02/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.03.02 指令数据集设计 · iopanda"><meta property="og:description" content="01.03.02 指令数据集设计 · 模型 / 微调与对齐，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/03/02/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="03" data-active-subsection data-active-article="/ai/01-models/03/02/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/03"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 微调与对齐"></button><a class="tree-link tree-link--section" href="/ai/01-models/03/"><span class="tree-number">03</span><span class="tree-title">微调与对齐</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/03/02/" aria-current="page"><span class="tree-number">02</span><span class="tree-title">指令数据集设计</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/03/">微调与对齐</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">指令数据集设计</span></nav><header class="ai-article-header"><p class="ai-number">01.03.02</p><h1>指令数据集设计</h1><p class="ai-meta"><time datetime="2026-09-02T21:01">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-fine-tuning</li><li>instruction-data</li></ul></header><div class="ai-prose"><blockquote>
+<p>上一章冻结了基线——「改前成绩」;本章制作决定「模型会变成什么」的训练材料:一份结构正确、事实可核查、可审计的小型指令数据集。动手前先弄清三件事:<strong>监督微调到底在练什么、样本的 role/content 结构为什么如此严格、为什么不能拿模型批量造答案直接训练</strong>。读完你会交付 train/valid 两份数据与一张数据卡。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>解释「监督微调是预测下一 token 的练习」,并说明损失只算在答案上意味着什么;</li>
+<li>说出 system/user/assistant 三种 role 的分工,写出符合 schema 的 chat 样本;</li>
+<li>说明 30 条数据为何「少也能开始、但不能乱开始」,以及 train/valid 必须分离的原因;</li>
+<li>解释为什么不能拿模型批量生成的未审核答案直接训练;</li>
+<li>用加载脚本验证 JSON 合法性并交付数据卡。</li>
+</ol>
+<h2 id="1-概念微调是预测下一-token的练习不是记忆问答">1. 概念:微调是「预测下一 token」的练习,不是记忆问答</h2>
+<ul>
+<li>沿用 01.02 的定义:语言模型是一个「下一 token 预测器」——读到一段文字后给每个候选 token 打分,不断重复该动作就生成一句话。<strong>预训练与监督微调共用同一个目标函数</strong>(对下一个 token 的交叉熵损失),区别只在喂进去的数据与损失的计算范围。</li>
+<li><strong>预训练</strong>:喂海量原始文本,对几乎每个位置都算损失,学到语言能力与通用知识;</li>
+<li><strong>监督微调(SFT)</strong>:喂「对话样本」,但损失<strong>只在 assistant 答案的 token 上计算</strong>,system 与 user 部分只作为上下文被读取、不承担损失——这就是「只学怎么答,不学怎么问」。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>输入数据</th>
+<th>损失范围</th>
+<th>模型学到的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预训练</td>
+<td>海量互联网文本</td>
+<td>全文几乎每个 token</td>
+<td>语言、知识、续写能力</td>
+</tr>
+<tr>
+<td>监督微调</td>
+<td>少量对话样本</td>
+<td>仅 assistant 答案</td>
+<td>听话的方式:格式、语气、边界</td>
+</tr>
+<tr>
+<td>推理(无训练)</td>
+<td>用户消息</td>
+<td>无</td>
+<td>按学到的倾向采样输出</td>
+</tr>
+</tbody>
+</table>
+<p>一条对话样本进入训练时,内部发生的事如下(system 与 user 只作为上文被读取,损失集中在答案上):</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#F97583">flowchart</span><span style="color:#B392F0"> LR</span></span>
+<span class="line"><span style="color:#FFAB70">    A</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"system 规则(只读,不计损)"</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> T</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"拼接成一段 token 序列"</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    B</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"user 问题(只读,不计损)"</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> T</span></span>
+<span class="line"><span style="color:#FFAB70">    C</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"assistant 答案(监督目标)"</span><span style="color:#F97583">]</span><span style="color:#F97583"> --&gt;</span><span style="color:#FFAB70"> T</span></span>
+<span class="line"><span style="color:#FFAB70">    T </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> P</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"模型逐 token 预测下一个 token"</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    P </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> L</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"交叉熵损失仅在 assistant 部分计算"</span><span style="color:#F97583">]</span></span>
+<span class="line"><span style="color:#FFAB70">    L </span><span style="color:#F97583">--&gt;</span><span style="color:#FFAB70"> U</span><span style="color:#F97583">[</span><span style="color:#9ECBFF">"参数更新:只强化「怎么答」"</span><span style="color:#F97583">]</span></span></code></pre><span class="code-lang" data-lang="mermaid" aria-hidden="true">mermaid</span></div>
+<ul>
+<li>两个直接推论:
+<ol>
+<li>损失逐 token 施加在整个答案上,所以答案的<strong>结构、语气、错误都会被同等学走</strong>——审核数据就是在设定质量上限;</li>
+<li>模型不会像数据库那样保存「问题 → 答案」键值对,它只调整参数,让相似输入更倾向产生相似表达。因此错误答案、互相矛盾的规则、隐私文本也会被忠实学习,<strong>训练前审核远比训练后补救便宜</strong>。</li>
+</ol>
+</li>
+<li>呼应上一章:基线回答「模型原本怎么答」,数据决定「往哪个方向改」,两者缺一不可——这正是本章先讲清概念再动手的原因。</li>
+</ul>
+<h2 id="2-样本-schemarole-与-content-各司其职">2. 样本 schema:role 与 content 各司其职</h2>
+<p>一条 chat 样本是一个 <code>messages</code> 数组,数组里每条消息由 <strong>role(角色)</strong> 与 <strong>content(内容)</strong> 两个字段构成:</p>
+<ul>
+<li><strong>system</strong>:长期身份与行为边界,如「你是课程助教,没有依据时拒答」。它像一份全程有效的规则书,<strong>不要每条写互相矛盾的规则</strong>,模型会无所适从;</li>
+<li><strong>user</strong>:提出任务并提供必要上下文。<strong>别把答案写进问题</strong>——模型会学到「复读问题」而不是回答问题;</li>
+<li><strong>assistant</strong>:期望回答,是整条样本唯一被监督的部分。<strong>最后一条必须是 assistant</strong>,否则没有可供预测的目标;</li>
+<li>模型端到端看到的不是 JSON,而是 tokenizer 依据 chat template 生成的 token 序列(用特殊标记包裹各 role)。转换细节留到下一章验证,本章要做的只是保证 schema 干净——<strong>脏数据会在转换时静默地变成脏训练信号</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>数据元素</th>
+<th>作用</th>
+<th>常见初学错误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system</td>
+<td>固定身份与行为边界</td>
+<td>每条写互相矛盾的规则</td>
+</tr>
+<tr>
+<td>user</td>
+<td>提供任务与必要上下文</td>
+<td>把答案也写进问题</td>
+</tr>
+<tr>
+<td>assistant</td>
+<td>监督目标(唯一算损失的部分)</td>
+<td>最后一条不是 assistant</td>
+</tr>
+<tr>
+<td>train/valid</td>
+<td>学习 / 检查泛化</td>
+<td>同一题换词后分到两边</td>
+</tr>
+<tr>
+<td>content</td>
+<td>消息正文纯文本</td>
+<td>手写 `&lt;</td>
+</tr>
+<tr>
+<td>messages</td>
+<td>顶层数组结构</td>
+<td>对象内部换行,破坏逐行加载</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-为什么数据量少但规则严30-条样本的定位">3. 为什么「数据量少但规则严」:30 条样本的定位</h2>
+<ul>
+<li>30 条 train + 10 条 valid <strong>不足以</strong>把模型变成数据库专家,却<strong>足以</strong>验证一条训练管线是否跑通,也<strong>足以</strong>让模型过拟合——这正是本单元要的:追求<strong>可检查的行为变化</strong>(格式更稳定、遇到资料外问题会拒答),而不是造一个新专家。</li>
+<li>因此规则必须严:每条样本都应人工勾选四项——<strong>问题明确、答案可核查、格式一致、无私密信息</strong>。「可核查」指答案能回指到允许的课程材料,或明确表达拒答。</li>
+<li>刻意包含<strong>失败边界样本</strong>(boundary samples):如「明天东京的天气?」这类资料外问题配上拒答回答。模型要学会「说不知道」,靠的正是这类样本——数量不必多,但必须有。</li>
+<li><strong>一次只改一个规则</strong>:想改善格式就只动格式相关样本,想教拒答就只加边界样本;否则训练结果的变化无法归因于具体的数据改动。</li>
+<li>不要把所有类型(百科问答、闲聊、翻译、敏感文本)混进一个没有标签的数据文件,质量参差会互相污染。研究也支持这一取向:LIMA 实验显示约 1 000 条精心挑选的样本即可带来显著的对齐效果——<strong>少量可信、覆盖失败边界的样本,胜过大量来源不明的问答</strong>。</li>
+</ul>
+<h2 id="4-为什么不能拿模型批量造答案直接训练">4. 为什么不能拿模型批量造答案直接训练</h2>
+<p>「用模型生成大量问题—答案,再直接拿去训练」看似省力,却是初学者最常见的陷阱,原因有三:</p>
+<ol>
+<li><strong>模型输出不是 ground truth</strong>:模型的答案是它自己的预测,未经事实核验。把它当标准答案喂回去,等于让模型给自己的作业打分——自信的幻觉会被当成正确知识学走,训练后模型只会<strong>更流畅地说错</strong>;</li>
+<li><strong>错误被放大而非纠正</strong>:用自己的输出训练自己,等于把采样偏差与错误再投喂一遍(文献中称自耗循环 self-consuming loop / 模型自噬)。没有外部正确信号介入,误差只会逐代累积,不会消失;</li>
+<li><strong>审核缺失即违规风险</strong>:批量生成绕过了许可与隐私检查——生成内容可能携带训练数据痕迹,也可能无意编造出含个人信息的内容,而后者恰恰是本章规则明令禁止进入数据集的。</li>
+</ol>
+<p>什么时候可以借助模型输出?有两条受控路线:<strong>知识蒸馏</strong>——用更强的教师模型生成候选答案,但每条仍需人工审核、能回指来源并符合许可;或<strong>数据增强后的人工抽查</strong>。要点是:模型输出只能当「草稿候选」,不能当「标准答案」;审核与可回指来源不可跳过。这也呼应 01.02 讲过的数据许可纪律。</p>
+<h2 id="5-动手先写规则再写样本">5. 动手:先写规则,再写样本</h2>
+<p>课程助教的三条规则(先写规则、再写样本,每条样本只训练一个清晰行为):</p>
+<ul>
+<li>答案只能依据允许的课程材料;</li>
+<li>无法依据时明确拒答,不编造;</li>
+<li>不收集真实学员姓名、电话、客户数据。</li>
+</ul>
+<p><strong>不要</strong>用模型批量生成「看起来很多」的答案后直接训练(原因见第 4 章)。创建 <code>finetune/data/train.jsonl</code>,<strong>每行一个 JSON 对象,对象内部不能换行</strong>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"messages"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"你是课程助教。仅依据课程内容回答；没有依据时说不知道。"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"什么是主键？"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"assistant"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"主键是用于唯一标识表中每一行的一列或一组列。它的值不能重复，也不能为 NULL。"</span><span style="color:#E1E4E8">}]}</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">"messages"</span><span style="color:#E1E4E8">:[{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"system"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"你是课程助教。仅依据课程内容回答；没有依据时说不知道。"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"明天东京的天气？"</span><span style="color:#E1E4E8">},{</span><span style="color:#79B8FF">"role"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"assistant"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">"content"</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF">"我不知道；课程资料没有提供实时天气信息。"</span><span style="color:#E1E4E8">}]}</span></span></code></pre><span class="code-lang" data-lang="json" aria-hidden="true">json</span></div>
+<p>自己写至少 30 条 train、10 条 valid(valid 放在 <code>finetune/data/valid.jsonl</code>)。每条都按「问题明确、答案可核查、格式一致、无私密信息」四项人工勾选;<strong>训练与验证不得只是同一道题的换词版本</strong>(否则 valid 形同虚设,理由见第 2 章 schema 表)。</p>
+<h2 id="6-动手加载前先验证-json">6. 动手:加载前先验证 JSON</h2>
+<p>创建 <code>finetune/src/check_data.py</code>:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> json</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pathlib </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Path</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> split </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">"train"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"valid"</span><span style="color:#E1E4E8">]:</span></span>
+<span class="line"><span style="color:#E1E4E8">    rows </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [json.loads(x) </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> Path(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"finetune/data/</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">split</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">.jsonl"</span><span style="color:#E1E4E8">).read_text().splitlines() </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> x]</span></span>
+<span class="line"><span style="color:#F97583">    assert</span><span style="color:#E1E4E8"> rows </span><span style="color:#F97583">and</span><span style="color:#79B8FF"> all</span><span style="color:#E1E4E8">([m[</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> m </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> r[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">]])</span></span>
+<span class="line"><span style="color:#F97583">    assert</span><span style="color:#79B8FF"> all</span><span style="color:#E1E4E8">(r[</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">][</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "assistant"</span><span style="color:#F97583"> for</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> rows)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(split, </span><span style="color:#79B8FF">len</span><span style="color:#E1E4E8">(rows), rows[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"messages"</span><span style="color:#E1E4E8">][</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">][</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">])</span></span></code></pre><span class="code-lang" data-lang="python" aria-hidden="true">python</span></div>
+<p>运行 <code>python -m finetune.src.check_data</code>;任何 <code>JSONDecodeError</code> 都表示该行不是合法 JSON,应<strong>定位行号修复,不能删除整份数据重来</strong>——删数据会把「该修的问题」一起删掉。两条 assert 分别检查:每条消息都有 role;每条样本最后一条是 assistant,正是第 2 章强调的 schema 铁律。</p>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:交付数据卡</p>
+<p><strong>目标</strong>:<code>finetune/data/train.jsonl</code>、<code>valid.jsonl</code> 与 <code>finetune/reports/data-card.md</code>。<strong>步骤</strong>:列出资料来源、作者、数量、许可、拒答样本数和人工审核人;随机阅读各 5 条。<strong>完成标准</strong>:脚本通过;每个答案能回指到允许材料或明确拒答;报告说明哪些问题不应由模型回答。</p>
+</div>
+<h2 id="7-总结">7. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键判断</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SFT 在练什么</td>
+<td>预测下一 token;损失只算在 assistant 答案上,结构、语气、错误都会被学走</td>
+</tr>
+<tr>
+<td>role/content</td>
+<td>system 定边界,user 提问,assistant 是唯一被监督的目标;最后一条必须是 assistant</td>
+</tr>
+<tr>
+<td>数据量少但规则严</td>
+<td>30 条足够验证管线并暴露过拟合;每条可勾选、可回指、覆盖失败边界</td>
+</tr>
+<tr>
+<td>为什么不能自产自销</td>
+<td>模型输出未经核验,直接训练会放大自身错误;输出只能当草稿候选</td>
+</tr>
+<tr>
+<td>验证手段</td>
+<td>加载脚本查 JSON 与 schema;train/valid 分离;数据卡记录来源与审核</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么每条样本的最后一条消息必须是 <code>assistant</code>?为什么「同一道题换词」放进 valid 会让验证失去意义?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>监督损失只施加在最后的 assistant 回答上;若最后一条是 user,就没有可预测的目标,该样本等于作废。而「同题换词」意味着模型在训练中已见过同一问题的近似答案,valid 通过只能说明它背住了题,不能证明泛化——valid 的作用正是充当「没背过题」的考场。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/main/en/chat_templating">Hugging Face:聊天模板</a></li>
+<li><a href="https://huggingface.co/docs/datasets/index">Hugging Face Datasets</a></li>
+<li><a href="https://arxiv.org/abs/2305.11206">LIMA:Less Is More for Alignment</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/03/01/"><span>上一篇</span><strong>01.03.01 微调策略与基线</strong></a><a class="ai-pager-next" href="/ai/01-models/03/03/"><span>下一篇</span><strong>01.03.03 Hugging Face 训练栈</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念微调是预测下一-token的练习不是记忆问答">1. 概念:微调是「预测下一 token」的练习,不是记忆问答</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-样本-schemarole-与-content-各司其职">2. 样本 schema:role 与 content 各司其职</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-为什么数据量少但规则严30-条样本的定位">3. 为什么「数据量少但规则严」:30 条样本的定位</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-为什么不能拿模型批量造答案直接训练">4. 为什么不能拿模型批量造答案直接训练</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-动手先写规则再写样本">5. 动手:先写规则,再写样本</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手加载前先验证-json">6. 动手:加载前先验证 JSON</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-总结">7. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

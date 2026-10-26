@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>01.04.04 本地推理与 vLLM · iopanda</title><meta name="description" content="01.04.04 本地推理与 vLLM · 模型 / 推理与部署，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/01-models/04/04/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="01.04.04 本地推理与 vLLM · iopanda"><meta property="og:description" content="01.04.04 本地推理与 vLLM · 模型 / 推理与部署，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/01-models/04/04/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="01-models" data-active-section="04" data-active-subsection data-active-article="/ai/01-models/04/04/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:01-models/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 推理与部署"></button><a class="tree-link tree-link--section" href="/ai/01-models/04/"><span class="tree-number">04</span><span class="tree-title">推理与部署</span></a></div><ul class="tree-children"><li class="tree-item tree-item--article tree-item--direct is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/01-models/04/04/" aria-current="page"><span class="tree-number">04</span><span class="tree-title">本地推理与 vLLM</span></a></div></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/">模型</a><span class="sep" aria-hidden="true">›</span><a href="/ai/01-models/04/">推理与部署</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">本地推理与 vLLM</span></nav><header class="ai-article-header"><p class="ai-number">01.04.04</p><h1>本地推理与 vLLM</h1><p class="ai-meta"><time datetime="2026-09-02T23:35">2026-09-02</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>model-inference</li><li>vllm</li></ul></header><div class="ai-prose"><blockquote>
+<p>前几章回答了「用哪个模型、怎么让它装得下跑得动」,本章回答「怎么让别人用起来」:把一个常驻内存的模型进程包装成<strong>网络服务</strong>——任何会发 HTTP 请求的程序(网页、命令行、另一个服务)都能调用,而不必读懂 Python、不必和你在同一台机器上。你会先弄清为什么脚本直调不够、朴素服务又慢在哪,再看 vLLM 用连续批处理与 PagedAttention 分别解决什么,最后亲手把它启动成 OpenAI 兼容的 <code>/v1/chat/completions</code> 端点,用 curl 完成冒烟验收,并用 host/port 守住「只在本机暴露」的安全边界。</p>
+</blockquote>
+<p><strong>学习目标</strong>:学完本章,你将能够——</p>
+<ol>
+<li>对比脚本直调与 HTTP 服务,说出服务化解决什么问题、引入什么代价;</li>
+<li>解释朴素推理服务吞吐低的两大根源:串行/静态批处理与 KV cache 显存浪费;</li>
+<li>说出 vLLM 的三项关键设计——连续批处理、PagedAttention、KV cache 管理——各解决哪个瓶颈;</li>
+<li>读懂 OpenAI 兼容协议的请求与响应结构,说明「兼容」为什么值钱;</li>
+<li>区分 <code>127.0.0.1</code> 与 <code>0.0.0.0</code> 的安全边界,判断练习与部署时该监听哪里;</li>
+<li>启动 vLLM,用 curl 调用 <code>/v1/chat/completions</code>,完成服务连通性验收。</li>
+</ol>
+<h2 id="1-概念为什么需要服务化脚本-vs-http-服务">1. 概念:为什么需要服务化:脚本 vs HTTP 服务</h2>
+<ul>
+<li>上一阶段(01.03)的基线脚本把模型当<strong>进程内对象</strong>用:加载权重、<code>generate</code>、打印、退出。这条路对「自己跑一次评测」够用,但对「别人要用模型」处处是墙:<strong>调用方必须会 Python、装同一套依赖、能访问同一台机器与同一份权重文件</strong>,而且一次只能一个人跑——另一个人想用,得等你退出释放显存。</li>
+<li>每次脚本运行还要<strong>冷启动</strong>:重新下载/读盘权重、重新建 CUDA 上下文,几十秒里 GPU 只做搬运不做推理;而服务把模型<strong>加载一次、常驻内存</strong>,之后每个请求只花推理本身的时间。</li>
+<li>服务化(serving)的本质,是把「函数调用」升级成「网络接口」:模型进程监听一个端口,按 HTTP 请求应答。调用方只需要会发请求、会解析 JSON——语言无关、位置无关。这个「包装成服务」的动作,就是推理与部署的分水岭:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>脚本直调</th>
+<th>HTTP 服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>谁可以调用</td>
+<td>写脚本的人/同一进程</td>
+<td>任何会发 HTTP 的客户端(curl、网页、别的服务)</td>
+</tr>
+<tr>
+<td>模型加载</td>
+<td>每次运行重新加载</td>
+<td>一次加载常驻,请求即答</td>
+</tr>
+<tr>
+<td>并发</td>
+<td>无(独占进程)</td>
+<td>可排队、可批处理、可多客户端</td>
+</tr>
+<tr>
+<td>调用方门槛</td>
+<td>要懂 Python 与模型代码</td>
+<td>只懂 URL + JSON</td>
+</tr>
+<tr>
+<td>生命周期与风险</td>
+<td>用完即走,无监听面</td>
+<td>进程常驻,多了端口=多了攻击面与运维义务</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>代价要诚实</strong>:服务常驻占显存;多了一个监听端口就多了一个被攻击的入口;要处理启动/停止/崩溃/占用;并发请求来了还要有调度策略——这些正是本章与 05~07 章的主题。还要认清:<strong>服务 ≠ 产品</strong>。服务只解决「可被网络调用」,输入校验、鉴权、限流、健康检查都是后续章节的活,本章先不过界。</li>
+</ul>
+<h2 id="2-概念朴素服务为什么慢串行静态批处理与-kv-cache">2. 概念:朴素服务为什么慢:串行、静态批处理与 KV cache</h2>
+<ul>
+<li>自回归解码每步只产出一个 token(01 章讲过 prefill/decode 两阶段):prefill 一次性并行处理整段 prompt,吞吐很高;decode 每步只算一个 token,GPU 大量时间花在<strong>搬运权重与 KV cache</strong>上而非计算。一个用户独占 GPU 时,大部分算力在空转。</li>
+<li>直觉解法是<strong>批处理</strong>:把多个请求拼成一个 batch,一次前向同时推进。但朴素实现是<strong>静态批处理</strong>——一批请求必须等最慢的那个全部生成完才整体结束,先完成的请求只能占着坑空等;而且为了省事常按「最大可能长度」预留资源。结果:批越大,尾部空等与资源浪费越严重。</li>
+<li>为什么请求之间的资源无法简单共享?因为每个请求都要缓存自己历史的 <strong>KV cache</strong>(01 章定义过:为避免每步重算历史 token 的注意力键值,把 K/V 张量存进显存)。它随<strong>序列长度线性增长</strong>:论文以 13B 级模型为例,FP16 下每 token 的 K/V 约 0.78 MB,一条 2048 token 的对话就要约 1.6 GB。多路并发 + 长上下文时,KV cache 总量会迅速逼近甚至超过权重本身的占用,成为显存里最大的「活账」。</li>
+<li>更糟的是管理方式:朴素 serving 常按请求<strong>一次性预分配整块连续显存</strong>(按 max_len 预留),而请求实际长度可能只有预留的几分之一——论文测量显示,这类方案下 60%~80% 的 KV cache 显存被<strong>过度预留与碎片</strong>浪费,平均只有约两成空间真正存放 token 状态。显存被浪费 → 能并发的请求变少 → 吞吐上不去。</li>
+<li>一句话:<strong>LLM 服务的吞吐瓶颈主要不在算力,而在「KV cache 怎么存、请求怎么调度」</strong>。这两个问题,正是 vLLM 的出发点。</li>
+</ul>
+<h2 id="3-概念vllm-的三个答案">3. 概念:vLLM 的三个答案</h2>
+<p>vLLM 是加州大学伯克利分校开源的 LLM 推理与服务引擎(PagedAttention 论文,ACM SOSP 2023),<code>vllm serve</code> 一行命令即可把 Hugging Face 模型变成 HTTP 服务。它并不改变模型本身——同样的权重,靠工程把 GPU 用得更满:</p>
+<table>
+<thead>
+<tr>
+<th>vLLM 设计</th>
+<th>解决的瓶颈</th>
+<th>机制</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连续批处理</strong></td>
+<td>静态批处理的尾部空等</td>
+<td>以「每一步」为调度单位:每步结束,完成的请求立刻离场、新请求立刻入列(prefill 也可与 decode 混跑)</td>
+<td>批大小不再被最慢请求钉死,吞吐显著上升</td>
+</tr>
+<tr>
+<td><strong>PagedAttention</strong></td>
+<td>KV cache 的预分配浪费与碎片</td>
+<td>把 KV cache 切成固定大小块(默认 16 token/块),按需分配,块表映射逻辑→物理位置,如同操作系统虚拟内存分页</td>
+<td>显存浪费从 60%~80% 压到 4% 以下,同样显存能容纳更多并发</td>
+</tr>
+<tr>
+<td><strong>KV cache 管理</strong></td>
+<td>显存总账与长上下文</td>
+<td>用 <code>max-model-len</code>、<code>gpu-memory-utilization</code> 等参数控制权重、KV cache 与激活值的分配;支持前缀缓存等进阶优化</td>
+<td>显存预算可预期、可调参</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>连续批处理(continuous batching / in-flight batching)</strong>:思路源自 Orca 等 serving 系统,关键是把调度粒度从「请求」细化到「迭代」。传统做法像火车站整列整列发车,先到齐再走;连续批处理像地铁——每站都有上下的。请求到达速度不均、生成长短不一时,GPU 每一刻都在处理「当下确实能推进的集合」,空闲趋近于零。<strong>注意它牺牲不了单请求延迟</strong>:它不加快任何一条请求,而是让同一块 GPU 同时服务更多人。</li>
+<li><strong>PagedAttention</strong>:注意力计算时按块表去读散落的 KV 块,逻辑上仍是连续序列。省下的显存直接变成<strong>更大的有效批大小</strong>,论文报告:与当时最先进的 serving 系统(FasterTransformer、Orca)相比,相同延迟下吞吐提升 2~4 倍;相对「一次一条、无调度」的朴素 Transformers 服务,发布基准中最高约 24 倍。附带红利:并行采样(n 个输出)或 beam search 时,多条序列共享同一段 prompt 的 KV 块(写时复制),内存进一步复用。</li>
+<li>这两项设计都发生在<strong>引擎内部</strong>:你看到的仍是「发请求、收 JSON」。这也提醒我们:调服务参数(批大小、显存利用率)属于容量规划的活(06 章),本章先把「能跑、能调、边界安全」做扎实。</li>
+</ul>
+<h2 id="4-概念openai-兼容协议为什么兼容值钱">4. 概念:OpenAI 兼容协议:为什么「兼容」值钱</h2>
+<ul>
+<li>vLLM 默认提供 OpenAI 兼容接口:<code>/v1/chat/completions</code>、<code>/v1/models</code>。OpenAI 的 Chat Completions 事实上成了大模型服务的<strong>通用语</strong>:成千上万的框架与工具(LangChain、Open WebUI、各类 SDK)已经会说这门语言。你的本地服务讲同一门语言,意味着<strong>这些工具零改动就能指向它</strong>,也意味着代码可以在「本地 vLLM ↔ 云端 OpenAI」之间原样切换——模型可换,协议不变。这就是「兼容」的工程价值:买的是生态与可移植性。</li>
+<li>一次 chat 请求就是一份 HTTP 文档,拆开看四部分:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>本例取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法</td>
+<td><code>POST</code></td>
+<td>提交数据、请求生成</td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>http://127.0.0.1:8000/v1/chat/completions</code></td>
+<td>服务地址 + 接口路径</td>
+</tr>
+<tr>
+<td>请求头</td>
+<td><code>Content-Type: application/json</code></td>
+<td>声明 body 是 JSON</td>
+</tr>
+<tr>
+<td>body</td>
+<td><code>model</code>、<code>messages</code>、<code>temperature</code>、<code>max_tokens</code></td>
+<td><code>messages</code> 是 <code>role</code>+<code>content</code> 数组;<code>temperature:0</code> 表示贪心确定(02 章);<code>max_tokens</code> 设输出上限</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>响应同样有约定俗成的结构:顶层含 <code>id</code>、<code>object</code>、<code>created</code>、<code>model</code>、<code>choices</code>、<code>usage</code>;正文在 <code>choices[0].message.content</code>;<code>usage</code> 给出 <code>prompt_tokens</code> / <code>completion_tokens</code> / <code>total_tokens</code>——<strong>每次调用把这三个数记下来</strong>,它们是 06 章容量规划的第一手证据。想要逐 token 输出可加 <code>stream:true</code>,走 SSE 分块推送,本章不展开。</li>
+<li>对开发者还有一个福利:<code>http://127.0.0.1:8000/docs</code> 提供 Swagger 交互页,<code>/v1/models</code> 返回当前已加载的模型列表——后者兼作「进程活着吗」的健康探针。</li>
+</ul>
+<h2 id="5-概念host-与-port你的服务听谁的">5. 概念:host 与 port:你的服务听谁的</h2>
+<ul>
+<li>服务要回答两个问题:<strong>监听哪个网络接口(host)、哪个端口(port)</strong>。port 是门牌号(默认 8000,被占用就换一个,curl 里的端口必须与启动参数一致);host 决定这扇门开在哪面墙上:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>host 值</th>
+<th>谁能访问</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>127.0.0.1</code>(回环)</td>
+<td>仅本机</td>
+<td>练习与开发默认值,本章用它</td>
+</tr>
+<tr>
+<td><code>0.0.0.0</code>(所有接口)</td>
+<td>局域网、容器网络;若机器有公网映射则等于全网</td>
+<td>生产网关后的服务,须先有认证/TLS 等保护</td>
+</tr>
+<tr>
+<td>具体局域网 IP(如 <code>192.168.x.x</code>)</td>
+<td>该网段</td>
+<td>受信内网专用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>vLLM 默认不带认证</strong>:谁连得上谁就能免费跑你的 GPU、读你发出的每一段 prompt。把无认证的 <code>0.0.0.0</code> 暴露到公网,等于把算力账单与隐私一起开门迎客。安全边界一句话:<strong>练习永远 <code>127.0.0.1</code>;要对外,先有 05~07 章讲的鉴权、限流与网关</strong>。<code>Ctrl+C</code> 停止服务后,端口即释放,可从系统侧确认没有残留监听。</li>
+<li>环境前提要认清:vLLM 服务化主要面向 <strong>Linux + 受支持的 NVIDIA GPU</strong>(官方也提供 CPU、AMD/Intel 等其他后端,以当前官方文档为准)。macOS/Windows 没有原生支持:可在 WSL2、Linux 容器或云 GPU 实例上照做本章命令;实在没有 GPU 环境,也请把 4、5 两节的概念读透——05 章会用跨平台的 FastAPI 复现同一套「服务 + 请求」流程。</li>
+</ul>
+<h2 id="6-动手启动-vllm-并调用">6. 动手:启动 vLLM 并调用</h2>
+<p>在支持环境安装 <code>pip install vllm</code>,然后执行:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">vllm</span><span style="color:#9ECBFF"> serve</span><span style="color:#9ECBFF"> Qwen/Qwen2.5-0.5B-Instruct</span><span style="color:#79B8FF"> --host</span><span style="color:#79B8FF"> 127.0.0.1</span><span style="color:#79B8FF"> --port</span><span style="color:#79B8FF"> 8000</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>保持该终端运行,在第二个终端执行:</p>
+<div class="code-block"><pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> http://127.0.0.1:8000/v1/chat/completions</span><span style="color:#79B8FF"> -H</span><span style="color:#9ECBFF"> 'Content-Type: application/json'</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> '{"model":"Qwen/Qwen2.5-0.5B-Instruct","messages":[{"role":"user","content":"什么是主键？"}],"temperature":0,"max_tokens":80}'</span></span></code></pre><span class="code-lang" data-lang="bash" aria-hidden="true">bash</span></div>
+<p>预期 JSON 包含 <code>choices[0].message.content</code>。浏览 <code>http://127.0.0.1:8000/docs</code> 或调用 <code>/v1/models</code> 确认进程活着。停止服务用运行它的终端按 <code>Ctrl+C</code>,不是关闭整个终端窗口。第一个终端是「服务端」、第二个是「客户端」——请习惯这个双角色视角,后续所有服务类章节都这样工作。</p>
+<h2 id="7-动手活动服务连通性验收">7. 动手活动:服务连通性验收</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动:服务连通性验收</p>
+<p><strong>目标</strong>:<code>reports/vllm-smoke-test.md</code>。<strong>步骤</strong>:记录启动命令、模型 ID、端口;保存 <code>/v1/models</code> 和一次 chat 响应;确认 host 为 127.0.0.1。<strong>完成标准</strong>:新终端能收到 JSON;停止服务后请求失败;报告不含令牌或私密 prompt。</p>
+</div>
+<h2 id="8-常见错误与结论">8. 常见错误与结论</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Connection refused</code></td>
+<td>先看服务终端日志;确认启动已完成后端口一致</td>
+<td>服务未启动、还在加载权重或端口写错</td>
+</tr>
+<tr>
+<td>端口冲突报错</td>
+<td>换 <code>--port</code>(curl 同步改)或停掉占用进程</td>
+<td>8000 已被其他程序占用</td>
+</tr>
+<tr>
+<td>平台不支持无法启动</td>
+<td>WSL2 / Linux 容器 / 云 GPU;或换官方支持的 CPU 后端</td>
+<td>vLLM 服务化主要面向 Linux + 受支持 GPU</td>
+</tr>
+<tr>
+<td>显存不足(OOM)</td>
+<td>换更小模型或调低上下文上限,不要靠把 host 改成公网地址「解决」</td>
+<td>权重与 KV cache 超出显存;监听范围与显存无关</td>
+</tr>
+<tr>
+<td>adapter 加载/本地模型路径问题</td>
+<td>以 vLLM 当前官方文档为准</td>
+<td>加载方式随版本演进,别信过时教程</td>
+</tr>
+</tbody>
+</table>
+<p>一句话结论:<strong>服务化解决「谁都能用」,vLLM 解决「很多人同时用也不至于太慢」,host/port 解决「只有该用的人能用」</strong>——三件事分开想,动手时才不会互相甩锅。</p>
+<h2 id="9-总结">9. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>为什么服务化</td>
+<td>脚本只能被作者调用;服务让任何 HTTP 客户端都能用,代价是常驻与端口风险</td>
+</tr>
+<tr>
+<td>朴素服务慢在哪</td>
+<td>decode 算力空转;静态批处理尾部空等;KV cache 预分配浪费 60%~80% 显存</td>
+</tr>
+<tr>
+<td>连续批处理</td>
+<td>以迭代为调度单位,完成的走、新来的进,批大小不再被最慢请求钉死</td>
+</tr>
+<tr>
+<td>PagedAttention</td>
+<td>KV cache 分块按需分配,碎片近零,省下的显存换成并发与吞吐</td>
+</tr>
+<tr>
+<td>OpenAI 兼容为什么值钱</td>
+<td>生态与工具零改动可切换,本地与云端代码同构</td>
+</tr>
+<tr>
+<td>host 边界</td>
+<td><code>127.0.0.1</code> 仅本机;无认证的 <code>0.0.0.0</code> 绝不用于对外</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>:为什么「脚本能跑通」不等于「服务能用」?连续批处理提高吞吐为什么不以牺牲单请求延迟为代价?把 <code>--host</code> 改成 <code>0.0.0.0</code> 且不加任何保护,会发生什么?冒烟测试为什么用 <code>temperature:0</code>?</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>脚本只证明模型与代码正确;服务还要过网络栈、并发与生命周期这三关,任何一关出错客户端都收不到 JSON。连续批处理不改变任何单条请求的 prefill/decode 步数,只是把 GPU 空闲时间填满,所以延迟不变、吞吐上升。<code>0.0.0.0</code> 让服务监听所有网卡,vLLM 默认无认证,局域网乃至公网的人都能免费调用并读取 prompt——训练数据、成本与隐私一起失守。<code>temperature:0</code> 让输出确定(02 章),这样冒烟测试的成败只反映服务连通性,而不是采样运气。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li><a href="https://docs.vllm.ai/en/latest/serving/openai_compatible_server/">vLLM:OpenAI 兼容服务器</a></li>
+<li><a href="https://arxiv.org/abs/2309.06180">PagedAttention 论文:SOSP 2023</a></li>
+<li><a href="https://platform.openai.com/docs/api-reference/chat">OpenAI Chat Completions API 参考</a></li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/01-models/04/03/"><span>上一篇</span><strong>01.04.03 模型量化</strong></a><a class="ai-pager-next" href="/ai/01-models/04/05/"><span>下一篇</span><strong>01.04.05 构建推理 API</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-概念为什么需要服务化脚本-vs-http-服务">1. 概念:为什么需要服务化:脚本 vs HTTP 服务</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-概念朴素服务为什么慢串行静态批处理与-kv-cache">2. 概念:朴素服务为什么慢:串行、静态批处理与 KV cache</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-概念vllm-的三个答案">3. 概念:vLLM 的三个答案</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-概念openai-兼容协议为什么兼容值钱">4. 概念:OpenAI 兼容协议:为什么「兼容」值钱</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-概念host-与-port你的服务听谁的">5. 概念:host 与 port:你的服务听谁的</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-动手启动-vllm-并调用">6. 动手:启动 vLLM 并调用</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-动手活动服务连通性验收">7. 动手活动:服务连通性验收</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-常见错误与结论">8. 常见错误与结论</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-总结">9. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>

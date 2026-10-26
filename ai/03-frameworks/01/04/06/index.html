@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" data-theme-pref="system"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.4.2"><title>03.01.04.06 课程助教 Agent 的 OpenAI Agents SDK 架构案例 · iopanda</title><meta name="description" content="03.01.04.06 课程助教 Agent 的 OpenAI Agents SDK 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta name="color-scheme" content="light dark"><link rel="canonical" href="https://iopanda.github.io/ai/03-frameworks/01/04/06/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#f6f3eb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="iopanda"><meta property="og:title" content="03.01.04.06 课程助教 Agent 的 OpenAI Agents SDK 架构案例 · iopanda"><meta property="og:description" content="03.01.04.06 课程助教 Agent 的 OpenAI Agents SDK 架构案例 · 框架 / Agent 框架，AI 专栏文章。"><meta property="og:url" content="https://iopanda.github.io/ai/03-frameworks/01/04/06/"><meta name="twitter:card" content="summary"><!-- 首屏主题：在样式与正文之前同步决定明暗，避免闪白。 --><script>
+      (() => {
+        const root = document.documentElement;
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('iopanda.theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch (_) {
+          /* localStorage 不可用时保持跟随系统 */
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Kw4HZVIg.css"></head><body><a class="skip-link" href="#main">跳到正文</a><div class="site-shell site-shell--wide"><header class="site-header"><a class="brand" href="/" aria-label="iopanda 首页"><span class="brand-mark" aria-hidden="true">i</span><span>iopanda</span></a><div class="header-actions"><nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/ai/" aria-current="page">AI 专栏</a><a href="/about/">关于</a><a href="https://github.com/iopanda" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题：当前跟随系统" title="主题：跟随系统（点击切换）"><svg class="theme-icon theme-icon--system" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg><svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path></svg><svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.7 8.7 0 1 0 20.5 14.6Z"></path></svg><span class="theme-label" aria-hidden="true"></span></button></div></header><main id="main"><div class="reading-progress" data-reading-progress aria-hidden="true"><span class="reading-progress-bar" data-reading-progress-bar></span></div><div class="ai-layout ai-layout--article" data-ai-layout data-sidebar-collapsed="false"><button class="ai-sidebar-open" type="button" data-ai-sidebar-open aria-controls="ai-sidebar" aria-expanded="false" aria-label="打开专栏目录"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"></path></svg><span>目录</span></button><aside class="ai-sidebar" id="ai-sidebar" aria-label="专栏目录"><div class="ai-sidebar-head"><a class="ai-sidebar-home" href="/ai/">AI 专栏</a><div class="ai-sidebar-tools"><a class="ai-sidebar-graph" href="/ai/graph/" title="查看文章关系图">关系图</a><button class="ai-sidebar-collapse" type="button" data-ai-sidebar-collapse aria-label="收起目录栏" title="收起目录栏"><span aria-hidden="true">‹</span></button></div></div><nav class="ai-tree" aria-label="AI 专栏导航" data-ai-tree data-active-chapter="03-frameworks" data-active-section="01" data-active-subsection="04" data-active-article="/ai/03-frameworks/01/04/06/"><p class="ai-tree-caption">目录</p><ul class="tree-root"><li class="tree-item tree-item--chapter" data-node-key="chapter:01-models"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 模型"></button><a class="tree-link tree-link--chapter" href="/ai/01-models/"><span class="tree-number">01</span><span class="tree-title">模型</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:02-agents"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 智能体"></button><a class="tree-link tree-link--chapter" href="/ai/02-agents/"><span class="tree-number">02</span><span class="tree-title">智能体</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter is-current-path" data-node-key="chapter:03-frameworks"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 框架"></button><a class="tree-link tree-link--chapter" href="/ai/03-frameworks/"><span class="tree-number">03</span><span class="tree-title">框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--section is-current-path" data-node-key="section:03-frameworks/01"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 Agent 框架"></button><a class="tree-link tree-link--section" href="/ai/03-frameworks/01/"><span class="tree-number">01</span><span class="tree-title">Agent 框架</span></a></div><ul class="tree-children"><li class="tree-item tree-item--subsection is-current-path" data-node-key="subsection:03-frameworks/01/04"><div class="tree-row"><button class="tree-toggle" aria-expanded="true" aria-label="收起 OpenAI Agents SDK"></button><a class="tree-link tree-link--subsection" href="/ai/03-frameworks/01/04/"><span class="tree-number">04</span><span class="tree-title">OpenAI Agents SDK</span></a></div><ul class="tree-children tree-children--articles"><li class="tree-item tree-item--article is-current-path"><div class="tree-row"><span class="tree-spacer" aria-hidden="true"></span><a class="tree-link tree-link--article" href="/ai/03-frameworks/01/04/06/" aria-current="page"><span class="tree-number">06</span><span class="tree-title">课程助教 Agent 的 OpenAI Agents SDK 架构案例</span></a></div></li></ul></li></ul></li></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:04-tooling"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 工具链"></button><a class="tree-link tree-link--chapter" href="/ai/04-tooling/"><span class="tree-number">04</span><span class="tree-title">工具链</span></a></div><ul class="tree-children" hidden></ul></li><li class="tree-item tree-item--chapter" data-node-key="chapter:05-trending-projects"><div class="tree-row"><button class="tree-toggle" aria-expanded="false" aria-label="展开 热门项目"></button><a class="tree-link tree-link--chapter" href="/ai/05-trending-projects/"><span class="tree-number">05</span><span class="tree-title">热门项目</span></a></div><ul class="tree-children" hidden></ul></li></ul></nav><script src="/ai-tree.js" defer></script></aside><div class="ai-overlay" data-ai-overlay hidden></div><script src="/ai-sidebar.js" defer></script><article class="ai-article"><nav class="breadcrumbs" aria-label="面包屑"><a href="/ai/">AI</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/">框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/">Agent 框架</a><span class="sep" aria-hidden="true">›</span><a href="/ai/03-frameworks/01/04/">OpenAI Agents SDK</a><span class="sep" aria-hidden="true">›</span><span aria-current="page">课程助教 Agent 的 OpenAI Agents SDK 架构案例</span></nav><header class="ai-article-header"><p class="ai-number">03.01.04.06</p><h1>课程助教 Agent 的 OpenAI Agents SDK 架构案例</h1><p class="ai-meta"><time datetime="2026-09-03T17:38">2026-09-03</time><span aria-hidden="true"> · </span>iopanda</p><ul class="ai-tags" aria-label="标签"><li>course</li><li>ai-agent</li><li>framework</li><li>openai-agents-sdk</li><li>case-study</li><li>architecture</li></ul></header><div class="ai-prose"><h1 id="课程助教-agent-的-openai-agents-sdk-架构案例">课程助教 Agent 的 OpenAI Agents SDK 架构案例</h1>
+<blockquote>
+<p>前四篇已经把 OpenAI Agents SDK 的主要能力拆开了：<a href="/ai/03-frameworks/01/04/02/">运行时原语</a>、<a href="/ai/03-frameworks/01/04/03/">产品边界</a>、<a href="/ai/03-frameworks/01/04/04/">多 Agent 路由与工具生态</a>、<a href="/ai/03-frameworks/01/04/05/">应用形态</a>。这一章回到你的主线：<strong>课程助教 Agent</strong>。重点不是“用这个 SDK 能不能做出来”，而是：<strong>如果要做成一个支持课程问答、规则咨询、成绩查询、人工审批、会话隔离、可追踪的教学产品，OpenAI Agents SDK 应该怎么拆？</strong></p>
+</blockquote>
+<p><strong>学习目标</strong>：学完本章，你将能够——</p>
+<ol>
+<li>用 OpenAI Agents SDK 的原语为课程助教设计 Router + Specialists 架构；</li>
+<li>判断哪些地方该用 handoff，哪些地方该用 agent-as-tool；</li>
+<li>为课程助教设计 sessions、guardrails、approvals、tracing 策略；</li>
+<li>解释为什么课程助教在这个框架下更像产品 runtime，而不是状态图；</li>
+<li>画出一版可供开发者实现的 OpenAI Agents SDK 架构草图。</li>
+</ol>
+<h2 id="1-先定问题课程助教在这里首先是一个产品而不是一条状态图">1. 先定问题：课程助教在这里首先是一个产品，而不是一条状态图</h2>
+<p>同样是课程助教，如果用 LangGraph 去想，你会先画状态、节点和 checkpoint；
+如果用 OpenAI Agents SDK 去想，你更自然会先问：</p>
+<ul>
+<li>入口有哪些？</li>
+<li>谁负责分流？</li>
+<li>哪个 specialist 负责哪类问题？</li>
+<li>会话怎么隔离？</li>
+<li>工具和审批怎么接？</li>
+<li>trace 怎么看？</li>
+</ul>
+<p>这不是优劣之分，而是默认表达语言不同。OpenAI Agents SDK 更像“产品 runtime 结构图”。</p>
+<h2 id="2-推荐总体结构一个-triage三个-specialists">2. 推荐总体结构：一个 triage，三个 specialists</h2>
+<p>课程助教最自然的第一版结构通常是：</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>职责</th>
+<th>适合的协作模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Triage Agent</td>
+<td>判断问题类型、决定路由</td>
+<td>handoff 或 manager</td>
+</tr>
+<tr>
+<td>课程问答 Specialist</td>
+<td>课程内容问答、讲义解释</td>
+<td>handoff 或 as-tool</td>
+</tr>
+<tr>
+<td>规则说明 Specialist</td>
+<td>课程规则、评分政策、作业流程</td>
+<td>as-tool 更常见</td>
+</tr>
+<tr>
+<td>成绩查询 Specialist</td>
+<td>成绩/隐私类高风险查询</td>
+<td>handoff 更常见</td>
+</tr>
+</tbody>
+</table>
+<p>为什么这样拆：</p>
+<ul>
+<li>课程问答与规则说明是两个不同知识域；</li>
+<li>成绩查询拥有不同的权限和 guardrail；</li>
+<li>triage 可以保持外层统一入口与产品体验。</li>
+</ul>
+<h2 id="3-handoff-还是-agent-as-tool课程助教里怎么选">3. handoff 还是 agent-as-tool：课程助教里怎么选</h2>
+<h3 id="31-课程问答-specialist">3.1 课程问答 Specialist</h3>
+<p>如果你希望：</p>
+<ul>
+<li>Triage 保留统一口径；</li>
+<li>最终答复风格统一；</li>
+<li>外层共享统一 guardrails；
+那么更适合 agent-as-tool。</li>
+</ul>
+<p>如果你希望：</p>
+<ul>
+<li>某些课程问题由专家代理直接接管当前回合；</li>
+<li>specialist 的 instructions 明显不同；
+则可以用 handoff。</li>
+</ul>
+<h3 id="32-规则说明-specialist">3.2 规则说明 Specialist</h3>
+<p>通常更适合 agent-as-tool：</p>
+<ul>
+<li>它更像一个规则解释助手；</li>
+<li>往往不必单独拥有当前回合的全部 ownership；</li>
+<li>manager 汇总说明更自然。</li>
+</ul>
+<h3 id="33-成绩查询-specialist">3.3 成绩查询 Specialist</h3>
+<p>通常更适合 handoff：</p>
+<ul>
+<li>它的权限边界单独重要；</li>
+<li>它的 guardrail 和审批逻辑更特殊；</li>
+<li>当前回合很可能需要强身份校验与审批语义。</li>
+</ul>
+<p>一句话：<strong>规则解释更像咨询专家，成绩查询更像敏感路由目标。</strong></p>
+<h2 id="4-tools--mcp课程助教需要哪些外部能力">4. tools / MCP：课程助教需要哪些外部能力</h2>
+<p>课程助教至少会需要：</p>
+<ul>
+<li>课程资料检索工具；</li>
+<li>课程规则文档查询；</li>
+<li>成绩查询接口；</li>
+<li>审批或人工确认入口；</li>
+<li>审计日志记录能力。</li>
+</ul>
+<p>在 OpenAI Agents SDK 里，这些可以来自：</p>
+<ul>
+<li>本地函数工具；</li>
+<li>MCP tools；</li>
+<li>hosted MCP connectors；</li>
+<li>agent-as-tool specialists。</li>
+</ul>
+<p>设计原则不是“能接多少接多少”，而是：</p>
+<ul>
+<li>哪些工具是公开只读；</li>
+<li>哪些工具是敏感只读；</li>
+<li>哪些动作需要 approval；</li>
+<li>哪些结果必须走 output guardrail。</li>
+</ul>
+<h2 id="5-sessions课程助教最容易被低估的系统边界">5. sessions：课程助教最容易被低估的系统边界</h2>
+<p>课程助教这类产品最容易被忽略的不是工具，而是 session 设计。</p>
+<p>建议至少按问题类型隔离：</p>
+<ul>
+<li>普通课程问答 session</li>
+<li>规则咨询 session</li>
+<li>成绩查询 session</li>
+</ul>
+<p>为什么？</p>
+<ul>
+<li>普通问答上下文可以连续延续；</li>
+<li>成绩查询涉及隐私，不应与普通问答上下文混杂；</li>
+<li>specialist handoff 之后，不同 session 策略会直接影响数据边界。</li>
+</ul>
+<p>这再次说明：在 OpenAI Agents SDK 里，session 不是聊天功能，而是产品治理边界。</p>
+<h2 id="6-guardrails课程助教至少要做三层">6. guardrails：课程助教至少要做三层</h2>
+<h3 id="61-输入-guardrail">6.1 输入 guardrail</h3>
+<ul>
+<li>判断是否是代写、越权、要求泄露他人成绩；</li>
+<li>某些高风险请求直接阻断或升级人工。</li>
+</ul>
+<h3 id="62-tool-inputoutput-guardrail">6.2 tool input/output guardrail</h3>
+<p>尤其对成绩查询：</p>
+<ul>
+<li>输入前验证身份、学号、权限；</li>
+<li>输出后检查是否泄露他人信息。</li>
+</ul>
+<h3 id="63-输出-guardrail">6.3 输出 guardrail</h3>
+<ul>
+<li>最终答复是否越界；</li>
+<li>是否把不该直接透露的内容说出；</li>
+<li>是否需要替换为拒答模板或升级结果。</li>
+</ul>
+<p>这三层 guardrail 的组合，决定课程助教是不是“能上线的产品”，而不只是“会回答的 demo”。</p>
+<h2 id="7-approvals哪些动作应显式需要人类许可">7. approvals：哪些动作应显式需要人类许可</h2>
+<p>课程助教并不一定有很多写操作，但只要出现下面这些场景，就应考虑 approval：</p>
+<ul>
+<li>导出成绩</li>
+<li>批量发送复习提纲</li>
+<li>修改学生记录</li>
+<li>访问更高敏感度数据</li>
+</ul>
+<p>这些审批并不是 UI 附件，而是 runtime 语义的一部分：</p>
+<ul>
+<li>当前 run 因审批而暂停；</li>
+<li>审批结果应能被 trace；</li>
+<li>审批后 run 应能恢复而不是重来。</li>
+</ul>
+<h2 id="8-tracing真正上线后课程助教最需要看什么">8. tracing：真正上线后，课程助教最需要看什么</h2>
+<p>建议至少追踪：</p>
+<ul>
+<li>triage 是如何分类该问题的；</li>
+<li>是 handoff 还是 agent-as-tool；</li>
+<li>调用了哪些 tools / MCP servers；</li>
+<li>哪些 guardrails 命中；</li>
+<li>是否发生 approval；</li>
+<li>最终由哪个 specialist 产出结果；</li>
+<li>某些问题是否在 session 边界上被错误混合。</li>
+</ul>
+<p>这说明 tracing 在这里不是开发时 debug，而是上线后的运行解释系统。</p>
+<h2 id="9-为什么这个案例非常适合-openai-agents-sdk">9. 为什么这个案例非常适合 OpenAI Agents SDK</h2>
+<p>课程助教与这个框架高度契合的原因是：</p>
+<ul>
+<li>它天然需要 triage + specialists；</li>
+<li>它天然需要 sessions；</li>
+<li>它天然需要 guardrails；</li>
+<li>它天然可能需要 approval；</li>
+<li>它未来可能扩展 voice / web / teacher workspace 多入口。</li>
+</ul>
+<p>也就是说，这不是一个只靠状态机就能完全解释的系统，它也非常像一个多入口、多 specialist 的产品 runtime。</p>
+<h2 id="10-动手活动写课程助教的-openai-agents-sdk-架构说明">10. 动手活动：写课程助教的 OpenAI Agents SDK 架构说明</h2>
+<div class="callout callout--example" data-callout="example">
+<p class="callout-title">动手活动：输出</p>
+<p><code>course-ta-openai-agents-architecture.md</code></p>
+<p><strong>目标</strong>：基于 OpenAI Agents SDK 原语，为课程助教写一份可评审的架构说明。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>定 triage 与 specialists；</li>
+<li>为每类问题决定 handoff 还是 as-tool；</li>
+<li>列每个 specialist 可接的 tools / MCP；</li>
+<li>设计 session 隔离、guardrails、approvals；</li>
+<li>定义 tracing 里必须可见的关键事件。</li>
+</ol>
+<p><strong>完成标准</strong>：另一个工程师只看文档，就能知道“谁在路由、谁在执行、谁在审批、系统该看哪些轨迹”。</p>
+</div>
+<h2 id="11-边界与排错">11. 边界与排错</h2>
+<ul>
+<li><strong>误区一：看到多 Agent 就一律 handoff。</strong> 很多 specialist 其实更适合作为工具；</li>
+<li><strong>误区二：session 按用户统一一锅端。</strong> 高敏感问题需要更细粒度隔离；</li>
+<li><strong>误区三：成绩查询只是换一个工具。</strong> 它本质上是权限和审批问题；</li>
+<li><strong>误区四：有 specialist 就不需要统一外层体验。</strong> triage/manager 的产品作用仍很重要；</li>
+<li><strong>误区五：把 tracing 当日志。</strong> 真正要看的是 routing、guardrails、tool usage、approval 的组合轨迹。</li>
+</ul>
+<h2 id="12-总结">12. 总结</h2>
+<table>
+<thead>
+<tr>
+<th>关键问题</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程助教在这里更像什么</td>
+<td>一个多入口、多 specialist、多边界的产品 runtime</td>
+</tr>
+<tr>
+<td>推荐结构</td>
+<td>triage + 课程问答 specialist + 规则 specialist + 成绩 specialist</td>
+</tr>
+<tr>
+<td>handoff / as-tool 怎么选</td>
+<td>看 specialist 是接管当前回合，还是只提供边界明确的辅助能力</td>
+</tr>
+<tr>
+<td>session 的作用</td>
+<td>不是多轮聊天便利，而是上下文与隐私边界</td>
+</tr>
+<tr>
+<td>guardrail 的作用</td>
+<td>输入、工具、输出三层协同，决定是否可上线</td>
+</tr>
+<tr>
+<td>approval 的作用</td>
+<td>把敏感动作纳入运行时暂停与恢复语义</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考题</strong>：如果课程助教未来要扩展到“语音助教 + 教师工作台 + 学生聊天入口”三种界面，为什么 OpenAI Agents SDK 的优势会比单一文本问答框架更明显？哪些新问题会因此从“可选项”变成“必须设计的项”？</p>
+<div class="callout callout--note" data-callout="note">
+<p class="callout-title">参考答案</p>
+<p>因为一旦变成多界面产品，系统复杂度会从“单次回答”升级到“统一 runtime”：session 生命周期、voice/realtime 事件流、tool 调用时机、approval 恢复、specialist 路由、trace 关联都必须被统一设计。原本在单一文本问答场景里可以暂时忽略的 tracing、session 隔离、审批恢复、多 specialist 协作与工作区边界，都会变成必需项。OpenAI Agents SDK 的优势恰恰在于它天然按这一层思考系统。</p>
+</div>
+<h2 id="引用">引用</h2>
+<ul>
+<li>[1] <a href="https://openai.github.io/openai-agents-python">https://openai.github.io/openai-agents-python</a> — OpenAI Agents SDK docs</li>
+<li>[2] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/handoffs.md</a> — OpenAI Agents handoffs doc</li>
+<li>[3] <a href="https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md">https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/guardrails.md</a> — OpenAI Agents guardrails doc</li>
+<li>[4] <a href="https://github.com/openai/openai-agents-python">https://github.com/openai/openai-agents-python</a> — OpenAI Agents SDK GitHub</li>
+</ul>
+</div><nav class="ai-pager" aria-label="文章导航"><a class="ai-pager-prev" href="/ai/03-frameworks/01/04/05/"><span>上一篇</span><strong>03.01.04.05 Tracing、Testing、Realtime 与 Voice 的应用形态</strong></a><a class="ai-pager-next" href="/ai/03-frameworks/01/04/07/"><span>下一篇</span><strong>03.01.04.07 OpenAI Agents SDK 与 LangGraph、CrewAI、PydanticAI 的深度对比</strong></a></nav></article><aside class="ai-toc" data-ai-toc aria-label="本页目录"><p class="ai-toc-title">本页目录</p><nav aria-label="本页小节"><ol class="ai-toc-list"><li class="ai-toc-item ai-toc-depth-2"><a href="#1-先定问题课程助教在这里首先是一个产品而不是一条状态图">1. 先定问题：课程助教在这里首先是一个产品，而不是一条状态图</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#2-推荐总体结构一个-triage三个-specialists">2. 推荐总体结构：一个 triage，三个 specialists</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#3-handoff-还是-agent-as-tool课程助教里怎么选">3. handoff 还是 agent-as-tool：课程助教里怎么选</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#31-课程问答-specialist">3.1 课程问答 Specialist</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#32-规则说明-specialist">3.2 规则说明 Specialist</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#33-成绩查询-specialist">3.3 成绩查询 Specialist</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#4-tools--mcp课程助教需要哪些外部能力">4. tools / MCP：课程助教需要哪些外部能力</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#5-sessions课程助教最容易被低估的系统边界">5. sessions：课程助教最容易被低估的系统边界</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#6-guardrails课程助教至少要做三层">6. guardrails：课程助教至少要做三层</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#61-输入-guardrail">6.1 输入 guardrail</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#62-tool-inputoutput-guardrail">6.2 tool input/output guardrail</a></li><li class="ai-toc-item ai-toc-depth-3"><a href="#63-输出-guardrail">6.3 输出 guardrail</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#7-approvals哪些动作应显式需要人类许可">7. approvals：哪些动作应显式需要人类许可</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#8-tracing真正上线后课程助教最需要看什么">8. tracing：真正上线后，课程助教最需要看什么</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#9-为什么这个案例非常适合-openai-agents-sdk">9. 为什么这个案例非常适合 OpenAI Agents SDK</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#10-动手活动写课程助教的-openai-agents-sdk-架构说明">10. 动手活动：写课程助教的 OpenAI Agents SDK 架构说明</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#11-边界与排错">11. 边界与排错</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#12-总结">12. 总结</a></li><li class="ai-toc-item ai-toc-depth-2"><a href="#引用">引用</a></li></ol></nav></aside></div><script src="/ai-article.js" defer></script></main><footer class="site-footer"><p>© 2026 iopanda</p><p>由 <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a> 构建 · 无追踪</p></footer></div><script src="/theme-toggle.js" defer></script></body></html>
